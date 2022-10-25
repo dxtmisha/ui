@@ -1,0 +1,56 @@
+{
+  "d": {
+    "ref": {
+      "transitionDuration": {
+        "1": {
+          "value": "45ms"
+        },
+        "2": {
+          "value": "75ms"
+        },
+        "3": {
+          "value": "100ms"
+        },
+        "4": {
+          "value": "150ms"
+        },
+        "5": {
+          "value": "200ms"
+        },
+        "6": {
+          "value": "250ms"
+        },
+        "7": {
+          "value": "280ms"
+        },
+        "8": {
+          "value": "300ms"
+        }
+      },
+      "transitionFunction": {
+        "linear": {
+          "value": "linear"
+        },
+        "in": {
+          "value": "cubicBezier(0.4, 0.0, 1, 1)"
+        },
+        "out": {
+          "value": "cubicBezier(0.0, 0.0, 0.2, 1)"
+        },
+        "inOut": {
+          "value": "cubicBezier(0.4, 0.0, 0.2, 1)"
+        }
+      }
+    },
+    "sys": {
+      "transitionDuration": {
+        "normal": {
+          "value": "{transitionDuration.3}"
+        },
+        "active": {
+          "value": "{transitionDuration.7}"
+        }
+      }
+    }
+  }
+}

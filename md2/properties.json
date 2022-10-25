@@ -1,0 +1,1314 @@
+{
+  "md2": {
+    "ref": {
+      "spacing": {
+        "1": {
+          "value": ".25rem"
+        },
+        "2": {
+          "value": "{spacing.1}*2"
+        },
+        "3": {
+          "value": "{spacing.1}*3"
+        },
+        "4": {
+          "value": "{spacing.1}*4"
+        },
+        "5": {
+          "value": "{spacing.1}*5"
+        },
+        "6": {
+          "value": "{spacing.1}*6"
+        },
+        "7": {
+          "value": "{spacing.1}*7"
+        },
+        "8": {
+          "value": "{spacing.1}*8"
+        },
+        "9": {
+          "value": "{spacing.1}*9"
+        },
+        "10": {
+          "value": "{spacing.1}*10"
+        },
+        "11": {
+          "value": "{spacing.1}*11"
+        },
+        "12": {
+          "value": "{spacing.1}*12"
+        },
+        "13": {
+          "value": "{spacing.1}*13"
+        },
+        "14": {
+          "value": "{spacing.1}*14"
+        },
+        "15": {
+          "value": "{spacing.1}*15"
+        },
+        "16": {
+          "value": "{spacing.1}*16"
+        },
+        "20": {
+          "value": "{spacing.1}*20"
+        },
+        "24": {
+          "value": "{spacing.1}*24"
+        },
+        "28": {
+          "value": "{spacing.1}*28"
+        },
+        "32": {
+          "value": "{spacing.1}*32"
+        },
+        "36": {
+          "value": "{spacing.1}*36"
+        },
+        "40": {
+          "value": "{spacing.1}*40"
+        },
+        "48": {
+          "value": "{spacing.1}*48"
+        },
+        "56": {
+          "value": "{spacing.1}*56"
+        },
+        "64": {
+          "value": "{spacing.1}*64"
+        },
+        "72": {
+          "value": "{spacing.1}*72"
+        },
+        "80": {
+          "value": "{spacing.1}*80"
+        },
+        "128": {
+          "value": "{spacing.1}*128"
+        },
+        "px": {
+          "value": "{spacing.1}/4"
+        }
+      },
+      "screen": {
+        "xs": {
+          "value": "0px"
+        },
+        "sm": {
+          "value": "600px"
+        },
+        "md": {
+          "value": "905px"
+        },
+        "lg": {
+          "value": "1240px"
+        },
+        "xl": {
+          "value": "1440px"
+        }
+      },
+      "margin": {
+        "xs": {
+          "value": "{spacing.4}"
+        },
+        "sm": {
+          "value": "{spacing.8}"
+        },
+        "md": {
+          "value": "0px"
+        },
+        "lg": {
+          "value": "{spacing.px}*200"
+        },
+        "xl": {
+          "value": "0px"
+        }
+      },
+      "body": {
+        "xs": {
+          "value": "auto"
+        },
+        "sm": {
+          "value": "auto"
+        },
+        "md": {
+          "value": "840px"
+        },
+        "lg": {
+          "value": "auto"
+        },
+        "xl": {
+          "value": "1040px"
+        }
+      },
+      "grid": {
+        "xs": {
+          "value": "4"
+        },
+        "sm": {
+          "value": "8"
+        },
+        "md": {
+          "value": "12"
+        },
+        "lg": {
+          "value": "12"
+        },
+        "xl": {
+          "value": "12"
+        }
+      },
+      "gap": {
+        "xs": {
+          "value": "{spacing.4}"
+        },
+        "sm": {
+          "value": "{spacing.6}"
+        },
+        "md": {
+          "value": "{spacing.6}"
+        },
+        "lg": {
+          "value": "{spacing.8}"
+        },
+        "xl": {
+          "value": "{spacing.8}"
+        }
+      },
+      "chart": {
+        "red": {
+          "50": "#ffebee",
+          "100": "#ffcdd2",
+          "200": "#ef9a9a",
+          "300": "#e57373",
+          "400": "#ef5350",
+          "500": "#f44336",
+          "600": "#e53935",
+          "700": "#d32f2f",
+          "800": "#c62828",
+          "900": "#b71c1c"
+        },
+        "pink": {
+          "50": "#fce4ec",
+          "100": "#f8bbd0",
+          "200": "#f48fb1",
+          "300": "#f06292",
+          "400": "#ec407a",
+          "500": "#e91e63",
+          "600": "#d81b60",
+          "700": "#c2185b",
+          "800": "#ad1457",
+          "900": "#880e4f"
+        },
+        "purple": {
+          "50": "#f3e5f5",
+          "100": "#e1bee7",
+          "200": "#ce93d8",
+          "300": "#ba68c8",
+          "400": "#ab47bc",
+          "500": "#9c27b0",
+          "600": "#8e24aa",
+          "700": "#7b1fa2",
+          "800": "#6a1b9a",
+          "900": "#4a148c"
+        },
+        "deepPurple": {
+          "50": "#ede7f6",
+          "100": "#d1c4e9",
+          "200": "#b39ddb",
+          "300": "#9575cd",
+          "400": "#7e57c2",
+          "500": "#673ab7",
+          "600": "#5e35b1",
+          "700": "#512da8",
+          "800": "#4527a0",
+          "900": "#311b92"
+        },
+        "indigo": {
+          "50": "#e8eaf6",
+          "100": "#c5cae9",
+          "200": "#9fa8da",
+          "300": "#7986cb",
+          "400": "#5c6bc0",
+          "500": "#3f51b5",
+          "600": "#3949ab",
+          "700": "#303f9f",
+          "800": "#283593",
+          "900": "#1a237e"
+        },
+        "blue": {
+          "50": "#e3f2fd",
+          "100": "#bbdefb",
+          "200": "#90caf9",
+          "300": "#64b5f6",
+          "400": "#42a5f5",
+          "500": "#2196f3",
+          "600": "#1e88e5",
+          "700": "#1976d2",
+          "800": "#1565c0",
+          "900": "#0d47a1"
+        },
+        "lightBlue": {
+          "50": "#e1f5fe",
+          "100": "#b3e5fc",
+          "200": "#81d4fa",
+          "300": "#4fc3f7",
+          "400": "#29b6f6",
+          "500": "#03a9f4",
+          "600": "#039be5",
+          "700": "#0288d1",
+          "800": "#0277bd",
+          "900": "#01579b"
+        },
+        "cyan": {
+          "50": "#e0f7fa",
+          "100": "#b2ebf2",
+          "200": "#80deea",
+          "300": "#4dd0e1",
+          "400": "#26c6da",
+          "500": "#00bcd4",
+          "600": "#00acc1",
+          "700": "#0097a7",
+          "800": "#00838f",
+          "900": "#006064"
+        },
+        "teal": {
+          "50": "#e0f2f1",
+          "100": "#b2dfdb",
+          "200": "#80cbc4",
+          "300": "#4db6ac",
+          "400": "#26a69a",
+          "500": "#009688",
+          "600": "#00897b",
+          "700": "#00796b",
+          "800": "#00695c",
+          "900": "#004d40"
+        },
+        "green": {
+          "50": "#e8f5e9",
+          "100": "#c8e6c9",
+          "200": "#a5d6a7",
+          "300": "#81c784",
+          "400": "#66bb6a",
+          "500": "#4caf50",
+          "600": "#43a047",
+          "700": "#388e3c",
+          "800": "#2e7d32",
+          "900": "#1b5e20"
+        },
+        "lightGreen": {
+          "50": "#f1f8e9",
+          "100": "#dcedc8",
+          "200": "#c5e1a5",
+          "300": "#aed581",
+          "400": "#9ccc65",
+          "500": "#8bc34a",
+          "600": "#7cb342",
+          "700": "#689f38",
+          "800": "#558b2f",
+          "900": "#33691e"
+        },
+        "lime": {
+          "50": "#f9fbe7",
+          "100": "#f0f4c3",
+          "200": "#e6ee9c",
+          "300": "#dce775",
+          "400": "#d4e157",
+          "500": "#cddc39",
+          "600": "#c0ca33",
+          "700": "#afb42b",
+          "800": "#9e9d24",
+          "900": "#827717"
+        },
+        "yellow": {
+          "50": "#fffde7",
+          "100": "#fff9c4",
+          "200": "#fff59d",
+          "300": "#fff176",
+          "400": "#ffee58",
+          "500": "#ffeb3b",
+          "600": "#fdd835",
+          "700": "#fbc02d",
+          "800": "#f9a825",
+          "900": "#f57f17"
+        },
+        "amber": {
+          "50": "#fff8e1",
+          "100": "#ffecb3",
+          "200": "#ffe082",
+          "300": "#ffd54f",
+          "400": "#ffca28",
+          "500": "#ffc107",
+          "600": "#ffb300",
+          "700": "#ffa000",
+          "800": "#ff8f00",
+          "900": "#ff6f00"
+        },
+        "orange": {
+          "50": "#fff3e0",
+          "100": "#ffe0b2",
+          "200": "#ffcc80",
+          "300": "#ffb74d",
+          "400": "#ffa726",
+          "500": "#ff9800",
+          "600": "#fb8c00",
+          "700": "#f57c00",
+          "800": "#ef6c00",
+          "900": "#e65100"
+        },
+        "deepOrange": {
+          "50": "#fbe9e7",
+          "100": "#ffccbc",
+          "200": "#ffab91",
+          "300": "#ff8a65",
+          "400": "#ff7043",
+          "500": "#ff5722",
+          "600": "#f4511e",
+          "700": "#e64a19",
+          "800": "#d84315",
+          "900": "#bf360c"
+        },
+        "brown": {
+          "50": "#efebe9",
+          "100": "#d7ccc8",
+          "200": "#bcaaa4",
+          "300": "#a1887f",
+          "400": "#8d6e63",
+          "500": "#795548",
+          "600": "#6d4c41",
+          "700": "#5d4037",
+          "800": "#4e342e",
+          "900": "#3e2723"
+        },
+        "grey": {
+          "50": "#fafafa",
+          "100": "#f5f5f5",
+          "200": "#eeeeee",
+          "300": "#e0e0e0",
+          "400": "#bdbdbd",
+          "500": "#9e9e9e",
+          "600": "#757575",
+          "700": "#616161",
+          "800": "#424242",
+          "900": "#212121"
+        },
+        "greyBlue": {
+          "50": "#eceff1",
+          "100": "#cfd8dc",
+          "200": "#b0bec5",
+          "300": "#90a4ae",
+          "400": "#78909c",
+          "500": "#607d8b",
+          "600": "#546e7a",
+          "700": "#455a64",
+          "800": "#37474f",
+          "900": "#263238"
+        },
+        "white": "#ffffff",
+        "black": "#000000",
+        "blackLight": "#121212"
+      },
+      "shade": {
+        "0": {
+          "value": "50"
+        },
+        "1": {
+          "value": "100"
+        },
+        "2": {
+          "value": "200"
+        },
+        "3": {
+          "value": "300"
+        },
+        "4": {
+          "value": "400"
+        },
+        "5": {
+          "value": "500"
+        },
+        "6": {
+          "value": "600"
+        },
+        "7": {
+          "value": "700"
+        },
+        "8": {
+          "value": "800"
+        },
+        "9": {
+          "value": "900"
+        }
+      },
+      "opacity": {
+        "0": {
+          "value": "0"
+        },
+        "4": {
+          "value": "0.04"
+        },
+        "8": {
+          "value": "0.08"
+        },
+        "10": {
+          "value": "0.10"
+        },
+        "12": {
+          "value": "0.12"
+        },
+        "16": {
+          "value": "0.16"
+        },
+        "24": {
+          "value": "0.24"
+        },
+        "100": {
+          "value": "1"
+        },
+        "primary": {
+          "high": "1",
+          "medium": "0.74",
+          "disabled": "0.38"
+        },
+        "surface": {
+          "high": "0.87",
+          "medium": "0.60",
+          "disabled": "0.38"
+        }
+      },
+      "elevation": {
+        "background": {
+          "white": "{ref.chart.white}",
+          "dark": {
+            "0": "rga(18, 18, 18)",
+            "1": "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), #121212",
+            "2": "linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212",
+            "3": "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), #121212",
+            "4": "linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212",
+            "6": "linear-gradient(0deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11)), #121212",
+            "8": "linear-gradient(0deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), #121212",
+            "12": "linear-gradient(0deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14)), #121212",
+            "16": "linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), #121212",
+            "24": "linear-gradient(0deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.16)), #121212"
+          }
+        },
+        "shadow": {
+          "0": "none",
+          "1": "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
+          "2": "0px 2px 2px rgba(0, 0, 0, 0.14), 0px 3px 1px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)",
+          "3": "0px 3px 4px rgba(0, 0, 0, 0.14), 0px 3px 3px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.2)",
+          "4": "0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2)",
+          "6": "0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2)",
+          "8": "0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2)",
+          "9": "0px 9px 12px rgba(0, 0, 0, 0.14), 0px 3px 16px rgba(0, 0, 0, 0.12), 0px 5px 6px rgba(0, 0, 0, 0.2)",
+          "12": "0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2)",
+          "16": "0px 16px 24px rgba(0, 0, 0, 0.14), 0px 6px 30px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.2)",
+          "24": "0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2)"
+        },
+        "index": {
+          "0": {
+            "value": "0"
+          },
+          "1": {
+            "value": "100"
+          },
+          "2": {
+            "value": "200"
+          },
+          "3": {
+            "value": "300"
+          },
+          "4": {
+            "value": "400"
+          },
+          "6": {
+            "value": "600"
+          },
+          "8": {
+            "value": "800"
+          },
+          "9": {
+            "value": "900"
+          },
+          "12": {
+            "value": "1200"
+          },
+          "16": {
+            "value": "1600"
+          },
+          "24": {
+            "value": "2400"
+          }
+        }
+      },
+      "font": {
+        "family": {
+          "basic": {
+            "value": "'Roboto'"
+          }
+        },
+        "size": {
+          "xs": {
+            "value": "{spacing.px}*10"
+          },
+          "sm": {
+            "value": "{spacing.px}*12"
+          },
+          "md": {
+            "value": "{spacing.px}*14"
+          },
+          "lg": {
+            "value": "{spacing.px}*16"
+          },
+          "xl": {
+            "value": "{spacing.px}*20"
+          },
+          "headline": {
+            "1": {
+              "value": "{spacing.px}*96"
+            },
+            "2": {
+              "value": "{spacing.px}*60"
+            },
+            "3": {
+              "value": "{spacing.px}*48"
+            },
+            "4": {
+              "value": "{spacing.px}*34"
+            },
+            "5": {
+              "value": "{spacing.px}*24"
+            },
+            "6": {
+              "value": "{spacing.px}*20"
+            }
+          }
+        },
+        "weight": {
+          "lighter": {
+            "value": "300"
+          },
+          "normal": {
+            "value": "400"
+          },
+          "bold": {
+            "value": "500"
+          }
+        }
+      },
+      "letterSpacing": {
+        "xs": {
+          "value": "{spacing.px}*.1"
+        },
+        "sm": {
+          "value": "{spacing.px}*.15"
+        },
+        "md": {
+          "value": "{spacing.px}*.25"
+        },
+        "lg": {
+          "value": "{spacing.px}*.4"
+        },
+        "xl": {
+          "value": "{spacing.px}*.5"
+        },
+        "2xl": {
+          "value": "{spacing.px}*1.25"
+        },
+        "3xl": {
+          "value": "{spacing.px}*1.5"
+        },
+        "headline": {
+          "1": {
+            "value": "{spacing.px}*-1.5"
+          },
+          "2": {
+            "value": "{spacing.px}*-0.5"
+          },
+          "3": {
+            "value": "0"
+          },
+          "4": {
+            "value": "0"
+          },
+          "5": {
+            "value": "{spacing.px}*.18"
+          },
+          "6": {
+            "value": "{spacing.px}*.15"
+          }
+        },
+        "none": {
+          "value": "0"
+        }
+      },
+      "lineHeight": {
+        "sm": {
+          "value": "{spacing.4}"
+        },
+        "md": {
+          "value": "{spacing.5}"
+        },
+        "lg": {
+          "value": "{spacing.6}"
+        },
+        "xl": {
+          "value": "{spacing.7}"
+        },
+        "headline": {
+          "1": {
+            "value": "{spacing.px}*112"
+          },
+          "2": {
+            "value": "{spacing.px}*72"
+          },
+          "3": {
+            "value": "{spacing.px}*56"
+          },
+          "4": {
+            "value": "{spacing.px}*36"
+          },
+          "5": {
+            "value": "{spacing.px}*24"
+          },
+          "6": {
+            "value": "{spacing.px}*24"
+          }
+        }
+      }
+    },
+    "sys": {
+      "shade": {
+        "normal": "{ref.shade.5}",
+        "variant": "{ref.shade.7}",
+        "dark": {
+          "normal": "{ref.shade.2}",
+          "variant": "{ref.shade.7}"
+        }
+      },
+      "chart": {
+        "primary": {
+          "value": "{ref.chart.blue.{shade.normal}}"
+        },
+        "primaryVariant": {
+          "value": "{ref.chart.blue.{shade.variant}}"
+        },
+        "secondary": {
+          "value": "{ref.chart.amber.{shade.normal}}"
+        },
+        "secondaryVariant": {
+          "value": "{ref.chart.amber.{shade.variant}}"
+        },
+        "var|background": {
+          "value": "{ref.chart.white}"
+        },
+        "surface": {
+          "value": "{ref.chart.white}"
+        },
+        "error": {
+          "value": "{ref.chart.red.{shade.variant}}"
+        },
+        "success": {
+          "value": "{ref.chart.green.{shade.variant}}"
+        },
+        "warning": {
+          "value": "{ref.chart.yellow.{shade.variant}}"
+        },
+        "onPrimary": {
+          "value": "{ref.chart.white}"
+        },
+        "onSecondary": {
+          "value": "{ref.chart.black}"
+        },
+        "onBackground": {
+          "value": "{ref.chart.black}"
+        },
+        "onSurface": {
+          "value": "{ref.chart.black}"
+        },
+        "onError": {
+          "value": "{ref.chart.white}"
+        },
+        "var|border": {
+          "value": "{ref.chart.black}"
+        },
+        "red": {
+          "value": "{ref.chart.red.{shade.normal}}"
+        },
+        "redVariant": {
+          "value": "{ref.chart.red.{shade.variant}}"
+        },
+        "pink": {
+          "value": "{ref.chart.pink.{shade.normal}}"
+        },
+        "pinkVariant": {
+          "value": "{ref.chart.pink.{shade.variant}}"
+        },
+        "purple": {
+          "value": "{ref.chart.purple.{shade.normal}}"
+        },
+        "purpleVariant": {
+          "value": "{ref.chart.purple.{shade.variant}}"
+        },
+        "deepPurple": {
+          "value": "{ref.chart.deepPurple.{shade.normal}}"
+        },
+        "deepPurpleVariant": {
+          "value": "{ref.chart.deepPurple.{shade.variant}}"
+        },
+        "indigo": {
+          "value": "{ref.chart.indigo.{shade.normal}}"
+        },
+        "indigoVariant": {
+          "value": "{ref.chart.indigo.{shade.variant}}"
+        },
+        "blue": {
+          "value": "{ref.chart.blue.{shade.normal}}"
+        },
+        "blueVariant": {
+          "value": "{ref.chart.blue.{shade.variant}}"
+        },
+        "lightBlue": {
+          "value": "{ref.chart.lightBlue.{shade.normal}}"
+        },
+        "lightBlueVariant": {
+          "value": "{ref.chart.lightBlue.{shade.variant}}"
+        },
+        "cyan": {
+          "value": "{ref.chart.cyan.{shade.normal}}"
+        },
+        "cyanVariant": {
+          "value": "{ref.chart.cyan.{shade.variant}}"
+        },
+        "teal": {
+          "value": "{ref.chart.teal.{shade.normal}}"
+        },
+        "tealVariant": {
+          "value": "{ref.chart.teal.{shade.variant}}"
+        },
+        "green": {
+          "value": "{ref.chart.green.{shade.normal}}"
+        },
+        "greenVariant": {
+          "value": "{ref.chart.green.{shade.variant}}"
+        },
+        "lightGreen": {
+          "value": "{ref.chart.lightGreen.{shade.normal}}"
+        },
+        "lightGreenVariant": {
+          "value": "{ref.chart.lightGreen.{shade.variant}}"
+        },
+        "lime": {
+          "value": "{ref.chart.lime.{shade.normal}}"
+        },
+        "limeVariant": {
+          "value": "{ref.chart.lime.{shade.variant}}"
+        },
+        "yellow": {
+          "value": "{ref.chart.yellow.{shade.normal}}"
+        },
+        "yellowVariant": {
+          "value": "{ref.chart.yellow.{shade.variant}}"
+        },
+        "amber": {
+          "value": "{ref.chart.amber.{shade.normal}}"
+        },
+        "amberVariant": {
+          "value": "{ref.chart.amber.{shade.variant}}"
+        },
+        "orange": {
+          "value": "{ref.chart.orange.{shade.normal}}"
+        },
+        "orangeVariant": {
+          "value": "{ref.chart.orange.{shade.variant}}"
+        },
+        "deepOrange": {
+          "value": "{ref.chart.deepOrange.{shade.normal}}"
+        },
+        "deepOrangeVariant": {
+          "value": "{ref.chart.deepOrange.{shade.variant}}"
+        },
+        "brown": {
+          "value": "{ref.chart.brown.{shade.normal}}"
+        },
+        "brownVariant": {
+          "value": "{ref.chart.brown.{shade.variant}}"
+        },
+        "grey": {
+          "value": "{ref.chart.grey.{shade.normal}}"
+        },
+        "greyVariant": {
+          "value": "{ref.chart.grey.{shade.variant}}"
+        },
+        "greyBlue": {
+          "value": "{ref.chart.greyBlue.{shade.normal}}"
+        },
+        "greyBlueVariant": {
+          "value": "{ref.chart.greyBlue.{shade.variant}}"
+        },
+        "white": {
+          "value": "{ref.chart.white}"
+        },
+        "black": {
+          "value": "{ref.chart.black}"
+        },
+        "dark": {
+          "primary": {
+            "value": "{ref.chart.blue.{shade.dark.normal}}"
+          },
+          "primaryVariant": {
+            "value": "{ref.chart.blue.{shade.dark.variant}}"
+          },
+          "secondary": {
+            "value": "{ref.chart.amber.{shade.dark.normal}}"
+          },
+          "secondaryVariant": {
+            "value": "{ref.chart.amber.{shade.dark.variant}}"
+          },
+          "var|background": {
+            "value": "{ref.chart.blackLight}"
+          },
+          "surface": {
+            "value": "{ref.chart.blackLight}"
+          },
+          "error": {
+            "value": "{ref.chart.red.{shade.dark.variant}}"
+          },
+          "success": {
+            "value": "{ref.chart.green.{shade.dark.variant}}"
+          },
+          "warning": {
+            "value": "{ref.chart.yellow.{shade.dark.variant}}"
+          },
+          "onPrimary": {
+            "value": "{ref.chart.black}"
+          },
+          "onSecondary": {
+            "value": "{ref.chart.black}"
+          },
+          "onBackground": {
+            "value": "{ref.chart.white}"
+          },
+          "onSurface": {
+            "value": "{ref.chart.white}"
+          },
+          "onError": {
+            "value": "{ref.chart.black}"
+          },
+          "var|border": {
+            "value": "{ref.chart.white}"
+          },
+          "red": {
+            "value": "{ref.chart.red.{shade.dark.normal}}"
+          },
+          "redVariant": {
+            "value": "{ref.chart.red.{shade.dark.variant}}"
+          },
+          "pink": {
+            "value": "{ref.chart.pink.{shade.dark.normal}}"
+          },
+          "pinkVariant": {
+            "value": "{ref.chart.pink.{shade.dark.variant}}"
+          },
+          "purple": {
+            "value": "{ref.chart.purple.{shade.dark.normal}}"
+          },
+          "purpleVariant": {
+            "value": "{ref.chart.purple.{shade.dark.variant}}"
+          },
+          "deepPurple": {
+            "value": "{ref.chart.deepPurple.{shade.dark.normal}}"
+          },
+          "deepPurpleVariant": {
+            "value": "{ref.chart.deepPurple.{shade.dark.variant}}"
+          },
+          "indigo": {
+            "value": "{ref.chart.indigo.{shade.dark.normal}}"
+          },
+          "indigoVariant": {
+            "value": "{ref.chart.indigo.{shade.dark.variant}}"
+          },
+          "blue": {
+            "value": "{ref.chart.blue.{shade.dark.normal}}"
+          },
+          "blueVariant": {
+            "value": "{ref.chart.blue.{shade.dark.variant}}"
+          },
+          "lightBlue": {
+            "value": "{ref.chart.lightBlue.{shade.dark.normal}}"
+          },
+          "lightBlueVariant": {
+            "value": "{ref.chart.lightBlue.{shade.dark.variant}}"
+          },
+          "cyan": {
+            "value": "{ref.chart.cyan.{shade.dark.normal}}"
+          },
+          "cyanVariant": {
+            "value": "{ref.chart.cyan.{shade.dark.variant}}"
+          },
+          "teal": {
+            "value": "{ref.chart.teal.{shade.dark.normal}}"
+          },
+          "tealVariant": {
+            "value": "{ref.chart.teal.{shade.dark.variant}}"
+          },
+          "green": {
+            "value": "{ref.chart.green.{shade.dark.normal}}"
+          },
+          "greenVariant": {
+            "value": "{ref.chart.green.{shade.dark.variant}}"
+          },
+          "lightGreen": {
+            "value": "{ref.chart.lightGreen.{shade.dark.normal}}"
+          },
+          "lightGreenVariant": {
+            "value": "{ref.chart.lightGreen.{shade.dark.variant}}"
+          },
+          "lime": {
+            "value": "{ref.chart.lime.{shade.dark.normal}}"
+          },
+          "limeVariant": {
+            "value": "{ref.chart.lime.{shade.dark.variant}}"
+          },
+          "yellow": {
+            "value": "{ref.chart.yellow.{shade.dark.normal}}"
+          },
+          "yellowVariant": {
+            "value": "{ref.chart.yellow.{shade.dark.variant}}"
+          },
+          "amber": {
+            "value": "{ref.chart.amber.{shade.dark.normal}}"
+          },
+          "amberVariant": {
+            "value": "{ref.chart.amber.{shade.dark.variant}}"
+          },
+          "orange": {
+            "value": "{ref.chart.orange.{shade.dark.normal}}"
+          },
+          "orangeVariant": {
+            "value": "{ref.chart.orange.{shade.dark.variant}}"
+          },
+          "deepOrange": {
+            "value": "{ref.chart.deepOrange.{shade.dark.normal}}"
+          },
+          "deepOrangeVariant": {
+            "value": "{ref.chart.deepOrange.{shade.dark.variant}}"
+          },
+          "brown": {
+            "value": "{ref.chart.brown.{shade.dark.normal}}"
+          },
+          "brownVariant": {
+            "value": "{ref.chart.brown.{shade.dark.variant}}"
+          },
+          "grey": {
+            "value": "{ref.chart.grey.{shade.dark.normal}}"
+          },
+          "greyVariant": {
+            "value": "{ref.chart.grey.{shade.dark.variant}}"
+          },
+          "greyBlue": {
+            "value": "{ref.chart.greyBlue.{shade.dark.normal}}"
+          },
+          "greyBlueVariant": {
+            "value": "{ref.chart.greyBlue.{shade.dark.variant}}"
+          },
+          "white": {
+            "value": "{ref.chart.white}"
+          },
+          "black": {
+            "value": "{ref.chart.blackLight}"
+          }
+        }
+      },
+      "opacity": {
+        "var|hover": {
+          "value": "{ref.opacity.4}"
+        },
+        "var|focus": {
+          "value": "{ref.opacity.12}"
+        },
+        "pressed": {
+          "value": "{ref.opacity.10}"
+        },
+        "dragged": {
+          "value": "{ref.opacity.8}"
+        },
+        "selected": {
+          "value": "{ref.opacity.8}"
+        },
+        "var|border": {
+          "value": "{ref.opacity.12}"
+        }
+      },
+      "elevation": {
+        "background": {
+          "0": "{ref.elevation.background.white}",
+          "1": "{ref.elevation.background.white}",
+          "2": "{ref.elevation.background.white}",
+          "3": "{ref.elevation.background.white}",
+          "4": "{ref.elevation.background.white}",
+          "6": "{ref.elevation.background.white}",
+          "8": "{ref.elevation.background.white}",
+          "12": "{ref.elevation.background.white}",
+          "16": "{ref.elevation.background.white}",
+          "24": "{ref.elevation.background.white}",
+          "dark": {
+            "0": "{ref.elevation.background.dark.0}",
+            "1": "{ref.elevation.background.dark.1}",
+            "2": "{ref.elevation.background.dark.2}",
+            "3": "{ref.elevation.background.dark.3}",
+            "4": "{ref.elevation.background.dark.4}",
+            "6": "{ref.elevation.background.dark.6}",
+            "8": "{ref.elevation.background.dark.8}",
+            "12": "{ref.elevation.background.dark.12}",
+            "16": "{ref.elevation.background.dark.16}",
+            "24": "{ref.elevation.background.dark.24}"
+          }
+        }
+      }
+    },
+    "section|grid": {
+      "gridTemplateColumns": "repeat({ref.grid.xs}, minmax(0, 1fr))",
+      "columnGap": "{ref.gap.xs}",
+      "@{screen.sm}": {
+        "gridTemplateColumns": "repeat({ref.grid.sm}, minmax(0, 1fr))",
+        "columnGap": "{ref.gap.sm}"
+      },
+      "@{screen.md}": {
+        "gridTemplateColumns": "repeat({ref.grid.md}, minmax(0, 1fr))",
+        "columnGap": "{ref.gap.md}"
+      },
+      "@{screen.lg}": {
+        "gridTemplateColumns": "repeat({ref.grid.lg}, minmax(0, 1fr))",
+        "columnGap": "{ref.gap.lg}"
+      },
+      "@{screen.xl}": {
+        "gridTemplateColumns": "repeat({ref.grid.xl}, minmax(0, 1fr))",
+        "columnGap": "{ref.gap.xl}"
+      }
+    },
+    "elevation": {
+      "0": {
+        "background": "{sys.elevation.background.0}",
+        "boxShadow": "{elevation.shadow.0}",
+        "zIndex": "{elevation.index.0}"
+      },
+      "1": {
+        "background": "{sys.elevation.background.1}",
+        "boxShadow": "{elevation.shadow.1}",
+        "zIndex": "{elevation.index.1}"
+      },
+      "2": {
+        "background": "{sys.elevation.background.2}",
+        "boxShadow": "{elevation.shadow.2}",
+        "zIndex": "{elevation.index.2}"
+      },
+      "3": {
+        "background": "{sys.elevation.background.3}",
+        "boxShadow": "{elevation.shadow.3}",
+        "zIndex": "{elevation.index.3}"
+      },
+      "4": {
+        "background": "{sys.elevation.background.4}",
+        "boxShadow": "{elevation.shadow.4}",
+        "zIndex": "{elevation.index.4}"
+      },
+      "6": {
+        "background": "{sys.elevation.background.6}",
+        "boxShadow": "{elevation.shadow.6}",
+        "zIndex": "{elevation.index.6}"
+      },
+      "8": {
+        "background": "{sys.elevation.background.8}",
+        "boxShadow": "{elevation.shadow.8}",
+        "zIndex": "{elevation.index.8}"
+      },
+      "12": {
+        "background": "{sys.elevation.background.12}",
+        "boxShadow": "{elevation.shadow.12}",
+        "zIndex": "{elevation.index.12}"
+      },
+      "16": {
+        "background": "{sys.elevation.background.16}",
+        "boxShadow": "{elevation.shadow.16}",
+        "zIndex": "{elevation.index.16}"
+      },
+      "24": {
+        "background": "{sys.elevation.background.24}",
+        "boxShadow": "{elevation.shadow.24}",
+        "zIndex": "{elevation.index.24}"
+      }
+    },
+    "font": {
+      "overline": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.xs}",
+        "lineHeight": "{lineHeight.sm}",
+        "letterSpacing": "{letterSpacing.3xl}",
+        "textTransform": "uppercase"
+      },
+      "caption": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.normal}",
+        "fontSize": "{font.size.sm}",
+        "lineHeight": "{lineHeight.sm}",
+        "letterSpacing": "{letterSpacing.lg}"
+      },
+      "button": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.md}",
+        "lineHeight": "{lineHeight.sm}",
+        "letterSpacing": "{letterSpacing.2xl}",
+        "textTransform": "uppercase"
+      },
+      "body2": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.normal}",
+        "fontSize": "{font.size.md}",
+        "lineHeight": "{lineHeight.sm}",
+        "letterSpacing": "{letterSpacing.md}"
+      },
+      "body1": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.normal}",
+        "fontSize": "{font.size.lg}",
+        "lineHeight": "{lineHeight.lg}",
+        "letterSpacing": "{letterSpacing.xl}"
+      },
+      "subtitle2": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.md}",
+        "lineHeight": "{lineHeight.lg}",
+        "letterSpacing": "{letterSpacing.xs}"
+      },
+      "subtitle1": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.normal}",
+        "fontSize": "{font.size.lg}",
+        "lineHeight": "{lineHeight.lg}",
+        "letterSpacing": "{letterSpacing.sm}"
+      },
+      "headline6": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.headline.6}",
+        "lineHeight": "{lineHeight.headline.6}",
+        "letterSpacing": "{letterSpacing.headline.6}"
+      },
+      "headline5": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.headline.5}",
+        "lineHeight": "{lineHeight.headline.5}",
+        "letterSpacing": "{letterSpacing.headline.5}"
+      },
+      "headline4": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.headline.4}",
+        "lineHeight": "{lineHeight.headline.4}",
+        "letterSpacing": "{letterSpacing.headline.4}"
+      },
+      "headline3": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.headline.3}",
+        "lineHeight": "{lineHeight.headline.3}",
+        "letterSpacing": "{letterSpacing.headline.3}"
+      },
+      "headline2": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.headline.2}",
+        "lineHeight": "{lineHeight.headline.2}",
+        "letterSpacing": "{letterSpacing.headline.2}"
+      },
+      "headline1": {
+        "fontFamily": "{font.family.basic}",
+        "fontWeight": "{font.weight.bold}",
+        "fontSize": "{font.size.headline.1}",
+        "lineHeight": "{lineHeight.headline.1}",
+        "letterSpacing": "{letterSpacing.headline.1}"
+      }
+    },
+    "dark": {
+      "var|&sys": {
+        "chart": {
+          "primary": "{sys.chart.dark.primary}",
+          "primaryVariant": "{sys.chart.dark.primaryVariant}",
+          "secondary": "{sys.chart.dark.secondary}",
+          "secondaryVariant": "{sys.chart.dark.secondaryVariant}",
+          "var|background": "{sys.chart.dark.background}",
+          "surface": "{sys.chart.dark.surface}",
+          "error": "{sys.chart.dark.error}",
+          "success": "{sys.chart.dark.success}",
+          "warning": "{sys.chart.dark.warning}",
+          "onPrimary": "{sys.chart.dark.onPrimary}",
+          "onSecondary": "{sys.chart.dark.onSecondary}",
+          "onBackground": "{sys.chart.dark.onBackground}",
+          "onSurface": "{sys.chart.dark.onSurface}",
+          "onError": "{sys.chart.dark.onError}",
+          "var|border": "{sys.chart.dark.border}",
+          "red": "{sys.chart.dark.red}",
+          "redVariant": "{sys.chart.dark.redVariant}",
+          "pink": "{sys.chart.dark.pink}",
+          "pinkVariant": "{sys.chart.dark.pinkVariant}",
+          "purple": "{sys.chart.dark.purple}",
+          "purpleVariant": "{sys.chart.dark.purpleVariant}",
+          "deepPurple": "{sys.chart.dark.deepPurple}",
+          "deepPurpleVariant": "{sys.chart.dark.deepPurpleVariant}",
+          "indigo": "{sys.chart.dark.indigo}",
+          "indigoVariant": "{sys.chart.dark.indigoVariant}",
+          "blue": "{sys.chart.dark.blue}",
+          "blueVariant": "{sys.chart.dark.blueVariant}",
+          "lightBlue": "{sys.chart.dark.lightBlue}",
+          "lightBlueVariant": "{sys.chart.dark.lightBlueVariant}",
+          "cyan": "{sys.chart.dark.cyan}",
+          "cyanVariant": "{sys.chart.dark.cyanVariant}",
+          "teal": "{sys.chart.dark.teal}",
+          "tealVariant": "{sys.chart.dark.tealVariant}",
+          "green": "{sys.chart.dark.green}",
+          "greenVariant": "{sys.chart.dark.greenVariant}",
+          "lightGreen": "{sys.chart.dark.lightGreen}",
+          "lightGreenVariant": "{sys.chart.dark.lightGreenVariant}",
+          "lime": "{sys.chart.dark.lime}",
+          "limeVariant": "{sys.chart.dark.limeVariant}",
+          "yellow": "{sys.chart.dark.yellow}",
+          "yellowVariant": "{sys.chart.dark.yellowVariant}",
+          "amber": "{sys.chart.dark.amber}",
+          "amberVariant": "{sys.chart.dark.amberVariant}",
+          "orange": "{sys.chart.dark.orange}",
+          "orangeVariant": "{sys.chart.dark.orangeVariant}",
+          "deepOrange": "{sys.chart.dark.deepOrange}",
+          "deepOrangeVariant": "{sys.chart.dark.deepOrangeVariant}",
+          "brown": "{sys.chart.dark.brown}",
+          "brownVariant": "{sys.chart.dark.brownVariant}",
+          "grey": "{sys.chart.dark.grey}",
+          "greyVariant": "{sys.chart.dark.greyVariant}",
+          "greyBlue": "{sys.chart.dark.greyBlue}",
+          "greyBlueVariant": "{sys.chart.dark.greyBlueVariant}",
+          "white": "{sys.chart.dark.white}",
+          "black": "{sys.chart.dark.black}"
+        },
+        "elevation": {
+          "background": {
+            "0": "{sys.elevation.background.dark.0}",
+            "1": "{sys.elevation.background.dark.1}",
+            "2": "{sys.elevation.background.dark.2}",
+            "3": "{sys.elevation.background.dark.3}",
+            "4": "{sys.elevation.background.dark.4}",
+            "6": "{sys.elevation.background.dark.6}",
+            "8": "{sys.elevation.background.dark.8}",
+            "12": "{sys.elevation.background.dark.12}",
+            "16": "{sys.elevation.background.dark.16}",
+            "24": "{sys.elevation.background.dark.24}"
+          }
+        }
+      }
+    },
+    "comp": {}
+  }
+}
