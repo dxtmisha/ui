@@ -45,10 +45,10 @@
     "sys": {
       "transitionDuration": {
         "normal": {
-          "value": "{transitionDuration.3}"
+          "value": "{ref.transitionDuration.3}"
         },
         "active": {
-          "value": "{transitionDuration.7}"
+          "value": "{ref.transitionDuration.7}"
         }
       }
     }

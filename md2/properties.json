@@ -6,88 +6,88 @@
           "value": ".25rem"
         },
         "2": {
-          "value": "{spacing.1}*2"
+          "value": "{ref.spacing.1}*2"
         },
         "3": {
-          "value": "{spacing.1}*3"
+          "value": "{ref.spacing.1}*3"
         },
         "4": {
-          "value": "{spacing.1}*4"
+          "value": "{ref.spacing.1}*4"
         },
         "5": {
-          "value": "{spacing.1}*5"
+          "value": "{ref.spacing.1}*5"
         },
         "6": {
-          "value": "{spacing.1}*6"
+          "value": "{ref.spacing.1}*6"
         },
         "7": {
-          "value": "{spacing.1}*7"
+          "value": "{ref.spacing.1}*7"
         },
         "8": {
-          "value": "{spacing.1}*8"
+          "value": "{ref.spacing.1}*8"
         },
         "9": {
-          "value": "{spacing.1}*9"
+          "value": "{ref.spacing.1}*9"
         },
         "10": {
-          "value": "{spacing.1}*10"
+          "value": "{ref.spacing.1}*10"
         },
         "11": {
-          "value": "{spacing.1}*11"
+          "value": "{ref.spacing.1}*11"
         },
         "12": {
-          "value": "{spacing.1}*12"
+          "value": "{ref.spacing.1}*12"
         },
         "13": {
-          "value": "{spacing.1}*13"
+          "value": "{ref.spacing.1}*13"
         },
         "14": {
-          "value": "{spacing.1}*14"
+          "value": "{ref.spacing.1}*14"
         },
         "15": {
-          "value": "{spacing.1}*15"
+          "value": "{ref.spacing.1}*15"
         },
         "16": {
-          "value": "{spacing.1}*16"
+          "value": "{ref.spacing.1}*16"
         },
         "20": {
-          "value": "{spacing.1}*20"
+          "value": "{ref.spacing.1}*20"
         },
         "24": {
-          "value": "{spacing.1}*24"
+          "value": "{ref.spacing.1}*24"
         },
         "28": {
-          "value": "{spacing.1}*28"
+          "value": "{ref.spacing.1}*28"
         },
         "32": {
-          "value": "{spacing.1}*32"
+          "value": "{ref.spacing.1}*32"
         },
         "36": {
-          "value": "{spacing.1}*36"
+          "value": "{ref.spacing.1}*36"
         },
         "40": {
-          "value": "{spacing.1}*40"
+          "value": "{ref.spacing.1}*40"
         },
         "48": {
-          "value": "{spacing.1}*48"
+          "value": "{ref.spacing.1}*48"
         },
         "56": {
-          "value": "{spacing.1}*56"
+          "value": "{ref.spacing.1}*56"
         },
         "64": {
-          "value": "{spacing.1}*64"
+          "value": "{ref.spacing.1}*64"
         },
         "72": {
-          "value": "{spacing.1}*72"
+          "value": "{ref.spacing.1}*72"
         },
         "80": {
-          "value": "{spacing.1}*80"
+          "value": "{ref.spacing.1}*80"
         },
         "128": {
-          "value": "{spacing.1}*128"
+          "value": "{ref.spacing.1}*128"
         },
         "px": {
-          "value": "{spacing.1}/4"
+          "value": "{ref.spacing.1}/4"
         }
       },
       "screen": {
@@ -109,16 +109,16 @@
       },
       "margin": {
         "xs": {
-          "value": "{spacing.4}"
+          "value": "{ref.spacing.4}"
         },
         "sm": {
-          "value": "{spacing.8}"
+          "value": "{ref.spacing.8}"
         },
         "md": {
           "value": "0px"
         },
         "lg": {
-          "value": "{spacing.px}*200"
+          "value": "{ref.spacing.px}*200"
         },
         "xl": {
           "value": "0px"
@@ -160,19 +160,19 @@
       },
       "gap": {
         "xs": {
-          "value": "{spacing.4}"
+          "value": "{ref.spacing.4}"
         },
         "sm": {
-          "value": "{spacing.6}"
+          "value": "{ref.spacing.6}"
         },
         "md": {
-          "value": "{spacing.6}"
+          "value": "{ref.spacing.6}"
         },
         "lg": {
-          "value": "{spacing.8}"
+          "value": "{ref.spacing.8}"
         },
         "xl": {
-          "value": "{spacing.8}"
+          "value": "{ref.spacing.8}"
         }
       },
       "chart": {
@@ -500,7 +500,6 @@
           "4": "0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2)",
           "6": "0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2)",
           "8": "0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2)",
-          "9": "0px 9px 12px rgba(0, 0, 0, 0.14), 0px 3px 16px rgba(0, 0, 0, 0.12), 0px 5px 6px rgba(0, 0, 0, 0.2)",
           "12": "0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2)",
           "16": "0px 16px 24px rgba(0, 0, 0, 0.14), 0px 6px 30px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.2)",
           "24": "0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2)"
@@ -527,9 +526,6 @@
           "8": {
             "value": "800"
           },
-          "9": {
-            "value": "900"
-          },
           "12": {
             "value": "1200"
           },
@@ -549,38 +545,38 @@
         },
         "size": {
           "xs": {
-            "value": "{spacing.px}*10"
+            "value": "{ref.spacing.px}*10"
           },
           "sm": {
-            "value": "{spacing.px}*12"
+            "value": "{ref.spacing.px}*12"
           },
           "md": {
-            "value": "{spacing.px}*14"
+            "value": "{ref.spacing.px}*14"
           },
           "lg": {
-            "value": "{spacing.px}*16"
+            "value": "{ref.spacing.px}*16"
           },
           "xl": {
-            "value": "{spacing.px}*20"
+            "value": "{ref.spacing.px}*20"
           },
           "headline": {
             "1": {
-              "value": "{spacing.px}*96"
+              "value": "{ref.spacing.px}*96"
             },
             "2": {
-              "value": "{spacing.px}*60"
+              "value": "{ref.spacing.px}*60"
             },
             "3": {
-              "value": "{spacing.px}*48"
+              "value": "{ref.spacing.px}*48"
             },
             "4": {
-              "value": "{spacing.px}*34"
+              "value": "{ref.spacing.px}*34"
             },
             "5": {
-              "value": "{spacing.px}*24"
+              "value": "{ref.spacing.px}*24"
             },
             "6": {
-              "value": "{spacing.px}*20"
+              "value": "{ref.spacing.px}*20"
             }
           }
         },
@@ -598,32 +594,32 @@
       },
       "letterSpacing": {
         "xs": {
-          "value": "{spacing.px}*.1"
+          "value": "{ref.spacing.px}*.1"
         },
         "sm": {
-          "value": "{spacing.px}*.15"
+          "value": "{ref.spacing.px}*.15"
         },
         "md": {
-          "value": "{spacing.px}*.25"
+          "value": "{ref.spacing.px}*.25"
         },
         "lg": {
-          "value": "{spacing.px}*.4"
+          "value": "{ref.spacing.px}*.4"
         },
         "xl": {
-          "value": "{spacing.px}*.5"
+          "value": "{ref.spacing.px}*.5"
         },
         "2xl": {
-          "value": "{spacing.px}*1.25"
+          "value": "{ref.spacing.px}*1.25"
         },
         "3xl": {
-          "value": "{spacing.px}*1.5"
+          "value": "{ref.spacing.px}*1.5"
         },
         "headline": {
           "1": {
-            "value": "{spacing.px}*-1.5"
+            "value": "{ref.spacing.px}*-1.5"
           },
           "2": {
-            "value": "{spacing.px}*-0.5"
+            "value": "{ref.spacing.px}*-0.5"
           },
           "3": {
             "value": "0"
@@ -632,10 +628,10 @@
             "value": "0"
           },
           "5": {
-            "value": "{spacing.px}*.18"
+            "value": "{ref.spacing.px}*.18"
           },
           "6": {
-            "value": "{spacing.px}*.15"
+            "value": "{ref.spacing.px}*.15"
           }
         },
         "none": {
@@ -644,35 +640,35 @@
       },
       "lineHeight": {
         "sm": {
-          "value": "{spacing.4}"
+          "value": "{ref.spacing.4}"
         },
         "md": {
-          "value": "{spacing.5}"
+          "value": "{ref.spacing.5}"
         },
         "lg": {
-          "value": "{spacing.6}"
+          "value": "{ref.spacing.6}"
         },
         "xl": {
-          "value": "{spacing.7}"
+          "value": "{ref.spacing.7}"
         },
         "headline": {
           "1": {
-            "value": "{spacing.px}*112"
+            "value": "{ref.spacing.px}*112"
           },
           "2": {
-            "value": "{spacing.px}*72"
+            "value": "{ref.spacing.px}*72"
           },
           "3": {
-            "value": "{spacing.px}*56"
+            "value": "{ref.spacing.px}*56"
           },
           "4": {
-            "value": "{spacing.px}*36"
+            "value": "{ref.spacing.px}*36"
           },
           "5": {
-            "value": "{spacing.px}*24"
+            "value": "{ref.spacing.px}*24"
           },
           "6": {
-            "value": "{spacing.px}*24"
+            "value": "{ref.spacing.px}*24"
           }
         }
       }
@@ -688,16 +684,16 @@
       },
       "chart": {
         "primary": {
-          "value": "{ref.chart.blue.{shade.normal}}"
+          "value": "{ref.chart.blue.{sys.shade.normal}}"
         },
         "primaryVariant": {
-          "value": "{ref.chart.blue.{shade.variant}}"
+          "value": "{ref.chart.blue.{sys.shade.variant}}"
         },
         "secondary": {
-          "value": "{ref.chart.amber.{shade.normal}}"
+          "value": "{ref.chart.amber.{sys.shade.normal}}"
         },
         "secondaryVariant": {
-          "value": "{ref.chart.amber.{shade.variant}}"
+          "value": "{ref.chart.amber.{sys.shade.variant}}"
         },
         "var|background": {
           "value": "{ref.chart.white}"
@@ -706,13 +702,13 @@
           "value": "{ref.chart.white}"
         },
         "error": {
-          "value": "{ref.chart.red.{shade.variant}}"
+          "value": "{ref.chart.red.{sys.shade.variant}}"
         },
         "success": {
-          "value": "{ref.chart.green.{shade.variant}}"
+          "value": "{ref.chart.green.{sys.shade.variant}}"
         },
         "warning": {
-          "value": "{ref.chart.yellow.{shade.variant}}"
+          "value": "{ref.chart.yellow.{sys.shade.variant}}"
         },
         "onPrimary": {
           "value": "{ref.chart.white}"
@@ -733,118 +729,118 @@
           "value": "{ref.chart.black}"
         },
         "red": {
-          "value": "{ref.chart.red.{shade.normal}}"
+          "value": "{ref.chart.red.{sys.shade.normal}}"
         },
         "redVariant": {
-          "value": "{ref.chart.red.{shade.variant}}"
+          "value": "{ref.chart.red.{sys.shade.variant}}"
         },
         "pink": {
-          "value": "{ref.chart.pink.{shade.normal}}"
+          "value": "{ref.chart.pink.{sys.shade.normal}}"
         },
         "pinkVariant": {
-          "value": "{ref.chart.pink.{shade.variant}}"
+          "value": "{ref.chart.pink.{sys.shade.variant}}"
         },
         "purple": {
-          "value": "{ref.chart.purple.{shade.normal}}"
+          "value": "{ref.chart.purple.{sys.shade.normal}}"
         },
         "purpleVariant": {
-          "value": "{ref.chart.purple.{shade.variant}}"
+          "value": "{ref.chart.purple.{sys.shade.variant}}"
         },
         "deepPurple": {
-          "value": "{ref.chart.deepPurple.{shade.normal}}"
+          "value": "{ref.chart.deepPurple.{sys.shade.normal}}"
         },
         "deepPurpleVariant": {
-          "value": "{ref.chart.deepPurple.{shade.variant}}"
+          "value": "{ref.chart.deepPurple.{sys.shade.variant}}"
         },
         "indigo": {
-          "value": "{ref.chart.indigo.{shade.normal}}"
+          "value": "{ref.chart.indigo.{sys.shade.normal}}"
         },
         "indigoVariant": {
-          "value": "{ref.chart.indigo.{shade.variant}}"
+          "value": "{ref.chart.indigo.{sys.shade.variant}}"
         },
         "blue": {
-          "value": "{ref.chart.blue.{shade.normal}}"
+          "value": "{ref.chart.blue.{sys.shade.normal}}"
         },
         "blueVariant": {
-          "value": "{ref.chart.blue.{shade.variant}}"
+          "value": "{ref.chart.blue.{sys.shade.variant}}"
         },
         "lightBlue": {
-          "value": "{ref.chart.lightBlue.{shade.normal}}"
+          "value": "{ref.chart.lightBlue.{sys.shade.normal}}"
         },
         "lightBlueVariant": {
-          "value": "{ref.chart.lightBlue.{shade.variant}}"
+          "value": "{ref.chart.lightBlue.{sys.shade.variant}}"
         },
         "cyan": {
-          "value": "{ref.chart.cyan.{shade.normal}}"
+          "value": "{ref.chart.cyan.{sys.shade.normal}}"
         },
         "cyanVariant": {
-          "value": "{ref.chart.cyan.{shade.variant}}"
+          "value": "{ref.chart.cyan.{sys.shade.variant}}"
         },
         "teal": {
-          "value": "{ref.chart.teal.{shade.normal}}"
+          "value": "{ref.chart.teal.{sys.shade.normal}}"
         },
         "tealVariant": {
-          "value": "{ref.chart.teal.{shade.variant}}"
+          "value": "{ref.chart.teal.{sys.shade.variant}}"
         },
         "green": {
-          "value": "{ref.chart.green.{shade.normal}}"
+          "value": "{ref.chart.green.{sys.shade.normal}}"
         },
         "greenVariant": {
-          "value": "{ref.chart.green.{shade.variant}}"
+          "value": "{ref.chart.green.{sys.shade.variant}}"
         },
         "lightGreen": {
-          "value": "{ref.chart.lightGreen.{shade.normal}}"
+          "value": "{ref.chart.lightGreen.{sys.shade.normal}}"
         },
         "lightGreenVariant": {
-          "value": "{ref.chart.lightGreen.{shade.variant}}"
+          "value": "{ref.chart.lightGreen.{sys.shade.variant}}"
         },
         "lime": {
-          "value": "{ref.chart.lime.{shade.normal}}"
+          "value": "{ref.chart.lime.{sys.shade.normal}}"
         },
         "limeVariant": {
-          "value": "{ref.chart.lime.{shade.variant}}"
+          "value": "{ref.chart.lime.{sys.shade.variant}}"
         },
         "yellow": {
-          "value": "{ref.chart.yellow.{shade.normal}}"
+          "value": "{ref.chart.yellow.{sys.shade.normal}}"
         },
         "yellowVariant": {
-          "value": "{ref.chart.yellow.{shade.variant}}"
+          "value": "{ref.chart.yellow.{sys.shade.variant}}"
         },
         "amber": {
-          "value": "{ref.chart.amber.{shade.normal}}"
+          "value": "{ref.chart.amber.{sys.shade.normal}}"
         },
         "amberVariant": {
-          "value": "{ref.chart.amber.{shade.variant}}"
+          "value": "{ref.chart.amber.{sys.shade.variant}}"
         },
         "orange": {
-          "value": "{ref.chart.orange.{shade.normal}}"
+          "value": "{ref.chart.orange.{sys.shade.normal}}"
         },
         "orangeVariant": {
-          "value": "{ref.chart.orange.{shade.variant}}"
+          "value": "{ref.chart.orange.{sys.shade.variant}}"
         },
         "deepOrange": {
-          "value": "{ref.chart.deepOrange.{shade.normal}}"
+          "value": "{ref.chart.deepOrange.{sys.shade.normal}}"
         },
         "deepOrangeVariant": {
-          "value": "{ref.chart.deepOrange.{shade.variant}}"
+          "value": "{ref.chart.deepOrange.{sys.shade.variant}}"
         },
         "brown": {
-          "value": "{ref.chart.brown.{shade.normal}}"
+          "value": "{ref.chart.brown.{sys.shade.normal}}"
         },
         "brownVariant": {
-          "value": "{ref.chart.brown.{shade.variant}}"
+          "value": "{ref.chart.brown.{sys.shade.variant}}"
         },
         "grey": {
-          "value": "{ref.chart.grey.{shade.normal}}"
+          "value": "{ref.chart.grey.{sys.shade.normal}}"
         },
         "greyVariant": {
-          "value": "{ref.chart.grey.{shade.variant}}"
+          "value": "{ref.chart.grey.{sys.shade.variant}}"
         },
         "greyBlue": {
-          "value": "{ref.chart.greyBlue.{shade.normal}}"
+          "value": "{ref.chart.greyBlue.{sys.shade.normal}}"
         },
         "greyBlueVariant": {
-          "value": "{ref.chart.greyBlue.{shade.variant}}"
+          "value": "{ref.chart.greyBlue.{sys.shade.variant}}"
         },
         "white": {
           "value": "{ref.chart.white}"
@@ -854,16 +850,16 @@
         },
         "dark": {
           "primary": {
-            "value": "{ref.chart.blue.{shade.dark.normal}}"
+            "value": "{ref.chart.blue.{sys.shade.dark.normal}}"
           },
           "primaryVariant": {
-            "value": "{ref.chart.blue.{shade.dark.variant}}"
+            "value": "{ref.chart.blue.{sys.shade.dark.variant}}"
           },
           "secondary": {
-            "value": "{ref.chart.amber.{shade.dark.normal}}"
+            "value": "{ref.chart.amber.{sys.shade.dark.normal}}"
           },
           "secondaryVariant": {
-            "value": "{ref.chart.amber.{shade.dark.variant}}"
+            "value": "{ref.chart.amber.{sys.shade.dark.variant}}"
           },
           "var|background": {
             "value": "{ref.chart.blackLight}"
@@ -872,13 +868,13 @@
             "value": "{ref.chart.blackLight}"
           },
           "error": {
-            "value": "{ref.chart.red.{shade.dark.variant}}"
+            "value": "{ref.chart.red.{sys.shade.dark.variant}}"
           },
           "success": {
-            "value": "{ref.chart.green.{shade.dark.variant}}"
+            "value": "{ref.chart.green.{sys.shade.dark.variant}}"
           },
           "warning": {
-            "value": "{ref.chart.yellow.{shade.dark.variant}}"
+            "value": "{ref.chart.yellow.{sys.shade.dark.variant}}"
           },
           "onPrimary": {
             "value": "{ref.chart.black}"
@@ -899,118 +895,118 @@
             "value": "{ref.chart.white}"
           },
           "red": {
-            "value": "{ref.chart.red.{shade.dark.normal}}"
+            "value": "{ref.chart.red.{sys.shade.dark.normal}}"
           },
           "redVariant": {
-            "value": "{ref.chart.red.{shade.dark.variant}}"
+            "value": "{ref.chart.red.{sys.shade.dark.variant}}"
           },
           "pink": {
-            "value": "{ref.chart.pink.{shade.dark.normal}}"
+            "value": "{ref.chart.pink.{sys.shade.dark.normal}}"
           },
           "pinkVariant": {
-            "value": "{ref.chart.pink.{shade.dark.variant}}"
+            "value": "{ref.chart.pink.{sys.shade.dark.variant}}"
           },
           "purple": {
-            "value": "{ref.chart.purple.{shade.dark.normal}}"
+            "value": "{ref.chart.purple.{sys.shade.dark.normal}}"
           },
           "purpleVariant": {
-            "value": "{ref.chart.purple.{shade.dark.variant}}"
+            "value": "{ref.chart.purple.{sys.shade.dark.variant}}"
           },
           "deepPurple": {
-            "value": "{ref.chart.deepPurple.{shade.dark.normal}}"
+            "value": "{ref.chart.deepPurple.{sys.shade.dark.normal}}"
           },
           "deepPurpleVariant": {
-            "value": "{ref.chart.deepPurple.{shade.dark.variant}}"
+            "value": "{ref.chart.deepPurple.{sys.shade.dark.variant}}"
           },
           "indigo": {
-            "value": "{ref.chart.indigo.{shade.dark.normal}}"
+            "value": "{ref.chart.indigo.{sys.shade.dark.normal}}"
           },
           "indigoVariant": {
-            "value": "{ref.chart.indigo.{shade.dark.variant}}"
+            "value": "{ref.chart.indigo.{sys.shade.dark.variant}}"
           },
           "blue": {
-            "value": "{ref.chart.blue.{shade.dark.normal}}"
+            "value": "{ref.chart.blue.{sys.shade.dark.normal}}"
           },
           "blueVariant": {
-            "value": "{ref.chart.blue.{shade.dark.variant}}"
+            "value": "{ref.chart.blue.{sys.shade.dark.variant}}"
           },
           "lightBlue": {
-            "value": "{ref.chart.lightBlue.{shade.dark.normal}}"
+            "value": "{ref.chart.lightBlue.{sys.shade.dark.normal}}"
           },
           "lightBlueVariant": {
-            "value": "{ref.chart.lightBlue.{shade.dark.variant}}"
+            "value": "{ref.chart.lightBlue.{sys.shade.dark.variant}}"
           },
           "cyan": {
-            "value": "{ref.chart.cyan.{shade.dark.normal}}"
+            "value": "{ref.chart.cyan.{sys.shade.dark.normal}}"
           },
           "cyanVariant": {
-            "value": "{ref.chart.cyan.{shade.dark.variant}}"
+            "value": "{ref.chart.cyan.{sys.shade.dark.variant}}"
           },
           "teal": {
-            "value": "{ref.chart.teal.{shade.dark.normal}}"
+            "value": "{ref.chart.teal.{sys.shade.dark.normal}}"
           },
           "tealVariant": {
-            "value": "{ref.chart.teal.{shade.dark.variant}}"
+            "value": "{ref.chart.teal.{sys.shade.dark.variant}}"
           },
           "green": {
-            "value": "{ref.chart.green.{shade.dark.normal}}"
+            "value": "{ref.chart.green.{sys.shade.dark.normal}}"
           },
           "greenVariant": {
-            "value": "{ref.chart.green.{shade.dark.variant}}"
+            "value": "{ref.chart.green.{sys.shade.dark.variant}}"
           },
           "lightGreen": {
-            "value": "{ref.chart.lightGreen.{shade.dark.normal}}"
+            "value": "{ref.chart.lightGreen.{sys.shade.dark.normal}}"
           },
           "lightGreenVariant": {
-            "value": "{ref.chart.lightGreen.{shade.dark.variant}}"
+            "value": "{ref.chart.lightGreen.{sys.shade.dark.variant}}"
           },
           "lime": {
-            "value": "{ref.chart.lime.{shade.dark.normal}}"
+            "value": "{ref.chart.lime.{sys.shade.dark.normal}}"
           },
           "limeVariant": {
-            "value": "{ref.chart.lime.{shade.dark.variant}}"
+            "value": "{ref.chart.lime.{sys.shade.dark.variant}}"
           },
           "yellow": {
-            "value": "{ref.chart.yellow.{shade.dark.normal}}"
+            "value": "{ref.chart.yellow.{sys.shade.dark.normal}}"
           },
           "yellowVariant": {
-            "value": "{ref.chart.yellow.{shade.dark.variant}}"
+            "value": "{ref.chart.yellow.{sys.shade.dark.variant}}"
           },
           "amber": {
-            "value": "{ref.chart.amber.{shade.dark.normal}}"
+            "value": "{ref.chart.amber.{sys.shade.dark.normal}}"
           },
           "amberVariant": {
-            "value": "{ref.chart.amber.{shade.dark.variant}}"
+            "value": "{ref.chart.amber.{sys.shade.dark.variant}}"
           },
           "orange": {
-            "value": "{ref.chart.orange.{shade.dark.normal}}"
+            "value": "{ref.chart.orange.{sys.shade.dark.normal}}"
           },
           "orangeVariant": {
-            "value": "{ref.chart.orange.{shade.dark.variant}}"
+            "value": "{ref.chart.orange.{sys.shade.dark.variant}}"
           },
           "deepOrange": {
-            "value": "{ref.chart.deepOrange.{shade.dark.normal}}"
+            "value": "{ref.chart.deepOrange.{sys.shade.dark.normal}}"
           },
           "deepOrangeVariant": {
-            "value": "{ref.chart.deepOrange.{shade.dark.variant}}"
+            "value": "{ref.chart.deepOrange.{sys.shade.dark.variant}}"
           },
           "brown": {
-            "value": "{ref.chart.brown.{shade.dark.normal}}"
+            "value": "{ref.chart.brown.{sys.shade.dark.normal}}"
           },
           "brownVariant": {
-            "value": "{ref.chart.brown.{shade.dark.variant}}"
+            "value": "{ref.chart.brown.{sys.shade.dark.variant}}"
           },
           "grey": {
-            "value": "{ref.chart.grey.{shade.dark.normal}}"
+            "value": "{ref.chart.grey.{sys.shade.dark.normal}}"
           },
           "greyVariant": {
-            "value": "{ref.chart.grey.{shade.dark.variant}}"
+            "value": "{ref.chart.grey.{sys.shade.dark.variant}}"
           },
           "greyBlue": {
-            "value": "{ref.chart.greyBlue.{shade.dark.normal}}"
+            "value": "{ref.chart.greyBlue.{sys.shade.dark.normal}}"
           },
           "greyBlueVariant": {
-            "value": "{ref.chart.greyBlue.{shade.dark.variant}}"
+            "value": "{ref.chart.greyBlue.{sys.shade.dark.variant}}"
           },
           "white": {
             "value": "{ref.chart.white}"
@@ -1064,25 +1060,49 @@
             "16": "{ref.elevation.background.dark.16}",
             "24": "{ref.elevation.background.dark.24}"
           }
+        },
+        "shadow": {
+          "0": "{ref.elevation.shadow.0}",
+          "1": "{ref.elevation.shadow.1}",
+          "2": "{ref.elevation.shadow.2}",
+          "3": "{ref.elevation.shadow.3}",
+          "4": "{ref.elevation.shadow.4}",
+          "6": "{ref.elevation.shadow.6}",
+          "8": "{ref.elevation.shadow.8}",
+          "12": "{ref.elevation.shadow.12}",
+          "16": "{ref.elevation.shadow.16}",
+          "24": "{ref.elevation.shadow.24}"
+        },
+        "index": {
+          "0": "{ref.elevation.index.0}",
+          "1": "{ref.elevation.index.1}",
+          "2": "{ref.elevation.index.2}",
+          "3": "{ref.elevation.index.3}",
+          "4": "{ref.elevation.index.4}",
+          "6": "{ref.elevation.index.6}",
+          "8": "{ref.elevation.index.8}",
+          "12": "{ref.elevation.index.12}",
+          "16": "{ref.elevation.index.16}",
+          "24": "{ref.elevation.index.24}"
         }
       }
     },
     "section|grid": {
       "gridTemplateColumns": "repeat({ref.grid.xs}, minmax(0, 1fr))",
       "columnGap": "{ref.gap.xs}",
-      "@{screen.sm}": {
+      "@{ref.screen.sm}": {
         "gridTemplateColumns": "repeat({ref.grid.sm}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.sm}"
       },
-      "@{screen.md}": {
+      "@{ref.screen.md}": {
         "gridTemplateColumns": "repeat({ref.grid.md}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.md}"
       },
-      "@{screen.lg}": {
+      "@{ref.screen.lg}": {
         "gridTemplateColumns": "repeat({ref.grid.lg}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.lg}"
       },
-      "@{screen.xl}": {
+      "@{ref.screen.xl}": {
         "gridTemplateColumns": "repeat({ref.grid.xl}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.xl}"
       }
@@ -1090,148 +1110,148 @@
     "elevation": {
       "0": {
         "background": "{sys.elevation.background.0}",
-        "boxShadow": "{elevation.shadow.0}",
-        "zIndex": "{elevation.index.0}"
+        "boxShadow": "{sys.elevation.shadow.0}",
+        "zIndex": "{sys.elevation.index.0}"
       },
       "1": {
         "background": "{sys.elevation.background.1}",
-        "boxShadow": "{elevation.shadow.1}",
-        "zIndex": "{elevation.index.1}"
+        "boxShadow": "{sys.elevation.shadow.1}",
+        "zIndex": "{sys.elevation.index.1}"
       },
       "2": {
         "background": "{sys.elevation.background.2}",
-        "boxShadow": "{elevation.shadow.2}",
-        "zIndex": "{elevation.index.2}"
+        "boxShadow": "{sys.elevation.shadow.2}",
+        "zIndex": "{sys.elevation.index.2}"
       },
       "3": {
         "background": "{sys.elevation.background.3}",
-        "boxShadow": "{elevation.shadow.3}",
-        "zIndex": "{elevation.index.3}"
+        "boxShadow": "{sys.elevation.shadow.3}",
+        "zIndex": "{sys.elevation.index.3}"
       },
       "4": {
         "background": "{sys.elevation.background.4}",
-        "boxShadow": "{elevation.shadow.4}",
-        "zIndex": "{elevation.index.4}"
+        "boxShadow": "{sys.elevation.shadow.4}",
+        "zIndex": "{sys.elevation.index.4}"
       },
       "6": {
         "background": "{sys.elevation.background.6}",
-        "boxShadow": "{elevation.shadow.6}",
-        "zIndex": "{elevation.index.6}"
+        "boxShadow": "{sys.elevation.shadow.6}",
+        "zIndex": "{sys.elevation.index.6}"
       },
       "8": {
         "background": "{sys.elevation.background.8}",
-        "boxShadow": "{elevation.shadow.8}",
-        "zIndex": "{elevation.index.8}"
+        "boxShadow": "{sys.elevation.shadow.8}",
+        "zIndex": "{sys.elevation.index.8}"
       },
       "12": {
         "background": "{sys.elevation.background.12}",
-        "boxShadow": "{elevation.shadow.12}",
-        "zIndex": "{elevation.index.12}"
+        "boxShadow": "{sys.elevation.shadow.12}",
+        "zIndex": "{sys.elevation.index.12}"
       },
       "16": {
         "background": "{sys.elevation.background.16}",
-        "boxShadow": "{elevation.shadow.16}",
-        "zIndex": "{elevation.index.16}"
+        "boxShadow": "{sys.elevation.shadow.16}",
+        "zIndex": "{sys.elevation.index.16}"
       },
       "24": {
         "background": "{sys.elevation.background.24}",
-        "boxShadow": "{elevation.shadow.24}",
-        "zIndex": "{elevation.index.24}"
+        "boxShadow": "{sys.elevation.shadow.24}",
+        "zIndex": "{sys.elevation.index.24}"
       }
     },
     "font": {
       "overline": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.xs}",
-        "lineHeight": "{lineHeight.sm}",
-        "letterSpacing": "{letterSpacing.3xl}",
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.xs}",
+        "lineHeight": "{ref.lineHeight.sm}",
+        "letterSpacing": "{ref.letterSpacing.3xl}",
         "textTransform": "uppercase"
       },
       "caption": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.normal}",
-        "fontSize": "{font.size.sm}",
-        "lineHeight": "{lineHeight.sm}",
-        "letterSpacing": "{letterSpacing.lg}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.normal}",
+        "fontSize": "{ref.font.size.sm}",
+        "lineHeight": "{ref.lineHeight.sm}",
+        "letterSpacing": "{ref.letterSpacing.lg}"
       },
       "button": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.md}",
-        "lineHeight": "{lineHeight.sm}",
-        "letterSpacing": "{letterSpacing.2xl}",
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.md}",
+        "lineHeight": "{ref.lineHeight.sm}",
+        "letterSpacing": "{ref.letterSpacing.2xl}",
         "textTransform": "uppercase"
       },
       "body2": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.normal}",
-        "fontSize": "{font.size.md}",
-        "lineHeight": "{lineHeight.sm}",
-        "letterSpacing": "{letterSpacing.md}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.normal}",
+        "fontSize": "{ref.font.size.md}",
+        "lineHeight": "{ref.lineHeight.sm}",
+        "letterSpacing": "{ref.letterSpacing.md}"
       },
       "body1": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.normal}",
-        "fontSize": "{font.size.lg}",
-        "lineHeight": "{lineHeight.lg}",
-        "letterSpacing": "{letterSpacing.xl}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.normal}",
+        "fontSize": "{ref.font.size.lg}",
+        "lineHeight": "{ref.lineHeight.lg}",
+        "letterSpacing": "{ref.letterSpacing.xl}"
       },
       "subtitle2": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.md}",
-        "lineHeight": "{lineHeight.lg}",
-        "letterSpacing": "{letterSpacing.xs}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.md}",
+        "lineHeight": "{ref.lineHeight.lg}",
+        "letterSpacing": "{ref.letterSpacing.xs}"
       },
       "subtitle1": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.normal}",
-        "fontSize": "{font.size.lg}",
-        "lineHeight": "{lineHeight.lg}",
-        "letterSpacing": "{letterSpacing.sm}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.normal}",
+        "fontSize": "{ref.font.size.lg}",
+        "lineHeight": "{ref.lineHeight.lg}",
+        "letterSpacing": "{ref.letterSpacing.sm}"
       },
       "headline6": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.headline.6}",
-        "lineHeight": "{lineHeight.headline.6}",
-        "letterSpacing": "{letterSpacing.headline.6}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.headline.6}",
+        "lineHeight": "{ref.lineHeight.headline.6}",
+        "letterSpacing": "{ref.letterSpacing.headline.6}"
       },
       "headline5": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.headline.5}",
-        "lineHeight": "{lineHeight.headline.5}",
-        "letterSpacing": "{letterSpacing.headline.5}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.headline.5}",
+        "lineHeight": "{ref.lineHeight.headline.5}",
+        "letterSpacing": "{ref.letterSpacing.headline.5}"
       },
       "headline4": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.headline.4}",
-        "lineHeight": "{lineHeight.headline.4}",
-        "letterSpacing": "{letterSpacing.headline.4}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.headline.4}",
+        "lineHeight": "{ref.lineHeight.headline.4}",
+        "letterSpacing": "{ref.letterSpacing.headline.4}"
       },
       "headline3": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.headline.3}",
-        "lineHeight": "{lineHeight.headline.3}",
-        "letterSpacing": "{letterSpacing.headline.3}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.headline.3}",
+        "lineHeight": "{ref.lineHeight.headline.3}",
+        "letterSpacing": "{ref.letterSpacing.headline.3}"
       },
       "headline2": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.headline.2}",
-        "lineHeight": "{lineHeight.headline.2}",
-        "letterSpacing": "{letterSpacing.headline.2}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.headline.2}",
+        "lineHeight": "{ref.lineHeight.headline.2}",
+        "letterSpacing": "{ref.letterSpacing.headline.2}"
       },
       "headline1": {
-        "fontFamily": "{font.family.basic}",
-        "fontWeight": "{font.weight.bold}",
-        "fontSize": "{font.size.headline.1}",
-        "lineHeight": "{lineHeight.headline.1}",
-        "letterSpacing": "{letterSpacing.headline.1}"
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.headline.1}",
+        "lineHeight": "{ref.lineHeight.headline.1}",
+        "letterSpacing": "{ref.letterSpacing.headline.1}"
       }
     },
     "dark": {
