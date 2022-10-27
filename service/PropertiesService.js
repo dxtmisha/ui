@@ -28,6 +28,11 @@ module.exports = class extends PropertiesFileService {
     return index.split('.', 2)?.[0]
   }
 
+  getFullIndex (design, index) {
+    const designIndex = this.getDesign(index)
+    return `${(designIndex in this.properties ? designIndex : design)}.${index}`
+  }
+
   getIndex (design, index) {
     return this.getItem(design, index)?.__names || index
   }
@@ -38,8 +43,7 @@ module.exports = class extends PropertiesFileService {
    * @return {Object<string, string>}
    */
   getItem (design, index) {
-    const designIndex = this.getDesign(index)
-    const fullIndex = `${(designIndex in this.properties ? designIndex : design)}.${index}`
+    const fullIndex = this.getFullIndex(design, index)
 
     if (fullIndex in this.mapProperties) {
       return this.mapProperties[fullIndex]
@@ -47,6 +51,19 @@ module.exports = class extends PropertiesFileService {
       console.error(`PropertiesService.getItem(${design}, ${index})`)
       return undefined
     }
+  }
+
+  getLink (design, value) {
+    const index = this.getLinkIndex(design, value.value)
+    const property = this.getItem(design, index)
+
+    return property ? this.initScss(property, design) : ''
+  }
+
+  getLinkIndex (design, value) {
+    return this.toSub(design, value)
+      ?.replace(/(^{|}$)/ig, '')
+      ?.trim()
   }
 
   getOptions (property) {
@@ -76,30 +93,8 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  getScss (properties = this.properties, design = null) {
-    let data = ''
-
-    forEach(properties, (item, index) => {
-      if (typeof item !== 'string') {
-        const {
-          type,
-          options,
-          property
-        } = this.getType(item)
-
-        if (type === 'link') {
-          data += this._toScssLink(item, design || index)
-        } else if ('_value' in item) {
-          data += `'${property}': (type:${type},value:${item._value}),`
-        } else if (type !== 'section') {
-          data += `'${property}': (type:${type},${options ? `options:${options},` : ''}value:(${this.toScss(item, design || index)})),`
-        } else {
-          data += `'${property}': (${this.toScss(item, design || index)}),`
-        }
-      }
-    })
-
-    return data
+  getScss () {
+    return `$designsProperties: (${this.initScss()});`
   }
 
   getValue (design, index) {
@@ -173,6 +168,31 @@ module.exports = class extends PropertiesFileService {
         }
       }
     })
+  }
+
+  initScss (properties = this.properties, design = undefined) {
+    let data = ''
+
+    forEach(properties, (property, name) => {
+      if (this.isSection(name, property)) {
+        const index = property.__index
+        const type = property.__type
+        const designIndex = design || name
+
+        if (type === 'link') {
+          data += this.getLink(designIndex, property)
+        } else if ('__value' in property) {
+          data += `'${index}': (type:${type},value:${property.__value}),`
+        } else if (type !== 'section') {
+          const options = index.__options
+          data += `'${index}': (type:${type},${options ? `options:${options},` : ''}value:(${this.initScss(property, designIndex)})),`
+        } else {
+          data += `'${index}': (${this.initScss(property, designIndex)}),`
+        }
+      }
+    })
+
+    return data
   }
 
   initValue (property) {
