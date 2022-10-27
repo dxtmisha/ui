@@ -1,0 +1,13 @@
+@import "../rules";
+
+@function getType($map) {
+  @return getMapItem($map, 'type', 'section')
+}
+
+@function getValue($map) {
+  @return getMapItem($map, 'value', $map)
+}
+
+@function getOptions($map) {
+  @return getMapItem($map, 'options')
+}

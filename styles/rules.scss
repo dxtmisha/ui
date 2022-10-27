@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "sass:meta";
+
+@function getMapItem(
+  $map,
+  $index,
+  $default: null
+) {
+  @if (meta.type-of($index) == list) {
+    $data: $map;
+
+    @each $key in $index {
+      $data: getMapItem($data, $key, $default);
+    }
+
+    @return $data
+  } @else if (
+          meta.type-of($map) == map and
+          map.has-key($map, $index)
+  ) {
+    @return map.get($map, $index);
+  } @else {
+    @return $default;
+  }
+}
+
+@function setMapItem($map, $index, $value) {
+  @return map.merge($map, (#{$index}: $value));
+}

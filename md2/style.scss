@@ -1,0 +1,5 @@
+@import "../styles/services/propertiesService";
+
+$name: 'md2';
+
+@include initPropertiesService($name, ('ref', 'sys'));

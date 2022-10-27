@@ -1,0 +1,9 @@
+@import "rules";
+
+@function toColorRBG($color) {
+  @return red($color) + ', ' + green($color) + ', ' + blue($color);
+}
+
+@function toGradient($color) {
+  @return linear-gradient(0deg, #{$color}, #{$color});
+}

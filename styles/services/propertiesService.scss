@@ -1,0 +1,61 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+@import "../color";
+@import "../rules";
+@import "./propertyService";
+
+$designsProperties: () !default;
+
+@mixin mixinPropertiesItem($properties, $name, $parent: null) {
+  @if (map.has-key($properties, 'value')) {
+    $value: getValue($properties);
+    $type: getType($properties);
+    $options: getOptions($properties);
+    $index: $name;
+
+    @if ($options) {
+      $index: $options;
+    } @else if ($parent and $type == 'property') {
+      $index: $parent;
+    }
+
+    @if (
+            meta.type-of($value) == color
+    ) {
+      --#{$index}: #{toColorRBG($value)};
+    } @else if (
+            meta.type-of($value) != map and
+            meta.type-of($value) != list
+    ) {
+      --#{$index}: #{$value};
+    } @else if ($options) {
+      @include mixinPropertiesGroup($value, $options);
+    } @else {
+      @include mixinPropertiesGroup($value, $name);
+    }
+  } @else {
+    @include mixinPropertiesGroup($properties, $name);
+  }
+}
+
+@mixin mixinPropertiesGroup($properties, $name) {
+  @each $index, $property in $properties {
+    @include mixinPropertiesItem($property, #{$name}-#{$index}, $name);
+  }
+}
+
+@mixin initPropertiesService($name, $keys) {
+  $data: getMapItem($designsProperties, $name);
+
+  @if ($data) {
+    :root {
+      @each $key, $properties in $data {
+        @if (list.index($keys, $key)) {
+          @include mixinPropertiesItem($properties, #{$name}-#{$key});
+        }
+      }
+    }
+  }
+}
