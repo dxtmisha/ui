@@ -1,0 +1,176 @@
+@use "sass:meta";
+
+@import "../padding";
+@import "../rules";
+@import "./propertyService";
+@import "./propertiesService";
+
+$designsProperties: () !default;
+
+@mixin mixinInit(
+  $class,
+  $properties,
+  $init: ()
+) {
+  @if (isInitByType($init, 'var')) {
+    @include mixinVar($class, $properties, (), $init);
+  }
+
+  @if (isInitByType($init, 'property')) {
+    @include mixinProperties($class, $properties, (), $init);
+  }
+
+  @if (isInitByType($init, 'virtual')) {
+    @include mixinVirtualList($class, $properties, (), $init) using($index, $property) {
+      @content('virtual', $index, $property);
+    }
+  }
+
+  @if (isInitByType($init, 'section')) {
+    @include mixinSections($class, $properties, (), $init) using($index, $value) {
+      @content('section', $index, $value);
+    }
+  }
+}
+
+@mixin mixinProperties(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('property', $properties, $keys) using($index, $property) {
+    @include mixinProperty($class, $index, $property, $init);
+  }
+}
+
+@mixin mixinProperty(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $property: getValue($properties);
+
+  @if (
+          meta.type-of($property) != map and
+          meta.type-of($property) != list
+  ) {
+    @include mixinPropertyValue($index, $property);
+  } @else {
+    #{$index}: var(--#{$class}--#{$index});
+    @include mixinSection($class, $index, $properties, $init);
+  }
+}
+
+@mixin mixinPropertyValue($index, $value) {
+  @if ($index == 'padding-x') {
+    @include paddingX(#{$value});
+  } @else if ($index == 'padding-left') {
+    @include paddingLeft(#{$value});
+  } @else if ($index == 'padding-right') {
+    @include paddingRight(#{$value});
+  } @else {
+    #{$index}: #{$value};
+  }
+}
+
+@mixin mixinSection(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $value: getValue($properties);
+
+  &--#{$index} {
+    @content($index, $value);
+    @include mixinInit($class, $value, $init);
+  }
+}
+
+@mixin mixinSections(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('section', $properties, $keys) using($index, $property) {
+    @include mixinSection($class, $index, $property, $init) using($index, $value) {
+      @content($index, $value);
+    }
+  }
+}
+
+@mixin mixinVar(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('var', $properties, $keys) using($index, $property) {
+    @include mixinPropertiesItem($property, #{$class}-#{$index});
+  }
+}
+
+@mixin mixinVirtual(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $value: getValue($properties);
+
+  &::#{$index} {
+    @if (
+            $index == 'after' or
+            $index == 'before'
+    ) {
+      content: ' ';
+    }
+
+    @content($index, $value);
+    @include mixinInit($class, $value, $init);
+  }
+}
+
+@mixin mixinVirtualList(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('virtual', $properties, $keys) using($index, $property) {
+    @include mixinVirtual($class, $index, $property, $init) using($index, $value) {
+      @content($index, $value);
+    }
+  }
+}
+
+@mixin classInitService(
+  $design,
+  $keys,
+  $init: ()
+) {
+  $map: getMapItem($designsProperties, $design);
+  $properties: getMapItem($map, $keys);
+  $class: #{$design}-#{getListSlash($keys)};
+
+  #{'.'}#{$class} {
+    @include mixinInit($class, $properties, $init) using($type, $index, $property) {
+      @content($class, $type, $index, $property);
+    }
+
+    @content($class, 'root', 'main', $properties);
+  }
+}
+
+@mixin classesInitService(
+  $design,
+  $classes,
+  $init: ()
+) {
+  @each $keys in $classes {
+    @include classInitService($design, $keys, $init);
+  }
+}

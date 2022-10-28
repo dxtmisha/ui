@@ -1,5 +1,15 @@
+@import "../styles/services/classesService";
 @import "../styles/services/propertiesService";
+@import "../styles/services/typographyService";
 
 $name: 'md2';
 
 @include initPropertiesService($name, ('ref', 'sys'));
+@include initTypographyService();
+
+@include classesInitService($name, (
+        'grid',
+        'elevation',
+        'font',
+        'dark', 'button'
+));

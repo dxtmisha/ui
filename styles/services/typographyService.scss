@@ -1,0 +1,76 @@
+@import "./propertiesService";
+
+@mixin initTypographyService() {
+  @include initPropertiesService('d', ('ref', 'sys'));
+
+  *,
+  *::after,
+  *::before,
+  a,
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    animation-name: none;
+    animation-duration: var(--d-transition-duration-normal);
+    animation-timing-function: linear;
+    animation-fill-mode: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    transition-duration: var(--d-transition-duration-normal);
+    transition-timing-function: linear;
+    transition-property: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  html {
+    --d-direction: 1;
+    --d-direction-left: 1;
+    --d-direction-right: 0;
+    --d-direction-auto: auto;
+    --d-direction-justify-start: flex-start;
+    --d-direction-justify-end: flex-end;
+    --d-direction-text-left: left;
+    --d-direction-text-right: right;
+
+    &[dir="rtl"] {
+      --d-direction: -1;
+      --d-direction-left: 0;
+      --d-direction-right: 1;
+      --d-direction-auto: unset;
+      --d-direction-auto-rtl: auto;
+      --d-direction-justify-start: flex-end;
+      --d-direction-justify-end: flex-start;
+      --d-direction-text-left: right;
+      --d-direction-text-right: left;
+      direction: rtl;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+}

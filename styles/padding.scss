@@ -1,0 +1,36 @@
+@mixin padding($value) {
+  padding: $value;
+}
+
+@mixin paddingX($value) {
+  padding-left: $value;
+  padding-right: $value;
+}
+
+@mixin paddingY($value) {
+  padding-bottom: $value;
+  padding-top: $value;
+}
+
+@mixin paddingRight($value) {
+  --d-direction__padding-right: $value;
+  @include _paddingDirectionX;
+}
+
+@mixin paddingLeft($value) {
+  --d-direction__padding-left: $value;
+  @include _paddingDirectionX;
+}
+
+@mixin _paddingDirectionX() {
+  padding-left: calc((var(--d-direction-left) * var(--d-direction__padding-left)) + (var(--d-direction-right) * var(--d-direction__padding-right)));
+  padding-right: calc((var(--d-direction-left) * var(--d-direction__padding-right)) + (var(--d-direction-right) * var(--d-direction__padding-left)));
+}
+
+@mixin paddingTop($value) {
+  padding-top: $value;
+}
+
+@mixin paddingBottom($value) {
+  padding-bottom: $value;
+}

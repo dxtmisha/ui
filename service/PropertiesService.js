@@ -214,6 +214,7 @@ module.exports = class extends PropertiesFileService {
       parent &&
       cssProperties.indexOf(parent) !== -1
     ) {
+      property.__type = 'section'
       property[parent] = {
         value: property.value,
         __value: value

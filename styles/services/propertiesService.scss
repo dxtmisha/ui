@@ -46,14 +46,14 @@ $designsProperties: () !default;
   }
 }
 
-@mixin initPropertiesService($name, $keys) {
-  $data: getMapItem($designsProperties, $name);
+@mixin initPropertiesService($design, $keys) {
+  $data: getMapItem($designsProperties, $design);
 
   @if ($data) {
     :root {
       @each $key, $properties in $data {
         @if (list.index($keys, $key)) {
-          @include mixinPropertiesItem($properties, #{$name}-#{$key});
+          @include mixinPropertiesItem($properties, #{$design}-#{$key});
         }
       }
     }

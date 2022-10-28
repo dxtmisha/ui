@@ -1,4 +1,29 @@
+@use "sass:list";
+@use "sass:meta";
+
 @import "../rules";
+
+@function getListSlash($keys) {
+  @if (meta.type-of($keys) == list) {
+    $data: '';
+
+    @each $item in $keys {
+      @if ($data == '') {
+        $data: $item;
+      } @else {
+        $data: #{$data}#{'-'}#{$item};
+      }
+    }
+
+    @return $data;
+  } @else {
+    @return $keys;
+  }
+}
+
+@function getOptions($map) {
+  @return getMapItem($map, 'options')
+}
 
 @function getType($map) {
   @return getMapItem($map, 'type', 'section')
@@ -8,6 +33,21 @@
   @return getMapItem($map, 'value', $map)
 }
 
-@function getOptions($map) {
-  @return getMapItem($map, 'options')
+@function isInitByType($init, $type) {
+  @return $init != null and (
+    $init == $type or
+    list.length($init) == 0 or
+    list.index($init, $type)
+  )
+}
+
+@mixin mixinPropertiesByType($type, $properties, $keys: ()) {
+  @each $index, $property in getValue($properties) {
+    @if (
+            getType($property) == $type and
+            isInitByType($keys, $index)
+    ) {
+      @content($index, $property);
+    }
+  }
 }
