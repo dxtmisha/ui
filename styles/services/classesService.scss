@@ -31,6 +31,52 @@ $designsProperties: () !default;
       @content('section', $index, $value);
     }
   }
+
+  @if (isInitByType($init, 'subclass')) {
+    @include mixinSubclassList($class, $properties, (), $init) using($index, $value) {
+      @content('subclass', $index, $value);
+    }
+  }
+
+  @if (isInitByType($init, 'selector')) {
+    @include mixinSelectorList($class, $properties, (), $init) using($index, $value) {
+      @content('selector', $index, $value);
+    }
+  }
+
+  @if (isInitByType($init, 'media')) {
+    @include mixinMediaList($class, $properties, (), $init) using($index, $value) {
+      @content('media', $index, $value);
+    }
+  }
+}
+
+@mixin mixinMedia(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $value: getValue($properties);
+  $options: getOptions($properties);
+
+  @media screen and (min-width: #{$options}) {
+    @content($index, $value);
+    @include mixinInit($class, $value, $init);
+  }
+}
+
+@mixin mixinMediaList(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('media', $properties, $keys) using($index, $property) {
+    @include mixinMedia($class, $index, $property, $init) using($index, $value) {
+      @content($index, $value);
+    }
+  }
 }
 
 @mixin mixinProperties(
@@ -97,6 +143,69 @@ $designsProperties: () !default;
 ) {
   @include mixinPropertiesByType('section', $properties, $keys) using($index, $property) {
     @include mixinSection($class, $index, $property, $init) using($index, $value) {
+      @content($index, $value);
+    }
+  }
+}
+
+@mixin mixinSelector(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $value: getValue($properties);
+  $this: &;
+
+  &:#{$index} {
+    @content($index, $value);
+    @if (isInitByType($init, 'property')) {
+      @include mixinInit($class, $value, ('property'));
+    }
+
+    @if (isInitByType($init, 'subclass')) {
+      #{$this} {
+        @include mixinSubclassList($class, $value, (), $init);
+      }
+    }
+  }
+}
+
+@mixin mixinSelectorList(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('selector', $properties, $keys) using($index, $property) {
+    @include mixinSelector($class, $index, $property, $init) using($index, $value) {
+      @content($index, $value);
+    }
+  }
+}
+
+@mixin mixinSubclass(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $value: getValue($properties);
+
+  &__#{$index} {
+    @content($index, $value);
+    @include mixinInit($class, $value, $init);
+  }
+}
+
+@mixin mixinSubclassList(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('subclass', $properties, $keys) using($index, $value) {
+    @include mixinSubclass($class, $index, $value, $init) using($index, $value) {
       @content($index, $value);
     }
   }
