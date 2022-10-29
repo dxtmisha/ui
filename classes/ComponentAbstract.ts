@@ -124,7 +124,7 @@ export abstract class ComponentAbstract {
     return Object.entries(Object.entries(this.design)?.[0]?.[1] || {})?.[0]
   }
 
-  getStyle(extra = {} as ComponentStylesType): ComputedRef<ComponentStylesType> {
+  getStyles(extra = {} as ComponentStylesType): ComputedRef<ComponentStylesType> {
     return computed(() => {
       const styles = {
         main: this.stylesMain.value

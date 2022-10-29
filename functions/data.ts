@@ -1,6 +1,10 @@
-import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
+import {AssociativeOrArrayType, AssociativeType, NumberOrStringType} from '../constructors/types'
 
-export function forEach<T, K = NumberOrStringType, R = undefined> (
+export function executeFunction<T = any>(callback: T | (() => T)): T {
+  return callback instanceof Function ? callback() : callback
+}
+
+export function forEach<T, K = NumberOrStringType, R = undefined>(
   data: AssociativeOrArrayType<T>,
   callback: (item: T, key: K, data: AssociativeOrArrayType<T>) => R,
   filterUndefined?: boolean
@@ -24,7 +28,7 @@ export function forEach<T, K = NumberOrStringType, R = undefined> (
   }
 }
 
-export function isFilled<T = any> (value: T): boolean {
+export function isFilled<T = any>(value: T): boolean {
   if (value) {
     switch (typeof value) {
       case 'bigint':
@@ -53,7 +57,7 @@ export function isFilled<T = any> (value: T): boolean {
   return false
 }
 
-export function replaceRecursive<T = any> (
+export function replaceRecursive<T = any>(
   array: AssociativeType<T>,
   replacement?: AssociativeOrArrayType<T>,
   isMerge = true as boolean
@@ -97,7 +101,7 @@ export function replaceRecursive<T = any> (
   return array
 }
 
-export function toKebabCase (value: NumberOrStringType): string {
+export function toKebabCase(value: NumberOrStringType): string {
   return value
     .toString()
     .replace(/^[A-Z]./g, all => all.toLowerCase())
@@ -105,6 +109,7 @@ export function toKebabCase (value: NumberOrStringType): string {
 }
 
 export default {
+  executeFunction,
   forEach,
   isFilled,
   replaceRecursive,
