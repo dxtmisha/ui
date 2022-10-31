@@ -1,20 +1,32 @@
 <template>
-  <div class="home">
-    <div>
-      <md2-image/>
-    </div>
+<div class="home">
+  <div class="relative w-64 h-64">
+    <md2-image :value="data"/>
   </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+    />
+  </div>
+  <button @click="onClick">test</button>
+</div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, ref} from 'vue'
 import Md2Image from "../../md2/Md2Image/index.vue";
 
 export default defineComponent({
   name: 'HomeView',
   components: {Md2Image},
   setup() {
-    return {}
+    const data = ref('close')
+    return {
+      data,
+      onClick() {
+        data.value = 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e'
+      }
+    }
   }
 })
 </script>

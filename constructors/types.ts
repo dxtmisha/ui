@@ -38,3 +38,27 @@ export type ComponentItemType =
   | ComponentValueType
   | ComponentValueType[]
   | ComponentAssociativeType
+
+export type ImageCoordinatorType = Ref<[number, number, number, number] | undefined>
+export type ImageItemType = {
+  image: HTMLImageElement
+  height: number,
+  width: number,
+  src: string
+}
+export type ImageOptionType = Ref<NumberOrStringType | undefined>
+export type ImageTypeValueType =
+  'file'
+  | 'image'
+  | 'color'
+  | 'public'
+  | 'la'
+  | 'lab'
+  | 'filled'
+  | 'outlined'
+  | 'round'
+  | 'sharp'
+  | 'two-tone'
+  | 'material'
+export type ImageTypeType = ComputedRef<ImageTypeValueType>
+export type ImageValueType = Ref<string | File>

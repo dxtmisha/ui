@@ -1,4 +1,4 @@
-import {computed, ComputedRef, Ref, toRefs} from "vue";
+import {computed, ComputedRef, reactive, Ref, toRefs} from "vue";
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -87,14 +87,14 @@ export abstract class ComponentAbstract {
     return `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.join('--')}`
   }
 
-  getClasses(extra = {} as ComponentClassesType): ComputedRef<ComponentClassesType> {
+  getClasses(extra = {} as AssociativeType): ComputedRef<ComponentClassesType> {
     return computed(() => {
       const classes = {
         main: this.classesMain.value,
         ...this.classesItems.value
       } as ComponentClassesType
 
-      return replaceRecursive(extra, classes) as ComponentClassesType
+      return replaceRecursive(replaceRecursive({}, reactive(extra)), classes) as ComponentClassesType
     })
   }
 
@@ -124,13 +124,13 @@ export abstract class ComponentAbstract {
     return Object.entries(Object.entries(this.design)?.[0]?.[1] || {})?.[0]
   }
 
-  getStyles(extra = {} as ComponentStylesType): ComputedRef<ComponentStylesType> {
+  getStyles(extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
     return computed(() => {
       const styles = {
         main: this.stylesMain.value
       }
 
-      return replaceRecursive(extra, styles) as ComponentStylesType
+      return replaceRecursive(replaceRecursive({}, reactive(extra)), styles) as ComponentStylesType
     })
   }
 
