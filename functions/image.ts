@@ -1,10 +1,8 @@
-import {DefaultConfiguration} from "../classes/DefaultConfiguration";
-import {ImageItemType} from "../constructors/types";
+import { ImageItemType } from '../constructors/types'
 
-const defaultProps = DefaultConfiguration.init('image')
-export const MAX_SIZE = defaultProps('MAX_SIZE', 600)() as number
+export const MAX_SIZE = 600 as number
 
-export default function createImage(src: string | File): Promise<ImageItemType | undefined> {
+export function createImage (src: string | File): Promise<ImageItemType | undefined> {
   return new Promise(resolve => {
     if (src) {
       const image = new Image()
@@ -28,7 +26,7 @@ export default function createImage(src: string | File): Promise<ImageItemType |
   })
 }
 
-export function getFileResult(file: File): Promise<string> {
+export function getFileResult (file: File): Promise<string> {
   return new Promise(resolve => {
     if (isImage(file)) {
       const reader = new FileReader()
@@ -40,7 +38,7 @@ export function getFileResult(file: File): Promise<string> {
   })
 }
 
-export function getSRC(
+export function getSRC (
   src: string | File,
   image: HTMLImageElement
 ): string {
@@ -68,6 +66,13 @@ export function getSRC(
   }
 }
 
-export function isImage(file: File): boolean {
+export function isImage (file: File): boolean {
   return !!file.type.match(/^image\//)
+}
+
+export default {
+  createImage,
+  getFileResult,
+  getSRC,
+  isImage
 }

@@ -1,4 +1,4 @@
-import {ComputedRef, Ref} from "vue";
+import { ComputedRef, Ref } from 'vue'
 
 export type NumberOrStringType = number | string
 
@@ -42,9 +42,13 @@ export type ComponentItemType =
 export type ImageCoordinatorType = Ref<[number, number, number, number] | undefined>
 export type ImageItemType = {
   image: HTMLImageElement
-  height: number,
-  width: number,
   src: string
+  width: number
+  height: number
+}
+export type ImageItemSizeType = {
+  width: number
+  height: number
 }
 export type ImageOptionType = Ref<NumberOrStringType | undefined>
 export type ImageTypeValueType =

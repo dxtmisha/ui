@@ -1,4 +1,4 @@
-import {computed, ComputedRef, reactive, Ref, toRefs} from "vue";
+import { computed, ComputedRef, reactive, Ref, toRefs } from 'vue'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -7,13 +7,13 @@ import {
   ComponentClassesType,
   ComponentStylesType,
   NumberOrStringType
-} from "../constructors/types";
+} from '../constructors/types'
 
 import {
   forEach,
   replaceRecursive,
   toKebabCase
-} from "../functions";
+} from '../functions'
 
 export abstract class ComponentAbstract {
   protected abstract readonly design: AssociativeType
@@ -21,13 +21,13 @@ export abstract class ComponentAbstract {
 
   protected readonly classesProps = [] as string[]
 
-  abstract setup(): AssociativeType
+  abstract setup (): AssociativeType
 
   protected readonly props: AssociativeType
   protected readonly refs: AssociativeType<Ref>
   protected readonly context: AssociativeType
 
-  constructor(props: object, context: object) {
+  constructor (props: object, context: object) {
     this.props = props
     this.refs = toRefs<AssociativeType>(props)
     this.context = context
@@ -55,6 +55,7 @@ export abstract class ComponentAbstract {
 
     return main
   }) as ComputedRef<ComponentAssociativeType>
+
   protected readonly classesItems = computed(() => this.getClassesItems()) as ComputedRef<ComponentAssociativeItemsType>
   protected readonly stylesMain = computed(() => {
     const main = {} as AssociativeType<string>
@@ -72,7 +73,7 @@ export abstract class ComponentAbstract {
     return main
   }) as ComputedRef<AssociativeType<string>>
 
-  protected baseInit(): ComponentBaseType {
+  protected baseInit (): ComponentBaseType {
     return {
       name: this.name,
       nameDesign: this.nameDesign,
@@ -80,14 +81,14 @@ export abstract class ComponentAbstract {
     }
   }
 
-  protected getClassName(
+  protected getClassName (
     name = [] as string[],
     status = [] as NumberOrStringType[]
   ): string {
     return `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.join('--')}`
   }
 
-  getClasses(extra = {} as AssociativeType): ComputedRef<ComponentClassesType> {
+  getClasses (extra = {} as AssociativeType): ComputedRef<ComponentClassesType> {
     return computed(() => {
       const classes = {
         main: this.classesMain.value,
@@ -98,7 +99,7 @@ export abstract class ComponentAbstract {
     })
   }
 
-  protected getClassesItems(
+  protected getClassesItems (
     props = this.properties.value as AssociativeType,
     parent = [] as string[]
   ): ComponentAssociativeItemsType {
@@ -120,11 +121,11 @@ export abstract class ComponentAbstract {
     return classes
   }
 
-  protected getObjectDesign(): AssociativeType {
+  protected getObjectDesign (): AssociativeType {
     return Object.entries(Object.entries(this.design)?.[0]?.[1] || {})?.[0]
   }
 
-  getStyles(extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
+  getStyles (extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
     return computed(() => {
       const styles = {
         main: this.stylesMain.value
@@ -134,7 +135,7 @@ export abstract class ComponentAbstract {
     })
   }
 
-  protected isPropDesign(name: string): boolean {
+  protected isPropDesign (name: string): boolean {
     return (
       this.props?.[name] &&
       name in this.properties.value && (

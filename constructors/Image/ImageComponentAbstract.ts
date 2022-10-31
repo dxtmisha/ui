@@ -1,8 +1,8 @@
-import {ComputedRef} from "vue";
-import {ComponentAbstract} from "../../classes/ComponentAbstract";
-import {AssociativeType, ComponentClassesType, ComponentStylesType, ImageOptionType} from "../types";
-import {props} from "./props";
-import {Image} from "./Image";
+import { ComputedRef } from 'vue'
+import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { AssociativeType, ComponentClassesType, ComponentStylesType, ImageOptionType } from '../types'
+import { props } from './props'
+import { Image } from './Image'
 
 export type ImageSetupType = {
   name: ComputedRef<string>
@@ -16,7 +16,7 @@ export type ImageSetupType = {
 export abstract class ImageComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
 
-  setup(): ImageSetupType {
+  setup (): ImageSetupType {
     const image = new Image(
       this.refs.value,
       this.refs.coordinator,
@@ -28,8 +28,8 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
       this.getClassName()
     )
 
-    const classes = this.getClasses({main: image.classes})
-    const styles = this.getStyles({main: image.styles})
+    const classes = this.getClasses({ main: image.classes })
+    const styles = this.getStyles({ main: image.styles })
 
     return {
       ...this.baseInit(),
