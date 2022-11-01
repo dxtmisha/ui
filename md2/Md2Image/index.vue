@@ -16,5 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../constructors/Image/style';
 
+@include initImage('md2');
 </style>

@@ -1,5 +1,7 @@
 {
   "md2": {
-    "image": {}
+    "image": {
+      "&style": "{d.image}"
+    }
   }
 }

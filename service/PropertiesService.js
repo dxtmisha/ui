@@ -12,7 +12,7 @@ const cssSelectors = require('../constructors/cssSelectors.json')
 const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
 
 module.exports = class extends PropertiesFileService {
-  constructor(designs) {
+  constructor (designs) {
     super(designs)
 
     this.mapProperties = {}
@@ -24,16 +24,17 @@ module.exports = class extends PropertiesFileService {
    * @param {string} index
    * @return {string}
    */
-  getDesign(index) {
+  getDesign (index) {
     return index.split('.', 2)?.[0]
   }
 
-  getFullIndex(design, index) {
+  getFullIndex (design, index) {
     const designIndex = this.getDesign(index)
-    return `${(designIndex in this.properties ? designIndex : design)}.${index}`
+
+    return `${(designIndex in this.properties ? '' : `${design}.`)}${index}`
   }
 
-  getIndex(design, index) {
+  getIndex (design, index) {
     return this.getItem(design, index)?.__names || index
   }
 
@@ -42,7 +43,7 @@ module.exports = class extends PropertiesFileService {
    * @param {string} index
    * @return {Object<string, string>}
    */
-  getItem(design, index) {
+  getItem (design, index) {
     const fullIndex = this.getFullIndex(design, index)
 
     if (fullIndex in this.mapProperties) {
@@ -53,20 +54,20 @@ module.exports = class extends PropertiesFileService {
     }
   }
 
-  getLink(design, value) {
+  getLink (design, value) {
     const index = this.getLinkIndex(design, value.value)
     const property = this.getItem(design, index)
 
     return property ? this.initScss(property, design) : ''
   }
 
-  getLinkIndex(design, value) {
+  getLinkIndex (design, value) {
     return this.toSub(design, value)
       ?.replace(/(^{|}$)/ig, '')
       ?.trim()
   }
 
-  getOptions(property) {
+  getOptions (property) {
     const index = property.__index
     let data
 
@@ -93,15 +94,15 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  getScss() {
+  getScss () {
     return `$designsProperties: (${this.initScss()});`
   }
 
-  getValue(design, index) {
+  getValue (design, index) {
     return this.getItem(design, index)?.value || index
   }
 
-  getType(property) {
+  getType (property) {
     /**
      * @type {string}
      */
@@ -143,7 +144,7 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  initMap(properties = this.properties, parent = []) {
+  initMap (properties = this.properties, parent = []) {
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
         const index = this.toIndex(name)
@@ -170,7 +171,7 @@ module.exports = class extends PropertiesFileService {
     })
   }
 
-  initScss(properties = this.properties, design = undefined) {
+  initScss (properties = this.properties, design = undefined) {
     let data = ''
 
     forEach(properties, (property, name) => {
@@ -195,7 +196,7 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  initValue(property) {
+  initValue (property) {
     if ('__value' in property) {
       return
     }
@@ -231,7 +232,7 @@ module.exports = class extends PropertiesFileService {
    * @param {Object<string,string>} property
    * @return {false}
    */
-  isSection(index, property) {
+  isSection (index, property) {
     return !index.match(/^__/) && typeof property === 'object'
   }
 
@@ -239,14 +240,14 @@ module.exports = class extends PropertiesFileService {
    * @param {string} name
    * @return {*}
    */
-  toIndex(name) {
+  toIndex (name) {
     return name
       .replace(/^[\S\s]+\|([^|]+)$/, '$1')
       .replace(REG_SEARCH, '')
       .trim()
   }
 
-  toValue(design, value) {
+  toValue (design, value) {
     let data = this.toSub(design, value)
 
     data = data
@@ -259,7 +260,7 @@ module.exports = class extends PropertiesFileService {
     return `'${data}'`
   }
 
-  toSub(design, value) {
+  toSub (design, value) {
     if (typeof value === 'string') {
       let data = value
       let max = 10

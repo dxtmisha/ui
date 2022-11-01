@@ -1,5 +1,5 @@
 <template>
-<div class="home">
+<div class="home flex">
   <div class="relative w-64 h-64">
     <md2-image :value="data"/>
   </div>
