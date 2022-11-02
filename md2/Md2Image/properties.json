@@ -1,7 +1,8 @@
 {
   "md2": {
     "image": {
-      "&style": "{d.image}"
+      "&style": "{d.image}",
+      "var|_fontSize": "{ref.font.size.headline.5}"
     }
   }
 }

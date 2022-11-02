@@ -31,7 +31,7 @@ module.exports = class extends PropertiesFileService {
   getFullIndex (design, index) {
     const designIndex = this.getDesign(index)
 
-    return `${(designIndex in this.properties ? '' : `${design}.`)}${index}`
+    return `${(designIndex in this.properties || designIndex === '~' ? '' : `${design}.`)}${index}`
   }
 
   getIndex (design, index) {
@@ -48,17 +48,17 @@ module.exports = class extends PropertiesFileService {
 
     if (fullIndex in this.mapProperties) {
       return this.mapProperties[fullIndex]
-    } else {
-      console.error(`PropertiesService.getItem(${design}, ${index})`)
+    } else if (!fullIndex.match(/~\./i)) {
+      console.error(`[ERROR] PropertiesService.getItem(${design}, ${index}, ${fullIndex})`)
       return undefined
     }
   }
 
-  getLink (design, value) {
+  getLink (design, value, propertiesParent) {
     const index = this.getLinkIndex(design, value.value)
     const property = this.getItem(design, index)
 
-    return property ? this.initScss(property, design) : ''
+    return property ? this.initScss(property, design, propertiesParent) : ''
   }
 
   getLinkIndex (design, value) {
@@ -96,6 +96,10 @@ module.exports = class extends PropertiesFileService {
 
   getScss () {
     return `$designsProperties: (${this.initScss()});`
+  }
+
+  getScssValue (design, property) {
+    return property.__value.toString().replace('~-', `${design}-`)
   }
 
   getValue (design, index) {
@@ -171,7 +175,11 @@ module.exports = class extends PropertiesFileService {
     })
   }
 
-  initScss (properties = this.properties, design = undefined) {
+  initScss (
+    properties = this.properties,
+    design = undefined,
+    propertiesParent = undefined
+  ) {
     let data = ''
 
     forEach(properties, (property, name) => {
@@ -180,15 +188,17 @@ module.exports = class extends PropertiesFileService {
         const type = property.__type
         const designIndex = design || name
 
-        if (type === 'link') {
-          data += this.getLink(designIndex, property)
-        } else if ('__value' in property) {
-          data += `'${index}': (type:${type},value:${property.__value}),`
-        } else if (type !== 'section') {
-          const options = property.__options
-          data += `'${index}': (type:${type},${options ? `options:${options},` : ''}value:(${this.initScss(property, designIndex)})),`
-        } else {
-          data += `'${index}': (${this.initScss(property, designIndex)}),`
+        if (propertiesParent === undefined || !(name in propertiesParent)) {
+          if (type === 'link') {
+            data += this.getLink(designIndex, property, properties)
+          } else if ('__value' in property) {
+            data += `'${index}': (type:${type},value:${this.getScssValue(designIndex, property)}),`
+          } else if (type !== 'section') {
+            const options = property.__options
+            data += `'${index}': (type:${type},${options ? `options:${options},` : ''}value:(${this.initScss(property, designIndex)})),`
+          } else {
+            data += `'${index}': (${this.initScss(property, designIndex)}),`
+          }
         }
       }
     })
@@ -208,7 +218,7 @@ module.exports = class extends PropertiesFileService {
     if (property.value.match(/^#[\dabcdef]{6,8}/ig)) {
       value = property.value
     } else {
-      value = this.toValue(design, property.value)
+      value = this.toValue(design, property)
     }
 
     if (
@@ -247,7 +257,10 @@ module.exports = class extends PropertiesFileService {
       .trim()
   }
 
-  toValue (design, value) {
+  toValue (design, property) {
+    const index = property.__index
+    const value = property.value
+
     let data = this.toSub(design, value)
 
     data = data
@@ -257,7 +270,16 @@ module.exports = class extends PropertiesFileService {
         (all, key) => `var(--${this.getIndex(design, toKebabCase(key))?.replace(/\./ig, '-')})`
       )
 
-    return `'${data}'`
+    if (index.match(/^_/i)) {
+      const indexMain = this.getIndex(design, toKebabCase(property.__names))
+        ?.replace(/^[^.]+/i, '~')
+        ?.replace(/\./ig, '-')
+        ?.replace(/-_/ig, '-')
+
+      return `'var(--${indexMain}, ${data})'`
+    } else {
+      return `'${data}'`
+    }
   }
 
   toSub (design, value) {

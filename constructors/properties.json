@@ -31,14 +31,17 @@
         "linear": {
           "value": "linear"
         },
-        "accelerated": {
-          "value": "cubicBezier(0.4, 0.0, 1, 1)"
+        "acceleration": {
+          "value": "cubic-bezier(0.4, 0.0, 1, 1)"
         },
-        "decelerated": {
-          "value": "cubicBezier(0.0, 0.0, 0.2, 1)"
+        "deceleration": {
+          "value": "cubic-bezier(0.0, 0.0, 0.2, 1)"
+        },
+        "sharp": {
+          "value": "cubic-bezier(0.4, 0.0, 0.6, 1)"
         },
         "standard": {
-          "value": "cubicBezier(0.4, 0.0, 0.2, 1)"
+          "value": "cubic-bezier(0.4, 0.0, 0.2, 1)"
         }
       }
     },
@@ -90,11 +93,14 @@
         "linear": {
           "value": "linear"
         },
-        "accelerated": {
-          "value": "{ref.transitionFunction.accelerated}"
+        "acceleration": {
+          "value": "{ref.transitionFunction.acceleration}"
         },
-        "decelerated": {
-          "value": "{ref.transitionFunction.decelerated}"
+        "deceleration": {
+          "value": "{ref.transitionFunction.deceleration}"
+        },
+        "sharp": {
+          "value": "{ref.transitionFunction.sharp}"
         },
         "standard": {
           "value": "{ref.transitionFunction.standard}"
@@ -102,31 +108,69 @@
       },
       "motion": {
         "container": {
-          "transition": {
-            "value": "transform {sys.transitionDuration.container.close} {sys.transitionFunction.standard}, opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
+          "container": {
+            "value": "transform {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
           },
           "element": {
-            "transition": {
+            "1": {
+              "value": "opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
+            },
+            "2": {
               "value": "opacity 67ms linear 50ms"
             }
           },
           "scrim": {
-            "transition": {
-              "value": "opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
-            }
+            "value": "opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
           },
           "open": {
-            "transition": {
-              "value": "transform {sys.transitionDuration.container.open} {sys.transitionFunction.standard}, opacity {sys.transitionDuration.container.open} {sys.transitionFunction.standard}"
+            "container": {
+              "value": "transform {sys.transitionDuration.container.open} {sys.transitionFunction.standard}"
             },
             "element": {
-              "transition": {
+              "1": {
+                "value": "opacity {sys.transitionDuration.container.open} {sys.transitionFunction.standard}"
+              },
+              "2": {
                 "value": "opacity 60ms linear 60ms"
               }
             },
             "scrim": {
-              "transition": {
-                "value": "opacity 90ms linear"
+              "value": "opacity 90ms linear"
+            }
+          },
+          "fade": {
+            "container": {
+              "value": "transform {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
+            },
+            "element": {
+              "1": {
+                "value": "opacity 90ms {sys.transitionFunction.acceleration}"
+              },
+              "2": {
+                "value": "opacity 210ms {sys.transitionFunction.deceleration} 90ms"
+              }
+            },
+            "scrim": {
+              "value": "opacity 90ms linear"
+            }
+          }
+        },
+        "axis": {
+          "element": {
+            "1": {
+              "value": "transform {sys.transitionDuration.axis} {sys.transitionFunction.standard}, opacity 90ms {sys.transitionFunction.acceleration}"
+            },
+            "2": {
+              "value": "transform {sys.transitionDuration.axis} {sys.transitionFunction.standard}, opacity 210ms {sys.transitionFunction.deceleration} 90ms"
+            }
+          },
+          "fade": {
+            "element": {
+              "1": {
+                "value": "transform {sys.transitionDuration.axis} cubicBezier(0.4, 0.0, 0.0, 1)"
+              },
+              "2": {
+                "value": "transform {sys.transitionDuration.axis} cubicBezier(0.4, 0.0, 0.0, 1), opacity 60ms linear 60ms"
               }
             }
           }
@@ -154,23 +198,21 @@
           "var|^sys": {
             "motion": {
               "container": {
-                "transition": {
-                  "value": "{sys.motion.container.open.transition}"
-                },
                 "element": {
-                  "transition": {
-                    "value": "{sys.motion.container.open.element.transition}"
-                  }
+                  "1": "{sys.motion.container.open.element.1}",
+                  "2": "{sys.motion.container.open.element.2}"
                 },
-                "scrim": {
-                  "transition": {
-                    "value": "{sys.motion.container.open.scrim.transition}"
-                  }
-                }
+                "scrim": "{sys.motion.container.open.scrim}"
               }
             }
           }
         }
+      }
+    },
+    "animation": {
+      "hide": {
+        "opacity": "0",
+        "transform": "scale(.8)"
       }
     }
   }

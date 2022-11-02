@@ -1,16 +1,21 @@
 {
   "d": {
     "image": {
+      "var|_fontSize": "inherit",
       "&flex": "{d.flex.center}",
       "background-size": "cover",
       "background-repeat": "no-repeat",
       "border-radius": "inherit",
-      "font-size": "inherit",
+      "font-size": "{~.image._fontSize}",
       "direction": "ltr",
       "inset": "0",
       "position": "absolute",
       "transform": "none",
-      "transition-duration": "{d.sys.transitionDuration.fade.enter}"
+      "transition-property": "background-size, opacity, transform",
+      "transition-duration": "{d.sys.transitionDuration.fade.enter}",
+      "hide": {
+        "&style": "{d.animation.hide}"
+      }
     }
   }
 }

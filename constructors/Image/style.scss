@@ -8,7 +8,49 @@
     $property
   ) {
     @if ($type == 'root') {
-
+      @include mixinImageMaterial;
+      @include mixinImageLineAwesome;
     }
+  }
+}
+
+@mixin mixinImageMaterial() {
+  &.material-icons {
+    @content;
+
+    direction: ltr;
+
+    &.type- {
+      &outlined {
+        font-family: 'Material Icons Outlined', sans-serif;
+      }
+
+      &round {
+        font-family: 'Material Icons Round', sans-serif;
+      }
+
+      &sharp {
+        font-family: 'Material Icons Sharp', sans-serif;
+      }
+
+      &two-tone {
+        font-family: 'Material Icons Two Tone', sans-serif;
+      }
+    }
+  }
+}
+
+@mixin mixinImageLineAwesome() {
+  &.la,
+  &.lab,
+  &.lad,
+  &.lal,
+  &.lar,
+  &.las {
+    &::before {
+      color: inherit;
+    }
+
+    @content;
   }
 }
