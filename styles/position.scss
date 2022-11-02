@@ -1,0 +1,10 @@
+@mixin inset($value: 0) {
+  inset: $value;
+
+  @supports not(inset: $value) {
+    top: $value;
+    right: $value;
+    bottom: $value;
+    left: $value;
+  }
+}

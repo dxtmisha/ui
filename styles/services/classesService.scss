@@ -1,8 +1,8 @@
 @use "sass:meta";
 
-@import "../padding";
 @import "../rules";
 @import "./propertyService";
+@import "./propertyValueService";
 @import "./propertiesService";
 
 $designsProperties: () !default;
@@ -106,18 +106,6 @@ $designsProperties: () !default;
   } @else {
     #{$index}: var(--#{$class}--#{$index});
     @include mixinSection($class, $index, $properties, $init);
-  }
-}
-
-@mixin mixinPropertyValue($index, $value) {
-  @if ($index == 'padding-x') {
-    @include paddingX(#{$value});
-  } @else if ($index == 'padding-left') {
-    @include paddingLeft(#{$value});
-  } @else if ($index == 'padding-right') {
-    @include paddingRight(#{$value});
-  } @else {
-    #{$index}: #{$value};
   }
 }
 

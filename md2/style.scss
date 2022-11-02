@@ -3,9 +3,14 @@
 @import "../styles/services/typographyService";
 
 $name: 'md2';
+$constructor: 'd';
 
 @include initPropertiesService($name, ('ref', 'sys'));
 @include initTypographyService();
+
+@include classesInitService($constructor, (
+        'motion'
+));
 
 @include classesInitService($name, (
         'grid',

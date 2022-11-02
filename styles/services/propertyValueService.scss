@@ -1,0 +1,16 @@
+@import "../padding";
+@import "../position";
+
+@mixin mixinPropertyValue($index, $value) {
+  @if ($index == 'inset') {
+    @include inset(#{$value});
+  } @else if ($index == 'padding-x') {
+    @include paddingX(#{$value});
+  } @else if ($index == 'padding-left') {
+    @include paddingLeft(#{$value});
+  } @else if ($index == 'padding-right') {
+    @include paddingRight(#{$value});
+  } @else {
+    #{$index}: #{$value};
+  }
+}

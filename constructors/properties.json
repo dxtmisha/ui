@@ -31,24 +31,145 @@
         "linear": {
           "value": "linear"
         },
-        "in": {
+        "accelerated": {
           "value": "cubicBezier(0.4, 0.0, 1, 1)"
         },
-        "out": {
+        "decelerated": {
           "value": "cubicBezier(0.0, 0.0, 0.2, 1)"
         },
-        "inOut": {
+        "standard": {
           "value": "cubicBezier(0.4, 0.0, 0.2, 1)"
         }
       }
     },
     "sys": {
       "transitionDuration": {
-        "normal": {
+        "sm": {
           "value": "{ref.transitionDuration.3}"
         },
-        "active": {
-          "value": "{ref.transitionDuration.7}"
+        "md": {
+          "open": {
+            "value": "{ref.transitionDuration.6}"
+          },
+          "close": {
+            "value": "{ref.transitionDuration.5}"
+          }
+        },
+        "lg": {
+          "open": {
+            "value": "{ref.transitionDuration.8}"
+          },
+          "close": {
+            "value": "{ref.transitionDuration.6}"
+          }
+        },
+        "container": {
+          "open": {
+            "value": "{ref.transitionDuration.8}"
+          },
+          "close": {
+            "value": "{ref.transitionDuration.6}"
+          }
+        },
+        "axis": {
+          "value": "{ref.transitionDuration.8}"
+        },
+        "fade": {
+          "enter": {
+            "value": "{ref.transitionDuration.4}"
+          },
+          "exit": {
+            "value": "{ref.transitionDuration.2}"
+          },
+          "through": {
+            "value": "{ref.transitionDuration.8}"
+          }
+        }
+      },
+      "transitionFunction": {
+        "linear": {
+          "value": "linear"
+        },
+        "accelerated": {
+          "value": "{ref.transitionFunction.accelerated}"
+        },
+        "decelerated": {
+          "value": "{ref.transitionFunction.decelerated}"
+        },
+        "standard": {
+          "value": "{ref.transitionFunction.standard}"
+        }
+      },
+      "motion": {
+        "container": {
+          "transition": {
+            "value": "transform {sys.transitionDuration.container.close} {sys.transitionFunction.standard}, opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
+          },
+          "element": {
+            "transition": {
+              "value": "opacity 67ms linear 50ms"
+            }
+          },
+          "scrim": {
+            "transition": {
+              "value": "opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
+            }
+          },
+          "open": {
+            "transition": {
+              "value": "transform {sys.transitionDuration.container.open} {sys.transitionFunction.standard}, opacity {sys.transitionDuration.container.open} {sys.transitionFunction.standard}"
+            },
+            "element": {
+              "transition": {
+                "value": "opacity 60ms linear 60ms"
+              }
+            },
+            "scrim": {
+              "transition": {
+                "value": "opacity 90ms linear"
+              }
+            }
+          }
+        }
+      }
+    },
+    "flex": {
+      "x": {
+        "align-items": "center",
+        "display": "flex"
+      },
+      "y": {
+        "align-items": "center",
+        "display": "flex",
+        "flex-flow": "column"
+      },
+      "center": {
+        "&style": "{d.flex.x}",
+        "justify-content": "center"
+      }
+    },
+    "motion": {
+      "container": {
+        "open": {
+          "var|^sys": {
+            "motion": {
+              "container": {
+                "transition": {
+                  "value": "{sys.motion.container.open.transition}"
+                },
+                "element": {
+                  "transition": {
+                    "value": "{sys.motion.container.open.element.transition}"
+                  }
+                },
+                "scrim": {
+                  "transition": {
+                    "value": "{sys.motion.container.open.scrim.transition}"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

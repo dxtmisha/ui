@@ -1,5 +1,14 @@
 @import "../../styles/services/classesService";
 
 @mixin initImage($design) {
-  @include classInitService($design, 'image');
+  @include classInitService($design, 'image') using(
+    $class,
+    $type,
+    $index,
+    $property
+  ) {
+    @if ($type == 'root') {
+
+    }
+  }
 }

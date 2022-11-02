@@ -1,5 +1,5 @@
 const REG_SEARCH = /^([^|]+\||@|#|::|:|&)/
-const REG_SUB = /(?<={.*?){([^{}]+)}(?=.*?})/ig
+const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 
 const PropertiesFileService = require('./PropertiesFileService')
 const {
@@ -85,8 +85,8 @@ module.exports = class extends PropertiesFileService {
       case 'var':
         if (index.match(/^=/ig)) {
           data = index.replace(/^=/ig, '')
-        } else if (index.match(/^&/ig)) {
-          data = index.replace(/^&/ig, `${property.__design}-`)
+        } else if (index.match(/^\^/ig)) {
+          data = index.replace(/^\^/ig, `${property.__design}-`)
         }
         break
     }
@@ -276,7 +276,7 @@ module.exports = class extends PropertiesFileService {
       while (
         max-- > 0 &&
         data.match(REG_SUB)) {
-        data = data.replace(REG_SUB, (all, key) => this.getValue(design, key) || key)
+        data = data.replace(REG_SUB, (all, key) => this.getValue(design, toKebabCase(key)) || key)
       }
 
       return data

@@ -1,11 +1,16 @@
 {
   "d": {
     "image": {
+      "&flex": "{d.flex.center}",
       "background-size": "cover",
       "background-repeat": "no-repeat",
       "border-radius": "inherit",
+      "font-size": "inherit",
       "direction": "ltr",
-      "transform": "none"
+      "inset": "0",
+      "position": "absolute",
+      "transform": "none",
+      "transition-duration": "{d.sys.transitionDuration.fade.enter}"
     }
   }
 }
