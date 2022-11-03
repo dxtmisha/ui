@@ -18,6 +18,7 @@ module.exports = class extends PropertiesFileService {
     this.mapProperties = {}
 
     this.initMap()
+    process.env.VUE_APP_VERSION = JSON.stringify(this.getMap())
   }
 
   /**
@@ -65,6 +66,42 @@ module.exports = class extends PropertiesFileService {
     return this.toSub(design, value)
       ?.replace(/(^{|}$)/ig, '')
       ?.trim()
+  }
+
+  /**
+   * @param {string} link
+   * @param {string} to
+   * @returns {string}
+   */
+  getMap (
+    link = undefined,
+    to = undefined
+  ) {
+    const data = {}
+
+    forEach(this.mapProperties, (item, index) => {
+      if (
+        link === undefined ||
+        index.match(new RegExp(`^${link.replace(/\./, '\\.')}\\.`, 'i'))
+      ) {
+        switch (item.__type) {
+          case 'link':
+            Object.assign(data, this.getMap(
+              this.getLinkIndex(item.__design, item.value),
+              item.__names.replace(new RegExp(`\\.${item.__index}$`, 'i'), '')
+            ))
+            break
+          case 'media':
+          case 'var':
+            break
+          default:
+            data[to ? index.replace(link, to) : index] = item.__type
+            break
+        }
+      }
+    })
+
+    return data
   }
 
   getOptions (property) {

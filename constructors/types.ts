@@ -9,6 +9,10 @@ export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 
 export type RefOrNormalType<T = any> = ComputedRef<T> | Ref<T> | T
 
+export type InstallOptionsType = {
+  designs?: AssociativeType[]
+}
+
 export type ComponentAssociativeValueType = (() => boolean) | boolean
 export type ComponentAssociativeRefType = RefOrNormalType<ComponentAssociativeValueType>
 export type ComponentAssociativeType = AssociativeType<ComponentAssociativeRefType>

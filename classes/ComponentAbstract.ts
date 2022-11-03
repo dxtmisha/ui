@@ -16,6 +16,9 @@ import {
 } from '../functions'
 
 export abstract class ComponentAbstract {
+  protected static designMain: AssociativeType
+  protected static designRead: AssociativeType
+
   protected abstract readonly design: AssociativeType
   protected abstract readonly instruction: AssociativeType
 
@@ -143,5 +146,9 @@ export abstract class ComponentAbstract {
         this.classesProps.indexOf(name) !== -1
       )
     )
+  }
+
+  static {
+    console.log(this.designMain)
   }
 }
