@@ -6,7 +6,7 @@
       "background-size": "cover",
       "background-repeat": "no-repeat",
       "border-radius": "inherit",
-      "font-size": "{~.image._fontSize}",
+      "font-size": "{%.image._fontSize}",
       "direction": "ltr",
       "inset": "0",
       "position": "absolute",
@@ -15,6 +15,11 @@
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
       "hide": {
         "&style": "{d.animation.hide}"
+      },
+      "section|disabled": {
+        "not(.%-image--hide)": {
+          "opacity": ".6"
+        }
       }
     }
   }

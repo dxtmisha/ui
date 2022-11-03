@@ -32,7 +32,7 @@ module.exports = class extends PropertiesFileService {
   getFullIndex (design, index) {
     const designIndex = this.getDesign(index)
 
-    return `${(designIndex in this.properties || designIndex === '~' ? '' : `${design}.`)}${index}`
+    return `${(designIndex in this.properties || designIndex === '%' ? '' : `${design}.`)}${index}`
   }
 
   getIndex (design, index) {
@@ -49,7 +49,7 @@ module.exports = class extends PropertiesFileService {
 
     if (fullIndex in this.mapProperties) {
       return this.mapProperties[fullIndex]
-    } else if (!fullIndex.match(/~\./i)) {
+    } else if (!fullIndex.match(/%\./i)) {
       console.error(`[ERROR] PropertiesService.getItem(${design}, ${index}, ${fullIndex})`)
       return undefined
     }
@@ -136,7 +136,7 @@ module.exports = class extends PropertiesFileService {
   }
 
   getScssValue (design, property) {
-    return property.__value.toString().replace('~-', `${design}-`)
+    return property.__value.toString().replace('%-', `${design}-`)
   }
 
   getValue (design, index) {
@@ -171,7 +171,7 @@ module.exports = class extends PropertiesFileService {
       data = 'virtual'
     } else if (
       type.match(/^:/) ||
-      cssSelectors.indexOf(index) !== -1
+      cssSelectors.indexOf(index.replace(/\([^)]*?\)/ig, '')) !== -1
     ) {
       data = 'selector'
     } else if (cssProperties.indexOf(index) !== -1) {
@@ -221,7 +221,7 @@ module.exports = class extends PropertiesFileService {
 
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
-        const index = property.__index
+        const index = property.__index.toString().replace('%', design)
         const type = property.__type
         const designIndex = design || name
 
@@ -309,7 +309,7 @@ module.exports = class extends PropertiesFileService {
 
     if (index.match(/^_/i)) {
       const indexMain = this.getIndex(design, toKebabCase(property.__names))
-        ?.replace(/^[^.]+/i, '~')
+        ?.replace(/^[^.]+/i, '%')
         ?.replace(/\./ig, '-')
         ?.replace(/-_/ig, '-')
 

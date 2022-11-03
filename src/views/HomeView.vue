@@ -1,23 +1,36 @@
 <template>
 <div class="home flex">
   <div class="relative w-64 h-64">
-    <md2-image :value="data" :hide="hide"/>
-  </div>
-  <div class="relative w-64 h-64">
     <md2-image
-      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :value="data"
+      :hide="hide"
+      :disabled="disabled"
     />
   </div>
   <div class="relative w-64 h-64">
     <md2-image
       value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
       size="200%"
     />
   </div>
 </div>
 <div>
   <button @click="onClick">test</button>
-  <input type="checkbox" name="hide" v-model="hide">
+  <div>
+    <input type="checkbox" name="hide" v-model="hide"> hide
+  </div>
+  <div>
+    <input type="checkbox" name="disabled" v-model="disabled"> disabled
+  </div>
 </div>
 </template>
 
@@ -35,7 +48,8 @@ export default defineComponent({
       onClick () {
         data.value = 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e'
       },
-      hide: ref()
+      hide: ref(),
+      disabled: ref()
     }
   }
 })

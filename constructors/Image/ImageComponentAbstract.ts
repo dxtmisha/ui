@@ -1,8 +1,8 @@
 import { ComputedRef } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
-import { AssociativeType, ComponentClassesType, ComponentStylesType, ImageOptionType } from '../types'
-import { props } from './props'
 import { Image } from './Image'
+import { props } from './props'
+import { AssociativeType, ComponentClassesType, ComponentStylesType, ImageOptionType } from '../types'
 
 export type ImageSetupType = {
   name: ComputedRef<string>

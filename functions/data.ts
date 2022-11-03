@@ -1,5 +1,4 @@
 import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
-import { isRef } from 'vue'
 
 export function executeFunction<T = any> (callback: T | (() => T)): T {
   return callback instanceof Function ? callback() : callback
