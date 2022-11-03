@@ -16,8 +16,7 @@ import {
 } from '../functions'
 
 export abstract class ComponentAbstract {
-  protected static designMain: AssociativeType
-  protected static designRead: AssociativeType
+  static designMain: AssociativeType
 
   protected abstract readonly design: AssociativeType
   protected abstract readonly instruction: AssociativeType
@@ -38,6 +37,7 @@ export abstract class ComponentAbstract {
 
   private readonly name = computed(() => toKebabCase(this.getObjectDesign()?.[0])) as ComputedRef<string>
   private readonly nameDesign = computed(() => toKebabCase(Object.entries(this.design)?.[0]?.[0])) as ComputedRef<string>
+  private readonly code = computed(() => `${this.nameDesign.value}.${this.name.value}`) as ComputedRef<string>
   private readonly properties = computed(() => this.getObjectDesign()?.[1]) as ComputedRef<AssociativeType>
   private readonly baseClass = computed(() => `.${this.nameDesign.value}-${this.name.value}`) as ComputedRef<string>
 
@@ -46,11 +46,11 @@ export abstract class ComponentAbstract {
       [this.getClassName()]: true
     }
 
-    forEach(this.instruction, (instruction, name) => {
-      if (this.isPropDesign(name as string)) {
+    forEach<any, string, void>(this.instruction, (instruction, name) => {
+      if (this.isPropDesign(name)) {
         if (typeof this.props[name] === 'boolean') {
           main[this.getClassName([], [name])] = this.props[name]
-        } else if (this.props[name] in this.properties.value[name]) {
+        } else if (this.isPropPropertyValue(name, this.props[name])) {
           main[this.getClassName([], [name, this.props[name]])] = true
         }
       }
@@ -63,11 +63,11 @@ export abstract class ComponentAbstract {
   protected readonly stylesMain = computed(() => {
     const main = {} as AssociativeType<string>
 
-    forEach(this.instruction, (instruction, name) => {
+    forEach<any, string, void>(this.instruction, (instruction, name) => {
       if (
         this.isPropDesign(name as string) &&
         typeof this.props[name] !== 'boolean' &&
-        !(this.props?.[name] in this.properties.value[name])
+        !this.isPropPropertyValue(name, this.props[name])
       ) {
         main[`--${this.getClassName([], [name])}`] = this.props[name]
       }
@@ -124,6 +124,10 @@ export abstract class ComponentAbstract {
     return classes
   }
 
+  protected getCodeProperty (name: string): string {
+    return `${this.code.value}.${name}`
+  }
+
   protected getObjectDesign (): AssociativeType {
     return Object.entries(Object.entries(this.design)?.[0]?.[1] || {})?.[0]
   }
@@ -139,16 +143,23 @@ export abstract class ComponentAbstract {
   }
 
   protected isPropDesign (name: string): boolean {
+    const code = this.getCodeProperty(name)
+
     return (
       this.props?.[name] &&
-      name in this.properties.value && (
+      code in ComponentAbstract.designMain && (
         this.classesProps.length === 0 ||
         this.classesProps.indexOf(name) !== -1
       )
     )
   }
 
+  protected isPropPropertyValue (name: string, value: any): boolean {
+    return typeof value === 'string' &&
+      (`${this.getCodeProperty(name)}.${value}` in ComponentAbstract.designMain)
+  }
+
   static {
-    console.log(this.designMain)
+    this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
   }
 }

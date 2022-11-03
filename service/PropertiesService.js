@@ -18,7 +18,7 @@ module.exports = class extends PropertiesFileService {
     this.mapProperties = {}
 
     this.initMap()
-    process.env.VUE_APP_VERSION = JSON.stringify(this.getMap())
+    process.env.VUE_APP_DESIGNS = JSON.stringify(this.getMap())
   }
 
   /**

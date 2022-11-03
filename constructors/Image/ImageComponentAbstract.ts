@@ -28,8 +28,6 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
       this.getClassName()
     )
 
-    console.log('process.env.VUE_APP_VERSION', process.env.VUE_APP_VERSION, process.env)
-
     const classes = this.getClasses({ main: image.classes })
     const styles = this.getStyles({ main: image.styles })
 
