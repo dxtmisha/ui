@@ -88,7 +88,7 @@ export abstract class ComponentAbstract {
     name = [] as string[],
     status = [] as NumberOrStringType[]
   ): string {
-    return `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.join('--')}`
+    return `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
   }
 
   getClasses (extra = {} as AssociativeType): ComputedRef<ComponentClassesType> {

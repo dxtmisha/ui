@@ -1,4 +1,5 @@
 import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
+import { isRef } from 'vue'
 
 export function executeFunction<T = any> (callback: T | (() => T)): T {
   return callback instanceof Function ? callback() : callback
@@ -93,7 +94,11 @@ export function replaceRecursive<T = any> (
           )
         }
       } else {
-        array[index] = item
+        if (Array.isArray(item)) {
+          array[index] = [...item] as T
+        } else {
+          array[index] = typeof item === 'object' ? { ...item } : item
+        }
       }
     })
   }
