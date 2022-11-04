@@ -108,6 +108,7 @@
   "clip-rule",
   "color",
   "color-interpolation-filters",
+  "color-opacity",
   "color-scheme",
   "column-count",
   "column-fill",

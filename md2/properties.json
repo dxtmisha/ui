@@ -1034,6 +1034,16 @@
         },
         "var|border": {
           "value": "{ref.opacity.12}"
+        },
+        "primary": {
+          "high": "{ref.opacity.primary.high}",
+          "medium": "{ref.opacity.primary.medium}",
+          "disabled": "{ref.opacity.primary.disabled}"
+        },
+        "surface": {
+          "high": "{ref.opacity.surface.high}",
+          "medium": "{ref.opacity.surface.medium}",
+          "disabled": "{ref.opacity.surface.disabled}"
         }
       },
       "elevation": {

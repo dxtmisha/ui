@@ -10,14 +10,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone");
 
 $name: 'md2';
-$constructor: 'd';
 
 @include initPropertiesService($name, ('ref', 'sys'));
-@include initTypographyService();
-
-@include classesInitService($constructor, (
-        'motion'
-));
+@include initTypographyService(
+                #{var(--md2-sys-chart-on-secondary)},
+                #{var(--md2-sys-opacity-surface-high)},
+                #{var(--md2-sys-elevation-background-0)}
+);
 
 @include classesInitService($name, (
         'grid',
@@ -25,3 +24,7 @@ $constructor: 'd';
         'font',
         'dark'
 ));
+
+:root {
+
+}

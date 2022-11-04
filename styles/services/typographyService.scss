@@ -1,7 +1,17 @@
+@import "./classesService";
 @import "./propertiesService";
 
-@mixin initTypographyService() {
-  @include initPropertiesService('d', ('ref', 'sys'));
+@import "./../color";
+
+@mixin initTypographyService(
+  $color: #000000,
+  $colorOpacity: .78,
+  $background: #ffffff,
+  $backgroundOpacity: 1
+) {
+  $constructor: 'd';
+
+  @include initPropertiesService($constructor, ('ref', 'sys'));
 
   *,
   *::after,
@@ -68,9 +78,19 @@
     }
   }
 
+  body {
+    @include mixinColor($color, $colorOpacity);
+    @include mixinBackground($background, $backgroundOpacity);
+  }
+
   img {
     max-width: 100%;
     overflow: hidden;
     vertical-align: bottom;
   }
+
+  @include classesInitService($constructor, (
+          'motion',
+          'animation'
+  ));
 }

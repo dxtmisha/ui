@@ -17,9 +17,7 @@
         "&style": "{d.animation.hide}"
       },
       "section|disabled": {
-        "not(.%-image--hide)": {
-          "opacity": ".6"
-        }
+        "colorOpacity": ".78"
       }
     }
   }

@@ -1,8 +1,11 @@
+@import "../color";
 @import "../padding";
 @import "../position";
 
 @mixin mixinPropertyValue($index, $value) {
-  @if ($index == 'inset') {
+  @if ($index == 'color-opacity') {
+    @include mixinColorOpacity(#{$value});
+  } @else if ($index == 'inset') {
     @include inset(#{$value});
   } @else if ($index == 'padding-x') {
     @include paddingX(#{$value});

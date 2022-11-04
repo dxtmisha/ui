@@ -1,9 +1,71 @@
+@use "sass:meta";
+
 @import "rules";
 
 @function toColorRBG($color) {
-  @return red($color) + ', ' + green($color) + ', ' + blue($color);
+  @if (meta.type-of($color) == color) {
+    @return red($color) + ', ' + green($color) + ', ' + blue($color);
+  } @else {
+    @return $color;
+  }
 }
 
 @function toGradient($color) {
   @return linear-gradient(0deg, #{$color}, #{$color});
+}
+
+@function getColor(
+  $color,
+  $opacity: 1,
+  $gradient: false
+) {
+  $value: $color;
+
+  @if (meta.type-of($color) == color) {
+    $value: rgba(#{toColorRBG($color)}, #{$opacity});
+  }
+
+  @if $gradient {
+    @return toGradient($value);
+  } @else {
+    @return $value;
+  }
+}
+
+@mixin mixinColor($color, $opacity: null) {
+  --sys-color: #{toColorRBG($color)};
+  @include mixinColorOpacity($opacity);
+}
+
+@mixin mixinColorOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-color-opacity: #{$opacity};
+  }
+
+  @include initColor;
+}
+
+@mixin initColor() {
+  color: rgba(var(--sys-color), var(--sys-color-opacity));
+}
+
+@mixin mixinBackground($color, $opacity: 1) {
+  --sys-background: #{toColorRBG($color)};
+  @include mixinBackgroundOpacity($opacity);
+}
+
+@mixin mixinBackgroundOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-background-opacity: #{$opacity};
+  }
+
+  @include initBackground;
+}
+
+@mixin initBackground() {
+  background-color: rgba(var(--sys-background), var(--sys-background-opacity));
+}
+
+@mixin initBackgroundGradient() {
+  background-image: #{toGradient(#{rgba(var(--sys-color), var(--sys-color-opacity))})};
 }
