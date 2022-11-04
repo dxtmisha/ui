@@ -33,7 +33,7 @@ module.exports = class extends PropertiesFileService {
   getFullIndex (design, index) {
     const designIndex = this.getDesign(index)
 
-    return `${(designIndex in this.properties || designIndex === '%' ? '' : `${design}.`)}${index}`
+    return `${(designIndex in this.properties || designIndex === '%' ? '' : `${design}.`)}${toKebabCase(index)}`
   }
 
   getIndex (design, index) {

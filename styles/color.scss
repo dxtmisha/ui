@@ -62,6 +62,10 @@
   @include initBackground;
 }
 
+@mixin mixinBackgroundAsColor() {
+  @include initColor;
+}
+
 @mixin initBackground() {
   background-color: rgba(var(--sys-background), var(--sys-background-opacity));
 }

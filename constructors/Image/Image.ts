@@ -40,7 +40,7 @@ export class Image {
         this.dataImage.value = await createImage(this.image.value)
         break
       case 'public':
-        return Icon.get(
+        this.dataImage.value = Icon.get(
           this.image.value as string,
           this.url.value
         )
@@ -94,9 +94,6 @@ export class Image {
       case 'two-tone':
       case 'material':
         data['material-icons'] = true
-        break
-      case 'public':
-        data['is-public'] = true
         break
     }
 

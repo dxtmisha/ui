@@ -14,12 +14,17 @@
       "transform": "none",
       "transition-property": "background-color, background-size, color, filter, opacity, transform",
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
+      "=isType": {
+        "public": {
+          "&style": "{d.sys.backgroundAsColor}"
+        }
+      },
       "hide": {
         "&style": "{d.animation.hide}"
       },
       "section|disabled": {
         "colorOpacity": "{%.image._opacity}",
-        "section|=isType": {
+        "=isType": {
           "section|color": {
             "filter": "grayscale(1)",
             "opacity": "{%.image._opacity}"

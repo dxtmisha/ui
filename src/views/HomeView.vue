@@ -1,5 +1,5 @@
 <template>
-<div class="home flex">
+<div class="home flex flex-wrap">
   <div class="relative w-64 h-64">
     <md2-image
       :value="data"
@@ -29,6 +29,13 @@
       :disabled="disabled"
     />
   </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="@test"
+      :hide="hide"
+      :disabled="disabled"
+    />
+  </div>
 </div>
 <div>
   <button @click="onClick">test</button>
@@ -44,6 +51,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import Md2Image from '../../md2/Md2Image/index.vue'
+import { Icon } from '../../constructors/Image/Icon'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const file = require('../assets/icons/arrow-left.svg')
+
+Icon.add('test', file)
 
 export default defineComponent({
   name: 'HomeView',
