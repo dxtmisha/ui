@@ -33,7 +33,7 @@ export class Image {
     watchEffect(() => this.update())
   }
 
-  private async update () {
+  private async update (): Promise<void> {
     switch (this.type.value) {
       case 'image':
       case 'file':
@@ -61,8 +61,8 @@ export class Image {
 
     if (coordinatorSize) {
       return this.getSizeImage(
-        100 / coordinatorSize.width * 100,
-        100 / coordinatorSize.height * 100
+        `${100 / coordinatorSize.width * 100}%`,
+        `${100 / coordinatorSize.height * 100}%`
       )
     } else if (adaptiveX) {
       return `${adaptiveX}% auto`
@@ -113,6 +113,34 @@ export class Image {
     }
   }) as ComputedRef<ImageItemSizeType | undefined>
 
+  public readonly positionX = computed(() => {
+    const coordinator = this.coordinator.value
+    const coordinatorSize = this.coordinatorSize.value
+
+    if (
+      coordinator &&
+      coordinatorSize
+    ) {
+      return `${coordinator?.[3] + (coordinatorSize.width / 2)}%`
+    } else {
+      return this.x.value || null
+    }
+  }) as ComputedRef<string | number | null>
+
+  public readonly positionY = computed(() => {
+    const coordinator = this.coordinator.value
+    const coordinatorSize = this.coordinatorSize.value
+
+    if (
+      coordinator &&
+      coordinatorSize
+    ) {
+      return `${coordinator?.[0] + (coordinatorSize.height / 2)}%`
+    } else {
+      return this.y.value || null
+    }
+  }) as ComputedRef<string | number | null>
+
   public readonly styles = computed(() => {
     const image = this.image.value
 
@@ -120,7 +148,9 @@ export class Image {
       case 'image':
         return {
           'background-image': this.backgroundImage.value,
-          'background-size': this.backgroundSize.value
+          'background-size': this.backgroundSize.value,
+          'background-position-x': this.positionX.value,
+          'background-position-y': this.positionY.value
         }
       case 'public':
         return { 'mask-image': this.backgroundImage.value }
@@ -131,7 +161,7 @@ export class Image {
     return undefined
   })
 
-  public text = computed(() => {
+  public readonly text = computed(() => {
     const image = this.image.value
     const type = this.type.value
 

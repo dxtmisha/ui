@@ -24,6 +24,22 @@
   </div>
   <div class="relative w-64 h-64">
     <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      x="25%"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      :coordinator="[50, 50, 0, 0]"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
       value="#ff0000"
       :hide="hide"
       :disabled="disabled"

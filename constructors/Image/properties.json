@@ -16,7 +16,10 @@
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
       "=isType": {
         "public": {
-          "&style": "{d.sys.backgroundAsColor}"
+          "&style": "{d.sys.backgroundAsColor}",
+          "mask-position": "center",
+          "mask-repeat": "no-repeat",
+          "mask-size": "contain"
         }
       },
       "hide": {
