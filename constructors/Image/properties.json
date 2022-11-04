@@ -2,6 +2,7 @@
   "d": {
     "image": {
       "var|_fontSize": "inherit",
+      "var|_opacity": "0.38",
       "&flex": "{d.flex.center}",
       "background-size": "cover",
       "background-repeat": "no-repeat",
@@ -11,16 +12,21 @@
       "inset": "0",
       "position": "absolute",
       "transform": "none",
-      "transition-property": "background-size, opacity, transform",
+      "transition-property": "background-color, background-size, color, filter, opacity, transform",
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
       "hide": {
         "&style": "{d.animation.hide}"
       },
       "section|disabled": {
-        "colorOpacity": ".78",
-        "section|asd1": {
-          "asd2": {
-            "opacity": ".5"
+        "colorOpacity": "{%.image._opacity}",
+        "section|=isType": {
+          "section|color": {
+            "filter": "grayscale(1)",
+            "opacity": "{%.image._opacity}"
+          },
+          "image": {
+            "filter": "grayscale(1)",
+            "opacity": "{%.image._opacity}"
           }
         }
       }

@@ -22,6 +22,13 @@
       size="200%"
     />
   </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="#ff0000"
+      :hide="hide"
+      :disabled="disabled"
+    />
+  </div>
 </div>
 <div>
   <button @click="onClick">test</button>

@@ -116,13 +116,18 @@ $designsProperties: () !default;
   $init: ()
 ) {
   $value: getValue($properties);
+  $options: getOptions($properties);
 
-  &--#{$index} {
-    @content($index, $value);
-    @if ($index == 'disabled') {
-      // --c: #{$value};
+  @if ($options) {
+    &.#{$options} {
+      @content($index, $value);
+      @include mixinInit($class, $value, $init);
     }
-    @include mixinInit($class, $value, $init);
+  } @else {
+    &--#{$index} {
+      @content($index, $value);
+      @include mixinInit($class, $value, $init);
+    }
   }
 }
 

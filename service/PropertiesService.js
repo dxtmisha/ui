@@ -121,6 +121,7 @@ module.exports = class extends PropertiesFileService {
         }'`
         break
       case 'var':
+      case 'section':
         if (index.match(/^=/ig)) {
           data = index.replace(/^=/ig, '')
         } else if (index.match(/^\^/ig)) {
@@ -229,7 +230,7 @@ module.exports = class extends PropertiesFileService {
 
         data += '),'
       } else {
-        data += `'${index}': (${this.initScss(property.value)}),`
+        data += `'${index}': (${this.initScss(property.value)}${property.options ? `__options:${property.options},` : ''}),`
       }
     })
 
@@ -294,6 +295,7 @@ module.exports = class extends PropertiesFileService {
 
     if (
       parent &&
+      property.__type !== 'property' &&
       cssProperties.indexOf(parent) !== -1
     ) {
       property.__type = 'section'

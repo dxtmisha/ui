@@ -22,7 +22,7 @@
 }
 
 @function getOptions($map) {
-  @return getMapItem($map, 'options')
+  @return getMapItem($map, '__options', getMapItem($map, 'options'))
 }
 
 @function getType($map) {
@@ -44,6 +44,7 @@
 @mixin mixinPropertiesByType($type, $properties, $keys: ()) {
   @each $index, $property in getValue($properties) {
     @if (
+            $index != '__options' and
             getType($property) == $type and
             isInitByType($keys, $index)
     ) {
