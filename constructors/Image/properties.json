@@ -17,7 +17,12 @@
         "&style": "{d.animation.hide}"
       },
       "section|disabled": {
-        "colorOpacity": ".78"
+        "colorOpacity": ".78",
+        "section|asd1": {
+          "asd2": {
+            "opacity": ".5"
+          }
+        }
       }
     }
   }

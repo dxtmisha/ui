@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.toKebabCase = exports.replaceRecursive = exports.isFilled = exports.forEach = void 0;
+exports.toKebabCase = exports.replaceRecursive = exports.isFilled = exports.forEach = exports.executeFunction = void 0;
+function executeFunction(callback) {
+    return callback instanceof Function ? callback() : callback;
+}
+exports.executeFunction = executeFunction;
 function forEach(data, callback, filterUndefined) {
     if (data && typeof data === 'object') {
         const returnData = [];
@@ -73,7 +77,12 @@ function replaceRecursive(array, replacement, isMerge = true) {
                 }
             }
             else {
-                array[index] = item;
+                if (Array.isArray(item)) {
+                    array[index] = [...item];
+                }
+                else {
+                    array[index] = typeof item === 'object' ? { ...item } : item;
+                }
             }
         });
     }
@@ -88,6 +97,7 @@ function toKebabCase(value) {
 }
 exports.toKebabCase = toKebabCase;
 exports.default = {
+    executeFunction,
     forEach,
     isFilled,
     replaceRecursive,

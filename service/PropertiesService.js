@@ -4,6 +4,7 @@ const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 const PropertiesFileService = require('./PropertiesFileService')
 const {
   forEach,
+  replaceRecursive,
   toKebabCase
 } = require('../functions')
 
@@ -55,11 +56,11 @@ module.exports = class extends PropertiesFileService {
     }
   }
 
-  getLink (design, value, propertiesParent) {
+  getLink (design, value) {
     const index = this.getLinkIndex(design, value.value)
     const property = this.getItem(design, index)
 
-    return property ? this.initScss(property, design, propertiesParent) : ''
+    return property ? this.initScssObject(property, design) : ''
   }
 
   getLinkIndex (design, value) {
@@ -132,7 +133,7 @@ module.exports = class extends PropertiesFileService {
   }
 
   getScss () {
-    return `$designsProperties: (${this.initScss()});`
+    return `$designsProperties: (${this.initScss(this.initScssObject())});`
   }
 
   getScssValue (design, property) {
@@ -212,29 +213,62 @@ module.exports = class extends PropertiesFileService {
     })
   }
 
-  initScss (
-    properties = this.properties,
-    design = undefined,
-    propertiesParent = undefined
-  ) {
+  initScss (properties) {
     let data = ''
+
+    forEach(properties, (property, index) => {
+      if (property.type !== 'section') {
+        data += `'${index}': (type:${property.type},`
+
+        if ('options' in property) {
+          data += property.options ? `options:${property.options},` : ''
+          data += `value:(${this.initScss(property.value)})`
+        } else {
+          data += `value:${property.value}`
+        }
+
+        data += '),'
+      } else {
+        data += `'${index}': (${this.initScss(property.value)}),`
+      }
+    })
+
+    return data
+  }
+
+  initScssObject (
+    properties = this.properties,
+    design = undefined
+  ) {
+    const data = {}
 
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
         const index = property.__index.toString().replace('%', design)
         const type = property.__type
         const designIndex = design || name
+        let value
 
-        if (propertiesParent === undefined || !(name in propertiesParent)) {
-          if (type === 'link') {
-            data += this.getLink(designIndex, property, properties)
-          } else if ('__value' in property) {
-            data += `'${index}': (type:${type},value:${this.getScssValue(designIndex, property)}),`
-          } else if (type !== 'section') {
-            const options = property.__options
-            data += `'${index}': (type:${type},${options ? `options:${options},` : ''}value:(${this.initScss(property, designIndex)})),`
+        if (type === 'link') {
+          replaceRecursive(data, this.getLink(designIndex, property, properties))
+        } else if ('__value' in property) {
+          value = {
+            type,
+            value: this.getScssValue(designIndex, property)
+          }
+        } else {
+          value = {
+            type,
+            options: property.__options,
+            value: this.initScssObject(property, designIndex)
+          }
+        }
+
+        if (value) {
+          if (index in data) {
+            replaceRecursive(data[index], value)
           } else {
-            data += `'${index}': (${this.initScss(property, designIndex)}),`
+            data[index] = value
           }
         }
       }

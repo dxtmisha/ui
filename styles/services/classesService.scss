@@ -119,6 +119,9 @@ $designsProperties: () !default;
 
   &--#{$index} {
     @content($index, $value);
+    @if ($index == 'disabled') {
+      // --c: #{$value};
+    }
     @include mixinInit($class, $value, $init);
   }
 }
