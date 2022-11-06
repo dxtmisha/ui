@@ -1,4 +1,5 @@
 import { ref, Ref, watch } from 'vue'
+import { EventItem } from '../../classes/EventItem'
 import { ImageItemType } from '../types'
 
 export const MAX_BEYOND = 256
@@ -32,6 +33,10 @@ export class ImageAdaptive {
       this.width,
       this.height
     ], () => ImageObjectsAdaptive.init)
+  }
+
+  destructor (): void {
+    ImageObjectsAdaptive.remove(this)
   }
 
   isAdaptive (): boolean {
@@ -72,6 +77,7 @@ export class ImageAdaptive {
 
 class ImageObjectsAdaptive {
   private static objects = [] as ImageAdaptive[]
+  private static event?: EventItem
   private static time?: number
   private static oldVisible?: string
 
@@ -80,7 +86,29 @@ class ImageObjectsAdaptive {
     this.init()
   }
 
+  static remove (object: ImageAdaptive) {
+    const key = this.objects.findIndex(item => item === object)
+
+    if (key !== -1) {
+      this.objects.splice(key, 1)
+    }
+
+    return this
+  }
+
   static init (): void {
+    if (
+      this.event &&
+      this.objects.length < 1
+    ) {
+      this.event.stop()
+      this.event = undefined
+    } else {
+      this.event = new EventItem(window, () => this.preparation())
+        .setType(['scroll'])
+        .go()
+    }
+
     this.preparation(32)
   }
 
@@ -96,6 +124,8 @@ class ImageObjectsAdaptive {
   private static start (): void {
     if (this.objects.find(item => item.isAdaptive())) {
       this.updateVisible()
+    } else {
+      this.event?.stop()
     }
   }
 
@@ -110,7 +140,8 @@ class ImageObjectsAdaptive {
 
     if (this.oldVisible !== indexSum) {
       this.oldVisible = indexSum
-      console.log('indexSum', indexSum)
     }
+
+    console.log('indexSum', indexSum)
   }
 }

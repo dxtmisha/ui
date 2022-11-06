@@ -2,7 +2,7 @@ import { computed, ComputedRef, isRef, Ref, ref, watch } from 'vue'
 import { EventCallbackType, ElementType, RefOrElementType, EventOptionsType } from '../constructors/types'
 
 export class EventItem<R = any> {
-  protected readonly type: Ref<string[]>
+  protected readonly type = ref(['click']) as Ref<string[]>
   protected readonly element: Ref<ElementType>
 
   protected callback: EventCallbackType
@@ -10,34 +10,34 @@ export class EventItem<R = any> {
   protected once?: boolean
   protected options?: EventOptionsType
 
-  protected activity?: boolean
+  protected activity = false as boolean
+  protected elementCallback: EventCallbackType<R>
 
   constructor (
     element: RefOrElementType | string,
     callback = (() => undefined) as EventCallbackType<R>
   ) {
-    this.type = ref(['click'])
     this.element = isRef(element) ? element : ref(this.findElement(element))
     this.callback = callback
+    this.elementCallback = ((event: Event) => this.listener(event)) as EventCallbackType<R>
 
-    watch([this.type, this.element], this.updateElement)
+    watch([this.type, this.element], (
+      [newType, newElement]: [string[], ElementType],
+      [oldType, oldElement]: [string[], ElementType]
+    ) => {
+      if (
+        this.activity &&
+        newElement !== oldElement
+      ) {
+        oldType.forEach(type => this.removeEvent(type, oldElement))
+        newType.forEach(type => this.addEvent(type, newElement))
+      }
+    })
   }
 
   protected elementDom = computed(() => {
     return this.dom || (this.element.value === window ? document.body : this.element.value)
   }) as ComputedRef<HTMLElement>
-
-  protected elementCallback = (event: Event) => this.listener(event) as EventCallbackType<R>
-
-  updateElement (
-    [newType, newElement]: [string[], ElementType],
-    [oldType, oldElement]: [string[], ElementType]
-  ) {
-    if (this.activity === true) {
-      oldType.forEach(type => this.removeEvent(type, oldElement))
-      newType.forEach(type => this.addEvent(type, newElement))
-    }
-  }
 
   setCallback (value: EventCallbackType<R>): this {
     this.callback = value
@@ -82,7 +82,7 @@ export class EventItem<R = any> {
   }
 
   go (): this {
-    if (this.activity !== true) {
+    if (!this.activity) {
       this.activity = true
       this.type.value.forEach(type => this.addEvent(type))
     }
@@ -98,7 +98,7 @@ export class EventItem<R = any> {
   }
 
   stop (): this {
-    if (this.activity === true) {
+    if (this.activity) {
       this.activity = false
       this.type.value.forEach(type => this.removeEvent(type))
     }
@@ -124,7 +124,7 @@ export class EventItem<R = any> {
   }
 
   private addEvent (type: string, element?: ElementType): this {
-    (element || this.element.value).addEventListener(type, this.elementCallback, this.options)
+    (element || this.element.value).addEventListener(type, this.elementCallback)
     return this
   }
 

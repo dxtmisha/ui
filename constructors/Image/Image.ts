@@ -42,6 +42,10 @@ export class Image {
     watchEffect(() => this.updateAdaptive())
   }
 
+  destructor (): void {
+    this.adaptiveObject.value?.destructor()
+  }
+
   private async update (): Promise<void> {
     switch (this.type.value) {
       case 'image':

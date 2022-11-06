@@ -1,4 +1,4 @@
-import { ComputedRef, Ref, ref } from 'vue'
+import { ComputedRef, onUnmounted, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { Image } from './Image'
 import { props } from './props'
@@ -35,6 +35,8 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
 
     const classes = this.getClasses({ main: image.classes })
     const styles = this.getStyles({ main: image.styles })
+
+    onUnmounted(() => image.destructor())
 
     return {
       element,
