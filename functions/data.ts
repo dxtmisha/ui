@@ -105,11 +105,17 @@ export function replaceRecursive<T = any> (
   return array
 }
 
+export function toCamelCase (value: NumberOrStringType): string {
+  return value
+    .toString()
+    .replace(/[-.]([a-z])/g, (all, char) => `${char.toUpperCase()}`)
+}
+
 export function toKebabCase (value: NumberOrStringType): string {
   return value
     .toString()
-    .replace(/^[A-Z]./g, all => all.toLowerCase())
-    .replace(/[A-Z]./g, all => `-${all.toLowerCase()}`)
+    .replace(/^[A-Z]/g, all => all.toLowerCase())
+    .replace(/[A-Z]/g, all => `-${all.toLowerCase()}`)
 }
 
 export default {
@@ -117,5 +123,6 @@ export default {
   forEach,
   isFilled,
   replaceRecursive,
+  toCamelCase,
   toKebabCase
 }

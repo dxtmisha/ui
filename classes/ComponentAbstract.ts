@@ -12,13 +12,15 @@ import {
 import {
   forEach,
   replaceRecursive,
+  toCamelCase,
   toKebabCase
 } from '../functions'
 
 export abstract class ComponentAbstract {
   static designMain: AssociativeType
+  static designSubClasses = {} as AssociativeType<ComponentAssociativeItemsType>
 
-  protected abstract readonly design: AssociativeType
+  protected code?: string
   protected abstract readonly instruction: AssociativeType
 
   protected readonly classesProps = [] as string[]
@@ -29,17 +31,30 @@ export abstract class ComponentAbstract {
   protected readonly refs: AssociativeType<Ref>
   protected readonly context: AssociativeType
 
-  constructor (props: object, context: object) {
+  constructor (
+    props: object,
+    context: object,
+    nameDesign?: string
+  ) {
     this.props = props
     this.refs = toRefs<AssociativeType>(props)
     this.context = context
+
+    if (typeof nameDesign === 'string') {
+      this.code = nameDesign
+    }
   }
 
-  private readonly name = computed(() => toKebabCase(this.getObjectDesign()?.[0])) as ComputedRef<string>
-  private readonly nameDesign = computed(() => toKebabCase(Object.entries(this.design)?.[0]?.[0])) as ComputedRef<string>
-  private readonly code = computed(() => `${this.nameDesign.value}.${this.name.value}`) as ComputedRef<string>
-  private readonly properties = computed(() => this.getObjectDesign()?.[1]) as ComputedRef<AssociativeType>
-  private readonly baseClass = computed(() => `.${this.nameDesign.value}-${this.name.value}`) as ComputedRef<string>
+  private readonly name = computed(() => {
+    const name = this.code
+      ?.replace(/^([^.]+.)/ig, '')
+      ?.replace('.', '-')
+
+    return toKebabCase(name || '')
+  }) as ComputedRef<string>
+
+  private readonly nameDesign = computed(() => toKebabCase(this.code?.split('.', 1)[0] || '')) as ComputedRef<string>
+  private readonly baseClass = computed(() => `.${this.code?.replace('.', '-')}`) as ComputedRef<string>
 
   protected readonly classesMain = computed(() => {
     const main = {
@@ -102,34 +117,12 @@ export abstract class ComponentAbstract {
     })
   }
 
-  protected getClassesItems (
-    props = this.properties.value as AssociativeType,
-    parent = [] as string[]
-  ): ComponentAssociativeItemsType {
-    const classes = {} as ComponentAssociativeItemsType
-
-    forEach<AssociativeType, string, void>(props, (prop, name) => {
-      if (name.match(/^#/)) {
-        const index = name.replace(/^#/, '')
-        const names = [...parent, index]
-
-        classes[names.join('.')] = {
-          [this.getClassName(names)]: true
-        }
-
-        Object.assign(classes, this.getClassesItems(prop, names))
-      }
-    })
-
-    return classes
+  protected getClassesItems (): ComponentAssociativeItemsType {
+    return this.code ? { ...ComponentAbstract.getSubClasses(this.code) } : {}
   }
 
   protected getCodeProperty (name: string): string {
-    return `${this.code.value}.${name}`
-  }
-
-  protected getObjectDesign (): AssociativeType {
-    return Object.entries(Object.entries(this.design)?.[0]?.[1] || {})?.[0]
+    return `${this.code}.${name}`
   }
 
   getStyles (extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
@@ -157,6 +150,35 @@ export abstract class ComponentAbstract {
   protected isPropPropertyValue (name: string, value: any): boolean {
     return typeof value === 'string' &&
       (`${this.getCodeProperty(name)}.${value}` in ComponentAbstract.designMain)
+  }
+
+  protected static getSubClasses (code: string): ComponentAssociativeItemsType {
+    if (!(code in this.designSubClasses)) {
+      const classes = {} as ComponentAssociativeItemsType
+
+      forEach<string, string, void>(this.designMain, (type, name) => {
+        if (
+          this.isValue(code, name) &&
+          type === 'subclass'
+        ) {
+          const index = toCamelCase(name.replace('#', ''))
+          const names = name.replace(/\./ig, '-')
+            .replace(/#/ig, '-')
+
+          classes[index] = {
+            [names]: true
+          }
+        }
+      })
+
+      this.designSubClasses[code] = classes
+    }
+
+    return this.designSubClasses[code]
+  }
+
+  protected static isValue (code: string, index: string): boolean {
+    return !!index.match(new RegExp(`^${code?.replace(/\./g, '\\.') || ''}`))
   }
 
   static {

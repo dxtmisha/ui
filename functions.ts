@@ -6,6 +6,7 @@ export const {
   forEach,
   isFilled,
   replaceRecursive,
+  toCamelCase,
   toKebabCase
 } = data
 

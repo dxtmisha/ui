@@ -22,6 +22,15 @@ module.exports = class extends PropertiesFileService {
     process.env.VUE_APP_DESIGNS = JSON.stringify(this.getMap())
   }
 
+  addMapProperties (parent, property) {
+    const key = property.__type === 'subclass'
+      ? [...parent, `#${property.__index}`].join('.')
+      : property.__names
+
+    this.mapProperties[key.replace(/[=^]/ig, '')] = property
+    return this
+  }
+
   /**
    * @param {string} index
    * @return {string}
@@ -203,7 +212,7 @@ module.exports = class extends PropertiesFileService {
         property.__type = this.getType(property)
         property.__options = this.getOptions(property)
 
-        this.mapProperties[names] = property
+        this.addMapProperties(parent, property)
 
         if ('value' in property) {
           this.initValue(property)
