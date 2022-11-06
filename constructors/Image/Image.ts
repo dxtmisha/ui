@@ -1,6 +1,9 @@
 import { computed, ComputedRef, ref, Ref, watchEffect } from 'vue'
 import { Icon } from './Icon'
+import { ImageAdaptive } from './ImageAdaptive'
+import { ImageAdaptiveItem } from './ImageAdaptiveItem'
 import { createImage, isFilled } from '../../functions'
+
 import {
   ImageCoordinatorType,
   ImageItemType,
@@ -10,12 +13,11 @@ import {
   ImageValueType,
   NumberOrStringType
 } from '../types'
-import { ImageAdaptive } from './ImageAdaptive'
 
 export class Image {
   readonly dataImage: Ref<ImageItemType | string | undefined>
 
-  readonly adaptiveObject: Ref<ImageAdaptive | undefined>
+  readonly adaptiveObject: Ref<ImageAdaptiveItem | undefined>
   readonly adaptiveWidth: Ref<number>
   readonly adaptiveHeight: Ref<number>
 
@@ -43,7 +45,9 @@ export class Image {
   }
 
   destructor (): void {
-    this.adaptiveObject.value?.destructor()
+    if (this.adaptiveObject.value) {
+      ImageAdaptive.remove(this.adaptiveObject.value)
+    }
   }
 
   private async update (): Promise<void> {
@@ -71,7 +75,7 @@ export class Image {
       this.dataImage.value &&
       typeof this.dataImage.value !== 'string'
     ) {
-      this.adaptiveObject.value = new ImageAdaptive(
+      this.adaptiveObject.value = ImageAdaptive.add(
         this.element,
         this.adaptive,
         this.dataImage as Ref<ImageItemType>,
@@ -90,18 +94,17 @@ export class Image {
   public readonly backgroundSize = computed(() => {
     const coordinatorSize = this.coordinatorSize.value
     const size = this.size.value
-    const adaptiveX = this.adaptiveWidth.value
-    const adaptiveY = this.adaptiveHeight.value
 
     if (coordinatorSize) {
       return this.getSizeImage(
         `${100 / coordinatorSize.width * 100}%`,
         `${100 / coordinatorSize.height * 100}%`
       )
-    } else if (adaptiveX) {
-      return `${adaptiveX}% auto`
-    } else if (adaptiveY) {
-      return `auto ${adaptiveY}%`
+    } else if (
+      this.adaptive.value &&
+      this.adaptiveObject.value
+    ) {
+      return this.adaptiveObject.value?.backgroundSize
     } else if (size && isFilled(size)) {
       return size.toString().match(/%$/) ? this.getSizeImage(size, size) : size
     } else {
