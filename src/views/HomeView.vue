@@ -62,6 +62,112 @@
     <input type="checkbox" name="disabled" v-model="disabled"> disabled
   </div>
 </div>
+<div style="height: 100px"/>
+<div class="home flex flex-wrap">
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="500"
+      :object-height="500"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="1000"
+      :object-height="500"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="500"
+      :object-height="1000"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="1000"
+      :object-height="1000"
+    />
+  </div>
+  <div class="relative w-96 h-96">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="1000"
+      :object-height="1000"
+    />
+  </div>
+</div>
+<div style="height: 800px"/>
+<div class="home flex flex-wrap">
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="1500"
+      :object-height="1500"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="2000"
+      :object-height="1500"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="1500"
+      :object-height="2000"
+    />
+  </div>
+  <div class="relative w-64 h-64">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="2000"
+      :object-height="2000"
+    />
+  </div>
+  <div class="relative w-96 h-96">
+    <md2-image
+      value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      :hide="hide"
+      :disabled="disabled"
+      adaptive
+      :object-width="2000"
+      :object-height="2000"
+    />
+  </div>
+</div>
 </template>
 
 <script lang="ts">

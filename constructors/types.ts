@@ -7,11 +7,17 @@ export type AssociativeType<T = any> = {
 }
 export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 
+export type ElementType = Window | HTMLElement | Element
+
 export type RefOrNormalType<T = any> = ComputedRef<T> | Ref<T> | T
+export type RefOrElementType = RefOrNormalType<ElementType>
 
 export type InstallOptionsType = {
   designs?: AssociativeType[]
 }
+
+export type EventCallbackType<R = any> = (event?: Event) => R
+export type EventOptionsType = AddEventListenerOptions | boolean | undefined
 
 export type ComponentAssociativeValueType = (() => boolean) | boolean
 export type ComponentAssociativeRefType = RefOrNormalType<ComponentAssociativeValueType>

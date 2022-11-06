@@ -10,27 +10,36 @@ import {
   ImageValueType,
   NumberOrStringType
 } from '../types'
+import { ImageAdaptive } from './ImageAdaptive'
 
 export class Image {
   readonly dataImage: Ref<ImageItemType | string | undefined>
-  readonly adaptiveX: Ref<number>
-  readonly adaptiveY: Ref<number>
+
+  readonly adaptiveObject: Ref<ImageAdaptive | undefined>
+  readonly adaptiveWidth: Ref<number>
+  readonly adaptiveHeight: Ref<number>
 
   constructor (
+    public readonly element: Ref<HTMLElement | undefined>,
     public readonly image: ImageValueType,
     public readonly coordinator: ImageCoordinatorType,
     public readonly size: ImageOptionType,
     public readonly x: ImageOptionType,
     public readonly y: ImageOptionType,
     public readonly adaptive: Ref<boolean>,
+    public readonly width: Ref<number>,
+    public readonly height: Ref<number>,
     public readonly url: Ref<string>,
     public readonly className: string
   ) {
     this.dataImage = ref(undefined)
-    this.adaptiveX = ref(0)
-    this.adaptiveY = ref(0)
+
+    this.adaptiveObject = ref(undefined)
+    this.adaptiveWidth = ref(0)
+    this.adaptiveHeight = ref(0)
 
     watchEffect(() => this.update())
+    watchEffect(() => this.updateAdaptive())
   }
 
   private async update (): Promise<void> {
@@ -44,6 +53,27 @@ export class Image {
           this.image.value as string,
           this.url.value
         )
+        break
+      default:
+        this.dataImage.value = undefined
+        break
+    }
+  }
+
+  public updateAdaptive () {
+    if (
+      this.adaptive.value &&
+      this.adaptiveObject.value === undefined &&
+      this.dataImage.value &&
+      typeof this.dataImage.value !== 'string'
+    ) {
+      this.adaptiveObject.value = new ImageAdaptive(
+        this.element,
+        this.adaptive,
+        this.dataImage as Ref<ImageItemType>,
+        this.width,
+        this.height
+      )
     }
   }
 
@@ -56,8 +86,8 @@ export class Image {
   public readonly backgroundSize = computed(() => {
     const coordinatorSize = this.coordinatorSize.value
     const size = this.size.value
-    const adaptiveX = this.adaptiveX.value
-    const adaptiveY = this.adaptiveY.value
+    const adaptiveX = this.adaptiveWidth.value
+    const adaptiveY = this.adaptiveHeight.value
 
     if (coordinatorSize) {
       return this.getSizeImage(
