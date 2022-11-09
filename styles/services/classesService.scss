@@ -16,6 +16,10 @@ $designsProperties: () !default;
     @include mixinVar($class, $properties, (), $init);
   }
 
+  @if (isInitByType($init, 'animate')) {
+    @include mixinAnimateList($class, $properties, (), $init);
+  }
+
   @if (isInitByType($init, 'property')) {
     @include mixinProperties($class, $properties, (), $init);
   }
@@ -48,6 +52,34 @@ $designsProperties: () !default;
     @include mixinMediaList($class, $properties, (), $init) using($index, $value) {
       @content('media', $index, $value);
     }
+  }
+}
+
+@mixin mixinAnimate(
+  $class,
+  $index,
+  $properties,
+  $init: ()
+) {
+  $value: getValue($properties);
+
+  @keyframes #{$class}--#{$index} {
+    @each $frame, $property in $value {
+      #{$frame} {
+        @include mixinInit($class, $property, $init);
+      }
+    }
+  }
+}
+
+@mixin mixinAnimateList(
+  $class,
+  $properties,
+  $keys: (),
+  $init: ()
+) {
+  @include mixinPropertiesByType('animate', $properties, $keys) using($index, $property) {
+    @include mixinAnimate($class, $index, $property, $init);
   }
 }
 
@@ -118,15 +150,17 @@ $designsProperties: () !default;
   $value: getValue($properties);
   $options: getOptions($properties);
 
-  @if ($options) {
-    &.#{$options} {
-      @content($index, $value);
-      @include mixinInit($class, $value, $init);
-    }
-  } @else {
-    &--#{$index} {
-      @content($index, $value);
-      @include mixinInit($class, $value, $init);
+  @if ($value) {
+    @if ($options) {
+      &.#{$options} {
+        @content($index, $value);
+        @include mixinInit($class, $value, $init);
+      }
+    } @else {
+      &--#{$index} {
+        @content($index, $value);
+        @include mixinInit($class, $value, $init);
+      }
     }
   }
 }
@@ -261,12 +295,14 @@ $designsProperties: () !default;
   $properties: getMapItem($map, $keys);
   $class: #{$design}-#{getListSlash($keys)};
 
-  #{'.'}#{$class} {
-    @include mixinInit($class, $properties, $init) using($type, $index, $property) {
-      @content($class, $type, $index, $property);
-    }
+  @if ($properties) {
+    #{'.'}#{$class} {
+      @include mixinInit($class, $properties, $init) using($type, $index, $property) {
+        @content($class, $type, $index, $property);
+      }
 
-    @content($class, 'root', 'main', $properties);
+      @content($class, 'root', 'main', $properties);
+    }
   }
 }
 

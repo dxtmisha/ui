@@ -27,6 +27,7 @@
   "background-color",
   "background-image",
   "background-origin",
+  "background-opacity",
   "background-position",
   "background-position-x",
   "background-position-y",

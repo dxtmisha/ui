@@ -1,6 +1,21 @@
 {
   "d": {
     "ripple": {
+      "var|_background": "255, 255, 255",
+      "var|_opacity": ".1",
+      "var|_x": "50%",
+      "var|_y": "50%",
+      "!animate": {
+        "0%": {
+          "background-opacity": "0",
+          "clip-path": "circle(000% at {?.ripple._x} {?.ripple._y})"
+        },
+        "100%": {
+          "background-opacity": "{?.ripple._opacity}",
+          "clip-path": "circle(150% at {?.ripple._x} {?.ripple._y})"
+        }
+      },
+      "background-color": "{?.ripple._background}",
       "border-radius": "inherit",
       "inset": "0",
       "position": "absolute",

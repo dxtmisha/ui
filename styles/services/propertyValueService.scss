@@ -3,8 +3,14 @@
 @import "../position";
 
 @mixin mixinPropertyValue($index, $value) {
-  @if ($index == 'color-opacity') {
+  @if ($index == 'color') {
+    @include mixinColor(#{$value});
+  } @else if ($index == 'color-opacity') {
     @include mixinColorOpacity(#{$value});
+  } @else if ($index == 'background-color') {
+    @include mixinBackground(#{$value});
+  } @else if ($index == 'background-opacity') {
+    @include mixinBackgroundOpacity(#{$value});
   } @else if ($index == 'inset') {
     @include inset(#{$value});
   } @else if ($index == 'padding-x') {

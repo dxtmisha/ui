@@ -1,5 +1,5 @@
 <template lang="pug">
-div(ref="element" :class="classes.main")
+div(ref="element" :class="classes.main" @click="onClick")
 </template>
 
 <script lang="ts">
@@ -16,5 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../constructors/Ripple/style';
 
+@include initRipple('md2');
 </style>

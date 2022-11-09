@@ -1,4 +1,4 @@
-const REG_SEARCH = /^([^|]+\||@|#|::|:|&)/
+const REG_SEARCH = /^([^|]+\||@|#|::|:|&|!)/
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 
 const PropertiesFileService = require('./PropertiesFileService')
@@ -42,7 +42,7 @@ module.exports = class extends PropertiesFileService {
   getFullIndex (design, index) {
     const designIndex = this.getDesign(index)
 
-    return `${(designIndex in this.properties || designIndex === '%' ? '' : `${design}.`)}${toKebabCase(index)}`
+    return `${(designIndex in this.properties || designIndex === '?' ? '' : `${design}.`)}${toKebabCase(index)}`
   }
 
   getIndex (design, index) {
@@ -59,7 +59,7 @@ module.exports = class extends PropertiesFileService {
 
     if (fullIndex in this.mapProperties) {
       return this.mapProperties[fullIndex]
-    } else if (!fullIndex.match(/%\./i)) {
+    } else if (!fullIndex.match(/\?\./i)) {
       console.error(`[ERROR] PropertiesService.getItem(${design}, ${index}, ${fullIndex})`)
       return undefined
     }
@@ -147,7 +147,8 @@ module.exports = class extends PropertiesFileService {
   }
 
   getScssValue (design, property) {
-    return property.__value.toString().replace('%-', `${design}-`)
+    return property.__value.toString()
+      .replace(/\?[-.]/ig, `${design}-`)
   }
 
   getValue (design, index) {
@@ -175,6 +176,8 @@ module.exports = class extends PropertiesFileService {
       data = 'media'
     } else if (type.match(/^#/)) {
       data = 'subclass'
+    } else if (type.match(/^!/)) {
+      data = 'animate'
     } else if (
       type.match(/^::/) ||
       cssSelectorsVirtual.indexOf(index) !== -1
@@ -254,7 +257,7 @@ module.exports = class extends PropertiesFileService {
 
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
-        const index = property.__index.toString().replace('%', design)
+        const index = property.__index.toString().replace('?', design)
         const type = property.__type
         const designIndex = design || name
         let value
@@ -354,7 +357,7 @@ module.exports = class extends PropertiesFileService {
 
     if (index.match(/^_/i)) {
       const indexMain = this.getIndex(design, toKebabCase(property.__names))
-        ?.replace(/^[^.]+/i, '%')
+        ?.replace(/^[^.]+/i, '?')
         ?.replace(/\./ig, '-')
         ?.replace(/-_/ig, '-')
 
