@@ -1,0 +1,55 @@
+@import "../../styles/services/classesService";
+
+@mixin initRipple($design) {
+  @include classInitService($design, 'ripple') using(
+    $class,
+    $type,
+    $index,
+    $property
+  ) {
+    @if ($type == 'root') {
+
+    }
+  }
+}
+
+@mixin mixinImageMaterial() {
+  &.material-icons {
+    @content;
+
+    direction: ltr;
+
+    &.type- {
+      &outlined {
+        font-family: 'Material Icons Outlined', sans-serif;
+      }
+
+      &round {
+        font-family: 'Material Icons Round', sans-serif;
+      }
+
+      &sharp {
+        font-family: 'Material Icons Sharp', sans-serif;
+      }
+
+      &two-tone {
+        font-family: 'Material Icons Two Tone', sans-serif;
+      }
+    }
+  }
+}
+
+@mixin mixinImageLineAwesome() {
+  &.la,
+  &.lab,
+  &.lad,
+  &.lal,
+  &.lar,
+  &.las {
+    &::before {
+      color: inherit;
+    }
+
+    @content;
+  }
+}
