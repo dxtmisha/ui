@@ -1,0 +1,11 @@
+{
+  "d": {
+    "ripple": {
+      "border-radius": "inherit",
+      "inset": "0",
+      "position": "absolute",
+      "overflow": "hidden",
+      "z-index": "1"
+    }
+  }
+}
