@@ -299,7 +299,7 @@ module.exports = class extends PropertiesFileService {
     const parent = property.__parent
     let value
 
-    if (property.value.match(/^#[\dabcdef]{6,8}/ig)) {
+    if (property.value.toString().match(/^#[\dabcdef]{6,8}/ig)) {
       value = property.value
     } else {
       value = this.toValue(design, property)

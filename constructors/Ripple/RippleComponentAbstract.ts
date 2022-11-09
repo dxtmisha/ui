@@ -39,11 +39,11 @@ export abstract class RippleComponentAbstract extends ComponentAbstract {
   add (x: number, y: number): void {
     if (this.element.value) {
       createElement(this.element.value, 'span', item => {
-        item.onanimationend = () => item.classList.add('step-1')
+        // item.onanimationend = () => item.classList.add('is-step-end')
         // item.ontransitionend = () => item.parentElement?.removeChild(item)
 
-        item.style.setProperty(`--_${this.baseClass.value}-_x`, `${x}px`)
-        item.style.setProperty(`--_${this.baseClass.value}-_y`, `${y}px`)
+        item.style.setProperty(`--${this.baseClass.value}-_x`, `${x}px`)
+        item.style.setProperty(`--${this.baseClass.value}-_y`, `${y}px`)
         item.classList.add(this.getClassName(['item']))
       })
     }

@@ -1,4 +1,4 @@
-import { computed, ComputedRef, reactive, Ref, toRefs } from 'vue'
+import { computed, ComputedRef, onUpdated, reactive, Ref, toRefs } from 'vue'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -43,6 +43,8 @@ export abstract class ComponentAbstract {
     if (typeof nameDesign === 'string') {
       this.code = nameDesign
     }
+
+    onUpdated(() => console.log(`onUpdated: ${this.baseClass.value}`))
   }
 
   private readonly name = computed(() => {
@@ -54,7 +56,7 @@ export abstract class ComponentAbstract {
   }) as ComputedRef<string>
 
   protected readonly nameDesign = computed(() => toKebabCase(this.code?.split('.', 1)[0] || '')) as ComputedRef<string>
-  protected readonly baseClass = computed(() => `.${this.code?.replace('.', '-')}`) as ComputedRef<string>
+  protected readonly baseClass = computed(() => this.code?.replace('.', '-')) as ComputedRef<string>
 
   protected readonly classesMain = computed(() => {
     const main = {
