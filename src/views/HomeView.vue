@@ -167,6 +167,7 @@
       :object-height="2000"
     />
   </div>
+  <md2-ripple/>
 </div>
 </template>
 
@@ -174,6 +175,7 @@
 import { defineComponent, ref } from 'vue'
 import Md2Image from '../../md2/Md2Image/index.vue'
 import { Icon } from '../../constructors/Image/Icon'
+import Md2Ripple from '../../md2/Md2Ripple/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -181,7 +183,10 @@ Icon.add('test', file)
 
 export default defineComponent({
   name: 'HomeView',
-  components: { Md2Image },
+  components: {
+    Md2Ripple,
+    Md2Image
+  },
   setup () {
     const data = ref('close')
     return {

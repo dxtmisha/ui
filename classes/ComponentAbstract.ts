@@ -53,8 +53,8 @@ export abstract class ComponentAbstract {
     return toKebabCase(name || '')
   }) as ComputedRef<string>
 
-  private readonly nameDesign = computed(() => toKebabCase(this.code?.split('.', 1)[0] || '')) as ComputedRef<string>
-  private readonly baseClass = computed(() => `.${this.code?.replace('.', '-')}`) as ComputedRef<string>
+  protected readonly nameDesign = computed(() => toKebabCase(this.code?.split('.', 1)[0] || '')) as ComputedRef<string>
+  protected readonly baseClass = computed(() => `.${this.code?.replace('.', '-')}`) as ComputedRef<string>
 
   protected readonly classesMain = computed(() => {
     const main = {

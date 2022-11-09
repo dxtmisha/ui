@@ -1,6 +1,8 @@
 import { ComputedRef, Ref } from 'vue'
+import { createElement } from '../functions/element'
 
 export type NumberOrStringType = number | string
+export type CallbackType<T = any, R = any> = (value: T) => R
 
 export type AssociativeType<T = any> = {
   [key: NumberOrStringType]: T
@@ -16,7 +18,8 @@ export type InstallOptionsType = {
   designs?: AssociativeType[]
 }
 
-export type EventCallbackType<R = any> = (event?: Event) => R
+export type EventCallbackType<R = any, E = Event> = (event?: E) => R
+export type EventCallbackRequiredType<R = any, E = Event> = (event: E) => R
 export type EventOptionsType = AddEventListenerOptions | boolean | undefined
 
 export type ComponentAssociativeValueType = (() => boolean) | boolean
@@ -48,6 +51,12 @@ export type ComponentItemType =
   | ComponentValueType
   | ComponentValueType[]
   | ComponentAssociativeType
+
+export type ElementOptionsItemType = (() => string) | string
+export type ElementOptionsType =
+  CallbackType<HTMLElement, void>
+  | AssociativeType<ElementOptionsItemType>
+  | undefined
 
 export type ImageCoordinatorType = Ref<[number, number, number, number] | undefined>
 export type ImageItemType = {
