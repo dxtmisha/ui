@@ -88,7 +88,9 @@ export class Image {
   public readonly backgroundImage = computed(() => {
     const dataImage = this.dataImage.value
 
-    return dataImage ? `url("${typeof dataImage === 'string' ? dataImage : dataImage.src}")` : null
+    return dataImage && this.isShow.value
+      ? `url("${typeof dataImage === 'string' ? dataImage : dataImage.src}")`
+      : null
   }) as ComputedRef<string | null>
 
   public readonly backgroundSize = computed(() => {
@@ -149,6 +151,19 @@ export class Image {
       return undefined
     }
   }) as ComputedRef<ImageItemSizeType | undefined>
+
+  public readonly isShow = computed(() => {
+    switch (this.type.value) {
+      case 'image':
+      case 'file':
+        return this.dataImage.value && (
+          !this.adaptive.value ||
+          (this.adaptiveObject.value && this.backgroundSize.value)
+        )
+      default:
+        return true
+    }
+  }) as ComputedRef<boolean>
 
   public readonly positionX = computed(() => {
     const coordinator = this.coordinator.value
