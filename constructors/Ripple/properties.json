@@ -1,15 +1,19 @@
 {
   "d": {
     "ripple": {
-      "var|_background": "255, 255, 255",
+      "var|_background": "0, 0, 0",
+      "var|_inverse": "255, 255, 255",
       "var|_opacity": ".1",
-      "var|_duration": ".1",
       "var|_x": "50%",
       "var|_y": "50%",
       "!animate": {
         "0%": {
           "background-opacity": "0",
           "clip-path": "circle(000% at {?.ripple._x} {?.ripple._y})"
+        },
+        "50%": {
+          "background-opacity": "{?.ripple._opacity}",
+          "clip-path": "circle(75% at {?.ripple._x} {?.ripple._y})"
         },
         "100%": {
           "background-opacity": "{?.ripple._opacity}",
@@ -21,10 +25,14 @@
       "position": "absolute",
       "overflow": "hidden",
       "z-index": "1",
+      "inverse": {
+        "var|_background": "{?.ripple._inverse}"
+      },
       "#item": {
         "animation-duration": "{d.sys.transitionDuration.fade.through}",
         "animation-fill-mode": "forwards",
         "animation-name": "?-ripple--animate",
+        "animation-timing-function": "linear",
         "background-color": "{?.ripple._background}",
         "inset": "0",
         "position": "absolute",

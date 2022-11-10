@@ -1,5 +1,5 @@
 <template lang="pug">
-div(ref="element" :class="classes.main" @click="onClick")
+div(ref="element" :class="classes.main" @mousedown="onClick")
 </template>
 
 <script lang="ts">

@@ -178,7 +178,10 @@
       },
       "backgroundAsColor": {
         "background-color": {
-          "value": "rgba(var(--sys-color), var(--sys-color-opacity))"
+          "value": "var(--sys-color)"
+        },
+        "background-opacity": {
+          "value": "var(--sys-color-opacity)"
         }
       }
     },

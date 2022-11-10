@@ -4,5 +4,8 @@ const defaultProps = DefaultConfiguration.init('ripple')
 
 export const props = {
   // Status
-  disabled: defaultProps('disabled', false)
+  disabled: defaultProps('disabled', false),
+
+  // Options
+  inverse: Boolean
 }

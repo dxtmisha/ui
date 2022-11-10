@@ -49,7 +49,7 @@
   color: rgba(var(--sys-color), var(--sys-color-opacity));
 }
 
-@mixin mixinBackground($color, $opacity: 1) {
+@mixin mixinBackground($color, $opacity: null) {
   --sys-background: #{toColorRBG($color)};
   @include mixinBackgroundOpacity($opacity);
 }

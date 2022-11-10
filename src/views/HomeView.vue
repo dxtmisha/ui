@@ -6,6 +6,7 @@
       :hide="hide"
       :disabled="disabled"
     />
+    <md2-ripple/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image
@@ -13,6 +14,7 @@
       :hide="hide"
       :disabled="disabled"
     />
+    <md2-ripple inverse/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image
@@ -51,6 +53,7 @@
       :hide="hide"
       :disabled="disabled"
     />
+    <md2-ripple/>
   </div>
 </div>
 <div>
@@ -167,7 +170,6 @@
       :object-height="2000"
     />
   </div>
-  <md2-ripple/>
 </div>
 </template>
 
