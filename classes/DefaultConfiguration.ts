@@ -13,7 +13,7 @@ export class DefaultConfiguration {
     return this.values?.[key]?.[prop]
   }
 
-  validator<T = any> (values: T[]): (value: T) => boolean {
+  static validator<T = any> (values: T[]): (value: T) => boolean {
     return (value: T) => values.indexOf(value) !== -1
   }
 }

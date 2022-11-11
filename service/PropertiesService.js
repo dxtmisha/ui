@@ -160,11 +160,10 @@ module.exports = class extends PropertiesFileService {
      * @type {string}
      */
     const index = property.__index
-
     /**
      * @type {string}
      */
-    const type = property?.type || property.__name
+    const type = property?.value && property?.type ? property.type : property.__name
 
     let data
 
@@ -199,28 +198,29 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  initMap (properties = this.properties, parent = []) {
+  initMap (properties = this.properties, parentIndex = [], parent = null) {
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
         const index = this.toIndex(name)
-        const fullIndex = [...parent, index]
+        const fullIndex = [...parentIndex, index]
         const names = fullIndex.join('.')
 
         property.__index = index
-        property.__design = parent?.[0]
-        property.__parent = parent?.[parent.length - 1]
+        property.__design = parentIndex?.[0]
+        property.__parent = parentIndex?.[parentIndex.length - 1]
+        property.__parentItem = parent
         property.__name = name
         property.__names = names
         property.__fullIndex = fullIndex
         property.__type = this.getType(property)
         property.__options = this.getOptions(property)
 
-        this.addMapProperties(parent, property)
+        this.addMapProperties(parentIndex, property)
 
         if ('value' in property) {
-          this.initValue(property)
+          this.initValue(property, parent)
         } else {
-          this.initMap(property, fullIndex)
+          this.initMap(property, fullIndex, property)
         }
       }
     })
@@ -290,7 +290,7 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  initValue (property) {
+  initValue (property, parentItem) {
     if ('__value' in property) {
       return
     }
@@ -308,6 +308,7 @@ module.exports = class extends PropertiesFileService {
     if (
       parent &&
       property.__type !== 'property' &&
+      parentItem.__type === 'property' &&
       cssProperties.indexOf(parent) !== -1
     ) {
       property.__type = 'section'

@@ -295,6 +295,7 @@
   "overscroll-behavior-y",
   "padding",
   "padding-x",
+  "padding-y",
   "padding-block",
   "padding-block-end",
   "padding-block-start",

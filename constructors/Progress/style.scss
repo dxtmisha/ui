@@ -1,0 +1,14 @@
+@import "../../styles/services/classesService";
+
+@mixin initProgress($design) {
+  @include classInitService($design, 'progress') using(
+    $class,
+    $type,
+    $index,
+    $property
+  ) {
+    @if ($type == 'root') {
+
+    }
+  }
+}
