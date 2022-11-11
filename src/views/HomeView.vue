@@ -7,7 +7,7 @@
       :disabled="disabled"
     />
     <md2-ripple/>
-    <md2-progress/>
+    <md2-progress visible/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image

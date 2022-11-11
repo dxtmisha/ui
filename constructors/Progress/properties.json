@@ -145,13 +145,28 @@
           "position": "absolute",
           "top": "{?.progress._top}",
           "transform-origin": "{?.progress._transformOrigin}",
-          "width": "100%"
+          "width": "100%",
+          "=isMove": {
+            "animation-name": "?-ripple--animate-linear-hidden"
+          },
+          "^^visible": {
+            "animation-name": "?-ripple--animate-linear-visible"
+          }
         }
       },
       "section|bottom": {
         "var|_top": "auto",
         "var|_bottom": "0",
         "var|_transformOrigin": "bottom"
+      },
+      "=isMove": {
+        "display": "block"
+      },
+      "=isValue": {
+        "display": "block"
+      },
+      "visible": {
+        "display": "block"
       }
     }
   }

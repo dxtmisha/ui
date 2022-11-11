@@ -130,11 +130,19 @@ module.exports = class extends PropertiesFileService {
         }'`
         break
       case 'var':
-      case 'section':
         if (index.match(/^=/ig)) {
           data = index.replace(/^=/ig, '')
         } else if (index.match(/^\^/ig)) {
           data = index.replace(/^\^/ig, `${property.__design}-`)
+        }
+        break
+      case 'section':
+        if (index.match(/^=/ig)) {
+          data = index.replace(/^=/ig, '')
+        } else if (index.match(/^\^\^/ig)) {
+          data = index.replace(/^\^\^/ig, `?-${property.__fullIndex?.[1]}--`)
+        } else if (index.match(/^\^/ig)) {
+          data = index.replace(/^\^/ig, '?--')
         }
         break
     }
@@ -272,7 +280,9 @@ module.exports = class extends PropertiesFileService {
         } else {
           value = {
             type,
-            options: property.__options,
+            options: typeof property.__options === 'string'
+              ? property.__options.replace('?', design)
+              : property.__options,
             value: this.initScssObject(property, designIndex)
           }
         }
