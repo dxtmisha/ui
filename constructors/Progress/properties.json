@@ -7,6 +7,7 @@
       "var|_top": "0",
       "var|_bottom": "auto",
       "var|_transformOrigin": "top",
+      "var|_duration": "20s",
       "!animate-linear-visible": {
         "0%": {
           "transform": "scaleY(0)"
@@ -139,6 +140,7 @@
       "type": {
         "linear": {
           "background-color": "{?.progress._background}",
+          "background-opacity": "{?.progress._barOpacity}",
           "bottom": "{?.progress._bottom}",
           "height": "{?.progress._height}",
           "padding-x": "0",
@@ -146,11 +148,48 @@
           "top": "{?.progress._top}",
           "transform-origin": "{?.progress._transformOrigin}",
           "width": "100%",
+          "::after": {
+            "background-color": "{?.progress._background}",
+            "background-opacity": "1",
+            "bottom": "0",
+            "left": "0",
+            "right": "100%",
+            "position": "absolute",
+            "top": "0",
+            "transition-property": "background-color"
+          },
+          "::before": {
+            "background-color": "{?.progress._background}",
+            "background-opacity": "1",
+            "bottom": "0",
+            "left": "0",
+            "right": "100%",
+            "position": "absolute",
+            "top": "0",
+            "transition-property": "background-color"
+          },
           "=isMove": {
-            "animation-name": "?-ripple--animate-linear-hidden"
+            "animation-name": "?-progress--animate-linear-hidden"
           },
           "^^visible": {
-            "animation-name": "?-ripple--animate-linear-visible"
+            "animation-name": "?-progress--animate-linear-visible"
+          }
+        }
+      },
+      "section|indeterminate": {
+        "type1": {
+          "^^type": {
+            "linear": {
+              "::after": {
+                "animation-duration": "{?.progress._duration}",
+                "animation-fill-mode": "forwards"
+              },
+              "^^visible": {
+                "::after": {
+                  "animation-name": "?-progress--animate-linear-type1"
+                }
+              }
+            }
           }
         }
       },

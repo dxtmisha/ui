@@ -1100,19 +1100,19 @@
     "section|grid": {
       "gridTemplateColumns": "repeat({ref.grid.xs}, minmax(0, 1fr))",
       "columnGap": "{ref.gap.xs}",
-      "@{ref.screen.sm}": {
+      "media|{ref.screen.sm}": {
         "gridTemplateColumns": "repeat({ref.grid.sm}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.sm}"
       },
-      "@{ref.screen.md}": {
+      "media|{ref.screen.md}": {
         "gridTemplateColumns": "repeat({ref.grid.md}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.md}"
       },
-      "@{ref.screen.lg}": {
+      "media|{ref.screen.lg}": {
         "gridTemplateColumns": "repeat({ref.grid.lg}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.lg}"
       },
-      "@{ref.screen.xl}": {
+      "media|{ref.screen.xl}": {
         "gridTemplateColumns": "repeat({ref.grid.xl}, minmax(0, 1fr))",
         "columnGap": "{ref.gap.xl}"
       }

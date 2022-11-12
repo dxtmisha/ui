@@ -1,5 +1,5 @@
 <template lang="pug">
-div(:class="classes.main")
+component(:is="tag" :class="classes.main")
 </template>
 
 <script lang="ts">

@@ -1,4 +1,4 @@
-import { ComputedRef, Ref, ref } from 'vue'
+import { computed, ComputedRef, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -9,6 +9,7 @@ import {
 
 export type ProgressSetupType = {
   element: Ref<HTMLElement | undefined>
+  tag: ComputedRef<string>
   name: ComputedRef<string>
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>
@@ -26,9 +27,12 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
 
     return {
       element: this.element,
+      tag: this.tag,
       ...this.baseInit(),
       classes,
       styles
     }
   }
+
+  public readonly tag = computed(() => this.props.type !== 'linear' ? 'svg' : 'div')
 }

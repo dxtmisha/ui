@@ -3,7 +3,7 @@
     "image": {
       "var|_fontSize": "inherit",
       "var|_opacity": "0.38",
-      "&flex": "{d.flex.center}",
+      "@flex": "{d.flex.center}",
       "background-size": "cover",
       "background-repeat": "no-repeat",
       "border-radius": "inherit",

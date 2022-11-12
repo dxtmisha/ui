@@ -1,4 +1,4 @@
-const REG_SEARCH = /^([^|]+\||@|#|::|:|&|!)/
+const REG_SEARCH = /^([^|]+\||@|#|::|:|!)/
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 
 const PropertiesFileService = require('./PropertiesFileService')
@@ -177,10 +177,8 @@ module.exports = class extends PropertiesFileService {
 
     if (type.match(/^[^|]+\|.*?$/)) {
       data = type.split('|')[0]
-    } else if (type.match(/^&/)) {
-      data = 'link'
     } else if (type.match(/^@/)) {
-      data = 'media'
+      data = 'link'
     } else if (type.match(/^#/)) {
       data = 'subclass'
     } else if (type.match(/^!/)) {
