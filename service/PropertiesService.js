@@ -18,10 +18,13 @@ module.exports = class extends PropertiesFileService {
   constructor (designs) {
     super(designs)
 
+    this.treeProperties = {}
     this.mapProperties = {}
 
     this.initMap()
     process.env.VUE_APP_DESIGNS = JSON.stringify(this.getMap())
+
+    console.log('this.treeProperties', this.treeProperties.md2.properties.image.properties)
   }
 
   addMapProperties (parent, property) {
@@ -206,14 +209,22 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  initMap (properties = this.properties, parentIndex = [], parent = null) {
+  initMap (
+    properties = this.properties,
+    tree = this.treeProperties,
+    parentIndex = [],
+    parent = null,
+    parentItem = null
+  ) {
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
+        const item = new PropertiesItemService(name, parentItem, property)
+
         const index = this.toIndex(name)
         const fullIndex = [...parentIndex, index]
         const names = fullIndex.join('.')
 
-        property.__item = new PropertiesItemService(name, parent, property)
+        property.__item = item
         property.__index = index
         property.__design = parentIndex?.[0]
         property.__parent = parentIndex?.[parentIndex.length - 1]
@@ -225,13 +236,45 @@ module.exports = class extends PropertiesFileService {
         property.__options = this.getOptions(property)
 
         this.addMapProperties(parentIndex, property)
-        PropertiesMapService.setItem(property.__item)
+        PropertiesMapService.setItem(item)
 
-        console.log(name, '/', property.__index, '/', property.__item.getOption())
-        if ('value' in property) {
-          // this.initValue(property, parent)
+        if (item.getType() === 'link') {
+          /**
+           * @type {PropertiesItemService}
+           */
+          const linkProperties = PropertiesMapService.getItem(item.getValueToCode())
+
+          if (linkProperties) {
+            this.initMap(
+              linkProperties.getProperty(),
+              tree,
+              parentIndex,
+              parent,
+              parentItem
+            )
+          }
+          console.log('link', item.getValueToCode())
         } else {
-          this.initMap(property, fullIndex, property)
+          const key = item.getMark()
+
+          console.log('name', name)
+
+          tree[key] = {
+            item,
+            properties: {}
+          }
+
+          if ('value' in property) {
+            // this.initValue(property, parent)
+          } else {
+            this.initMap(
+              property,
+              tree[key].properties,
+              fullIndex,
+              property,
+              item
+            )
+          }
         }
       }
     })
@@ -268,13 +311,16 @@ module.exports = class extends PropertiesFileService {
 
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
+        const item = property.__item
+
         const index = property.__index.toString().replace('?', design)
-        const type = property.__type
+        const type = item.getType()
         const designIndex = design || name
         let value
 
         if (type === 'link') {
-          replaceRecursive(data, this.getLink(designIndex, property, properties))
+          console.log('type', type, item.getCode())
+          // replaceRecursive(data, this.getLink(designIndex, property, properties))
         } else if ('__value' in property) {
           value = {
             type,
@@ -330,7 +376,7 @@ module.exports = class extends PropertiesFileService {
         __value: value
       }
 
-      this.initMap(property, property.__fullIndex)
+      // this.initMap(property, property.__fullIndex)
     } else {
       property.__value = value
     }

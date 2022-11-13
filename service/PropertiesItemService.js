@@ -29,7 +29,7 @@ module.exports = class {
   }
 
   getDesign () {
-    return this.parent ? this.parent.__item.getDesign() : this.getIndex()
+    return this.parent ? this.parent.getDesign() : this.getIndex()
   }
 
   /**
@@ -50,9 +50,13 @@ module.exports = class {
 
   getIndexList () {
     return [
-      ...(this.parent ? this.parent.__item.getIndexList() : []),
+      ...(this.parent ? this.parent.getIndexList() : []),
       this.getIndex()
     ]
+  }
+
+  getKey () {
+    return `${this.getType()}|${this.getMark()}`
   }
 
   /**
@@ -71,7 +75,7 @@ module.exports = class {
   }
 
   getName () {
-    return this.parent?.__item.parent ? this.parent.__item.getName() : this.getIndex()
+    return this.parent?.parent ? this.parent.getName() : this.getIndex()
   }
 
   getOriginal () {
@@ -104,6 +108,10 @@ module.exports = class {
     }
 
     return this.option
+  }
+
+  getProperty () {
+    return this.property
   }
 
   getSelector () {
@@ -145,6 +153,9 @@ module.exports = class {
     return this.type
   }
 
+  /**
+   * @returns {string}
+   */
   getValue () {
     if (!('value' in this)) {
       const value = this.property.value
@@ -157,6 +168,10 @@ module.exports = class {
     }
 
     return this.value
+  }
+
+  getValueToCode () {
+    return this.getValue().replace(/(^{|}$)/ig, '')
   }
 
   getValueToCss () {

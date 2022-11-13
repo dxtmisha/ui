@@ -1,7 +1,7 @@
 {
   "md2": {
     "ripple": {
-      "&style": "{d.ripple}",
+      "@style": "{d.ripple}",
       "var|_background": "{?.sys.chart.primary}",
       "var|_inverse": "{?.sys.chart.onPrimary}",
       "var|_opacity": "{?.sys.opacity.pressed}"

@@ -202,7 +202,7 @@
         "flex-flow": "column"
       },
       "center": {
-        "&style": "{d.flex.x}",
+        "@style": "{d.flex.x}",
         "justify-content": "center"
       }
     },

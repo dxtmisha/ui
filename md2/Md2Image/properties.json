@@ -1,7 +1,7 @@
 {
   "md2": {
     "image": {
-      "&style": "{d.image}",
+      "@style": "{d.image}",
       "var|_fontSize": "{ref.font.size.headline.5}",
       "var|_opacity": "{sys.opacity.surface.disabled}"
     }

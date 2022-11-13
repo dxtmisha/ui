@@ -1,7 +1,7 @@
 {
   "md2": {
     "progress": {
-      "&style": "{d.progress}",
+      "@style": "{d.progress}",
       "var|_background": "{?.sys.chart.primary}",
       "var|_barOpacity": "{?.sys.opacity.pressed}",
       "var|_height": "{?.ref.spacing.1}"
