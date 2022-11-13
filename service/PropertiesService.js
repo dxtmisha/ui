@@ -2,6 +2,7 @@ const REG_SEARCH = /^([^|]+\||@|#|::|:|!)/
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 
 const PropertiesFileService = require('./PropertiesFileService')
+const PropertiesMapService = require('./PropertiesMapService')
 const {
   forEach,
   replaceRecursive,
@@ -11,6 +12,7 @@ const {
 const cssProperties = require('../constructors/cssProperties.json')
 const cssSelectors = require('../constructors/cssSelectors.json')
 const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
+const PropertiesItemService = require('./PropertiesItemService')
 
 module.exports = class extends PropertiesFileService {
   constructor (designs) {
@@ -211,6 +213,7 @@ module.exports = class extends PropertiesFileService {
         const fullIndex = [...parentIndex, index]
         const names = fullIndex.join('.')
 
+        property.__item = new PropertiesItemService(name, parent, property)
         property.__index = index
         property.__design = parentIndex?.[0]
         property.__parent = parentIndex?.[parentIndex.length - 1]
@@ -222,9 +225,11 @@ module.exports = class extends PropertiesFileService {
         property.__options = this.getOptions(property)
 
         this.addMapProperties(parentIndex, property)
+        PropertiesMapService.setItem(property.__item)
 
+        console.log(name, '/', property.__index, '/', property.__item.getValueToCss())
         if ('value' in property) {
-          this.initValue(property, parent)
+          // this.initValue(property, parent)
         } else {
           this.initMap(property, fullIndex, property)
         }
