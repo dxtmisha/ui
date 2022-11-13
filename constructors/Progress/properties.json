@@ -171,8 +171,14 @@
           "=isMove": {
             "animation-name": "?-progress--animate-linear-hidden"
           },
-          "^^visible": {
+          "??visible": {
             "animation-name": "?-progress--animate-linear-visible"
+          },
+          "&--test &--test2": {
+            "color": "red"
+          },
+          "&[value] .??test3": {
+            "color": "blue"
           }
         }
       },

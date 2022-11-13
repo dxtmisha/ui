@@ -227,7 +227,7 @@ module.exports = class extends PropertiesFileService {
         this.addMapProperties(parentIndex, property)
         PropertiesMapService.setItem(property.__item)
 
-        console.log(name, '/', property.__index, '/', property.__item.getValueToCss())
+        console.log(name, '/', property.__index, '/', property.__item.getOption())
         if ('value' in property) {
           // this.initValue(property, parent)
         } else {

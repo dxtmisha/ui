@@ -6,7 +6,7 @@ const cssProperties = require('../constructors/cssProperties.json')
 const cssSelectors = require('../constructors/cssSelectors.json')
 const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
 
-const REG_MARK = /^(&|\?|\?\?)/ig
+const REG_MARK = /^(&|=|\?|\?\?)/ig
 const REG_SEARCH = /^([^|]+\||@|#|:|::)/ig
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 
@@ -78,36 +78,26 @@ module.exports = class {
     return this.property?.value
   }
 
-  getOption (property) {
+  getOption () {
     if (!('option' in this)) {
       const mark = this.getMark()
-      let data
 
       switch (this.getType()) {
         case 'media':
-          data = `'${
-            mark
-              .replace(
-                /{([^{}]+)}/ig,
-                (all, key) => this.getValue(property.__design, key) || key
-              )
-              .trim()
-          }'`
-          break
-        case 'var':
-          if (mark.match(/^=/ig)) {
-            data = mark.replace(/^=/ig, '')
-          } else if (mark.match(/^\^/ig)) {
-            data = mark.replace(/^\^/ig, `${property.__design}-`)
-          }
+          this.option = `'${this.toValueByMain(mark)}'`
           break
         case 'section':
+        case 'var':
           if (mark.match(/^=/ig)) {
-            data = mark.replace(/^=/ig, '')
-          } else if (mark.match(/^\^\^/ig)) {
-            data = mark.replace(/^\^\^/ig, `?-${property.__fullIndex?.[1]}--`)
-          } else if (mark.match(/^\^/ig)) {
-            data = mark.replace(/^\^/ig, '?--')
+            this.option = mark.replace(/^=/ig, '')
+          } else if (mark.match(/(^&|\?)/ig)) {
+            if (mark.match(/\?/ig)) {
+              this.option = mark
+                .replace(/\?\?[-.]?/ig, `${this.getDesign()}-${this.getName()}-`)
+                .replace(/\?[-.]?/ig, `${this.getDesign()}-`)
+            } else {
+              this.option = mark
+            }
           }
           break
       }
@@ -157,21 +147,12 @@ module.exports = class {
 
   getValue () {
     if (!('value' in this)) {
-      if (typeof this.property.value === 'string') {
-        let value = this.property.value
-        let max = 10
+      const value = this.property.value
 
-        while (
-          max-- > 0 &&
-          value.match(REG_SUB)) {
-          value = value.replace(REG_SUB, (all, key) => {
-            return PropertiesMapService.getItem(this.toValue(key)).getOriginal() || key
-          })
-        }
-
-        this.value = value
+      if (typeof value === 'string') {
+        this.value = this.toValueBySub(value)
       } else {
-        this.value = this.property.value?.toString() || ''
+        this.value = value?.toString() || ''
       }
     }
 
@@ -230,6 +211,28 @@ module.exports = class {
     } else {
       return ''
     }
+  }
+
+  toValueByMain (value) {
+    return this.toValueBySub(value)
+      .replace(/{([^{}]+)}/ig, (all, key) => {
+        return PropertiesMapService.getItem(this.toValue(key)).getOriginal() || key
+      })
+      .trim()
+  }
+
+  toValueBySub (value) {
+    let max = 10
+
+    while (
+      max-- > 0 &&
+      value.match(REG_SUB)) {
+      value = value.replace(REG_SUB, (all, key) => {
+        return PropertiesMapService.getItem(this.toValue(key)).getOriginal() || key
+      })
+    }
+
+    return value.trim()
   }
 
   /**
