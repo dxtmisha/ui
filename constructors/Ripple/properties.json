@@ -37,7 +37,7 @@
       "#item": {
         "animation-duration": "{d.sys.transitionDuration.fade.through}",
         "animation-fill-mode": "forwards",
-        "animation-name": "??-start",
+        "animation-name": "??--start",
         "animation-timing-function": "linear",
         "background-color": "{??_background}",
         "inset": "0",
