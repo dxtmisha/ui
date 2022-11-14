@@ -209,7 +209,7 @@
     "motion": {
       "container": {
         "open": {
-          "var|^sys": {
+          "var|?sys": {
             "motion": {
               "container": {
                 "element": {

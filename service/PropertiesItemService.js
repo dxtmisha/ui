@@ -7,7 +7,7 @@ const cssSelectors = require('../constructors/cssSelectors.json')
 const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
 
 const REG_MARK = /^(&|=|\?|\?\?)/ig
-const REG_SEARCH = /^([^|]+\||@|#|:|::)/ig
+const REG_SEARCH = /^([^|]+\||@|#|::|:)/ig
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 const REG_VAR = /{([^{}]+)}/ig
 
@@ -86,8 +86,9 @@ module.exports = class {
   getOption () {
     if (!('option' in this)) {
       const mark = this.getMark()
+      const type = this.getType()
 
-      switch (this.getType()) {
+      switch (type) {
         case 'media':
           this.option = `'${this.toValueByMain(mark)}'`
           break
@@ -95,9 +96,9 @@ module.exports = class {
         case 'var':
           if (mark.match(/^=/ig)) {
             this.option = mark.replace(/^=/ig, '')
-          } else if (mark.match(/(^&|\?)/ig)) {
+          } else if (mark.match(/([&?])/ig)) {
             if (mark.match(/\?/ig)) {
-              this.option = mark
+              this.option = (type === 'section' && !mark.match(/^&/ig) ? '&.' : '') + mark
                 .replace(/\?\?[-.]?/ig, `${this.getDesign()}-${this.getName()}-`)
                 .replace(/\?[-.]?/ig, `${this.getDesign()}-`)
             } else {

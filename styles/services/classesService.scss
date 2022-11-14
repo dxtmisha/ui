@@ -12,61 +12,45 @@ $designsProperties: () !default;
   $properties,
   $init: ()
 ) {
-  @if (isInitByType($init, 'var')) {
-    @include mixinVar($class, $properties, (), $init);
-  }
-
-  @if (isInitByType($init, 'animate')) {
-    @include mixinAnimateList($class, $properties, (), $init);
-  }
+  @include mixinVar($class, $properties);
+  @include mixinAnimateList($class, $properties);
 
   @if (isInitByType($init, 'property')) {
-    @include mixinProperties($class, $properties, (), $init);
+    @include mixinProperties($class, $properties);
   }
 
   @if (isInitByType($init, 'virtual')) {
-    @include mixinVirtualList($class, $properties, (), $init) using($index, $property) {
-      @content('virtual', $index, $property);
-    }
+    @include mixinVirtualList($class, $properties);
   }
 
   @if (isInitByType($init, 'section')) {
-    @include mixinSections($class, $properties, (), $init) using($index, $value) {
-      @content('section', $index, $value);
-    }
+    @include mixinSections($class, $properties);
   }
 
   @if (isInitByType($init, 'subclass')) {
-    @include mixinSubclassList($class, $properties, (), $init) using($index, $value) {
-      @content('subclass', $index, $value);
-    }
+    @include mixinSubclassList($class, $properties);
   }
 
   @if (isInitByType($init, 'selector')) {
-    @include mixinSelectorList($class, $properties, (), $init) using($index, $value) {
-      @content('selector', $index, $value);
-    }
+    @include mixinSelectorList($class, $properties);
   }
 
   @if (isInitByType($init, 'media')) {
-    @include mixinMediaList($class, $properties, (), $init) using($index, $value) {
-      @content('media', $index, $value);
-    }
+    @include mixinMediaList($class, $properties);
   }
 }
 
 @mixin mixinAnimate(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $value: getValue($properties);
 
   @keyframes #{$class}--#{$index} {
     @each $frame, $property in $value {
       #{$frame} {
-        @include mixinInit($class, $property, $init);
+        @include mixinInit($class, $property);
       }
     }
   }
@@ -75,37 +59,34 @@ $designsProperties: () !default;
 @mixin mixinAnimateList(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('animate', $properties, $keys) using($index, $property) {
-    @include mixinAnimate($class, $index, $property, $init);
+    @include mixinAnimate($class, $index, $property);
   }
 }
 
 @mixin mixinMedia(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $value: getValue($properties);
   $options: getOptions($properties);
 
   @media screen and (min-width: #{$options}) {
     @content($index, $value);
-    @include mixinInit($class, $value, $init);
+    @include mixinInit($class, $value);
   }
 }
 
 @mixin mixinMediaList(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('media', $properties, $keys) using($index, $property) {
-    @include mixinMedia($class, $index, $property, $init) using($index, $value) {
+    @include mixinMedia($class, $index, $property) using($index, $value) {
       @content($index, $value);
     }
   }
@@ -114,19 +95,17 @@ $designsProperties: () !default;
 @mixin mixinProperties(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('property', $properties, $keys) using($index, $property) {
-    @include mixinProperty($class, $index, $property, $init);
+    @include mixinProperty($class, $index, $property);
   }
 }
 
 @mixin mixinProperty(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $property: getValue($properties);
 
@@ -137,29 +116,28 @@ $designsProperties: () !default;
     @include mixinPropertyValue($index, $property);
   } @else {
     #{$index}: var(--#{$class}--#{$index});
-    @include mixinSection($class, $index, $properties, $init);
+    @include mixinSection($class, $index, $properties);
   }
 }
 
 @mixin mixinSection(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $value: getValue($properties);
   $options: getOptions($properties);
 
   @if ($value) {
     @if ($options) {
-      &.#{$options} {
+      #{$options} {
         @content($index, $value);
-        @include mixinInit($class, $value, $init);
+        @include mixinInit($class, $value);
       }
     } @else {
       &--#{$index} {
         @content($index, $value);
-        @include mixinInit($class, $value, $init);
+        @include mixinInit($class, $value);
       }
     }
   }
@@ -168,11 +146,10 @@ $designsProperties: () !default;
 @mixin mixinSections(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('section', $properties, $keys) using($index, $property) {
-    @include mixinSection($class, $index, $property, $init) using($index, $value) {
+    @include mixinSection($class, $index, $property) using($index, $value) {
       @content($index, $value);
     }
   }
@@ -181,22 +158,17 @@ $designsProperties: () !default;
 @mixin mixinSelector(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $value: getValue($properties);
   $this: &;
 
   &:#{$index} {
     @content($index, $value);
-    @if (isInitByType($init, 'property')) {
-      @include mixinInit($class, $value, ('property'));
-    }
+    @include mixinInit($class, $value, ('property'));
 
-    @if (isInitByType($init, 'subclass')) {
-      #{$this} {
-        @include mixinSubclassList($class, $value, (), $init);
-      }
+    #{$this} {
+      @include mixinSubclassList($class, $value);
     }
   }
 }
@@ -204,11 +176,10 @@ $designsProperties: () !default;
 @mixin mixinSelectorList(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('selector', $properties, $keys) using($index, $property) {
-    @include mixinSelector($class, $index, $property, $init) using($index, $value) {
+    @include mixinSelector($class, $index, $property) using($index, $value) {
       @content($index, $value);
     }
   }
@@ -217,25 +188,23 @@ $designsProperties: () !default;
 @mixin mixinSubclass(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $value: getValue($properties);
 
   &__#{$index} {
     @content($index, $value);
-    @include mixinInit($class, $value, $init);
+    @include mixinInit($class, $value);
   }
 }
 
 @mixin mixinSubclassList(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('subclass', $properties, $keys) using($index, $value) {
-    @include mixinSubclass($class, $index, $value, $init) using($index, $value) {
+    @include mixinSubclass($class, $index, $value) using($index, $value) {
       @content($index, $value);
     }
   }
@@ -244,8 +213,7 @@ $designsProperties: () !default;
 @mixin mixinVar(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('var', $properties, $keys) using($index, $property) {
     @include mixinPropertiesItem($property, #{$class}-#{$index});
@@ -255,8 +223,7 @@ $designsProperties: () !default;
 @mixin mixinVirtual(
   $class,
   $index,
-  $properties,
-  $init: ()
+  $properties
 ) {
   $value: getValue($properties);
 
@@ -269,18 +236,17 @@ $designsProperties: () !default;
     }
 
     @content($index, $value);
-    @include mixinInit($class, $value, $init);
+    @include mixinInit($class, $value);
   }
 }
 
 @mixin mixinVirtualList(
   $class,
   $properties,
-  $keys: (),
-  $init: ()
+  $keys: ()
 ) {
   @include mixinPropertiesByType('virtual', $properties, $keys) using($index, $property) {
-    @include mixinVirtual($class, $index, $property, $init) using($index, $value) {
+    @include mixinVirtual($class, $index, $property) using($index, $value) {
       @content($index, $value);
     }
   }
@@ -297,7 +263,7 @@ $designsProperties: () !default;
 
   @if ($properties) {
     #{'.'}#{$class} {
-      // @include mixinInit($class, $properties, $init);
+      @include mixinInit($class, $properties, $init);
       @content($class, $properties);
     }
   }

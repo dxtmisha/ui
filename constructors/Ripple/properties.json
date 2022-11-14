@@ -6,7 +6,7 @@
       "var|_opacity": ".1",
       "var|_x": "50%",
       "var|_y": "50%",
-      "!animate": {
+      "animate|start": {
         "0%": {
           "background-opacity": "0",
           "clip-path": "circle(000% at {?.ripple._x} {?.ripple._y})"

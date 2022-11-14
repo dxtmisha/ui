@@ -8,7 +8,7 @@
       "var|_bottom": "auto",
       "var|_transformOrigin": "top",
       "var|_duration": "20s",
-      "!animate-linear-visible": {
+      "animate|linear-visible": {
         "0%": {
           "transform": "scaleY(0)"
         },
@@ -16,7 +16,7 @@
           "transform": "scaleY(1)"
         }
       },
-      "!animate-linear-hidden": {
+      "animate|linear-hidden": {
         "0%": {
           "transform": "scaleY(1)"
         },
@@ -24,7 +24,7 @@
           "transform": "scaleY(0)"
         }
       },
-      "!animate-linear-type1": {
+      "animate|linear-type1": {
         "0%": {
           "right": "100%"
         },
@@ -38,7 +38,7 @@
           "right": "5%"
         }
       },
-      "!animate-linear-type2": {
+      "animate|linear-type2": {
         "0%": {
           "left": "-35%",
           "right": "100%"
@@ -52,7 +52,7 @@
           "right": "-90%"
         }
       },
-      "!animate-linear-type3": {
+      "animate|linear-type3": {
         "0%": {
           "left": "-200%",
           "right": "100%"
@@ -66,7 +66,7 @@
           "right": "-8%"
         }
       },
-      "!animate-circle-visible": {
+      "animate|circle-visible": {
         "0%": {
           "opacity": "0"
         },
@@ -74,7 +74,7 @@
           "opacity": "1"
         }
       },
-      "!animate-circle-hidden": {
+      "animate|circle-hidden": {
         "0%": {
           "opacity": "1"
         },
@@ -82,7 +82,7 @@
           "opacity": "0"
         }
       },
-      "!animate-circle-type1": {
+      "animate|circle-type1": {
         "0%": {
           "stroke-dasharray": "1.256637061435917 125.66370614359173"
         },
@@ -96,7 +96,7 @@
           "stroke-dasharray": "125.66370614359173 125.66370614359173"
         }
       },
-      "!animate-circle-type2": {
+      "animate|circle-type2": {
         "0%": {
           "transform": "rotate(0deg)"
         },
@@ -104,7 +104,7 @@
           "transform": "rotate(360deg)"
         }
       },
-      "!animate-circle-type3": {
+      "animate|circle-type3": {
         "0%": {
           "stroke-dasharray": "1, 200",
           "stroke-dashoffset": "0"
@@ -184,13 +184,13 @@
       },
       "section|indeterminate": {
         "type1": {
-          "^^type": {
+          "??type": {
             "linear": {
               "::after": {
                 "animation-duration": "{?.progress._duration}",
                 "animation-fill-mode": "forwards"
               },
-              "^^visible": {
+              "??visible": {
                 "::after": {
                   "animation-name": "?-progress--animate-linear-type1"
                 }

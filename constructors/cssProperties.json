@@ -374,6 +374,8 @@
   "speak-punctuation",
   "speech-rate",
   "stress",
+  "stroke-dasharray",
+  "stroke-dashoffset",
   "tab-size",
   "table-layout",
   "text-align",

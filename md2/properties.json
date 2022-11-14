@@ -1265,7 +1265,7 @@
       }
     },
     "dark": {
-      "var|^sys": {
+      "var|?sys": {
         "chart": {
           "primary": "{sys.chart.dark.primary}",
           "primaryVariant": "{sys.chart.dark.primaryVariant}",
