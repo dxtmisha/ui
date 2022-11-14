@@ -7,7 +7,7 @@
       "background-size": "cover",
       "background-repeat": "no-repeat",
       "border-radius": "inherit",
-      "font-size": "{?.image._fontSize}",
+      "font-size": "{??_fontSize}",
       "direction": "ltr",
       "inset": "0",
       "position": "absolute",
@@ -26,15 +26,15 @@
         "@style": "{d.animation.hide}"
       },
       "section|disabled": {
-        "colorOpacity": "{?.image._opacity}",
+        "color-opacity": "{??_opacity}",
         "=isType": {
           "section|color": {
             "filter": "grayscale(1)",
-            "opacity": "{?.image._opacity}"
+            "opacity": "{??_opacity}"
           },
           "image": {
             "filter": "grayscale(1)",
-            "opacity": "{?.image._opacity}"
+            "opacity": "{??_opacity}"
           }
         }
       }
