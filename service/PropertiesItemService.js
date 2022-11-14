@@ -9,6 +9,7 @@ const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
 const REG_MARK = /^(&|=|\?|\?\?)/ig
 const REG_SEARCH = /^([^|]+\||@|#|:|::)/ig
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
+const REG_VAR = /{([^{}]+)}/ig
 
 module.exports = class {
   constructor (
@@ -143,7 +144,7 @@ module.exports = class {
         this.type = 'selector'
       } else if (cssProperties.indexOf(index) !== -1) {
         this.type = 'property'
-      } else if ('value' in this.property) {
+      } else if (this.isValue()) {
         this.type = 'var'
       } else {
         this.type = 'section'
@@ -158,7 +159,7 @@ module.exports = class {
    */
   getValue () {
     if (!('value' in this)) {
-      const value = this.property.value
+      const value = this.property?.value
 
       if (typeof value === 'string') {
         this.value = this.toValueBySub(value)
@@ -171,7 +172,12 @@ module.exports = class {
   }
 
   getValueToCode () {
-    return this.getValue().replace(/(^{|}$)/ig, '')
+    if (!('valueCode' in this)) {
+      this.valueCode = this.toValueByCode(this.getValue())
+        .replace(/(^{|}$)/ig, '')
+    }
+
+    return this.valueCode
   }
 
   getValueToCss () {
@@ -183,6 +189,8 @@ module.exports = class {
           .replace(/_/ig, '')
 
         this.valueCss = `'var(--${index}, ${value})'`
+      } else if (value.match(/^#[\dabcdef]{6,8}/ig)) {
+        this.valueCss = value
       } else {
         this.valueCss = `'${value}'`
       }
@@ -192,9 +200,23 @@ module.exports = class {
   }
 
   getValueToVar () {
-    return this.toValueByCalc(this.getValue())
-      .replace(/(['"])/ig, '\\$1')
-      .replace(/{([^{}]+)}/ig, (all, key) => `var(--${this.toValueByVar(key)})`)
+    if (!('valueVar' in this)) {
+      this.valueVar = this.toValueByCalc(this.getValue())
+        .replace(/(['"])/ig, '\\$1')
+        .replace(REG_VAR, (all, key) => `var(--${this.toValueByVar(key)})`)
+    }
+
+    return this.valueVar
+  }
+
+  isValue () {
+    return 'value' in this.property
+  }
+
+  setType (value) {
+    this.type = value
+
+    return this
   }
 
   /**
@@ -226,6 +248,10 @@ module.exports = class {
     } else {
       return ''
     }
+  }
+
+  toValueByCode (value) {
+    return value.replace(REG_VAR, (all, key) => `{${this.toValue(key)}}`)
   }
 
   toValueByMain (value) {
