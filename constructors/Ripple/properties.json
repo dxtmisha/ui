@@ -9,16 +9,22 @@
       "animate|start": {
         "0%": {
           "background-opacity": "0",
-          "clip-path": "circle(000% at {?.ripple._x} {?.ripple._y})"
+          "clip-path": "circle(000% at {??_x} {??_y})"
         },
         "50%": {
-          "background-opacity": "{?.ripple._opacity}",
-          "clip-path": "circle(75% at {?.ripple._x} {?.ripple._y})"
+          "background-opacity": "{??_opacity}",
+          "clip-path": "circle(075% at {??_x} {??_y})"
         },
         "100%": {
-          "background-opacity": "{?.ripple._opacity}",
-          "clip-path": "circle(150% at {?.ripple._x} {?.ripple._y})"
+          "background-opacity": "{??_opacity}",
+          "clip-path": "circle(150% at {??_x} {??_y})"
         }
+      },
+      "stepEnd": {
+        "opacity": "0",
+        "transition-delay": "{d.sys.transitionDuration.fade.enter}",
+        "transition-duration": "{d.sys.transitionDuration.fade.through}",
+        "transition-property": "opacity"
       },
       "border-radius": "inherit",
       "inset": "0",
@@ -26,32 +32,26 @@
       "overflow": "hidden",
       "z-index": "1",
       "inverse": {
-        "var|_background": "{?.ripple._inverse}"
+        "var|_background": "{??_inverse}"
       },
       "#item": {
         "animation-duration": "{d.sys.transitionDuration.fade.through}",
         "animation-fill-mode": "forwards",
-        "animation-name": "?-ripple--animate",
+        "animation-name": "??-start",
         "animation-timing-function": "linear",
-        "background-color": "{?.ripple._background}",
+        "background-color": "{??_background}",
         "inset": "0",
         "position": "absolute",
         "=isStepEnd": {
           ":not(:last-child)": {
-            "opacity": "0",
-            "transition-delay": "{d.sys.transitionDuration.fade.enter}",
-            "transition-duration": "{d.sys.transitionDuration.fade.through}",
-            "transition-property": "opacity"
+            "@step": "{??stepEnd}"
           }
         }
       },
       ":not(:active)": {
         "#item": {
           "=isStepEnd": {
-            "opacity": "0",
-            "transition-delay": "{d.sys.transitionDuration.fade.enter}",
-            "transition-duration": "{d.sys.transitionDuration.fade.through}",
-            "transition-property": "opacity"
+            "@step": "{??stepEnd}"
           }
         }
       }
