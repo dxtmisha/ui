@@ -98,9 +98,7 @@ module.exports = class {
             this.option = mark.replace(/^=/ig, '')
           } else if (mark.match(/([&?])/ig)) {
             if (mark.match(/\?/ig)) {
-              this.option = (type === 'section' && !mark.match(/^&/ig) ? '&.' : '') + mark
-                .replace(/\?\?[-.]?/ig, `${this.getDesign()}-${this.getName()}-`)
-                .replace(/\?[-.]?/ig, `${this.getDesign()}-`)
+              this.option = (type === 'section' && !mark.match(/^&/ig) ? '&.' : '') + this.toFullName(mark)
             } else {
               this.option = mark
             }
@@ -183,7 +181,9 @@ module.exports = class {
 
   getValueToCss () {
     if (!('valueCss' in this)) {
-      const value = this.getValueToVar()
+      const value = this.toFullName(
+        this.getValueToVar()
+      )
 
       if (this.getMark().match(/^_/i)) {
         const index = this.toValueByVar(this.getCode())
@@ -220,15 +220,19 @@ module.exports = class {
     return this
   }
 
+  toFullName (value, separator = '-') {
+    return value
+      .replace(/\?\?[-.]?/ig, `${this.getDesign()}${separator}${this.getName()}${separator}`)
+      .replace(/\?[-.]?/ig, `${this.getDesign()}${separator}`)
+  }
+
   /**
    * @param {string} value
    * @returns {string}
    */
   toValue (value) {
     const code = toKebabCase(
-      value
-        .replace(/\?\?[-.]?/ig, `${this.getDesign()}.${this.getName()}.`)
-        .replace(/\?[-.]?/ig, `${this.getDesign()}.`)
+      this.toFullName(value, '.')
     )
     const design = this.toDesign(code)
 
