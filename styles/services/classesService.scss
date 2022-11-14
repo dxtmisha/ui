@@ -297,11 +297,8 @@ $designsProperties: () !default;
 
   @if ($properties) {
     #{'.'}#{$class} {
-      @include mixinInit($class, $properties, $init) using($type, $index, $property) {
-        @content($class, $type, $index, $property);
-      }
-
-      @content($class, 'root', 'main', $properties);
+      // @include mixinInit($class, $properties, $init);
+      @content($class, $properties);
     }
   }
 }

@@ -12,6 +12,23 @@ module.exports = class {
     }
   }
 
+  static getItemsObject () {
+    this.init()
+
+    const data = {}
+
+    this.list.forEach(item => {
+      switch (item.property.getType()) {
+        case 'subclass':
+        case 'section':
+          data[item.code] = item.property.getType()
+          break
+      }
+    })
+
+    return data
+  }
+
   static isDesign (design) {
     return this.designList.indexOf(design) !== -1
   }
