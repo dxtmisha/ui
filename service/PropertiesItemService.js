@@ -95,7 +95,7 @@ module.exports = class {
         case 'section':
         case 'var':
           if (mark.match(/^=/ig)) {
-            this.option = mark.replace(/^=/ig, '')
+            this.option = (type === 'section' && !mark.match(/^&/ig) ? '&.' : '') + mark.replace(/^=/ig, '')
           } else if (mark.match(/([&?])/ig)) {
             if (mark.match(/\?/ig)) {
               this.option = (type === 'section' && !mark.match(/^&/ig) ? '&.' : '') + this.toFullName(mark)
