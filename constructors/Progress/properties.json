@@ -118,6 +118,16 @@
           "stroke-dashoffset": "-124"
         }
       },
+      "short": {
+        "background-color": "{??_background}",
+        "background-opacity": "1",
+        "bottom": "0",
+        "left": "0",
+        "right": "100%",
+        "position": "absolute",
+        "top": "0",
+        "transition-property": "background-color"
+      },
       "z-index": "1",
       "animation-fill-mode": "forwards",
       "appearance": "none",
@@ -126,73 +136,53 @@
       "position": "relative",
       "transition-property": "background-color",
       "::-webkit-progress-bar": {
-        "background-color": "{?.progress._background}",
-        "background-opacity": "{?.progress._barOpacity}"
+        "background-color": "{??_background}",
+        "background-opacity": "{??_barOpacity}"
       },
       "::-webkit-progress-value": {
-        "background-color": "{?.progress._background}",
+        "background-color": "{??_background}",
         "transition-property": "background-color"
       },
       "::-moz-progress-bar": {
-        "background-color": "{?.progress._background}",
+        "background-color": "{??_background}",
         "transition-property": "background-color"
       },
       "type": {
         "linear": {
-          "background-color": "{?.progress._background}",
-          "background-opacity": "{?.progress._barOpacity}",
-          "bottom": "{?.progress._bottom}",
-          "height": "{?.progress._height}",
+          "background-color": "{??_background}",
+          "background-opacity": "{??_barOpacity}",
+          "bottom": "{??_bottom}",
+          "height": "{??_height}",
           "padding-x": "0",
           "position": "absolute",
-          "top": "{?.progress._top}",
-          "transform-origin": "{?.progress._transformOrigin}",
+          "top": "{??_top}",
+          "transform-origin": "{??_transformOrigin}",
           "width": "100%",
           "::after": {
-            "background-color": "{?.progress._background}",
-            "background-opacity": "1",
-            "bottom": "0",
-            "left": "0",
-            "right": "100%",
-            "position": "absolute",
-            "top": "0",
-            "transition-property": "background-color"
+            "@short": "{??short}"
           },
           "::before": {
-            "background-color": "{?.progress._background}",
-            "background-opacity": "1",
-            "bottom": "0",
-            "left": "0",
-            "right": "100%",
-            "position": "absolute",
-            "top": "0",
-            "transition-property": "background-color"
+            "@short": "{??short}"
           },
           "=isMove": {
-            "animation-name": "?-progress--animate-linear-hidden"
+            "animation-name": "??--linear-hidden"
           },
-          "??visible": {
-            "animation-name": "?-progress--animate-linear-visible"
-          },
-          "&--test &--test2": {
-            "color": "red"
-          },
-          "&[value] .??test3": {
-            "color": "blue"
+          "??-visible": {
+            "animation-name": "??--linear-visible"
           }
         }
       },
       "section|indeterminate": {
         "type1": {
-          "??type": {
+          "??--type": {
             "linear": {
               "::after": {
-                "animation-duration": "{?.progress._duration}",
+                "animation-duration": "{??_duration}",
                 "animation-fill-mode": "forwards"
               },
-              "??visible": {
+              "??--visible": {
                 "::after": {
-                  "animation-name": "?-progress--animate-linear-type1"
+                  "animation-name": "??--linear-type1"
                 }
               }
             }
