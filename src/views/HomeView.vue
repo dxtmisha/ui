@@ -7,7 +7,7 @@
       :disabled="disabled"
     />
     <md2-ripple/>
-    <md2-progress visible/>
+    <md2-progress :visible="visible"/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image
@@ -16,6 +16,7 @@
       :disabled="disabled"
     />
     <md2-ripple inverse/>
+    <md2-progress :value="100" :max="300"/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image
@@ -55,6 +56,7 @@
       :disabled="disabled"
     />
     <md2-ripple/>
+    <md2-progress :visible="visible" indeterminate="type2"/>
   </div>
 </div>
 <div>
@@ -64,6 +66,9 @@
   </div>
   <div>
     <input type="checkbox" name="disabled" v-model="disabled"> disabled
+  </div>
+  <div>
+    <input type="checkbox" name="visible" v-model="visible"> visible
   </div>
 </div>
 <div style="height: 100px"/>
@@ -200,7 +205,8 @@ export default defineComponent({
         data.value = 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e'
       },
       hide: ref(),
-      disabled: ref()
+      disabled: ref(),
+      visible: ref(false)
     }
   }
 })

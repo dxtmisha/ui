@@ -167,7 +167,7 @@
           "=isMove": {
             "animation-name": "??--linear-hidden"
           },
-          "??-visible": {
+          "=isVisible": {
             "animation-name": "??--linear-visible"
           }
         }
@@ -180,10 +180,33 @@
                 "animation-duration": "{??_duration}",
                 "animation-fill-mode": "forwards"
               },
-              "??--visible": {
+              "=isMove": {
+                "animation-delay": "var(--d-sys-transition-duration-sm)",
+                "::after": {
+                  "animation-name": "??--linear-type1"
+                },
+                "::before": {
+                  "right": "0",
+                  "transition-property": "right"
+                }
+              },
+              "=isVisible": {
                 "::after": {
                   "animation-name": "??--linear-type1"
                 }
+              }
+            }
+          }
+        },
+        "type2": {
+          "??--type": {
+            "linear": {
+              "::after": {
+                "animation": "??--linear-type3 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite",
+                "animation-delay": "1.15s"
+              },
+              "::before": {
+                "animation": "??--linear-type2 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite"
               }
             }
           }
@@ -198,9 +221,20 @@
         "display": "block"
       },
       "=isValue": {
-        "display": "block"
+        "display": "block",
+        "??--type": {
+          "linear": {
+            "::after": {
+              "display": "none"
+            },
+            "::before": {
+              "right": "{??_value}",
+              "transition-property": "right"
+            }
+          }
+        }
       },
-      "visible": {
+      "=isVisible": {
         "display": "block"
       }
     }

@@ -1,9 +1,11 @@
 @import "../../styles/services/classesService";
 
 @mixin initImage($design) {
-  @include classInitService($design, 'image') using($class,$property) {
+  @include classInitService($design, 'image') using($class, $properties) {
     @include mixinImageMaterial;
     @include mixinImageLineAwesome;
+
+    @content($class, $properties);
   }
 }
 

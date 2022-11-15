@@ -23,7 +23,7 @@
   select,
   textarea {
     animation-name: none;
-    animation-duration: var(--d-transition-duration-sm);
+    animation-duration: var(--d-sys-transition-duration-sm);
     animation-timing-function: linear;
     animation-fill-mode: none;
     background-color: transparent;
@@ -44,7 +44,7 @@
     line-height: inherit;
     margin: 0;
     padding: 0;
-    transition-duration: var(--d-transition-duration-sm);
+    transition-duration: var(--d-sys-transition-duration-sm);
     transition-timing-function: linear;
     transition-property: none;
     -webkit-tap-highlight-color: transparent;

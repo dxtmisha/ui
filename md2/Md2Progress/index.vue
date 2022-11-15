@@ -1,5 +1,9 @@
 <template lang="pug">
-component(:is="tag" :class="classes.main")
+component(
+  :is="tag"
+  :class="classes.main"
+  @animationend.stop="onAnimation"
+)
 </template>
 
 <script lang="ts">
@@ -18,5 +22,5 @@ export default {
 <style lang="scss">
 @import '../../constructors/Progress/style';
 
-@include initProgress('md2');
+@include initProgress('md2', v-bind(valueInPercent));
 </style>

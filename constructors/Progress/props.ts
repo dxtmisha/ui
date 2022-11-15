@@ -8,7 +8,10 @@ export type ProgressTypeType = 'linear' | 'circular'
 
 export const props = {
   // Values
-  value: Number,
+  value: {
+    type: Number,
+    default: null
+  },
   max: {
     type: Number,
     default: 100

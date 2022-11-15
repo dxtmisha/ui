@@ -1,4 +1,4 @@
-import { computed, ComputedRef, onUpdated, reactive, Ref, toRefs } from 'vue'
+import { computed, ComputedRef, onBeforeUpdate, onUpdated, reactive, Ref, toRefs } from 'vue'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -44,7 +44,7 @@ export abstract class ComponentAbstract {
       this.code = nameDesign
     }
 
-    onUpdated(() => console.log(`onUpdated: ${this.baseClass.value}`))
+    onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.baseClass.value}`))
   }
 
   private readonly name = computed(() => {

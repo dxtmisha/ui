@@ -1,5 +1,4 @@
 import { ComputedRef, Ref } from 'vue'
-import { createElement } from '../functions/element'
 
 export type NumberOrStringType = number | string
 export type CallbackType<T = any, R = any> = (value: T) => R
