@@ -12,6 +12,10 @@
     @include mixinBackground(#{$value});
   } @else if ($index == 'background-opacity') {
     @include mixinBackgroundOpacity(#{$value});
+  } @else if ($index == 'fill') {
+    @include mixinFill(#{$value});
+  } @else if ($index == 'fill-opacity') {
+    @include mixinFillOpacity(#{$value});
   } @else if ($index == 'inset') {
     @include inset(#{$value});
   } @else if ($index == 'padding-x') {
@@ -20,6 +24,10 @@
     @include paddingLeft(#{$value});
   } @else if ($index == 'padding-right') {
     @include paddingRight(#{$value});
+  } @else if ($index == 'stroke') {
+    @include mixinStroke(#{$value});
+  } @else if ($index == 'stroke-opacity') {
+    @include mixinStrokeOpacity(#{$value});
   } @else if ($index == 'squared') {
     @include squared(#{$value});
   } @else if ($index == 'width-basis') {

@@ -376,6 +376,7 @@
   "speech-rate",
   "stress",
   "stroke",
+  "stroke-opacity",
   "stroke-dasharray",
   "stroke-dashoffset",
   "stroke-linecap",

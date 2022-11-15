@@ -165,11 +165,10 @@ export abstract class ComponentAbstract {
           this.isValue(code, name) &&
           type === 'subclass'
         ) {
-          const index = toCamelCase(name.replace(reg, ''))
-          const names = name.replace(/\./ig, '-')
-            .replace(/#/ig, '-')
+          const index = name.replace(reg, '')
+          const names = `${code.replace('.', '-')}__${index.replace(/\./ig, '__')}`
 
-          classes[index] = {
+          classes[toCamelCase(index)] = {
             [names]: true
           }
         }

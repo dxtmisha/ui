@@ -244,6 +244,7 @@
       "#circle": {
         "fill": "transparent",
         "stroke": "{??_background}",
+        "stroke-opacity": "1",
         "stroke-dasharray": "1, 200",
         "stroke-dashoffset": "0",
         "stroke-linecap": "round",

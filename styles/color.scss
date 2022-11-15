@@ -5,6 +5,8 @@
 @function toColorRBG($color) {
   @if (meta.type-of($color) == color) {
     @return red($color) + ', ' + green($color) + ', ' + blue($color);
+  } @else if ($color == 'transparent') {
+    @return '255, 255, 255';
   } @else {
     @return $color;
   }
@@ -32,9 +34,17 @@
   }
 }
 
+@function getOpacity($color, $opacity) {
+  @if ($color == 'transparent') {
+    @return '0';
+  } @else {
+    @return $opacity
+  }
+}
+
 @mixin mixinColor($color, $opacity: null) {
   --sys-color: #{toColorRBG($color)};
-  @include mixinColorOpacity($opacity);
+  @include mixinColorOpacity(getOpacity($color, $opacity));
 }
 
 @mixin mixinColorOpacity($opacity) {
@@ -49,9 +59,26 @@
   color: rgba(var(--sys-color), var(--sys-color-opacity));
 }
 
+@mixin mixinStroke($color, $opacity: null) {
+  --sys-color: #{toColorRBG($color)};
+  @include mixinStrokeOpacity(getOpacity($color, $opacity));
+}
+
+@mixin mixinStrokeOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-color-opacity: #{$opacity};
+  }
+
+  @include initStroke;
+}
+
+@mixin initStroke() {
+  stroke: rgba(var(--sys-color), var(--sys-color-opacity));
+}
+
 @mixin mixinBackground($color, $opacity: null) {
   --sys-background: #{toColorRBG($color)};
-  @include mixinBackgroundOpacity($opacity);
+  @include mixinBackgroundOpacity(getOpacity($color, $opacity));
 }
 
 @mixin mixinBackgroundOpacity($opacity) {
@@ -71,5 +98,22 @@
 }
 
 @mixin initBackgroundGradient() {
-  background-image: #{toGradient(#{rgba(var(--sys-color), var(--sys-color-opacity))})};
+  background-image: #{toGradient(#{rgba(var(--sys-background), var(--sys-background-opacity))})};
+}
+
+@mixin mixinFill($color, $opacity: null) {
+  --sys-background: #{toColorRBG($color)};
+  @include mixinFillOpacity(getOpacity($color, $opacity));
+}
+
+@mixin mixinFillOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-background-opacity: #{$opacity};
+  }
+
+  @include initFill;
+}
+
+@mixin initFill() {
+  fill: rgba(var(--sys-background), var(--sys-background-opacity));
 }
