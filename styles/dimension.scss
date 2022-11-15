@@ -1,0 +1,21 @@
+@mixin aspectRatio($value) {
+  aspect-ratio: #{$value};
+
+  @supports not (aspect-ratio: #{$value}) {
+    @content;
+  }
+}
+
+@mixin squared($size) {
+  @include widthBasis($size);
+  @include aspectRatio(#{1/1}) {
+    height: $size;
+    @content;
+  }
+}
+
+@mixin widthBasis($value) {
+  flex-basis: $value;
+  max-width: 100%;
+  width: $value;
+}

@@ -28,6 +28,16 @@ export function forEach<T, K = NumberOrStringType, R = undefined> (
   }
 }
 
+export function getExp (
+  value: string,
+  flags = 'ig' as string,
+  pattern = ':value' as string
+): RegExp {
+  const data = value.replace(/([[\]\\^$.?*+()])/ig, '\\$1')
+
+  return new RegExp(pattern.replace(':value', data), flags)
+}
+
 export function isFilled<T = any> (value: T): boolean {
   if (value) {
     switch (typeof value) {
@@ -121,6 +131,7 @@ export function toKebabCase (value: NumberOrStringType): string {
 export default {
   executeFunction,
   forEach,
+  getExp,
   isFilled,
   replaceRecursive,
   toCamelCase,

@@ -1,4 +1,4 @@
-import { computed, ComputedRef, onBeforeUpdate, onUpdated, reactive, Ref, toRefs } from 'vue'
+import { computed, ComputedRef, onBeforeUpdate, reactive, Ref, toRefs } from 'vue'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -15,6 +15,7 @@ import {
   toCamelCase,
   toKebabCase
 } from '../functions'
+import { getExp } from '../functions/data'
 
 export abstract class ComponentAbstract {
   static designMain: AssociativeType
@@ -108,14 +109,14 @@ export abstract class ComponentAbstract {
     return `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
   }
 
-  getClasses (extra = {} as AssociativeType): ComputedRef<ComponentClassesType> {
+  getClasses<R = ComponentClassesType> (extra = {} as AssociativeType): ComputedRef<R> {
     return computed(() => {
       const classes = {
         main: this.classesMain.value,
         ...this.classesItems.value
-      } as ComponentClassesType
+      } as AssociativeType
 
-      return replaceRecursive(replaceRecursive({}, reactive(extra)), classes) as ComponentClassesType
+      return replaceRecursive(replaceRecursive({}, reactive(extra)), classes) as R
     })
   }
 
@@ -157,13 +158,14 @@ export abstract class ComponentAbstract {
   protected static getSubClasses (code: string): ComponentAssociativeItemsType {
     if (!(code in this.designSubClasses)) {
       const classes = {} as ComponentAssociativeItemsType
+      const reg = getExp(`${code}.`, 'i', '^:value')
 
       forEach<string, string, void>(this.designMain, (type, name) => {
         if (
           this.isValue(code, name) &&
           type === 'subclass'
         ) {
-          const index = toCamelCase(name.replace('#', ''))
+          const index = toCamelCase(name.replace(reg, ''))
           const names = name.replace(/\./ig, '-')
             .replace(/#/ig, '-')
 

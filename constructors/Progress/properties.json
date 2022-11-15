@@ -8,6 +8,7 @@
       "var|_bottom": "auto",
       "var|_transformOrigin": "top",
       "var|_duration": "20s",
+      "var|_circularSize": "48px",
       "animate|linear-visible": {
         "0%": {
           "transform": "scaleY(0)"
@@ -133,7 +134,7 @@
       "appearance": "none",
       "display": "none",
       "overflow": "hidden",
-      "position": "relative",
+      "position": "absolute",
       "transition-property": "background-color",
       "::-webkit-progress-bar": {
         "background-color": "{??_background}",
@@ -148,13 +149,16 @@
         "transition-property": "background-color"
       },
       "type": {
+        "circular": {
+          "inset": "0",
+          "squared": "{??_circularSize}"
+        },
         "linear": {
           "background-color": "{??_background}",
           "background-opacity": "{??_barOpacity}",
           "bottom": "{??_bottom}",
           "height": "{??_height}",
           "padding-x": "0",
-          "position": "absolute",
           "top": "{??_top}",
           "transform-origin": "{??_transformOrigin}",
           "width": "100%",
@@ -236,6 +240,15 @@
       },
       "=isVisible": {
         "display": "block"
+      },
+      "#circle": {
+        "fill": "transparent",
+        "stroke": "{??_background}",
+        "stroke-dasharray": "1, 200",
+        "stroke-dashoffset": "0",
+        "stroke-linecap": "round",
+        "stroke-width": "{??_height}",
+        "transition-property": "background-color, stroke-dasharray"
       }
     }
   }

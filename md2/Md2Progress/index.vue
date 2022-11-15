@@ -4,6 +4,13 @@ component(
   :class="classes.main"
   @animationend.stop="onAnimation"
 )
+  circle(
+    v-if="ifCircular"
+    :class="classes.circle"
+    cx="24"
+    cy="24"
+    r="20"
+  )
 </template>
 
 <script lang="ts">

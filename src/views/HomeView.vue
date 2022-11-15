@@ -25,6 +25,7 @@
       :disabled="disabled"
       size="200%"
     />
+    <md2-progress :visible="visible" type="circular"/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image

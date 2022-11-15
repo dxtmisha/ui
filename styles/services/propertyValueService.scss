@@ -1,4 +1,5 @@
 @import "../color";
+@import "../dimension";
 @import "../padding";
 @import "../position";
 
@@ -19,6 +20,10 @@
     @include paddingLeft(#{$value});
   } @else if ($index == 'padding-right') {
     @include paddingRight(#{$value});
+  } @else if ($index == 'squared') {
+    @include squared(#{$value});
+  } @else if ($index == 'width-basis') {
+    @include widthBasis(#{$value});
   } @else {
     #{$index}: #{$value};
   }

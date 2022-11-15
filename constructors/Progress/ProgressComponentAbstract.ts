@@ -3,20 +3,26 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentClassesType,
+  ComponentAssociativeType,
   ComponentStylesType,
   EventCallbackRequiredType
 } from '../types'
 
+export type ProgressClassesType = {
+  main: ComponentAssociativeType
+  circle: ComponentAssociativeType
+}
+
 export type ProgressSetupType = {
   element: Ref<HTMLElement | undefined>
+  ifCircular: ComputedRef<boolean>
   tag: ComputedRef<string>
   name: ComputedRef<string>
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>
-  classes: ComputedRef<ComponentClassesType>
+  classes: ComputedRef<ProgressClassesType>
   styles: ComputedRef<ComponentStylesType>
-  valueInPercent: ComputedRef<string | undefined>
+  valueInPercent: ComputedRef<string | null>
   onAnimation: EventCallbackRequiredType<void, AnimationEvent>
 }
 
@@ -44,7 +50,7 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
   }
 
   setup (): ProgressSetupType {
-    const classes = this.getClasses({
+    const classes = this.getClasses<ProgressClassesType>({
       main: {
         'is-move': this.move,
         'is-value': this.valueInPercent,
@@ -55,6 +61,7 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
 
     return {
       element: this.element,
+      ifCircular: this.ifCircular,
       tag: this.tag,
       ...this.baseInit(),
       classes,
@@ -64,15 +71,16 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
     }
   }
 
+  public readonly ifCircular = computed(() => this.props.type === 'circular') as ComputedRef<boolean>
   public readonly tag = computed(() => this.props.type !== 'linear' ? 'svg' : 'div') as ComputedRef<string>
 
   public readonly valueInPercent = computed(() => {
     if (typeof this.props.value === 'number') {
       return `${100 - (100 / (this.props.max || 100) * this.props.value)}%`
     } else {
-      return undefined
+      return null
     }
-  }) as ComputedRef<string | undefined>
+  }) as ComputedRef<string | null>
 
   protected watchVisible () {
     clearTimeout(this.timeout)

@@ -5,6 +5,7 @@ import image from './functions/image'
 export const {
   executeFunction,
   forEach,
+  getExp,
   isFilled,
   replaceRecursive,
   toCamelCase,
