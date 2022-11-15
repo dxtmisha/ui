@@ -8,7 +8,10 @@
       "var|_bottom": "auto",
       "var|_transformOrigin": "top",
       "var|_duration": "20s",
+      "var|_circularPadding": "4px",
       "var|_circularSize": "48px",
+      "var|_circularLength": "calc(2 * 3.1415926535 * (({??_circularSize} - (2 * {??_circularPadding})) / 2))",
+      "var|_circularDasharray": "{??_circularLength} / 100",
       "animate|linear-visible": {
         "0%": {
           "transform": "scaleY(0)"
@@ -151,7 +154,17 @@
       "type": {
         "circular": {
           "inset": "0",
-          "squared": "{??_circularSize}"
+          "margin": "auto",
+          "max-height": "100%",
+          "padding": "{??_circularPadding}",
+          "squared": "{??_circularSize}",
+          "transform": "rotate(-90deg)",
+          "=isMove": {
+            "animation-name": "??--circle-hidden"
+          },
+          "=isVisible": {
+            "animation-name": "??--circle-visible"
+          }
         },
         "linear": {
           "background-color": "{??_background}",
@@ -179,6 +192,13 @@
       "section|indeterminate": {
         "type1": {
           "??--type": {
+            "circular": {
+              "& .??__circle": {
+                "animation-duration": "{??_duration}",
+                "animation-fill-mode": "forwards",
+                "animation-name": "??--circle-type1"
+              }
+            },
             "linear": {
               "::after": {
                 "animation-duration": "{??_duration}",
@@ -250,6 +270,10 @@
         "stroke-linecap": "round",
         "stroke-width": "{??_height}",
         "transition-property": "background-color, stroke-dasharray"
+      },
+      "&.isValue &__circle": {
+        "stroke-dasharray": "calc({??_value} * {??_circularDasharray}) {??_circularLength}",
+        "stroke-linecap": "butt"
       }
     }
   }

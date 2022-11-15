@@ -5,6 +5,7 @@
       "var|_background": "{?.sys.chart.primary}",
       "var|_barOpacity": "{?.sys.opacity.pressed}",
       "var|_height": "{?.ref.spacing.1}",
+      "var|_circularPadding": "{?.ref.spacing.1}",
       "var|_circularSize": "{?.ref.spacing.12}"
     }
   }

@@ -76,7 +76,9 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
 
   public readonly valueInPercent = computed(() => {
     if (typeof this.props.value === 'number') {
-      return `${100 - (100 / (this.props.max || 100) * this.props.value)}%`
+      return this.ifCircular.value
+        ? `${(100 / (this.props.max || 100) * this.props.value)}`
+        : `${100 - (100 / (this.props.max || 100) * this.props.value)}%`
     } else {
       return null
     }

@@ -2,6 +2,7 @@
 component(
   :is="tag"
   :class="classes.main"
+  viewBox="0 0 48 48"
   @animationend.stop="onAnimation"
 )
   circle(

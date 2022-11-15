@@ -222,6 +222,7 @@ module.exports = class {
 
   toFullName (value, separator = '-') {
     return value
+      .replace(/\?\?_/ig, `${this.getDesign()}${separator}${this.getName()}_`)
       .replace(/\?\?[-.]?/ig, `${this.getDesign()}${separator}${this.getName()}${separator}`)
       .replace(/\?[-.]?/ig, `${this.getDesign()}${separator}`)
   }
