@@ -3,6 +3,7 @@
     "progress": {
       "@style": "{d.progress}",
       "var|_background": "{?.sys.chart.primary}",
+      "var|_inverse": "{?.sys.chart.onPrimary}",
       "var|_barOpacity": "{?.sys.opacity.pressed}",
       "var|_height": "{?.ref.spacing.1}",
       "var|_circularPadding": "{?.ref.spacing.1}",

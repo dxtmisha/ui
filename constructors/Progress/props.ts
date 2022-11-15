@@ -8,30 +8,26 @@ export type ProgressTypeType = 'linear' | 'circular'
 
 export const props = {
   // Values
-  value: {
-    type: Number,
-    default: null
-  },
   max: {
     type: Number,
     default: 100
+  },
+  value: {
+    type: Number,
+    default: null
   },
 
   // Status
   visible: Boolean,
 
   // Options
-  type: {
-    type: String as PropType<ProgressTypeType>,
-    default: 'linear',
-    validator: DefaultConfiguration.validator<string>([
-      'linear',
-      'circular'
-    ])
-  },
   bottom: {
     type: Boolean,
     default: defaultProps('bottom')
+  },
+  delay: {
+    type: Number,
+    default: defaultProps('delay', 400)
   },
   indeterminate: {
     type: String as PropType<ProgressIndeterminateType>,
@@ -41,8 +37,13 @@ export const props = {
       'type2'
     ])
   },
-  delay: {
-    type: Number,
-    default: defaultProps('delay', 400)
+  inverse: Boolean,
+  type: {
+    type: String as PropType<ProgressTypeType>,
+    default: 'linear',
+    validator: DefaultConfiguration.validator<string>([
+      'linear',
+      'circular'
+    ])
   }
 }

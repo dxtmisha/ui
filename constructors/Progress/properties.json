@@ -2,6 +2,7 @@
   "d": {
     "progress": {
       "var|_background": "0, 0, 0",
+      "var|_inverse": "255, 255, 255",
       "var|_barOpacity": ".1",
       "var|_height": "4px",
       "var|_top": "0",
@@ -139,17 +140,13 @@
       "overflow": "hidden",
       "position": "absolute",
       "transition-property": "background-color",
-      "::-webkit-progress-bar": {
-        "background-color": "{??_background}",
-        "background-opacity": "{??_barOpacity}"
+      "section|bottom": {
+        "var|_top": "auto",
+        "var|_bottom": "0",
+        "var|_transformOrigin": "bottom"
       },
-      "::-webkit-progress-value": {
-        "background-color": "{??_background}",
-        "transition-property": "background-color"
-      },
-      "::-moz-progress-bar": {
-        "background-color": "{??_background}",
-        "transition-property": "background-color"
+      "inverse": {
+        "var|_background": "{??_inverse}"
       },
       "type": {
         "circular": {
@@ -224,6 +221,12 @@
         },
         "type2": {
           "??--type": {
+            "circular": {
+              "& .??__circle": {
+                "animation": "??--circle-type2 2s linear infinite, ??--circle-type3 1.5s ease-in-out infinite",
+                "transform-origin": "center"
+              }
+            },
             "linear": {
               "::after": {
                 "animation": "??--linear-type3 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite",
@@ -235,11 +238,6 @@
             }
           }
         }
-      },
-      "section|bottom": {
-        "var|_top": "auto",
-        "var|_bottom": "0",
-        "var|_transformOrigin": "bottom"
       },
       "=isMove": {
         "display": "block"
@@ -272,6 +270,7 @@
         "transition-property": "background-color, stroke-dasharray"
       },
       "&.isValue &__circle": {
+        "animation-name": "none",
         "stroke-dasharray": "calc({??_value} * {??_circularDasharray}) {??_circularLength}",
         "stroke-linecap": "butt"
       }

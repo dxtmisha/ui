@@ -43,6 +43,7 @@
       :disabled="disabled"
       :coordinator="[50, 50, 0, 0]"
     />
+    <md2-progress :visible="visible" type="circular" indeterminate="type2" inverse/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image
