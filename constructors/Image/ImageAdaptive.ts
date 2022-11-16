@@ -95,8 +95,11 @@ export class ImageAdaptive {
     this.objectsAdaptive = []
     this.objects.forEach((item, index) => {
       if (item.isBeyond()) {
-        indexSum += `[${index.toString()}]`
         this.objectsAdaptive.push(item)
+
+        if (item.isVisible()) {
+          indexSum += `[${index.toString()}]`
+        }
       }
     })
 

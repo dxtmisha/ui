@@ -74,7 +74,7 @@
     <input type="checkbox" name="visible" v-model="visible"> visible
   </div>
 </div>
-<div>
+<div class="flex">
   <md2-icon icon="close"/>
 </div>
 <div style="height: 100px"/>
