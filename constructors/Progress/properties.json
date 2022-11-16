@@ -123,7 +123,7 @@
           "stroke-dashoffset": "-124"
         }
       },
-      "short": {
+      "mixin|short": {
         "background-color": "{??_background}",
         "background-opacity": "1",
         "bottom": "0",

@@ -20,7 +20,7 @@
           "clip-path": "circle(150% at {??_x} {??_y})"
         }
       },
-      "stepEnd": {
+      "mixin|stepEnd": {
         "opacity": "0",
         "transition-delay": "{d.sys.transitionDuration.fade.enter}",
         "transition-duration": "{d.sys.transitionDuration.fade.through}",

@@ -106,19 +106,21 @@ module.exports = class extends PropertiesFileService {
       const index = item.getIndex()
       const type = item.getType()
 
-      if (
-        type !== 'section' &&
-        item.isValue()
-      ) {
-        data[index] = {
-          type,
-          value: item.getValueToCss()
-        }
-      } else {
-        data[index] = {
-          type,
-          options: item.getOption(),
-          value: this.initScssObject(dataProperties)
+      if (type !== 'mixin') {
+        if (
+          type !== 'section' &&
+          item.isValue()
+        ) {
+          data[index] = {
+            type,
+            value: item.getValueToCss()
+          }
+        } else {
+          data[index] = {
+            type,
+            options: item.getOption(),
+            value: this.initScssObject(dataProperties)
+          }
         }
       }
     })

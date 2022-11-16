@@ -3,6 +3,10 @@
     "image": {
       "var|_fontSize": "inherit",
       "var|_opacity": "0.38",
+      "mixin|grayscale": {
+        "filter": "grayscale(1)",
+        "opacity": "{??_opacity}"
+      },
       "@flex": "{d.flex.center}",
       "background-size": "cover",
       "background-repeat": "no-repeat",
@@ -29,12 +33,10 @@
         "color-opacity": "{??_opacity}",
         "=isType": {
           "section|color": {
-            "filter": "grayscale(1)",
-            "opacity": "{??_opacity}"
+            "@grayscale": "{??grayscale}"
           },
           "image": {
-            "filter": "grayscale(1)",
-            "opacity": "{??_opacity}"
+            "@grayscale": "{??grayscale}"
           }
         }
       }
