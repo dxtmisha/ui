@@ -1,0 +1,19 @@
+{
+  "md2": {
+    "icon": {
+      "@style": "{d.icon}",
+      "var|_size": "{?.ref.spacing.6}",
+      "size": {
+        "md": {
+          "var|_size": "{?.ref.spacing.10}"
+        },
+        "lg": {
+          "var|_size": "{?.ref.spacing.14}"
+        },
+        "xl": {
+          "var|_size": "{?.ref.spacing.25}"
+        }
+      }
+    }
+  }
+}

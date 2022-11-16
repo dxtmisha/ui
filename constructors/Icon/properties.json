@@ -1,0 +1,21 @@
+{
+  "d": {
+    "icon": {
+      "var|_size": "24px",
+      "@select": "{d.selectNone}",
+      "squared": "{??_size}",
+      "size": {
+        "md": {
+          "var|_size": "40px"
+        },
+        "lg": {
+          "var|_size": "56px"
+        },
+        "xl": {
+          "var|_size": "100px",
+          "width-aspect-ratio": "25/14"
+        }
+      }
+    }
+  }
+}

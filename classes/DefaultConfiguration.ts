@@ -16,4 +16,14 @@ export class DefaultConfiguration {
   static validator<T = any> (values: T[]): (value: T) => boolean {
     return (value: T) => values.indexOf(value) !== -1
   }
+
+  static validatorOrNumber<T = any> (values: T[]): (value: number | T) => number | boolean {
+    return (value: number | T) => {
+      if (typeof value === 'number') {
+        return value
+      } else {
+        return values.indexOf(value) !== -1
+      }
+    }
+  }
 }

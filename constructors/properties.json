@@ -191,6 +191,11 @@
         "transform": "scale(.8)"
       }
     },
+    "ellipsis": {
+      "overflow": "hidden",
+      "text-overflow": "ellipsis",
+      "white-space": "nowrap"
+    },
     "flex": {
       "x": {
         "align-items": "center",
@@ -222,6 +227,10 @@
           }
         }
       }
+    },
+    "selectNone": {
+      "touch-callout": "none",
+      "user-select": "none"
     }
   }
 }

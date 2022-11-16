@@ -242,7 +242,9 @@ module.exports = class {
 
   toValueByCalc (value) {
     if (typeof value === 'string') {
-      if (
+      if (value.match(/^=/)) {
+        return value.replace(/^=/, '')
+      } else if (
         value.match(/[+\-*/]/ig) &&
         value.match(/[{}]/ig) &&
         value.match(/^calc/ig) === null

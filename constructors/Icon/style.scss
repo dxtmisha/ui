@@ -1,0 +1,7 @@
+@import "../../styles/services/classesService";
+
+@mixin initIcon($design) {
+  @include classInitService($design, 'icon') using($class, $properties) {
+    @content($class, $properties);
+  }
+}

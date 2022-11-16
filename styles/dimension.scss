@@ -1,3 +1,5 @@
+@use "sass:string";
+
 @mixin aspectRatio($value) {
   aspect-ratio: #{$value};
 
@@ -6,16 +8,28 @@
   }
 }
 
-@mixin squared($size) {
-  @include widthBasis($size);
+@mixin squared($value) {
+  @include widthBasis($value);
   @include aspectRatio(#{1/1}) {
-    height: $size;
+    height: $value;
+    @content;
+  }
+}
+
+@mixin widthAspectRatio($value) {
+  @include aspectRatio($value) {
+    $separator: string.index($value, '/');
+    $number1: string.slice($value, 0, $separator - 1);
+    $number2: string.slice($value, $separator + 1);
+
+    height: calc(var(--sys-width) * #{$number2} / #{$number1});
     @content;
   }
 }
 
 @mixin widthBasis($value) {
-  flex-basis: $value;
+  --sys-width: #{$value};
+  flex-basis: var(--sys-width);
   max-width: 100%;
-  width: $value;
+  width: var(--sys-width);
 }

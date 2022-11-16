@@ -74,6 +74,9 @@
     <input type="checkbox" name="visible" v-model="visible"> visible
   </div>
 </div>
+<div>
+  <md2-icon icon="close"/>
+</div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
   <div class="relative w-64 h-64">
@@ -188,6 +191,7 @@ import Md2Image from '../../md2/Md2Image/index.vue'
 import { Icon } from '../../constructors/Image/Icon'
 import Md2Ripple from '../../md2/Md2Ripple/index.vue'
 import Md2Progress from '../../md2/Md2Progress/index.vue'
+import Md2Icon from '../../md2/Md2Icon/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -196,6 +200,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Icon,
     Md2Progress,
     Md2Ripple,
     Md2Image
