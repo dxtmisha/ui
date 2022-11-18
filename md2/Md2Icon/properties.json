@@ -2,15 +2,26 @@
   "md2": {
     "icon": {
       "@style": "{d.icon}",
+      "var|_background": "{?sys.chart.onSurface}",
+      "var|_opacity": "{?sys.opacity.dragged}",
+      "var|_rounded": "{?.sys.rounded.full}",
       "var|_size": "{?.ref.spacing.6}",
+      "var|?image-fontSize": {
+        "value": "{font.headline5.fontSize}"
+      },
       "size": {
+        "sm": {
+          "var|_size": "{?.ref.spacing.6}"
+        },
         "md": {
           "var|_size": "{?.ref.spacing.10}"
         },
         "lg": {
+          "var|_rounded": "{?.sys.rounded.standard}",
           "var|_size": "{?.ref.spacing.14}"
         },
         "xl": {
+          "var|_rounded": "{?.sys.rounded.none}",
           "var|_size": "{?.ref.spacing.25}"
         }
       }

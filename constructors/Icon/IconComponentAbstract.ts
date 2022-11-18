@@ -1,4 +1,4 @@
-import { ComputedRef, Ref, ref } from 'vue'
+import { computed, ComputedRef, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -14,6 +14,9 @@ export type IconSetupType = {
   baseClass: ComputedRef<string>
   classes: ComputedRef<ComponentClassesType>
   styles: ComputedRef<ComponentStylesType>
+  ifActive: ComputedRef<boolean>
+  iconBind: ComputedRef<string | AssociativeType>
+  iconActiveBind: ComputedRef<string | AssociativeType>
 }
 
 export abstract class IconComponentAbstract extends ComponentAbstract {
@@ -28,7 +31,12 @@ export abstract class IconComponentAbstract extends ComponentAbstract {
       element: this.element,
       ...this.baseInit(),
       classes,
-      styles
+      styles,
+      ifActive: this.ifActive,
+      iconBind: this.getBind(this.refs.icon),
+      iconActiveBind: this.getBind(this.refs.iconActive)
     }
   }
+
+  protected readonly ifActive = computed(() => this.props.iconActive && this.props.active)
 }

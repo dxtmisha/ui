@@ -1,13 +1,17 @@
 <template lang="pug">
 div(:class="classes.main")
+  md2-image(v-if="icon" v-bind="iconBind" :hide="ifActive")
+  md2-image(v-if="iconActive" v-bind="iconActiveBind" :hide="!ifActive")
 </template>
 
 <script lang="ts">
 import { IconComponent } from './IconComponent'
 import { props } from '../../constructors/Icon/props'
+import Md2Image from '../Md2Image/index.vue'
 
 export default {
   name: 'Md2Icon',
+  components: { Md2Image },
   props,
   setup (props: object, context: object) {
     return new IconComponent(props, context).setup()

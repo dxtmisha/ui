@@ -410,6 +410,7 @@
   "text-underline-position",
   "top",
   "touch-action",
+  "touch-callout",
   "transform",
   "transform-box",
   "transform-origin",

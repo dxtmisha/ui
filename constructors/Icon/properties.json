@@ -1,10 +1,27 @@
 {
   "d": {
     "icon": {
+      "var|_background": "0, 0, 0",
+      "var|_opacity": ".08",
+      "var|_rounded": "4px",
       "var|_size": "24px",
       "@select": "{d.selectNone}",
+      "border-radius": "{??_rounded}",
+      "display": "inline-block",
+      "min-width": "{??_size}",
+      "overflow": "hidden",
+      "position": "relative",
+      "transition-duration": "{d.sys.transitionDuration.fade.enter}",
+      "transition-property": "opacity, transform",
       "squared": "{??_size}",
+      "section|background": {
+        "background-color": "{??_background}",
+        "background-opacity": "{??_opacity}"
+      },
       "size": {
+        "sm": {
+          "var|_size": "24px"
+        },
         "md": {
           "var|_size": "40px"
         },
@@ -15,6 +32,9 @@
           "var|_size": "100px",
           "width-aspect-ratio": "25/14"
         }
+      },
+      "turn": {
+        "transform": "rotate(180deg)"
       }
     }
   }

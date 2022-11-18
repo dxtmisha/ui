@@ -82,9 +82,12 @@ module.exports = class extends PropertiesFileService {
 
         if ('options' in property) {
           data += property.options ? `options:'${property.options}',` : ''
-          data += `value:(${this.initScss(property.value)})`
-        } else {
+        }
+
+        if (typeof property.value === 'string') {
           data += `value:${property.value}`
+        } else {
+          data += `value:(${this.initScss(property.value)})`
         }
 
         data += '),'
@@ -111,9 +114,15 @@ module.exports = class extends PropertiesFileService {
           type !== 'section' &&
           item.isValue()
         ) {
+          const options = item.getOption()
+
           data[index] = {
             type,
             value: item.getValueToCss()
+          }
+
+          if (type === 'var' && options) {
+            data[index].options = options
           }
         } else {
           data[index] = {

@@ -1,13 +1,14 @@
 import { PropType } from 'vue'
 import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
+import { ImagePropsType } from '../Image/props.d'
 
 export type IconIndeterminateType = 'type1' | 'type2'
-export type IconSizeType = 'dn' | 'xs' | 'sm' | 'md' | 'lr' | 'xl' | 'hd'
+export type IconSizeType = 'sm' | 'md' | 'lg' | 'xl'
 
 export const props = {
   // Values
-  icon: [String, Object],
-  iconActive: [String, Object],
+  icon: [String, Object] as PropType<string | ImagePropsType>,
+  iconActive: [String, Object] as PropType<string | ImagePropsType>,
 
   // Status
   active: Boolean,
@@ -27,14 +28,6 @@ export const props = {
   background: Boolean,
   size: {
     type: [Number, String] as PropType<IconSizeType>,
-    validator: DefaultConfiguration.validatorOrNumber([
-      'dn',
-      'xs',
-      'sm',
-      'md',
-      'lr',
-      'xl',
-      'hd'
-    ])
+    default: 'sm'
   }
 }

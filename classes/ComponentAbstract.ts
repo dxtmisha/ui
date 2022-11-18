@@ -102,6 +102,16 @@ export abstract class ComponentAbstract {
     }
   }
 
+  getBind<T = any, R = AssociativeType> (value: Ref<T | R>, name = 'value' as string): ComputedRef<R> {
+    return computed(() => {
+      if (typeof value.value === 'object') {
+        return value.value as R
+      } else {
+        return { [name]: value.value } as R
+      }
+    })
+  }
+
   protected getClassName (
     name = [] as string[],
     status = [] as NumberOrStringType[]

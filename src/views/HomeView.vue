@@ -74,8 +74,22 @@
     <input type="checkbox" name="visible" v-model="visible"> visible
   </div>
 </div>
-<div class="flex">
-  <md2-icon icon="close"/>
+<div class="flex items-center gap-2">
+  <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background"/>
+  <md2-icon icon="close" icon-active="face" size="md" :active="active" :turn="turn" :background="background"/>
+  <md2-icon icon="close" size="lg" :active="active" :turn="turn" :background="background"/>
+  <md2-icon icon="close" size="xl" :active="active" :turn="turn" :background="background"/>
+</div>
+<div>
+  <div>
+    <input type="checkbox" name="active" v-model="active"> active
+  </div>
+  <div>
+    <input type="checkbox" name="turn" v-model="turn"> turn
+  </div>
+  <div>
+    <input type="checkbox" name="background" v-model="background"> background
+  </div>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
@@ -214,7 +228,10 @@ export default defineComponent({
       },
       hide: ref(),
       disabled: ref(),
-      visible: ref(false)
+      visible: ref(false),
+      active: ref(false),
+      turn: ref(),
+      background: ref()
     }
   }
 })
