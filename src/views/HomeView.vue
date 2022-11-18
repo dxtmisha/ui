@@ -75,10 +75,10 @@
   </div>
 </div>
 <div class="flex items-center gap-2">
-  <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background"/>
-  <md2-icon icon="close" icon-active="face" size="md" :active="active" :turn="turn" :background="background"/>
-  <md2-icon icon="close" size="lg" :active="active" :turn="turn" :background="background"/>
-  <md2-icon icon="close" size="xl" :active="active" :turn="turn" :background="background"/>
+  <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background" :hide="hide"/>
+  <md2-icon icon="close" icon-active="face" size="md" :active="active" :turn="turn" :background="background" :hide="hide"/>
+  <md2-icon icon="close" size="lg" :active="active" :turn="turn" :background="background" :hide="hide" animation-type="type2"/>
+  <md2-icon icon="close" size="xl" :active="active" :turn="turn" :background="background" :hide="hide" animation-type="type2"/>
 </div>
 <div>
   <div>

@@ -247,7 +247,7 @@ module.exports = class {
       } else if (
         value.match(/[+\-*/]/ig) &&
         value.match(/[{}]/ig) &&
-        value.match(/^calc/ig) === null
+        value.match(/calc/ig) === null
       ) {
         return `calc(${value})`
       } else {

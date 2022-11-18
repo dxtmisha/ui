@@ -12,11 +12,25 @@
       "overflow": "hidden",
       "position": "relative",
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
-      "transition-property": "opacity, transform",
+      "transition-property": "clip-path, margin, opacity, transform",
       "squared": "{??_size}",
+      "animationType": {
+        "type2": {
+          "clip-path": "inset(0 0 0 0)",
+          "??--hide": {
+            "clip-path": "inset(0 100% 0 0)",
+            "margin": "0 calc({??_size} * -1) 0 0 !important",
+            "opacity": "1",
+            "transform": "none"
+          }
+        }
+      },
       "section|background": {
         "background-color": "{??_background}",
         "background-opacity": "{??_opacity}"
+      },
+      "hide": {
+        "@style": "{d.animation.hide}"
       },
       "size": {
         "sm": {

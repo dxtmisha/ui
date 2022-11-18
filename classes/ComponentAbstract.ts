@@ -116,7 +116,9 @@ export abstract class ComponentAbstract {
     name = [] as string[],
     status = [] as NumberOrStringType[]
   ): string {
-    return `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
+    return toKebabCase(
+      `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
+    )
   }
 
   getClasses<R = ComponentClassesType> (extra = {} as AssociativeType): ComputedRef<R> {
@@ -138,6 +140,10 @@ export abstract class ComponentAbstract {
     return `${this.code}.${name}`
   }
 
+  protected getKebabCaseProperty (name: string): string {
+    return toKebabCase(this.getCodeProperty(name))
+  }
+
   getStyles (extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
     return computed(() => {
       const styles = {
@@ -149,7 +155,7 @@ export abstract class ComponentAbstract {
   }
 
   protected isPropDesign (name: string): boolean {
-    const code = this.getCodeProperty(name)
+    const code = this.getKebabCaseProperty(name)
 
     return (
       this.props?.[name] &&
@@ -162,7 +168,7 @@ export abstract class ComponentAbstract {
 
   protected isPropPropertyValue (name: string, value: any): boolean {
     return typeof value === 'string' &&
-      (`${this.getCodeProperty(name)}.${value}` in ComponentAbstract.designMain)
+      (`${this.getKebabCaseProperty(name)}.${value}` in ComponentAbstract.designMain)
   }
 
   protected static getSubClasses (code: string): ComponentAssociativeItemsType {
@@ -196,5 +202,6 @@ export abstract class ComponentAbstract {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
+    console.log('this.designMain', this.designMain)
   }
 }

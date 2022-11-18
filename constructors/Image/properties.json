@@ -16,8 +16,8 @@
       "inset": "0",
       "position": "absolute",
       "transform": "none",
-      "transition-property": "background-color, background-size, color, filter, opacity, transform",
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
+      "transition-property": "background-color, background-size, color, filter, opacity, transform",
       "=isType": {
         "public": {
           "@style": "{d.sys.backgroundAsColor}",
