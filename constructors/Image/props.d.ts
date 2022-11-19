@@ -16,6 +16,7 @@ export declare type ImagePropsType = {
   // Status
   disabled?: boolean
   hide?: boolean
+  turn?: boolean
 
   // Options
   url?: string

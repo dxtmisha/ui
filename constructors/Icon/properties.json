@@ -5,6 +5,22 @@
       "var|_opacity": ".08",
       "var|_rounded": "4px",
       "var|_size": "24px",
+      "animate|show": {
+        "0%": {
+          "opacity": "0",
+          "transform": "scale(.6)"
+        },
+        "20%": {
+          "transform": "scale(.6)"
+        },
+        "60%": {
+          "opacity": "1"
+        },
+        "100%": {
+          "opacity": "1",
+          "transform": "none"
+        }
+      },
       "@select": "{d.selectNone}",
       "border-radius": "{??_rounded}",
       "display": "inline-block",
@@ -12,16 +28,23 @@
       "overflow": "hidden",
       "position": "relative",
       "transition-duration": "{d.sys.transitionDuration.fade.enter}",
-      "transition-property": "clip-path, margin, opacity, transform",
+      "transition-property": "background, clip-path, margin, opacity, transform",
       "squared": "{??_size}",
+      "animationShow": {
+        "animation-duration": "{d.sys.transitionDuration.fade.enter}",
+        "animation-name": "??--show"
+      },
       "animationType": {
         "type2": {
           "clip-path": "inset(0 0 0 0)",
+          "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, transform {d.sys.transitionDuration.fade.enter} linear",
           "??--hide": {
             "clip-path": "inset(0 100% 0 0)",
             "margin": "0 calc({??_size} * -1) 0 0 !important",
             "opacity": "1",
-            "transform": "none"
+            "transform": "none",
+            "transition-duration": "{d.sys.transitionDuration.fade.exit}",
+            "transition-timing-function": "linear"
           }
         }
       },
@@ -30,7 +53,8 @@
         "background-opacity": "{??_opacity}"
       },
       "hide": {
-        "@style": "{d.animation.hide}"
+        "@style": "{d.animation.hide}",
+        "transition-duration": "{d.sys.transitionDuration.fade.exit}"
       },
       "size": {
         "sm": {
@@ -46,9 +70,6 @@
           "var|_size": "100px",
           "width-aspect-ratio": "25/14"
         }
-      },
-      "turn": {
-        "transform": "rotate(180deg)"
       }
     }
   }

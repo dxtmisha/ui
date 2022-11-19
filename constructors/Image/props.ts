@@ -19,6 +19,7 @@ export const props = {
   // Status
   disabled: Boolean,
   hide: Boolean,
+  turn: Boolean,
 
   // Options
   url: {

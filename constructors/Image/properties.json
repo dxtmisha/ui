@@ -39,6 +39,9 @@
             "@grayscale": "{??grayscale}"
           }
         }
+      },
+      "turn": {
+        "transform": "rotate(180deg)"
       }
     }
   }

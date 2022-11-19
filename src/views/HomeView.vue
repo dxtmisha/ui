@@ -75,10 +75,15 @@
   </div>
 </div>
 <div class="flex items-center gap-2">
-  <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background" :hide="hide"/>
-  <md2-icon icon="close" icon-active="face" size="md" :active="active" :turn="turn" :background="background" :hide="hide"/>
-  <md2-icon icon="close" size="lg" :active="active" :turn="turn" :background="background" :hide="hide" animation-type="type2"/>
-  <md2-icon icon="close" size="xl" :active="active" :turn="turn" :background="background" :hide="hide" animation-type="type2"/>
+  <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background" :hide="hide"
+            animation-show :disabled="disabled"/>
+  <md2-icon :icon="icon" icon-active="face" size="md" :active="active" :turn="turn" :background="background"
+            :hide="hide" :animation-show="animationShow" :disabled="disabled"/>
+  <md2-icon icon="close" size="lg" :active="active" :turn="turn" :background="background" :hide="hide"
+            animation-type="type2" :animation-show="animationShow" :disabled="disabled"/>
+  <md2-icon icon="close" size="xl" :active="active" :turn="turn" :background="background" :hide="hide"
+            animation-type="type2" :animation-show="animationShow" :disabled="disabled"/>
+  test
 </div>
 <div>
   <div>
@@ -90,6 +95,10 @@
   <div>
     <input type="checkbox" name="background" v-model="background"> background
   </div>
+  <div>
+    <input type="checkbox" name="animationShow" v-model="animationShow"> animationShow
+  </div>
+  <button @click="onClickIcon">test 2</button>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
@@ -200,7 +209,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, Ref, ref } from 'vue'
 import Md2Image from '../../md2/Md2Image/index.vue'
 import { Icon } from '../../constructors/Image/Icon'
 import Md2Ripple from '../../md2/Md2Ripple/index.vue'
@@ -221,17 +230,26 @@ export default defineComponent({
   },
   setup () {
     const data = ref('close')
+    const icon = ref('close') as Ref<string | object>
     return {
       data,
       onClick () {
         data.value = 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e'
       },
+      onClickIcon () {
+        icon.value = {
+          value: 'menu',
+          disabled: true
+        }
+      },
+      icon,
       hide: ref(),
       disabled: ref(),
       visible: ref(false),
       active: ref(false),
       turn: ref(),
-      background: ref()
+      background: ref(),
+      animationShow: ref()
     }
   }
 })

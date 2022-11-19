@@ -27,14 +27,21 @@ export abstract class IconComponentAbstract extends ComponentAbstract {
     const classes = this.getClasses({})
     const styles = this.getStyles({})
 
+    const imageBind = computed(() => {
+      return {
+        disabled: this.props.disabled,
+        turn: this.props.turn
+      }
+    })
+
     return {
       element: this.element,
       ...this.baseInit(),
       classes,
       styles,
       ifActive: this.ifActive,
-      iconBind: this.getBind(this.refs.icon),
-      iconActiveBind: this.getBind(this.refs.iconActive)
+      iconBind: this.getBind(this.refs.icon, imageBind),
+      iconActiveBind: this.getBind(this.refs.iconActive, imageBind)
     }
   }
 

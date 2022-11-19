@@ -1,4 +1,4 @@
-import { computed, ComputedRef, onBeforeUpdate, reactive, Ref, toRefs } from 'vue'
+import { computed, ComputedRef, isRef, onBeforeUpdate, reactive, Ref, toRefs } from 'vue'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -102,12 +102,24 @@ export abstract class ComponentAbstract {
     }
   }
 
-  getBind<T = any, R = AssociativeType> (value: Ref<T | R>, name = 'value' as string): ComputedRef<R> {
+  getBind<T = any, R = AssociativeType> (
+    value: Ref<T | R>,
+    extra = {} as AssociativeType | Ref<AssociativeType>,
+    name = 'value' as string
+  ): ComputedRef<R> {
     return computed(() => {
+      const data = isRef(extra) ? (extra.value || {}) : extra
+
       if (typeof value.value === 'object') {
-        return value.value as R
+        return {
+          ...data,
+          ...value.value
+        } as R
       } else {
-        return { [name]: value.value } as R
+        return {
+          ...data,
+          [name]: value.value
+        } as R
       }
     })
   }
@@ -202,6 +214,5 @@ export abstract class ComponentAbstract {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
-    console.log('this.designMain', this.designMain)
   }
 }
