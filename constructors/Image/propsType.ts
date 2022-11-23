@@ -1,6 +1,6 @@
 import { NumberOrStringType } from '../types'
 
-export declare type ImagePropsType = {
+export type ImagePropsType = {
   // Values
   value: File | string,
   coordinator?: [number, number, number, number]

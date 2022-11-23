@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
 import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
-import { ImagePropsType } from '../Image/props.d'
+import { ImagePropsType } from '../Image/propsType'
 
 export type IconIndeterminateType = 'type1' | 'type2'
 export type IconSizeType = 'sm' | 'md' | 'lg' | 'xl'
