@@ -1,4 +1,4 @@
-import { computed, ComputedRef, isRef, onBeforeUpdate, reactive, Ref, toRefs } from 'vue'
+import { computed, ComputedRef, isRef, onBeforeUpdate, reactive, ref, Ref, toRefs } from 'vue'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -25,6 +25,7 @@ export abstract class ComponentAbstract {
   protected abstract readonly instruction: AssociativeType
 
   protected readonly classesProps = [] as string[]
+  protected readonly element = ref<HTMLElement | undefined>()
 
   abstract setup (): AssociativeType
 
@@ -96,6 +97,7 @@ export abstract class ComponentAbstract {
 
   protected baseInit (): ComponentBaseType {
     return {
+      element: this.element,
       name: this.name,
       nameDesign: this.nameDesign,
       baseClass: this.baseClass

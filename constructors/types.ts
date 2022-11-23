@@ -27,6 +27,7 @@ export type ComponentAssociativeType = AssociativeType<ComponentAssociativeRefTy
 export type ComponentAssociativeItemsType = AssociativeType<ComponentAssociativeType>
 export type ComponentValueType = RefOrNormalType<string>
 export type ComponentBaseType = {
+  element: Ref<HTMLElement | undefined>
   name: ComputedRef<string>
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>

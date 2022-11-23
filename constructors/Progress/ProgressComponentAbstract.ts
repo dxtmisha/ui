@@ -28,7 +28,6 @@ export type ProgressSetupType = {
 
 export abstract class ProgressComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
-  protected readonly element = ref<HTMLElement | undefined>()
 
   protected readonly move = ref(false)
   protected readonly visible = ref(false)
@@ -60,7 +59,6 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
     const styles = this.getStyles({})
 
     return {
-      element: this.element,
       ifCircular: this.ifCircular,
       tag: this.tag,
       ...this.baseInit(),

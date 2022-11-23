@@ -1,4 +1,4 @@
-import { computed, ComputedRef, Ref, ref } from 'vue'
+import { computed, ComputedRef, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -21,7 +21,6 @@ export type IconSetupType = {
 
 export abstract class IconComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
-  protected readonly element = ref<HTMLElement | undefined>()
 
   setup (): IconSetupType {
     const classes = this.getClasses({})
@@ -35,7 +34,6 @@ export abstract class IconComponentAbstract extends ComponentAbstract {
     })
 
     return {
-      element: this.element,
       ...this.baseInit(),
       classes,
       styles,

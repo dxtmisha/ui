@@ -1,4 +1,4 @@
-import { ComputedRef, onUnmounted, Ref, ref } from 'vue'
+import { ComputedRef, onUnmounted, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { Image } from './Image'
 import { props } from './props'
@@ -18,9 +18,8 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
 
   setup (): ImageSetupType {
-    const element = ref(undefined)
     const image = new Image(
-      element,
+      this.element,
       this.refs.value,
       this.refs.coordinator,
       this.refs.size,
@@ -39,7 +38,6 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
     onUnmounted(() => image.destructor())
 
     return {
-      element,
       ...this.baseInit(),
       classes,
       styles,

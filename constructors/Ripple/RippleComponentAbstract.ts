@@ -1,4 +1,4 @@
-import { ComputedRef, Ref, ref } from 'vue'
+import { ComputedRef, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { createElement } from '../../functions'
 import { props } from './props'
@@ -21,14 +21,12 @@ export type RippleSetupType = {
 
 export abstract class RippleComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
-  protected readonly element = ref<HTMLElement | undefined>()
 
   setup (): RippleSetupType {
     const classes = this.getClasses({})
     const styles = this.getStyles({})
 
     return {
-      element: this.element,
       ...this.baseInit(),
       classes,
       styles,

@@ -1,0 +1,7 @@
+@import "../../styles/services/classesService";
+
+@mixin initButton($design) {
+  @include classInitService($design, 'button') using($class, $properties) {
+    @content($class, $properties);
+  }
+}
