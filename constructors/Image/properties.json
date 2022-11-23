@@ -2,7 +2,8 @@
   "d": {
     "image": {
       "var|_fontSize": "inherit",
-      "var|_opacity": "0.38",
+      "var|_disabledOpacity": "0.38",
+      "var|_disabledBackgroundOpacity": "0.02",
       "mixin|grayscale": {
         "filter": "grayscale(1)",
         "opacity": "{??_opacity}"
@@ -30,7 +31,7 @@
         "@style": "{d.animation.hide}"
       },
       "section|disabled": {
-        "color-opacity": "{??_opacity}",
+        "color-opacity": "{??_disabledOpacity}",
         "=isType": {
           "section|color": {
             "@grayscale": "{??grayscale}"

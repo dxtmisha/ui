@@ -471,6 +471,9 @@
         "0": {
           "value": "0"
         },
+        "2": {
+          "value": "0.02"
+        },
         "4": {
           "value": "0.04"
         },
@@ -1087,6 +1090,9 @@
         },
         "selected": {
           "value": "{ref.opacity.8}"
+        },
+        "disabled": {
+          "value": "{ref.opacity.2}"
         },
         "var|border": {
           "value": "{ref.opacity.12}"

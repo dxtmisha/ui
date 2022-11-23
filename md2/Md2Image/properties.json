@@ -3,7 +3,7 @@
     "image": {
       "@style": "{d.image}",
       "var|_fontSize": "{ref.font.size.xl}",
-      "var|_opacity": "{sys.opacity.surface.disabled}"
+      "var|_disabledOpacity": "{sys.opacity.surface.disabled}"
     }
   }
 }

@@ -3,6 +3,7 @@
     "icon": {
       "var|_background": "0, 0, 0",
       "var|_opacity": ".08",
+      "var|_disabledOpacity": ".02",
       "var|_rounded": "4px",
       "var|_size": "24px",
       "animate|show": {
@@ -37,7 +38,7 @@
       "animationType": {
         "type2": {
           "clip-path": "inset(0 0 0 0)",
-          "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, transform {d.sys.transitionDuration.fade.enter} linear",
+          "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, background {d.sys.transitionDuration.fade.enter} linear, transform {d.sys.transitionDuration.fade.enter} linear",
           "??--hide": {
             "clip-path": "inset(0 100% 0 0)",
             "margin": "0 calc({??_size} * -1) 0 0 !important",
@@ -51,6 +52,9 @@
       "section|background": {
         "background-color": "{??_background}",
         "background-opacity": "{??_opacity}"
+      },
+      "section|disabled": {
+        "background-opacity": "{??_disabledOpacity}"
       },
       "hide": {
         "@style": "{d.animation.hide}",

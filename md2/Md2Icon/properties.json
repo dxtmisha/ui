@@ -4,6 +4,7 @@
       "@style": "{d.icon}",
       "var|_background": "{?sys.chart.onSurface}",
       "var|_opacity": "{?sys.opacity.dragged}",
+      "var|_disabledOpacity": "{?sys.opacity.disabled}",
       "var|_rounded": "{?.sys.rounded.full}",
       "var|_size": "{?.ref.spacing.6}",
       "size": {
