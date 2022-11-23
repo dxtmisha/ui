@@ -19,6 +19,12 @@ module.exports = class {
 
     this.list.forEach(item => {
       switch (item.property.getType()) {
+        case 'link-class':
+          data[item.code] = {
+            type: item.property.getType(),
+            value: item.property.getValueToCode()
+          }
+          break
         case 'subclass':
         case 'section':
           data[item.code] = item.property.getType()

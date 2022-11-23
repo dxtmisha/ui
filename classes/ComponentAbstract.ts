@@ -69,8 +69,14 @@ export abstract class ComponentAbstract {
       if (this.isPropDesign(name)) {
         if (typeof this.props[name] === 'boolean') {
           main[this.getClassName([], [name])] = this.props[name]
-        } else if (this.isPropPropertyValue(name, this.props[name])) {
-          main[this.getClassName([], [name, this.props[name]])] = true
+        } else {
+          const className = this.getPropPropertyLinkOrValue(name, this.props[name])
+
+          if (className) {
+            main[className] = true
+          } else if (this.isPropPropertyValue(name, this.props[name])) {
+            main[this.getClassName([], [name, this.props[name]])] = true
+          }
         }
       }
     })
@@ -158,6 +164,25 @@ export abstract class ComponentAbstract {
     return toKebabCase(this.getCodeProperty(name))
   }
 
+  protected getPropPropertyLinkOrValue (name: string, value: any): string | undefined {
+    const code = this.getKebabCaseProperty(name)
+
+    if (
+      code in ComponentAbstract.designMain &&
+      ComponentAbstract.isType(ComponentAbstract.designMain[code], 'link-class')
+    ) {
+      const nameCode = `${ComponentAbstract.designMain[code]?.value}.${value}`
+
+      return typeof value === 'string' && (nameCode in ComponentAbstract.designMain)
+        ? nameCode
+          .replace(/\./, '-')
+          .replace(/\./g, '--')
+        : undefined
+    } else {
+      return undefined
+    }
+  }
+
   getStyles (extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
     return computed(() => {
       const styles = {
@@ -180,9 +205,9 @@ export abstract class ComponentAbstract {
     )
   }
 
-  protected isPropPropertyValue (name: string, value: any): boolean {
-    return typeof value === 'string' &&
-      (`${this.getKebabCaseProperty(name)}.${value}` in ComponentAbstract.designMain)
+  protected isPropPropertyValue (name: string, value: any): string | undefined {
+    const nameClass = `${this.getKebabCaseProperty(name)}.${value}`
+    return typeof value === 'string' && (nameClass in ComponentAbstract.designMain) ? nameClass : undefined
   }
 
   protected static getSubClasses (code: string): ComponentAssociativeItemsType {
@@ -190,10 +215,10 @@ export abstract class ComponentAbstract {
       const classes = {} as ComponentAssociativeItemsType
       const reg = getExp(`${code}.`, 'i', '^:value')
 
-      forEach<string, string, void>(this.designMain, (type, name) => {
+      forEach<string | AssociativeType, string, void>(this.designMain, (type, name) => {
         if (
           this.isValue(code, name) &&
-          type === 'subclass'
+          this.isType(type, 'subclass')
         ) {
           const index = name.replace(reg, '')
           const names = `${code.replace('.', '-')}__${index.replace(/\./ig, '__')}`
@@ -210,11 +235,18 @@ export abstract class ComponentAbstract {
     return this.designSubClasses[code]
   }
 
+  protected static isType (type: string | AssociativeType, name: string): boolean {
+    return typeof type === 'string'
+      ? name === type
+      : name === type?.type
+  }
+
   protected static isValue (code: string, index: string): boolean {
     return !!index.match(new RegExp(`^${code?.replace(/\./g, '\\.') || ''}`))
   }
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
+    console.log('ComponentAbstract.designMain', ComponentAbstract.designMain)
   }
 }

@@ -503,35 +503,6 @@
           "disabled": "0.38"
         }
       },
-      "var|borderRadius": {
-        "0": {
-          "value": "0"
-        },
-        "1": {
-          "value": "{ref.spacing.1}"
-        },
-        "2": {
-          "value": "{ref.spacing.2}"
-        },
-        "4": {
-          "value": "{ref.spacing.4}"
-        },
-        "6": {
-          "value": "{ref.spacing.6}"
-        },
-        "8": {
-          "value": "{ref.spacing.8}"
-        },
-        "12": {
-          "value": "{ref.spacing.12}"
-        },
-        "16": {
-          "value": "{ref.spacing.16}"
-        },
-        "full": {
-          "value": "{ref.spacing.128}"
-        }
-      },
       "elevation": {
         "background": {
           "white": "{ref.chart.white}",
@@ -726,6 +697,35 @@
           "6": {
             "value": "{ref.spacing.px}*24"
           }
+        }
+      },
+      "rounded": {
+        "0": {
+          "value": "0"
+        },
+        "1": {
+          "value": "{ref.spacing.1}"
+        },
+        "2": {
+          "value": "{ref.spacing.2}"
+        },
+        "4": {
+          "value": "{ref.spacing.4}"
+        },
+        "6": {
+          "value": "{ref.spacing.6}"
+        },
+        "8": {
+          "value": "{ref.spacing.8}"
+        },
+        "12": {
+          "value": "{ref.spacing.12}"
+        },
+        "16": {
+          "value": "{ref.spacing.16}"
+        },
+        "full": {
+          "value": "{ref.spacing.128}"
         }
       }
     },
@@ -1104,25 +1104,25 @@
       },
       "rounded": {
         "none": {
-          "value": "{ref.borderRadius.0}"
+          "value": "{ref.rounded.0}"
         },
         "standard": {
-          "value": "{ref.borderRadius.1}"
+          "value": "{ref.rounded.1}"
         },
         "sm": {
-          "value": "{ref.borderRadius.1}"
+          "value": "{ref.rounded.1}"
         },
         "md": {
-          "value": "{ref.borderRadius.2}"
+          "value": "{ref.rounded.2}"
         },
         "lg": {
-          "value": "{ref.borderRadius.4}"
+          "value": "{ref.rounded.4}"
         },
         "xl": {
-          "value": "{ref.borderRadius.6}"
+          "value": "{ref.rounded.6}"
         },
         "full": {
-          "value": "{ref.borderRadius.full}"
+          "value": "{ref.rounded.full}"
         }
       },
       "elevation": {
@@ -1341,6 +1341,29 @@
         "fontSize": "{ref.font.size.headline.1}",
         "lineHeight": "{ref.lineHeight.headline.1}",
         "letterSpacing": "{ref.letterSpacing.headline.1}"
+      }
+    },
+    "rounded": {
+      "none": {
+        "border-radius": "{sys.rounded.none}"
+      },
+      "standard": {
+        "border-radius": "{sys.rounded.standard}"
+      },
+      "sm": {
+        "border-radius": "{sys.rounded.sm}"
+      },
+      "md": {
+        "border-radius": "{sys.rounded.md}"
+      },
+      "lg": {
+        "border-radius": "{sys.rounded.lg}"
+      },
+      "xl": {
+        "border-radius": "{sys.rounded.xl}"
+      },
+      "full": {
+        "border-radius": "{sys.rounded.full}"
       }
     },
     "dark": {

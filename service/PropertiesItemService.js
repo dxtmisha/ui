@@ -7,7 +7,7 @@ const cssSelectors = require('../constructors/cssSelectors.json')
 const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
 
 const REG_MARK = /^(&|=|\?|\?\?)/ig
-const REG_SEARCH = /^([^|]+\||@|#|::|:)/ig
+const REG_SEARCH = /^([^|]+\||@@|@|#|::|:)/ig
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 const REG_VAR = /{([^{}]+)}/ig
 
@@ -127,6 +127,8 @@ module.exports = class {
 
       if (selector.match(/^[^|]+\|.*?$/)) {
         this.type = selector.split('|')[0]
+      } else if (selector.match(/^@@/)) {
+        this.type = 'link-class'
       } else if (selector.match(/^@/)) {
         this.type = 'link'
       } else if (selector.match(/^#/)) {

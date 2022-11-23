@@ -2,29 +2,30 @@
 @import "../styles/services/propertiesService";
 @import "../styles/services/typographyService";
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url("https://fonts.googleapis.com/css2?family=Material+Icons+Outlined");
-@import url("https://fonts.googleapis.com/css2?family=Material+Icons+Round");
-@import url("https://fonts.googleapis.com/css2?family=Material+Icons+Sharp");
-@import url("https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone");
+@mixin initMd2Service() {
+  $name: 'md2';
+  @include initPropertiesService($name, ('ref', 'sys'));
+  @include classesInitService($name, (
+          'grid',
+          'elevation',
+          'font',
+          'rounded',
+          'dark'
+  ));
+}
 
-$name: 'md2';
+@mixin initMd2FullService() {
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+  @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+  @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Outlined");
+  @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Round");
+  @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Sharp");
+  @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone");
 
-@include initPropertiesService($name, ('ref', 'sys'));
-@include initTypographyService(
-                #{var(--md2-sys-chart-on-secondary)},
-                #{var(--md2-sys-opacity-surface-high)},
-                #{var(--md2-sys-elevation-background-0)}
-);
-
-@include classesInitService($name, (
-        'grid',
-        'elevation',
-        'font',
-        'dark', 'button'
-));
-
-:root {
-
+  @include initTypographyService(
+                  #{var(--md2-sys-chart-on-secondary)},
+                  #{var(--md2-sys-opacity-surface-high)},
+                  #{var(--md2-sys-elevation-background-0)}
+  );
+  @include initMd2Service();
 }

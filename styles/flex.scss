@@ -1,0 +1,5 @@
+@mixin flexDynamic() {
+  flex-basis: 1px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}

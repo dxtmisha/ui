@@ -1,47 +1,12 @@
 {
   "md2": {
     "button": {
-      "&font": "{font.button}",
-      "minWidth": "{ref.spacing.20}",
-      "padding-x": "{ref.spacing.3}",
-      "transitionProperty": "color, background-color, box-shadow",
-      "view": {
-        "text": {},
-        "outlined": {
-          "borderWidth": "{ref.spacing.px}"
-        }
-      },
-      "height": {
-        "sm": "{ref.spacing.7}",
-        "md": "{ref.spacing.9}",
-        "lg": "{ref.spacing.11}"
-      },
-      "dense": {
-        "padding-x": "{ref.spacing.1}"
-      },
-      "hover": {
-        "padding-x": "{ref.spacing.7}",
-        "#text": {
-          "padding-x": "{ref.spacing.2}",
-          "fontSize": "28px"
-        }
-      },
-      "after": {
-        "padding-x": "{ref.spacing.12}"
-      },
+      "@style": "{d.button}",
+      "var|_minWidth": "{ref.spacing.16}",
+      "var|_padding": "{ref.spacing.4}",
+      "@@rounded": "{?rounded}",
       "#text": {
-        "padding-x": "{ref.spacing.1}",
-        "fontSize": "24px",
-        "#sub": {
-          "padding-x": "{ref.spacing.1}",
-          "fontSize": "24px"
-        },
-        "hover": {
-          "#sub": {
-            "padding-x": "{ref.spacing.2}",
-            "fontSize": "28px"
-          }
-        }
+        "@font": "{?.font.button}"
       }
     }
   }

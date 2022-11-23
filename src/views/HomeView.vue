@@ -100,6 +100,11 @@
   </div>
   <button @click="onClickIcon">test 2</button>
 </div>
+<div class="flex items-center gap-2">
+  <md2-button text="button 1"/>
+  <md2-button>button 2</md2-button>
+  <md2-button text="button 3"> / button 4</md2-button>
+</div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
   <div class="relative w-64 h-64">
@@ -215,6 +220,7 @@ import { Icon } from '../../constructors/Image/Icon'
 import Md2Ripple from '../../md2/Md2Ripple/index.vue'
 import Md2Progress from '../../md2/Md2Progress/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
+import Md2Button from '../../md2/Md2Button/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -223,6 +229,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Button,
     Md2Icon,
     Md2Progress,
     Md2Ripple,

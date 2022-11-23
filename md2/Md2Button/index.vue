@@ -1,5 +1,7 @@
 <template lang="pug">
-div(:class="classes.main")
+component(:is="tag" :class="classes.main")
+  span(:class="classes.text") {{ text }}
+    slot
 </template>
 
 <script lang="ts">

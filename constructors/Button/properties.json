@@ -1,0 +1,18 @@
+{
+  "d": {
+    "button": {
+      "var|_minWidth": "64px",
+      "var|_padding": "16px",
+      "@flex": "{d.flex.inlineCenter}",
+      "@select": "{d.selectNone}",
+      "max-width": "100%",
+      "min-width": "{??_minWidth}",
+      "padding-x": "{??_padding}",
+      "position": "relative",
+      "transition-property": "color, background-color, box-shadow",
+      "#text": {
+        "@flex": "{d.flex.dynamic}"
+      }
+    }
+  }
+}

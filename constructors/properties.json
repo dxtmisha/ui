@@ -209,6 +209,24 @@
       "center": {
         "@style": "{d.flex.x}",
         "justify-content": "center"
+      },
+      "inlineX": {
+        "align-items": "center",
+        "display": "inline-flex"
+      },
+      "inlineY": {
+        "align-items": "center",
+        "display": "inline-flex",
+        "flex-flow": "column"
+      },
+      "inlineCenter": {
+        "@style": "{d.flex.inlineX}",
+        "justify-content": "center"
+      },
+      "dynamic": {
+        "flex-basis": "1px",
+        "flex-grow": "1",
+        "flex-shrink": "1"
       }
     },
     "motion": {

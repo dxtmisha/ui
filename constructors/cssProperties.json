@@ -139,6 +139,7 @@
   "flex",
   "flex-basis",
   "flex-direction",
+  "flex-dynamic",
   "flex-flow",
   "flex-grow",
   "flex-shrink",
