@@ -10,6 +10,9 @@
       "padding-x": "{??_padding}",
       "position": "relative",
       "transition-property": "color, background-color, box-shadow",
+      "align": {
+        "@style": "{d.font.align}"
+      },
       "#text": {
         "@flex": "{d.flex.dynamic}"
       }

@@ -1,6 +1,7 @@
 @import "../color";
 @import "../dimension";
 @import "../flex";
+@import "../font";
 @import "../padding";
 @import "../position";
 
@@ -31,6 +32,8 @@
     @include mixinStrokeOpacity(#{$value});
   } @else if ($index == 'squared') {
     @include squared(#{$value});
+  } @else if ($index == 'text-align') {
+    @include textAlign(#{$value});
   } @else if ($index == 'width-aspect-ratio') {
     @include widthAspectRatio(#{$value});
   } @else if ($index == 'width-basis') {

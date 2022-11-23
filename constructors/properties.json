@@ -232,6 +232,19 @@
         "flex-shrink": "1"
       }
     },
+    "font": {
+      "align": {
+        "section|center": {
+          "text-align": "center"
+        },
+        "section|left": {
+          "text-align": "left"
+        },
+        "section|right": {
+          "text-align": "right"
+        }
+      }
+    },
     "motion": {
       "container": {
         "open": {
