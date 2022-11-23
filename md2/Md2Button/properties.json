@@ -4,6 +4,11 @@
       "@style": "{d.button}",
       "var|_minWidth": "{ref.spacing.16}",
       "var|_padding": "{ref.spacing.4}",
+      "height": {
+        "sm": "{ref.spacing.8}",
+        "md": "{ref.spacing.9}",
+        "lg": "{ref.spacing.11}"
+      },
       "@@rounded": "{?rounded}",
       "#text": {
         "@font": "{?.font.button}"

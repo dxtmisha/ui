@@ -33,42 +33,15 @@ export const props = {
   // Options
   adaptive: {
     type: String as PropType<ButtonAdaptiveType>,
-    default: defaultProps('adaptive', 'full'),
-    validator: DefaultConfiguration.validator([
-      'auto',
-      'xs',
-      'sm',
-      'md',
-      'lg',
-      'xl',
-      'full',
-      'icon'
-    ])
+    default: defaultProps('adaptive', 'full')
   },
   align: {
     type: String as PropType<ButtonAlignType>,
-    default: defaultProps('align'),
-    validator: DefaultConfiguration.validator([
-      'center',
-      'left',
-      'right'
-    ])
+    default: defaultProps('align')
   },
   appearance: {
     type: String as PropType<ButtonAppearanceType>,
-    default: defaultProps('appearance', 'contained'),
-    validator: DefaultConfiguration.validator([
-      'text',
-      'text-color',
-      'outlined',
-      'outlined-color',
-      'outlined-contained',
-      'contained',
-      'fab',
-      'chip',
-      'chip-color',
-      'chip-outlined'
-    ])
+    default: defaultProps('appearance', 'contained')
   },
   color: String,
   dense: Boolean,
@@ -82,25 +55,11 @@ export const props = {
   },
   rounded: {
     type: String as PropType<ButtonRoundedType>,
-    default: defaultProps('rounded', 'sm'),
-    validator: DefaultConfiguration.validator([
-      'none',
-      'standard',
-      'sm',
-      'md',
-      'lg',
-      'xl',
-      'full'
-    ])
+    default: defaultProps('rounded', 'sm')
   },
-  size: {
+  height: {
     type: String as PropType<ButtonSizeType>,
-    default: defaultProps('size', 'md'),
-    validator: DefaultConfiguration.validator([
-      'sm',
-      'md',
-      'lg'
-    ])
+    default: defaultProps('height', 'md')
   },
   tag: {
     type: String,

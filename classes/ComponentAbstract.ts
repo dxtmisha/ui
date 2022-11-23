@@ -32,6 +32,7 @@ export abstract class ComponentAbstract {
   protected readonly props: AssociativeType
   protected readonly refs: AssociativeType<Ref>
   protected readonly context: AssociativeType
+  protected readonly kebabCaseProperty = {} as AssociativeType<string>
 
   constructor (
     props: object,
@@ -161,7 +162,11 @@ export abstract class ComponentAbstract {
   }
 
   protected getKebabCaseProperty (name: string): string {
-    return toKebabCase(this.getCodeProperty(name))
+    if (!(name in this.kebabCaseProperty)) {
+      this.kebabCaseProperty[name] = toKebabCase(this.getCodeProperty(name))
+    }
+
+    return this.kebabCaseProperty[name]
   }
 
   protected getPropPropertyLinkOrValue (name: string, value: any): string | undefined {
@@ -247,6 +252,5 @@ export abstract class ComponentAbstract {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
-    console.log('ComponentAbstract.designMain', ComponentAbstract.designMain)
   }
 }
