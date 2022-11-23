@@ -28,17 +28,17 @@
       "min-width": "{??_size}",
       "overflow": "hidden",
       "position": "relative",
-      "transition-duration": "{d.sys.transitionDuration.fade.enter}",
+      "transition-duration": "{d.sys.transitionDuration.standard}",
       "transition-property": "background, clip-path, margin, opacity, transform",
       "squared": "{??_size}",
       "animationShow": {
-        "animation-duration": "{d.sys.transitionDuration.fade.enter}",
+        "animation-duration": "{d.sys.transitionDuration.standard}",
         "animation-name": "??--show"
       },
       "animationType": {
         "type2": {
           "clip-path": "inset(0 0 0 0)",
-          "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, background {d.sys.transitionDuration.fade.enter} linear, transform {d.sys.transitionDuration.fade.enter} linear",
+          "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, background {d.sys.transitionDuration.standard} linear, transform {d.sys.transitionDuration.standard} linear",
           "??--hide": {
             "clip-path": "inset(0 100% 0 0)",
             "margin": "0 calc({??_size} * -1) 0 0 !important",

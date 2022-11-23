@@ -17,7 +17,7 @@
       "inset": "0",
       "position": "absolute",
       "transform": "none",
-      "transition-duration": "{d.sys.transitionDuration.fade.enter}",
+      "transition-duration": "{d.sys.transitionDuration.standard}",
       "transition-property": "background-color, background-size, color, filter, opacity, transform",
       "=isType": {
         "public": {

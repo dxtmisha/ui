@@ -47,6 +47,9 @@
     },
     "sys": {
       "transitionDuration": {
+        "standard": {
+          "value": "{ref.transitionDuration.4}"
+        },
         "sm": {
           "value": "{ref.transitionDuration.3}"
         },
