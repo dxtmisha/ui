@@ -9,12 +9,18 @@
       "var|_backgroundOpacity": "0",
       "var|_backgroundStatus": "{??_palette}",
       "var|_backgroundStatusOpacity": "0",
-      "var|_backgroundHoverOpacity": "0.04",
       "var|_backgroundActiveOpacity": "0.08",
       "var|_backgroundFocusOpacity": "0.12",
+      "var|_backgroundHoverOpacity": "0.04",
       "var|_border": "{??_palette}",
       "var|_borderOpacity": "0",
       "var|_borderWidth": "1px",
+      "var|_borderWidthActive": "1px",
+      "var|_shadow": "none",
+      "var|_shadowActive": "{??_shadow}",
+      "var|_shadowDragged": "{??_shadow}",
+      "var|_shadowFocus": "{??_shadow}",
+      "var|_shadowHover": "{??_shadow}",
       "var|_minWidth": "64px",
       "var|_padding": "16px",
       "@flex": "{d.flex.inlineCenter}",
@@ -23,14 +29,24 @@
         "border-color": "{??_border}",
         "border-color-opacity": "{??_borderOpacity}",
         "border-radius": "inherit",
-        "border-width": "{??_borderWidth}",
         "position": "absolute",
         "inset": "0"
+      },
+      "mixin|after": {
+        "@style": "{??border}",
+        "border-width": "{??_borderWidth}"
+      },
+      "mixin|before": {
+        "@style": "{??border}",
+        "border-width": "{??_borderWidthActive}",
+        "transition-duration": "{d.sys.transitionDuration.fade.through}",
+        "transition-property": "border-color"
       },
       "background-color": "{??_background}",
       "background-opacity": "{??_backgroundOpacity}",
       "background-gradient": "{??_backgroundStatus}",
       "background-gradient-opacity": "{??_backgroundStatusOpacity}",
+      "box-shadow": "{??_shadow}",
       "color": "{??_text}",
       "color-opacity": "{??_textOpacity}",
       "max-width": "100%",
@@ -41,25 +57,39 @@
       "align": {
         "@style": "{d.font.align}"
       },
-      "::after": {
-        "@style": "{??border}"
-      },
-      "::before": {
-        "@style": "{??border}",
-        "transition-duration": "{d.sys.transitionDuration.fade.through}",
-        "transition-property": "border-color"
+      "selected": {
+        "var|_palette": "{??_paletteVariant}"
       },
       ":hover": {
-        "background-gradient-opacity": "{??_backgroundHoverOpacity}"
+        "background-gradient-opacity": "{??_backgroundHoverOpacity}",
+        "box-shadow": "{??_shadowHover}",
+        "z-index": "12"
       },
       ":focus": {
-        "background-gradient-opacity": "{??_backgroundFocusOpacity}"
+        "background-gradient-opacity": "{??_backgroundFocusOpacity}",
+        "box-shadow": "{??_shadowFocus}",
+        "z-index": "12"
       },
       ":active": {
         "background-gradient-opacity": "{??_backgroundActiveOpacity}",
+        "box-shadow": "{??_shadowActive}",
+        "z-index": "12",
         "::before": {
           "transition-duration": "{d.sys.transitionDuration.xs}"
         }
+      },
+      "dragged": {
+        "box-shadow": "{??_shadowDragged}"
+      },
+      "readonly": {
+        "var|_backgroundHoverOpacity": "0",
+        "var|_backgroundActiveOpacity": "0",
+        "var|_backgroundFocusOpacity": "0",
+        "var|_borderWidthActive": "0",
+        "var|_shadowActive": "{??_shadow} !important",
+        "var|_shadowDragged": "{??_shadow} !important",
+        "var|_shadowFocus": "{??_shadow} !important",
+        "var|_shadowHover": "{??_shadow} !important"
       },
       "#text": {
         "@flex": "{d.flex.dynamic}"

@@ -4,22 +4,43 @@
       "@style": "{d.button}",
       "var|_palette": "=var(--sys-palette, {sys.palette.primary})",
       "var|_paletteVariant": "{sys.palette.primaryVariant}",
-      "var|_backgroundHoverOpacity": "{sys.opacity.hover}",
       "var|_backgroundActiveOpacity": "{sys.opacity.dragged}",
       "var|_backgroundFocusOpacity": "{sys.opacity.focus}",
+      "var|_backgroundHoverOpacity": "{sys.opacity.hover}",
       "var|_borderWidth": "{ref.spacing.px}",
+      "var|_borderWidthActive": "{ref.spacing.px}",
       "var|_minWidth": "{ref.spacing.20}",
       "var|_padding": "{ref.spacing.4}",
+      "mixin|shadowActive": {
+        "var|_shadowActive": "{sys.elevation.shadow.8}"
+      },
       "@@palette": "{?palette}",
       "@@rounded": "{?rounded}",
+      "z-index": "{sys.elevation.index.2}",
       "appearance": {
+        "contained": {
+          "var|_text": "{sys.palette.onPrimary}",
+          "var|_textOpacity": "{sys.opacity.primary.high}",
+          "var|_backgroundOpacity": "{sys.opacity.primary.high}",
+          "var|_backgroundStatus": "{sys.palette.onPrimary}",
+          "var|_shadow": "{sys.elevation.shadow.2}",
+          "var|_shadowActive": "{sys.elevation.shadow.8}",
+          "var|_shadowDragged": "{sys.elevation.shadow.8}"
+        },
         "text": {
           "var|_text": "{??_palette}",
           "var|_textOpacity": "{sys.opacity.surface.high}",
+          "var|_padding": "{ref.spacing.2}",
+          "::before": {
+            "@style": "{??before}"
+          },
           ":active": {
             "var|_borderOpacity": "{sys.opacity.surface.medium}"
           }
         }
+      },
+      "dragged": {
+        "@style": "{??shadowActive}"
       },
       "height": {
         "sm": "{ref.spacing.8}",

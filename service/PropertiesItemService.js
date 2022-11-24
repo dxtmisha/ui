@@ -190,8 +190,9 @@ module.exports = class {
       if (this.getMark().match(/^_/i)) {
         const index = this.toValueByVar(this.getCode())
           .replace(/_/ig, '')
+        const important = value.match('!important')
 
-        this.valueCss = `'var(--${index}, ${value})'`
+        this.valueCss = `'var(--${index}, ${value.replace('!important', '')})${important ? ' !important' : ''}'`
       } else if (value.match(/^#[\dabcdef]{6,8}/ig)) {
         this.valueCss = value
       } else {

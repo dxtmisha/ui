@@ -100,19 +100,19 @@
   </div>
   <button @click="onClickIcon">test 2</button>
 </div>
-<div class="flex items-center gap-2">
-  <md2-button text="button 1"/>
-  <md2-button>button 2</md2-button>
+<div class="flex items-center gap-2 pt-8 pl-8">
+  <md2-button text="button 1" height="lg"/>
+  <md2-button height="sm">button 2</md2-button>
   <md2-button text="button 3"> / button 4</md2-button>
-  <md2-button text="5"/>
+  <md2-button text="5" selected/>
   <md2-button text="6" align="left" rounded="full"/>
-  <md2-button text="7" align="right" rounded="standard"/>
+  <md2-button text="readonly" align="right" rounded="standard" readonly/>
 </div>
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="button 8" palette="red" height="sm" rounded="sm" appearance="text"/>
-  <md2-button text="button 9" appearance="text" rounded="lg"/>
-  <md2-button text="button 10" height="lg" appearance="text" rounded="xl"/>
-  <md2-button text="button 11" height="lg" appearance="text" rounded="none"/>
+  <md2-button text="readonly" appearance="text" rounded="lg" readonly/>
+  <md2-button text="button 10" height="lg" appearance="text" rounded="xl" selected/>
+  <md2-button text="button 11" height="lg" appearance="text" rounded="none" dragged/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
