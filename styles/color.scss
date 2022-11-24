@@ -42,6 +42,20 @@
   }
 }
 
+@mixin mixinChart($color) {
+  --sys-_chart: var(--sys-chart, #{toColorRBG($color)});
+}
+
+@mixin mixinChartColor($color) {
+  @include mixinChart($color);
+  @include mixinColor(#{var(--sys-_chart)});
+}
+
+@mixin mixinChartBackground($color) {
+  @include mixinChart($color);
+  @include mixinBackground(#{var(--sys-_chart)});
+}
+
 @mixin mixinColor($color, $opacity: null) {
   --sys-color: #{toColorRBG($color)};
   @include mixinColorOpacity(getOpacity($color, $opacity));

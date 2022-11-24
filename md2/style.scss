@@ -6,6 +6,7 @@
   $name: 'md2';
   @include initPropertiesService($name, ('ref', 'sys'));
   @include classesInitService($name, (
+          'chart',
           'grid',
           'elevation',
           'font',

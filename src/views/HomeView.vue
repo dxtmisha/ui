@@ -107,8 +107,8 @@
   <md2-button text="5"/>
   <md2-button text="6" align="left"/>
   <md2-button text="7" align="right"/>
-  <md2-button text="button 8" height="sm"/>
-  <md2-button text="button 9" height="lg"/>
+  <md2-button text="button 8" height="sm" appearance="text-color"/>
+  <md2-button text="button 9" height="lg" appearance="text-color"/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">

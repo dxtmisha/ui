@@ -1182,6 +1182,173 @@
         }
       }
     },
+    "chart": {
+      "primary": {
+        "chart": "{sys.chart.primary}"
+      },
+      "primaryVariant": {
+        "var|=sysChart": "{sys.chart.primaryVariant}"
+      },
+      "secondary": {
+        "var|=sysChart": "{sys.chart.secondary}"
+      },
+      "secondaryVariant": {
+        "var|=sysChart": "{sys.chart.secondaryVariant}"
+      },
+      "var|background": {
+        "var|=sysChart": "{sys.chart.background}"
+      },
+      "surface": {
+        "var|=sysChart": "{sys.chart.surface}"
+      },
+      "error": {
+        "var|=sysChart": "{sys.chart.error}"
+      },
+      "success": {
+        "var|=sysChart": "{sys.chart.success}"
+      },
+      "warning": {
+        "var|=sysChart": "{sys.chart.warning}"
+      },
+      "onPrimary": {
+        "var|=sysChart": "{sys.chart.onPrimary}"
+      },
+      "onSecondary": {
+        "var|=sysChart": "{sys.chart.onSecondary}"
+      },
+      "onBackground": {
+        "var|=sysChart": "{sys.chart.onBackground}"
+      },
+      "onSurface": {
+        "var|=sysChart": "{sys.chart.onSurface}"
+      },
+      "onError": {
+        "var|=sysChart": "{sys.chart.onError}"
+      },
+      "var|border": {
+        "var|=sysChart": "{sys.chart.border}"
+      },
+      "red": {
+        "var|=sysChart": "{sys.chart.red}"
+      },
+      "redVariant": {
+        "var|=sysChart": "{sys.chart.redVariant}"
+      },
+      "pink": {
+        "var|=sysChart": "{sys.chart.pink}"
+      },
+      "pinkVariant": {
+        "var|=sysChart": "{sys.chart.pinkVariant}"
+      },
+      "purple": {
+        "var|=sysChart": "{sys.chart.purple}"
+      },
+      "purpleVariant": {
+        "var|=sysChart": "{sys.chart.purpleVariant}"
+      },
+      "deepPurple": {
+        "var|=sysChart": "{sys.chart.deepPurple}"
+      },
+      "deepPurpleVariant": {
+        "var|=sysChart": "{sys.chart.deepPurpleVariant}"
+      },
+      "indigo": {
+        "var|=sysChart": "{sys.chart.indigo}"
+      },
+      "indigoVariant": {
+        "var|=sysChart": "{sys.chart.indigoVariant}"
+      },
+      "blue": {
+        "var|=sysChart": "{sys.chart.blue}"
+      },
+      "blueVariant": {
+        "var|=sysChart": "{sys.chart.blueVariant}"
+      },
+      "lightBlue": {
+        "var|=sysChart": "{sys.chart.lightBlue}"
+      },
+      "lightBlueVariant": {
+        "var|=sysChart": "{sys.chart.lightBlueVariant}"
+      },
+      "cyan": {
+        "var|=sysChart": "{sys.chart.cyan}"
+      },
+      "cyanVariant": {
+        "var|=sysChart": "{sys.chart.cyanVariant}"
+      },
+      "teal": {
+        "var|=sysChart": "{sys.chart.teal}"
+      },
+      "tealVariant": {
+        "var|=sysChart": "{sys.chart.tealVariant}"
+      },
+      "green": {
+        "var|=sysChart": "{sys.chart.green}"
+      },
+      "greenVariant": {
+        "var|=sysChart": "{sys.chart.greenVariant}"
+      },
+      "lightGreen": {
+        "var|=sysChart": "{sys.chart.lightGreen}"
+      },
+      "lightGreenVariant": {
+        "var|=sysChart": "{sys.chart.lightGreenVariant}"
+      },
+      "lime": {
+        "var|=sysChart": "{sys.chart.lime}"
+      },
+      "limeVariant": {
+        "var|=sysChart": "{sys.chart.limeVariant}"
+      },
+      "yellow": {
+        "var|=sysChart": "{sys.chart.yellow}"
+      },
+      "yellowVariant": {
+        "var|=sysChart": "{sys.chart.yellowVariant}"
+      },
+      "amber": {
+        "var|=sysChart": "{sys.chart.amber}"
+      },
+      "amberVariant": {
+        "var|=sysChart": "{sys.chart.amberVariant}"
+      },
+      "orange": {
+        "var|=sysChart": "{sys.chart.orange}"
+      },
+      "orangeVariant": {
+        "var|=sysChart": "{sys.chart.orangeVariant}"
+      },
+      "deepOrange": {
+        "var|=sysChart": "{sys.chart.deepOrange}"
+      },
+      "deepOrangeVariant": {
+        "var|=sysChart": "{sys.chart.deepOrangeVariant}"
+      },
+      "brown": {
+        "var|=sysChart": "{sys.chart.brown}"
+      },
+      "brownVariant": {
+        "var|=sysChart": "{sys.chart.brownVariant}"
+      },
+      "grey": {
+        "var|=sysChart": "{sys.chart.grey}"
+      },
+      "greyVariant": {
+        "var|=sysChart": "{sys.chart.greyVariant}"
+      },
+      "greyBlue": {
+        "var|=sysChart": "{sys.chart.greyBlue}"
+      },
+      "greyBlueVariant": {
+        "var|=sysChart": "{sys.chart.greyBlueVariant}"
+      },
+      "white": {
+        "var|=sysChart": "{sys.chart.white}"
+      },
+      "black": {
+        "var|=sysChart": "{sys.chart.black}"
+      }
+    },
     "section|grid": {
       "gridTemplateColumns": "repeat({ref.grid.xs}, minmax(0, 1fr))",
       "columnGap": "{ref.gap.xs}",

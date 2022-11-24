@@ -6,7 +6,13 @@
 @import "../position";
 
 @mixin mixinPropertyValue($index, $value) {
-  @if ($index == 'color') {
+  @if ($index == 'chart') {
+    @include mixinChart(#{$value});
+  } @else if ($index == 'chart-color') {
+    @include mixinChartColor(#{$value});
+  } @else if ($index == 'chart-background') {
+    @include mixinChartBackground(#{$value});
+  } @else if ($index == 'color') {
     @include mixinColor(#{$value});
   } @else if ($index == 'color-opacity') {
     @include mixinColorOpacity(#{$value});

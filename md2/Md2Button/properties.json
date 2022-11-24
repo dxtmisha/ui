@@ -2,8 +2,16 @@
   "md2": {
     "button": {
       "@style": "{d.button}",
+      "var|_chart": "{sys.chart.primary}",
       "var|_minWidth": "{ref.spacing.20}",
       "var|_padding": "{ref.spacing.4}",
+      "appearance": {
+        "text": {
+        },
+        "textColor": {
+          "chart-color": "{??_chart}"
+        }
+      },
       "height": {
         "sm": "{ref.spacing.8}",
         "md": "{ref.spacing.9}",

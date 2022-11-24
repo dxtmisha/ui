@@ -1,10 +1,13 @@
 {
   "d": {
     "button": {
+      "var|_chart": "#000000",
       "var|_minWidth": "64px",
       "var|_padding": "16px",
+      "var|_textColor": "unset",
       "@flex": "{d.flex.inlineCenter}",
       "@select": "{d.selectNone}",
+      "color": "{??_textColor}",
       "max-width": "100%",
       "min-width": "{??_minWidth}",
       "padding-x": "{??_padding}",
