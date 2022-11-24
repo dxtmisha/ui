@@ -81,6 +81,7 @@
   body {
     @include mixinColor($color, $colorOpacity);
     @include mixinBackground($background, $backgroundOpacity);
+    @include mixinBackgroundGradient(#ffffff, 0);
   }
 
   img {

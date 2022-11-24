@@ -104,15 +104,36 @@
 }
 
 @mixin mixinBackgroundAsColor() {
-  @include initColor;
+  @include mixinBackground(#{var(--sys-color)}, #{var(--sys-color-opacity)});
 }
 
 @mixin initBackground() {
   background-color: rgba(var(--sys-background), var(--sys-background-opacity));
 }
 
+@mixin mixinBackgroundGradient($color, $opacity: null) {
+  --sys-background-gradient: #{toColorRBG($color)};
+  @include mixinBackgroundGradientOpacity(getOpacity($color, $opacity));
+}
+
+@mixin mixinBackgroundGradientOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-background-gradient-opacity: #{$opacity};
+  }
+
+  @include initBackgroundGradient;
+}
+
+@mixin mixinBackgroundGradientAsBackground() {
+  @include mixinBackgroundGradient(#{var(--sys-background)}, #{var(--sys-background-opacity)});
+}
+
+@mixin mixinBackgroundGradientAsColor() {
+  @include mixinBackgroundGradient(#{var(--sys-color)}, #{var(--sys-color-opacity)});
+}
+
 @mixin initBackgroundGradient() {
-  background-image: #{toGradient(#{rgba(var(--sys-background), var(--sys-background-opacity))})};
+  background-image: #{toGradient(#{rgba(var(--sys-background-gradient), var(--sys-background-gradient-opacity))})};
 }
 
 @mixin mixinFill($color, $opacity: null) {

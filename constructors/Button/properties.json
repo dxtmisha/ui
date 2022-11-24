@@ -4,17 +4,22 @@
       "var|_chart": "#000000",
       "var|_minWidth": "64px",
       "var|_padding": "16px",
-      "var|_textColor": "unset",
+      "var|_hoverBackground": "{??_chart}",
+      "var|_hoverBackgroundOpacity": "0.04",
       "@flex": "{d.flex.inlineCenter}",
       "@select": "{d.selectNone}",
+      "background-gradient": "{??_hoverBackground}",
       "color": "{??_textColor}",
       "max-width": "100%",
       "min-width": "{??_minWidth}",
       "padding-x": "{??_padding}",
       "position": "relative",
-      "transition-property": "color, background-color, box-shadow",
+      "transition-property": "color, background, box-shadow",
       "align": {
         "@style": "{d.font.align}"
+      },
+      ":hover": {
+        "background-gradient-opacity": "{??_hoverBackgroundOpacity}"
       },
       "#text": {
         "@flex": "{d.flex.dynamic}"

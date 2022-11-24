@@ -25,6 +25,8 @@
   "background-blend-mode",
   "background-clip",
   "background-color",
+  "background-gradient",
+  "background-gradient-opacity",
   "background-image",
   "background-origin",
   "background-opacity",

@@ -20,6 +20,10 @@
     @include mixinBackground(#{$value});
   } @else if ($index == 'background-opacity') {
     @include mixinBackgroundOpacity(#{$value});
+  } @else if ($index == 'background-gradient') {
+    @include mixinBackgroundGradient(#{$value});
+  } @else if ($index == 'background-gradient-opacity') {
+    @include mixinBackgroundGradientOpacity(#{$value});
   } @else if ($index == 'fill') {
     @include mixinFill(#{$value});
   } @else if ($index == 'fill-opacity') {
