@@ -852,6 +852,9 @@
         "warning": {
           "value": "{ref.palette.yellow.{sys.shade.variant}}"
         },
+        "var|disabled": {
+          "value": "{ref.palette.black}"
+        },
         "onPrimary": {
           "value": "{ref.palette.white}"
         },

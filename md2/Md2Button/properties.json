@@ -4,6 +4,7 @@
       "@style": "{d.button}",
       "var|_palette": "=var(--sys-palette, {sys.palette.primary})",
       "var|_paletteVariant": "{sys.palette.primaryVariant}",
+      "var|_paletteDisabled": "{sys.palette.disabled}",
       "var|_backgroundActiveOpacity": "{sys.opacity.dragged}",
       "var|_backgroundFocusOpacity": "{sys.opacity.focus}",
       "var|_backgroundHoverOpacity": "{sys.opacity.hover}",
@@ -25,7 +26,13 @@
           "var|_backgroundStatus": "{sys.palette.onPrimary}",
           "var|_shadow": "{sys.elevation.shadow.2}",
           "var|_shadowActive": "{sys.elevation.shadow.8}",
-          "var|_shadowDragged": "{sys.elevation.shadow.8}"
+          "var|_shadowDragged": "{sys.elevation.shadow.8}",
+          "??--disabled": {
+            "var|_text": "{sys.palette.onSurface}",
+            "var|_textOpacity": "{sys.opacity.surface.disabled}",
+            "var|_backgroundOpacity": "{sys.opacity.disabled}",
+            "var|_shadow": "none"
+          }
         },
         "text": {
           "var|_text": "{??_palette}",
@@ -41,6 +48,9 @@
       },
       "dragged": {
         "@style": "{??shadowActive}"
+      },
+      "disabled": {
+
       },
       "height": {
         "sm": "{ref.spacing.8}",

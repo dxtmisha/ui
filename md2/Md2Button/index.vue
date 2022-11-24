@@ -1,5 +1,9 @@
 <template lang="pug">
-component(:is="tag" :class="classes.main")
+component(
+  :is="tag"
+  :class="classes.main"
+  :disabled="disabled"
+)
   span(:class="classes.text") {{ text }}
     slot
 </template>

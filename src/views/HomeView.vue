@@ -107,12 +107,14 @@
   <md2-button text="5" selected/>
   <md2-button text="6" align="left" rounded="full"/>
   <md2-button text="readonly" align="right" rounded="standard" readonly/>
+  <md2-button text="disabled" align="right" rounded="standard" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="button 8" palette="red" height="sm" rounded="sm" appearance="text"/>
   <md2-button text="readonly" appearance="text" rounded="lg" readonly/>
   <md2-button text="button 10" height="lg" appearance="text" rounded="xl" selected/>
   <md2-button text="button 11" height="lg" appearance="text" rounded="none" dragged/>
+  <md2-button text="disabled" height="lg" appearance="text" disabled/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">

@@ -3,8 +3,11 @@
     "button": {
       "var|_palette": "#000000",
       "var|_paletteVariant": "#000000",
+      "var|_paletteDisabled": "#000000",
       "var|_text": "unset",
       "var|_textOpacity": "unset",
+      "var|_textDisabled": "unset",
+      "var|_textDisabledOpacity": "unset",
       "var|_background": "{??_palette}",
       "var|_backgroundOpacity": "0",
       "var|_backgroundStatus": "{??_palette}",
@@ -89,7 +92,12 @@
         "var|_shadowActive": "{??_shadow} !important",
         "var|_shadowDragged": "{??_shadow} !important",
         "var|_shadowFocus": "{??_shadow} !important",
-        "var|_shadowHover": "{??_shadow} !important"
+        "var|_shadowHover": "{??_shadow} !important",
+        "cursor": "default"
+      },
+      "section|disabled": {
+        "@style": "{??readonly}",
+        "var|_palette": "{??_paletteDisabled}"
       },
       "#text": {
         "@flex": "{d.flex.dynamic}"
