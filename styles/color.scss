@@ -42,18 +42,18 @@
   }
 }
 
-@mixin mixinChart($color) {
-  --sys-_chart: var(--sys-chart, #{toColorRBG($color)});
+@mixin mixinPalette($color) {
+  --sys-_palette: var(--sys-palette, #{toColorRBG($color)});
 }
 
-@mixin mixinChartColor($color) {
-  @include mixinChart($color);
-  @include mixinColor(#{var(--sys-_chart)});
+@mixin mixinPaletteColor($color) {
+  @include mixinPalette($color);
+  @include mixinColor(#{var(--sys-_palette)});
 }
 
-@mixin mixinChartBackground($color) {
-  @include mixinChart($color);
-  @include mixinBackground(#{var(--sys-_chart)});
+@mixin mixinPaletteBackground($color) {
+  @include mixinPalette($color);
+  @include mixinBackground(#{var(--sys-_palette)});
 }
 
 @mixin mixinColor($color, $opacity: null) {

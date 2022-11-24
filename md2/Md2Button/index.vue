@@ -6,7 +6,7 @@ component(:is="tag" :class="classes.main")
 
 <script lang="ts">
 import { ButtonComponent } from './ButtonComponent'
-import { props } from '../../constructors/Button/props'
+import { props } from './props'
 
 export default {
   name: 'Md2Button',

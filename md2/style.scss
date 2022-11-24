@@ -6,10 +6,10 @@
   $name: 'md2';
   @include initPropertiesService($name, ('ref', 'sys'));
   @include classesInitService($name, (
-          'chart',
           'grid',
           'elevation',
           'font',
+          'palette',
           'rounded',
           'dark'
   ));
@@ -24,10 +24,11 @@
   @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone");
 
   @include initTypographyService(
-                  #{var(--md2-sys-chart-on-secondary)},
+                  #{var(--md2-sys-palette-on-secondary)},
                   #{var(--md2-sys-opacity-surface-high)},
                   #{var(--md2-sys-elevation-background-0)},
-                  #{var(--md2-sys-chart-on-surface)},
+                  '1',
+                  #{var(--md2-sys-palette-on-surface)},
                   #{var(--md2-sys-opacity-border)}
   );
   @include initMd2Service();

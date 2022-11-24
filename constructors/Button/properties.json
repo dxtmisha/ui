@@ -1,18 +1,18 @@
 {
   "d": {
     "button": {
-      "var|_chart": "#000000",
-      "var|_chartVariant": "#000000",
+      "var|_palette": "#000000",
+      "var|_paletteVariant": "#000000",
       "var|_text": "unset",
       "var|_textOpacity": "unset",
-      "var|_background": "{??_chart}",
+      "var|_background": "{??_palette}",
       "var|_backgroundOpacity": "0",
-      "var|_backgroundStatus": "{??_chart}",
+      "var|_backgroundStatus": "{??_palette}",
       "var|_backgroundStatusOpacity": "0",
       "var|_backgroundHoverOpacity": "0.04",
       "var|_backgroundActiveOpacity": "0.08",
       "var|_backgroundFocusOpacity": "0.12",
-      "var|_border": "{??_chart}",
+      "var|_border": "{??_palette}",
       "var|_borderOpacity": "0",
       "var|_borderWidth": "1px",
       "var|_minWidth": "64px",

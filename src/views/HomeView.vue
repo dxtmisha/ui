@@ -109,7 +109,7 @@
   <md2-button text="7" align="right" rounded="standard"/>
 </div>
 <div class="flex items-center gap-2">
-  <md2-button text="button 8" height="sm" rounded="sm" appearance="text"/>
+  <md2-button text="button 8" palette="red" height="sm" rounded="sm" appearance="text"/>
   <md2-button text="button 9" appearance="text" rounded="lg"/>
   <md2-button text="button 10" height="lg" appearance="text" rounded="xl"/>
   <md2-button text="button 11" height="lg" appearance="text" rounded="none"/>

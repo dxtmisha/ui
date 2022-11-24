@@ -202,7 +202,274 @@
           "value": "{ref.spacing.8}"
         }
       },
-      "chart": {
+      "shade": {
+        "0": {
+          "value": "50"
+        },
+        "1": {
+          "value": "100"
+        },
+        "2": {
+          "value": "200"
+        },
+        "3": {
+          "value": "300"
+        },
+        "4": {
+          "value": "400"
+        },
+        "5": {
+          "value": "500"
+        },
+        "6": {
+          "value": "600"
+        },
+        "7": {
+          "value": "700"
+        },
+        "8": {
+          "value": "800"
+        },
+        "9": {
+          "value": "900"
+        }
+      },
+      "opacity": {
+        "0": {
+          "value": "0"
+        },
+        "2": {
+          "value": "0.02"
+        },
+        "4": {
+          "value": "0.04"
+        },
+        "8": {
+          "value": "0.08"
+        },
+        "10": {
+          "value": "0.10"
+        },
+        "12": {
+          "value": "0.12"
+        },
+        "16": {
+          "value": "0.16"
+        },
+        "24": {
+          "value": "0.24"
+        },
+        "100": {
+          "value": "1"
+        },
+        "primary": {
+          "high": "1",
+          "medium": "0.74",
+          "disabled": "0.38"
+        },
+        "surface": {
+          "high": "0.87",
+          "medium": "0.60",
+          "disabled": "0.38"
+        }
+      },
+      "elevation": {
+        "background": {
+          "white": "{ref.palette.white}",
+          "dark": {
+            "0": "rga(18, 18, 18)",
+            "1": "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), #121212",
+            "2": "linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212",
+            "3": "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), #121212",
+            "4": "linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212",
+            "6": "linear-gradient(0deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11)), #121212",
+            "8": "linear-gradient(0deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), #121212",
+            "12": "linear-gradient(0deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14)), #121212",
+            "16": "linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), #121212",
+            "24": "linear-gradient(0deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.16)), #121212"
+          }
+        },
+        "shadow": {
+          "0": "none",
+          "1": "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
+          "2": "0px 2px 2px rgba(0, 0, 0, 0.14), 0px 3px 1px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)",
+          "3": "0px 3px 4px rgba(0, 0, 0, 0.14), 0px 3px 3px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.2)",
+          "4": "0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2)",
+          "6": "0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2)",
+          "8": "0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2)",
+          "12": "0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2)",
+          "16": "0px 16px 24px rgba(0, 0, 0, 0.14), 0px 6px 30px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.2)",
+          "24": "0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2)"
+        },
+        "index": {
+          "0": {
+            "value": "0"
+          },
+          "1": {
+            "value": "100"
+          },
+          "2": {
+            "value": "200"
+          },
+          "3": {
+            "value": "300"
+          },
+          "4": {
+            "value": "400"
+          },
+          "6": {
+            "value": "600"
+          },
+          "8": {
+            "value": "800"
+          },
+          "12": {
+            "value": "1200"
+          },
+          "16": {
+            "value": "1600"
+          },
+          "24": {
+            "value": "2400"
+          }
+        }
+      },
+      "font": {
+        "family": {
+          "basic": {
+            "value": "'Roboto'"
+          }
+        },
+        "size": {
+          "xs": {
+            "value": "{ref.spacing.px}*10"
+          },
+          "sm": {
+            "value": "{ref.spacing.px}*12"
+          },
+          "md": {
+            "value": "{ref.spacing.px}*14"
+          },
+          "lg": {
+            "value": "{ref.spacing.px}*16"
+          },
+          "xl": {
+            "value": "{ref.spacing.px}*20"
+          },
+          "headline": {
+            "1": {
+              "value": "{ref.spacing.px}*96"
+            },
+            "2": {
+              "value": "{ref.spacing.px}*60"
+            },
+            "3": {
+              "value": "{ref.spacing.px}*48"
+            },
+            "4": {
+              "value": "{ref.spacing.px}*34"
+            },
+            "5": {
+              "value": "{ref.spacing.px}*24"
+            },
+            "6": {
+              "value": "{ref.spacing.px}*20"
+            }
+          }
+        },
+        "weight": {
+          "lighter": {
+            "value": "300"
+          },
+          "normal": {
+            "value": "400"
+          },
+          "bold": {
+            "value": "500"
+          }
+        }
+      },
+      "letterSpacing": {
+        "xs": {
+          "value": "{ref.spacing.px}*.1"
+        },
+        "sm": {
+          "value": "{ref.spacing.px}*.15"
+        },
+        "md": {
+          "value": "{ref.spacing.px}*.25"
+        },
+        "lg": {
+          "value": "{ref.spacing.px}*.4"
+        },
+        "xl": {
+          "value": "{ref.spacing.px}*.5"
+        },
+        "2xl": {
+          "value": "{ref.spacing.px}*1.25"
+        },
+        "3xl": {
+          "value": "{ref.spacing.px}*1.5"
+        },
+        "headline": {
+          "1": {
+            "value": "{ref.spacing.px}*-1.5"
+          },
+          "2": {
+            "value": "{ref.spacing.px}*-0.5"
+          },
+          "3": {
+            "value": "0"
+          },
+          "4": {
+            "value": "0"
+          },
+          "5": {
+            "value": "{ref.spacing.px}*.18"
+          },
+          "6": {
+            "value": "{ref.spacing.px}*.15"
+          }
+        },
+        "none": {
+          "value": "0"
+        }
+      },
+      "lineHeight": {
+        "sm": {
+          "value": "{ref.spacing.4}"
+        },
+        "md": {
+          "value": "{ref.spacing.5}"
+        },
+        "lg": {
+          "value": "{ref.spacing.6}"
+        },
+        "xl": {
+          "value": "{ref.spacing.7}"
+        },
+        "headline": {
+          "1": {
+            "value": "{ref.spacing.px}*112"
+          },
+          "2": {
+            "value": "{ref.spacing.px}*72"
+          },
+          "3": {
+            "value": "{ref.spacing.px}*56"
+          },
+          "4": {
+            "value": "{ref.spacing.px}*36"
+          },
+          "5": {
+            "value": "{ref.spacing.px}*24"
+          },
+          "6": {
+            "value": "{ref.spacing.px}*24"
+          }
+        }
+      },
+      "palette": {
         "red": {
           "50": "#ffebee",
           "100": "#ffcdd2",
@@ -435,273 +702,6 @@
         "black": "#000000",
         "blackLight": "#121212"
       },
-      "shade": {
-        "0": {
-          "value": "50"
-        },
-        "1": {
-          "value": "100"
-        },
-        "2": {
-          "value": "200"
-        },
-        "3": {
-          "value": "300"
-        },
-        "4": {
-          "value": "400"
-        },
-        "5": {
-          "value": "500"
-        },
-        "6": {
-          "value": "600"
-        },
-        "7": {
-          "value": "700"
-        },
-        "8": {
-          "value": "800"
-        },
-        "9": {
-          "value": "900"
-        }
-      },
-      "opacity": {
-        "0": {
-          "value": "0"
-        },
-        "2": {
-          "value": "0.02"
-        },
-        "4": {
-          "value": "0.04"
-        },
-        "8": {
-          "value": "0.08"
-        },
-        "10": {
-          "value": "0.10"
-        },
-        "12": {
-          "value": "0.12"
-        },
-        "16": {
-          "value": "0.16"
-        },
-        "24": {
-          "value": "0.24"
-        },
-        "100": {
-          "value": "1"
-        },
-        "primary": {
-          "high": "1",
-          "medium": "0.74",
-          "disabled": "0.38"
-        },
-        "surface": {
-          "high": "0.87",
-          "medium": "0.60",
-          "disabled": "0.38"
-        }
-      },
-      "elevation": {
-        "background": {
-          "white": "{ref.chart.white}",
-          "dark": {
-            "0": "rga(18, 18, 18)",
-            "1": "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), #121212",
-            "2": "linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212",
-            "3": "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), #121212",
-            "4": "linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212",
-            "6": "linear-gradient(0deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11)), #121212",
-            "8": "linear-gradient(0deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), #121212",
-            "12": "linear-gradient(0deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14)), #121212",
-            "16": "linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), #121212",
-            "24": "linear-gradient(0deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.16)), #121212"
-          }
-        },
-        "shadow": {
-          "0": "none",
-          "1": "0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2)",
-          "2": "0px 2px 2px rgba(0, 0, 0, 0.14), 0px 3px 1px rgba(0, 0, 0, 0.12), 0px 1px 5px rgba(0, 0, 0, 0.2)",
-          "3": "0px 3px 4px rgba(0, 0, 0, 0.14), 0px 3px 3px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.2)",
-          "4": "0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2)",
-          "6": "0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2)",
-          "8": "0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2)",
-          "12": "0px 12px 17px rgba(0, 0, 0, 0.14), 0px 5px 22px rgba(0, 0, 0, 0.12), 0px 7px 8px rgba(0, 0, 0, 0.2)",
-          "16": "0px 16px 24px rgba(0, 0, 0, 0.14), 0px 6px 30px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.2)",
-          "24": "0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2)"
-        },
-        "index": {
-          "0": {
-            "value": "0"
-          },
-          "1": {
-            "value": "100"
-          },
-          "2": {
-            "value": "200"
-          },
-          "3": {
-            "value": "300"
-          },
-          "4": {
-            "value": "400"
-          },
-          "6": {
-            "value": "600"
-          },
-          "8": {
-            "value": "800"
-          },
-          "12": {
-            "value": "1200"
-          },
-          "16": {
-            "value": "1600"
-          },
-          "24": {
-            "value": "2400"
-          }
-        }
-      },
-      "font": {
-        "family": {
-          "basic": {
-            "value": "'Roboto'"
-          }
-        },
-        "size": {
-          "xs": {
-            "value": "{ref.spacing.px}*10"
-          },
-          "sm": {
-            "value": "{ref.spacing.px}*12"
-          },
-          "md": {
-            "value": "{ref.spacing.px}*14"
-          },
-          "lg": {
-            "value": "{ref.spacing.px}*16"
-          },
-          "xl": {
-            "value": "{ref.spacing.px}*20"
-          },
-          "headline": {
-            "1": {
-              "value": "{ref.spacing.px}*96"
-            },
-            "2": {
-              "value": "{ref.spacing.px}*60"
-            },
-            "3": {
-              "value": "{ref.spacing.px}*48"
-            },
-            "4": {
-              "value": "{ref.spacing.px}*34"
-            },
-            "5": {
-              "value": "{ref.spacing.px}*24"
-            },
-            "6": {
-              "value": "{ref.spacing.px}*20"
-            }
-          }
-        },
-        "weight": {
-          "lighter": {
-            "value": "300"
-          },
-          "normal": {
-            "value": "400"
-          },
-          "bold": {
-            "value": "500"
-          }
-        }
-      },
-      "letterSpacing": {
-        "xs": {
-          "value": "{ref.spacing.px}*.1"
-        },
-        "sm": {
-          "value": "{ref.spacing.px}*.15"
-        },
-        "md": {
-          "value": "{ref.spacing.px}*.25"
-        },
-        "lg": {
-          "value": "{ref.spacing.px}*.4"
-        },
-        "xl": {
-          "value": "{ref.spacing.px}*.5"
-        },
-        "2xl": {
-          "value": "{ref.spacing.px}*1.25"
-        },
-        "3xl": {
-          "value": "{ref.spacing.px}*1.5"
-        },
-        "headline": {
-          "1": {
-            "value": "{ref.spacing.px}*-1.5"
-          },
-          "2": {
-            "value": "{ref.spacing.px}*-0.5"
-          },
-          "3": {
-            "value": "0"
-          },
-          "4": {
-            "value": "0"
-          },
-          "5": {
-            "value": "{ref.spacing.px}*.18"
-          },
-          "6": {
-            "value": "{ref.spacing.px}*.15"
-          }
-        },
-        "none": {
-          "value": "0"
-        }
-      },
-      "lineHeight": {
-        "sm": {
-          "value": "{ref.spacing.4}"
-        },
-        "md": {
-          "value": "{ref.spacing.5}"
-        },
-        "lg": {
-          "value": "{ref.spacing.6}"
-        },
-        "xl": {
-          "value": "{ref.spacing.7}"
-        },
-        "headline": {
-          "1": {
-            "value": "{ref.spacing.px}*112"
-          },
-          "2": {
-            "value": "{ref.spacing.px}*72"
-          },
-          "3": {
-            "value": "{ref.spacing.px}*56"
-          },
-          "4": {
-            "value": "{ref.spacing.px}*36"
-          },
-          "5": {
-            "value": "{ref.spacing.px}*24"
-          },
-          "6": {
-            "value": "{ref.spacing.px}*24"
-          }
-        }
-      },
       "rounded": {
         "0": {
           "value": "0"
@@ -739,396 +739,6 @@
         "dark": {
           "normal": "{ref.shade.2}",
           "variant": "{ref.shade.7}"
-        }
-      },
-      "chart": {
-        "primary": {
-          "value": "{ref.chart.blue.{sys.shade.normal}}"
-        },
-        "primaryVariant": {
-          "value": "{ref.chart.blue.{sys.shade.variant}}"
-        },
-        "secondary": {
-          "value": "{ref.chart.amber.{sys.shade.normal}}"
-        },
-        "secondaryVariant": {
-          "value": "{ref.chart.amber.{sys.shade.variant}}"
-        },
-        "var|background": {
-          "value": "{ref.chart.white}"
-        },
-        "surface": {
-          "value": "{ref.chart.white}"
-        },
-        "error": {
-          "value": "{ref.chart.red.{sys.shade.variant}}"
-        },
-        "success": {
-          "value": "{ref.chart.green.{sys.shade.variant}}"
-        },
-        "warning": {
-          "value": "{ref.chart.yellow.{sys.shade.variant}}"
-        },
-        "onPrimary": {
-          "value": "{ref.chart.white}"
-        },
-        "onSecondary": {
-          "value": "{ref.chart.black}"
-        },
-        "onBackground": {
-          "value": "{ref.chart.black}"
-        },
-        "onSurface": {
-          "value": "{ref.chart.black}"
-        },
-        "onError": {
-          "value": "{ref.chart.white}"
-        },
-        "var|border": {
-          "value": "{ref.chart.black}"
-        },
-        "red": {
-          "value": "{ref.chart.red.{sys.shade.normal}}"
-        },
-        "redVariant": {
-          "value": "{ref.chart.red.{sys.shade.variant}}"
-        },
-        "pink": {
-          "value": "{ref.chart.pink.{sys.shade.normal}}"
-        },
-        "pinkVariant": {
-          "value": "{ref.chart.pink.{sys.shade.variant}}"
-        },
-        "purple": {
-          "value": "{ref.chart.purple.{sys.shade.normal}}"
-        },
-        "purpleVariant": {
-          "value": "{ref.chart.purple.{sys.shade.variant}}"
-        },
-        "deepPurple": {
-          "value": "{ref.chart.deepPurple.{sys.shade.normal}}"
-        },
-        "deepPurpleVariant": {
-          "value": "{ref.chart.deepPurple.{sys.shade.variant}}"
-        },
-        "indigo": {
-          "value": "{ref.chart.indigo.{sys.shade.normal}}"
-        },
-        "indigoVariant": {
-          "value": "{ref.chart.indigo.{sys.shade.variant}}"
-        },
-        "blue": {
-          "value": "{ref.chart.blue.{sys.shade.normal}}"
-        },
-        "blueVariant": {
-          "value": "{ref.chart.blue.{sys.shade.variant}}"
-        },
-        "lightBlue": {
-          "value": "{ref.chart.lightBlue.{sys.shade.normal}}"
-        },
-        "lightBlueVariant": {
-          "value": "{ref.chart.lightBlue.{sys.shade.variant}}"
-        },
-        "cyan": {
-          "value": "{ref.chart.cyan.{sys.shade.normal}}"
-        },
-        "cyanVariant": {
-          "value": "{ref.chart.cyan.{sys.shade.variant}}"
-        },
-        "teal": {
-          "value": "{ref.chart.teal.{sys.shade.normal}}"
-        },
-        "tealVariant": {
-          "value": "{ref.chart.teal.{sys.shade.variant}}"
-        },
-        "green": {
-          "value": "{ref.chart.green.{sys.shade.normal}}"
-        },
-        "greenVariant": {
-          "value": "{ref.chart.green.{sys.shade.variant}}"
-        },
-        "lightGreen": {
-          "value": "{ref.chart.lightGreen.{sys.shade.normal}}"
-        },
-        "lightGreenVariant": {
-          "value": "{ref.chart.lightGreen.{sys.shade.variant}}"
-        },
-        "lime": {
-          "value": "{ref.chart.lime.{sys.shade.normal}}"
-        },
-        "limeVariant": {
-          "value": "{ref.chart.lime.{sys.shade.variant}}"
-        },
-        "yellow": {
-          "value": "{ref.chart.yellow.{sys.shade.normal}}"
-        },
-        "yellowVariant": {
-          "value": "{ref.chart.yellow.{sys.shade.variant}}"
-        },
-        "amber": {
-          "value": "{ref.chart.amber.{sys.shade.normal}}"
-        },
-        "amberVariant": {
-          "value": "{ref.chart.amber.{sys.shade.variant}}"
-        },
-        "orange": {
-          "value": "{ref.chart.orange.{sys.shade.normal}}"
-        },
-        "orangeVariant": {
-          "value": "{ref.chart.orange.{sys.shade.variant}}"
-        },
-        "deepOrange": {
-          "value": "{ref.chart.deepOrange.{sys.shade.normal}}"
-        },
-        "deepOrangeVariant": {
-          "value": "{ref.chart.deepOrange.{sys.shade.variant}}"
-        },
-        "brown": {
-          "value": "{ref.chart.brown.{sys.shade.normal}}"
-        },
-        "brownVariant": {
-          "value": "{ref.chart.brown.{sys.shade.variant}}"
-        },
-        "grey": {
-          "value": "{ref.chart.grey.{sys.shade.normal}}"
-        },
-        "greyVariant": {
-          "value": "{ref.chart.grey.{sys.shade.variant}}"
-        },
-        "greyBlue": {
-          "value": "{ref.chart.greyBlue.{sys.shade.normal}}"
-        },
-        "greyBlueVariant": {
-          "value": "{ref.chart.greyBlue.{sys.shade.variant}}"
-        },
-        "white": {
-          "value": "{ref.chart.white}"
-        },
-        "black": {
-          "value": "{ref.chart.black}"
-        },
-        "dark": {
-          "primary": {
-            "value": "{ref.chart.blue.{sys.shade.dark.normal}}"
-          },
-          "primaryVariant": {
-            "value": "{ref.chart.blue.{sys.shade.dark.variant}}"
-          },
-          "secondary": {
-            "value": "{ref.chart.amber.{sys.shade.dark.normal}}"
-          },
-          "secondaryVariant": {
-            "value": "{ref.chart.amber.{sys.shade.dark.variant}}"
-          },
-          "var|background": {
-            "value": "{ref.chart.blackLight}"
-          },
-          "surface": {
-            "value": "{ref.chart.blackLight}"
-          },
-          "error": {
-            "value": "{ref.chart.red.{sys.shade.dark.variant}}"
-          },
-          "success": {
-            "value": "{ref.chart.green.{sys.shade.dark.variant}}"
-          },
-          "warning": {
-            "value": "{ref.chart.yellow.{sys.shade.dark.variant}}"
-          },
-          "onPrimary": {
-            "value": "{ref.chart.black}"
-          },
-          "onSecondary": {
-            "value": "{ref.chart.black}"
-          },
-          "onBackground": {
-            "value": "{ref.chart.white}"
-          },
-          "onSurface": {
-            "value": "{ref.chart.white}"
-          },
-          "onError": {
-            "value": "{ref.chart.black}"
-          },
-          "var|border": {
-            "value": "{ref.chart.white}"
-          },
-          "red": {
-            "value": "{ref.chart.red.{sys.shade.dark.normal}}"
-          },
-          "redVariant": {
-            "value": "{ref.chart.red.{sys.shade.dark.variant}}"
-          },
-          "pink": {
-            "value": "{ref.chart.pink.{sys.shade.dark.normal}}"
-          },
-          "pinkVariant": {
-            "value": "{ref.chart.pink.{sys.shade.dark.variant}}"
-          },
-          "purple": {
-            "value": "{ref.chart.purple.{sys.shade.dark.normal}}"
-          },
-          "purpleVariant": {
-            "value": "{ref.chart.purple.{sys.shade.dark.variant}}"
-          },
-          "deepPurple": {
-            "value": "{ref.chart.deepPurple.{sys.shade.dark.normal}}"
-          },
-          "deepPurpleVariant": {
-            "value": "{ref.chart.deepPurple.{sys.shade.dark.variant}}"
-          },
-          "indigo": {
-            "value": "{ref.chart.indigo.{sys.shade.dark.normal}}"
-          },
-          "indigoVariant": {
-            "value": "{ref.chart.indigo.{sys.shade.dark.variant}}"
-          },
-          "blue": {
-            "value": "{ref.chart.blue.{sys.shade.dark.normal}}"
-          },
-          "blueVariant": {
-            "value": "{ref.chart.blue.{sys.shade.dark.variant}}"
-          },
-          "lightBlue": {
-            "value": "{ref.chart.lightBlue.{sys.shade.dark.normal}}"
-          },
-          "lightBlueVariant": {
-            "value": "{ref.chart.lightBlue.{sys.shade.dark.variant}}"
-          },
-          "cyan": {
-            "value": "{ref.chart.cyan.{sys.shade.dark.normal}}"
-          },
-          "cyanVariant": {
-            "value": "{ref.chart.cyan.{sys.shade.dark.variant}}"
-          },
-          "teal": {
-            "value": "{ref.chart.teal.{sys.shade.dark.normal}}"
-          },
-          "tealVariant": {
-            "value": "{ref.chart.teal.{sys.shade.dark.variant}}"
-          },
-          "green": {
-            "value": "{ref.chart.green.{sys.shade.dark.normal}}"
-          },
-          "greenVariant": {
-            "value": "{ref.chart.green.{sys.shade.dark.variant}}"
-          },
-          "lightGreen": {
-            "value": "{ref.chart.lightGreen.{sys.shade.dark.normal}}"
-          },
-          "lightGreenVariant": {
-            "value": "{ref.chart.lightGreen.{sys.shade.dark.variant}}"
-          },
-          "lime": {
-            "value": "{ref.chart.lime.{sys.shade.dark.normal}}"
-          },
-          "limeVariant": {
-            "value": "{ref.chart.lime.{sys.shade.dark.variant}}"
-          },
-          "yellow": {
-            "value": "{ref.chart.yellow.{sys.shade.dark.normal}}"
-          },
-          "yellowVariant": {
-            "value": "{ref.chart.yellow.{sys.shade.dark.variant}}"
-          },
-          "amber": {
-            "value": "{ref.chart.amber.{sys.shade.dark.normal}}"
-          },
-          "amberVariant": {
-            "value": "{ref.chart.amber.{sys.shade.dark.variant}}"
-          },
-          "orange": {
-            "value": "{ref.chart.orange.{sys.shade.dark.normal}}"
-          },
-          "orangeVariant": {
-            "value": "{ref.chart.orange.{sys.shade.dark.variant}}"
-          },
-          "deepOrange": {
-            "value": "{ref.chart.deepOrange.{sys.shade.dark.normal}}"
-          },
-          "deepOrangeVariant": {
-            "value": "{ref.chart.deepOrange.{sys.shade.dark.variant}}"
-          },
-          "brown": {
-            "value": "{ref.chart.brown.{sys.shade.dark.normal}}"
-          },
-          "brownVariant": {
-            "value": "{ref.chart.brown.{sys.shade.dark.variant}}"
-          },
-          "grey": {
-            "value": "{ref.chart.grey.{sys.shade.dark.normal}}"
-          },
-          "greyVariant": {
-            "value": "{ref.chart.grey.{sys.shade.dark.variant}}"
-          },
-          "greyBlue": {
-            "value": "{ref.chart.greyBlue.{sys.shade.dark.normal}}"
-          },
-          "greyBlueVariant": {
-            "value": "{ref.chart.greyBlue.{sys.shade.dark.variant}}"
-          },
-          "white": {
-            "value": "{ref.chart.white}"
-          },
-          "black": {
-            "value": "{ref.chart.blackLight}"
-          }
-        }
-      },
-      "opacity": {
-        "var|hover": {
-          "value": "{ref.opacity.4}"
-        },
-        "var|focus": {
-          "value": "{ref.opacity.12}"
-        },
-        "pressed": {
-          "value": "{ref.opacity.10}"
-        },
-        "dragged": {
-          "value": "{ref.opacity.8}"
-        },
-        "selected": {
-          "value": "{ref.opacity.8}"
-        },
-        "disabled": {
-          "value": "{ref.opacity.2}"
-        },
-        "var|border": {
-          "value": "{ref.opacity.12}"
-        },
-        "primary": {
-          "high": "{ref.opacity.primary.high}",
-          "medium": "{ref.opacity.primary.medium}",
-          "disabled": "{ref.opacity.primary.disabled}"
-        },
-        "surface": {
-          "high": "{ref.opacity.surface.high}",
-          "medium": "{ref.opacity.surface.medium}",
-          "disabled": "{ref.opacity.surface.disabled}"
-        }
-      },
-      "rounded": {
-        "none": {
-          "value": "{ref.rounded.0}"
-        },
-        "standard": {
-          "value": "{ref.rounded.1}"
-        },
-        "sm": {
-          "value": "{ref.rounded.1}"
-        },
-        "md": {
-          "value": "{ref.rounded.2}"
-        },
-        "lg": {
-          "value": "{ref.rounded.4}"
-        },
-        "xl": {
-          "value": "{ref.rounded.6}"
-        },
-        "full": {
-          "value": "{ref.rounded.full}"
         }
       },
       "elevation": {
@@ -1180,173 +790,396 @@
           "16": "{ref.elevation.index.16}",
           "24": "{ref.elevation.index.24}"
         }
-      }
-    },
-    "chart": {
-      "primary": {
-        "chart": "{sys.chart.primary}"
       },
-      "primaryVariant": {
-        "var|=sysChart": "{sys.chart.primaryVariant}"
+      "opacity": {
+        "var|hover": {
+          "value": "{ref.opacity.4}"
+        },
+        "var|focus": {
+          "value": "{ref.opacity.12}"
+        },
+        "pressed": {
+          "value": "{ref.opacity.10}"
+        },
+        "dragged": {
+          "value": "{ref.opacity.8}"
+        },
+        "selected": {
+          "value": "{ref.opacity.8}"
+        },
+        "disabled": {
+          "value": "{ref.opacity.2}"
+        },
+        "var|border": {
+          "value": "{ref.opacity.12}"
+        },
+        "primary": {
+          "high": "{ref.opacity.primary.high}",
+          "medium": "{ref.opacity.primary.medium}",
+          "disabled": "{ref.opacity.primary.disabled}"
+        },
+        "surface": {
+          "high": "{ref.opacity.surface.high}",
+          "medium": "{ref.opacity.surface.medium}",
+          "disabled": "{ref.opacity.surface.disabled}"
+        }
       },
-      "secondary": {
-        "var|=sysChart": "{sys.chart.secondary}"
+      "palette": {
+        "primary": {
+          "value": "{ref.palette.blue.{sys.shade.normal}}"
+        },
+        "primaryVariant": {
+          "value": "{ref.palette.blue.{sys.shade.variant}}"
+        },
+        "secondary": {
+          "value": "{ref.palette.amber.{sys.shade.normal}}"
+        },
+        "secondaryVariant": {
+          "value": "{ref.palette.amber.{sys.shade.variant}}"
+        },
+        "var|background": {
+          "value": "{ref.palette.white}"
+        },
+        "surface": {
+          "value": "{ref.palette.white}"
+        },
+        "error": {
+          "value": "{ref.palette.red.{sys.shade.variant}}"
+        },
+        "success": {
+          "value": "{ref.palette.green.{sys.shade.variant}}"
+        },
+        "warning": {
+          "value": "{ref.palette.yellow.{sys.shade.variant}}"
+        },
+        "onPrimary": {
+          "value": "{ref.palette.white}"
+        },
+        "onSecondary": {
+          "value": "{ref.palette.black}"
+        },
+        "onBackground": {
+          "value": "{ref.palette.black}"
+        },
+        "onSurface": {
+          "value": "{ref.palette.black}"
+        },
+        "onError": {
+          "value": "{ref.palette.white}"
+        },
+        "var|border": {
+          "value": "{ref.palette.black}"
+        },
+        "red": {
+          "value": "{ref.palette.red.{sys.shade.normal}}"
+        },
+        "redVariant": {
+          "value": "{ref.palette.red.{sys.shade.variant}}"
+        },
+        "pink": {
+          "value": "{ref.palette.pink.{sys.shade.normal}}"
+        },
+        "pinkVariant": {
+          "value": "{ref.palette.pink.{sys.shade.variant}}"
+        },
+        "purple": {
+          "value": "{ref.palette.purple.{sys.shade.normal}}"
+        },
+        "purpleVariant": {
+          "value": "{ref.palette.purple.{sys.shade.variant}}"
+        },
+        "deepPurple": {
+          "value": "{ref.palette.deepPurple.{sys.shade.normal}}"
+        },
+        "deepPurpleVariant": {
+          "value": "{ref.palette.deepPurple.{sys.shade.variant}}"
+        },
+        "indigo": {
+          "value": "{ref.palette.indigo.{sys.shade.normal}}"
+        },
+        "indigoVariant": {
+          "value": "{ref.palette.indigo.{sys.shade.variant}}"
+        },
+        "blue": {
+          "value": "{ref.palette.blue.{sys.shade.normal}}"
+        },
+        "blueVariant": {
+          "value": "{ref.palette.blue.{sys.shade.variant}}"
+        },
+        "lightBlue": {
+          "value": "{ref.palette.lightBlue.{sys.shade.normal}}"
+        },
+        "lightBlueVariant": {
+          "value": "{ref.palette.lightBlue.{sys.shade.variant}}"
+        },
+        "cyan": {
+          "value": "{ref.palette.cyan.{sys.shade.normal}}"
+        },
+        "cyanVariant": {
+          "value": "{ref.palette.cyan.{sys.shade.variant}}"
+        },
+        "teal": {
+          "value": "{ref.palette.teal.{sys.shade.normal}}"
+        },
+        "tealVariant": {
+          "value": "{ref.palette.teal.{sys.shade.variant}}"
+        },
+        "green": {
+          "value": "{ref.palette.green.{sys.shade.normal}}"
+        },
+        "greenVariant": {
+          "value": "{ref.palette.green.{sys.shade.variant}}"
+        },
+        "lightGreen": {
+          "value": "{ref.palette.lightGreen.{sys.shade.normal}}"
+        },
+        "lightGreenVariant": {
+          "value": "{ref.palette.lightGreen.{sys.shade.variant}}"
+        },
+        "lime": {
+          "value": "{ref.palette.lime.{sys.shade.normal}}"
+        },
+        "limeVariant": {
+          "value": "{ref.palette.lime.{sys.shade.variant}}"
+        },
+        "yellow": {
+          "value": "{ref.palette.yellow.{sys.shade.normal}}"
+        },
+        "yellowVariant": {
+          "value": "{ref.palette.yellow.{sys.shade.variant}}"
+        },
+        "amber": {
+          "value": "{ref.palette.amber.{sys.shade.normal}}"
+        },
+        "amberVariant": {
+          "value": "{ref.palette.amber.{sys.shade.variant}}"
+        },
+        "orange": {
+          "value": "{ref.palette.orange.{sys.shade.normal}}"
+        },
+        "orangeVariant": {
+          "value": "{ref.palette.orange.{sys.shade.variant}}"
+        },
+        "deepOrange": {
+          "value": "{ref.palette.deepOrange.{sys.shade.normal}}"
+        },
+        "deepOrangeVariant": {
+          "value": "{ref.palette.deepOrange.{sys.shade.variant}}"
+        },
+        "brown": {
+          "value": "{ref.palette.brown.{sys.shade.normal}}"
+        },
+        "brownVariant": {
+          "value": "{ref.palette.brown.{sys.shade.variant}}"
+        },
+        "grey": {
+          "value": "{ref.palette.grey.{sys.shade.normal}}"
+        },
+        "greyVariant": {
+          "value": "{ref.palette.grey.{sys.shade.variant}}"
+        },
+        "greyBlue": {
+          "value": "{ref.palette.greyBlue.{sys.shade.normal}}"
+        },
+        "greyBlueVariant": {
+          "value": "{ref.palette.greyBlue.{sys.shade.variant}}"
+        },
+        "white": {
+          "value": "{ref.palette.white}"
+        },
+        "black": {
+          "value": "{ref.palette.black}"
+        },
+        "dark": {
+          "primary": {
+            "value": "{ref.palette.blue.{sys.shade.dark.normal}}"
+          },
+          "primaryVariant": {
+            "value": "{ref.palette.blue.{sys.shade.dark.variant}}"
+          },
+          "secondary": {
+            "value": "{ref.palette.amber.{sys.shade.dark.normal}}"
+          },
+          "secondaryVariant": {
+            "value": "{ref.palette.amber.{sys.shade.dark.variant}}"
+          },
+          "var|background": {
+            "value": "{ref.palette.blackLight}"
+          },
+          "surface": {
+            "value": "{ref.palette.blackLight}"
+          },
+          "error": {
+            "value": "{ref.palette.red.{sys.shade.dark.variant}}"
+          },
+          "success": {
+            "value": "{ref.palette.green.{sys.shade.dark.variant}}"
+          },
+          "warning": {
+            "value": "{ref.palette.yellow.{sys.shade.dark.variant}}"
+          },
+          "onPrimary": {
+            "value": "{ref.palette.black}"
+          },
+          "onSecondary": {
+            "value": "{ref.palette.black}"
+          },
+          "onBackground": {
+            "value": "{ref.palette.white}"
+          },
+          "onSurface": {
+            "value": "{ref.palette.white}"
+          },
+          "onError": {
+            "value": "{ref.palette.black}"
+          },
+          "var|border": {
+            "value": "{ref.palette.white}"
+          },
+          "red": {
+            "value": "{ref.palette.red.{sys.shade.dark.normal}}"
+          },
+          "redVariant": {
+            "value": "{ref.palette.red.{sys.shade.dark.variant}}"
+          },
+          "pink": {
+            "value": "{ref.palette.pink.{sys.shade.dark.normal}}"
+          },
+          "pinkVariant": {
+            "value": "{ref.palette.pink.{sys.shade.dark.variant}}"
+          },
+          "purple": {
+            "value": "{ref.palette.purple.{sys.shade.dark.normal}}"
+          },
+          "purpleVariant": {
+            "value": "{ref.palette.purple.{sys.shade.dark.variant}}"
+          },
+          "deepPurple": {
+            "value": "{ref.palette.deepPurple.{sys.shade.dark.normal}}"
+          },
+          "deepPurpleVariant": {
+            "value": "{ref.palette.deepPurple.{sys.shade.dark.variant}}"
+          },
+          "indigo": {
+            "value": "{ref.palette.indigo.{sys.shade.dark.normal}}"
+          },
+          "indigoVariant": {
+            "value": "{ref.palette.indigo.{sys.shade.dark.variant}}"
+          },
+          "blue": {
+            "value": "{ref.palette.blue.{sys.shade.dark.normal}}"
+          },
+          "blueVariant": {
+            "value": "{ref.palette.blue.{sys.shade.dark.variant}}"
+          },
+          "lightBlue": {
+            "value": "{ref.palette.lightBlue.{sys.shade.dark.normal}}"
+          },
+          "lightBlueVariant": {
+            "value": "{ref.palette.lightBlue.{sys.shade.dark.variant}}"
+          },
+          "cyan": {
+            "value": "{ref.palette.cyan.{sys.shade.dark.normal}}"
+          },
+          "cyanVariant": {
+            "value": "{ref.palette.cyan.{sys.shade.dark.variant}}"
+          },
+          "teal": {
+            "value": "{ref.palette.teal.{sys.shade.dark.normal}}"
+          },
+          "tealVariant": {
+            "value": "{ref.palette.teal.{sys.shade.dark.variant}}"
+          },
+          "green": {
+            "value": "{ref.palette.green.{sys.shade.dark.normal}}"
+          },
+          "greenVariant": {
+            "value": "{ref.palette.green.{sys.shade.dark.variant}}"
+          },
+          "lightGreen": {
+            "value": "{ref.palette.lightGreen.{sys.shade.dark.normal}}"
+          },
+          "lightGreenVariant": {
+            "value": "{ref.palette.lightGreen.{sys.shade.dark.variant}}"
+          },
+          "lime": {
+            "value": "{ref.palette.lime.{sys.shade.dark.normal}}"
+          },
+          "limeVariant": {
+            "value": "{ref.palette.lime.{sys.shade.dark.variant}}"
+          },
+          "yellow": {
+            "value": "{ref.palette.yellow.{sys.shade.dark.normal}}"
+          },
+          "yellowVariant": {
+            "value": "{ref.palette.yellow.{sys.shade.dark.variant}}"
+          },
+          "amber": {
+            "value": "{ref.palette.amber.{sys.shade.dark.normal}}"
+          },
+          "amberVariant": {
+            "value": "{ref.palette.amber.{sys.shade.dark.variant}}"
+          },
+          "orange": {
+            "value": "{ref.palette.orange.{sys.shade.dark.normal}}"
+          },
+          "orangeVariant": {
+            "value": "{ref.palette.orange.{sys.shade.dark.variant}}"
+          },
+          "deepOrange": {
+            "value": "{ref.palette.deepOrange.{sys.shade.dark.normal}}"
+          },
+          "deepOrangeVariant": {
+            "value": "{ref.palette.deepOrange.{sys.shade.dark.variant}}"
+          },
+          "brown": {
+            "value": "{ref.palette.brown.{sys.shade.dark.normal}}"
+          },
+          "brownVariant": {
+            "value": "{ref.palette.brown.{sys.shade.dark.variant}}"
+          },
+          "grey": {
+            "value": "{ref.palette.grey.{sys.shade.dark.normal}}"
+          },
+          "greyVariant": {
+            "value": "{ref.palette.grey.{sys.shade.dark.variant}}"
+          },
+          "greyBlue": {
+            "value": "{ref.palette.greyBlue.{sys.shade.dark.normal}}"
+          },
+          "greyBlueVariant": {
+            "value": "{ref.palette.greyBlue.{sys.shade.dark.variant}}"
+          },
+          "white": {
+            "value": "{ref.palette.white}"
+          },
+          "black": {
+            "value": "{ref.palette.blackLight}"
+          }
+        }
       },
-      "secondaryVariant": {
-        "var|=sysChart": "{sys.chart.secondaryVariant}"
-      },
-      "var|background": {
-        "var|=sysChart": "{sys.chart.background}"
-      },
-      "surface": {
-        "var|=sysChart": "{sys.chart.surface}"
-      },
-      "error": {
-        "var|=sysChart": "{sys.chart.error}"
-      },
-      "success": {
-        "var|=sysChart": "{sys.chart.success}"
-      },
-      "warning": {
-        "var|=sysChart": "{sys.chart.warning}"
-      },
-      "onPrimary": {
-        "var|=sysChart": "{sys.chart.onPrimary}"
-      },
-      "onSecondary": {
-        "var|=sysChart": "{sys.chart.onSecondary}"
-      },
-      "onBackground": {
-        "var|=sysChart": "{sys.chart.onBackground}"
-      },
-      "onSurface": {
-        "var|=sysChart": "{sys.chart.onSurface}"
-      },
-      "onError": {
-        "var|=sysChart": "{sys.chart.onError}"
-      },
-      "var|border": {
-        "var|=sysChart": "{sys.chart.border}"
-      },
-      "red": {
-        "var|=sysChart": "{sys.chart.red}"
-      },
-      "redVariant": {
-        "var|=sysChart": "{sys.chart.redVariant}"
-      },
-      "pink": {
-        "var|=sysChart": "{sys.chart.pink}"
-      },
-      "pinkVariant": {
-        "var|=sysChart": "{sys.chart.pinkVariant}"
-      },
-      "purple": {
-        "var|=sysChart": "{sys.chart.purple}"
-      },
-      "purpleVariant": {
-        "var|=sysChart": "{sys.chart.purpleVariant}"
-      },
-      "deepPurple": {
-        "var|=sysChart": "{sys.chart.deepPurple}"
-      },
-      "deepPurpleVariant": {
-        "var|=sysChart": "{sys.chart.deepPurpleVariant}"
-      },
-      "indigo": {
-        "var|=sysChart": "{sys.chart.indigo}"
-      },
-      "indigoVariant": {
-        "var|=sysChart": "{sys.chart.indigoVariant}"
-      },
-      "blue": {
-        "var|=sysChart": "{sys.chart.blue}"
-      },
-      "blueVariant": {
-        "var|=sysChart": "{sys.chart.blueVariant}"
-      },
-      "lightBlue": {
-        "var|=sysChart": "{sys.chart.lightBlue}"
-      },
-      "lightBlueVariant": {
-        "var|=sysChart": "{sys.chart.lightBlueVariant}"
-      },
-      "cyan": {
-        "var|=sysChart": "{sys.chart.cyan}"
-      },
-      "cyanVariant": {
-        "var|=sysChart": "{sys.chart.cyanVariant}"
-      },
-      "teal": {
-        "var|=sysChart": "{sys.chart.teal}"
-      },
-      "tealVariant": {
-        "var|=sysChart": "{sys.chart.tealVariant}"
-      },
-      "green": {
-        "var|=sysChart": "{sys.chart.green}"
-      },
-      "greenVariant": {
-        "var|=sysChart": "{sys.chart.greenVariant}"
-      },
-      "lightGreen": {
-        "var|=sysChart": "{sys.chart.lightGreen}"
-      },
-      "lightGreenVariant": {
-        "var|=sysChart": "{sys.chart.lightGreenVariant}"
-      },
-      "lime": {
-        "var|=sysChart": "{sys.chart.lime}"
-      },
-      "limeVariant": {
-        "var|=sysChart": "{sys.chart.limeVariant}"
-      },
-      "yellow": {
-        "var|=sysChart": "{sys.chart.yellow}"
-      },
-      "yellowVariant": {
-        "var|=sysChart": "{sys.chart.yellowVariant}"
-      },
-      "amber": {
-        "var|=sysChart": "{sys.chart.amber}"
-      },
-      "amberVariant": {
-        "var|=sysChart": "{sys.chart.amberVariant}"
-      },
-      "orange": {
-        "var|=sysChart": "{sys.chart.orange}"
-      },
-      "orangeVariant": {
-        "var|=sysChart": "{sys.chart.orangeVariant}"
-      },
-      "deepOrange": {
-        "var|=sysChart": "{sys.chart.deepOrange}"
-      },
-      "deepOrangeVariant": {
-        "var|=sysChart": "{sys.chart.deepOrangeVariant}"
-      },
-      "brown": {
-        "var|=sysChart": "{sys.chart.brown}"
-      },
-      "brownVariant": {
-        "var|=sysChart": "{sys.chart.brownVariant}"
-      },
-      "grey": {
-        "var|=sysChart": "{sys.chart.grey}"
-      },
-      "greyVariant": {
-        "var|=sysChart": "{sys.chart.greyVariant}"
-      },
-      "greyBlue": {
-        "var|=sysChart": "{sys.chart.greyBlue}"
-      },
-      "greyBlueVariant": {
-        "var|=sysChart": "{sys.chart.greyBlueVariant}"
-      },
-      "white": {
-        "var|=sysChart": "{sys.chart.white}"
-      },
-      "black": {
-        "var|=sysChart": "{sys.chart.black}"
+      "rounded": {
+        "none": {
+          "value": "{ref.rounded.0}"
+        },
+        "standard": {
+          "value": "{ref.rounded.1}"
+        },
+        "sm": {
+          "value": "{ref.rounded.1}"
+        },
+        "md": {
+          "value": "{ref.rounded.2}"
+        },
+        "lg": {
+          "value": "{ref.rounded.4}"
+        },
+        "xl": {
+          "value": "{ref.rounded.6}"
+        },
+        "full": {
+          "value": "{ref.rounded.full}"
+        }
       }
     },
     "section|grid": {
@@ -1516,6 +1349,173 @@
         "letterSpacing": "{ref.letterSpacing.headline.1}"
       }
     },
+    "palette": {
+      "primary": {
+        "var|=sysPalette": "{sys.palette.primary}"
+      },
+      "primaryVariant": {
+        "var|=sysPalette": "{sys.palette.primaryVariant}"
+      },
+      "secondary": {
+        "var|=sysPalette": "{sys.palette.secondary}"
+      },
+      "secondaryVariant": {
+        "var|=sysPalette": "{sys.palette.secondaryVariant}"
+      },
+      "var|background": {
+        "var|=sysPalette": "{sys.palette.background}"
+      },
+      "surface": {
+        "var|=sysPalette": "{sys.palette.surface}"
+      },
+      "error": {
+        "var|=sysPalette": "{sys.palette.error}"
+      },
+      "success": {
+        "var|=sysPalette": "{sys.palette.success}"
+      },
+      "warning": {
+        "var|=sysPalette": "{sys.palette.warning}"
+      },
+      "onPrimary": {
+        "var|=sysPalette": "{sys.palette.onPrimary}"
+      },
+      "onSecondary": {
+        "var|=sysPalette": "{sys.palette.onSecondary}"
+      },
+      "onBackground": {
+        "var|=sysPalette": "{sys.palette.onBackground}"
+      },
+      "onSurface": {
+        "var|=sysPalette": "{sys.palette.onSurface}"
+      },
+      "onError": {
+        "var|=sysPalette": "{sys.palette.onError}"
+      },
+      "var|border": {
+        "var|=sysPalette": "{sys.palette.border}"
+      },
+      "red": {
+        "var|=sysPalette": "{sys.palette.red}"
+      },
+      "redVariant": {
+        "var|=sysPalette": "{sys.palette.redVariant}"
+      },
+      "pink": {
+        "var|=sysPalette": "{sys.palette.pink}"
+      },
+      "pinkVariant": {
+        "var|=sysPalette": "{sys.palette.pinkVariant}"
+      },
+      "purple": {
+        "var|=sysPalette": "{sys.palette.purple}"
+      },
+      "purpleVariant": {
+        "var|=sysPalette": "{sys.palette.purpleVariant}"
+      },
+      "deepPurple": {
+        "var|=sysPalette": "{sys.palette.deepPurple}"
+      },
+      "deepPurpleVariant": {
+        "var|=sysPalette": "{sys.palette.deepPurpleVariant}"
+      },
+      "indigo": {
+        "var|=sysPalette": "{sys.palette.indigo}"
+      },
+      "indigoVariant": {
+        "var|=sysPalette": "{sys.palette.indigoVariant}"
+      },
+      "blue": {
+        "var|=sysPalette": "{sys.palette.blue}"
+      },
+      "blueVariant": {
+        "var|=sysPalette": "{sys.palette.blueVariant}"
+      },
+      "lightBlue": {
+        "var|=sysPalette": "{sys.palette.lightBlue}"
+      },
+      "lightBlueVariant": {
+        "var|=sysPalette": "{sys.palette.lightBlueVariant}"
+      },
+      "cyan": {
+        "var|=sysPalette": "{sys.palette.cyan}"
+      },
+      "cyanVariant": {
+        "var|=sysPalette": "{sys.palette.cyanVariant}"
+      },
+      "teal": {
+        "var|=sysPalette": "{sys.palette.teal}"
+      },
+      "tealVariant": {
+        "var|=sysPalette": "{sys.palette.tealVariant}"
+      },
+      "green": {
+        "var|=sysPalette": "{sys.palette.green}"
+      },
+      "greenVariant": {
+        "var|=sysPalette": "{sys.palette.greenVariant}"
+      },
+      "lightGreen": {
+        "var|=sysPalette": "{sys.palette.lightGreen}"
+      },
+      "lightGreenVariant": {
+        "var|=sysPalette": "{sys.palette.lightGreenVariant}"
+      },
+      "lime": {
+        "var|=sysPalette": "{sys.palette.lime}"
+      },
+      "limeVariant": {
+        "var|=sysPalette": "{sys.palette.limeVariant}"
+      },
+      "yellow": {
+        "var|=sysPalette": "{sys.palette.yellow}"
+      },
+      "yellowVariant": {
+        "var|=sysPalette": "{sys.palette.yellowVariant}"
+      },
+      "amber": {
+        "var|=sysPalette": "{sys.palette.amber}"
+      },
+      "amberVariant": {
+        "var|=sysPalette": "{sys.palette.amberVariant}"
+      },
+      "orange": {
+        "var|=sysPalette": "{sys.palette.orange}"
+      },
+      "orangeVariant": {
+        "var|=sysPalette": "{sys.palette.orangeVariant}"
+      },
+      "deepOrange": {
+        "var|=sysPalette": "{sys.palette.deepOrange}"
+      },
+      "deepOrangeVariant": {
+        "var|=sysPalette": "{sys.palette.deepOrangeVariant}"
+      },
+      "brown": {
+        "var|=sysPalette": "{sys.palette.brown}"
+      },
+      "brownVariant": {
+        "var|=sysPalette": "{sys.palette.brownVariant}"
+      },
+      "grey": {
+        "var|=sysPalette": "{sys.palette.grey}"
+      },
+      "greyVariant": {
+        "var|=sysPalette": "{sys.palette.greyVariant}"
+      },
+      "greyBlue": {
+        "var|=sysPalette": "{sys.palette.greyBlue}"
+      },
+      "greyBlueVariant": {
+        "var|=sysPalette": "{sys.palette.greyBlueVariant}"
+      },
+      "white": {
+        "var|=sysPalette": "{sys.palette.white}"
+      },
+      "black": {
+        "var|=sysPalette": "{sys.palette.black}"
+      }
+    },
     "rounded": {
       "none": {
         "border-radius": "{sys.rounded.none}"
@@ -1541,62 +1541,62 @@
     },
     "dark": {
       "var|?sys": {
-        "chart": {
-          "primary": "{sys.chart.dark.primary}",
-          "primaryVariant": "{sys.chart.dark.primaryVariant}",
-          "secondary": "{sys.chart.dark.secondary}",
-          "secondaryVariant": "{sys.chart.dark.secondaryVariant}",
-          "var|background": "{sys.chart.dark.background}",
-          "surface": "{sys.chart.dark.surface}",
-          "error": "{sys.chart.dark.error}",
-          "success": "{sys.chart.dark.success}",
-          "warning": "{sys.chart.dark.warning}",
-          "onPrimary": "{sys.chart.dark.onPrimary}",
-          "onSecondary": "{sys.chart.dark.onSecondary}",
-          "onBackground": "{sys.chart.dark.onBackground}",
-          "onSurface": "{sys.chart.dark.onSurface}",
-          "onError": "{sys.chart.dark.onError}",
-          "var|border": "{sys.chart.dark.border}",
-          "red": "{sys.chart.dark.red}",
-          "redVariant": "{sys.chart.dark.redVariant}",
-          "pink": "{sys.chart.dark.pink}",
-          "pinkVariant": "{sys.chart.dark.pinkVariant}",
-          "purple": "{sys.chart.dark.purple}",
-          "purpleVariant": "{sys.chart.dark.purpleVariant}",
-          "deepPurple": "{sys.chart.dark.deepPurple}",
-          "deepPurpleVariant": "{sys.chart.dark.deepPurpleVariant}",
-          "indigo": "{sys.chart.dark.indigo}",
-          "indigoVariant": "{sys.chart.dark.indigoVariant}",
-          "blue": "{sys.chart.dark.blue}",
-          "blueVariant": "{sys.chart.dark.blueVariant}",
-          "lightBlue": "{sys.chart.dark.lightBlue}",
-          "lightBlueVariant": "{sys.chart.dark.lightBlueVariant}",
-          "cyan": "{sys.chart.dark.cyan}",
-          "cyanVariant": "{sys.chart.dark.cyanVariant}",
-          "teal": "{sys.chart.dark.teal}",
-          "tealVariant": "{sys.chart.dark.tealVariant}",
-          "green": "{sys.chart.dark.green}",
-          "greenVariant": "{sys.chart.dark.greenVariant}",
-          "lightGreen": "{sys.chart.dark.lightGreen}",
-          "lightGreenVariant": "{sys.chart.dark.lightGreenVariant}",
-          "lime": "{sys.chart.dark.lime}",
-          "limeVariant": "{sys.chart.dark.limeVariant}",
-          "yellow": "{sys.chart.dark.yellow}",
-          "yellowVariant": "{sys.chart.dark.yellowVariant}",
-          "amber": "{sys.chart.dark.amber}",
-          "amberVariant": "{sys.chart.dark.amberVariant}",
-          "orange": "{sys.chart.dark.orange}",
-          "orangeVariant": "{sys.chart.dark.orangeVariant}",
-          "deepOrange": "{sys.chart.dark.deepOrange}",
-          "deepOrangeVariant": "{sys.chart.dark.deepOrangeVariant}",
-          "brown": "{sys.chart.dark.brown}",
-          "brownVariant": "{sys.chart.dark.brownVariant}",
-          "grey": "{sys.chart.dark.grey}",
-          "greyVariant": "{sys.chart.dark.greyVariant}",
-          "greyBlue": "{sys.chart.dark.greyBlue}",
-          "greyBlueVariant": "{sys.chart.dark.greyBlueVariant}",
-          "white": "{sys.chart.dark.white}",
-          "black": "{sys.chart.dark.black}"
+        "palette": {
+          "primary": "{sys.palette.dark.primary}",
+          "primaryVariant": "{sys.palette.dark.primaryVariant}",
+          "secondary": "{sys.palette.dark.secondary}",
+          "secondaryVariant": "{sys.palette.dark.secondaryVariant}",
+          "var|background": "{sys.palette.dark.background}",
+          "surface": "{sys.palette.dark.surface}",
+          "error": "{sys.palette.dark.error}",
+          "success": "{sys.palette.dark.success}",
+          "warning": "{sys.palette.dark.warning}",
+          "onPrimary": "{sys.palette.dark.onPrimary}",
+          "onSecondary": "{sys.palette.dark.onSecondary}",
+          "onBackground": "{sys.palette.dark.onBackground}",
+          "onSurface": "{sys.palette.dark.onSurface}",
+          "onError": "{sys.palette.dark.onError}",
+          "var|border": "{sys.palette.dark.border}",
+          "red": "{sys.palette.dark.red}",
+          "redVariant": "{sys.palette.dark.redVariant}",
+          "pink": "{sys.palette.dark.pink}",
+          "pinkVariant": "{sys.palette.dark.pinkVariant}",
+          "purple": "{sys.palette.dark.purple}",
+          "purpleVariant": "{sys.palette.dark.purpleVariant}",
+          "deepPurple": "{sys.palette.dark.deepPurple}",
+          "deepPurpleVariant": "{sys.palette.dark.deepPurpleVariant}",
+          "indigo": "{sys.palette.dark.indigo}",
+          "indigoVariant": "{sys.palette.dark.indigoVariant}",
+          "blue": "{sys.palette.dark.blue}",
+          "blueVariant": "{sys.palette.dark.blueVariant}",
+          "lightBlue": "{sys.palette.dark.lightBlue}",
+          "lightBlueVariant": "{sys.palette.dark.lightBlueVariant}",
+          "cyan": "{sys.palette.dark.cyan}",
+          "cyanVariant": "{sys.palette.dark.cyanVariant}",
+          "teal": "{sys.palette.dark.teal}",
+          "tealVariant": "{sys.palette.dark.tealVariant}",
+          "green": "{sys.palette.dark.green}",
+          "greenVariant": "{sys.palette.dark.greenVariant}",
+          "lightGreen": "{sys.palette.dark.lightGreen}",
+          "lightGreenVariant": "{sys.palette.dark.lightGreenVariant}",
+          "lime": "{sys.palette.dark.lime}",
+          "limeVariant": "{sys.palette.dark.limeVariant}",
+          "yellow": "{sys.palette.dark.yellow}",
+          "yellowVariant": "{sys.palette.dark.yellowVariant}",
+          "amber": "{sys.palette.dark.amber}",
+          "amberVariant": "{sys.palette.dark.amberVariant}",
+          "orange": "{sys.palette.dark.orange}",
+          "orangeVariant": "{sys.palette.dark.orangeVariant}",
+          "deepOrange": "{sys.palette.dark.deepOrange}",
+          "deepOrangeVariant": "{sys.palette.dark.deepOrangeVariant}",
+          "brown": "{sys.palette.dark.brown}",
+          "brownVariant": "{sys.palette.dark.brownVariant}",
+          "grey": "{sys.palette.dark.grey}",
+          "greyVariant": "{sys.palette.dark.greyVariant}",
+          "greyBlue": "{sys.palette.dark.greyBlue}",
+          "greyBlueVariant": "{sys.palette.dark.greyBlueVariant}",
+          "white": "{sys.palette.dark.white}",
+          "black": "{sys.palette.dark.black}"
         },
         "elevation": {
           "background": {
