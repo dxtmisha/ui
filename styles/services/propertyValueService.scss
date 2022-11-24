@@ -24,6 +24,10 @@
     @include mixinBackgroundGradient(#{$value});
   } @else if ($index == 'background-gradient-opacity') {
     @include mixinBackgroundGradientOpacity(#{$value});
+  } @else if ($index == 'border-color') {
+    @include mixinBorder(#{$value});
+  } @else if ($index == 'border-color-opacity') {
+    @include mixinBorderOpacity(#{$value});
   } @else if ($index == 'fill') {
     @include mixinFill(#{$value});
   } @else if ($index == 'fill-opacity') {

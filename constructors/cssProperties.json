@@ -57,6 +57,7 @@
   "border-bottom-width",
   "border-collapse",
   "border-color",
+  "border-color-opacity",
   "border-end-end-radius",
   "border-end-start-radius",
   "border-image",

@@ -152,3 +152,20 @@
 @mixin initFill() {
   fill: rgba(var(--sys-background), var(--sys-background-opacity));
 }
+
+@mixin mixinBorder($color, $opacity: null) {
+  --sys-border: #{toColorRBG($color)};
+  @include mixinBorderOpacity(getOpacity($color, $opacity));
+}
+
+@mixin mixinBorderOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-border-opacity: #{$opacity};
+  }
+
+  @include initBorder;
+}
+
+@mixin initBorder() {
+  border-color: rgba(var(--sys-border), var(--sys-border-opacity));
+}

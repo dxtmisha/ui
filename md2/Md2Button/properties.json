@@ -3,14 +3,20 @@
     "button": {
       "@style": "{d.button}",
       "var|_chart": "{sys.chart.primary}",
+      "var|_chartVariant": "{sys.chart.primaryVariant}",
+      "var|_backgroundHoverOpacity": "{sys.opacity.hover}",
+      "var|_backgroundActiveOpacity": "{sys.opacity.dragged}",
+      "var|_backgroundFocusOpacity": "{sys.opacity.focus}",
+      "var|_borderWidth": "{ref.spacing.px}",
       "var|_minWidth": "{ref.spacing.20}",
       "var|_padding": "{ref.spacing.4}",
-      "var|_hoverBackgroundOpacity": "{sys.opacity.hover}",
       "appearance": {
         "text": {
-        },
-        "textColor": {
-          "chart-color": "{??_chart}"
+          "var|_text": "{??_chart}",
+          "var|_textOpacity": "{sys.opacity.surface.high}",
+          ":active": {
+            "var|_borderOpacity": "{sys.opacity.surface.medium}"
+          }
         }
       },
       "height": {

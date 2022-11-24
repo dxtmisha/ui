@@ -2,14 +2,37 @@
   "d": {
     "button": {
       "var|_chart": "#000000",
+      "var|_chartVariant": "#000000",
+      "var|_text": "unset",
+      "var|_textOpacity": "unset",
+      "var|_background": "{??_chart}",
+      "var|_backgroundOpacity": "0",
+      "var|_backgroundStatus": "{??_chart}",
+      "var|_backgroundStatusOpacity": "0",
+      "var|_backgroundHoverOpacity": "0.04",
+      "var|_backgroundActiveOpacity": "0.08",
+      "var|_backgroundFocusOpacity": "0.12",
+      "var|_border": "{??_chart}",
+      "var|_borderOpacity": "0",
+      "var|_borderWidth": "1px",
       "var|_minWidth": "64px",
       "var|_padding": "16px",
-      "var|_hoverBackground": "{??_chart}",
-      "var|_hoverBackgroundOpacity": "0.04",
       "@flex": "{d.flex.inlineCenter}",
       "@select": "{d.selectNone}",
-      "background-gradient": "{??_hoverBackground}",
-      "color": "{??_textColor}",
+      "mixin|border": {
+        "border-color": "{??_border}",
+        "border-color-opacity": "{??_borderOpacity}",
+        "border-radius": "inherit",
+        "border-width": "{??_borderWidth}",
+        "position": "absolute",
+        "inset": "0"
+      },
+      "background-color": "{??_background}",
+      "background-opacity": "{??_backgroundOpacity}",
+      "background-gradient": "{??_backgroundStatus}",
+      "background-gradient-opacity": "{??_backgroundStatusOpacity}",
+      "color": "{??_text}",
+      "color-opacity": "{??_textOpacity}",
       "max-width": "100%",
       "min-width": "{??_minWidth}",
       "padding-x": "{??_padding}",
@@ -18,8 +41,25 @@
       "align": {
         "@style": "{d.font.align}"
       },
+      "::after": {
+        "@style": "{??border}"
+      },
+      "::before": {
+        "@style": "{??border}",
+        "transition-duration": "{d.sys.transitionDuration.fade.through}",
+        "transition-property": "border-color"
+      },
       ":hover": {
-        "background-gradient-opacity": "{??_hoverBackgroundOpacity}"
+        "background-gradient-opacity": "{??_backgroundHoverOpacity}"
+      },
+      ":focus": {
+        "background-gradient-opacity": "{??_backgroundFocusOpacity}"
+      },
+      ":active": {
+        "background-gradient-opacity": "{??_backgroundActiveOpacity}",
+        "::before": {
+          "transition-duration": "{d.sys.transitionDuration.xs}"
+        }
       },
       "#text": {
         "@flex": "{d.flex.dynamic}"

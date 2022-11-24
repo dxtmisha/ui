@@ -50,6 +50,9 @@
         "standard": {
           "value": "{ref.transitionDuration.4}"
         },
+        "xs": {
+          "value": "{ref.transitionDuration.1}"
+        },
         "sm": {
           "value": "{ref.transitionDuration.3}"
         },

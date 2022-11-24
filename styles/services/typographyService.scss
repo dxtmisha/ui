@@ -7,7 +7,9 @@
   $color: #000000,
   $colorOpacity: .78,
   $background: #ffffff,
-  $backgroundOpacity: 1
+  $backgroundOpacity: 1,
+  $border: #000000,
+  $borderOpacity: 0.12
 ) {
   $constructor: 'd';
 
@@ -82,6 +84,7 @@
     @include mixinColor($color, $colorOpacity);
     @include mixinBackground($background, $backgroundOpacity);
     @include mixinBackgroundGradient(#ffffff, 0);
+    @include mixinBorder($border, $borderOpacity);
   }
 
   img {

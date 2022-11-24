@@ -105,10 +105,14 @@
   <md2-button>button 2</md2-button>
   <md2-button text="button 3"> / button 4</md2-button>
   <md2-button text="5"/>
-  <md2-button text="6" align="left"/>
-  <md2-button text="7" align="right"/>
-  <md2-button text="button 8" height="sm" appearance="text-color"/>
-  <md2-button text="button 9" height="lg" appearance="text-color"/>
+  <md2-button text="6" align="left" rounded="full"/>
+  <md2-button text="7" align="right" rounded="standard"/>
+</div>
+<div class="flex items-center gap-2">
+  <md2-button text="button 8" height="sm" rounded="sm" appearance="text"/>
+  <md2-button text="button 9" appearance="text" rounded="lg"/>
+  <md2-button text="button 10" height="lg" appearance="text" rounded="xl"/>
+  <md2-button text="button 11" height="lg" appearance="text" rounded="none"/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">

@@ -15,7 +15,6 @@ export type ButtonAlignType =
 
 export type ButtonAppearanceType =
   'text' |
-  'text-color' |
   'outlined' |
   'outlined-color' |
   'outlined-contained' |
