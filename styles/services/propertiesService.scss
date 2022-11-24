@@ -24,7 +24,7 @@ $designsProperties: () !default;
     @if (
             meta.type-of($value) == color
     ) {
-      --#{$index}: #{toColorRBG($value)};
+      --#{$index}: #{toColorRbg($value)};
     } @else if (
             meta.type-of($value) != map and
             meta.type-of($value) != list

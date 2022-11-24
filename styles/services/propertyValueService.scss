@@ -20,10 +20,6 @@
     @include mixinBackground(#{$value});
   } @else if ($index == 'background-opacity') {
     @include mixinBackgroundOpacity(#{$value});
-  } @else if ($index == 'background-gradient') {
-    @include mixinBackgroundGradient(#{$value});
-  } @else if ($index == 'background-gradient-opacity') {
-    @include mixinBackgroundGradientOpacity(#{$value});
   } @else if ($index == 'border-color') {
     @include mixinBorder(#{$value});
   } @else if ($index == 'border-color-opacity') {
@@ -31,7 +27,11 @@
   } @else if ($index == 'fill') {
     @include mixinFill(#{$value});
   } @else if ($index == 'fill-opacity') {
-    @include mixinFillOpacity(#{$value});
+    @include mixinBackgroundOpacity(#{$value});
+  } @else if ($index == 'gradient') {
+    @include mixinGradient(#{$value});
+  } @else if ($index == 'gradient-opacity') {
+    @include mixinGradientOpacity(#{$value});
   } @else if ($index == 'inset') {
     @include inset(#{$value});
   } @else if ($index == 'padding-x') {
@@ -43,7 +43,7 @@
   } @else if ($index == 'stroke') {
     @include mixinStroke(#{$value});
   } @else if ($index == 'stroke-opacity') {
-    @include mixinStrokeOpacity(#{$value});
+    @include mixinColorOpacity(#{$value});
   } @else if ($index == 'squared') {
     @include squared(#{$value});
   } @else if ($index == 'text-align') {
