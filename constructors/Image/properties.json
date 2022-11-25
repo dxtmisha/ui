@@ -1,12 +1,10 @@
 {
   "d": {
     "image": {
+      "var|_disabled": "0.38",
       "var|_fontSize": "inherit",
-      "var|_disabledOpacity": "0.38",
-      "var|_disabledBackgroundOpacity": "0.02",
       "mixin|grayscale": {
-        "filter": "grayscale(1)",
-        "opacity": "{??_opacity}"
+        "filter": "grayscale(1) opacity({??_disabled})"
       },
       "@flex": "{d.flex.center}",
       "background-size": "cover",
@@ -19,6 +17,23 @@
       "transform": "none",
       "transition-duration": "{d.sys.transitionDuration.standard}",
       "transition-property": "background-color, background-size, color, filter, opacity, transform",
+      "section|disabled": {
+        "color-opacity": "{??_disabled}",
+        "=isType": {
+          "section|color": {
+            "@grayscale": "{??grayscale}"
+          },
+          "section|image": {
+            "@grayscale": "{??grayscale}"
+          }
+        }
+      },
+      "section|hide": {
+        "@style": "{d.animation.hide}"
+      },
+      "section|turn": {
+        "transform": "rotate(180deg)"
+      },
       "=isType": {
         "public": {
           "@style": "{d.sys.backgroundAsColor}",
@@ -26,23 +41,6 @@
           "mask-repeat": "no-repeat",
           "mask-size": "contain"
         }
-      },
-      "hide": {
-        "@style": "{d.animation.hide}"
-      },
-      "section|disabled": {
-        "color-opacity": "{??_disabledOpacity}",
-        "=isType": {
-          "section|color": {
-            "@grayscale": "{??grayscale}"
-          },
-          "image": {
-            "@grayscale": "{??grayscale}"
-          }
-        }
-      },
-      "turn": {
-        "transform": "rotate(180deg)"
       }
     }
   }
