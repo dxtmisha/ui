@@ -2,17 +2,19 @@
   "d": {
     "progress": {
       "var|_background": "0, 0, 0",
-      "var|_inverse": "255, 255, 255",
-      "var|_barOpacity": ".1",
-      "var|_height": "4px",
-      "var|_top": "0",
-      "var|_bottom": "auto",
-      "var|_transformOrigin": "top",
       "var|_duration": "20s",
-      "var|_circularPadding": "4px",
-      "var|_circularSize": "48px",
-      "var|_circularLength": "calc(2 * 3.1415926535 * (({??_circularSize} - (2 * {??_circularPadding})) / 2))",
-      "var|_circularDasharray": "{??_circularLength} / 100",
+      "var|_height": "4px",
+      "var|_inverse": "255, 255, 255",
+      "var|_opacity": ".1",
+      "var|_circular": {
+        "var|dasharray": "{??_circularLength} / 100",
+        "var|length": "calc(2 * 3.1415926535 * (({??_circularSize} - (2 * {??_circularPadding})) / 2))",
+        "var|padding": "4px",
+        "var|size": "48px"
+      },
+      "var|bottom": "auto",
+      "var|top": "0",
+      "var|transformOrigin": "top",
       "animate|linear-visible": {
         "0%": {
           "transform": "scaleY(0)"
@@ -124,67 +126,26 @@
         }
       },
       "mixin|short": {
-        "background-color": "{??_background}",
         "background-opacity": "1",
         "bottom": "0",
         "left": "0",
-        "right": "100%",
+        "palette-background": "{??_background}",
         "position": "absolute",
+        "right": "100%",
         "top": "0",
         "transition-property": "background-color"
       },
-      "z-index": "1",
       "animation-fill-mode": "forwards",
       "appearance": "none",
       "display": "none",
-      "overflow": "hidden",
       "position": "absolute",
+      "overflow": "hidden",
       "transition-property": "background-color",
+      "z-index": "16",
       "section|bottom": {
-        "var|_top": "auto",
-        "var|_bottom": "0",
-        "var|_transformOrigin": "bottom"
-      },
-      "inverse": {
-        "var|_background": "{??_inverse}"
-      },
-      "type": {
-        "circular": {
-          "inset": "0",
-          "margin": "auto",
-          "max-height": "100%",
-          "padding": "{??_circularPadding}",
-          "squared": "{??_circularSize}",
-          "transform": "rotate(-90deg)",
-          "=isMove": {
-            "animation-name": "??--circle-hidden"
-          },
-          "=isVisible": {
-            "animation-name": "??--circle-visible"
-          }
-        },
-        "linear": {
-          "background-color": "{??_background}",
-          "background-opacity": "{??_barOpacity}",
-          "bottom": "{??_bottom}",
-          "height": "{??_height}",
-          "padding-x": "0",
-          "top": "{??_top}",
-          "transform-origin": "{??_transformOrigin}",
-          "width": "100%",
-          "::after": {
-            "@short": "{??short}"
-          },
-          "::before": {
-            "@short": "{??short}"
-          },
-          "=isMove": {
-            "animation-name": "??--linear-hidden"
-          },
-          "=isVisible": {
-            "animation-name": "??--linear-visible"
-          }
-        }
+        "var|bottom": "0",
+        "var|top": "auto",
+        "var|transformOrigin": "bottom"
       },
       "section|indeterminate": {
         "type1": {
@@ -239,6 +200,57 @@
           }
         }
       },
+      "section|inverse": {
+        "var|_background": "{??_inverse}"
+      },
+      "section|type": {
+        "circular": {
+          "inset": "0",
+          "margin": "auto",
+          "max-height": "100%",
+          "padding": "{??_circular.padding}",
+          "squared": "{??_circular.size}",
+          "transform": "rotate(-90deg)",
+          "=isMove": {
+            "animation-name": "??--circle-hidden"
+          },
+          "=isVisible": {
+            "animation-name": "??--circle-visible"
+          }
+        },
+        "linear": {
+          "background-opacity": "{??_opacity}",
+          "bottom": "{??bottom}",
+          "height": "{??_height}",
+          "padding-x": "0",
+          "palette-background": "{??_background}",
+          "top": "{??top}",
+          "transform-origin": "{??transformOrigin}",
+          "width": "100%",
+          "::after": {
+            "@short": "{??short}"
+          },
+          "::before": {
+            "@short": "{??short}"
+          },
+          "=isMove": {
+            "animation-name": "??--linear-hidden"
+          },
+          "=isVisible": {
+            "animation-name": "??--linear-visible"
+          }
+        }
+      },
+      "#circle": {
+        "fill": "transparent",
+        "stroke": "{??_background}",
+        "stroke-dasharray": "1, 200",
+        "stroke-dashoffset": "0",
+        "stroke-linecap": "round",
+        "stroke-opacity": "1",
+        "stroke-width": "{??_height}",
+        "transition-property": "background-color, stroke-dasharray"
+      },
       "=isMove": {
         "display": "block"
       },
@@ -259,19 +271,9 @@
       "=isVisible": {
         "display": "block"
       },
-      "#circle": {
-        "fill": "transparent",
-        "stroke": "{??_background}",
-        "stroke-opacity": "1",
-        "stroke-dasharray": "1, 200",
-        "stroke-dashoffset": "0",
-        "stroke-linecap": "round",
-        "stroke-width": "{??_height}",
-        "transition-property": "background-color, stroke-dasharray"
-      },
       "&.isValue &__circle": {
         "animation-name": "none",
-        "stroke-dasharray": "calc({??_value} * {??_circularDasharray}) {??_circularLength}",
+        "stroke-dasharray": "calc({??_value} * {??_circular.dasharray}) {??_circular.length}",
         "stroke-linecap": "butt"
       }
     }

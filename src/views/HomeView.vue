@@ -16,7 +16,7 @@
       :disabled="disabled"
     />
     <md2-ripple inverse/>
-    <md2-progress :value="100" :max="300"/>
+    <md2-progress :value="100" :max="300" bottom/>
   </div>
   <div class="relative w-64 h-64">
     <md2-image
