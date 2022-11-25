@@ -1,106 +1,190 @@
 {
   "d": {
+    "sys": {
+      "mixin|button": {
+        "mixin|status": {
+          "var|palette": "{?sys.button.palette}",
+          "var|background": "{?sys.button.background}",
+          "var|backgroundOpacity": "{?sys.button.backgroundOpacity}",
+          "var|border": "{?sys.button.border}",
+          "var|borderOpacity": "{?sys.button.borderOpacity}",
+          "var|gradient": "{?sys.button.gradient}",
+          "var|gradientOpacity": "{?sys.button.gradientOpacity}",
+          "var|shadow": "{?sys.button.shadow}",
+          "var|text": "{?sys.button.text}",
+          "var|textOpacity": "{?sys.button.textOpacity}"
+        },
+        "var|palette": "#000000",
+        "var|background": "{??_palette}",
+        "var|backgroundOpacity": "0",
+        "var|border": "{??_palette}",
+        "var|borderOpacity": "0",
+        "var|borderWidth": "1px",
+        "var|gradient": "{??_palette}",
+        "var|gradientOpacity": "0",
+        "var|padding": "16px",
+        "var|shadow": "none",
+        "var|text": "unset",
+        "var|textOpacity": "unset",
+        "var|width": "80px",
+        "var|active": {
+          "@style": "{d.sys.button.status}",
+          "var|gradientOpacity": "0.08"
+        },
+        "var|disabled": {
+          "@style": "{d.sys.button.status}"
+        },
+        "var|focus": {
+          "@style": "{d.sys.button.status}",
+          "var|gradientOpacity": "0.12"
+        },
+        "var|hover": {
+          "@style": "{d.sys.button.status}",
+          "var|gradientOpacity": "0.04"
+        },
+        "var|selected": {
+          "@style": "{d.sys.button.status}"
+        }
+      }
+    },
     "button": {
-      "var|_palette": "#000000",
-      "var|_paletteVariant": "#000000",
-      "var|_paletteDisabled": "#000000",
-      "var|_text": "unset",
-      "var|_textOpacity": "unset",
-      "var|_textDisabled": "unset",
-      "var|_textDisabledOpacity": "unset",
-      "var|_background": "{??_palette}",
-      "var|_backgroundOpacity": "0",
-      "var|_backgroundStatus": "{??_palette}",
-      "var|_backgroundStatusOpacity": "0",
-      "var|_backgroundActiveOpacity": "0.08",
-      "var|_backgroundFocusOpacity": "0.12",
-      "var|_backgroundHoverOpacity": "0.04",
-      "var|_border": "{??_palette}",
-      "var|_borderOpacity": "0",
-      "var|_borderWidth": "1px",
-      "var|_borderWidthActive": "1px",
-      "var|_shadow": "none",
-      "var|_shadowActive": "{??_shadow}",
-      "var|_shadowDragged": "{??_shadow}",
-      "var|_shadowFocus": "{??_shadow}",
-      "var|_shadowHover": "{??_shadow}",
-      "var|_minWidth": "64px",
-      "var|_padding": "16px",
-      "@flex": "{d.flex.inlineCenter}",
-      "@select": "{d.selectNone}",
+      "var|palette": "{?sys.button.palette}",
+      "var|background": "{?sys.button.background}",
+      "var|backgroundOpacity": "{?sys.button.backgroundOpacity}",
+      "var|border": "{?sys.button.border}",
+      "var|borderOpacity": "{?sys.button.borderOpacity}",
+      "var|gradient": "{?sys.button.gradient}",
+      "var|gradientOpacity": "{?sys.button.gradientOpacity}",
+      "var|padding": "{?sys.button.padding}",
+      "var|shadow": "{?sys.button.shadow}",
+      "var|text": "{?sys.button.text}",
+      "var|textOpacity": "{?sys.button.textOpacity}",
+      "var|width": "{?sys.button.width}",
       "mixin|border": {
-        "border-color": "{??_border}",
-        "border-color-opacity": "{??_borderOpacity}",
-        "border-radius": "inherit",
-        "position": "absolute",
-        "inset": "0"
+        "@position": "{d.position.absolute}",
+        "border-opacity": "{??borderOpacity}",
+        "border-width": "{??borderWidth}",
+        "palette-border": "{??border}"
       },
-      "mixin|after": {
-        "@style": "{??border}",
-        "border-width": "{??_borderWidth}"
+      "mixin|zIndex": {
+        "z-index": "4"
       },
       "mixin|before": {
         "@style": "{??border}",
-        "border-width": "{??_borderWidthActive}",
         "transition-duration": "{d.sys.transitionDuration.fade.through}",
-        "transition-property": "border-color"
-      },
-      "background-color": "{??_background}",
-      "background-opacity": "{??_backgroundOpacity}",
-      "background-gradient": "{??_backgroundStatus}",
-      "background-gradient-opacity": "{??_backgroundStatusOpacity}",
-      "box-shadow": "{??_shadow}",
-      "color": "{??_text}",
-      "color-opacity": "{??_textOpacity}",
-      "max-width": "100%",
-      "min-width": "{??_minWidth}",
-      "padding-x": "{??_padding}",
-      "position": "relative",
-      "transition-property": "color, background, box-shadow",
-      "align": {
-        "@style": "{d.font.align}"
-      },
-      "selected": {
-        "var|_palette": "{??_paletteVariant}"
-      },
-      ":hover": {
-        "background-gradient-opacity": "{??_backgroundHoverOpacity}",
-        "box-shadow": "{??_shadowHover}",
-        "z-index": "12"
-      },
-      ":focus": {
-        "background-gradient-opacity": "{??_backgroundFocusOpacity}",
-        "box-shadow": "{??_shadowFocus}",
-        "z-index": "12"
-      },
-      ":active": {
-        "background-gradient-opacity": "{??_backgroundActiveOpacity}",
-        "box-shadow": "{??_shadowActive}",
-        "z-index": "12",
-        "::before": {
+        "transition-property": "border-color",
+        ":active": {
           "transition-duration": "{d.sys.transitionDuration.xs}"
         }
       },
-      "dragged": {
-        "box-shadow": "{??_shadowDragged}"
+      "mixin|active": {
+        "@style": "{??zIndex}",
+        "var|palette": "{?sys.button.active.palette}",
+        "var|background": "{?sys.button.active.background}",
+        "var|backgroundOpacity": "{?sys.button.active.backgroundOpacity}",
+        "var|border": "{?sys.button.active.border}",
+        "var|borderOpacity": "{?sys.button.active.borderOpacity}",
+        "var|gradient": "{?sys.button.active.gradient}",
+        "var|gradientOpacity": "{?sys.button.active.gradientOpacity}",
+        "var|shadow": "{?sys.button.active.shadow}",
+        "var|text": "{?sys.button.active.text}",
+        "var|textOpacity": "{?sys.button.active.textOpacity}"
       },
-      "readonly": {
-        "var|_backgroundHoverOpacity": "0",
-        "var|_backgroundActiveOpacity": "0",
-        "var|_backgroundFocusOpacity": "0",
-        "var|_borderWidthActive": "0",
-        "var|_shadowActive": "{??_shadow} !important",
-        "var|_shadowDragged": "{??_shadow} !important",
-        "var|_shadowFocus": "{??_shadow} !important",
-        "var|_shadowHover": "{??_shadow} !important",
-        "cursor": "default"
+      "mixin|disabled": {
+        "cursor": "default",
+        "z-index": "auto"
+      },
+      "@flex": "{d.flex.inline.center}",
+      "@select": "{d.font.readonly}",
+      "background-opacity": "{??backgroundOpacity}",
+      "box-shadow": "{??shadow}",
+      "color": "{??text}",
+      "color-opacity": "{??textOpacity}",
+      "gradient-opacity": "{??gradientOpacity}",
+      "max-width": "100%",
+      "min-width": "{??width}",
+      "padding-x": "{??padding}",
+      "palette-background": "{??background}",
+      "palette-gradient": "{??gradient}",
+      "position": "relative",
+      "transition-property": "color, background, box-shadow",
+      ":hover": {
+        "@style": "{??zIndex}",
+        "var|palette": "{?sys.button.hover.palette}",
+        "var|background": "{?sys.button.hover.background}",
+        "var|backgroundOpacity": "{?sys.button.hover.backgroundOpacity}",
+        "var|border": "{?sys.button.hover.border}",
+        "var|borderOpacity": "{?sys.button.hover.borderOpacity}",
+        "var|gradient": "{?sys.button.hover.gradient}",
+        "var|gradientOpacity": "{?sys.button.hover.gradientOpacity}",
+        "var|shadow": "{?sys.button.hover.shadow}",
+        "var|text": "{?sys.button.hover.text}",
+        "var|textOpacity": "{?sys.button.hover.textOpacity}"
+      },
+      ":focus": {
+        "@style": "{??zIndex}",
+        "var|palette": "{?sys.button.focus.palette}",
+        "var|background": "{?sys.button.focus.background}",
+        "var|backgroundOpacity": "{?sys.button.focus.backgroundOpacity}",
+        "var|border": "{?sys.button.focus.border}",
+        "var|borderOpacity": "{?sys.button.focus.borderOpacity}",
+        "var|gradient": "{?sys.button.focus.gradient}",
+        "var|gradientOpacity": "{?sys.button.focus.gradientOpacity}",
+        "var|shadow": "{?sys.button.focus.shadow}",
+        "var|text": "{?sys.button.focus.text}",
+        "var|textOpacity": "{?sys.button.focus.textOpacity}"
+      },
+      ":active": {
+        "@style": "{??active}"
+      },
+      "section|selected": {
+        "var|palette": "{?sys.button.selected.palette}",
+        "var|background": "{?sys.button.selected.background}",
+        "var|backgroundOpacity": "{?sys.button.selected.backgroundOpacity}",
+        "var|border": "{?sys.button.selected.border}",
+        "var|borderOpacity": "{?sys.button.selected.borderOpacity}",
+        "var|gradient": "{?sys.button.selected.gradient}",
+        "var|gradientOpacity": "{?sys.button.selected.gradientOpacity}",
+        "var|shadow": "{?sys.button.selected.shadow}",
+        "var|text": "{?sys.button.selected.text}",
+        "var|textOpacity": "{?sys.button.selected.textOpacity}"
+      },
+      "section|dragged": {
+        "@style": "{??active}"
+      },
+      "section|readonly": {
+        "@style": "{??disabled}",
+        "var|palette": "{?sys.button.palette}",
+        "var|background": "{?sys.button.background}",
+        "var|backgroundOpacity": "{?sys.button.backgroundOpacity}",
+        "var|border": "{?sys.button.border}",
+        "var|borderOpacity": "{?sys.button.borderOpacity}",
+        "var|gradient": "{?sys.button.gradient}",
+        "var|gradientOpacity": "{?sys.button.gradientOpacity}",
+        "var|shadow": "{?sys.button.shadow}",
+        "var|text": "{?sys.button.text}",
+        "var|textOpacity": "{?sys.button.textOpacity}"
       },
       "section|disabled": {
-        "@style": "{??readonly}",
-        "var|_palette": "{??_paletteDisabled}"
+        "@style": "{??disabled}",
+        "var|palette": "{?sys.button.disabled.palette}",
+        "var|background": "{?sys.button.disabled.background}",
+        "var|backgroundOpacity": "{?sys.button.disabled.backgroundOpacity}",
+        "var|border": "{?sys.button.disabled.border}",
+        "var|borderOpacity": "{?sys.button.disabled.borderOpacity}",
+        "var|gradient": "{?sys.button.disabled.gradient}",
+        "var|gradientOpacity": "{?sys.button.disabled.gradientOpacity}",
+        "var|shadow": "{?sys.button.disabled.shadow}",
+        "var|text": "{?sys.button.disabled.text}",
+        "var|textOpacity": "{?sys.button.disabled.textOpacity}",
+        "background-color": "{??background}",
+        "gradient-color": "{??gradient}"
+      },
+      "section|align": {
+        "@style": "{d.font.align}"
       },
       "#text": {
-        "@flex": "{d.flex.dynamic}"
+        "@dynamic": "{d.flex.dynamic}"
       }
     }
   }

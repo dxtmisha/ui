@@ -36,7 +36,7 @@
       },
       "=isType": {
         "public": {
-          "@style": "{d.sys.backgroundAsColor}",
+          "@style": "{d.mixin.backgroundAsColor}",
           "mask-position": "center",
           "mask-repeat": "no-repeat",
           "mask-size": "contain"

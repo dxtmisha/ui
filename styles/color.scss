@@ -39,25 +39,30 @@
   }
 }
 
-/* Palette */
-
-@mixin mixinPalette($color) {
-  --sys-_palette: var(--sys-palette, #{toColorRbg($color)});
+@function getPalette($color) {
+  @return #{var(--sys-palette, #{toColorRbg($color)})}
 }
 
+/* Palette */
+
 @mixin mixinPaletteColor($color) {
-  @include mixinPalette($color);
-  @include mixinColor(#{var(--sys-_palette)});
+  --sys-_palette-color: #{getPalette($color)};
+  @include mixinColor(#{var(--sys-_palette-color)});
 }
 
 @mixin mixinPaletteBackground($color) {
-  @include mixinPalette($color);
-  @include mixinBackground(#{var(--sys-_palette)});
+  --sys-_palette-background: #{getPalette($color)};
+  @include mixinBackground(#{var(--sys-_palette-background)});
 }
 
 @mixin mixinPaletteGradient($color) {
-  @include mixinPalette($color);
-  @include mixinGradient(#{var(--sys-_palette)});
+  --sys-_palette-gradient: #{getPalette($color)};
+  @include mixinGradient(#{var(--sys-_palette-gradient)});
+}
+
+@mixin mixinPaletteBorder($color) {
+  --sys-_palette-border: #{getPalette($color)};
+  @include mixinBorder(#{var(--sys-_palette-border)});
 }
 
 /* Color */
