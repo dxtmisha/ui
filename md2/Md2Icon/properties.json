@@ -3,14 +3,11 @@
     "icon": {
       "@style": "{d.icon}",
       "var|_background": "{?sys.palette.onSurface}",
+      "var|_disabled": "{?sys.opacity.disabled}",
       "var|_opacity": "{?sys.opacity.dragged}",
-      "var|_disabledOpacity": "{?sys.opacity.disabled}",
       "var|_rounded": "{?.sys.rounded.full}",
       "var|_size": "{?.ref.spacing.6}",
       "size": {
-        "sm": {
-          "var|_size": "{?.ref.spacing.6}"
-        },
         "md": {
           "var|?image-fontSize": "{ref.font.size.headline.5}",
           "var|_size": "{?.ref.spacing.10}"

@@ -2,8 +2,8 @@
   "d": {
     "icon": {
       "var|_background": "0, 0, 0",
+      "var|_disabled": ".02",
       "var|_opacity": ".08",
-      "var|_disabledOpacity": ".02",
       "var|_rounded": "4px",
       "var|_size": "24px",
       "animate|show": {
@@ -22,7 +22,7 @@
           "transform": "none"
         }
       },
-      "@select": "{d.selectNone}",
+      "@select": "{d.font.readonly}",
       "border-radius": "{??_rounded}",
       "display": "inline-block",
       "min-width": "{??_size}",
@@ -31,11 +31,11 @@
       "transition-duration": "{d.sys.transitionDuration.standard}",
       "transition-property": "background, clip-path, margin, opacity, transform",
       "squared": "{??_size}",
-      "animationShow": {
+      "section|animationShow": {
         "animation-duration": "{d.sys.transitionDuration.standard}",
         "animation-name": "??--show"
       },
-      "animationType": {
+      "section|animationType": {
         "type2": {
           "clip-path": "inset(0 0 0 0)",
           "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, background {d.sys.transitionDuration.standard} linear, transform {d.sys.transitionDuration.standard} linear",
@@ -50,20 +50,16 @@
         }
       },
       "section|background": {
-        "background-color": "{??_background}",
-        "background-opacity": "{??_opacity}"
+        "background-opacity": "{??_opacity}",
+        "palette-background": "{??_background}"
       },
       "section|disabled": {
-        "background-opacity": "{??_disabledOpacity}"
+        "background-opacity": "{??_disabled}"
       },
-      "hide": {
-        "@style": "{d.animation.hide}",
-        "transition-duration": "{d.sys.transitionDuration.fade.exit}"
+      "section|hide": {
+        "@style": "{d.animation.hide}"
       },
-      "size": {
-        "sm": {
-          "var|_size": "24px"
-        },
+      "section|size": {
         "md": {
           "var|_size": "40px"
         },
