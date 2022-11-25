@@ -24,7 +24,7 @@
   @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone");
 
   @include initTypographyService(
-                  #{var(--md2-sys-palette-on-secondary)},
+                  #{var(--md2-sys-palette-on-surface)},
                   #{var(--md2-sys-opacity-surface-high)},
                   #{var(--md2-sys-elevation-background-0)},
                   '1',

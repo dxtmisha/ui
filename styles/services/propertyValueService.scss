@@ -12,6 +12,8 @@
     @include mixinPaletteColor(#{$value});
   } @else if ($index == 'palette-background') {
     @include mixinPaletteBackground(#{$value});
+  } @else if ($index == 'palette-gradient') {
+    @include mixinPaletteGradient(#{$value});
   } @else if ($index == 'color') {
     @include mixinColor(#{$value});
   } @else if ($index == 'color-opacity') {

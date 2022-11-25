@@ -318,6 +318,7 @@
   "palette",
   "palette-color",
   "palette-background",
+  "palette-gradient",
   "pause",
   "pause-after",
   "pause-before",

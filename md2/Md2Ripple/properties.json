@@ -2,9 +2,9 @@
   "md2": {
     "ripple": {
       "@style": "{d.ripple}",
-      "var|_background": "{?.sys.palette.primary}",
-      "var|_inverse": "{?.sys.palette.onPrimary}",
-      "var|_opacity": "{?.sys.opacity.pressed}"
+      "var|_background": "{sys.palette.primary}",
+      "var|_inverse": "{sys.palette.onPrimary}",
+      "var|_opacity": "{sys.opacity.pressed}"
     }
   }
 }

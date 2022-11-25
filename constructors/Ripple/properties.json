@@ -8,19 +8,19 @@
       "var|_y": "50%",
       "animate|start": {
         "0%": {
-          "background-opacity": "0",
+          "gradient-opacity": "0",
           "clip-path": "circle(000% at {??_x} {??_y})"
         },
         "50%": {
-          "background-opacity": "{??_opacity}",
+          "gradient-opacity": "{??_opacity}",
           "clip-path": "circle(075% at {??_x} {??_y})"
         },
         "100%": {
-          "background-opacity": "{??_opacity}",
+          "gradient-opacity": "{??_opacity}",
           "clip-path": "circle(150% at {??_x} {??_y})"
         }
       },
-      "mixin|stepEnd": {
+      "mixin|end": {
         "opacity": "0",
         "transition-delay": "{d.sys.transitionDuration.fade.enter}",
         "transition-duration": "{d.sys.transitionDuration.fade.through}",
@@ -39,19 +39,20 @@
         "animation-fill-mode": "forwards",
         "animation-name": "??--start",
         "animation-timing-function": "linear",
-        "background-color": "{??_background}",
+        "background-opacity": "{??_opacity}",
         "inset": "0",
+        "palette-background": "{??_background}",
         "position": "absolute",
-        "=isStepEnd": {
+        "=isEnd": {
           ":not(:last-child)": {
-            "@step": "{??stepEnd}"
+            "@style": "{??end}"
           }
         }
       },
       ":not(:active)": {
         "#item": {
-          "=isStepEnd": {
-            "@step": "{??stepEnd}"
+          "=isEnd": {
+            "@style": "{??end}"
           }
         }
       }

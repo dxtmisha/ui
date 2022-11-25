@@ -72,6 +72,9 @@
             "value": "{ref.transitionDuration.6}"
           }
         },
+        "axis": {
+          "value": "{ref.transitionDuration.8}"
+        },
         "container": {
           "open": {
             "value": "{ref.transitionDuration.8}"
@@ -79,9 +82,6 @@
           "close": {
             "value": "{ref.transitionDuration.6}"
           }
-        },
-        "axis": {
-          "value": "{ref.transitionDuration.8}"
         },
         "fade": {
           "enter": {
@@ -112,81 +112,27 @@
           "value": "{ref.transitionFunction.standard}"
         }
       },
-      "motion": {
-        "container": {
-          "container": {
-            "value": "transform {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
-          },
-          "element": {
-            "1": {
-              "value": "opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
-            },
-            "2": {
-              "value": "opacity 67ms linear 50ms"
-            }
-          },
-          "scrim": {
-            "value": "opacity {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
-          },
-          "open": {
-            "container": {
-              "value": "transform {sys.transitionDuration.container.open} {sys.transitionFunction.standard}"
-            },
-            "element": {
-              "1": {
-                "value": "opacity {sys.transitionDuration.container.open} {sys.transitionFunction.standard}"
-              },
-              "2": {
-                "value": "opacity 60ms linear 60ms"
-              }
-            },
-            "scrim": {
-              "value": "opacity 90ms linear"
-            }
-          },
-          "fade": {
-            "container": {
-              "value": "transform {sys.transitionDuration.container.close} {sys.transitionFunction.standard}"
-            },
-            "element": {
-              "1": {
-                "value": "opacity 90ms {sys.transitionFunction.acceleration}"
-              },
-              "2": {
-                "value": "opacity 210ms {sys.transitionFunction.deceleration} 90ms"
-              }
-            },
-            "scrim": {
-              "value": "opacity 90ms linear"
-            }
-          }
-        },
-        "axis": {
-          "element": {
-            "1": {
-              "value": "transform {sys.transitionDuration.axis} {sys.transitionFunction.standard}, opacity 90ms {sys.transitionFunction.acceleration}"
-            },
-            "2": {
-              "value": "transform {sys.transitionDuration.axis} {sys.transitionFunction.standard}, opacity 210ms {sys.transitionFunction.deceleration} 90ms"
-            }
-          },
-          "fade": {
-            "element": {
-              "1": {
-                "value": "transform {sys.transitionDuration.axis} cubicBezier(0.4, 0.0, 0.0, 1)"
-              },
-              "2": {
-                "value": "transform {sys.transitionDuration.axis} cubicBezier(0.4, 0.0, 0.0, 1), opacity 60ms linear 60ms"
-              }
-            }
-          }
-        }
-      },
       "backgroundAsColor": {
         "background-color": {
           "value": "var(--sys-color)"
         },
         "background-opacity": {
+          "value": "var(--sys-color-opacity)"
+        }
+      },
+      "gradientAsBackground": {
+        "gradient-color": {
+          "value": "var(--sys-background)"
+        },
+        "gradient-opacity": {
+          "value": "var(--sys-background-opacity)"
+        }
+      },
+      "gradientAsColor": {
+        "gradient-color": {
+          "value": "var(--sys-color)"
+        },
+        "gradient-opacity": {
           "value": "var(--sys-color-opacity)"
         }
       }
@@ -197,37 +143,32 @@
         "transform": "scale(.8)"
       }
     },
-    "ellipsis": {
-      "overflow": "hidden",
-      "text-overflow": "ellipsis",
-      "white-space": "nowrap"
-    },
     "flex": {
       "x": {
         "align-items": "center",
         "display": "flex"
       },
       "y": {
-        "align-items": "center",
-        "display": "flex",
+        "@style": "{d.flex.x}",
         "flex-flow": "column"
       },
       "center": {
         "@style": "{d.flex.x}",
         "justify-content": "center"
       },
-      "inlineX": {
-        "align-items": "center",
-        "display": "inline-flex"
-      },
-      "inlineY": {
-        "align-items": "center",
-        "display": "inline-flex",
-        "flex-flow": "column"
-      },
-      "inlineCenter": {
-        "@style": "{d.flex.inlineX}",
-        "justify-content": "center"
+      "inline": {
+        "x": {
+          "align-items": "center",
+          "display": "inline-flex"
+        },
+        "y": {
+          "@style": "{d.flex.inline.x}",
+          "flex-flow": "column"
+        },
+        "center": {
+          "@style": "{d.flex.inline.x}",
+          "justify-content": "center"
+        }
       },
       "dynamic": {
         "flex-basis": "1px",
@@ -246,28 +187,16 @@
         "section|right": {
           "text-align": "right"
         }
+      },
+      "ellipsis": {
+        "overflow": "hidden",
+        "text-overflow": "ellipsis",
+        "white-space": "nowrap"
+      },
+      "readonly": {
+        "touch-callout": "none",
+        "user-select": "none"
       }
-    },
-    "motion": {
-      "container": {
-        "open": {
-          "var|?sys": {
-            "motion": {
-              "container": {
-                "element": {
-                  "1": "{sys.motion.container.open.element.1}",
-                  "2": "{sys.motion.container.open.element.2}"
-                },
-                "scrim": "{sys.motion.container.open.scrim}"
-              }
-            }
-          }
-        }
-      }
-    },
-    "selectNone": {
-      "touch-callout": "none",
-      "user-select": "none"
     }
   }
 }

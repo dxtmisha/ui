@@ -2,10 +2,10 @@
 
 @function isColorRbgOrVar($color) {
   @return meta.type-of($color) == color or (
-    $color == 'none' and
-    $color == 'transparent' and
-    $color == 'initial' and
-    $color == 'inherit'
+    $color != 'none' and
+    $color != 'transparent' and
+    $color != 'initial' and
+    $color != 'inherit'
   )
 }
 
@@ -53,6 +53,11 @@
 @mixin mixinPaletteBackground($color) {
   @include mixinPalette($color);
   @include mixinBackground(#{var(--sys-_palette)});
+}
+
+@mixin mixinPaletteGradient($color) {
+  @include mixinPalette($color);
+  @include mixinGradient(#{var(--sys-_palette)});
 }
 
 /* Color */
@@ -117,7 +122,7 @@
   @if (isColorRbgOrVar($color)) {
     --sys-gradient: #{toColorRbg($color)};
     @include mixinGradientOpacity($opacity);
-    background-image: rgba(var(--sys-gradient), var(--sys-gradient-opacity));
+    background-image: #{toGradient(#{rgba(var(--sys-gradient), var(--sys-gradient-opacity))})};
   } @else {
     background-image: $color;
   }

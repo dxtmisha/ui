@@ -5,11 +5,11 @@
 
 @mixin initTypographyService(
   $color: #000000,
-  $colorOpacity: .78,
+  $colorOpacity: .7,
   $background: #ffffff,
   $backgroundOpacity: 1,
   $border: #000000,
-  $borderOpacity: 0.12
+  $borderOpacity: 0.1
 ) {
   $constructor: 'd';
 
@@ -83,7 +83,7 @@
   body {
     @include mixinColor($color, $colorOpacity);
     @include mixinBackground($background, $backgroundOpacity);
-    @include mixinBackgroundGradient(#ffffff, 0);
+    @include mixinGradient($background, 0);
     @include mixinBorder($border, $borderOpacity);
   }
 
@@ -95,10 +95,7 @@
 
   @include classesInitService($constructor, (
           'animation',
-          'ellipsis',
           'flex',
-          'font',
-          'motion',
-          'selectNone'
+          'font'
   ));
 }
