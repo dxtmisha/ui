@@ -45,6 +45,10 @@
 
 /* Palette */
 
+@mixin mixinPalette($color) {
+  --sys-palette: #{toColorRbg($color)};
+}
+
 @mixin mixinPaletteColor($color) {
   --sys-_palette-color: #{getPalette($color)};
   @include mixinColor(#{var(--sys-_palette-color)});

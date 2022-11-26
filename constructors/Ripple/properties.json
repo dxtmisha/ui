@@ -32,7 +32,8 @@
       "overflow": "hidden",
       "z-index": "1",
       "inverse": {
-        "var|_background": "{??_inverse}"
+        "var|_background": "{??_inverse}",
+        "palette": "{??_inverse}"
       },
       "#item": {
         "animation-duration": "{d.sys.transitionDuration.fade.through}",

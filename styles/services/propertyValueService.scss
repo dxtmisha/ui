@@ -34,6 +34,8 @@
     @include paddingLeft(#{$value});
   } @else if ($index == 'padding-right') {
     @include paddingRight(#{$value});
+  } @else if ($index == 'palette') {
+    @include mixinPalette(#{$value});
   } @else if ($index == 'palette-color') {
     @include mixinPaletteColor(#{$value});
   } @else if ($index == 'palette-background') {
