@@ -16,13 +16,7 @@ export type ButtonAlignType =
 export type ButtonAppearanceType =
   'text' |
   'outlined' |
-  'outlined-color' |
-  'outlined-contained' |
-  'contained' |
-  'fab' |
-  'chip' |
-  'chip-color' |
-  'chip-outlined'
+  'contained'
 
 export type ButtonRoundedType =
   'none' |

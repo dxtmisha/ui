@@ -111,13 +111,19 @@ export abstract class ComponentAbstract {
     }
   }
 
+  getBind<T = any, R = AssociativeType> (value: Ref<T | R>): ComputedRef<R>
+  getBind<T = any, R = AssociativeType> (value: Ref<T | R>, name: string): ComputedRef<R>
+  getBind<T = any, R = AssociativeType> (value: Ref<T | R>, extra: AssociativeType | Ref<AssociativeType>): ComputedRef<R>
+  getBind<T = any, R = AssociativeType> (value: Ref<T | R>, extra: AssociativeType | Ref<AssociativeType>, name: string): ComputedRef<R>
   getBind<T = any, R = AssociativeType> (
     value: Ref<T | R>,
-    extra = {} as AssociativeType | Ref<AssociativeType>,
+    nameExtra = {} as string | AssociativeType | Ref<AssociativeType>,
     name = 'value' as string
   ): ComputedRef<R> {
     return computed(() => {
-      const data = isRef(extra) ? (extra.value || {}) : extra
+      const isName = typeof nameExtra === 'string'
+      const extra = isName ? {} : nameExtra
+      const data = (isRef(extra) ? extra.value : extra) || {}
 
       if (typeof value.value === 'object') {
         return {
@@ -127,7 +133,7 @@ export abstract class ComponentAbstract {
       } else {
         return {
           ...data,
-          [name]: value.value
+          [isName ? nameExtra : name]: value.value
         } as R
       }
     })

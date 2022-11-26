@@ -102,6 +102,7 @@
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
   <md2-button text="button"/>
+  <md2-button>slot</md2-button>
   <md2-button text="red" palette="red"/>
   <md2-button text="green" palette="green"/>
   <md2-button text="dragged" dragged/>
@@ -112,6 +113,7 @@
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button appearance="outlined" text="button"/>
+  <md2-button appearance="outlined">slot</md2-button>
   <md2-button appearance="outlined" text="red" palette="red"/>
   <md2-button appearance="outlined" text="green" palette="green"/>
   <md2-button appearance="outlined" text="dragged" dragged/>
@@ -122,6 +124,7 @@
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button appearance="text" text="button"/>
+  <md2-button appearance="text">slot</md2-button>
   <md2-button appearance="text" text="red" palette="red"/>
   <md2-button appearance="text" text="green" palette="green"/>
   <md2-button appearance="text" text="dragged" dragged/>
@@ -129,6 +132,24 @@
   <md2-button appearance="text" text="selected" selected/>
   <md2-button appearance="text" text="selected+disabled" selected disabled/>
   <md2-button appearance="text" text="disabled" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button icon="close"/>
+  <md2-button icon="close+slot">text</md2-button>
+  <md2-button text="icon" icon="close"/>
+  <md2-button text="icon+iconActive" :icon="{icon:'close',iconActive:'face'}" selected/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="icon+icon-trailing" icon="face" icon-trailing="close"/>
+  <md2-button icon="face" icon-trailing="close"/>
+  <md2-button text="icon-trailing" icon-trailing="close"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="lowercase" lowercase/>
+  <md2-button text="lowercase+disabled" lowercase disabled/>
+  <md2-button text="ellipsis" :ellipsis="false"/>
+  <md2-button text="dense" dense/>
+  <md2-button text="ripple" :ripple="false"/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="sm" height="sm"/>

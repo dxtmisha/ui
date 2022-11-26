@@ -21,10 +21,8 @@ export const props = {
   value: [Number, String] as PropType<NumberOrStringType>,
 
   // Status
-  active: Boolean,
   disabled: Boolean,
   dragged: Boolean,
-  hide: Boolean,
   progress: Boolean,
   readonly: Boolean,
   selected: Boolean,
@@ -43,23 +41,23 @@ export const props = {
     type: String as PropType<ButtonAppearanceType>,
     default: defaultProps('appearance', 'contained')
   },
-  color: String,
   dense: Boolean,
   ellipsis: {
     type: Boolean,
     default: defaultProps('ellipsis', true)
   },
+  height: {
+    type: String as PropType<ButtonSizeType>,
+    default: defaultProps('height', 'md')
+  },
   lowercase: {
     type: Boolean,
     default: defaultProps('lowercase')
   },
+  palette: String,
   rounded: {
     type: String as PropType<ButtonRoundedType>,
     default: defaultProps('rounded', 'sm')
-  },
-  height: {
-    type: String as PropType<ButtonSizeType>,
-    default: defaultProps('height', 'md')
   },
   tag: {
     type: String,

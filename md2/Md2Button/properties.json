@@ -27,6 +27,7 @@
         "var|palette": "{sys.palette.primary}",
         "var|borderWidth": "{ref.spacing.px}",
         "var|padding": "{ref.spacing.4}",
+        "var|space": "{ref.spacing.1}",
         "var|width": "{ref.spacing.24}",
         "var|active": {
           "var|gradientOpacity": "{sys.opacity.dragged}"
@@ -45,10 +46,14 @@
         },
         "var|selected": {
           "var|palette": "{sys.palette.primaryVariant}"
+        },
+        "var|icon": {
+          "var|padding": "{ref.spacing.2} * -1"
         }
       },
       "@@palette": "{?palette}",
       "@@rounded": "{?rounded}",
+      "@font": "{font.button}",
       "height": {
         "sm": "{ref.spacing.8}",
         "md": "{ref.spacing.9}",
@@ -89,9 +94,6 @@
             "border-opacity": "{sys.opacity.border}"
           }
         }
-      },
-      "#text": {
-        "@style": "{font.button}"
       }
     }
   }

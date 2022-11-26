@@ -1,0 +1,36 @@
+@mixin margin($value) {
+  margin: $value;
+}
+
+@mixin marginX($value) {
+  margin-left: $value;
+  margin-right: $value;
+}
+
+@mixin marginY($value) {
+  margin-bottom: $value;
+  margin-top: $value;
+}
+
+@mixin marginRight($value) {
+  --d-direction__margin-right: #{$value};
+  @include _marginDirectionX;
+}
+
+@mixin marginLeft($value) {
+  --d-direction__margin-left: #{$value};
+  @include _marginDirectionX;
+}
+
+@mixin _marginDirectionX() {
+  margin-left: calc((var(--d-direction-left) * var(--d-direction__margin-left)) + (var(--d-direction-right) * var(--d-direction__margin-right)));
+  margin-right: calc((var(--d-direction-left) * var(--d-direction__margin-right)) + (var(--d-direction-right) * var(--d-direction__margin-left)));
+}
+
+@mixin marginTop($value) {
+  margin-top: $value;
+}
+
+@mixin marginBottom($value) {
+  margin-bottom: $value;
+}

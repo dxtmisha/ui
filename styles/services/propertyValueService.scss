@@ -2,6 +2,7 @@
 @import "../dimension";
 @import "../flex";
 @import "../font";
+@import "../margin";
 @import "../padding";
 @import "../position";
 
@@ -28,8 +29,18 @@
     @include mixinGradientOpacity(#{$value});
   } @else if ($index == 'inset') {
     @include inset(#{$value});
+  } @else if ($index == 'margin-x') {
+    @include marginX(#{$value});
+  } @else if ($index == 'margin-y') {
+    @include marginY(#{$value});
+  } @else if ($index == 'margin-left') {
+    @include marginLeft(#{$value});
+  } @else if ($index == 'margin-right') {
+    @include marginRight(#{$value});
   } @else if ($index == 'padding-x') {
     @include paddingX(#{$value});
+  } @else if ($index == 'padding-y') {
+    @include paddingY(#{$value});
   } @else if ($index == 'padding-left') {
     @include paddingLeft(#{$value});
   } @else if ($index == 'padding-right') {

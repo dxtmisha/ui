@@ -4,19 +4,26 @@ component(
   :class="classes.main"
   :disabled="disabled"
 )
-  span(:class="classes.text") {{ text }}
-    slot
-  md2-ripple(:inverse="appearance === 'contained'")
+  md2-icon(v-if="icon" v-bind="iconBind")
+  md2-icon(v-if="iconTrailing" v-bind="iconTrailingBind" class="is-trailing")
+  template(v-if="text || 'default' in $slots")
+    span(:class="classes.text") {{ text }}
+      slot
+  md2-ripple(v-if="ifRipple" :inverse="appearance === 'contained'")
 </template>
 
 <script lang="ts">
+import Md2Icon from '../Md2Icon/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
 import { ButtonComponent } from './ButtonComponent'
 import { props } from './props'
 
 export default {
   name: 'Md2Button',
-  components: { Md2Ripple },
+  components: {
+    Md2Icon,
+    Md2Ripple
+  },
   props,
   setup (props: object, context: object) {
     return new ButtonComponent(props, context).setup()

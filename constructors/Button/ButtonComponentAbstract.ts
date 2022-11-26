@@ -1,4 +1,4 @@
-import { ComputedRef, Ref } from 'vue'
+import { computed, ComputedRef, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -18,19 +18,40 @@ export type ButtonSetupType = {
   baseClass: ComputedRef<string>
   classes: ComputedRef<ButtonClassesType>
   styles: ComputedRef<ComponentStylesType>
+  ifRipple: ComputedRef<boolean>
+  ifText: ComputedRef<boolean>
+  iconBind: ComputedRef<string | AssociativeType>
+  iconTrailingBind: ComputedRef<string | AssociativeType>
 }
 
 export abstract class ButtonComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
 
   setup (): ButtonSetupType {
-    const classes = this.getClasses<ButtonClassesType>({})
+    const classes = this.getClasses<ButtonClassesType>({
+      main: {
+        'is-icon': this.isIcon
+      }
+    })
     const styles = this.getStyles({})
 
     return {
       ...this.baseInit(),
       classes,
-      styles
+      styles,
+      ifRipple: this.ifRipple,
+      ifText: this.ifText,
+      iconBind: this.getBind(this.refs.icon, 'icon'),
+      iconTrailingBind: this.getBind(this.refs.iconTrailing, 'icon')
     }
   }
+
+  readonly ifRipple = computed(() => this.props.ripple &&
+    !this.props.disabled &&
+    !this.props.readonly
+  ) as ComputedRef<boolean>
+
+  readonly ifText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
+
+  readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>
 }

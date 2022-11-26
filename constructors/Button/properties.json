@@ -47,10 +47,12 @@
         "var|border": "{??sys.palette}",
         "var|borderOpacity": "0",
         "var|borderWidth": "1px",
+        "var|dense": "2",
         "var|gradient": "{??sys.palette}",
         "var|gradientOpacity": "0",
         "var|padding": "16px",
         "var|shadow": "none",
+        "var|space": "4px",
         "var|text": "unset",
         "var|textOpacity": "unset",
         "var|width": "80px",
@@ -79,6 +81,9 @@
           "@style": "{??m.status}",
           "var|background": "{??sys.selected.palette}",
           "var|border": "{??sys.selected.palette}"
+        },
+        "var|icon": {
+          "var|padding": "-8px"
         }
       },
       "var|l": {
@@ -96,7 +101,7 @@
         "var|width": "{??sys.width}"
       },
       "@flex": "{d.flex.inline.center}",
-      "@select": "{d.font.readonly}",
+      "@readonly": "{d.font.readonly}",
       "background-opacity": "{??l.backgroundOpacity}",
       "box-shadow": "{??l.shadow}",
       "color": "{??l.text}",
@@ -111,6 +116,18 @@
       "transition-property": "color, background, box-shadow",
       "section|align": {
         "@style": "{d.font.align}"
+      },
+      "section|dense": {
+        "padding-x": "{??l.padding} / {??sys.dense}",
+        "min-width": "{??l.width} / {??sys.dense}"
+      },
+      "section|ellipsis": {
+        "& .??__text": {
+          "@style": "{d.font.ellipsis}"
+        }
+      },
+      "section|lowercase": {
+        "text-transform": "none"
       },
       "section|dragged": {
         "@style": "{??m.zIndex}",
@@ -175,8 +192,26 @@
       },
       "#text": {
         "@dynamic": "{d.flex.dynamic}",
-        "@ellipsis": "{d.font.ellipsis}",
         "max-width": "inherit"
+      },
+      "& .?icon": {
+        "margin-left": "{??sys.icon.padding}",
+        "margin-right": "{??sys.space}",
+        "&.isTrailing": {
+          "cursor": "default",
+          "margin-left": "{??sys.space}",
+          "margin-right": "{??sys.icon.padding}",
+          "order": "9",
+          "position": "relative",
+          "z-index": "4"
+        }
+      },
+      "=isIcon": {
+        "min-width": "auto",
+        "padding-x": "{??l.padding} + {??sys.icon.padding}",
+        "& .?icon": {
+          "margin-x": "0px"
+        }
       },
       ":hover": {
         "@style": "{??m.zIndex}",
