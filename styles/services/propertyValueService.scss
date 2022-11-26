@@ -6,21 +6,7 @@
 @import "../position";
 
 @mixin mixinPropertyValue($index, $value) {
-  @if ($index == 'palette') {
-    @include mixinPalette(#{$value});
-  } @else if ($index == 'palette-color') {
-    @include mixinPaletteColor(#{$value});
-  } @else if ($index == 'palette-background') {
-    @include mixinPaletteBackground(#{$value});
-  } @else if ($index == 'palette-border') {
-    @include mixinPaletteBorder(#{$value});
-  } @else if ($index == 'palette-gradient') {
-    @include mixinPaletteGradient(#{$value});
-  } @else if ($index == 'color') {
-    @include mixinColor(#{$value});
-  } @else if ($index == 'color-opacity') {
-    @include mixinColorOpacity(#{$value});
-  } @else if ($index == 'background-color') {
+  @if ($index == 'background-color') {
     @include mixinBackground(#{$value});
   } @else if ($index == 'background-opacity') {
     @include mixinBackgroundOpacity(#{$value});
@@ -28,6 +14,10 @@
     @include mixinBorder(#{$value});
   } @else if ($index == 'border-opacity') {
     @include mixinBorderOpacity(#{$value});
+  } @else if ($index == 'color') {
+    @include mixinColor(#{$value});
+  } @else if ($index == 'color-opacity') {
+    @include mixinColorOpacity(#{$value});
   } @else if ($index == 'fill') {
     @include mixinFill(#{$value});
   } @else if ($index == 'fill-opacity') {
@@ -44,6 +34,14 @@
     @include paddingLeft(#{$value});
   } @else if ($index == 'padding-right') {
     @include paddingRight(#{$value});
+  } @else if ($index == 'palette-color') {
+    @include mixinPaletteColor(#{$value});
+  } @else if ($index == 'palette-background') {
+    @include mixinPaletteBackground(#{$value});
+  } @else if ($index == 'palette-border') {
+    @include mixinPaletteBorder(#{$value});
+  } @else if ($index == 'palette-gradient') {
+    @include mixinPaletteGradient(#{$value});
   } @else if ($index == 'stroke') {
     @include mixinStroke(#{$value});
   } @else if ($index == 'stroke-opacity') {

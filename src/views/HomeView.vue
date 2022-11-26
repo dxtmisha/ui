@@ -101,20 +101,53 @@
   <button @click="onClickIcon">test 2</button>
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
-  <md2-button text="button 1" height="lg"/>
-  <md2-button height="sm">button 2</md2-button>
-  <md2-button text="button 3"> / button 4</md2-button>
-  <md2-button text="5" selected/>
-  <md2-button text="6" align="left" rounded="full"/>
-  <md2-button text="readonly" align="right" rounded="standard" readonly/>
-  <md2-button text="disabled" align="right" rounded="standard" disabled/>
+  <md2-button text="button"/>
+  <md2-button text="red" palette="red"/>
+  <md2-button text="green" palette="green"/>
+  <md2-button text="dragged" dragged/>
+  <md2-button text="readonly" readonly/>
+  <md2-button text="selected" selected/>
+  <md2-button text="selected+disabled" selected disabled/>
+  <md2-button text="disabled" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button text="button 8" palette="red" height="sm" rounded="sm" appearance="text"/>
-  <md2-button text="readonly" appearance="text" rounded="lg" readonly/>
-  <md2-button text="button 10" height="lg" appearance="text" rounded="xl" selected/>
-  <md2-button text="button 11" height="lg" appearance="text" rounded="none" dragged/>
-  <md2-button text="disabled" height="lg" appearance="text" disabled/>
+  <md2-button appearance="outlined" text="button"/>
+  <md2-button appearance="outlined" text="red" palette="red"/>
+  <md2-button appearance="outlined" text="green" palette="green"/>
+  <md2-button appearance="outlined" text="dragged" dragged/>
+  <md2-button appearance="outlined" text="readonly" readonly/>
+  <md2-button appearance="outlined" text="selected" selected/>
+  <md2-button appearance="outlined" text="selected+disabled" selected disabled/>
+  <md2-button appearance="outlined" text="disabled" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button appearance="text" text="button"/>
+  <md2-button appearance="text" text="red" palette="red"/>
+  <md2-button appearance="text" text="green" palette="green"/>
+  <md2-button appearance="text" text="dragged" dragged/>
+  <md2-button appearance="text" text="readonly" readonly/>
+  <md2-button appearance="text" text="selected" selected/>
+  <md2-button appearance="text" text="selected+disabled" selected disabled/>
+  <md2-button appearance="text" text="disabled" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="sm" height="sm"/>
+  <md2-button text="md" height="md"/>
+  <md2-button text="lg" height="lg"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="l" align="left"/>
+  <md2-button text="r" align="right"/>
+  <md2-button text="c" align="center"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="standard" rounded="standard"/>
+  <md2-button text="none" rounded="none"/>
+  <md2-button text="sm" rounded="sm"/>
+  <md2-button text="md" rounded="md"/>
+  <md2-button text="lg" rounded="lg"/>
+  <md2-button text="xl" rounded="xl"/>
+  <md2-button text="full" rounded="full"/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">

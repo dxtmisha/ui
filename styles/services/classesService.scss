@@ -165,7 +165,7 @@ $designsProperties: () !default;
 
   &:#{$index} {
     @content($index, $value);
-    @include mixinInit($class, $value, ('property'));
+    @include mixinInit($class, $value, ('property', 'virtual'));
 
     #{$this} {
       @include mixinSubclassList($class, $value);
