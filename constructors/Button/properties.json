@@ -151,7 +151,7 @@
       },
       "section|dense": {
         "padding-x": "{??l.padding} / {??sys.dense}",
-        "min-width": "{??l.width} / {??sys.dense}"
+        "min-width": "auto"
       },
       "section|ellipsis": {
         "@style": "{d.font.ellipsis}"

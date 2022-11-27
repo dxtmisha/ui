@@ -181,6 +181,7 @@
   <md2-button text="md" adaptive="md"/>
   <md2-button text="lg" adaptive="lg"/>
   <md2-button text="icon" adaptive="icon"/>
+  <md2-button text="icon" adaptive="icon" dense/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="full" icon="face" adaptive="full"/>
@@ -188,13 +189,15 @@
   <md2-button text="md" icon="face" adaptive="md"/>
   <md2-button text="lg" icon="face" adaptive="lg"/>
   <md2-button text="icon" icon="face" adaptive="icon"/>
+  <md2-button text="icon" icon="face" adaptive="icon" dense/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button text="full" icon="face" icon-trailing="close" adaptive="full"/>
-  <md2-button text="sm" icon="face" icon-trailing="close" adaptive="sm"/>
-  <md2-button text="md" icon="face" icon-trailing="close" adaptive="md"/>
-  <md2-button text="lg" icon="face" icon-trailing="close" adaptive="lg"/>
-  <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon"/>
+  <md2-button text="full" icon="face" icon-trailing="close" adaptive="full" :turn="turn"/>
+  <md2-button text="sm" icon="face" icon-trailing="close" adaptive="sm" :turn="turn"/>
+  <md2-button text="md" icon="face" icon-trailing="close" adaptive="md" :turn="turn"/>
+  <md2-button text="lg" icon="face" icon-trailing="close" adaptive="lg" :turn="turn"/>
+  <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon" :turn="turn"/>
+  <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon" dense :turn="turn"/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">

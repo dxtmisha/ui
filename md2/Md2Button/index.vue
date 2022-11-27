@@ -5,7 +5,13 @@ component(
   :disabled="disabled"
 )
   md2-icon(v-if="icon" v-bind="iconBind")
-  md2-icon(v-if="iconTrailing" v-bind="iconTrailingBind" class="is-trailing" in-end)
+  md2-icon(
+    v-if="iconTrailing"
+    v-bind="iconTrailingBind"
+    :turn="turn"
+    class="is-trailing"
+    in-end
+  )
   span(v-if="text" :class="classes.text") {{ text }}
   slot
   md2-ripple(v-if="ifRipple" :inverse="appearance === 'contained'")
