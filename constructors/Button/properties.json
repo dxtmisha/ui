@@ -32,6 +32,34 @@
             }
           }
         },
+        "mixin|icon": {
+          "var|l": {
+            "var|width": "auto",
+            "var|icon": {
+              "var|padding": "{??sys.icon.padding}"
+            }
+          },
+          "& .?icon": {
+            "margin-x": "0px"
+          }
+        },
+        "mixin|text": {
+          "var|l": {
+            "var|textDisplay": "block",
+            "var|width": "{??sys.width}",
+            "var|icon": {
+              "var|padding": "0px"
+            }
+          },
+          "& .?icon": {
+            "margin-left": "{??sys.icon.padding}",
+            "margin-right": "{??sys.space}",
+            "section|inEnd": {
+              "margin-left": "{??sys.space}",
+              "margin-right": "{??sys.icon.padding}"
+            }
+          }
+        },
         "mixin|zIndex": {
           "z-index": "4"
         },
@@ -98,7 +126,11 @@
         "var|shadow": "{??sys.shadow}",
         "var|text": "{??sys.text}",
         "var|textOpacity": "{??sys.textOpacity}",
-        "var|width": "{??sys.width}"
+        "var|textDisplay": "none",
+        "var|width": "auto",
+        "var|icon": {
+          "var|padding": "{??sys.icon.padding}"
+        }
       },
       "@flex": "{d.flex.inline.center}",
       "@readonly": "{d.font.readonly}",
@@ -109,7 +141,7 @@
       "gradient-opacity": "{??l.gradientOpacity}",
       "max-width": "100%",
       "min-width": "{??l.width}",
-      "padding-x": "{??l.padding}",
+      "padding-x": "{??l.padding} + {??l.icon.padding}",
       "palette-background": "{??l.background}",
       "palette-gradient": "{??l.gradient}",
       "position": "relative",
@@ -122,9 +154,7 @@
         "min-width": "{??l.width} / {??sys.dense}"
       },
       "section|ellipsis": {
-        "& .??__text": {
-          "@style": "{d.font.ellipsis}"
-        }
+        "@style": "{d.font.ellipsis}"
       },
       "section|lowercase": {
         "text-transform": "none"
@@ -192,26 +222,20 @@
       },
       "#text": {
         "@dynamic": "{d.flex.dynamic}",
-        "max-width": "inherit"
+        "display": "{??l.textDisplay}",
+        "max-width": "inherit",
+        "overflow": "inherit",
+        "text-overflow": "inherit",
+        "white-space": "inherit"
       },
       "& .?icon": {
-        "margin-left": "{??sys.icon.padding}",
-        "margin-right": "{??sys.space}",
-        "&.isTrailing": {
-          "cursor": "default",
-          "margin-left": "{??sys.space}",
-          "margin-right": "{??sys.icon.padding}",
-          "order": "9",
+        "section|inEnd": {
           "position": "relative",
           "z-index": "4"
         }
       },
       "=isIcon": {
-        "min-width": "auto",
-        "padding-x": "{??l.padding} + {??sys.icon.padding}",
-        "& .?icon": {
-          "margin-x": "0px"
-        }
+        "@style": "{??m.icon}"
       },
       ":hover": {
         "@style": "{??m.zIndex}",

@@ -3,24 +3,26 @@
     "button": {
       "@style": "{d.button}",
       "mixin|m": {
-        "text": {
-          "var|??sys": {
-            "var|text": "{??sys.palette}",
-            "var|textOpacity": "{sys.opacity.surface.high}",
-            "var|active": {
-              "var|borderOpacity": "{sys.opacity.surface.medium}"
+        "appearance": {
+          "text": {
+            "var|??sys": {
+              "var|text": "{??sys.palette}",
+              "var|textOpacity": "{sys.opacity.surface.high}",
+              "var|active": {
+                "var|borderOpacity": "{sys.opacity.surface.medium}"
+              },
+              "var|disabled": {
+                "var|text": "{sys.palette.onSurface}",
+                "var|textOpacity": "{sys.opacity.surface.disabled}"
+              },
+              "var|selected": {
+                "var|gradient": "{??sys.selected.palette}",
+                "var|text": "{??sys.selected.palette}"
+              }
             },
-            "var|disabled": {
-              "var|text": "{sys.palette.onSurface}",
-              "var|textOpacity": "{sys.opacity.surface.disabled}"
-            },
-            "var|selected": {
-              "var|gradient": "{??sys.selected.palette}",
-              "var|text": "{??sys.selected.palette}"
-            }
-          },
-          "palette-color": "{??l.text}",
-          "@before": "{??m.before}"
+            "palette-color": "{??l.text}",
+            "@before": "{??m.before}"
+          }
         }
       },
       "var|sys": {
@@ -60,6 +62,26 @@
         "lg": "{ref.spacing.11}"
       },
       "z-index": "{sys.elevation.index.2}",
+      "section|adaptive": {
+        "sm": {
+          "media|{ref.screen.sm}": {
+            "@style": "{??m.text}"
+          }
+        },
+        "md": {
+          "media|{ref.screen.md}": {
+            "@style": "{??m.text}"
+          }
+        },
+        "lg": {
+          "media|{ref.screen.lg}": {
+            "@style": "{??m.text}"
+          }
+        },
+        "full": {
+          "@style": "{??m.text}"
+        }
+      },
       "section|appearance": {
         "contained": {
           "var|??sys": {
@@ -81,13 +103,13 @@
           "gradient": "{??l.gradient}"
         },
         "text": {
-          "@style": "{??m.text}",
+          "@style": "{??m.appearance.text}",
           "var|??sys": {
             "var|padding": "{ref.spacing.2}"
           }
         },
         "outlined": {
-          "@style": "{??m.text}",
+          "@style": "{??m.appearance.text}",
           "::after": {
             "@style": "{??m.border}",
             "border-color": "{sys.palette.onSurface}",

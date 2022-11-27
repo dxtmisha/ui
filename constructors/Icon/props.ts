@@ -26,6 +26,7 @@ export const props = {
     ])
   },
   background: Boolean,
+  inEnd: Boolean,
   size: {
     type: [Number, String] as PropType<IconSizeType>,
     default: 'sm'

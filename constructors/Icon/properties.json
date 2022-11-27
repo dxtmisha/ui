@@ -56,6 +56,9 @@
       "section|disabled": {
         "background-opacity": "{??_disabled}"
       },
+      "section|inEnd": {
+        "order": "999999"
+      },
       "section|hide": {
         "@style": "{d.animation.hide}"
       },

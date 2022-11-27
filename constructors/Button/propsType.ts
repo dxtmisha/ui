@@ -1,10 +1,7 @@
 export type ButtonAdaptiveType =
-  'auto' |
-  'xs' |
   'sm' |
   'md' |
   'lg' |
-  'xl' |
   'full' |
   'icon'
 

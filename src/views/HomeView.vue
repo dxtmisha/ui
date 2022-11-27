@@ -135,9 +135,14 @@
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button icon="close"/>
-  <md2-button icon="close+slot">text</md2-button>
+  <md2-button icon="close">text</md2-button>
   <md2-button text="icon" icon="close"/>
   <md2-button text="icon+iconActive" :icon="{icon:'close',iconActive:'face'}" selected/>
+  <md2-button>
+    <md2-icon icon="face"/>
+    slot+icon
+    <md2-icon icon="close" in-end/>
+  </md2-button>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="icon+icon-trailing" icon="face" icon-trailing="close"/>
@@ -169,6 +174,27 @@
   <md2-button text="lg" rounded="lg"/>
   <md2-button text="xl" rounded="xl"/>
   <md2-button text="full" rounded="full"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="full" adaptive="full"/>
+  <md2-button text="sm" adaptive="sm"/>
+  <md2-button text="md" adaptive="md"/>
+  <md2-button text="lg" adaptive="lg"/>
+  <md2-button text="icon" adaptive="icon"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="full" icon="face" adaptive="full"/>
+  <md2-button text="sm" icon="face" adaptive="sm"/>
+  <md2-button text="md" icon="face" adaptive="md"/>
+  <md2-button text="lg" icon="face" adaptive="lg"/>
+  <md2-button text="icon" icon="face" adaptive="icon"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="full" icon="face" icon-trailing="close" adaptive="full"/>
+  <md2-button text="sm" icon="face" icon-trailing="close" adaptive="sm"/>
+  <md2-button text="md" icon="face" icon-trailing="close" adaptive="md"/>
+  <md2-button text="lg" icon="face" icon-trailing="close" adaptive="lg"/>
+  <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon"/>
 </div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
