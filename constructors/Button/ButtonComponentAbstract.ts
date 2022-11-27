@@ -18,6 +18,7 @@ export type ButtonSetupType = {
   baseClass: ComputedRef<string>
   classes: ComputedRef<ButtonClassesType>
   styles: ComputedRef<ComponentStylesType>
+  ifInverse: ComputedRef<boolean>
   ifRipple: ComputedRef<boolean>
   ifText: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
@@ -26,6 +27,7 @@ export type ButtonSetupType = {
 
 export abstract class ButtonComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
+  protected abstract appearanceInverse: string[]
 
   setup (): ButtonSetupType {
     const classes = this.getClasses<ButtonClassesType>({
@@ -39,6 +41,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       ...this.baseInit(),
       classes,
       styles,
+      ifInverse: this.ifInverse,
       ifRipple: this.ifRipple,
       ifText: this.ifText,
       iconBind: this.getBind(this.refs.icon, 'icon'),
@@ -51,6 +54,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
     !this.props.readonly
   ) as ComputedRef<boolean>
 
+  readonly ifInverse = computed(() => this.appearanceInverse.indexOf(this.props.appearance) !== -1) as ComputedRef<boolean>
   readonly ifText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
 
   readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>

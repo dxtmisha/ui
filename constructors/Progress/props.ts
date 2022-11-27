@@ -29,6 +29,7 @@ export const props = {
     type: Number,
     default: defaultProps('delay', 400)
   },
+  dense: Boolean,
   indeterminate: {
     type: String as PropType<ProgressIndeterminateType>,
     default: defaultProps('indeterminate', 'type1'),

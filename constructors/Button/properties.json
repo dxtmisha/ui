@@ -226,6 +226,7 @@
         "max-width": "inherit",
         "overflow": "inherit",
         "text-overflow": "inherit",
+        "transition-property": "color",
         "white-space": "inherit"
       },
       "& .?icon": {
@@ -233,6 +234,9 @@
           "position": "relative",
           "z-index": "4"
         }
+      },
+      "& .?progress.is-visible~.??__text": {
+        "color": "transparent"
       },
       "=isIcon": {
         "@style": "{??m.icon}"

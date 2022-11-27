@@ -147,6 +147,11 @@
         "var|top": "auto",
         "var|transformOrigin": "bottom"
       },
+      "section|dense": {
+        "var|_circular": {
+          "var|padding": "0px"
+        }
+      },
       "section|indeterminate": {
         "type1": {
           "??--type": {

@@ -101,9 +101,9 @@
   <button @click="onClickIcon">test 2</button>
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
-  <md2-button text="button"/>
+  <md2-button text="button" :progress="visible"/>
   <md2-button>slot</md2-button>
-  <md2-button text="red" palette="red"/>
+  <md2-button text="red" palette="red" :progress="visible"/>
   <md2-button text="green" palette="green"/>
   <md2-button text="dragged" dragged/>
   <md2-button text="readonly" readonly/>
@@ -134,10 +134,10 @@
   <md2-button appearance="text" text="disabled" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button icon="close"/>
-  <md2-button icon="close">text</md2-button>
+  <md2-button icon="close" :progress="visible"/>
+  <md2-button icon="close" :progress="visible">text</md2-button>
   <md2-button text="icon" icon="close"/>
-  <md2-button text="icon+iconActive" :icon="{icon:'close',iconActive:'face'}" selected/>
+  <md2-button text="icon+iconActive" :progress="visible" :icon="{icon:'close',iconActive:'face'}" selected/>
   <md2-button>
     <md2-icon icon="face"/>
     slot+icon
@@ -145,7 +145,7 @@
   </md2-button>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button text="icon+icon-trailing" icon="face" icon-trailing="close"/>
+  <md2-button text="icon+icon-trailing" :progress="visible" icon="face" icon-trailing="close"/>
   <md2-button icon="face" icon-trailing="close"/>
   <md2-button text="icon-trailing" icon-trailing="close"/>
 </div>

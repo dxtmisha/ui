@@ -2,6 +2,7 @@
 div(:class="classes.main")
   md2-image(v-if="icon" v-bind="iconBind" :hide="ifActive")
   md2-image(v-if="iconActive" v-bind="iconActiveBind" :hide="!ifActive")
+  slot
 </template>
 
 <script lang="ts">

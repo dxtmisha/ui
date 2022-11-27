@@ -1,4 +1,4 @@
-import { computed, ComputedRef, Ref, ref, watch } from 'vue'
+import { computed, ComputedRef, onMounted, Ref, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -46,6 +46,11 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
     )
 
     watch(this.refs.visible, () => this.watchVisible())
+    onMounted(() => {
+      if (this.props.visible) {
+        this.watchVisible()
+      }
+    })
   }
 
   setup (): ProgressSetupType {
