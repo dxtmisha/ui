@@ -34,7 +34,8 @@
         },
         "mixin|icon": {
           "var|l": {
-            "var|width": "auto",
+            "var|padding": "0",
+            "var|width": "var(--sys-height)",
             "var|icon": {
               "var|padding": "{??sys.icon.padding}"
             }
@@ -46,6 +47,7 @@
         "mixin|text": {
           "var|l": {
             "var|textDisplay": "flex",
+            "var|padding": "{??sys.padding}",
             "var|width": "{??sys.width}",
             "var|icon": {
               "var|padding": "0px"
@@ -123,12 +125,12 @@
         "var|borderOpacity": "{??sys.borderOpacity}",
         "var|gradient": "{??sys.gradient}",
         "var|gradientOpacity": "{??sys.gradientOpacity}",
-        "var|padding": "{??sys.padding}",
+        "var|padding": "0",
         "var|shadow": "{??sys.shadow}",
         "var|text": "{??sys.text}",
         "var|textOpacity": "{??sys.textOpacity}",
         "var|textDisplay": "none",
-        "var|width": "auto",
+        "var|width": "var(--sys-height)",
         "var|icon": {
           "var|padding": "{??sys.icon.padding}"
         }
@@ -254,6 +256,9 @@
       },
       "& .?progress.is-visible~.??__text": {
         "color": "transparent"
+      },
+      "& .?progress.is-visible~.?icon": {
+        "opacity": "0"
       },
       "=isIcon": {
         "@style": "{??m.icon}"

@@ -29,6 +29,8 @@
     @include mixinGradientOpacity(#{$value});
   } @else if ($index == 'inset') {
     @include inset(#{$value});
+  } @else if ($index == 'height') {
+    @include height(#{$value});
   } @else if ($index == 'justify-content') {
     @include justifyContent(#{$value});
   } @else if ($index == 'margin-x') {
@@ -65,6 +67,8 @@
     @include squared(#{$value});
   } @else if ($index == 'text-align') {
     @include textAlign(#{$value});
+  } @else if ($index == 'width') {
+    @include width(#{$value});
   } @else if ($index == 'width-aspect-ratio') {
     @include widthAspectRatio(#{$value});
   } @else if ($index == 'width-basis') {

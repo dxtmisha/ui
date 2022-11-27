@@ -8,12 +8,22 @@
   }
 }
 
+@mixin height($value) {
+  --sys-height: #{$value};
+  height: $value;
+}
+
 @mixin squared($value) {
   @include widthBasis($value);
   @include aspectRatio(#{1/1}) {
     height: $value;
     @content;
   }
+}
+
+@mixin width($value) {
+  --sys-width: #{$value};
+  width: $value;
 }
 
 @mixin widthAspectRatio($value) {

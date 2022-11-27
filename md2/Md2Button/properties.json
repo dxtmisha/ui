@@ -105,7 +105,10 @@
         "text": {
           "@style": "{??m.appearance.text}",
           "var|??sys": {
-            "var|padding": "{ref.spacing.2}"
+            "var|padding": "{ref.spacing.2}",
+            "var|icon": {
+              "var|padding": "{ref.spacing.1} * -1"
+            }
           }
         },
         "outlined": {
