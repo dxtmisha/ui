@@ -20,6 +20,7 @@ import { getExp } from '../functions/data'
 export abstract class ComponentAbstract {
   static designMain: AssociativeType
   static designSubClasses = {} as AssociativeType<ComponentAssociativeItemsType>
+  static emits?: string[]
 
   protected code?: string
   protected abstract readonly instruction: AssociativeType

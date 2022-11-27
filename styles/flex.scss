@@ -3,3 +3,13 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+
+@mixin justifyContent($value) {
+  @if ($value == 'flex-start') {
+    justify-content: var(--d-direction-justify-start);
+  } @else if ($value == 'flex-end') {
+    justify-content: var(--d-direction-justify-end);
+  } @else {
+    justify-content: #{$value};
+  }
+}

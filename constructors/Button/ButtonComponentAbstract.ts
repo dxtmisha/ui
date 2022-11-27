@@ -4,8 +4,10 @@ import { props } from './props'
 import {
   AssociativeType,
   ComponentAssociativeType,
-  ComponentStylesType
+  ComponentStylesType,
+  EventCallbackRequiredType
 } from '../types'
+import { useRouter } from 'vue-router'
 
 export type ButtonClassesType = {
   main: ComponentAssociativeType
@@ -23,9 +25,13 @@ export type ButtonSetupType = {
   ifText: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
+  bindValue: ComputedRef
+  onClick: EventCallbackRequiredType<void, MouseEvent>
 }
 
 export abstract class ButtonComponentAbstract extends ComponentAbstract {
+  static emits = ['on-click', 'on-trailing'] as string[]
+
   protected readonly instruction = props as AssociativeType
   protected abstract appearanceInverse: string[]
 
@@ -45,7 +51,9 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       ifRipple: this.ifRipple,
       ifText: this.ifText,
       iconBind: this.getBind(this.refs.icon, 'icon'),
-      iconTrailingBind: this.getBind(this.refs.iconTrailing, 'icon')
+      iconTrailingBind: this.getBind(this.refs.iconTrailing, 'icon'),
+      bindValue: this.value,
+      onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
 
@@ -58,4 +66,41 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   readonly ifText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
 
   readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>
+
+  readonly value = computed(() => this.props.value || this.props.detail?.value)
+
+  onClick (event: MouseEvent): void {
+    let type = 'on-click'
+
+    if (
+      this.props.readonly ||
+      this.props.disabled ||
+      this.props.progress
+    ) {
+      event.preventDefault()
+      event.stopPropagation()
+    } else {
+      if (
+        (event.target as HTMLElement)?.closest('.is-trailing')
+      ) {
+        event.preventDefault()
+        event.stopPropagation()
+        type = 'on-trailing'
+      } else if (this.props.to) {
+        this.toRouter().then()
+        return
+      }
+
+      this.context.emit(type, {
+        type,
+        detail: this.props.detail,
+        value: this.value.value
+      })
+    }
+  }
+
+  protected toRouter () {
+    const router = useRouter()
+    return router.push(this.props.to)
+  }
 }

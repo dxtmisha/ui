@@ -3,6 +3,7 @@ component(
   :is="tag"
   :class="classes.main"
   :disabled="disabled"
+  @click="onClick"
 )
   md2-icon(v-if="icon" v-bind="iconBind")
     md2-progress(
@@ -46,6 +47,7 @@ export default {
     Md2Ripple
   },
   props,
+  emits: ButtonComponent.emits,
   setup (props: object, context: object) {
     return new ButtonComponent(props, context).setup()
   }

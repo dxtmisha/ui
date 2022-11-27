@@ -172,6 +172,17 @@
           "justify-content": "center"
         }
       },
+      "align": {
+        "section|center": {
+          "justify-content": "center"
+        },
+        "section|left": {
+          "justify-content": "flex-start"
+        },
+        "section|right": {
+          "justify-content": "flex-end"
+        }
+      },
       "dynamic": {
         "flex-basis": "1px",
         "flex-grow": "1",

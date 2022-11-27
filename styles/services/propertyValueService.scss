@@ -29,6 +29,8 @@
     @include mixinGradientOpacity(#{$value});
   } @else if ($index == 'inset') {
     @include inset(#{$value});
+  } @else if ($index == 'justify-content') {
+    @include justifyContent(#{$value});
   } @else if ($index == 'margin-x') {
     @include marginX(#{$value});
   } @else if ($index == 'margin-y') {

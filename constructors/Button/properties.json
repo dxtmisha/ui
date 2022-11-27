@@ -45,7 +45,7 @@
         },
         "mixin|text": {
           "var|l": {
-            "var|textDisplay": "block",
+            "var|textDisplay": "flex",
             "var|width": "{??sys.width}",
             "var|icon": {
               "var|padding": "0px"
@@ -116,6 +116,7 @@
       },
       "var|l": {
         "var|palette": "{??sys.palette}",
+        "var|align": "center",
         "var|background": "{??sys.background}",
         "var|backgroundOpacity": "{??sys.backgroundOpacity}",
         "var|border": "{??sys.border}",
@@ -147,7 +148,21 @@
       "position": "relative",
       "transition-property": "color, background, box-shadow",
       "section|align": {
-        "@style": "{d.font.align}"
+        "section|center": {
+          "var|l": {
+            "var|align": "center"
+          }
+        },
+        "section|left": {
+          "var|l": {
+            "var|align": "var(--d-direction-justify-start)"
+          }
+        },
+        "section|right": {
+          "var|l": {
+            "var|align": "var(--d-direction-justify-end)"
+          }
+        }
       },
       "section|dense": {
         "padding-x": "{??l.padding} / {??sys.dense}",
@@ -222,7 +237,9 @@
       },
       "#text": {
         "@dynamic": "{d.flex.dynamic}",
+        "align-items": "center",
         "display": "{??l.textDisplay}",
+        "justify-content": "{??l.align}",
         "max-width": "inherit",
         "overflow": "inherit",
         "text-overflow": "inherit",

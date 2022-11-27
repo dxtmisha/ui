@@ -101,7 +101,15 @@
   <button @click="onClickIcon">test 2</button>
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
-  <md2-button text="button" :progress="visible"/>
+  <md2-button
+    text="button"
+    :progress="visible"
+    icon-trailing="close"
+    @onClick="onEmit"
+    @onTrailing="onEmit"
+    :detail="{name:'name',value:'value'}"
+    value="test"
+  />
   <md2-button>slot</md2-button>
   <md2-button text="red" palette="red" :progress="visible"/>
   <md2-button text="green" palette="green"/>
@@ -342,6 +350,9 @@ export default defineComponent({
           value: 'menu',
           disabled: true
         }
+      },
+      onEmit (e: object) {
+        console.log('e', e)
       },
       icon,
       hide: ref(),
