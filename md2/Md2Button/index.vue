@@ -2,10 +2,11 @@
 component(
   :is="tag"
   :class="classes.main"
+  :style="styles.main"
   :disabled="disabled"
   @click="onClick"
 )
-  md2-icon(v-if="icon" v-bind="iconBind")
+  md2-icon(v-if="icon" v-bind="iconBind" :disabled="disabled")
     md2-progress(
       v-if="progress"
       :inverse="ifInverse"
@@ -23,12 +24,12 @@ component(
     v-if="iconTrailing"
     v-bind="iconTrailingBind"
     :turn="turn"
+    :disabled="disabled"
     class="is-trailing"
     in-end
   )
-  template(v-if="ifText")
-    span(:class="classes.text") {{ text }}
-      slot
+  span(v-if="text" :class="classes.text") {{ text }}
+  slot
   md2-ripple(v-if="ifRipple" :inverse="ifInverse")
 </template>
 

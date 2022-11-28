@@ -26,6 +26,7 @@ export abstract class ComponentAbstract {
   protected abstract readonly instruction: AssociativeType
 
   protected readonly classesProps = [] as string[]
+  protected readonly stylesProps = [] as string[]
   protected readonly element = ref<HTMLElement | undefined>()
 
   abstract setup (): AssociativeType
@@ -92,7 +93,7 @@ export abstract class ComponentAbstract {
 
     forEach<any, string, void>(this.instruction, (instruction, name) => {
       if (
-        this.isPropDesign(name as string) &&
+        this.isPropDesign(name as string, this.stylesProps) &&
         typeof this.props[name] !== 'boolean' &&
         !this.isPropPropertyValue(name, this.props[name])
       ) {
@@ -205,14 +206,14 @@ export abstract class ComponentAbstract {
     })
   }
 
-  protected isPropDesign (name: string): boolean {
+  protected isPropDesign (name: string, props = this.classesProps as string[]): boolean {
     const code = this.getKebabCaseProperty(name)
 
     return (
       this.props?.[name] &&
       code in ComponentAbstract.designMain && (
-        this.classesProps.length === 0 ||
-        this.classesProps.indexOf(name) !== -1
+        props.length === 0 ||
+        props.indexOf(name) !== -1
       )
     )
   }

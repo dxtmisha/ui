@@ -25,6 +25,11 @@ module.exports = class {
             value: item.property.getValueToCode()
           }
           break
+        case 'property':
+          if (!item.property.isValue()) {
+            data[item.code] = item.property.getType()
+          }
+          break
         case 'subclass':
         case 'section':
           data[item.code] = item.property.getType()

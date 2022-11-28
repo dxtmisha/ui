@@ -158,6 +158,10 @@
         "@style": "{d.flex.x}",
         "justify-content": "center"
       },
+      "between": {
+        "@style": "{d.flex.x}",
+        "justify-content": "space-between"
+      },
       "inline": {
         "x": {
           "align-items": "center",
@@ -170,6 +174,10 @@
         "center": {
           "@style": "{d.flex.inline.x}",
           "justify-content": "center"
+        },
+        "between": {
+          "@style": "{d.flex.inline.x}",
+          "justify-content": "space-between"
         }
       },
       "align": {

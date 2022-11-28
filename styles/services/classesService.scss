@@ -116,7 +116,7 @@ $designsProperties: () !default;
     @include mixinPropertyValue($index, $property);
   } @else {
     #{$index}: var(--#{$class}--#{$index});
-    @include mixinSection($class, $index, $properties);
+    @include mixinSection($class, $index, $property);
   }
 }
 

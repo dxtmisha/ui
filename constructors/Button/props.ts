@@ -6,8 +6,9 @@ import {
   ButtonAlignType,
   ButtonAppearanceType,
   ButtonRoundedType,
-  ButtonSizeType
-} from './propsType'
+  ButtonSizeType,
+  ButtonWidthType
+} from './props.type'
 
 const defaultProps = DefaultConfiguration.init('button')
 
@@ -66,5 +67,9 @@ export const props = {
   ripple: {
     type: Boolean,
     default: defaultProps('ripple', true)
+  },
+  width: {
+    type: [Number, String] as PropType<ButtonWidthType>,
+    default: defaultProps('width', 'auto')
   }
 }

@@ -223,6 +223,36 @@
   <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon" :turn="turn"/>
   <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon" dense :turn="turn"/>
 </div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
+  <md2-button text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
+  <md2-button text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button appearance="text" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
+  <md2-button appearance="text" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
+  <md2-button appearance="text" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button appearance="outlined" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
+  <md2-button appearance="outlined" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
+  <md2-button appearance="outlined" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button appearance="text" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm" disabled/>
+  <md2-button appearance="contained" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md" disabled/>
+  <md2-button appearance="outlined" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="auto" width="auto"/>
+  <md2-button text="sm" width="sm"/>
+  <md2-button text="md" width="md"/>
+  <md2-button text="lg" width="lg"/>
+  <md2-button text="200px" width="200px"/>
+</div>
+<div class="flex items-center gap-2 pt-4 pl-8">
+  <md2-button text="full" width="full"/>
+</div>
 <div style="height: 100px"/>
 <div class="home flex flex-wrap">
   <div class="relative w-64 h-64">

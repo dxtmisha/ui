@@ -25,3 +25,10 @@ export type ButtonRoundedType =
   'full'
 
 export type ButtonSizeType = 'sm' | 'md' | 'lg'
+
+export type ButtonWidthType =
+  'auto' |
+  'sm' |
+  'md' |
+  'lg' |
+  'full'

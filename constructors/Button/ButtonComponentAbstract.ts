@@ -35,6 +35,8 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   protected readonly instruction = props as AssociativeType
   protected abstract appearanceInverse: string[]
 
+  protected readonly stylesProps = ['width'] as string[]
+
   setup (): ButtonSetupType {
     const classes = this.getClasses<ButtonClassesType>({
       main: {

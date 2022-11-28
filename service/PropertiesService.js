@@ -27,8 +27,6 @@ module.exports = class extends PropertiesFileService {
     tree = this.treeProperties,
     parentItem = null
   ) {
-    let isValue = false
-
     forEach(properties, (property, name) => {
       if (this.isSection(name, property)) {
         const item = new PropertiesItemService(name, parentItem, property)
@@ -64,7 +62,6 @@ module.exports = class extends PropertiesFileService {
             !item.isValue() ||
             this.initValue(item)
           ) {
-            isValue = true
             this.initMap(
               property,
               tree[key].properties,
@@ -74,14 +71,6 @@ module.exports = class extends PropertiesFileService {
         }
       }
     })
-
-    if (
-      parentItem &&
-      parentItem.getType() === 'property' &&
-      isValue
-    ) {
-      parentItem.setType('section')
-    }
   }
 
   initScss (properties) {
