@@ -328,9 +328,9 @@
       },
       "elevation": {
         "background": {
-          "white": "{ref.palette.white}",
+          "white": "rgb({ref.palette.white})",
           "dark": {
-            "0": "rga(18, 18, 18)",
+            "0": "rgb(18, 18, 18)",
             "1": "linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), #121212",
             "2": "linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212",
             "3": "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), #121212",

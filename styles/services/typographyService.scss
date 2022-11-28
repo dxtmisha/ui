@@ -82,9 +82,11 @@
 
   body {
     @include mixinColor($color, $colorOpacity);
-    @include mixinBackground($background, $backgroundOpacity);
     @include mixinGradient($background, 0);
     @include mixinBorder($border, $borderOpacity);
+
+    background: $background;
+    @include mixinBackgroundOpacity($backgroundOpacity);
   }
 
   img {
