@@ -34,10 +34,10 @@
         },
         "mixin|icon": {
           "var|l": {
-            "var|padding": "0",
+            "var|padding": "{??sys.padding} / 2",
             "var|width": "var(--sys-height)",
             "var|icon": {
-              "var|padding": "{??sys.icon.padding}"
+              "var|padding": "{??sys.icon.padding} / 2"
             }
           },
           "& .?icon": {
@@ -125,14 +125,14 @@
         "var|borderOpacity": "{??sys.borderOpacity}",
         "var|gradient": "{??sys.gradient}",
         "var|gradientOpacity": "{??sys.gradientOpacity}",
-        "var|padding": "0",
+        "var|padding": "{??sys.padding} / 2",
         "var|shadow": "{??sys.shadow}",
         "var|text": "{??sys.text}",
         "var|textOpacity": "{??sys.textOpacity}",
         "var|textDisplay": "none",
         "var|width": "var(--sys-height)",
         "var|icon": {
-          "var|padding": "{??sys.icon.padding}"
+          "var|padding": "{??sys.icon.padding} / 2"
         }
       },
       "@flex": "{d.flex.inline.center}",
