@@ -15,8 +15,8 @@ const defaultProps = DefaultConfiguration.init('button')
 export const props = {
   // Values
   detail: [Object] as PropType<AssociativeType>,
-  icon: undefined,
-  iconTrailing: undefined,
+  icon: [Object, String] as PropType<string | AssociativeType>,
+  iconTrailing: [Object, String] as PropType<string | AssociativeType>,
   text: [Number, String] as PropType<NumberOrStringType>,
   to: String,
   value: [Number, String] as PropType<NumberOrStringType>,

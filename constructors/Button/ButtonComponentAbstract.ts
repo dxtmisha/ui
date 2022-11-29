@@ -25,7 +25,8 @@ export type ButtonSetupType = {
   ifText: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
-  bindValue: ComputedRef
+  progressBind: ComputedRef<AssociativeType>
+  valueBind: ComputedRef
   onClick: EventCallbackRequiredType<void, MouseEvent>
 }
 
@@ -52,9 +53,10 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       ifInverse: this.ifInverse,
       ifRipple: this.ifRipple,
       ifText: this.ifText,
-      iconBind: this.getBind(this.refs.icon, 'icon'),
-      iconTrailingBind: this.getBind(this.refs.iconTrailing, 'icon'),
-      bindValue: this.value,
+      iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
+      iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
+      progressBind: this.progress,
+      valueBind: this.value,
       onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
@@ -70,6 +72,30 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>
 
   readonly value = computed(() => this.props.value || this.props.detail?.value)
+
+  readonly icon = computed(() => {
+    return {
+      disabled: this.props.disabled
+    }
+  })
+
+  readonly iconTrailing = computed(() => {
+    return {
+      class: 'is-trailing',
+      disabled: this.props.disabled,
+      inEnd: true,
+      turn: this.props.turn
+    }
+  })
+
+  readonly progress = computed(() => {
+    return {
+      dense: true,
+      inverse: this.ifInverse.value,
+      type: 'circular',
+      visible: true
+    }
+  })
 
   onClick (event: MouseEvent): void {
     let type = 'on-click'

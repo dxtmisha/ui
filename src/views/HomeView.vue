@@ -104,6 +104,7 @@
   <md2-button
     text="button"
     :progress="visible"
+    :disabled="disabled"
     icon-trailing="close"
     @onClick="onEmit"
     @onTrailing="onEmit"
@@ -111,7 +112,7 @@
     value="test"
   />
   <md2-button>slot</md2-button>
-  <md2-button text="red" palette="red" :progress="visible"/>
+  <md2-button text="red" palette="red" :disabled="disabled" :progress="visible"/>
   <md2-button text="green" palette="green"/>
   <md2-button text="dragged" dragged/>
   <md2-button text="readonly" readonly/>
@@ -120,7 +121,7 @@
   <md2-button text="disabled" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button appearance="outlined" text="button"/>
+  <md2-button appearance="outlined" :disabled="disabled" text="button"/>
   <md2-button appearance="outlined">slot</md2-button>
   <md2-button appearance="outlined" text="red" palette="red"/>
   <md2-button appearance="outlined" text="green" palette="green"/>
@@ -131,7 +132,7 @@
   <md2-button appearance="outlined" text="disabled" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button appearance="text" text="button"/>
+  <md2-button appearance="text" :disabled="disabled" text="button"/>
   <md2-button appearance="text">slot</md2-button>
   <md2-button appearance="text" text="red" palette="red"/>
   <md2-button appearance="text" text="green" palette="green"/>
@@ -142,10 +143,10 @@
   <md2-button appearance="text" text="disabled" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button icon="close" :progress="visible"/>
+  <md2-button icon="close" :progress="visible" :disabled="disabled"/>
   <md2-button icon="close" :progress="visible">text</md2-button>
   <md2-button text="icon" icon="close"/>
-  <md2-button text="icon+iconActive" :progress="visible" :icon="{icon:'close',iconActive:'face'}" selected/>
+  <md2-button text="icon+iconActive" :disabled="disabled" :progress="visible" :icon="{icon:'close',iconActive:'face'}" selected/>
   <md2-button>
     <md2-icon icon="face"/>
     slot+icon
@@ -186,9 +187,9 @@
   <md2-button text="lg" height="lg"/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button text="l" align="left"/>
-  <md2-button text="r" align="right"/>
-  <md2-button text="c" align="center"/>
+  <md2-button text="l" align="left" width="lg"/>
+  <md2-button text="r" align="right" width="lg"/>
+  <md2-button text="c" align="center" width="lg"/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="standard" rounded="standard"/>
@@ -369,6 +370,7 @@ import Md2Ripple from '../../md2/Md2Ripple/index.vue'
 import Md2Progress from '../../md2/Md2Progress/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
+import { AssociativeType } from '../../constructors/types'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -385,7 +387,7 @@ export default defineComponent({
   },
   setup () {
     const data = ref('close')
-    const icon = ref('close') as Ref<string | object>
+    const icon = ref('close') as Ref<string | AssociativeType>
     return {
       data,
       onClick () {

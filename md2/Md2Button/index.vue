@@ -6,28 +6,10 @@ component(
   :disabled="disabled"
   @click="onClick"
 )
-  md2-icon(v-if="icon" v-bind="iconBind" :disabled="disabled")
-    md2-progress(
-      v-if="progress"
-      :inverse="ifInverse"
-      :visible="progress"
-      type="circular"
-      dense
-    )
-  md2-progress(
-    v-else-if="progress"
-    :inverse="ifInverse"
-    :visible="progress"
-    type="circular"
-  )
-  md2-icon(
-    v-if="iconTrailing"
-    v-bind="iconTrailingBind"
-    :turn="turn"
-    :disabled="disabled"
-    class="is-trailing"
-    in-end
-  )
+  md2-icon(v-if="icon" v-bind="iconBind")
+    md2-progress(v-if="progress" v-bind="progressBind")
+  md2-progress(v-else-if="progress" v-bind="progressBind")
+  md2-icon(v-if="iconTrailing" v-bind="iconTrailingBind")
   span(v-if="text" :class="classes.text") {{ text }}
   slot
   md2-ripple(v-if="ifRipple" :inverse="ifInverse")

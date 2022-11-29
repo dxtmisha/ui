@@ -1,0 +1,156 @@
+{
+  "md2": {
+    "chips": {
+      "@style": "{d.chips}",
+      "mixin|m": {
+        "appearance": {
+          "text": {
+            "var|??sys": {
+              "var|text": "{??sys.palette}",
+              "var|textOpacity": "{sys.opacity.surface.high}",
+              "var|active": {
+                "var|borderOpacity": "{sys.opacity.surface.medium}"
+              },
+              "var|disabled": {
+                "var|text": "{sys.palette.onSurface}",
+                "var|textOpacity": "{sys.opacity.surface.disabled}"
+              },
+              "var|selected": {
+                "var|gradient": "{??sys.selected.palette}",
+                "var|text": "{??sys.selected.palette}"
+              }
+            },
+            "palette-color": "{??l.text}",
+            "@before": "{??m.before}"
+          }
+        }
+      },
+      "var|sys": {
+        "var|palette": "{sys.palette.primary}",
+        "var|borderWidth": "{ref.spacing.px}",
+        "var|padding": "{ref.spacing.4}",
+        "var|space": "{ref.spacing.1}",
+        "var|width": "{ref.spacing.28}",
+        "var|active": {
+          "var|gradientOpacity": "{sys.opacity.dragged}"
+        },
+        "var|disabled": {
+          "var|palette": "{sys.palette.disabled}"
+        },
+        "var|dragged": {
+          "var|shadow": "{sys.elevation.shadow.8}"
+        },
+        "var|focus": {
+          "var|gradientOpacity": "{sys.opacity.focus}"
+        },
+        "var|hover": {
+          "var|gradientOpacity": "{sys.opacity.hover}"
+        },
+        "var|selected": {
+          "var|palette": "{sys.palette.primaryVariant}"
+        },
+        "var|icon": {
+          "var|margin": "{ref.spacing.1}",
+          "var|padding": "{ref.spacing.2}"
+        }
+      },
+      "@font": "{font.button}",
+      "height": {
+        "sm": "{ref.spacing.8}",
+        "md": "{ref.spacing.9}",
+        "lg": "{ref.spacing.11}"
+      },
+      "width": {
+        "auto": {
+          "var|??sys": {
+            "var|width": "0"
+          }
+        },
+        "sm": {
+          "var|??sys": {
+            "var|width": "{ref.spacing.20}"
+          }
+        },
+        "md": {
+          "var|??sys": {
+            "var|width": "{ref.spacing.28}"
+          }
+        },
+        "lg": {
+          "var|??sys": {
+            "var|width": "{ref.spacing.36}"
+          }
+        },
+        "full": {
+          "var|??sys": {
+            "var|width": "100%"
+          }
+        }
+      },
+      "z-index": "{sys.elevation.index.2}",
+      "@@palette": "{?palette}",
+      "@@rounded": "{?rounded}",
+      "section|adaptive": {
+        "sm": {
+          "media|{ref.screen.sm}": {
+            "@style": "{??m.text}"
+          }
+        },
+        "md": {
+          "media|{ref.screen.md}": {
+            "@style": "{??m.text}"
+          }
+        },
+        "lg": {
+          "media|{ref.screen.lg}": {
+            "@style": "{??m.text}"
+          }
+        },
+        "full": {
+          "@style": "{??m.text}"
+        }
+      },
+      "section|appearance": {
+        "contained": {
+          "var|??sys": {
+            "var|backgroundOpacity": "{sys.opacity.primary.high}",
+            "var|gradient": "{sys.palette.onPrimary}",
+            "var|shadow": "{sys.elevation.shadow.2}",
+            "var|text": "{sys.palette.onPrimary}",
+            "var|textOpacity": "{sys.opacity.primary.high}",
+            "var|active": {
+              "var|shadow": "{sys.elevation.shadow.8}"
+            },
+            "var|disabled": {
+              "var|backgroundOpacity": "{sys.opacity.disabled}",
+              "var|shadow": "none",
+              "var|text": "{sys.palette.onSurface}",
+              "var|textOpacity": "{sys.opacity.surface.disabled}"
+            }
+          },
+          "gradient": "{??l.gradient}"
+        },
+        "text": {
+          "@style": "{??m.appearance.text}",
+          "var|??sys": {
+            "var|padding": "{ref.spacing.2}",
+            "var|icon": {
+              "var|padding": "{ref.spacing.1}"
+            }
+          }
+        },
+        "outlined": {
+          "@style": "{??m.appearance.text}",
+          "::after": {
+            "@style": "{??m.border}",
+            "border-color": "{sys.palette.onSurface}",
+            "border-opacity": "{sys.opacity.border}"
+          }
+        }
+      },
+      "&.?rounded--full": {
+        "@style": "{??m.round}"
+      }
+    }
+  }
+}

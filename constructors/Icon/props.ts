@@ -1,14 +1,14 @@
 import { PropType } from 'vue'
 import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
-import { ImagePropsType } from '../Image/propsType'
+import { AssociativeType } from '../types'
 
 export type IconIndeterminateType = 'type1' | 'type2'
 export type IconSizeType = 'sm' | 'md' | 'lg' | 'xl'
 
 export const props = {
   // Values
-  icon: [String, Object] as PropType<string | ImagePropsType>,
-  iconActive: [String, Object] as PropType<string | ImagePropsType>,
+  icon: [String, Object] as PropType<string | AssociativeType>,
+  iconActive: [String, Object] as PropType<string | AssociativeType>,
 
   // Status
   active: Boolean,
