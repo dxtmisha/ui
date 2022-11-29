@@ -101,6 +101,14 @@
   <button @click="onClickIcon">test 2</button>
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
+  <md2-chip text="chip"/>
+</div>
+<div class="flex items-center gap-2 pt-8 pl-8">
+  <md2-chip text="sm" height="sm" width="md"/>
+  <md2-chip text="md" height="md" width="md"/>
+  <md2-chip text="lg" height="lg" width="md"/>
+</div>
+<div class="flex items-center gap-2 pt-8 pl-8">
   <md2-button
     text="button"
     :progress="visible"
@@ -146,7 +154,8 @@
   <md2-button icon="close" :progress="visible" :disabled="disabled"/>
   <md2-button icon="close" :progress="visible">text</md2-button>
   <md2-button text="icon" icon="close"/>
-  <md2-button text="icon+iconActive" :disabled="disabled" :progress="visible" :icon="{icon:'close',iconActive:'face'}" selected/>
+  <md2-button text="icon+iconActive" :disabled="disabled" :progress="visible" :icon="{icon:'close',iconActive:'face'}"
+              selected/>
   <md2-button>
     <md2-icon icon="face"/>
     slot+icon
@@ -162,7 +171,8 @@
   <md2-button appearance="text" icon="close" :progress="visible"/>
   <md2-button appearance="text" icon="close" :progress="visible">text</md2-button>
   <md2-button appearance="text" text="icon" icon="close"/>
-  <md2-button appearance="text" text="icon+iconActive" :progress="visible" :icon="{icon:'close',iconActive:'face'}" selected/>
+  <md2-button appearance="text" text="icon+iconActive" :progress="visible" :icon="{icon:'close',iconActive:'face'}"
+              selected/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="icon+icon-trailing" :progress="visible" icon="face" icon-trailing="close"/>
@@ -225,24 +235,45 @@
   <md2-button text="icon" icon="face" icon-trailing="close" adaptive="icon" dense :turn="turn"/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
-  <md2-button text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
-  <md2-button text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+  <md2-button text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
+  <md2-button text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
+  <md2-button text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button appearance="text" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
-  <md2-button appearance="text" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
-  <md2-button appearance="text" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+  <md2-button appearance="text" text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
+  <md2-button appearance="text" text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
+  <md2-button appearance="text" text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button appearance="outlined" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
-  <md2-button appearance="outlined" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
-  <md2-button appearance="outlined" text="full" icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+  <md2-button appearance="outlined" text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm"/>
+  <md2-button appearance="outlined" text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md"/>
+  <md2-button appearance="outlined" text="full"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+              icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
-  <md2-button appearance="text" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="sm" disabled/>
-  <md2-button appearance="contained" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="md" disabled/>
-  <md2-button appearance="outlined" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn" rounded="full" height="lg" disabled/>
+  <md2-button appearance="text" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn"
+              rounded="full" height="sm" disabled/>
+  <md2-button appearance="contained" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn"
+              rounded="full" height="md" disabled/>
+  <md2-button appearance="outlined" text="full" icon="close" icon-trailing="close" adaptive="full" :turn="turn"
+              rounded="full" height="lg" disabled/>
 </div>
 <div class="flex items-center gap-2 pt-4 pl-8">
   <md2-button text="auto" width="auto"/>
@@ -371,6 +402,7 @@ import Md2Progress from '../../md2/Md2Progress/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import { AssociativeType } from '../../constructors/types'
+import Md2Chip from '../../md2/Md2Chip/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -379,6 +411,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Chip,
     Md2Button,
     Md2Icon,
     Md2Progress,

@@ -1,7 +1,7 @@
 {
   "md2": {
-    "chips": {
-      "@style": "{d.chips}",
+    "chip": {
+      "@style": "{d.chip}",
       "mixin|m": {
         "appearance": {
           "text": {
@@ -56,9 +56,9 @@
       },
       "@font": "{font.button}",
       "height": {
-        "sm": "{ref.spacing.8}",
-        "md": "{ref.spacing.9}",
-        "lg": "{ref.spacing.11}"
+        "sm": "{ref.spacing.7}",
+        "md": "{ref.spacing.8}",
+        "lg": "{ref.spacing.10}"
       },
       "width": {
         "auto": {

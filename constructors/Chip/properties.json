@@ -1,0 +1,7 @@
+{
+  "d": {
+    "chip": {
+      "@button": "{d.button}"
+    }
+  }
+}

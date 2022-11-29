@@ -1,8 +1,8 @@
 import { PropType } from 'vue'
-import { props as propsChips } from '../../constructors/Chips/props'
+import { _props as propsChip } from '../../constructors/Chip/_props'
 import { Md2PaletteType } from '../md2PropsType'
 
 export const props = {
-  ...propsChips,
+  ...propsChip,
   palette: String as PropType<Md2PaletteType>
 }

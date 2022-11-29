@@ -25,7 +25,6 @@ export const props = {
   disabled: Boolean,
   dragged: Boolean,
   progress: Boolean,
-  readonly: Boolean,
   selected: Boolean,
   turn: Boolean,
 

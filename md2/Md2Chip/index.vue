@@ -19,26 +19,26 @@ component(
 import Md2Icon from '../Md2Icon/index.vue'
 import Md2Progress from '../Md2Progress/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
-import { ButtonComponent } from './ButtonComponent'
+import { ChipComponent } from './ChipComponent'
 import { props } from './props'
 
 export default {
-  name: 'Md2Button',
+  name: 'Md2Chip',
   components: {
     Md2Icon,
     Md2Progress,
     Md2Ripple
   },
   props,
-  emits: ButtonComponent.emits,
+  emits: ChipComponent.emits,
   setup (_props: object, context: object) {
-    return new ButtonComponent(props, context).setup()
+    return new ChipComponent(props, context).setup()
   }
 }
 </script>
 
 <style lang="scss">
-@import '../../constructors/Button/style';
+@import '../../constructors/Chip/style';
 
-@include initButton('md2');
+@include initChip('md2');
 </style>

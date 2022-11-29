@@ -1,0 +1,7 @@
+@import "../../styles/services/classesService";
+
+@mixin initChip($design) {
+  @include classInitService($design, 'chip') using($class, $properties) {
+    @content($class, $properties);
+  }
+}
