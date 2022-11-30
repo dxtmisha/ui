@@ -9,7 +9,7 @@ import { props } from '../../constructors/Ripple/props'
 export default {
   name: 'Md2Ripple',
   props,
-  setup (_props: object, context: object) {
+  setup (props: object, context: object) {
     return new RippleComponent(props, context).setup()
   }
 }

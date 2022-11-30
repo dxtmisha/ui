@@ -125,7 +125,9 @@ module.exports = class {
       const index = this.getIndex()
       const selector = this.getSelector()
 
-      if (selector.match(/^[^|]+\|.*?$/)) {
+      if (selector === 'default') {
+        this.type = 'default'
+      } else if (selector.match(/^[^|]+\|.*?$/)) {
         this.type = selector.split('|')[0]
       } else if (selector.match(/^@@/)) {
         this.type = 'link-class'

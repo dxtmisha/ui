@@ -21,7 +21,7 @@ import { ProgressComponent } from './ProgressComponent'
 export default {
   name: 'Md2Progress',
   props,
-  setup (_props: object, context: object) {
+  setup (props: object, context: object) {
     return new ProgressComponent(props, context).setup()
   }
 }

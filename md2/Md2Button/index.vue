@@ -31,7 +31,7 @@ export default {
   },
   props,
   emits: ButtonComponent.emits,
-  setup (_props: object, context: object) {
+  setup (props: object, context: object) {
     return new ButtonComponent(props, context).setup()
   }
 }

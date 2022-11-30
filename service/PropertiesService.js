@@ -140,7 +140,8 @@ module.exports = class extends PropertiesFileService {
   initValue (property) {
     const isValue = property.isValue() &&
       property.parent?.getType() === 'property' &&
-      property.getType() !== 'property'
+      property.getType() !== 'property' &&
+      property.getType() !== 'default'
 
     if (isValue) {
       property.setType('section')

@@ -13,7 +13,7 @@ import { props } from '../../constructors/Image/props'
 export default {
   name: 'Md2Image',
   props,
-  setup (_props: object, context: object) {
+  setup (props: object, context: object) {
     return new ImageComponent(props, context).setup()
   }
 }

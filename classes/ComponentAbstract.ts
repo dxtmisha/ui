@@ -18,6 +18,7 @@ import {
 import { getExp } from '../functions/data'
 
 export abstract class ComponentAbstract {
+  static thisClass = ComponentAbstract
   static designMain: AssociativeType
   static designSubClasses = {} as AssociativeType<ComponentAssociativeItemsType>
   static emits?: string[]
@@ -260,5 +261,6 @@ export abstract class ComponentAbstract {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
+    console.log('this.designMain', this.designMain, this.thisClass)
   }
 }

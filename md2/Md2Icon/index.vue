@@ -14,7 +14,7 @@ export default {
   name: 'Md2Icon',
   components: { Md2Image },
   props,
-  setup (_props: object, context: object) {
+  setup (props: object, context: object) {
     return new IconComponent(props, context).setup()
   }
 }

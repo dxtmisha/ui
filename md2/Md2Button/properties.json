@@ -58,7 +58,8 @@
       "height": {
         "sm": "{ref.spacing.8}",
         "md": "{ref.spacing.9}",
-        "lg": "{ref.spacing.11}"
+        "lg": "{ref.spacing.11}",
+        "default": "md"
       },
       "width": {
         "auto": {

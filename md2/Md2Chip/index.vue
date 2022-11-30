@@ -31,7 +31,7 @@ export default {
   },
   props,
   emits: ChipComponent.emits,
-  setup (_props: object, context: object) {
+  setup (props: object, context: object) {
     return new ChipComponent(props, context).setup()
   }
 }
