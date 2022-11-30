@@ -17,7 +17,7 @@ export type ProgressSetupType = {
   element: Ref<HTMLElement | undefined>
   ifCircular: ComputedRef<boolean>
   tag: ComputedRef<string>
-  name: ComputedRef<string>
+  name: string
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>
   classes: ComputedRef<ProgressClassesType>
@@ -36,13 +36,11 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
 
   constructor (
     props: object,
-    context: object,
-    nameDesign?: string
+    context: object
   ) {
     super(
       props,
-      context,
-      nameDesign
+      context
     )
 
     watch(this.refs.visible, () => this.watchVisible())

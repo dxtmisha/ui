@@ -11,7 +11,7 @@ import {
 
 export type RippleSetupType = {
   element: Ref<HTMLElement | undefined>
-  name: ComputedRef<string>
+  name: string
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>
   classes: ComputedRef<ComponentClassesType>

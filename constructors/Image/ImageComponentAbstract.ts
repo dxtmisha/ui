@@ -6,7 +6,7 @@ import { AssociativeType, ComponentClassesType, ComponentStylesType, ImageOption
 
 export type ImageSetupType = {
   element: Ref<HTMLElement | undefined>
-  name: ComputedRef<string>
+  name: string
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>
   classes: ComputedRef<ComponentClassesType>

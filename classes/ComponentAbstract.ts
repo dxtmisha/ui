@@ -16,6 +16,8 @@ import {
   toKebabCase
 } from '../functions'
 import { getExp } from '../functions/data'
+import { ComponentDesign } from './ComponentDesign'
+import { ComponentItem } from './ComponentItem'
 
 export abstract class ComponentAbstract {
   static thisClass = ComponentAbstract
@@ -23,7 +25,7 @@ export abstract class ComponentAbstract {
   static designSubClasses = {} as AssociativeType<ComponentAssociativeItemsType>
   static emits?: string[]
 
-  protected code?: string
+  protected code = 'none' as string
   protected abstract readonly instruction: AssociativeType
 
   protected readonly classesProps = [] as string[]
@@ -39,27 +41,21 @@ export abstract class ComponentAbstract {
 
   constructor (
     props: object,
-    context: object,
-    nameDesign?: string
+    context: object
   ) {
     this.props = props
     this.refs = toRefs<AssociativeType>(props)
     this.context = context
 
-    if (typeof nameDesign === 'string') {
-      this.code = nameDesign
-    }
-
     onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.baseClass.value}`))
   }
 
-  private readonly name = computed(() => {
-    const name = this.code
-      ?.replace(/^([^.]+.)/ig, '')
-      ?.replace('.', '-')
-
-    return toKebabCase(name || '')
-  }) as ComputedRef<string>
+  protected getItem (): ComponentItem {
+    return ComponentDesign.getItem(
+      this.code,
+      this.instruction
+    )
+  }
 
   protected readonly nameDesign = computed(() => toKebabCase(this.code?.split('.', 1)[0] || '')) as ComputedRef<string>
   protected readonly baseClass = computed(() => this.code?.replace('.', '-')) as ComputedRef<string>
@@ -108,7 +104,7 @@ export abstract class ComponentAbstract {
   protected baseInit (): ComponentBaseType {
     return {
       element: this.element,
-      name: this.name,
+      name: this.getItem().getName(),
       nameDesign: this.nameDesign,
       baseClass: this.baseClass
     }
@@ -147,7 +143,7 @@ export abstract class ComponentAbstract {
     status = [] as NumberOrStringType[]
   ): string {
     return toKebabCase(
-      `${[`${this.nameDesign.value}-${this.name.value}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
+      `${[`${this.nameDesign.value}-${this.getItem().getName()}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
     )
   }
 
@@ -261,6 +257,5 @@ export abstract class ComponentAbstract {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
-    console.log('this.designMain', this.designMain, this.thisClass)
   }
 }

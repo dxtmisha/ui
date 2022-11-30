@@ -9,7 +9,7 @@ import {
 
 export type IconSetupType = {
   element: Ref<HTMLElement | undefined>
-  name: ComputedRef<string>
+  name: string
   nameDesign: ComputedRef<string>
   baseClass: ComputedRef<string>
   classes: ComputedRef<ComponentClassesType>
