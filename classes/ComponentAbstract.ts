@@ -57,7 +57,6 @@ export abstract class ComponentAbstract {
     )
   }
 
-  protected readonly nameDesign = computed(() => toKebabCase(this.code?.split('.', 1)[0] || '')) as ComputedRef<string>
   protected readonly baseClass = computed(() => this.code?.replace('.', '-')) as ComputedRef<string>
 
   protected readonly classesMain = computed(() => {
@@ -102,10 +101,12 @@ export abstract class ComponentAbstract {
   }) as ComputedRef<AssociativeType<string>>
 
   protected baseInit (): ComponentBaseType {
+    const item = this.getItem()
+
     return {
       element: this.element,
-      name: this.getItem().getName(),
-      nameDesign: this.nameDesign,
+      name: item.getName(),
+      design: item.getDesign(),
       baseClass: this.baseClass
     }
   }
@@ -142,8 +143,10 @@ export abstract class ComponentAbstract {
     name = [] as string[],
     status = [] as NumberOrStringType[]
   ): string {
+    const item = this.getItem()
+
     return toKebabCase(
-      `${[`${this.nameDesign.value}-${this.getItem().getName()}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
+      `${[`${item.getDesign()}-${item.getName()}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
     )
   }
 

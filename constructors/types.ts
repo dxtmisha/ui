@@ -29,7 +29,7 @@ export type ComponentValueType = RefOrNormalType<string>
 export type ComponentBaseType = {
   element: Ref<HTMLElement | undefined>
   name: string
-  nameDesign: ComputedRef<string>
+  design: string
   baseClass: ComputedRef<string>
 }
 export type ComponentClassesType = {

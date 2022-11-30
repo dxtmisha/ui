@@ -9,7 +9,16 @@ export class ComponentItem {
   ) {
   }
 
+  private design?: string
   private name?: string
+
+  public getDesign (): string {
+    if (!(this.design)) {
+      this.design = toKebabCase(this.code.split('.', 1)[0])
+    }
+
+    return this.design
+  }
 
   public getName (): string {
     if (!(this.name)) {
@@ -18,7 +27,6 @@ export class ComponentItem {
           ?.replace(/^([^.]+.)/ig, '')
           ?.replace('.', '-')
       )
-      console.log('Up', this.name)
     }
 
     return this.name

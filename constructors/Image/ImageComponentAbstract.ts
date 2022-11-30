@@ -1,14 +1,16 @@
-import { ComputedRef, onUnmounted, Ref } from 'vue'
+import { ComputedRef, onUnmounted } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { Image } from './Image'
 import { props } from './props'
-import { AssociativeType, ComponentClassesType, ComponentStylesType, ImageOptionType } from '../types'
+import {
+  AssociativeType,
+  ComponentBaseType,
+  ComponentClassesType,
+  ComponentStylesType,
+  ImageOptionType
+} from '../types'
 
-export type ImageSetupType = {
-  element: Ref<HTMLElement | undefined>
-  name: string
-  nameDesign: ComputedRef<string>
-  baseClass: ComputedRef<string>
+export type ImageSetupType = ComponentBaseType & {
   classes: ComputedRef<ComponentClassesType>
   styles: ComputedRef<ComponentStylesType>
   text: ImageOptionType

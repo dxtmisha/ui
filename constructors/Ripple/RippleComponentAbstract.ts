@@ -1,19 +1,15 @@
-import { ComputedRef, Ref } from 'vue'
+import { ComputedRef } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { createElement } from '../../functions'
 import { props } from './props'
 import {
-  AssociativeType,
+  AssociativeType, ComponentBaseType,
   ComponentClassesType,
   ComponentStylesType,
   EventCallbackRequiredType
 } from '../types'
 
-export type RippleSetupType = {
-  element: Ref<HTMLElement | undefined>
-  name: string
-  nameDesign: ComputedRef<string>
-  baseClass: ComputedRef<string>
+export type RippleSetupType = ComponentBaseType & {
   classes: ComputedRef<ComponentClassesType>
   styles: ComputedRef<ComponentStylesType>
   onClick: EventCallbackRequiredType<void, MouseEvent>

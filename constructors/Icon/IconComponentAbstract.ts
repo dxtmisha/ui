@@ -1,17 +1,14 @@
-import { computed, ComputedRef, Ref } from 'vue'
+import { computed, ComputedRef } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
   AssociativeType,
+  ComponentBaseType,
   ComponentClassesType,
   ComponentStylesType
 } from '../types'
 
-export type IconSetupType = {
-  element: Ref<HTMLElement | undefined>
-  name: string
-  nameDesign: ComputedRef<string>
-  baseClass: ComputedRef<string>
+export type IconSetupType = ComponentBaseType & {
   classes: ComputedRef<ComponentClassesType>
   styles: ComputedRef<ComponentStylesType>
   ifActive: ComputedRef<boolean>

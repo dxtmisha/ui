@@ -16,7 +16,7 @@ export type ButtonClassesType = {
 export type ButtonSetupType = {
   element: Ref<HTMLElement | undefined>
   name: string
-  nameDesign: ComputedRef<string>
+  design: string
   baseClass: ComputedRef<string>
   classes: ComputedRef<ButtonClassesType>
   styles: ComputedRef<ComponentStylesType>

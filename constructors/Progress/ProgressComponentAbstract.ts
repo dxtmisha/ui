@@ -1,9 +1,9 @@
-import { computed, ComputedRef, onMounted, Ref, ref, watch } from 'vue'
+import { computed, ComputedRef, onMounted, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentAssociativeType,
+  ComponentAssociativeType, ComponentBaseType,
   ComponentStylesType,
   EventCallbackRequiredType
 } from '../types'
@@ -13,13 +13,9 @@ export type ProgressClassesType = {
   circle: ComponentAssociativeType
 }
 
-export type ProgressSetupType = {
-  element: Ref<HTMLElement | undefined>
+export type ProgressSetupType = ComponentBaseType & {
   ifCircular: ComputedRef<boolean>
   tag: ComputedRef<string>
-  name: string
-  nameDesign: ComputedRef<string>
-  baseClass: ComputedRef<string>
   classes: ComputedRef<ProgressClassesType>
   styles: ComputedRef<ComponentStylesType>
   valueInPercent: ComputedRef<string | null>
