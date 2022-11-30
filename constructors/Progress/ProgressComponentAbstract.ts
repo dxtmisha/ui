@@ -91,9 +91,11 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
   }
 
   protected onAnimation (event: AnimationEvent): void {
+    const className = this.getItem().getBasicClassName()
+
     if ([
-      `${this.baseClass.value}--linear-hidden`,
-      `${this.baseClass.value}--circle-hidden`
+      `${className}--linear-hidden`,
+      `${className}--circle-hidden`
     ].indexOf(event.animationName) !== -1) {
       this.move.value = false
     }

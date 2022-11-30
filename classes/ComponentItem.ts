@@ -9,8 +9,17 @@ export class ComponentItem {
   ) {
   }
 
+  private basic?: string
   private design?: string
   private name?: string
+
+  public getBasicClassName (): string {
+    if (!(this.basic)) {
+      this.basic = this.code.replace('.', '-')
+    }
+
+    return this.basic
+  }
 
   public getDesign (): string {
     if (!(this.design)) {

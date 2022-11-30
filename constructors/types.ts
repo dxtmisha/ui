@@ -30,7 +30,7 @@ export type ComponentBaseType = {
   element: Ref<HTMLElement | undefined>
   name: string
   design: string
-  baseClass: ComputedRef<string>
+  className: string
 }
 export type ComponentClassesType = {
   main: ComponentAssociativeType

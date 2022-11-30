@@ -3,7 +3,7 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentAssociativeType,
+  ComponentAssociativeType, ComponentBaseType,
   ComponentStylesType,
   EventCallbackRequiredType
 } from '../types'
@@ -13,11 +13,7 @@ export type ButtonClassesType = {
   main: ComponentAssociativeType
   text: ComponentAssociativeType
 }
-export type ButtonSetupType = {
-  element: Ref<HTMLElement | undefined>
-  name: string
-  design: string
-  baseClass: ComputedRef<string>
+export type ButtonSetupType = ComponentBaseType & {
   classes: ComputedRef<ButtonClassesType>
   styles: ComputedRef<ComponentStylesType>
   ifInverse: ComputedRef<boolean>

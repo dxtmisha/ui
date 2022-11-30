@@ -20,7 +20,6 @@ import { ComponentDesign } from './ComponentDesign'
 import { ComponentItem } from './ComponentItem'
 
 export abstract class ComponentAbstract {
-  static thisClass = ComponentAbstract
   static designMain: AssociativeType
   static designSubClasses = {} as AssociativeType<ComponentAssociativeItemsType>
   static emits?: string[]
@@ -47,7 +46,7 @@ export abstract class ComponentAbstract {
     this.refs = toRefs<AssociativeType>(props)
     this.context = context
 
-    onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.baseClass.value}`))
+    onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.code}`))
   }
 
   protected getItem (): ComponentItem {
@@ -56,8 +55,6 @@ export abstract class ComponentAbstract {
       this.instruction
     )
   }
-
-  protected readonly baseClass = computed(() => this.code?.replace('.', '-')) as ComputedRef<string>
 
   protected readonly classesMain = computed(() => {
     const main = {
@@ -107,7 +104,7 @@ export abstract class ComponentAbstract {
       element: this.element,
       name: item.getName(),
       design: item.getDesign(),
-      baseClass: this.baseClass
+      className: item.getBasicClassName()
     }
   }
 
