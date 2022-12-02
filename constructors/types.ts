@@ -36,6 +36,13 @@ export type ComponentClassesType = {
   main: ComponentAssociativeType
   [key: NumberOrStringType]: ComponentAssociativeType
 }
+export type ComponentPropertyType = {
+  index: string
+  className: string
+  classValue: string
+  values: string[]
+}
+export type ComponentPropertiesType = AssociativeType<ComponentPropertyType>
 export type ComponentStyleItemType = AssociativeType<ComponentValueType>
 export type ComponentStylesType = {
   main: ComponentStyleItemType

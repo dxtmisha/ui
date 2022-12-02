@@ -31,7 +31,7 @@ export abstract class IconComponentAbstract extends ComponentAbstract {
     })
 
     return {
-      ...this.baseInit(),
+      ...this.getBasic(),
       classes,
       styles,
       ifActive: this.ifActive,

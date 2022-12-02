@@ -2,7 +2,6 @@ import { ComponentItem } from './ComponentItem'
 import { AssociativeType } from '../constructors/types'
 
 export class ComponentDesign {
-  static designMain: AssociativeType
   static designItems = {} as AssociativeType<ComponentItem>
 
   static getItem (
@@ -14,9 +13,5 @@ export class ComponentDesign {
     }
 
     return this.designItems[code]
-  }
-
-  static {
-    this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
   }
 }

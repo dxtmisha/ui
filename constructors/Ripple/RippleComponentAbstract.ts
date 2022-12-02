@@ -23,7 +23,7 @@ export abstract class RippleComponentAbstract extends ComponentAbstract {
     const styles = this.getStyles({})
 
     return {
-      ...this.baseInit(),
+      ...this.getBasic(),
       classes,
       styles,
       onClick: (event: MouseEvent) => this.add(event.offsetX, event.offsetY)

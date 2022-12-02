@@ -40,7 +40,7 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
     onUnmounted(() => image.destructor())
 
     return {
-      ...this.baseInit(),
+      ...this.getBasic(),
       classes,
       styles,
       text: image.text

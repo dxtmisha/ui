@@ -43,7 +43,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
     const styles = this.getStyles({})
 
     return {
-      ...this.baseInit(),
+      ...this.getBasic(),
       classes,
       styles,
       ifInverse: this.ifInverse,

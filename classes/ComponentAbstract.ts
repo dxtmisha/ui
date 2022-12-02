@@ -4,7 +4,7 @@ import {
   ComponentAssociativeItemsType,
   ComponentAssociativeType,
   ComponentBaseType,
-  ComponentClassesType,
+  ComponentClassesType, ComponentPropertyType,
   ComponentStylesType,
   NumberOrStringType
 } from '../constructors/types'
@@ -27,9 +27,9 @@ export abstract class ComponentAbstract {
   protected code = 'none' as string
   protected abstract readonly instruction: AssociativeType
 
+  protected readonly element = ref<HTMLElement | undefined>()
   protected readonly classesProps = [] as string[]
   protected readonly stylesProps = [] as string[]
-  protected readonly element = ref<HTMLElement | undefined>()
 
   abstract setup (): AssociativeType
 
@@ -56,23 +56,18 @@ export abstract class ComponentAbstract {
     )
   }
 
+  // OK
   protected readonly classesMain = computed(() => {
     const main = {
-      [this.getClassName()]: true
+      [this.getItem().getBasicClassName()]: true
     }
 
-    forEach<any, string, void>(this.instruction, (instruction, name) => {
+    forEach<ComponentPropertyType, string, void>(this.getItem().getProperties(), (item, name) => {
       if (this.isPropDesign(name)) {
         if (typeof this.props[name] === 'boolean') {
-          main[this.getClassName([], [name])] = this.props[name]
-        } else {
-          const className = this.getPropPropertyLinkOrValue(name, this.props[name])
-
-          if (className) {
-            main[className] = true
-          } else if (this.isPropPropertyValue(name, this.props[name])) {
-            main[this.getClassName([], [name, this.props[name]])] = true
-          }
+          main[item.className] = true
+        } else if (item.values.indexOf(this.props[name]) !== -1) {
+          main[`${item.classValue}${this.props[name]}`] = true
         }
       }
     })
@@ -97,7 +92,8 @@ export abstract class ComponentAbstract {
     return main
   }) as ComputedRef<AssociativeType<string>>
 
-  protected baseInit (): ComponentBaseType {
+  // OK
+  protected getBasic (): ComponentBaseType {
     const item = this.getItem()
 
     return {
@@ -136,14 +132,13 @@ export abstract class ComponentAbstract {
     })
   }
 
+  // DELETE
   protected getClassName (
     name = [] as string[],
     status = [] as NumberOrStringType[]
   ): string {
-    const item = this.getItem()
-
     return toKebabCase(
-      `${[`${item.getDesign()}-${item.getName()}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
+      `${[`${this.getItem().getBasicClassName()}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
     )
   }
 
@@ -166,6 +161,7 @@ export abstract class ComponentAbstract {
     return `${this.code}.${name}`
   }
 
+  // DELETE
   protected getKebabCaseProperty (name: string): string {
     if (!(name in this.kebabCaseProperty)) {
       this.kebabCaseProperty[name] = toKebabCase(this.getCodeProperty(name))
@@ -204,11 +200,8 @@ export abstract class ComponentAbstract {
   }
 
   protected isPropDesign (name: string, props = this.classesProps as string[]): boolean {
-    const code = this.getKebabCaseProperty(name)
-
     return (
-      this.props?.[name] &&
-      code in ComponentAbstract.designMain && (
+      this.props?.[name] && (
         props.length === 0 ||
         props.indexOf(name) !== -1
       )

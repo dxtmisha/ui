@@ -60,7 +60,7 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
     return {
       ifCircular: this.ifCircular,
       tag: this.tag,
-      ...this.baseInit(),
+      ...this.getBasic(),
       classes,
       styles,
       valueInPercent: this.valueInPercent,
