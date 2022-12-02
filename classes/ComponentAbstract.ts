@@ -1,10 +1,18 @@
-import { computed, ComputedRef, isRef, onBeforeUpdate, reactive, ref, Ref, toRefs } from 'vue'
+import {
+  computed,
+  ComputedRef,
+  isRef,
+  onBeforeUpdate,
+  reactive,
+  ref,
+  Ref,
+  toRefs
+} from 'vue'
 import { ComponentDesign } from './ComponentDesign'
 import { ComponentItem } from './ComponentItem'
 import {
   forEach,
-  replaceRecursive,
-  toKebabCase
+  replaceRecursive
 } from '../functions'
 
 import {
@@ -18,42 +26,37 @@ import {
 } from '../constructors/types'
 
 export abstract class ComponentAbstract {
-  static designMain: AssociativeType
-  static emits?: string[]
-
-  protected code = 'none' as string
-  protected abstract readonly instruction: AssociativeType
+  static readonly code = 'none' as string
+  static readonly instruction = {} as AssociativeType
+  static readonly emits?: string[]
 
   protected readonly element = ref<HTMLElement | undefined>()
+  protected readonly refs: AssociativeType<Ref>
   protected readonly classesProps = [] as string[]
   protected readonly stylesProps = [] as string[]
 
   abstract setup (): AssociativeType
 
-  protected readonly props: AssociativeType
-  protected readonly refs: AssociativeType<Ref>
-  protected readonly context: AssociativeType
-  protected readonly kebabCaseProperty = {} as AssociativeType<string>
-
   constructor (
-    props: object,
-    context: object
+    protected readonly props: AssociativeType,
+    protected readonly context: AssociativeType
   ) {
-    this.props = props
     this.refs = toRefs<AssociativeType>(props)
-    this.context = context
 
-    onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.code}`))
+    onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.getConstructor().code}`))
+  }
+
+  protected getConstructor () {
+    return this.constructor as typeof ComponentAbstract
   }
 
   protected getItem (): ComponentItem {
     return ComponentDesign.getItem(
-      this.code,
-      this.instruction
+      this.getConstructor().code,
+      this.getConstructor().instruction
     )
   }
 
-  // OK
   protected readonly classesMain = computed(() => {
     const main = {
       [this.getItem().getBasicClassName()]: true
@@ -75,20 +78,19 @@ export abstract class ComponentAbstract {
   protected readonly stylesMain = computed(() => {
     const main = {} as AssociativeType<string>
 
-    forEach<any, string, void>(this.instruction, (instruction, name) => {
+    forEach<ComponentPropertyType, string, void>(this.getItem().getProperties(), (item, name) => {
       if (
-        this.isPropDesign(name as string, this.stylesProps) &&
+        this.isPropDesign(name, this.stylesProps) &&
         typeof this.props[name] !== 'boolean' &&
-        !this.isPropPropertyValue(name, this.props[name])
+        item?.values?.indexOf(this.props[name]) === -1
       ) {
-        main[`--${this.getClassName([], [name])}`] = this.props[name]
+        main[`--${item.className}`] = this.props[name]
       }
     })
 
     return main
   }) as ComputedRef<AssociativeType<string>>
 
-  // OK
   protected getBasic (): ComponentBaseType {
     const item = this.getItem()
 
@@ -128,70 +130,51 @@ export abstract class ComponentAbstract {
     })
   }
 
-  // DELETE
   protected getClassName (
     name = [] as string[],
     status = [] as NumberOrStringType[]
   ): string {
-    return toKebabCase(
-      `${[`${this.getItem().getBasicClassName()}`, ...name].join('__')}${status.length > 0 ? '--' : ''}${status.join('--')}`
-    )
+    return this.getItem().getClassName(name, status)
   }
 
-  // OK
-  getClasses<R = ComponentClassesType> (extra = {} as AssociativeType): ComputedRef<R> {
+  getClasses<R = ComponentClassesType> (extra?: AssociativeType): ComputedRef<R> {
     return computed(() => {
       const classes = {
         main: this.classesMain.value,
         ...this.getItem().getSubClasses()
       } as AssociativeType
 
-      return replaceRecursive(replaceRecursive({}, reactive(extra)), classes) as R
+      if (extra) {
+        return replaceRecursive(replaceRecursive({}, reactive(extra)), classes) as R
+      } else {
+        return classes as R
+      }
     })
   }
 
-  protected getCodeProperty (name: string): string {
-    return `${this.code}.${name}`
-  }
-
-  // DELETE
-  protected getKebabCaseProperty (name: string): string {
-    if (!(name in this.kebabCaseProperty)) {
-      this.kebabCaseProperty[name] = toKebabCase(this.getCodeProperty(name))
-    }
-
-    return this.kebabCaseProperty[name]
-  }
-
-  getStyles (extra = {} as AssociativeType): ComputedRef<ComponentStylesType> {
+  getStyles (extra?: AssociativeType): ComputedRef<ComponentStylesType> {
     return computed(() => {
       const styles = {
         main: this.stylesMain.value
       }
 
-      return replaceRecursive(replaceRecursive({}, reactive(extra)), styles) as ComponentStylesType
+      if (extra) {
+        return replaceRecursive(replaceRecursive({}, reactive(extra)), styles) as ComponentStylesType
+      } else {
+        return styles as ComponentStylesType
+      }
     })
   }
 
-  protected isPropDesign (name: string, props = this.classesProps as string[]): boolean {
+  protected isPropDesign (
+    name: string,
+    props = this.classesProps as string[]
+  ): boolean {
     return (
       this.props?.[name] && (
         props.length === 0 ||
         props.indexOf(name) !== -1
       )
     )
-  }
-
-  protected isPropPropertyValue (name: string, value: any): string | undefined {
-    const nameClass = `${this.getKebabCaseProperty(name)}.${value}`
-    return typeof value === 'string' && (nameClass in ComponentAbstract.designMain) ? nameClass : undefined
-  }
-
-  protected static isValue (code: string, index: string): boolean {
-    return !!index.match(new RegExp(`^${code?.replace(/\./g, '\\.') || ''}`))
-  }
-
-  static {
-    this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
   }
 }

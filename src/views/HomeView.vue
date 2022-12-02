@@ -101,12 +101,12 @@
   <button @click="onClickIcon">test 2</button>
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
-  <md2-chip text="chip"/>
+<!--  <md2-chip text="chip"/>-->
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
-  <md2-chip text="sm" height="sm" width="md"/>
+<!--  <md2-chip text="sm" height="sm" width="md"/>
   <md2-chip text="md" height="md" width="md"/>
-  <md2-chip text="lg" height="lg" width="md"/>
+  <md2-chip text="lg" height="lg" width="md"/>-->
 </div>
 <div class="flex items-center gap-2 pt-8 pl-8">
   <md2-button
@@ -402,7 +402,7 @@ import Md2Progress from '../../md2/Md2Progress/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import { AssociativeType } from '../../constructors/types'
-import Md2Chip from '../../md2/Md2Chip/index.vue'
+// import Md2Chip from '../../md2/Md2Chip/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -411,7 +411,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Md2Chip,
+    // Md2Chip,
     Md2Button,
     Md2Icon,
     Md2Progress,

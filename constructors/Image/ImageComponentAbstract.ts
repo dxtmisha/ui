@@ -1,23 +1,19 @@
-import { ComputedRef, onUnmounted } from 'vue'
+import { onUnmounted } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { Image } from './Image'
 import { props } from './props'
 import {
   AssociativeType,
   ComponentBaseType,
-  ComponentClassesType,
-  ComponentStylesType,
   ImageOptionType
 } from '../types'
 
 export type ImageSetupType = ComponentBaseType & {
-  classes: ComputedRef<ComponentClassesType>
-  styles: ComputedRef<ComponentStylesType>
   text: ImageOptionType
 }
 
 export abstract class ImageComponentAbstract extends ComponentAbstract {
-  protected readonly instruction = props as AssociativeType
+  static readonly instruction = props as AssociativeType
 
   setup (): ImageSetupType {
     const image = new Image(

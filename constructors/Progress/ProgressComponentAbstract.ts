@@ -3,8 +3,8 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentAssociativeType, ComponentBaseType,
-  ComponentStylesType,
+  ComponentAssociativeType,
+  ComponentBaseType,
   EventCallbackRequiredType
 } from '../types'
 
@@ -14,16 +14,15 @@ export type ProgressClassesType = {
 }
 
 export type ProgressSetupType = ComponentBaseType & {
-  ifCircular: ComputedRef<boolean>
-  tag: ComputedRef<string>
   classes: ComputedRef<ProgressClassesType>
-  styles: ComputedRef<ComponentStylesType>
+  tag: ComputedRef<string>
+  ifCircular: ComputedRef<boolean>
   valueInPercent: ComputedRef<string | null>
   onAnimation: EventCallbackRequiredType<void, AnimationEvent>
 }
 
 export abstract class ProgressComponentAbstract extends ComponentAbstract {
-  protected readonly instruction = props as AssociativeType
+  static readonly instruction = props as AssociativeType
 
   protected readonly move = ref(false)
   protected readonly visible = ref(false)
@@ -31,8 +30,8 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
   protected timeout?: number
 
   constructor (
-    props: object,
-    context: object
+    props: AssociativeType,
+    context: AssociativeType
   ) {
     super(
       props,
@@ -40,6 +39,7 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
     )
 
     watch(this.refs.visible, () => this.watchVisible())
+
     onMounted(() => {
       if (this.props.visible) {
         this.watchVisible()
@@ -55,20 +55,21 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
         'is-visible': this.visible
       }
     })
-    const styles = this.getStyles({})
+    const styles = this.getStyles()
 
     return {
-      ifCircular: this.ifCircular,
-      tag: this.tag,
       ...this.getBasic(),
       classes,
       styles,
+      tag: this.tag,
+      ifCircular: this.ifCircular,
       valueInPercent: this.valueInPercent,
       onAnimation: event => this.onAnimation(event)
     }
   }
 
   public readonly ifCircular = computed(() => this.props.type === 'circular') as ComputedRef<boolean>
+
   public readonly tag = computed(() => this.props.type !== 'linear' ? 'svg' : 'div') as ComputedRef<string>
 
   public readonly valueInPercent = computed(() => {

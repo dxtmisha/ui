@@ -156,7 +156,8 @@
         "min-width": "auto"
       },
       "section|ellipsis": {
-        "@style": "{d.font.ellipsis}"
+        "@style": "{d.font.ellipsis}",
+        "default": true
       },
       "section|lowercase": {
         "text-transform": "none"

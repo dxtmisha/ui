@@ -1,5 +1,5 @@
 import { CLASS_SUB, CLASS_VAL, ComponentProperty } from './ComponentProperty'
-import { toCamelCase, toKebabCase } from '../functions'
+import { forEach, toCamelCase, toKebabCase } from '../functions'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
@@ -18,6 +18,7 @@ export class ComponentItem {
   private basic?: string
   private design?: string
   private name?: string
+  private props?: AssociativeType
   private properties?: ComponentPropertiesType
   private subClasses?: ComponentAssociativeItemsType
 
@@ -64,6 +65,27 @@ export class ComponentItem {
     }
 
     return this.name
+  }
+
+  public getProps (): AssociativeType {
+    if (!(this.props)) {
+      const data = {} as AssociativeType
+
+      forEach<any, string, void>(this.instruction, (instruction, name) => {
+        const prop = ComponentProperty.toProp(instruction)
+        const defaultValue = ComponentProperty.getByDefaultType(this.code, name)
+
+        if (defaultValue) {
+          prop.default = defaultValue?.value
+        }
+
+        data[name] = prop
+      })
+
+      this.props = data
+    }
+
+    return this.props
   }
 
   public getProperties (): ComponentPropertiesType {

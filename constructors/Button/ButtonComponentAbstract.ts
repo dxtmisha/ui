@@ -1,13 +1,13 @@
-import { computed, ComputedRef, Ref } from 'vue'
+import { computed, ComputedRef } from 'vue'
+import { useRouter } from 'vue-router'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentAssociativeType, ComponentBaseType,
-  ComponentStylesType,
+  ComponentAssociativeType,
+  ComponentBaseType,
   EventCallbackRequiredType
 } from '../types'
-import { useRouter } from 'vue-router'
 
 export type ButtonClassesType = {
   main: ComponentAssociativeType
@@ -15,7 +15,6 @@ export type ButtonClassesType = {
 }
 export type ButtonSetupType = ComponentBaseType & {
   classes: ComputedRef<ButtonClassesType>
-  styles: ComputedRef<ComponentStylesType>
   ifInverse: ComputedRef<boolean>
   ifRipple: ComputedRef<boolean>
   ifText: ComputedRef<boolean>
@@ -27,12 +26,12 @@ export type ButtonSetupType = ComponentBaseType & {
 }
 
 export abstract class ButtonComponentAbstract extends ComponentAbstract {
-  static emits = ['on-click', 'on-trailing'] as string[]
-
-  protected readonly instruction = props as AssociativeType
-  protected abstract appearanceInverse: string[]
+  static readonly instruction = props as AssociativeType
+  static readonly emits = ['on-click', 'on-trailing'] as string[]
 
   protected readonly stylesProps = ['width'] as string[]
+
+  protected abstract appearanceInverse: string[]
 
   setup (): ButtonSetupType {
     const classes = this.getClasses<ButtonClassesType>({
@@ -40,7 +39,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
         'is-icon': this.isIcon
       }
     })
-    const styles = this.getStyles({})
+    const styles = this.getStyles()
 
     return {
       ...this.getBasic(),
@@ -57,17 +56,16 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
     }
   }
 
+  readonly ifInverse = computed(() => this.appearanceInverse.indexOf(this.props.appearance) !== -1) as ComputedRef<boolean>
+
   readonly ifRipple = computed(() => this.props.ripple &&
     !this.props.disabled &&
     !this.props.readonly
   ) as ComputedRef<boolean>
 
-  readonly ifInverse = computed(() => this.appearanceInverse.indexOf(this.props.appearance) !== -1) as ComputedRef<boolean>
   readonly ifText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
 
   readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>
-
-  readonly value = computed(() => this.props.value || this.props.detail?.value)
 
   readonly icon = computed(() => {
     return {
@@ -92,6 +90,8 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       visible: true
     }
   })
+
+  readonly value = computed(() => this.props.value || this.props.detail?.value)
 
   onClick (event: MouseEvent): void {
     let type = 'on-click'

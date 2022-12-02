@@ -1,4 +1,5 @@
-import { ComputedRef, Ref } from 'vue'
+import { ComputedRef, PropType, Ref } from 'vue'
+import { ButtonClassesType } from './Button/ButtonComponentAbstract'
 
 export type NumberOrStringType = number | string
 export type CallbackType<T = any, R = any> = (value: T) => R
@@ -26,15 +27,15 @@ export type ComponentAssociativeRefType = RefOrNormalType<ComponentAssociativeVa
 export type ComponentAssociativeType = AssociativeType<ComponentAssociativeRefType>
 export type ComponentAssociativeItemsType = AssociativeType<ComponentAssociativeType>
 export type ComponentValueType = RefOrNormalType<string>
-export type ComponentBaseType = {
-  element: Ref<HTMLElement | undefined>
-  name: string
-  design: string
-  className: string
-}
 export type ComponentClassesType = {
   main: ComponentAssociativeType
   [key: NumberOrStringType]: ComponentAssociativeType
+}
+export type ComponentPropOptionsType<T = any, D = T> = {
+  type?: PropType<T> | true | null
+  required?: boolean
+  default?: D | null | undefined | object
+  validator? (value: unknown): boolean
 }
 export type ComponentPropertyType = {
   index: string
@@ -47,6 +48,15 @@ export type ComponentStyleItemType = AssociativeType<ComponentValueType>
 export type ComponentStylesType = {
   main: ComponentStyleItemType
   [key: NumberOrStringType]: ComponentStyleItemType
+}
+
+export type ComponentBaseType = {
+  element: Ref<HTMLElement | undefined>
+  name: string
+  design: string
+  className: string
+  classes?: ComputedRef<ComponentClassesType>
+  styles?: ComputedRef<ComponentStylesType>
 }
 export type ComponentItemType =
   ComputedRef<ComponentValueType>
