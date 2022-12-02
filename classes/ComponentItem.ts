@@ -1,6 +1,11 @@
 import { CLASS_SUB, CLASS_VAL, ComponentProperty } from './ComponentProperty'
-import { toKebabCase } from '../functions'
-import { AssociativeType, ComponentPropertiesType, NumberOrStringType } from '../constructors/types'
+import { toCamelCase, toKebabCase } from '../functions'
+import {
+  AssociativeType,
+  ComponentAssociativeItemsType,
+  ComponentPropertiesType,
+  NumberOrStringType
+} from '../constructors/types'
 
 export class ComponentItem {
   // eslint-disable-next-line no-useless-constructor
@@ -14,6 +19,7 @@ export class ComponentItem {
   private design?: string
   private name?: string
   private properties?: ComponentPropertiesType
+  private subClasses?: ComponentAssociativeItemsType
 
   public getBasicClassName (): string {
     if (!(this.basic)) {
@@ -66,7 +72,7 @@ export class ComponentItem {
 
       ComponentProperty.getProperties(this.code, this.instruction)
         .forEach(name => {
-          const link = ComponentProperty.getByClassType(this.code, name)
+          const link = ComponentProperty.getByValueClassType(this.code, name)
           const index = link?.value || `${this.code}.${name}`
           const className = ComponentProperty.toClass(index)
           const values = ComponentProperty.getValues(index)
@@ -83,5 +89,24 @@ export class ComponentItem {
     }
 
     return this.properties
+  }
+
+  public getSubClasses (): ComponentAssociativeItemsType {
+    if (!(this.subClasses)) {
+      const data = {} as ComponentAssociativeItemsType
+
+      ComponentProperty.getSubClasses(this.code).forEach(name => {
+        const index = name.replace(`${this.code}.`, '')
+        const className = this.getClassName(index.split('.'))
+
+        data[toCamelCase(index)] = {
+          [className]: true
+        }
+      })
+
+      this.subClasses = data
+    }
+
+    return this.subClasses
   }
 }

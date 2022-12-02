@@ -1,5 +1,5 @@
-import { AssociativeType } from '../constructors/types'
 import { forEach, toKebabCase } from '../functions'
+import { AssociativeType } from '../constructors/types'
 
 export const CLASS_SUB = '__'
 export const CLASS_VAL = '--'
@@ -11,7 +11,7 @@ export class ComponentProperty {
     return toKebabCase(`${code}${name ? `.${name}` : ''}`)
   }
 
-  static getByType (index: string, type: string): AssociativeType | undefined {
+  static getByType (index: string, type: string): AssociativeType<string> | undefined {
     const design = this.designMain?.[index]
 
     if (this.isType(design, type)) {
@@ -21,7 +21,11 @@ export class ComponentProperty {
     }
   }
 
-  static getByClassType (code: string, name: string): AssociativeType<string> | undefined {
+  static getBySubClassType (code: string, name?: string): AssociativeType<string> | undefined {
+    return this.getByType(this.codeToKebabCase(code, name), 'subclass')
+  }
+
+  static getByValueClassType (code: string, name?: string): AssociativeType<string> | undefined {
     return this.getByType(this.codeToKebabCase(code, name), 'link-class')
   }
 
@@ -32,6 +36,22 @@ export class ComponentProperty {
     return forEach<any, string, string | undefined>(instruction, (instruction, name) => {
       return this.isProperty(code, name) ? name : undefined
     }, true) as string[]
+  }
+
+  static getSubClasses (code: string) {
+    const data = [] as string[]
+    const exp = `${code}.`
+
+    forEach<any, string, void>(this.designMain, (item, name) => {
+      if (
+        name.match(exp) &&
+        this.getBySubClassType(name)
+      ) {
+        data.push(name)
+      }
+    })
+
+    return data
   }
 
   static getValues (index: string): string[] {
@@ -61,9 +81,11 @@ export class ComponentProperty {
   }
 
   static toClass (index: string): string {
-    return index
-      .replace(/\./, '-')
-      .replace(/\./g, CLASS_VAL)
+    return toKebabCase(
+      index
+        .replace(/\./, '-')
+        .replace(/\./g, CLASS_VAL)
+    )
   }
 
   static {
