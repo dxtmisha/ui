@@ -109,7 +109,11 @@
         },
         "full": {
           "@style": "{??m.text}"
-        }
+        },
+        "icon": {
+          "--": "none"
+        },
+        "default": "full"
       },
       "section|appearance": {
         "contained": {
@@ -147,7 +151,8 @@
             "border-color": "{sys.palette.onSurface}",
             "border-opacity": "{sys.opacity.border}"
           }
-        }
+        },
+        "default": "contained"
       },
       "&.?rounded--full": {
         "@style": "{??m.round}"

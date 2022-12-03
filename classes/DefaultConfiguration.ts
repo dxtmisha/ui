@@ -1,15 +1,25 @@
-import { executeFunction } from '../functions'
-import { AssociativeType } from '../constructors/types'
 import { ComponentProperty } from './ComponentProperty'
 import { DefaultGlobalConfiguration } from './DefaultGlobalConfiguration'
+import { executeFunction } from '../functions'
+import { AssociativeType } from '../constructors/types'
 
 export class DefaultConfiguration {
+  private readonly defaultValues = {} as AssociativeType
   private readonly validatorValues = {} as AssociativeType
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly code: string
   ) {
+  }
+
+  getDefaultValues (name: string): AssociativeType {
+    if (!(name in this.defaultValues)) {
+      const def = ComponentProperty.getByDefaultType(this.code, name)
+      this.defaultValues[name] = def?.value === 'true' || def?.value
+    }
+
+    return this.defaultValues[name]
   }
 
   getValidatorValues<T = string> (name: string): T[] {
@@ -23,7 +33,7 @@ export class DefaultConfiguration {
   defaultValue<T = any> (name: string, defaultValue?: T): () => T {
     return (): T => {
       return (
-        ComponentProperty.getByDefaultType(this.code, name)?.value ||
+        this.getDefaultValues(name) ||
         DefaultGlobalConfiguration.getValue(this.code, name) ||
         defaultValue
       ) as T

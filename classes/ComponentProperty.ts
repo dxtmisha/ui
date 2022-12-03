@@ -22,7 +22,10 @@ export class ComponentProperty {
   }
 
   static getByDefaultType (code: string, name?: string): AssociativeType<string> | undefined {
-    return this.getByType(this.codeToKebabCase(code, `${name}.default`), 'default')
+    const className = this.getByValueClassType(code, name)?.value ||
+      this.codeToKebabCase(code, name)
+
+    return this.getByType(this.codeToKebabCase(className, 'default'), 'default')
   }
 
   static getBySubClassType (code: string, name?: string): AssociativeType<string> | undefined {
@@ -59,8 +62,11 @@ export class ComponentProperty {
   }
 
   static getValues (code: string, name?: string): string[] {
+    const className = this.getByValueClassType(code, name)?.value ||
+      this.codeToKebabCase(code, name)
+
     const data = [] as string[]
-    const exp = `${this.codeToKebabCase(code, name)}.`
+    const exp = `${this.codeToKebabCase(className)}.`
 
     forEach<any, string, void>(this.designMain, (item, name) => {
       if (name.match(exp)) {

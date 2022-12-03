@@ -125,7 +125,9 @@ module.exports = class {
       const index = this.getIndex()
       const selector = this.getSelector()
 
-      if (selector === 'default') {
+      if (selector === '--') {
+        this.type = 'none'
+      } else if (selector === 'default') {
         this.type = 'default'
       } else if (selector.match(/^[^|]+\|.*?$/)) {
         this.type = selector.split('|')[0]

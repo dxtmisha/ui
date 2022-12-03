@@ -16,13 +16,11 @@ component(
 </template>
 
 <script lang="ts">
+import { ButtonComponent } from './ButtonComponent'
+import { props } from './props'
 import Md2Icon from '../Md2Icon/index.vue'
 import Md2Progress from '../Md2Progress/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
-import { ButtonComponent } from './ButtonComponent'
-import { props } from './props'
-import { Md2ButtonType } from './props.type'
-import { FunctionalComponent } from 'vue'
 
 export default {
   name: 'Md2Button',
@@ -31,12 +29,12 @@ export default {
     Md2Progress,
     Md2Ripple
   },
-  props: ButtonComponent.getProps as Md2ButtonType,
+  props,
   emits: ButtonComponent.emits,
   setup (props: object, context: object) {
     return new ButtonComponent(props, context).setup()
   }
-} as FunctionalComponent<Md2ButtonType>
+}
 </script>
 
 <style lang="scss">

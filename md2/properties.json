@@ -1587,7 +1587,8 @@
       },
       "full": {
         "border-radius": "{sys.rounded.full}"
-      }
+      },
+      "default": "standard"
     },
     "dark": {
       "var|?sys": {

@@ -1,76 +1,31 @@
-import { PropType } from 'vue'
-import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
-import { AssociativeType, NumberOrStringType } from '../types'
-import {
-  ButtonAdaptiveType,
-  ButtonAlignType,
-  ButtonAppearanceType,
-  ButtonRoundedType,
-  ButtonSizeType,
-  ButtonWidthType
-} from './props.type'
-import { ComponentDesign } from '../../classes/ComponentDesign'
-
-const defaultProps = DefaultConfiguration.init('button')
-const defaultItem = ComponentDesign.getDefault('d.button')
-
 export const props = {
   // Values
-  detail: [Object] as PropType<AssociativeType>,
-  icon: [Object, String] as PropType<string | AssociativeType>,
-  iconTrailing: [Object, String] as PropType<string | AssociativeType>,
-  text: [Number, String] as PropType<NumberOrStringType>,
+  detail: [Object],
+  icon: [Object, String],
+  iconTrailing: [Object, String],
+  text: [Number, String],
   to: String,
-  value: [Number, String] as PropType<NumberOrStringType>,
+  value: [Number, Object, String],
 
   // Status
   disabled: Boolean,
   dragged: Boolean,
   progress: Boolean,
+  readonly: Boolean,
   selected: Boolean,
   turn: Boolean,
 
   // Options
-  adaptive: {
-    type: String as PropType<ButtonAdaptiveType>,
-    default: defaultProps('adaptive', 'full')
-  },
-  align: {
-    type: String as PropType<ButtonAlignType>,
-    default: defaultProps('align')
-  },
-  appearance: {
-    type: String as PropType<ButtonAppearanceType>,
-    default: defaultProps('appearance', 'contained')
-  },
+  adaptive: String,
+  align: String,
+  appearance: String,
   dense: Boolean,
-  ellipsis: {
-    type: Boolean,
-    default: defaultProps('ellipsis', true)
-  },
-  height: {
-    type: String as PropType<ButtonSizeType>,
-    default: defaultProps('height', 'md')
-  },
-  lowercase: {
-    type: Boolean,
-    default: defaultProps('lowercase')
-  },
+  ellipsis: Boolean,
+  height: [Number, String],
+  lowercase: Boolean,
   palette: String,
-  rounded: {
-    type: String as PropType<ButtonRoundedType>,
-    default: defaultProps('rounded', 'sm')
-  },
-  tag: {
-    type: String,
-    default: 'button'
-  },
-  ripple: {
-    type: Boolean,
-    default: defaultProps('ripple', true)
-  },
-  width: {
-    type: [Number, String] as PropType<ButtonWidthType>,
-    default: defaultProps('width', 'auto')
-  }
+  rounded: String,
+  tag: String,
+  ripple: Boolean,
+  width: [Number, String]
 }
