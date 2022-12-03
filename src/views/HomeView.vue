@@ -400,9 +400,9 @@ import { Icon } from '../../constructors/Image/Icon'
 import Md2Ripple from '../../md2/Md2Ripple/index.vue'
 import Md2Progress from '../../md2/Md2Progress/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
-import Md2Button from '../../md2/Md2Button/index.vue'
+import Md2Button from '../../md2/Md2Button/Md2Button.vue'
 import { AssociativeType } from '../../constructors/types'
-// import Md2Chip from '../../md2/Md2Chip/index.vue'
+// import Md2Chip from '../../md2/Md2Chip/Md2Button.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 

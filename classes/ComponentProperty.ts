@@ -58,9 +58,9 @@ export class ComponentProperty {
     return data
   }
 
-  static getValues (index: string): string[] {
+  static getValues (code: string, name?: string): string[] {
     const data = [] as string[]
-    const exp = `${index}.`
+    const exp = `${this.codeToKebabCase(code, name)}.`
 
     forEach<any, string, void>(this.designMain, (item, name) => {
       if (name.match(exp)) {

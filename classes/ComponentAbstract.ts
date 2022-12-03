@@ -30,6 +30,17 @@ export abstract class ComponentAbstract {
   static readonly instruction = {} as AssociativeType
   static readonly emits?: string[]
 
+  static getComponentItem (): ComponentItem {
+    return ComponentDesign.getItem(
+      this.code,
+      this.instruction
+    )
+  }
+
+  static getProps<R = AssociativeType> (): R {
+    return this.getComponentItem().getProps() as R
+  }
+
   protected readonly element = ref<HTMLElement | undefined>()
   protected readonly refs: AssociativeType<Ref>
   protected readonly classesProps = [] as string[]
@@ -38,8 +49,8 @@ export abstract class ComponentAbstract {
   abstract setup (): AssociativeType
 
   constructor (
-    protected readonly props: AssociativeType,
-    protected readonly context: AssociativeType
+    protected readonly props: AssociativeType & object,
+    protected readonly context: AssociativeType & object
   ) {
     this.refs = toRefs<AssociativeType>(props)
 
@@ -51,10 +62,7 @@ export abstract class ComponentAbstract {
   }
 
   protected getItem (): ComponentItem {
-    return ComponentDesign.getItem(
-      this.getConstructor().code,
-      this.getConstructor().instruction
-    )
+    return this.getConstructor().getComponentItem()
   }
 
   protected readonly classesMain = computed(() => {

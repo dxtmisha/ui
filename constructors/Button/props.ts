@@ -9,8 +9,10 @@ import {
   ButtonSizeType,
   ButtonWidthType
 } from './props.type'
+import { ComponentDesign } from '../../classes/ComponentDesign'
 
 const defaultProps = DefaultConfiguration.init('button')
+const defaultItem = ComponentDesign.getDefault('d.button')
 
 export const props = {
   // Values

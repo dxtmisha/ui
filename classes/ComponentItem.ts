@@ -76,7 +76,7 @@ export class ComponentItem {
         const defaultValue = ComponentProperty.getByDefaultType(this.code, name)
 
         if (defaultValue) {
-          prop.default = defaultValue?.value
+          prop.default = defaultValue?.value === 'true' ? true : defaultValue?.value
         }
 
         data[name] = prop
