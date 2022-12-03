@@ -1,14 +1,10 @@
 import { PropType } from 'vue'
-import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
-import { AssociativeType } from '../types'
-
-export type IconIndeterminateType = 'type1' | 'type2'
-export type IconSizeType = 'sm' | 'md' | 'lg' | 'xl'
+import { IconIndeterminateType, IconSizeType } from './props.type'
 
 export const props = {
   // Values
-  icon: [String, Object] as PropType<string | AssociativeType>,
-  iconActive: [String, Object] as PropType<string | AssociativeType>,
+  icon: [String, Object],
+  iconActive: [String, Object],
 
   // Status
   active: Boolean,
@@ -18,17 +14,8 @@ export const props = {
 
   // Options
   animationShow: Boolean,
-  animationType: {
-    type: String as PropType<IconIndeterminateType>,
-    validator: DefaultConfiguration.validator([
-      'type1',
-      'type2'
-    ])
-  },
+  animationType: String as PropType<IconIndeterminateType>,
   background: Boolean,
   inEnd: Boolean,
-  size: {
-    type: [Number, String] as PropType<IconSizeType>,
-    default: 'sm'
-  }
+  size: [Number, String] as PropType<IconSizeType>
 }

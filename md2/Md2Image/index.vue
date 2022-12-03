@@ -1,9 +1,11 @@
-<template lang="pug">
-span(
-  ref="element"
-  :class="classes.main"
-  :style="styles.main"
-) {{ text }}
+<template>
+  <span
+    ref="element"
+    :class="classes.main"
+    :style="styles.main"
+  >
+    {{ text }}
+  </span>
 </template>
 
 <script lang="ts">

@@ -1,10 +1,5 @@
-import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
 import { PropType } from 'vue'
-
-const defaultProps = DefaultConfiguration.init('progress')
-
-export type ProgressIndeterminateType = 'type1' | 'type2'
-export type ProgressTypeType = 'linear' | 'circular'
+import { ProgressIndeterminateType, ProgressTypeType } from './props.type'
 
 export const props = {
   // Values
@@ -21,30 +16,19 @@ export const props = {
   visible: Boolean,
 
   // Options
-  bottom: {
-    type: Boolean,
-    default: defaultProps('bottom')
-  },
+  bottom: Boolean,
   delay: {
     type: Number,
-    default: defaultProps('delay', 400)
+    default: 480
   },
   dense: Boolean,
   indeterminate: {
     type: String as PropType<ProgressIndeterminateType>,
-    default: defaultProps('indeterminate', 'type1'),
-    validator: DefaultConfiguration.validator<string>([
-      'type1',
-      'type2'
-    ])
+    default: 'type1'
   },
   inverse: Boolean,
   type: {
     type: String as PropType<ProgressTypeType>,
-    default: 'linear',
-    validator: DefaultConfiguration.validator<string>([
-      'linear',
-      'circular'
-    ])
+    default: 'linear'
   }
 }

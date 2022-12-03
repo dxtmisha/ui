@@ -1,7 +1,4 @@
 import { PropType } from 'vue'
-import { DefaultConfiguration } from '../../classes/DefaultConfiguration'
-
-const defaultProps = DefaultConfiguration.init('image')
 
 export const props = {
   // Values
@@ -24,6 +21,6 @@ export const props = {
   // Options
   url: {
     type: String,
-    default: defaultProps('url', '/icons/')
+    default: '/icons/'
   }
 }

@@ -30,8 +30,8 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
   protected timeout?: number
 
   constructor (
-    props: AssociativeType,
-    context: AssociativeType
+    props: AssociativeType & object,
+    context: AssociativeType & object
   ) {
     super(
       props,

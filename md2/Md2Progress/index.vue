@@ -1,17 +1,18 @@
-<template lang="pug">
-component(
-  :is="tag"
-  :class="classes.main"
-  viewBox="0 0 48 48"
-  @animationend.stop="onAnimation"
-)
-  circle(
-    v-if="ifCircular"
-    :class="classes.circle"
-    cx="24"
-    cy="24"
-    r="20"
-  )
+<template>
+  <component
+    :is="tag"
+    :class="classes.main"
+    viewBox="0 0 48 48"
+    @animationend.stop="onAnimation"
+  >
+    <circle
+      v-if="ifCircular"
+      :class="classes.circle"
+      cx="24"
+      cy="24"
+      r="20"
+    />
+  </component>
 </template>
 
 <script lang="ts">
