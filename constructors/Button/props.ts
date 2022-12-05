@@ -29,3 +29,7 @@ export const props = {
   ripple: Boolean,
   width: [Number, String]
 }
+
+export default {
+  props
+}

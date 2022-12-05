@@ -1,26 +1,28 @@
-<template lang="pug">
-component(
-  :is="tag"
-  :class="classes.main"
-  :style="styles.main"
-  :disabled="disabled"
-  @click="onClick"
-)
-  md2-icon(v-if="icon" v-bind="iconBind")
-    md2-progress(v-if="progress" v-bind="progressBind")
-  md2-progress(v-else-if="progress" v-bind="progressBind")
-  md2-icon(v-if="iconTrailing" v-bind="iconTrailingBind")
-  span(v-if="text" :class="classes.text") {{ text }}
-  slot
-  md2-ripple(v-if="ifRipple" :inverse="ifInverse")
+<template>
+  <component
+    :is="tag"
+    :class="classes.main"
+    :disabled="disabled"
+    :style="styles.main"
+    @click="onClick"
+  >
+    <md2-icon v-if="icon" v-bind="iconBind">
+      <md2-progress v-if="progress" v-bind="progressBind"/>
+    </md2-icon>
+    <md2-progress v-else-if="progress" v-bind="progressBind"/>
+    <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
+    <span v-if="text" :class="classes.text">{{ text }}</span>
+    <slot/>
+    <md2-ripple v-if="ifRipple" :inverse="ifInverse"/>
+  </component>
 </template>
 
 <script lang="ts">
+import { ChipComponent } from './ChipComponent'
+import { props } from './props'
 import Md2Icon from '../Md2Icon/index.vue'
 import Md2Progress from '../Md2Progress/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
-import { ChipComponent } from './ChipComponent'
-import { props } from './props'
 
 export default {
   name: 'Md2Chip',

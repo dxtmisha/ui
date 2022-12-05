@@ -1,7 +1,7 @@
 {
   "d": {
     "chip": {
-      "@button": "{d.button}"
+      "@style": "{d.button}"
     }
   }
 }

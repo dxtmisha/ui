@@ -851,6 +851,9 @@
         "var|dragged": {
           "value": "{ref.opacity.8}"
         },
+        "var|overlay": {
+          "value": "{ref.opacity.8}"
+        },
         "var|selected": {
           "value": "{ref.opacity.8}"
         },
@@ -1040,6 +1043,9 @@
         "black": {
           "value": "{ref.palette.black}"
         },
+        "overlay": {
+          "value": "{ref.palette.blackLight}"
+        },
         "dark": {
           "primary": {
             "value": "{ref.palette.blue.{sys.shade.dark.normal}}"
@@ -1205,6 +1211,9 @@
           },
           "black": {
             "value": "{ref.palette.blackLight}"
+          },
+          "overlay": {
+            "value": "{ref.palette.white}"
           }
         }
       },
@@ -1564,6 +1573,9 @@
       },
       "black": {
         "var|=sysPalette": "{sys.palette.black}"
+      },
+      "overlay": {
+        "var|=sysPalette": "{sys.palette.overlay}"
       }
     },
     "rounded": {
@@ -1587,8 +1599,7 @@
       },
       "full": {
         "border-radius": "{sys.rounded.full}"
-      },
-      "default": "standard"
+      }
     },
     "dark": {
       "var|?sys": {
@@ -1661,7 +1672,8 @@
           "greyBlue": "{sys.palette.dark.greyBlue}",
           "greyBlueVariant": "{sys.palette.dark.greyBlueVariant}",
           "white": "{sys.palette.dark.white}",
-          "black": "{sys.palette.dark.black}"
+          "black": "{sys.palette.dark.black}",
+          "overlay": "{sys.palette.dark.overlay}"
         }
       }
     },

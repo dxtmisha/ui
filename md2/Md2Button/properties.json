@@ -50,11 +50,12 @@
           "var|palette": "{sys.palette.primaryVariant}"
         },
         "var|icon": {
-          "var|margin": "{ref.spacing.1}",
-          "var|padding": "{ref.spacing.2}"
+          "var|margin": "{ref.spacing.2}",
+          "var|padding": "{ref.spacing.1}"
         }
       },
       "@font": "{font.button}",
+      "border-radius": "{sys.rounded.standard}",
       "height": {
         "sm": "{ref.spacing.8}",
         "md": "{ref.spacing.9}",
@@ -90,7 +91,6 @@
       },
       "z-index": "{sys.elevation.index.2}",
       "@@palette": "{?palette}",
-      "@@rounded": "{?rounded}",
       "section|adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
@@ -154,7 +154,13 @@
         },
         "default": "contained"
       },
-      "&.?rounded--full": {
+      "section|lowercase": {
+        "@font": "{font.body1}"
+      },
+      "section|rounded": {
+        "@style": "{?rounded}"
+      },
+      "&.??--rounded--full": {
         "@style": "{??m.round}"
       }
     }

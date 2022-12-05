@@ -34,24 +34,22 @@
         },
         "mixin|icon": {
           "var|l": {
-            "var|padding": "{??sys.padding} / 2",
+            "var|padding": "{??sys.icon.padding}",
             "var|width": "var(--sys-height)",
             "var|icon": {
               "var|margin": "0px",
-              "var|padding": "{??sys.icon.padding} / 2",
               "var|space": "0px"
             }
           }
         },
         "mixin|round": {
-          "var|l": {
+          "var|sys": {
             "var|icon": {
-              "var|margin": "0px",
-              "var|padding": "{??sys.padding} - {??sys.icon.margin}"
+              "var|margin": "{??sys.icon.padding}"
             }
           },
           "& .?icon": {
-            "var|?icon-size": "var(--sys-height) - ({??sys.icon.margin} * 2)"
+            "var|?icon-size": "var(--sys-height) - ({??sys.icon.padding} * 2)"
           }
         },
         "mixin|text": {
@@ -60,8 +58,7 @@
             "var|padding": "{??sys.padding}",
             "var|width": "{??sys.width}",
             "var|icon": {
-              "var|margin": "{??sys.icon.padding}",
-              "var|padding": "0px",
+              "var|margin": "{??sys.icon.margin} - {??sys.padding}",
               "var|space": "{??sys.space}"
             }
           }
@@ -117,8 +114,8 @@
           "var|border": "{??sys.selected.palette}"
         },
         "var|icon": {
-          "var|margin": "4px",
-          "var|padding": "-8px"
+          "var|margin": "12px",
+          "var|padding": "4px"
         }
       },
       "var|l": {
@@ -128,6 +125,7 @@
         "var|backgroundOpacity": "{??sys.backgroundOpacity}",
         "var|border": "{??sys.border}",
         "var|borderOpacity": "{??sys.borderOpacity}",
+        "var|borderWidth": "{??sys.borderWidth}",
         "var|gradient": "{??sys.gradient}",
         "var|gradientOpacity": "{??sys.gradientOpacity}",
         "var|shadow": "{??sys.shadow}",
@@ -145,7 +143,7 @@
       "gradient-opacity": "{??l.gradientOpacity}",
       "max-width": "100%",
       "min-width": "{??l.width}",
-      "padding-x": "{??l.padding} - {??l.icon.padding}",
+      "padding-x": "{??l.padding}",
       "palette-background": "{??l.background}",
       "palette-gradient": "{??l.gradient}",
       "position": "relative",
@@ -234,11 +232,11 @@
         "white-space": "inherit"
       },
       "& .?icon": {
-        "margin-left": "{??l.icon.margin} * -1",
+        "margin-left": "{??l.icon.margin}",
         "margin-right": "{??l.icon.space}",
         "section|inEnd": {
           "margin-left": "{??l.icon.space}",
-          "margin-right": "{??l.icon.margin} * -1",
+          "margin-right": "{??l.icon.margin}",
           "position": "relative",
           "z-index": "4"
         }
