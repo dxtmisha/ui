@@ -57,7 +57,10 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
     }
   }
 
-  readonly ifInverse = computed(() => this.appearanceInverse.indexOf(this.props.appearance) !== -1) as ComputedRef<boolean>
+  readonly ifInverse = computed(() => {
+    return this.appearanceInverse.indexOf(this.props.appearance) !== -1 ||
+      this.appearanceInverse.indexOf('all') !== -1
+  }) as ComputedRef<boolean>
 
   readonly ifRipple = computed(() => this.props.ripple &&
     !this.props.disabled &&

@@ -48,6 +48,7 @@
       "@before": "{??m.before}",
       "@font": "{font.body2}",
       "@round": "{??m.round}",
+      "border-radius": "{sys.rounded.full}",
       "height": {
         "sm": "{ref.spacing.6}",
         "md": "{ref.spacing.8}",
@@ -123,8 +124,7 @@
         }
       },
       "section|rounded": {
-        "@style": "{?rounded}",
-        "default": "full"
+        "@style": "{?rounded}"
       },
       "section|selected": {
         "palette-color": "{??l.text}"

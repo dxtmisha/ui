@@ -102,6 +102,50 @@
     <button @click="onClickIcon">test 2</button>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-fab :progress="visible" height="sm" icon="face"/>
+    <md2-fab :progress="visible" height="sm" text="text"/>
+    <md2-fab :progress="visible" height="sm" text="text" icon="face"/>
+    <md2-fab :progress="visible" height="sm" text="lowercase" icon="face" :lowercase="true"/>
+    <md2-fab :progress="visible" height="sm" text="ellipsis" icon="face" :ellipsis="false"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-fab :progress="visible" height="md" icon="face"/>
+    <md2-fab :progress="visible" height="md" text="text"/>
+    <md2-fab :progress="visible" height="md" text="text" icon="face"/>
+    <md2-fab :progress="visible" height="md" text="lowercase" icon="face" :lowercase="true"/>
+    <md2-fab :progress="visible" height="md" text="ellipsis" icon="face" :ellipsis="false"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-fab :progress="visible" height="lg" icon="face"/>
+    <md2-fab :progress="visible" height="lg" text="text"/>
+    <md2-fab :progress="visible" height="lg" text="text" icon="face"/>
+    <md2-fab :progress="visible" height="lg" text="lowercase" icon="face" :lowercase="true"/>
+    <md2-fab :progress="visible" height="lg" text="ellipsis" icon="face" :ellipsis="false"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-fab :progress="visible" disabled icon="face"/>
+    <md2-fab :progress="visible" disabled text="text"/>
+    <md2-fab :progress="visible" disabled text="text" icon="face"/>
+    <md2-fab :progress="visible" disabled text="lowercase" icon="face" :lowercase="true"/>
+    <md2-fab :progress="visible" disabled text="ellipsis" icon="face" :ellipsis="false"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-fab :progress="visible" adaptive="sm" text="sm" icon="face"/>
+    <md2-fab :progress="visible" adaptive="md" text="md" icon="face"/>
+    <md2-fab :progress="visible" adaptive="lg" text="lg" icon="face"/>
+    <md2-fab :progress="visible" adaptive="full" text="full" icon="face"/>
+    <md2-fab :progress="visible" adaptive="icon" text="icon" icon="face"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-fab :progress="visible" rounded="none" text="none" icon="face"/>
+    <md2-fab :progress="visible" rounded="standard" text="standard" icon="face"/>
+    <md2-fab :progress="visible" rounded="sm" text="sm" icon="face"/>
+    <md2-fab :progress="visible" rounded="md" text="md" icon="face"/>
+    <md2-fab :progress="visible" rounded="lg" text="lg" icon="face"/>
+    <md2-fab :progress="visible" rounded="full" text="full" icon="face"/>
+    <md2-fab :progress="visible" rounded="full" text="full" icon="face" :ripple="false"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-chip
       text="chip"
       icon="face"
@@ -557,6 +601,7 @@ import Md2Icon from '../../md2/Md2Icon/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import { AssociativeType } from '../../constructors/types'
 import Md2Chip from '../../md2/Md2Chip/index.vue'
+import Md2Fab from '../../md2/Md2Fab/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -565,6 +610,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Fab,
     Md2Chip,
     Md2Button,
     Md2Icon,
