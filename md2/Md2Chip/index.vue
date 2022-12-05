@@ -7,7 +7,7 @@
     @click="onClick"
   >
     <md2-icon v-if="icon" v-bind="iconBind">
-      <md2-progress v-if="progress" v-bind="progressBind"/>
+      <md2-progress v-if="progress" v-bind="progressBind" dense/>
     </md2-icon>
     <md2-progress v-else-if="progress" v-bind="progressBind"/>
     <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>

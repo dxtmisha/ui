@@ -206,7 +206,10 @@
         }
       },
       "section|inverse": {
-        "var|_background": "{??_inverse}"
+        "var|_background": "{??_inverse}",
+        "& .??__circle": {
+          "stroke": "{??_background}"
+        }
       },
       "section|type": {
         "circular": {
@@ -248,7 +251,7 @@
       },
       "#circle": {
         "fill": "transparent",
-        "stroke": "{??_background}",
+        "palette-stroke": "{??_background}",
         "stroke-dasharray": "1, 200",
         "stroke-dashoffset": "0",
         "stroke-linecap": "round",

@@ -84,7 +84,6 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
 
   readonly progress = computed(() => {
     return {
-      dense: true,
       inverse: this.ifInverse.value,
       type: 'circular',
       visible: true

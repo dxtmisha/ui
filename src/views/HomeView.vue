@@ -200,9 +200,9 @@
     />
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
-    <md2-chip text="sm" icon="face" height="sm" width="md"/>
-    <md2-chip text="md" icon="face" height="md" width="md"/>
-    <md2-chip text="lg" icon="face" height="lg" width="md"/>
+    <md2-chip text="sm" icon="face" height="sm" :progress="visible"/>
+    <md2-chip text="md" icon="face" height="md" :progress="visible"/>
+    <md2-chip text="lg" icon="face" height="lg" :progress="visible"/>
   </div>
   <div class="flex items-center gap-2 pt-4 pl-8">
     <md2-chip text="auto" width="auto"/>
@@ -224,7 +224,7 @@
     />
     <md2-button>slot</md2-button>
     <md2-button text="red" palette="red" :disabled="disabled" :progress="visible"/>
-    <md2-button text="green" palette="green"/>
+    <md2-button text="green" palette="green" :progress="visible"/>
     <md2-button text="dragged" dragged/>
     <md2-button text="readonly" readonly/>
     <md2-button text="selected" selected/>
@@ -234,8 +234,8 @@
   <div class="flex items-center gap-2 pt-4 pl-8">
     <md2-button appearance="outlined" :disabled="disabled" text="button"/>
     <md2-button appearance="outlined">slot</md2-button>
-    <md2-button appearance="outlined" text="red" palette="red"/>
-    <md2-button appearance="outlined" text="green" palette="green"/>
+    <md2-button appearance="outlined" text="red" palette="red" :progress="visible"/>
+    <md2-button appearance="outlined" text="green" palette="green" :progress="visible"/>
     <md2-button appearance="outlined" text="dragged" dragged/>
     <md2-button appearance="outlined" text="readonly" readonly/>
     <md2-button appearance="outlined" text="selected" selected/>

@@ -54,9 +54,19 @@
   @include mixinColor(#{var(--sys-_palette-color)});
 }
 
+@mixin mixinPaletteStroke($color) {
+  --sys-_palette-color: #{getPalette($color)};
+  @include mixinStroke(#{var(--sys-_palette-color)});
+}
+
 @mixin mixinPaletteBackground($color) {
   --sys-_palette-background: #{getPalette($color)};
   @include mixinBackground(#{var(--sys-_palette-background)});
+}
+
+@mixin mixinPaletteFill($color) {
+  --sys-_palette-background: #{getPalette($color)};
+  @include mixinFill(#{var(--sys-_palette-background)});
 }
 
 @mixin mixinPaletteGradient($color) {

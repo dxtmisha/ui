@@ -36,15 +36,14 @@
           "var|text": "{sys.palette.primary}"
         },
         "var|icon": {
-          "var|margin": "{ref.spacing.2}",
-          "var|padding": "{ref.spacing.2}"
+          "var|margin": "{ref.spacing.1}",
+          "var|padding": "{ref.spacing.1}"
         }
       },
       "var|?ripple-background": "{??l.gradient}",
       "@before": "{??m.before}",
       "@font": "{font.body2}",
       "@round": "{??m.round}",
-      "border-radius": "{sys.rounded.full}",
       "height": {
         "sm": "{ref.spacing.6}",
         "md": "{ref.spacing.8}",
@@ -114,13 +113,11 @@
         }
       },
       "section|rounded": {
-        "@style": "{?rounded}"
+        "@style": "{?rounded}",
+        "default": "full"
       },
       "section|selected": {
         "palette-color": "{??l.text}"
-      },
-      "&.?rounded--full": {
-        "@style": "{??m.round}"
       }
     }
   }

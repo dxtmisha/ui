@@ -53,8 +53,12 @@
     @include mixinPalette(#{$value});
   } @else if ($index == 'palette-color') {
     @include mixinPaletteColor(#{$value});
+  } @else if ($index == 'palette-stroke') {
+    @include mixinPaletteStroke(#{$value});
   } @else if ($index == 'palette-background') {
     @include mixinPaletteBackground(#{$value});
+  } @else if ($index == 'palette-fill') {
+    @include mixinPaletteFill(#{$value});
   } @else if ($index == 'palette-border') {
     @include mixinPaletteBorder(#{$value});
   } @else if ($index == 'palette-gradient') {
