@@ -52,7 +52,9 @@
         },
         "var|icon": {
           "var|margin": "{ref.spacing.2}",
-          "var|padding": "{ref.spacing.1}"
+          "var|padding": "{ref.spacing.1}",
+          "var|text": "{ref.font.size.2xl}",
+          "var|textTrailing": "{ref.font.size.xl}"
         }
       },
       "@font": "{font.button}",

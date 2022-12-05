@@ -115,7 +115,9 @@
         },
         "var|icon": {
           "var|margin": "12px",
-          "var|padding": "4px"
+          "var|padding": "4px",
+          "var|text": "20px",
+          "var|textTrailing": "18px"
         }
       },
       "var|l": {
@@ -133,6 +135,7 @@
         "var|textOpacity": "{??sys.textOpacity}",
         "var|textDisplay": "none"
       },
+      "var|?image-font-size": "{??sys.icon.text}",
       "@icon": "{??m.icon}",
       "@flex": "{d.flex.inline.center}",
       "@readonly": "{d.font.readonly}",
@@ -243,6 +246,7 @@
         "margin-left": "{??l.icon.margin}",
         "margin-right": "{??l.icon.space}",
         "section|inEnd": {
+          "var|?image-font-size": "{??sys.icon.textTrailing}",
           "margin-left": "{??l.icon.space}",
           "margin-right": "{??l.icon.margin}",
           "position": "relative",

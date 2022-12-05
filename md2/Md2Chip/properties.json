@@ -38,7 +38,9 @@
         },
         "var|icon": {
           "var|margin": "{ref.spacing.1}",
-          "var|padding": "{ref.spacing.1}"
+          "var|padding": "{ref.spacing.1}",
+          "var|text": "{ref.font.size.2xl}",
+          "var|textTrailing": "{ref.font.size.xl}"
         }
       },
       "var|?progress-background": "{??l.gradient}",

@@ -137,6 +137,9 @@
             "value": "{ref.spacing.px}*16"
           },
           "xl": {
+            "value": "{ref.spacing.px}*18"
+          },
+          "2xl": {
             "value": "{ref.spacing.px}*20"
           },
           "headline": {
