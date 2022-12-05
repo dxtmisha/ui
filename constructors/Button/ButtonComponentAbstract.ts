@@ -36,6 +36,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   setup (): ButtonSetupType {
     const classes = this.getClasses<ButtonClassesType>({
       main: {
+        'a-readonly': true,
         'is-icon': this.isIcon
       }
     })

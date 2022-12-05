@@ -27,6 +27,7 @@ export const props = {
   readonly: Boolean,
   selected: Boolean,
   turn: Boolean,
+  hide: Boolean,
 
   // Options
   adaptive: {
@@ -52,10 +53,6 @@ export const props = {
     type: [Number, String] as PropType<Md2ChipHeightType>,
     default: defaultItem.defaultValue('height')
   },
-  lowercase: {
-    type: Boolean,
-    default: defaultItem.defaultValue('lowercase')
-  },
   palette: String as PropType<Md2PaletteType>,
   rounded: {
     type: String as PropType<Md2ChipRoundedType>,
@@ -64,7 +61,7 @@ export const props = {
   },
   tag: {
     type: String,
-    default: 'button'
+    default: 'span'
   },
   ripple: {
     type: Boolean,

@@ -6,6 +6,7 @@
         "var|palette": "{sys.palette.overlay}",
         "var|backgroundOpacity": "{sys.opacity.overlay}",
         "var|borderWidth": "{ref.spacing.px}",
+        "var|dense": "{ref.spacing.1}",
         "var|gradient": "{sys.palette.onSurface}",
         "var|padding": "{ref.spacing.3}",
         "var|space": "{ref.spacing.2}",
@@ -40,6 +41,7 @@
           "var|padding": "{ref.spacing.1}"
         }
       },
+      "var|?progress-background": "{??l.gradient}",
       "var|?ripple-background": "{??l.gradient}",
       "@before": "{??m.before}",
       "@font": "{font.body2}",
@@ -105,6 +107,12 @@
       },
       "section|appearance": {
         "outlined": {
+          "var|??sys": {
+            "var|selected": {
+              "var|border": "{??sys.palette.primary}",
+              "var|borderOpacity": "{sys.opacity.surface.high}"
+            }
+          },
           "::after": {
             "@style": "{??m.border}",
             "border-color": "{sys.palette.onSurface}",

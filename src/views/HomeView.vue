@@ -200,9 +200,16 @@
     />
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
-    <md2-chip text="sm" icon="face" height="sm" :progress="visible"/>
-    <md2-chip text="md" icon="face" height="md" :progress="visible"/>
-    <md2-chip text="lg" icon="face" height="lg" :progress="visible"/>
+    <md2-chip text="sm" icon="face" height="sm" :progress="visible" :hide="hide"/>
+    <md2-chip text="md" icon="face" height="md" :progress="visible" :hide="hide"/>
+    <md2-chip text="lg" icon="face" height="lg" :progress="visible" :hide="hide"/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-chip text="sm" height="sm" :progress="visible"/>
+    <md2-chip dense text="sm" height="sm" :progress="visible"/>
+    <md2-chip dense text="sm" icon="face" height="sm" :progress="visible"/>
+    <md2-chip dense text="md" icon="face" height="md" :progress="visible"/>
+    <md2-chip dense text="lg" icon="face" height="lg" :progress="visible"/>
   </div>
   <div class="flex items-center gap-2 pt-4 pl-8">
     <md2-chip text="auto" width="auto"/>
@@ -230,6 +237,9 @@
     <md2-button text="selected" selected/>
     <md2-button text="selected+disabled" selected disabled/>
     <md2-button text="disabled" disabled/>
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-button text="link" tag="a"/>
   </div>
   <div class="flex items-center gap-2 pt-4 pl-8">
     <md2-button appearance="outlined" :disabled="disabled" text="button"/>
@@ -328,6 +338,14 @@
     <md2-button text="lg" icon="face" adaptive="lg"/>
     <md2-button text="icon" icon="face" adaptive="icon"/>
     <md2-button text="icon" icon="face" adaptive="icon" dense/>
+  </div>
+  <div class="flex items-center gap-2 pt-4 pl-8">
+    <md2-chip text="full" icon="face" adaptive="full"/>
+    <md2-chip text="sm" icon="face" adaptive="sm"/>
+    <md2-chip text="md" icon="face" adaptive="md"/>
+    <md2-chip text="lg" icon="face" adaptive="lg"/>
+    <md2-chip text="icon" icon="face" adaptive="icon"/>
+    <md2-chip text="icon" icon="face" adaptive="icon" dense/>
   </div>
   <div class="flex items-center gap-2 pt-4 pl-8">
     <md2-button text="full" icon="face" icon-trailing="close" adaptive="full" :turn="turn"/>

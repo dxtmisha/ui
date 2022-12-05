@@ -28,6 +28,7 @@
       "var|sys": {
         "var|palette": "{sys.palette.primary}",
         "var|borderWidth": "{ref.spacing.px}",
+        "var|dense": "{ref.spacing.2}",
         "var|padding": "{ref.spacing.4}",
         "var|space": "{ref.spacing.1}",
         "var|width": "{ref.spacing.28}",

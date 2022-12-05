@@ -78,7 +78,7 @@
         "var|border": "{??sys.palette}",
         "var|borderOpacity": "0",
         "var|borderWidth": "1px",
-        "var|dense": "2",
+        "var|dense": "8px",
         "var|gradient": "{??sys.palette}",
         "var|gradientOpacity": "0",
         "var|padding": "16px",
@@ -140,6 +140,7 @@
       "box-shadow": "{??l.shadow}",
       "color": "{??l.text}",
       "color-opacity": "{??l.textOpacity}",
+      "cursor": "pointer",
       "gradient-opacity": "{??l.gradientOpacity}",
       "max-width": "100%",
       "min-width": "{??l.width}",
@@ -147,10 +148,15 @@
       "palette-background": "{??l.background}",
       "palette-gradient": "{??l.gradient}",
       "position": "relative",
+      "text-align": "center",
       "transition-property": "color, background, box-shadow",
-      "@@align": "{d.font.align}",
+      "section|align": {
+        "@style": "{d.font.align}"
+      },
       "section|dense": {
-        "padding-x": "{??l.padding} / {??sys.dense}",
+        "var|sys": {
+          "var|padding": "{??sys.dense}"
+        },
         "min-width": "auto"
       },
       "section|ellipsis": {
@@ -188,7 +194,8 @@
           "var|shadow": "{??sys.shadow} !important",
           "var|text": "{??sys.text} !important",
           "var|textOpacity": "{??sys.textOpacity} !important"
-        }
+        },
+        "cursor": "default"
       },
       "section|selected": {
         "var|l": {
@@ -219,6 +226,7 @@
           "var|textOpacity": "{??sys.disabled.textOpacity} !important"
         },
         "background-color": "{??l.background}",
+        "cursor": "default",
         "gradient-color": "{??l.gradient}"
       },
       "#text": {
