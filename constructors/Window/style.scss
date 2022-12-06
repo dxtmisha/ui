@@ -1,0 +1,7 @@
+@import "../../styles/services/classesService";
+
+@mixin initWindow($design) {
+  @include classInitService($design, 'window') using($class, $properties) {
+    @content($class, $properties);
+  }
+}
