@@ -37,12 +37,12 @@ export const props = {
     default: defaultItem.defaultValue('indent')
   },
   inDom: Boolean,
-  persistent: Boolean,
-  shape: {
+  rounded: {
     type: String as PropType<Md2WindowRoundedType>,
-    default: defaultItem.defaultValue('shape'),
-    validator: defaultItem.validator('shape')
+    default: defaultItem.defaultValue('rounded'),
+    validator: defaultItem.validator('rounded')
   },
+  persistent: Boolean,
   width: {
     type: [Number, String] as PropType<Md2WindowWidthType>,
     default: defaultItem.defaultValue('width')

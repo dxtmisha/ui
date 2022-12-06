@@ -26,8 +26,7 @@ export type Md2WindowRoundedType =
   'sm' |
   'md' |
   'lg' |
-  'xl' |
-  'full'
+  'xl'
 
 export type Md2WindowWidthType =
   'auto' |

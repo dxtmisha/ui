@@ -1,5 +1,69 @@
 {
   "d": {
-    "window": {}
+    "window": {
+      "var|sys": {
+        "background": "0,0,0",
+        "height": "600px",
+        "index": "9999",
+        "padding": "40px 16px",
+        "shadow": "none",
+        "transformOrigin": "center",
+        "width": "800px",
+        "open": {
+          "opacity": "1",
+          "transform": "none",
+          "transitionDuration": "{d.sys.transitionDuration.fade.enter}",
+          "body": "opacity {d.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}",
+          "fades": "background {d.sys.transitionDuration.fade.enter} linear"
+        },
+        "hide": {
+          "opacity": "0",
+          "transform": "none",
+          "transitionDuration": "{d.sys.transitionDuration.fade.exit}",
+          "body": "opacity {d.transitionDuration.exit} linear",
+          "fades": "background {d.transitionDuration.exit} linear"
+        },
+        "close": {
+          "opacity": "0",
+          "transform": "scale(.8)",
+          "transitionDuration": "0s",
+          "body": "none",
+          "fades": "none"
+        }
+      },
+      "var|l": {
+        "opacity": "{??sys.close.opacity}",
+        "transform": "{??sys.close.transform}",
+        "transitionDuration": "{??sys.close.transitionDuration}",
+        "body": "{??sys.close.body}",
+        "fades": "{??sys.close.fades}"
+      },
+      "var|_rounded": "0px",
+      "align-items": "flex-end",
+      "background-color": "transparent",
+      "display": "flex",
+      "inset": "0",
+      "justify-content": "center",
+      "padding": "{??sys.padding}",
+      "position": "fixed",
+      "transition": "{??l.fades}",
+      "will-change": "backgroundColor, left, top, contents",
+      "z-index": "{??sys.index}",
+      "#body": {
+        "background": "{??sys.background}",
+        "border-radius": "{??_rounded}",
+        "box-shadow": "{??sys.shadow}",
+        "max-height": "{??sys.height}",
+        "max-width": "{??sys.width}",
+        "opacity": "{??l.opacity}",
+        "overflow-y": "auto",
+        "transform": "{??l.transform}",
+        "transform-origin": "{??sys.transformOrigin}",
+        "transition": "{??l.body}",
+        "visibility": "hidden",
+        "width": "100%",
+        "will-change": "opacity, visibility, transform, contents"
+      }
+    }
   }
 }

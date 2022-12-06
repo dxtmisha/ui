@@ -31,17 +31,17 @@
         "linear": {
           "value": "linear"
         },
-        "acceleration": {
-          "value": "cubic-bezier(0.4, 0.0, 1, 1)"
-        },
-        "deceleration": {
+        "e0i80": {
           "value": "cubic-bezier(0.0, 0.0, 0.2, 1)"
         },
-        "sharp": {
-          "value": "cubic-bezier(0.4, 0.0, 0.6, 1)"
+        "e40i0": {
+          "value": "cubic-bezier(0.4, 0.0, 1, 1)"
         },
-        "standard": {
+        "e40i80": {
           "value": "cubic-bezier(0.4, 0.0, 0.2, 1)"
+        },
+        "e40i40": {
+          "value": "cubic-bezier(0.4, 0.0, 0.6, 1)"
         }
       }
     },
@@ -99,17 +99,17 @@
         "linear": {
           "value": "linear"
         },
+        "standard": {
+          "value": "{ref.transitionFunction.e40i80}"
+        },
+        "emphasized": {
+          "value": "{ref.transitionFunction.e40i40}"
+        },
         "acceleration": {
-          "value": "{ref.transitionFunction.acceleration}"
+          "value": "{ref.transitionFunction.e40i0}"
         },
         "deceleration": {
-          "value": "{ref.transitionFunction.deceleration}"
-        },
-        "sharp": {
-          "value": "{ref.transitionFunction.sharp}"
-        },
-        "standard": {
-          "value": "{ref.transitionFunction.standard}"
+          "value": "{ref.transitionFunction.e0i80}"
         }
       }
     },

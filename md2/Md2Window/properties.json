@@ -1,7 +1,13 @@
 {
   "md2": {
     "window": {
-      "@style": "{d.window}"
+      "@style": "{d.window}",
+      "var|sys": {
+        "background": "{sys.elevation.background.24}",
+        "index": "{sys.elevation.index.24}",
+        "padding": "{ref.spacing.10} {ref.spacing.4}",
+        "shadow": "{sys.elevation.shadow.24}"
+      }
     }
   }
 }
