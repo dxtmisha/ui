@@ -1,25 +1,25 @@
 import { computed, ComputedRef, isRef, Ref, ref, watch } from 'vue'
 import { EventCallbackType, ElementType, RefOrElementType, EventOptionsType } from '../constructors/types'
 
-export class EventItem<R = any> {
+export class EventItem<R = any, E = Event> {
   protected readonly type = ref(['click']) as Ref<string[]>
   protected readonly element: Ref<ElementType>
 
-  protected callback: EventCallbackType
-  protected dom?: HTMLElement
+  protected callback: EventCallbackType<R, E>
+  protected dom?: RefOrElementType
   protected once?: boolean
   protected options?: EventOptionsType
 
   protected activity = false as boolean
-  protected elementCallback: EventCallbackType<R>
+  protected elementCallback: EventCallbackType<R, E> & EventListener
 
   constructor (
     element: RefOrElementType | string,
-    callback = (() => undefined) as EventCallbackType<R>
+    callback = (() => undefined) as EventCallbackType<R, E>
   ) {
     this.element = isRef(element) ? element : ref(this.findElement(element))
     this.callback = callback
-    this.elementCallback = ((event: Event) => this.listener(event)) as EventCallbackType<R>
+    this.elementCallback = ((event: E) => this.listener(event)) as EventCallbackType<R, E> & EventListener
 
     watch([this.type, this.element], (
       [newType, newElement]: [string[], ElementType],
@@ -36,17 +36,25 @@ export class EventItem<R = any> {
   }
 
   protected elementDom = computed(() => {
-    return this.dom || (this.element.value === window ? document.body : this.element.value)
+    return this.getDom() || (this.element.value === window ? document.body : this.element.value)
   }) as ComputedRef<HTMLElement>
 
-  setCallback (value: EventCallbackType<R>): this {
+  setCallback (value: EventCallbackType<R, E>): this {
     this.callback = value
     return this
   }
 
-  setDom (value: ElementType): this {
-    const element = this.findElement(value)
-    this.dom = (element === window ? document.body : element) as HTMLElement
+  getDom (): HTMLElement | undefined {
+    if (this.dom) {
+      const element = this.findElement(isRef(this.dom) ? this.dom.value : this.dom)
+      return (element === window ? document.body : element) as HTMLElement
+    } else {
+      return undefined
+    }
+  }
+
+  setDom (value: RefOrElementType): this {
+    this.dom = value
 
     return this
   }
@@ -61,8 +69,8 @@ export class EventItem<R = any> {
     return this
   }
 
-  protected listener (event: Event): any {
-    let data = false
+  protected listener (event: E): any {
+    let data
 
     if (
       this.elementDom.value instanceof HTMLElement &&
