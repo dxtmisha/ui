@@ -65,6 +65,14 @@ export abstract class ComponentAbstract {
     return this.getConstructor().getComponentItem()
   }
 
+  protected getName (): string {
+    return this.getItem().getBasicClassName()
+  }
+
+  protected getSelector (): string {
+    return `.${this.getName()}`
+  }
+
   protected readonly classesMain = computed(() => {
     const main = {
       [this.getItem().getBasicClassName()]: true
@@ -98,6 +106,11 @@ export abstract class ComponentAbstract {
 
     return main
   }) as ComputedRef<AssociativeType<string>>
+
+  protected emitGo (name: string, values: any): this {
+    this.context.emit(name, values)
+    return this
+  }
 
   protected getBasic (): ComponentBaseType {
     const item = this.getItem()

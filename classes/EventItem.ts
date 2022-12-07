@@ -6,7 +6,7 @@ export class EventItem<R = any, E = Event> {
   protected readonly element: Ref<ElementType>
 
   protected callback: EventCallbackType<R, E>
-  protected dom?: RefOrElementType
+  protected dom?: RefOrElementType<ElementType | undefined>
   protected once?: boolean
   protected options?: EventOptionsType
 
@@ -47,13 +47,14 @@ export class EventItem<R = any, E = Event> {
   getDom (): HTMLElement | undefined {
     if (this.dom) {
       const element = this.findElement(isRef(this.dom) ? this.dom.value : this.dom)
+
       return (element === window ? document.body : element) as HTMLElement
     } else {
       return undefined
     }
   }
 
-  setDom (value: RefOrElementType): this {
+  setDom (value: RefOrElementType<ElementType | undefined>): this {
     this.dom = value
 
     return this

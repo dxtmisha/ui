@@ -8,26 +8,36 @@ import {
   ComponentBaseType
 } from '../types'
 
+export type WindowClassesType = {
+  [key: string]: string
+  block: string
+  close: string
+  controlStatic: string
+  static: string
+}
+
 export type WindowSetupType = ComponentBaseType & {
   toggle: (value: boolean) => void
 }
 
 export abstract class WindowComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
-  static readonly emits = ['on-open', 'on-close'] as string[]
+  static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
 
-  static readonly classClose = 'window-close'
-  static readonly classBlock = 'window-block'
-  static readonly classStatic = 'window-static'
-  static readonly classStaticControl = 'window-static-control'
+  static readonly CLASSES = {
+    block: 'window-block',
+    close: 'window-close',
+    controlStatic: 'window-control-static',
+    static: 'window-static'
+  } as WindowClassesType
 
-  private id = `w--${getIdElement()}` as string
-  private open = ref(false)
-  private persistent = ref(false)
-
+  private readonly id: string
+  private readonly open: Ref<boolean>
+  private readonly persistent: Ref<boolean>
   private event: EventItem
-  private targetElement = ref() as Ref<HTMLElement>
-  private focusElement = computed(() => this.targetElement.value?.closest(this.getItem().getBasicClassName())) as Ref<HTMLElement>
+
+  private target = ref() as Ref<HTMLElement | undefined>
+  private focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
   private staticOpen = ref(false)
   private staticHide = ref(false)
@@ -39,7 +49,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   ) {
     super(props, context)
 
+    this.id = `w--${getIdElement()}`
+    this.open = ref(false)
+    this.persistent = ref(false)
     this.event = new EventItem<void>(document.body, async (event) => this.eventClose(event))
+      .setDom(this.element)
   }
 
   setup (): WindowSetupType {
@@ -56,6 +70,58 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     }
   }
 
+  findControl (focus?: HTMLElement): Element | undefined {
+    return document.querySelector(`[data-window-control="${focus?.dataset.window}"]`) || undefined
+  }
+
+  private getControlName (): string {
+    return this.getItem().getClassName(['control'])
+  }
+
+  private getStatus (name: keyof WindowClassesType): string {
+    return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
+  }
+
+  private getTarget<R = Element> (): R {
+    return (this.target.value || this.element.value || document.body) as R
+  }
+
+  private ifAutoClose (): boolean {
+    return this.props.autoClose &&
+      !this.getTarget().closest(`${this.selectorIsStatus('static')}, .${this.id} .${this.getControlName()}`)
+  }
+
+  private ifChildren (target = this.getTarget() as Element): boolean {
+    const focus = target.closest<HTMLElement>(this.getSelector())
+
+    return focus !== null && (focus.dataset.window === this.id || this.ifChildren(this.findControl(focus)))
+  }
+
+  private ifClose (): boolean {
+    return !!this.getTarget().closest(`${this.selectorIsStatus('close')}:not(${this.selectorIsStatus('static')})`)
+  }
+
+  private ifDisabled (): boolean {
+    return !this.props.disabled && !this.getTarget().closest(this.selectorIsStatus('controlStatic'))
+  }
+
+  private ifElementIsFocus (): boolean {
+    return this.element.value === this.focus.value
+  }
+
+  private ifElementIsTarget (): boolean {
+    return this.element.value === this.target.value
+  }
+
+  private ifNotBlock () {
+    return !this.getTarget().classList.contains(this.getName()) &&
+      !this.findControl(this.focus.value)?.closest(this.selectorIsStatus('block'))
+  }
+
+  private selectorIsStatus (name: keyof WindowClassesType) {
+    return `.${this.id} .${this.getStatus(name)}`
+  }
+
   async emit () {
     const toOpen = !this.open.value
 
@@ -70,25 +136,27 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
         requestAnimationFrame(() => {
           this.staticOpen.value = true
 
-          eventBody.go()
-          emitOpening(toOpen)
+          this.event.go()
+          // emitOpening(toOpen)
         })
       } else {
-        classHide.set(true)
-        classShow.set(false)
+        this.staticHide.value = true
+        this.staticOpen.value = false
 
-        eventBody.stop()
-        emitOpening(toOpen)
+        this.event.stop()
+        // emitOpening(toOpen)
 
-        if (props.light) {
-          open.value = false
-        }
+        // if (props.light) {
+        // open.value = false
+        // }
       }
 
+      /*
       context.emit('on-open', {
         modal,
         open: toOpen
       })
+      */
     }
   }
 
@@ -98,10 +166,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     } else {
       this.event.stop()
     }
-  }
-
-  getControlElement (focus?: HTMLElement): Element | null {
-    return focus ? document.querySelector(`[data-control="${focus.dataset.window}"]`) : null
   }
 
   private getWindowConstructor () {
@@ -115,16 +179,16 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   async verification (target: HTMLElement) {
-    this.targetElement.value = target
+    this.target.value = target
 
     if (this.open.value) {
-      if (this.focusElement.value === null) {
+      if (this.focus.value === null) {
         await this.emit()
-      } else if (!this.isVerificationFocus()) {
-        if (this.isVerificationNotBlock()) {
-          if (this.isVerificationChildren()) {
+      } else if (!this.ifElementIsFocus()) {
+        if (this.ifNotBlock()) {
+          if (this.ifChildren()) {
             requestAnimationFrame(async () => {
-              if (!this.focusElement.value?.classList.contains('is-show')) {
+              if (!this.focus.value?.classList.contains('is-show')) {
                 await this.emit()
               }
             })
@@ -132,56 +196,17 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
             await this.emit()
           }
         }
-      } else if (this.isVerificationTarget()) {
+      } else if (this.ifElementIsTarget()) {
         if (this.props.persistent) {
           this.persistent.value = true
         } else {
           await this.emit()
         }
-      } else if (this.isVerificationAutoClose()) {
+      } else if (this.ifClose() || this.ifAutoClose()) {
         await this.emit()
       }
-    } else if (this.isVerificationDisabled()) {
+    } else if (this.ifDisabled()) {
       await this.emit()
     }
-  }
-
-  private isVerificationAutoClose (): boolean {
-    const constructor = this.getWindowConstructor()
-    const target = this.targetElement.value
-    const selectors1 = `.${this.id} .${constructor.classClose}:not(.${constructor.classStatic})`
-    const selectors2 = `.${this.id} .${constructor.classStatic}, .${this.id} .${this.getItem().getClassName(['control'])}`
-
-    return target?.closest(selectors1) ||
-      (this.props.autoClose && !target?.closest(selectors2))
-  }
-
-  private isVerificationChildren (target = this.targetElement.value as Element | null): boolean {
-    const focus = target?.closest(this.getItem().getBasicClassName()) as HTMLElement
-
-    if (focus) {
-      return focus.dataset.window === this.id ||
-        this.isVerificationChildren(this.getControlElement(focus))
-    } else {
-      return false
-    }
-  }
-
-  private isVerificationDisabled (): boolean {
-    return !this.props.disabled &&
-      !this.targetElement.value?.closest(`.${this.id} .${this.getWindowConstructor().classStaticControl}`)
-  }
-
-  private isVerificationFocus (): boolean {
-    return this.focusElement.value === this.element.value
-  }
-
-  private isVerificationNotBlock () {
-    return !this.targetElement.value.classList.contains(this.getItem().getBasicClassName()) &&
-      !this.getControlElement(this.focusElement.value)?.closest(`.${this.id} .${this.getWindowConstructor().classBlock}`)
-  }
-
-  private isVerificationTarget (): boolean {
-    return this.targetElement.value === this.element.value
   }
 }

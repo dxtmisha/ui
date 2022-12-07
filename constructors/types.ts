@@ -12,7 +12,7 @@ export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 export type ElementType = Window | HTMLElement | Element
 
 export type RefOrNormalType<T = any> = ComputedRef<T> | Ref<T> | T
-export type RefOrElementType = RefOrNormalType<ElementType>
+export type RefOrElementType<T = ElementType> = RefOrNormalType<T>
 
 export type InstallOptionsType = {
   designs?: AssociativeType[]
