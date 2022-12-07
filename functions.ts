@@ -13,7 +13,8 @@ export const {
 } = data
 
 export const {
-  createElement
+  createElement,
+  getIdElement
 } = element
 
 export const {

@@ -23,6 +23,21 @@ export function createElement (
   return element
 }
 
+let ids = 1
+
+export function getIdElement (element?: HTMLElement, selector?: string): string {
+  if (element) {
+    if (!element.id) {
+      element.setAttribute('id', `id-${ids++}`)
+    }
+
+    return selector ? `#${element.id}${selector}`.trim() : element.id.toString()
+  } else {
+    return `${ids++}`
+  }
+}
+
 export default {
-  createElement
+  createElement,
+  getIdElement
 }
