@@ -31,6 +31,7 @@ export type WindowSetupType = ComponentBaseType & {
   status: Ref<WindowStatusType>
   toggle: (value: boolean) => void
   on: AssociativeType<(event: MouseEvent) => void>
+  onTransition: () => void
 }
 
 export abstract class WindowComponentAbstract extends ComponentAbstract {
@@ -93,7 +94,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       on: {
         click: (event: MouseEvent) => this.onClick(event),
         contextmenu: (event: MouseEvent) => this.onContextmenu(event)
-      }
+      },
+      onTransition: () => this.onTransition()
     }
   }
 
@@ -147,12 +149,12 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return document.querySelector(`.${this.getControlName()}.${focus?.dataset.window}`) || undefined
   }
 
-  private getControlName (): string {
-    return this.getItem().getClassName(['control'])
+  private getClassicControl (name: keyof WindowClassicControlType): string {
+    return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
   }
 
-  private getStatus (name: keyof WindowClassicControlType): string {
-    return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
+  private getControlName (): string {
+    return this.getItem().getClassName(['control'])
   }
 
   private getTarget<R = Element> (): R {
@@ -192,7 +194,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private selectorIsStatus (name: keyof WindowClassicControlType) {
-    return `.${this.id} .${this.getStatus(name)}`
+    return `.${this.id} .${this.getClassicControl(name)}`
   }
 
   private setStatus (value: WindowStatusType): this {
@@ -248,18 +250,25 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     }
   }
 
-  async onClick (event: MouseEvent) {
+  private async onClick (event: MouseEvent) {
     this.client.x = event.clientX
     this.client.y = event.clientY
 
     await this.verification(event.target as HTMLElement)
   }
 
-  async onContextmenu (event: MouseEvent) {
+  private async onContextmenu (event: MouseEvent) {
     event.preventDefault()
     event.stopPropagation()
 
     this.contextmenu = true
     await this.onClick(event)
+  }
+
+  private onTransition (): void {
+    if (this.status.value === 'hide') {
+      this.open.value = false
+      this.setStatus('close')
+    }
   }
 }

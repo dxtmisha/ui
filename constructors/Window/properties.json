@@ -38,7 +38,7 @@
           }
         },
         "var|open": {
-          "var|display": "{??sys.preparation.transition}",
+          "var|display": "{??sys.preparation.display}",
           "var|transition": "background {d.sys.transitionDuration.fade.enter} linear",
           "var|body": {
             "var|opacity": "1",
@@ -50,12 +50,12 @@
           }
         },
         "var|hide": {
-          "var|display": "{??sys.open.transition}",
-          "var|transition": "background {d.sys.transitionDuration.exit} linear",
+          "var|display": "{??sys.open.display}",
+          "var|transition": "background {d.sys.transitionDuration.fade.exit} linear",
           "var|body": {
             "var|opacity": "0",
-            "var|transform": "{??sys.open.transform.opacity}",
-            "var|transition": "opacity {d.sys.transitionDuration.exit} linear"
+            "var|transform": "{??sys.open.body.transform}",
+            "var|transition": "opacity {d.sys.transitionDuration.fade.exit} linear"
           },
           "var|scrim": {
             "var|opacity": "0"
@@ -75,7 +75,7 @@
         }
       },
       "var|_rounded": "0px",
-      "align-items": "flex-end",
+      "align-items": "center",
       "background-color": "{??sys.scrim.background}",
       "background-opacity": "{??l.scrim.opacity}",
       "display": "{??l.display}",
@@ -125,6 +125,20 @@
           },
           "var|scrim": {
             "var|opacity": "{??sys.open.scrim.opacity}"
+          }
+        }
+      },
+      "&[data-status='hide']": {
+        "var|l": {
+          "var|display": "{??sys.hide.display}",
+          "var|transition": "{??sys.hide.transition}",
+          "var|body": {
+            "var|opacity": "{??sys.hide.body.opacity}",
+            "var|transform": "{??sys.hide.body.transform}",
+            "var|transition": "{??sys.hide.body.transition}"
+          },
+          "var|scrim": {
+            "var|opacity": "{??sys.hide.scrim.opacity}"
           }
         }
       }
