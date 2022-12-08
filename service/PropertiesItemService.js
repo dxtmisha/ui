@@ -147,6 +147,8 @@ module.exports = class {
         cssSelectors.indexOf(index.replace(/\([^)]*?\)/ig, '')) !== -1
       ) {
         this.type = 'selector'
+      } else if (this.parent?.getType() === 'var') {
+        this.type = 'var'
       } else if (cssProperties.indexOf(index) !== -1) {
         this.type = 'property'
       } else if (this.isValue()) {
