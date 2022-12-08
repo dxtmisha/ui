@@ -34,18 +34,18 @@
         },
         "mixin|icon": {
           "var|l": {
-            "var|padding": "{??sys.icon.padding}",
-            "var|width": "var(--sys-height)",
-            "var|icon": {
-              "var|margin": "0px",
-              "var|space": "0px"
+            "padding": "{??sys.icon.padding}",
+            "width": "var(--sys-height)",
+            "icon": {
+              "margin": "0px",
+              "space": "0px"
             }
           }
         },
         "mixin|round": {
           "var|sys": {
-            "var|icon": {
-              "var|margin": "{??sys.icon.padding}"
+            "icon": {
+              "margin": "{??sys.icon.padding}"
             }
           },
           "& .?icon": {
@@ -54,12 +54,12 @@
         },
         "mixin|text": {
           "var|l": {
-            "var|textDisplay": "block",
-            "var|padding": "{??sys.padding}",
-            "var|width": "{??sys.width}",
-            "var|icon": {
-              "var|margin": "{??sys.icon.margin} - {??sys.padding}",
-              "var|space": "{??sys.space}"
+            "textDisplay": "block",
+            "padding": "{??sys.padding}",
+            "width": "{??sys.width}",
+            "icon": {
+              "margin": "{??sys.icon.margin} - {??sys.padding}",
+              "space": "{??sys.space}"
             }
           }
         },
@@ -72,68 +72,68 @@
         }
       },
       "var|sys": {
-        "var|palette": "#000000",
-        "var|background": "{??sys.palette}",
-        "var|backgroundOpacity": "0",
-        "var|border": "{??sys.palette}",
-        "var|borderOpacity": "0",
-        "var|borderWidth": "1px",
-        "var|dense": "8px",
-        "var|gradient": "{??sys.palette}",
-        "var|gradientOpacity": "0",
-        "var|padding": "16px",
-        "var|shadow": "none",
-        "var|space": "4px",
-        "var|text": "unset",
-        "var|textOpacity": "unset",
-        "var|width": "80px",
-        "var|active": {
+        "palette": "#000000",
+        "background": "{??sys.palette}",
+        "backgroundOpacity": "0",
+        "border": "{??sys.palette}",
+        "borderOpacity": "0",
+        "borderWidth": "1px",
+        "dense": "8px",
+        "gradient": "{??sys.palette}",
+        "gradientOpacity": "0",
+        "padding": "16px",
+        "shadow": "none",
+        "space": "4px",
+        "text": "unset",
+        "textOpacity": "unset",
+        "width": "80px",
+        "active": {
           "@style": "{??m.status}",
-          "var|gradientOpacity": "0.08"
+          "gradientOpacity": "0.08"
         },
-        "var|dragged": {
+        "dragged": {
           "@style": "{??m.status}"
         },
-        "var|disabled": {
+        "disabled": {
           "@style": "{??m.status}",
-          "var|background": "{??sys.disabled.palette}",
-          "var|border": "{??sys.disabled.palette}",
-          "var|gradient": "{??sys.disabled.palette}"
+          "background": "{??sys.disabled.palette}",
+          "border": "{??sys.disabled.palette}",
+          "gradient": "{??sys.disabled.palette}"
         },
-        "var|focus": {
+        "focus": {
           "@style": "{??m.status}",
-          "var|gradientOpacity": "0.12"
+          "gradientOpacity": "0.12"
         },
-        "var|hover": {
+        "hover": {
           "@style": "{??m.status}",
-          "var|gradientOpacity": "0.04"
+          "gradientOpacity": "0.04"
         },
-        "var|selected": {
+        "selected": {
           "@style": "{??m.status}",
-          "var|background": "{??sys.selected.palette}",
-          "var|border": "{??sys.selected.palette}"
+          "background": "{??sys.selected.palette}",
+          "border": "{??sys.selected.palette}"
         },
-        "var|icon": {
-          "var|margin": "12px",
-          "var|padding": "4px",
-          "var|text": "20px",
-          "var|textTrailing": "18px"
+        "icon": {
+          "margin": "12px",
+          "padding": "4px",
+          "text": "20px",
+          "textTrailing": "18px"
         }
       },
       "var|l": {
-        "var|palette": "{??sys.palette}",
-        "var|align": "center",
-        "var|background": "{??sys.background}",
-        "var|backgroundOpacity": "{??sys.backgroundOpacity}",
-        "var|border": "{??sys.border}",
-        "var|borderOpacity": "{??sys.borderOpacity}",
-        "var|borderWidth": "{??sys.borderWidth}",
-        "var|gradient": "{??sys.gradient}",
-        "var|gradientOpacity": "{??sys.gradientOpacity}",
-        "var|shadow": "{??sys.shadow}",
-        "var|text": "{??sys.text}",
-        "var|textOpacity": "{??sys.textOpacity}",
-        "var|textDisplay": "none"
+        "palette": "{??sys.palette}",
+        "align": "center",
+        "background": "{??sys.background}",
+        "backgroundOpacity": "{??sys.backgroundOpacity}",
+        "border": "{??sys.border}",
+        "borderOpacity": "{??sys.borderOpacity}",
+        "borderWidth": "{??sys.borderWidth}",
+        "gradient": "{??sys.gradient}",
+        "gradientOpacity": "{??sys.gradientOpacity}",
+        "shadow": "{??sys.shadow}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}",
+        "textDisplay": "none"
       },
       "var|?image-font-size": "{??sys.icon.text}",
       "@icon": "{??m.icon}",
@@ -158,7 +158,7 @@
       },
       "section|dense": {
         "var|sys": {
-          "var|padding": "{??sys.dense}"
+          "padding": "{??sys.dense}"
         },
         "min-width": "auto"
       },
@@ -172,61 +172,61 @@
       "section|dragged": {
         "@style": "{??m.zIndex}",
         "var|l": {
-          "var|palette": "{??sys.dragged.palette}",
-          "var|background": "{??sys.dragged.background}",
-          "var|backgroundOpacity": "{??sys.dragged.backgroundOpacity} !important",
-          "var|border": "{??sys.dragged.border}",
-          "var|borderOpacity": "{??sys.dragged.borderOpacity} !important",
-          "var|gradient": "{??sys.dragged.gradient}",
-          "var|gradientOpacity": "{??sys.dragged.gradientOpacity} !important",
-          "var|shadow": "{??sys.dragged.shadow} !important",
-          "var|text": "{??sys.dragged.text}",
-          "var|textOpacity": "{??sys.dragged.textOpacity}"
+          "palette": "{??sys.dragged.palette}",
+          "background": "{??sys.dragged.background}",
+          "backgroundOpacity": "{??sys.dragged.backgroundOpacity} !important",
+          "border": "{??sys.dragged.border}",
+          "borderOpacity": "{??sys.dragged.borderOpacity} !important",
+          "gradient": "{??sys.dragged.gradient}",
+          "gradientOpacity": "{??sys.dragged.gradientOpacity} !important",
+          "shadow": "{??sys.dragged.shadow} !important",
+          "text": "{??sys.dragged.text}",
+          "textOpacity": "{??sys.dragged.textOpacity}"
         }
       },
       "section|readonly": {
         "@style": "{??m.disabled}",
         "var|l": {
-          "var|palette": "{??sys.palette} !important",
-          "var|background": "{??sys.background} !important",
-          "var|backgroundOpacity": "{??sys.backgroundOpacity} !important",
-          "var|border": "{??sys.border} !important",
-          "var|borderOpacity": "{??sys.borderOpacity} !important",
-          "var|gradient": "{??sys.gradient} !important",
-          "var|gradientOpacity": "{??sys.gradientOpacity} !important",
-          "var|shadow": "{??sys.shadow} !important",
-          "var|text": "{??sys.text} !important",
-          "var|textOpacity": "{??sys.textOpacity} !important"
+          "palette": "{??sys.palette} !important",
+          "background": "{??sys.background} !important",
+          "backgroundOpacity": "{??sys.backgroundOpacity} !important",
+          "border": "{??sys.border} !important",
+          "borderOpacity": "{??sys.borderOpacity} !important",
+          "gradient": "{??sys.gradient} !important",
+          "gradientOpacity": "{??sys.gradientOpacity} !important",
+          "shadow": "{??sys.shadow} !important",
+          "text": "{??sys.text} !important",
+          "textOpacity": "{??sys.textOpacity} !important"
         },
         "cursor": "default"
       },
       "section|selected": {
         "var|l": {
-          "var|palette": "{??sys.selected.palette} !important",
-          "var|background": "{??sys.selected.background} !important",
-          "var|backgroundOpacity": "{??sys.selected.backgroundOpacity}",
-          "var|border": "{??sys.selected.border} !important",
-          "var|borderOpacity": "{??sys.selected.borderOpacity}",
-          "var|gradient": "{??sys.selected.gradient} !important",
-          "var|gradientOpacity": "{??sys.selected.gradientOpacity}",
-          "var|shadow": "{??sys.selected.shadow}",
-          "var|text": "{??sys.selected.text} !important",
-          "var|textOpacity": "{??sys.selected.textOpacity}"
+          "palette": "{??sys.selected.palette} !important",
+          "background": "{??sys.selected.background} !important",
+          "backgroundOpacity": "{??sys.selected.backgroundOpacity}",
+          "border": "{??sys.selected.border} !important",
+          "borderOpacity": "{??sys.selected.borderOpacity}",
+          "gradient": "{??sys.selected.gradient} !important",
+          "gradientOpacity": "{??sys.selected.gradientOpacity}",
+          "shadow": "{??sys.selected.shadow}",
+          "text": "{??sys.selected.text} !important",
+          "textOpacity": "{??sys.selected.textOpacity}"
         }
       },
       "section|disabled": {
         "@style": "{??m.disabled}",
         "var|l": {
-          "var|palette": "{??sys.disabled.palette} !important",
-          "var|background": "{??sys.disabled.background} !important",
-          "var|backgroundOpacity": "{??sys.disabled.backgroundOpacity} !important",
-          "var|border": "{??sys.disabled.border} !important",
-          "var|borderOpacity": "{??sys.disabled.borderOpacity} !important",
-          "var|gradient": "{??sys.disabled.gradient} !important",
-          "var|gradientOpacity": "{??sys.disabled.gradientOpacity} !important",
-          "var|shadow": "{??sys.disabled.shadow} !important",
-          "var|text": "{??sys.disabled.text} !important",
-          "var|textOpacity": "{??sys.disabled.textOpacity} !important"
+          "palette": "{??sys.disabled.palette} !important",
+          "background": "{??sys.disabled.background} !important",
+          "backgroundOpacity": "{??sys.disabled.backgroundOpacity} !important",
+          "border": "{??sys.disabled.border} !important",
+          "borderOpacity": "{??sys.disabled.borderOpacity} !important",
+          "gradient": "{??sys.disabled.gradient} !important",
+          "gradientOpacity": "{??sys.disabled.gradientOpacity} !important",
+          "shadow": "{??sys.disabled.shadow} !important",
+          "text": "{??sys.disabled.text} !important",
+          "textOpacity": "{??sys.disabled.textOpacity} !important"
         },
         "background-color": "{??l.background}",
         "cursor": "default",
@@ -265,46 +265,46 @@
       ":hover": {
         "@style": "{??m.zIndex}",
         "var|l": {
-          "var|palette": "{??sys.hover.palette}",
-          "var|background": "{??sys.hover.background}",
-          "var|backgroundOpacity": "{??sys.hover.backgroundOpacity}",
-          "var|border": "{??sys.hover.border}",
-          "var|borderOpacity": "{??sys.hover.borderOpacity}",
-          "var|gradient": "{??sys.hover.gradient}",
-          "var|gradientOpacity": "{??sys.hover.gradientOpacity}",
-          "var|shadow": "{??sys.hover.shadow}",
-          "var|text": "{??sys.hover.text}",
-          "var|textOpacity": "{??sys.hover.textOpacity}"
+          "palette": "{??sys.hover.palette}",
+          "background": "{??sys.hover.background}",
+          "backgroundOpacity": "{??sys.hover.backgroundOpacity}",
+          "border": "{??sys.hover.border}",
+          "borderOpacity": "{??sys.hover.borderOpacity}",
+          "gradient": "{??sys.hover.gradient}",
+          "gradientOpacity": "{??sys.hover.gradientOpacity}",
+          "shadow": "{??sys.hover.shadow}",
+          "text": "{??sys.hover.text}",
+          "textOpacity": "{??sys.hover.textOpacity}"
         }
       },
       ":focus": {
         "@style": "{??m.zIndex}",
         "var|l": {
-          "var|palette": "{??sys.focus.palette}",
-          "var|background": "{??sys.focus.background}",
-          "var|backgroundOpacity": "{??sys.focus.backgroundOpacity}",
-          "var|border": "{??sys.focus.border}",
-          "var|borderOpacity": "{??sys.focus.borderOpacity}",
-          "var|gradient": "{??sys.focus.gradient}",
-          "var|gradientOpacity": "{??sys.focus.gradientOpacity}",
-          "var|shadow": "{??sys.focus.shadow}",
-          "var|text": "{??sys.focus.text}",
-          "var|textOpacity": "{??sys.focus.textOpacity}"
+          "palette": "{??sys.focus.palette}",
+          "background": "{??sys.focus.background}",
+          "backgroundOpacity": "{??sys.focus.backgroundOpacity}",
+          "border": "{??sys.focus.border}",
+          "borderOpacity": "{??sys.focus.borderOpacity}",
+          "gradient": "{??sys.focus.gradient}",
+          "gradientOpacity": "{??sys.focus.gradientOpacity}",
+          "shadow": "{??sys.focus.shadow}",
+          "text": "{??sys.focus.text}",
+          "textOpacity": "{??sys.focus.textOpacity}"
         }
       },
       ":active": {
         "@style": "{??m.zIndex}",
         "var|l": {
-          "var|palette": "{??sys.active.palette}",
-          "var|background": "{??sys.active.background}",
-          "var|backgroundOpacity": "{??sys.active.backgroundOpacity}",
-          "var|border": "{??sys.active.border}",
-          "var|borderOpacity": "{??sys.active.borderOpacity}",
-          "var|gradient": "{??sys.active.gradient}",
-          "var|gradientOpacity": "{??sys.active.gradientOpacity}",
-          "var|shadow": "{??sys.active.shadow}",
-          "var|text": "{??sys.active.text}",
-          "var|textOpacity": "{??sys.active.textOpacity}"
+          "palette": "{??sys.active.palette}",
+          "background": "{??sys.active.background}",
+          "backgroundOpacity": "{??sys.active.backgroundOpacity}",
+          "border": "{??sys.active.border}",
+          "borderOpacity": "{??sys.active.borderOpacity}",
+          "gradient": "{??sys.active.gradient}",
+          "gradientOpacity": "{??sys.active.gradientOpacity}",
+          "shadow": "{??sys.active.shadow}",
+          "text": "{??sys.active.text}",
+          "textOpacity": "{??sys.active.textOpacity}"
         }
       }
     }
