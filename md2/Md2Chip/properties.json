@@ -3,44 +3,44 @@
     "chip": {
       "@style": "{d.chip}",
       "var|sys": {
-        "var|palette": "{sys.palette.overlay}",
-        "var|backgroundOpacity": "{sys.opacity.overlay}",
-        "var|borderWidth": "{ref.spacing.px}",
-        "var|dense": "{ref.spacing.1}",
-        "var|gradient": "{sys.palette.onSurface}",
-        "var|padding": "{ref.spacing.3}",
-        "var|space": "{ref.spacing.2}",
-        "var|text": "{sys.palette.onSurface}",
-        "var|textOpacity": "{sys.opacity.surface.high}",
-        "var|width": "auto",
-        "var|active": {
-          "var|borderOpacity": "{sys.opacity.surface.medium}",
-          "var|gradientOpacity": "{sys.opacity.dragged}",
-          "var|shadow": "{sys.elevation.shadow.2}"
+        "palette": "{sys.palette.overlay}",
+        "backgroundOpacity": "{sys.opacity.overlay}",
+        "borderWidth": "{ref.spacing.px}",
+        "dense": "{ref.spacing.1}",
+        "gradient": "{sys.palette.onSurface}",
+        "padding": "{ref.spacing.3}",
+        "space": "{ref.spacing.2}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.high}",
+        "width": "auto",
+        "active": {
+          "borderOpacity": "{sys.opacity.surface.medium}",
+          "gradientOpacity": "{sys.opacity.dragged}",
+          "shadow": "{sys.elevation.shadow.2}"
         },
-        "var|disabled": {
-          "var|palette": "{sys.palette.disabled}",
-          "var|textOpacity": "{sys.opacity.surface.disabled}"
+        "disabled": {
+          "palette": "{sys.palette.disabled}",
+          "textOpacity": "{sys.opacity.surface.disabled}"
         },
-        "var|dragged": {
-          "var|shadow": "{sys.elevation.shadow.8}"
+        "dragged": {
+          "shadow": "{sys.elevation.shadow.8}"
         },
-        "var|focus": {
-          "var|gradientOpacity": "{sys.opacity.focus}"
+        "focus": {
+          "gradientOpacity": "{sys.opacity.focus}"
         },
-        "var|hover": {
-          "var|gradientOpacity": "{sys.opacity.hover}"
+        "hover": {
+          "gradientOpacity": "{sys.opacity.hover}"
         },
-        "var|selected": {
-          "var|palette": "{sys.palette.primary}",
-          "var|gradient": "{sys.palette.primary}",
-          "var|text": "{sys.palette.primary}"
+        "selected": {
+          "palette": "{sys.palette.primary}",
+          "gradient": "{sys.palette.primary}",
+          "text": "{sys.palette.primary}"
         },
-        "var|icon": {
-          "var|margin": "{ref.spacing.1}",
-          "var|padding": "{ref.spacing.1}",
-          "var|text": "{ref.font.size.2xl}",
-          "var|textTrailing": "{ref.font.size.xl}"
+        "icon": {
+          "margin": "{ref.spacing.1}",
+          "padding": "{ref.spacing.1}",
+          "text": "{ref.font.size.2xl}",
+          "textTrailing": "{ref.font.size.xl}"
         }
       },
       "var|?progress-background": "{??l.gradient}",
@@ -58,27 +58,27 @@
       "width": {
         "auto": {
           "var|??sys": {
-            "var|width": "0"
+            "width": "0"
           }
         },
         "sm": {
           "var|??sys": {
-            "var|width": "{ref.spacing.16}"
+            "width": "{ref.spacing.16}"
           }
         },
         "md": {
           "var|??sys": {
-            "var|width": "{ref.spacing.24}"
+            "width": "{ref.spacing.24}"
           }
         },
         "lg": {
           "var|??sys": {
-            "var|width": "{ref.spacing.32}"
+            "width": "{ref.spacing.32}"
           }
         },
         "full": {
           "var|??sys": {
-            "var|width": "100%"
+            "width": "100%"
           }
         }
       },
@@ -111,9 +111,9 @@
       "section|appearance": {
         "outlined": {
           "var|??sys": {
-            "var|selected": {
-              "var|border": "{??sys.palette.primary}",
-              "var|borderOpacity": "{sys.opacity.surface.high}"
+            "selected": {
+              "border": "{??sys.palette.primary}",
+              "borderOpacity": "{sys.opacity.surface.high}"
             }
           },
           "::after": {

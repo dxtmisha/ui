@@ -3,13 +3,13 @@
     "window": {
       "@style": "{d.window}",
       "var|sys": {
-        "var|background": "{sys.elevation.background.24}",
-        "var|index": "{sys.elevation.index.24}",
-        "var|padding": "{ref.spacing.10} {ref.spacing.4}",
-        "var|shadow": "{sys.elevation.shadow.24}",
-        "var|scrim": {
-          "var|background": "{sys.palette.onBackground}",
-          "var|opacity": "{sys.opacity.scrim}"
+        "background": "{sys.elevation.background.24}",
+        "index": "{sys.elevation.index.24}",
+        "padding": "{ref.spacing.10} {ref.spacing.4}",
+        "shadow": "{sys.elevation.shadow.24}",
+        "scrim": {
+          "background": "{sys.palette.onBackground}",
+          "opacity": "{sys.opacity.scrim}"
         }
       }
     }

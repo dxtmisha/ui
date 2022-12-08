@@ -2,76 +2,76 @@
   "d": {
     "window": {
       "var|sys": {
-        "var|background": "255,255,255",
-        "var|height": "600px",
-        "var|index": "9999",
-        "var|padding": "40px 16px",
-        "var|shadow": "none",
-        "var|transformOrigin": "center",
-        "var|width": "800px",
-        "var|scrim": {
-          "var|background": "0,0,0",
-          "var|opacity": "0.32"
+        "background": "255,255,255",
+        "height": "600px",
+        "index": "9999",
+        "padding": "40px 16px",
+        "shadow": "none",
+        "transformOrigin": "center",
+        "width": "800px",
+        "scrim": {
+          "background": "0,0,0",
+          "opacity": "0.32"
         },
-        "var|close": {
-          "var|display": "none",
-          "var|transition": "none",
-          "var|body": {
-            "var|opacity": "0",
-            "var|transform": "none",
-            "var|transition": "none"
+        "close": {
+          "display": "none",
+          "transition": "none",
+          "body": {
+            "opacity": "0",
+            "transform": "none",
+            "transition": "none"
           },
-          "var|scrim": {
-            "var|opacity": "0"
+          "scrim": {
+            "opacity": "0"
           }
         },
-        "var|preparation": {
-          "var|display": "flex",
-          "var|transition": "{??sys.close.transition}",
-          "var|body": {
-            "var|opacity": "{??sys.close.body.opacity}",
-            "var|transform": "scale(.8)",
-            "var|transition": "{??sys.close.body.transition}"
+        "preparation": {
+          "display": "flex",
+          "transition": "{??sys.close.transition}",
+          "body": {
+            "opacity": "{??sys.close.body.opacity}",
+            "transform": "scale(.8)",
+            "transition": "{??sys.close.body.transition}"
           },
-          "var|scrim": {
-            "var|opacity": "{??sys.close.scrim.opacity}"
+          "scrim": {
+            "opacity": "{??sys.close.scrim.opacity}"
           }
         },
-        "var|open": {
-          "var|display": "{??sys.preparation.display}",
-          "var|transition": "background {d.sys.transitionDuration.fade.enter} linear",
-          "var|body": {
-            "var|opacity": "1",
-            "var|transform": "none",
-            "var|transition": "opacity {d.sys.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}"
+        "open": {
+          "display": "{??sys.preparation.display}",
+          "transition": "background {d.sys.transitionDuration.fade.enter} linear",
+          "body": {
+            "opacity": "1",
+            "transform": "none",
+            "transition": "opacity {d.sys.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}"
           },
-          "var|scrim": {
-            "var|opacity": "{??sys.scrim.opacity}"
+          "scrim": {
+            "opacity": "{??sys.scrim.opacity}"
           }
         },
-        "var|hide": {
-          "var|display": "{??sys.open.display}",
-          "var|transition": "background {d.sys.transitionDuration.fade.exit} linear",
-          "var|body": {
-            "var|opacity": "0",
-            "var|transform": "{??sys.open.body.transform}",
-            "var|transition": "opacity {d.sys.transitionDuration.fade.exit} linear"
+        "hide": {
+          "display": "{??sys.open.display}",
+          "transition": "background {d.sys.transitionDuration.fade.exit} linear",
+          "body": {
+            "opacity": "0",
+            "transform": "{??sys.open.body.transform}",
+            "transition": "opacity {d.sys.transitionDuration.fade.exit} linear"
           },
-          "var|scrim": {
-            "var|opacity": "0"
+          "scrim": {
+            "opacity": "0"
           }
         }
       },
       "var|l": {
-        "var|display": "{??sys.close.display}",
-        "var|transition": "{??sys.close.transition}",
-        "var|body": {
-          "var|opacity": "{??sys.close.body.opacity}",
-          "var|transform": "{??sys.close.body.transform}",
-          "var|transition": "{??sys.close.body.transition}"
+        "display": "{??sys.close.display}",
+        "transition": "{??sys.close.transition}",
+        "body": {
+          "opacity": "{??sys.close.body.opacity}",
+          "transform": "{??sys.close.body.transform}",
+          "transition": "{??sys.close.body.transition}"
         },
-        "var|scrim": {
-          "var|opacity": "{??sys.close.scrim.opacity}"
+        "scrim": {
+          "opacity": "{??sys.close.scrim.opacity}"
         }
       },
       "var|_rounded": "0px",
@@ -102,43 +102,43 @@
       },
       "&[data-status='preparation']": {
         "var|l": {
-          "var|display": "{??sys.preparation.display}",
-          "var|transition": "{??sys.preparation.transition}",
-          "var|body": {
-            "var|opacity": "{??sys.preparation.body.opacity}",
-            "var|transform": "{??sys.preparation.body.transform}",
-            "var|transition": "{??sys.preparation.body.transition}"
+          "display": "{??sys.preparation.display}",
+          "transition": "{??sys.preparation.transition}",
+          "body": {
+            "opacity": "{??sys.preparation.body.opacity}",
+            "transform": "{??sys.preparation.body.transform}",
+            "transition": "{??sys.preparation.body.transition}"
           },
-          "var|scrim": {
-            "var|opacity": "{??sys.preparation.scrim.opacity}"
+          "scrim": {
+            "opacity": "{??sys.preparation.scrim.opacity}"
           }
         }
       },
       "&[data-status='open']": {
         "var|l": {
-          "var|display": "{??sys.open.display}",
-          "var|transition": "{??sys.open.transition}",
-          "var|body": {
-            "var|opacity": "{??sys.open.body.opacity}",
-            "var|transform": "{??sys.open.body.transform}",
-            "var|transition": "{??sys.open.body.transition}"
+          "display": "{??sys.open.display}",
+          "transition": "{??sys.open.transition}",
+          "body": {
+            "opacity": "{??sys.open.body.opacity}",
+            "transform": "{??sys.open.body.transform}",
+            "transition": "{??sys.open.body.transition}"
           },
-          "var|scrim": {
-            "var|opacity": "{??sys.open.scrim.opacity}"
+          "scrim": {
+            "opacity": "{??sys.open.scrim.opacity}"
           }
         }
       },
       "&[data-status='hide']": {
         "var|l": {
-          "var|display": "{??sys.hide.display}",
-          "var|transition": "{??sys.hide.transition}",
-          "var|body": {
-            "var|opacity": "{??sys.hide.body.opacity}",
-            "var|transform": "{??sys.hide.body.transform}",
-            "var|transition": "{??sys.hide.body.transition}"
+          "display": "{??sys.hide.display}",
+          "transition": "{??sys.hide.transition}",
+          "body": {
+            "opacity": "{??sys.hide.body.opacity}",
+            "transform": "{??sys.hide.body.transform}",
+            "transition": "{??sys.hide.body.transition}"
           },
-          "var|scrim": {
-            "var|opacity": "{??sys.hide.scrim.opacity}"
+          "scrim": {
+            "opacity": "{??sys.hide.scrim.opacity}"
           }
         }
       }
