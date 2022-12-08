@@ -437,6 +437,9 @@
         "24": {
           "value": "0.24"
         },
+        "32": {
+          "value": "0.32"
+        },
         "100": {
           "value": "1"
         },
@@ -865,6 +868,9 @@
         },
         "var|border": {
           "value": "{ref.opacity.12}"
+        },
+        "var|scrim": {
+          "value": "{ref.opacity.32}"
         },
         "primary": {
           "high": "{ref.opacity.primary.high}",

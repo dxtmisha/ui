@@ -2,52 +2,89 @@
   "d": {
     "window": {
       "var|sys": {
-        "background": "0,0,0",
-        "height": "600px",
-        "index": "9999",
-        "padding": "40px 16px",
-        "shadow": "none",
-        "transformOrigin": "center",
-        "width": "800px",
-        "open": {
-          "opacity": "1",
-          "transform": "none",
-          "transitionDuration": "{d.sys.transitionDuration.fade.enter}",
-          "body": "opacity {d.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}",
-          "fades": "background {d.sys.transitionDuration.fade.enter} linear"
+        "var|background": "255,255,255",
+        "var|height": "600px",
+        "var|index": "9999",
+        "var|padding": "40px 16px",
+        "var|shadow": "none",
+        "var|transformOrigin": "center",
+        "var|width": "800px",
+        "var|scrim": {
+          "var|background": "0,0,0",
+          "var|opacity": "0.32"
         },
-        "hide": {
-          "opacity": "0",
-          "transform": "none",
-          "transitionDuration": "{d.sys.transitionDuration.fade.exit}",
-          "body": "opacity {d.transitionDuration.exit} linear",
-          "fades": "background {d.transitionDuration.exit} linear"
+        "var|close": {
+          "var|display": "none",
+          "var|transition": "none",
+          "var|body": {
+            "var|opacity": "0",
+            "var|transform": "none",
+            "var|transition": "none"
+          },
+          "var|scrim": {
+            "var|opacity": "0"
+          }
         },
-        "close": {
-          "opacity": "0",
-          "transform": "scale(.8)",
-          "transitionDuration": "0s",
-          "body": "none",
-          "fades": "none"
+        "var|preparation": {
+          "var|display": "flex",
+          "var|transition": "{??sys.close.transition}",
+          "var|body": {
+            "var|opacity": "{??sys.close.body.opacity}",
+            "var|transform": "scale(.8)",
+            "var|transition": "{??sys.close.body.transition}"
+          },
+          "var|scrim": {
+            "var|opacity": "{??sys.close.scrim.opacity}"
+          }
+        },
+        "var|open": {
+          "var|display": "{??sys.preparation.transition}",
+          "var|transition": "background {d.sys.transitionDuration.fade.enter} linear",
+          "var|body": {
+            "var|opacity": "1",
+            "var|transform": "none",
+            "var|transition": "opacity {d.sys.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}"
+          },
+          "var|scrim": {
+            "var|opacity": "{??sys.scrim.opacity}"
+          }
+        },
+        "var|hide": {
+          "var|display": "{??sys.open.transition}",
+          "var|transition": "background {d.sys.transitionDuration.exit} linear",
+          "var|body": {
+            "var|opacity": "0",
+            "var|transform": "{??sys.open.transform.opacity}",
+            "var|transition": "opacity {d.sys.transitionDuration.exit} linear"
+          },
+          "var|scrim": {
+            "var|opacity": "0"
+          }
         }
       },
       "var|l": {
-        "opacity": "{??sys.close.opacity}",
-        "transform": "{??sys.close.transform}",
-        "transitionDuration": "{??sys.close.transitionDuration}",
-        "body": "{??sys.close.body}",
-        "fades": "{??sys.close.fades}"
+        "var|display": "{??sys.close.display}",
+        "var|transition": "{??sys.close.transition}",
+        "var|body": {
+          "var|opacity": "{??sys.close.body.opacity}",
+          "var|transform": "{??sys.close.body.transform}",
+          "var|transition": "{??sys.close.body.transition}"
+        },
+        "var|scrim": {
+          "var|opacity": "{??sys.close.scrim.opacity}"
+        }
       },
       "var|_rounded": "0px",
       "align-items": "flex-end",
-      "background-color": "transparent",
-      "display": "flex",
+      "background-color": "{??sys.scrim.background}",
+      "background-opacity": "{??l.scrim.opacity}",
+      "display": "{??l.display}",
       "inset": "0",
       "justify-content": "center",
       "padding": "{??sys.padding}",
       "position": "fixed",
-      "transition": "{??l.fades}",
-      "will-change": "backgroundColor, left, top, contents",
+      "transition": "{??l.transition}",
+      "will-change": "=background-color, left, top, contents",
       "z-index": "{??sys.index}",
       "#body": {
         "background": "{??sys.background}",
@@ -55,14 +92,41 @@
         "box-shadow": "{??sys.shadow}",
         "max-height": "{??sys.height}",
         "max-width": "{??sys.width}",
-        "opacity": "{??l.opacity}",
+        "opacity": "{??l.body.opacity}",
         "overflow-y": "auto",
-        "transform": "{??l.transform}",
+        "transform": "{??l.body.transform}",
         "transform-origin": "{??sys.transformOrigin}",
-        "transition": "{??l.body}",
-        "visibility": "hidden",
+        "transition": "{??l.body.transition}",
         "width": "100%",
         "will-change": "opacity, visibility, transform, contents"
+      },
+      "&[data-status='preparation']": {
+        "var|l": {
+          "var|display": "{??sys.preparation.display}",
+          "var|transition": "{??sys.preparation.transition}",
+          "var|body": {
+            "var|opacity": "{??sys.preparation.body.opacity}",
+            "var|transform": "{??sys.preparation.body.transform}",
+            "var|transition": "{??sys.preparation.body.transition}"
+          },
+          "var|scrim": {
+            "var|opacity": "{??sys.preparation.scrim.opacity}"
+          }
+        }
+      },
+      "&[data-status='open']": {
+        "var|l": {
+          "var|display": "{??sys.open.display}",
+          "var|transition": "{??sys.open.transition}",
+          "var|body": {
+            "var|opacity": "{??sys.open.body.opacity}",
+            "var|transform": "{??sys.open.body.transform}",
+            "var|transition": "{??sys.open.body.transition}"
+          },
+          "var|scrim": {
+            "var|opacity": "{??sys.open.scrim.opacity}"
+          }
+        }
       }
     }
   }

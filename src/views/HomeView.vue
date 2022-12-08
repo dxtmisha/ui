@@ -103,7 +103,9 @@
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-window>
-      <md2-button text="window"/>
+      <template v-slot:control="binds">
+        <md2-button text="window" :class="binds.classes" v-on="binds.on"/>
+      </template>
     </md2-window>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">

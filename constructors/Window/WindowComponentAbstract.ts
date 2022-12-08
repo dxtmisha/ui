@@ -1,14 +1,20 @@
-import { computed, nextTick, Ref, ref } from 'vue'
+import { computed, ComputedRef, nextTick, onUnmounted, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { EventItem } from '../../classes/EventItem'
 import { getIdElement } from '../../functions'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentBaseType
+  ComponentBaseType,
+  ComponentClassesType
 } from '../types'
 
-export type WindowClassesType = {
+export type WindowClassicType = ComponentClassesType & {
+  body: string
+  control: string
+}
+
+export type WindowClassicControlType = {
   [key: string]: string
   block: string
   close: string
@@ -16,8 +22,15 @@ export type WindowClassesType = {
   static: string
 }
 
+export type WindowStatusType = 'preparation' | 'open' | 'hide' | 'close'
+
 export type WindowSetupType = ComponentBaseType & {
+  classes: ComputedRef<WindowClassicType>
+  id: string
+  open: Ref<boolean>
+  status: Ref<WindowStatusType>
   toggle: (value: boolean) => void
+  on: AssociativeType<(event: MouseEvent) => void>
 }
 
 export abstract class WindowComponentAbstract extends ComponentAbstract {
@@ -29,19 +42,22 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     close: 'window-close',
     controlStatic: 'window-control-static',
     static: 'window-static'
-  } as WindowClassesType
+  } as WindowClassicControlType
 
   private readonly id: string
   private readonly open: Ref<boolean>
   private readonly persistent: Ref<boolean>
-  private event: EventItem
+  private eventStatus: EventItem
 
+  private status = ref('close') as Ref<WindowStatusType>
   private target = ref() as Ref<HTMLElement | undefined>
   private focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
-  private staticOpen = ref(false)
-  private staticHide = ref(false)
-  private staticClose = ref(false)
+  private contextmenu = false as boolean
+  private client = {
+    x: 0 as number,
+    y: 0 as number
+  }
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -49,16 +65,20 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   ) {
     super(props, context)
 
-    this.id = `w--${getIdElement()}`
+    this.id = `window--id--${getIdElement()}`
     this.open = ref(false)
     this.persistent = ref(false)
-    this.event = new EventItem<void>(document.body, async (event) => this.eventClose(event))
+    this.eventStatus = new EventItem<void>(document.body, async (event) => this.callbackStatus(event))
       .setDom(this.element)
+
+    onUnmounted(() => {
+      this.eventStatus.stop()
+    })
   }
 
   setup (): WindowSetupType {
-    const classes = this.getClasses({
-      main: {}
+    const classes = this.getClasses<WindowClassicType>({
+      control: { [this.id]: true }
     })
     const styles = this.getStyles()
 
@@ -66,19 +86,72 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       ...this.getBasic(),
       classes,
       styles,
-      toggle: (value = true as boolean) => this.toggle(value)
+      id: this.id,
+      open: this.open,
+      status: this.status,
+      toggle: (value = true as boolean) => this.toggle(value),
+      on: {
+        click: (event: MouseEvent) => this.onClick(event),
+        contextmenu: (event: MouseEvent) => this.onContextmenu(event)
+      }
     }
   }
 
-  findControl (focus?: HTMLElement): Element | undefined {
-    return document.querySelector(`[data-window-control="${focus?.dataset.window}"]`) || undefined
+  private async callbackStatus (event?: Event): Promise<void> {
+    if (this.open.value) {
+      await this.verification(event?.target as HTMLElement)
+    } else {
+      this.eventStatus.stop()
+    }
+  }
+
+  private async emitStatus () {
+    const toOpen = !this.open.value
+
+    if (
+      !this.props.beforeOpening ||
+      await this.props.beforeOpening(toOpen)
+    ) {
+      if (toOpen) {
+        this.setStatus('preparation')
+        this.open.value = toOpen
+
+        await nextTick()
+        // watchPosition()
+
+        requestAnimationFrame(() => {
+          this.setStatus('open')
+          this.eventStatus.go()
+          // emitOpening(toOpen)
+        })
+      } else {
+        this.setStatus('hide')
+        this.eventStatus.stop()
+        // emitOpening(toOpen)
+
+        // if (props.light) {
+        // open.value = false
+        // }
+      }
+
+      /*
+      context.emit('on-open', {
+        modal,
+        open: toOpen
+      })
+      */
+    }
+  }
+
+  private findControl (focus?: HTMLElement): Element | undefined {
+    return document.querySelector(`.${this.getControlName()}.${focus?.dataset.window}`) || undefined
   }
 
   private getControlName (): string {
     return this.getItem().getClassName(['control'])
   }
 
-  private getStatus (name: keyof WindowClassesType): string {
+  private getStatus (name: keyof WindowClassicControlType): string {
     return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
   }
 
@@ -118,63 +191,19 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       !this.findControl(this.focus.value)?.closest(this.selectorIsStatus('block'))
   }
 
-  private selectorIsStatus (name: keyof WindowClassesType) {
+  private selectorIsStatus (name: keyof WindowClassicControlType) {
     return `.${this.id} .${this.getStatus(name)}`
   }
 
-  async emit () {
-    const toOpen = !this.open.value
+  private setStatus (value: WindowStatusType): this {
+    this.status.value = value
 
-    if (!this.props.beforeOpening || await this.props.beforeOpening(toOpen)) {
-      if (toOpen) {
-        this.staticHide.value = false
-        this.open.value = toOpen
-
-        await nextTick()
-        // watchPosition()
-
-        requestAnimationFrame(() => {
-          this.staticOpen.value = true
-
-          this.event.go()
-          // emitOpening(toOpen)
-        })
-      } else {
-        this.staticHide.value = true
-        this.staticOpen.value = false
-
-        this.event.stop()
-        // emitOpening(toOpen)
-
-        // if (props.light) {
-        // open.value = false
-        // }
-      }
-
-      /*
-      context.emit('on-open', {
-        modal,
-        open: toOpen
-      })
-      */
-    }
-  }
-
-  async eventClose (event?: Event): Promise<void> {
-    if (event && this.open.value) {
-      await this.verification(event.target as HTMLElement)
-    } else {
-      this.event.stop()
-    }
-  }
-
-  private getWindowConstructor () {
-    return this.constructor as typeof WindowComponentAbstract
+    return this
   }
 
   async toggle (value = true as boolean) {
     if (this.open.value !== value) {
-      await this.emit()
+      await this.emitStatus()
     }
   }
 
@@ -183,30 +212,54 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
     if (this.open.value) {
       if (this.focus.value === null) {
-        await this.emit()
+        console.log('verification', 'null')
+        await this.emitStatus()
       } else if (!this.ifElementIsFocus()) {
+        console.log('verification', 'ifElementIsFocus')
         if (this.ifNotBlock()) {
+          console.log('verification', 'ifNotBlock')
           if (this.ifChildren()) {
+            console.log('verification', 'ifChildren')
             requestAnimationFrame(async () => {
               if (!this.focus.value?.classList.contains('is-show')) {
-                await this.emit()
+                console.log('verification', 'show')
+                await this.emitStatus()
               }
             })
           } else {
-            await this.emit()
+            console.log('verification', 'not ifChildren')
+            await this.emitStatus()
           }
         }
       } else if (this.ifElementIsTarget()) {
+        console.log('verification', 'ifElementIsTarget')
         if (this.props.persistent) {
           this.persistent.value = true
         } else {
-          await this.emit()
+          await this.emitStatus()
         }
       } else if (this.ifClose() || this.ifAutoClose()) {
-        await this.emit()
+        console.log('verification', 'ifClose')
+        await this.emitStatus()
       }
     } else if (this.ifDisabled()) {
-      await this.emit()
+      console.log('verification', 'ifDisabled')
+      await this.emitStatus()
     }
+  }
+
+  async onClick (event: MouseEvent) {
+    this.client.x = event.clientX
+    this.client.y = event.clientY
+
+    await this.verification(event.target as HTMLElement)
+  }
+
+  async onContextmenu (event: MouseEvent) {
+    event.preventDefault()
+    event.stopPropagation()
+
+    this.contextmenu = true
+    await this.onClick(event)
   }
 }

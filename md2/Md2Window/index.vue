@@ -1,7 +1,23 @@
 <template>
-  <div :class="classes.main">
-    <slot/>
-  </div>
+  <slot
+    name="control"
+    :classes="classes.control"
+    :open="open"
+    :toggle="toggle"
+    :on="on"
+  />
+  <teleport to="body">
+    <div
+      v-if="open"
+      :class="classes.main"
+      :data-window="id"
+      :data-status="status"
+    >
+      <div :class="classes.body">
+        asd
+      </div>
+    </div>
+  </teleport>
 </template>
 
 <script lang="ts">
