@@ -1,0 +1,53 @@
+{
+  "d": {
+    "scroll": {
+      "var|sys": {
+        "var|background": "transparent",
+        "var|border": "1px",
+        "var|rounded": "0px",
+        "var|size": "8px",
+        "var|track": {
+          "var|background": "",
+          "var|opacity": "",
+          "var|hover": {
+            "var|opacity": ""
+          }
+        }
+      },
+      "var|l": {
+        "var|track": {
+          "var|opacity": "{??sys.track.opacity}"
+        }
+      },
+      "-webkit-overflow-scrolling": "touch",
+      "overflow-x": "hidden",
+      "overflow-y": "auto",
+      "position": "relative",
+      ":not(.is-disabled)": {
+        "scrollbar-color": "rgba({??sys.track.background}, {??sys.track.opacity}) {??sys.background}",
+        "scrollbar-width": "thin",
+        "::-webkit-scrollbar": {
+          "appearance": "none",
+          "height": "{??sys.size}",
+          "width": "{??sys.size}"
+        },
+        "::-webkit-scrollbar-track": {
+          "background": "{??sys.background}"
+        },
+        "::-webkit-scrollbar-thumb": {
+          "background-color": "{??sys.track.background}",
+          "background-opacity": "{??sys.track.opacity}",
+          "border": "transparent solid {??sys.border}",
+          "border-radius": "{??sys.rounded}"
+        },
+        ":hover": {
+          "var|l": {
+            "track": {
+              "opacity": "{??sys.track.hover.opacity}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
