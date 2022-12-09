@@ -1,11 +1,12 @@
+import { computed, ComputedRef, Ref, ref, watchEffect } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { EventItem } from '../../classes/EventItem'
+import { createElement } from '../../functions'
 import { props } from './props'
 import {
   AssociativeType,
   ComponentBaseType
 } from '../types'
-import { createElement } from '../../functions'
-import { computed, ComputedRef, Ref, ref } from 'vue'
 
 export type ScrollbarSetupType = ComponentBaseType
 
@@ -18,6 +19,10 @@ export abstract class ScrollbarComponentAbstract extends ComponentAbstract {
   static disabled = computed(() => this.width.value < 8) as ComputedRef<boolean>
   static calculate = false as boolean
 
+  private eventBorder?: EventItem
+  private borderTop = ref(false) as Ref<boolean>
+  private borderBottom = ref(false) as Ref<boolean>
+
   constructor (
     protected readonly props: AssociativeType & object,
     protected readonly context: AssociativeType & object
@@ -25,11 +30,15 @@ export abstract class ScrollbarComponentAbstract extends ComponentAbstract {
     super(props, context)
 
     this.getConstructor<typeof ScrollbarComponentAbstract>().think()
+
+    watchEffect(() => this.initBorder())
   }
 
   setup (): ScrollbarSetupType {
     const classes = this.getClasses({
       main: {
+        'is-bottom': this.borderBottom,
+        'is-top': this.borderTop,
         'is-disabled': this.getConstructor<typeof ScrollbarComponentAbstract>().disabled
       }
     })
@@ -39,6 +48,51 @@ export abstract class ScrollbarComponentAbstract extends ComponentAbstract {
       ...this.getBasic(),
       classes,
       styles
+    }
+  }
+
+  private initBorder (): this {
+    console.log('initBorder', this.element.value)
+
+    if (this.element.value) {
+      if (this.refs.border.value) {
+        this.borderGo()
+      } else {
+        this.borderStop()
+      }
+    }
+
+    return this
+  }
+
+  private borderGo (): this {
+    if (this.eventBorder) {
+      this.eventBorder.go()
+    } else {
+      this.eventBorder = new EventItem<any, Event>(this.element as Ref<HTMLElement>, () => this.setBorderPositions())
+        .setType(['scroll'])
+        .go()
+
+      this.setBorderPositions()
+    }
+
+    return this
+  }
+
+  private borderStop (): this {
+    if (this.eventBorder) {
+      this.eventBorder.stop()
+    }
+
+    return this
+  }
+
+  private setBorderPositions () {
+    const element = this.element.value
+
+    if (element) {
+      this.borderTop.value = element.scrollTop > 8
+      this.borderBottom.value = element.scrollTop < element.scrollHeight - element.clientHeight - 8
     }
   }
 

@@ -35,16 +35,13 @@
       "position": "relative",
       "section|border": {
         "border-bottom-color": "rgba({??sys.border.color}, {??l.border.opacity.bottom})",
+        "border-bottom-width": "{??sys.border.width}",
         "border-top-color": "rgba({??sys.border.color}, {??l.border.opacity.top})",
-        "border-width": "{??sys.border.width}",
+        "border-top-width": "{??sys.border.width}",
         "transition": "border-color",
         "transition-duration": "{d.sys.transitionDuration.fade.through}"
       },
-      "section|inverse": {
-        "border-bottom-color": "rgba({??sys.border.color}, {??l.border.opacity.top})",
-        "border-top-color": "rgba({??sys.border.color}, {??l.border.opacity.bottom})"
-      },
-      "section|bottom": {
+      "&.isBottom": {
         "var|l": {
           "border": {
             "opacity": {
@@ -53,11 +50,43 @@
           }
         }
       },
-      "section|top": {
+      "&.isTop": {
         "var|l": {
           "border": {
             "opacity": {
               "top": "{??sys.border.opacity}"
+            }
+          }
+        }
+      },
+      "section|inverse": {
+        "&.isBottom": {
+          "var|l": {
+            "border": {
+              "opacity": {
+                "bottom": "0",
+                "top": "{??sys.border.opacity}"
+              }
+            }
+          }
+        },
+        "&.isTop": {
+          "var|l": {
+            "border": {
+              "opacity": {
+                "bottom": "{??sys.border.opacity}",
+                "top": "0"
+              }
+            }
+          }
+        },
+        "&.isBottom.isTop": {
+          "var|l": {
+            "border": {
+              "opacity": {
+                "bottom": "0",
+                "top": "0"
+              }
             }
           }
         }

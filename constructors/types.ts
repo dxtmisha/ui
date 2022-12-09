@@ -51,7 +51,7 @@ export type ComponentStylesType = {
 }
 
 export type ComponentBaseType = {
-  element: Ref<HTMLElement | undefined>
+  element: Ref<RefOrElementType | undefined>
   name: string
   design: string
   className: string
