@@ -1,0 +1,96 @@
+{
+  "d": {
+    "scrollbar": {
+      "var|sys": {
+        "background": "transparent",
+        "border": {
+          "color": "",
+          "opacity": "",
+          "width": "1px"
+        },
+        "rounded": "0px",
+        "size": "8px",
+        "thumb": {
+          "background": "",
+          "opacity": "",
+          "hover": {
+            "opacity": ""
+          }
+        }
+      },
+      "var|l": {
+        "border": {
+          "opacity": {
+            "bottom": "0",
+            "top": "0"
+          }
+        },
+        "thumb": {
+          "opacity": "{??sys.thumb.opacity}"
+        }
+      },
+      "-webkit-overflow-scrolling": "touch",
+      "overflow-x": "hidden",
+      "overflow-y": "auto",
+      "position": "relative",
+      "section|border": {
+        "border-bottom-color": "rgba({??sys.border.color}, {??l.border.opacity.bottom})",
+        "border-top-color": "rgba({??sys.border.color}, {??l.border.opacity.top})",
+        "border-width": "{??sys.border.width}",
+        "transition": "border-color",
+        "transition-duration": "{d.sys.transitionDuration.fade.through}"
+      },
+      "section|inverse": {
+        "border-bottom-color": "rgba({??sys.border.color}, {??l.border.opacity.top})",
+        "border-top-color": "rgba({??sys.border.color}, {??l.border.opacity.bottom})"
+      },
+      "section|bottom": {
+        "var|l": {
+          "border": {
+            "opacity": {
+              "bottom": "{??sys.border.opacity}"
+            }
+          }
+        }
+      },
+      "section|top": {
+        "var|l": {
+          "border": {
+            "opacity": {
+              "top": "{??sys.border.opacity}"
+            }
+          }
+        }
+      },
+      "section|visible": {
+        "overflow-x": "visible",
+        "overflow-y": "visible"
+      },
+      ":not(.is-disabled)": {
+        "scrollbar-color": "rgba({??sys.thumb.background}, {??l.thumb.opacity}) {??sys.background}",
+        "scrollbar-width": "thin",
+        "::-webkit-scrollbar": {
+          "appearance": "none",
+          "height": "{??sys.size}",
+          "width": "{??sys.size}"
+        },
+        "::-webkit-scrollbar-thumb": {
+          "background-color": "{??sys.thumb.background}",
+          "background-opacity": "{??l.thumb.opacity}",
+          "border": "transparent solid {??sys.border.width}",
+          "border-radius": "{??sys.rounded}"
+        },
+        "::-webkit-scrollbar-track": {
+          "background": "{??sys.background}"
+        }
+      },
+      ":hover": {
+        "var|l": {
+          "thumb": {
+            "opacity": "{??sys.thumb.hover.opacity}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -59,8 +59,8 @@ export abstract class ComponentAbstract {
     onUpdated(() => console.log(`onUpdated: ${this.getConstructor().code}`))
   }
 
-  protected getConstructor () {
-    return this.constructor as typeof ComponentAbstract
+  protected getConstructor<T = typeof ComponentAbstract> () {
+    return this.constructor as T
   }
 
   protected getItem (): ComponentItem {
