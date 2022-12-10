@@ -6,7 +6,7 @@
         "index": "9999",
         "padding": "40px 16px",
         "shadow": "none",
-        "transformOrigin": "center",
+        "transformOrigin": "{??_client-y} {??_client-x}",
         "scrim": {
           "background": "0,0,0",
           "opacity": "0.32"
@@ -72,6 +72,8 @@
           "opacity": "{??sys.close.scrim.opacity}"
         }
       },
+      "var|_client-x": "center",
+      "var|_client-y": "center",
       "var|_height": "512px",
       "var|_rounded": "0px",
       "var|_width": "512px",
@@ -99,13 +101,18 @@
       "will-change": "=background-color, left, top, contents",
       "z-index": "{??sys.index}",
       "section|animationOrigin": {
+        "auto": {
+          "--": "none"
+        },
         "bottom": {
           "var|sys": {
             "transformOrigin": "bottom center"
           }
         },
         "center": {
-          "--": "none"
+          "var|sys": {
+            "transformOrigin": "center"
+          }
         },
         "left": {
           "var|sys": {

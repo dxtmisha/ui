@@ -30,6 +30,8 @@ export type WindowSetupType = ComponentBaseType & {
   id: string
   open: Ref<boolean>
   status: Ref<WindowStatusType>
+  clientX: Ref<number>
+  clientY: Ref<number>
   ifOpen: ComputedRef<boolean>
   toggle: (value: boolean) => void
   on: AssociativeType<(event: MouseEvent) => void>
@@ -58,10 +60,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
-  private client = {
-    x: 0 as number,
-    y: 0 as number
-  }
+  private clientX = ref(0) as Ref<number>
+  private clientY = ref(0) as Ref<number>
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -97,6 +97,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       id: this.id,
       open: this.open,
       status: this.status,
+      clientX: this.clientX,
+      clientY: this.clientY,
       ifOpen: this.ifOpen,
       toggle: (value = true as boolean) => this.toggle(value),
       on: {
@@ -174,8 +176,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private async go (event: MouseEvent): Promise<void> {
-    this.client.x = event.clientX
-    this.client.y = event.clientY
+    this.clientX.value = event.clientX
+    this.clientY.value = event.clientY
 
     await this.verification(event.target as HTMLElement)
   }

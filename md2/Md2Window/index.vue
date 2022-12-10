@@ -11,9 +11,10 @@
       v-if="ifOpen"
       ref="element"
       :class="classes.main"
-      :style="styles.main"
       :data-status="status"
       :data-window="id"
+      :style="styles.main"
+      v-bind="$attrs"
       @animationend="onAnimation"
       @transitionend="onTransition"
     >
@@ -47,5 +48,9 @@ export default {
 <style lang="scss">
 @import '../../constructors/Window/style';
 
-@include initWindow('md2');
+@include initWindow(
+    'md2',
+    v-bind(clientX),
+    v-bind(clientY)
+);
 </style>
