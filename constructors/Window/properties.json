@@ -3,12 +3,10 @@
     "window": {
       "var|sys": {
         "background": "255,255,255",
-        "height": "600px",
         "index": "9999",
         "padding": "40px 16px",
         "shadow": "none",
         "transformOrigin": "center",
-        "width": "800px",
         "scrim": {
           "background": "0,0,0",
           "opacity": "0.32"
@@ -74,7 +72,20 @@
           "opacity": "{??sys.close.scrim.opacity}"
         }
       },
+      "var|_height": "512px",
       "var|_rounded": "0px",
+      "var|_width": "512px",
+      "animate|persistent-active": {
+        "0%": {
+          "transform": "scale(1)"
+        },
+        "50%": {
+          "transform": "scale(1.02)"
+        },
+        "100%": {
+          "transform": "scale(1)"
+        }
+      },
       "align-items": "center",
       "background-color": "{??sys.scrim.background}",
       "background-opacity": "{??l.scrim.opacity}",
@@ -87,6 +98,25 @@
       "transition": "{??l.transition}",
       "will-change": "=background-color, left, top, contents",
       "z-index": "{??sys.index}",
+      "section|height": {
+        "auto": {
+          "var|height": "auto"
+        },
+        "full": {
+          "var|height": "100%"
+        }
+      },
+      "section|width": {
+        "auto": {
+          "var|width": "auto",
+          "& .??__body": {
+            "width": "auto"
+          }
+        },
+        "full": {
+          "var|width": "100%"
+        }
+      },
       "#body": {
         "background": "{??sys.background}",
         "border-radius": "{??_rounded}",
@@ -94,8 +124,8 @@
         "display": "flex",
         "flex-flow": "column",
         "flex-shrink": "1",
-        "max-height": "{??sys.height}",
-        "max-width": "{??sys.width}",
+        "max-height": "{??_height}",
+        "max-width": "{??_width}",
         "opacity": "{??l.body.opacity}",
         "overflow-y": "auto",
         "transform": "{??l.body.transform}",
@@ -148,6 +178,13 @@
           "scrim": {
             "opacity": "{??sys.hide.scrim.opacity}"
           }
+        }
+      },
+      "&.isPersistent": {
+        "& .??__body": {
+          "animation-duration": "{d.sys.transitionDuration.fade.through}",
+          "animation-name": "??--persistent-active",
+          "animation-timing-function": "{d.sys.transitionFunction.standard}"
         }
       }
     }

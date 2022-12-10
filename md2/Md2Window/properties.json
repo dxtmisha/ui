@@ -32,6 +32,30 @@
           "var|rounded": "{sys.rounded.xl}"
         },
         "default": "standard"
+      },
+      "section|height": {
+        "sm": {
+          "var|height": "{ref.spacing.px} * 256"
+        },
+        "md": {
+          "var|height": "{ref.spacing.px} * 512"
+        },
+        "lg": {
+          "var|height": "{ref.spacing.px} * 768"
+        },
+        "default": "md"
+      },
+      "section|width": {
+        "sm": {
+          "var|width": "{ref.spacing.px} * 512"
+        },
+        "md": {
+          "var|width": "{ref.spacing.px} * 768"
+        },
+        "lg": {
+          "var|width": "{ref.spacing.px} * 1024"
+        },
+        "default": "md"
       }
     }
   }

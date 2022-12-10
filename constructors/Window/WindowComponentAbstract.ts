@@ -30,8 +30,10 @@ export type WindowSetupType = ComponentBaseType & {
   id: string
   open: Ref<boolean>
   status: Ref<WindowStatusType>
+  ifOpen: ComputedRef<boolean>
   toggle: (value: boolean) => void
   on: AssociativeType<(event: MouseEvent) => void>
+  onAnimation: () => void
   onTransition: () => void
 }
 
@@ -51,9 +53,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private readonly persistent: Ref<boolean>
   private eventStatus: EventItem
 
-  private status = ref('close') as Ref<WindowStatusType>
-  private target = ref() as Ref<HTMLElement | undefined>
-  private focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
+  private readonly openFirst = ref(false) as Ref<boolean>
+  private readonly status = ref('close') as Ref<WindowStatusType>
+  private readonly target = ref() as Ref<HTMLElement | undefined>
+  private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
   private contextmenu = false as boolean
   private client = {
@@ -80,6 +83,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
   setup (): WindowSetupType {
     const classes = this.getClasses<WindowClassicType>({
+      main: { 'is-persistent': this.persistent },
       control: { [this.id]: true }
     })
     const styles = this.getStyles()
@@ -91,14 +95,18 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       id: this.id,
       open: this.open,
       status: this.status,
+      ifOpen: this.ifOpen,
       toggle: (value = true as boolean) => this.toggle(value),
       on: {
         click: (event: MouseEvent) => this.onClick(event),
         contextmenu: (event: MouseEvent) => this.onContextmenu(event)
       },
+      onAnimation: () => this.onAnimation(),
       onTransition: () => this.onTransition()
     }
   }
+
+  private readonly ifOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
 
   private async callbackStatus (event?: Event): Promise<void> {
     if (this.open.value) {
@@ -118,6 +126,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       if (toOpen) {
         this.setStatus('preparation')
         this.open.value = toOpen
+        this.openFirst.value = toOpen
 
         await nextTick()
         // watchPosition()
@@ -264,6 +273,12 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
     this.contextmenu = true
     await this.onClick(event)
+  }
+
+  private onAnimation (): void {
+    if (this.persistent.value) {
+      this.persistent.value = false
+    }
   }
 
   private onTransition (): void {
