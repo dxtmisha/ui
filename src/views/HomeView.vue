@@ -112,13 +112,41 @@
       <template v-slot:control="binds">
         <md2-button text="window" :class="binds.classes" v-on="binds.on"/>
       </template>
-      <template v-slot:default>{{ text }}</template>
+      <template v-slot:default>
+        <md2-window :auto-close="false">
+          <template v-slot:control="binds">
+            <md2-button class="window-static" text="auto-close 2" :class="binds.classes" v-on="binds.on"/>
+          </template>
+          <template v-slot:default>{{ text }}</template>
+        </md2-window>
+        <md2-window>
+          <template v-slot:control="binds">
+            <md2-button class="window-static" text="norm" :class="binds.classes" v-on="binds.on"/>
+          </template>
+          <template v-slot:default>{{ text }}</template>
+        </md2-window>
+        {{ text }}
+      </template>
     </md2-window>
     <md2-window :auto-close="false">
       <template v-slot:control="binds">
         <md2-button text="auto-close" :class="binds.classes" v-on="binds.on"/>
       </template>
-      <template v-slot:default>{{ text }}</template>
+      <template v-slot:default>
+        <md2-window :auto-close="false">
+          <template v-slot:control="binds">
+            <md2-button text="auto-close 2" :class="binds.classes" v-on="binds.on"/>
+          </template>
+          <template v-slot:default>{{ text }}</template>
+        </md2-window>
+        <md2-window>
+          <template v-slot:control="binds">
+            <md2-button text="norm" :class="binds.classes" v-on="binds.on"/>
+          </template>
+          <template v-slot:default>{{ text }}</template>
+        </md2-window>
+        {{ text }}
+      </template>
     </md2-window>
     <md2-window :in-dom="true">
       <template v-slot:control="binds">

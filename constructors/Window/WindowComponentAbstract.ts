@@ -83,7 +83,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
   setup (): WindowSetupType {
     const classes = this.getClasses<WindowClassicType>({
-      main: { 'is-persistent': this.persistent },
+      main: {
+        [this.id]: true,
+        'is-persistent': this.persistent
+      },
       control: { [this.id]: true }
     })
     const styles = this.getStyles()
@@ -199,7 +202,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private ifNotBlock () {
-    return !this.getTarget().classList.contains(this.getName()) &&
+    return this.props.autoClose &&
+      !this.getTarget().classList.contains(this.getName()) &&
       !this.findControl(this.focus.value)?.closest(this.selectorIsStatus('block'))
   }
 
@@ -224,38 +228,29 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
     if (this.open.value) {
       if (this.focus.value === null) {
-        console.log('verification', 'null')
         await this.emitStatus()
       } else if (!this.ifElementIsFocus()) {
-        console.log('verification', 'ifElementIsFocus')
         if (this.ifNotBlock()) {
-          console.log('verification', 'ifNotBlock')
           if (this.ifChildren()) {
-            console.log('verification', 'ifChildren')
             requestAnimationFrame(async () => {
-              if (!this.focus.value?.classList.contains('is-show')) {
-                console.log('verification', 'show')
+              if (this.focus.value?.dataset.status !== 'open') {
                 await this.emitStatus()
               }
             })
           } else {
-            console.log('verification', 'not ifChildren')
             await this.emitStatus()
           }
         }
       } else if (this.ifElementIsTarget()) {
-        console.log('verification', 'ifElementIsTarget')
         if (this.props.persistent) {
           this.persistent.value = true
         } else {
           await this.emitStatus()
         }
       } else if (this.ifClose() || this.ifAutoClose()) {
-        console.log('verification', 'ifClose')
         await this.emitStatus()
       }
     } else if (this.ifDisabled()) {
-      console.log('verification', 'ifDisabled')
       await this.emitStatus()
     }
   }

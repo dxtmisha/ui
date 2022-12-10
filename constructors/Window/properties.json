@@ -138,6 +138,9 @@
         "flex-grow": "1",
         "flex-shrink": "1"
       },
+      "#control": {
+        "--": "none"
+      },
       "&[data-status='preparation']": {
         "var|l": {
           "display": "{??sys.preparation.display}",
