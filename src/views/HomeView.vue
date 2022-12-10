@@ -108,6 +108,43 @@
       </template>
     </md2-window>
   </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-window rounded="none">
+      <template v-slot:control="binds">
+        <md2-button text="none" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+    <md2-window rounded="standard">
+      <template v-slot:control="binds">
+        <md2-button text="standard" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+    <md2-window rounded="sm">
+      <template v-slot:control="binds">
+        <md2-button text="sm" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+    <md2-window rounded="md">
+      <template v-slot:control="binds">
+        <md2-button text="md" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+    <md2-window rounded="lg">
+      <template v-slot:control="binds">
+        <md2-button text="lg" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+    <md2-window rounded="xl">
+      <template v-slot:control="binds">
+        <md2-button text="xl" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+    <md2-window rounded="40px">
+      <template v-slot:control="binds">
+        <md2-button text="xl" :class="binds.classes" v-on="binds.on"/>
+      </template>
+    </md2-window>
+  </div>
   <div class="flex items-center gap-2 py-12 pl-8">
     <md2-scrollbar border style="height: 400px">
       В лицейский период Пушкин написал много стихотворных произведений. Его вдохновляли французские поэты XVII—XVIII

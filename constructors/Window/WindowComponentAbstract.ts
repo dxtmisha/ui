@@ -12,6 +12,7 @@ import {
 export type WindowClassicType = ComponentClassesType & {
   body: string
   control: string
+  context: string
 }
 
 export type WindowClassicControlType = {

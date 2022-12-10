@@ -79,6 +79,7 @@
       "background-color": "{??sys.scrim.background}",
       "background-opacity": "{??l.scrim.opacity}",
       "display": "{??l.display}",
+      "flex-flow": "column",
       "inset": "0",
       "justify-content": "center",
       "padding": "{??sys.padding}",
@@ -90,6 +91,9 @@
         "background": "{??sys.background}",
         "border-radius": "{??_rounded}",
         "box-shadow": "{??sys.shadow}",
+        "display": "flex",
+        "flex-flow": "column",
+        "flex-shrink": "1",
         "max-height": "{??sys.height}",
         "max-width": "{??sys.width}",
         "opacity": "{??l.body.opacity}",
@@ -99,6 +103,10 @@
         "transition": "{??l.body.transition}",
         "width": "100%",
         "will-change": "opacity, visibility, transform, contents"
+      },
+      "#context": {
+        "flex-grow": "1",
+        "flex-shrink": "1"
       },
       "&[data-status='preparation']": {
         "var|l": {

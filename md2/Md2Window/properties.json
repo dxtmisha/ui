@@ -11,6 +11,27 @@
           "background": "{sys.palette.onBackground}",
           "opacity": "{sys.opacity.scrim}"
         }
+      },
+      "section|rounded": {
+        "none": {
+          "var|rounded": "{sys.rounded.none}"
+        },
+        "standard": {
+          "var|rounded": "{sys.rounded.standard}"
+        },
+        "sm": {
+          "var|rounded": "{sys.rounded.sm}"
+        },
+        "md": {
+          "var|rounded": "{sys.rounded.md}"
+        },
+        "lg": {
+          "var|rounded": "{sys.rounded.lg}"
+        },
+        "xl": {
+          "var|rounded": "{sys.rounded.xl}"
+        },
+        "default": "standard"
       }
     }
   }

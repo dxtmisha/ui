@@ -102,6 +102,7 @@ export class ComponentItem {
           data[name] = {
             index,
             className,
+            classStyle: className.replace(CLASS_VAL, '-'),
             classValue: `${className}${CLASS_VAL}`,
             values
           }

@@ -102,7 +102,7 @@ export abstract class ComponentAbstract {
         typeof this.props[name] !== 'boolean' &&
         item?.values?.indexOf(this.props[name]) === -1
       ) {
-        main[`--${item.className}`] = this.props[name]
+        main[`--${item.classStyle}`] = this.props[name]
       }
     })
 

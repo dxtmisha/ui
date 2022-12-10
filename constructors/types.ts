@@ -40,6 +40,7 @@ export type ComponentPropOptionsType<T = any, D = T> = {
 export type ComponentPropertyType = {
   index: string
   className: string
+  classStyle: string
   classValue: string
   values?: string[]
 }

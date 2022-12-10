@@ -52,8 +52,6 @@ export abstract class ScrollbarComponentAbstract extends ComponentAbstract {
   }
 
   private initBorder (): this {
-    console.log('initBorder', this.element.value)
-
     if (this.element.value) {
       if (this.refs.border.value) {
         this.borderGo()
