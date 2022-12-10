@@ -98,6 +98,31 @@
       "transition": "{??l.transition}",
       "will-change": "=background-color, left, top, contents",
       "z-index": "{??sys.index}",
+      "section|animationOrigin": {
+        "bottom": {
+          "var|sys": {
+            "transformOrigin": "bottom center"
+          }
+        },
+        "center": {
+          "--": "none"
+        },
+        "left": {
+          "var|sys": {
+            "transformOrigin": "center left"
+          }
+        },
+        "right": {
+          "var|sys": {
+            "transformOrigin": "center right"
+          }
+        },
+        "top": {
+          "var|sys": {
+            "transformOrigin": "top center"
+          }
+        }
+      },
       "section|height": {
         "auto": {
           "var|height": "auto"

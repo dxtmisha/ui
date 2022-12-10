@@ -2,18 +2,21 @@ export const props = {
   // Values
   beforeOpening: Function,
   opening: Function,
+  contextmenu: Boolean,
 
   // Status
   disabled: Boolean,
 
   // Options
+  animationOrigin: String,
   adaptive: String,
   autoClose: Boolean,
   axis: String,
+  height: [Number, String],
   indent: Number,
   inDom: Number,
+  rounded: String,
   persistent: Boolean,
-  shape: String,
   width: [Number, String]
 }
 

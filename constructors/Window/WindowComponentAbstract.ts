@@ -58,7 +58,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
-  private contextmenu = false as boolean
   private client = {
     x: 0 as number,
     y: 0 as number
@@ -174,6 +173,13 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return (this.target.value || this.element.value || document.body) as R
   }
 
+  private async go (event: MouseEvent): Promise<void> {
+    this.client.x = event.clientX
+    this.client.y = event.clientY
+
+    await this.verification(event.target as HTMLElement)
+  }
+
   private ifAutoClose (): boolean {
     return this.props.autoClose &&
       !this.getTarget().closest(`${this.selectorIsStatus('static')}, .${this.id} .${this.getControlName()}`)
@@ -256,18 +262,18 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private async onClick (event: MouseEvent) {
-    this.client.x = event.clientX
-    this.client.y = event.clientY
-
-    await this.verification(event.target as HTMLElement)
+    if (!this.props.contextmenu) {
+      await this.go(event)
+    }
   }
 
   private async onContextmenu (event: MouseEvent) {
-    event.preventDefault()
-    event.stopPropagation()
+    if (this.props.contextmenu) {
+      event.preventDefault()
+      event.stopPropagation()
 
-    this.contextmenu = true
-    await this.onClick(event)
+      await this.go(event)
+    }
   }
 
   private onAnimation (): void {

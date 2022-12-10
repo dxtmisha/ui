@@ -305,6 +305,38 @@
       <template v-slot:default>{{ text }}</template>
     </md2-window>
   </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-window animation-origin="bottom">
+      <template v-slot:control="binds">
+        <md2-button text="bottom" :class="binds.classes" v-on="binds.on"/>
+      </template>
+      <template v-slot:default>{{ text }}</template>
+    </md2-window>
+    <md2-window animation-origin="center">
+      <template v-slot:control="binds">
+        <md2-button text="center" :class="binds.classes" v-on="binds.on"/>
+      </template>
+      <template v-slot:default>{{ text }}</template>
+    </md2-window>
+    <md2-window animation-origin="left">
+      <template v-slot:control="binds">
+        <md2-button text="left" :class="binds.classes" v-on="binds.on"/>
+      </template>
+      <template v-slot:default>{{ text }}</template>
+    </md2-window>
+    <md2-window animation-origin="right">
+      <template v-slot:control="binds">
+        <md2-button text="right" :class="binds.classes" v-on="binds.on"/>
+      </template>
+      <template v-slot:default>{{ text }}</template>
+    </md2-window>
+    <md2-window animation-origin="top">
+      <template v-slot:control="binds">
+        <md2-button text="top" :class="binds.classes" v-on="binds.on"/>
+      </template>
+      <template v-slot:default>{{ text }}</template>
+    </md2-window>
+  </div>
   <div class="flex items-center gap-2 py-12 pl-8">
     <md2-scrollbar border style="height: 400px">
       В лицейский период Пушкин написал много стихотворных произведений. Его вдохновляли французские поэты XVII—XVIII

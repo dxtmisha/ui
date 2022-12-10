@@ -1,5 +1,6 @@
 import { PropType } from 'vue'
 import { ComponentDesign } from '../../classes/ComponentDesign'
+import { WindowAnimationOriginType } from '../../constructors/Window/props.type'
 import {
   Md2WindowAdaptiveType,
   Md2WindowAxisType,
@@ -13,11 +14,17 @@ export const props = {
   // Values
   beforeOpening: Function,
   opening: Function,
+  contextmenu: Boolean,
 
   // Status
   disabled: Boolean,
 
   // Options
+  animationOrigin: {
+    type: String as PropType<WindowAnimationOriginType>,
+    default: defaultItem.defaultValue('animationOrigin'),
+    validator: defaultItem.validator('animationOrigin')
+  },
   adaptive: {
     type: String as PropType<Md2WindowAdaptiveType>,
     default: defaultItem.defaultValue('adaptive'),
