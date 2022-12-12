@@ -4,7 +4,6 @@ import { WindowAnimationOriginType, WindowAlignmentType } from '../../constructo
 import {
   Md2WindowAdaptiveType,
   Md2WindowAxisType,
-  Md2WindowIndentType,
   Md2WindowRoundedType,
   Md2WindowWidthType
 } from './props.type'
@@ -48,7 +47,7 @@ export const props = {
     default: defaultItem.defaultValue('height')
   },
   indent: {
-    type: [Number, String] as PropType<Md2WindowIndentType>,
+    type: Number,
     default: defaultItem.defaultValue('indent', 4)
   },
   inDom: Boolean,

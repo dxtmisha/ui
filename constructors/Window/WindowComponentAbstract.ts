@@ -37,6 +37,13 @@ export type WindowCoordinatesType = {
   height: number
 }
 
+export type WindowEmitType = {
+  open: boolean,
+  element: HTMLElement | undefined
+  control: HTMLElement | undefined
+  id: string
+}
+
 export type WindowStatusType = 'preparation' | 'open' | 'hide' | 'close'
 
 export type WindowSetupType = ComponentBaseType & {
@@ -153,12 +160,23 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private readonly styleInsetX = computed(() => `${this.positionX.value}px`) as ComputedRef<string>
   private readonly styleInsetY = computed(() => `${this.positionY.value}px`) as ComputedRef<string>
 
+  private callbackOpening () {
+    if (this.props.opening) {
+      this.props.opening(this.open.value)
+    }
+  }
+
   private async callbackStatus (event?: Event): Promise<void> {
     if (this.open.value) {
       await this.verification(event?.target as HTMLElement)
     } else {
       this.eventStatus.stop()
     }
+  }
+
+  private emitWindow (options: WindowEmitType) {
+    this.context.emit('on-window', options)
+    this.context.emit(options.open ? 'on-open' : 'on-close', options)
   }
 
   private async emitStatus () {
@@ -179,24 +197,19 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
         requestAnimationFrame(() => {
           this.setStatus('open')
           this.eventStatus.go()
-          // emitOpening(toOpen)
+          this.callbackOpening()
         })
       } else {
         this.setStatus('hide')
         this.eventStatus.stop()
-        // emitOpening(toOpen)
-
-        // if (props.light) {
-        // open.value = false
-        // }
       }
 
-      /*
-      context.emit('on-open', {
-        modal,
-        open: toOpen
+      this.emitWindow({
+        open: toOpen,
+        element: this.element.value,
+        control: this.selectorControl(),
+        id: this.id
       })
-      */
     }
   }
 
@@ -274,8 +287,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return this
   }
 
-  private selectorControl (): Element | undefined {
-    return document.querySelector(`.${this.getControlName()}.${this.id}`) || undefined
+  private selectorControl (): HTMLElement | undefined {
+    return document.querySelector<HTMLElement>(`.${this.getControlName()}.${this.id}`) || undefined
   }
 
   private selectorBody (): Element | undefined {
@@ -479,6 +492,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     if (this.status.value === 'hide') {
       this.open.value = false
       this.setStatus('close')
+      this.callbackOpening()
     }
   }
 

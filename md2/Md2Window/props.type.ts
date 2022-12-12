@@ -10,25 +10,19 @@ export type Md2WindowAxisType =
   'x' |
   'y'
 
-export type Md2WindowIndentType =
-  'none' |
-  'on' |
-  'sm' |
-  'md' |
-  'lg' |
-  'xl'
-
 export type Md2WindowRoundedType =
   'none' |
   'standard' |
   'sm' |
   'md' |
   'lg' |
-  'xl'
+  'xl' |
+  string
 
 export type Md2WindowWidthType =
   'auto' |
   'sm' |
   'md' |
   'lg' |
-  'full'
+  'full' |
+  string
