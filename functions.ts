@@ -14,6 +14,7 @@ export const {
 
 export const {
   createElement,
+  frame,
   getIdElement
 } = element
 

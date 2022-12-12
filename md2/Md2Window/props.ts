@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
 import { ComponentDesign } from '../../classes/ComponentDesign'
-import { WindowAnimationOriginType } from '../../constructors/Window/props.type'
+import { WindowAnimationOriginType, WindowAlignmentType } from '../../constructors/Window/props.type'
 import {
   Md2WindowAdaptiveType,
   Md2WindowAxisType,
@@ -20,6 +20,11 @@ export const props = {
   disabled: Boolean,
 
   // Options
+  alignment: {
+    type: String as PropType<WindowAlignmentType>,
+    default: defaultItem.defaultValue('alignment'),
+    validator: defaultItem.validator('alignment')
+  },
   animationOrigin: {
     type: String as PropType<WindowAnimationOriginType>,
     default: defaultItem.defaultValue('animationOrigin'),

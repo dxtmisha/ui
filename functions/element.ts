@@ -23,6 +23,22 @@ export function createElement (
   return element
 }
 
+export function frame (
+  callback: () => void,
+  next = (() => false) as () => boolean,
+  end?: () => void
+) {
+  requestAnimationFrame(() => {
+    callback()
+
+    if (next()) {
+      frame(callback, next, end)
+    } else if (end) {
+      end()
+    }
+  })
+}
+
 let ids = 1
 
 export function getIdElement (element?: HTMLElement, selector?: string): string {
@@ -39,5 +55,6 @@ export function getIdElement (element?: HTMLElement, selector?: string): string 
 
 export default {
   createElement,
+  frame,
   getIdElement
 }

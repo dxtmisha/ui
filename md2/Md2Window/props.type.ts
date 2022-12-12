@@ -4,9 +4,7 @@ export type Md2WindowAdaptiveType =
   'lg' |
   'xl' |
   'menu' |
-  'modal' |
-  'modal-left' |
-  'modal-right'
+  'modal'
 
 export type Md2WindowAxisType =
   'x' |

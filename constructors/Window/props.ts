@@ -8,6 +8,7 @@ export const props = {
   disabled: Boolean,
 
   // Options
+  alignment: String,
   animationOrigin: String,
   adaptive: String,
   autoClose: Boolean,

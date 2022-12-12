@@ -22,6 +22,28 @@
           "width": "{ref.spacing.px} * 768"
         }
       },
+      "section|adaptive": {
+        "sm": {
+          "media|{ref.screen.sm}": {
+            "@style": "{??m.menu}"
+          }
+        },
+        "md": {
+          "media|{ref.screen.md}": {
+            "@style": "{??m.menu}"
+          }
+        },
+        "lg": {
+          "media|{ref.screen.lg}": {
+            "@style": "{??m.menu}"
+          }
+        },
+        "xl": {
+          "media|{ref.screen.xl}": {
+            "@style": "{??m.menu}"
+          }
+        }
+      },
       "section|rounded": {
         "none": {
           "var|rounded": "{sys.rounded.none}"

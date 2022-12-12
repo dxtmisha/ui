@@ -6,6 +6,9 @@
           "var|sys": {
             "scrim": {
               "opacity": "0"
+            },
+            "preparation": {
+              "display": "block"
             }
           },
           "var|l": {
@@ -17,7 +20,6 @@
           },
           "bottom": "auto",
           "content": "'--MENU--'",
-          "display": "block",
           "left": "{??_insetX}",
           "padding": "0",
           "right": "auto",
@@ -145,6 +147,23 @@
       "transition": "{??l.transition}",
       "will-change": "=background-color, left, top, contents",
       "z-index": "{??l.index}",
+      "section|alignment": {
+        "bottom": {
+          "justify-content": "flex-end"
+        },
+        "center": {
+          "--": "none"
+        },
+        "left": {
+          "align-items": "flex-start"
+        },
+        "right": {
+          "align-items": "flex-end"
+        },
+        "top": {
+          "justify-content": "flex-start"
+        }
+      },
       "section|animationOrigin": {
         "auto": {
           "--": "none"
@@ -221,6 +240,9 @@
       "section|adaptive": {
         "section|menu": {
           "@style": "{??m.menu}"
+        },
+        "section|modal": {
+          "--": "none"
         }
       },
       "&[data-status='preparation']": {

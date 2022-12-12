@@ -1,7 +1,7 @@
 import { computed, ComputedRef, nextTick, onUnmounted, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { EventItem } from '../../classes/EventItem'
-import { getIdElement } from '../../functions'
+import { frame, getIdElement } from '../../functions'
 import { props } from './props'
 import {
   AssociativeType,
@@ -121,10 +121,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     })
     const styles = this.getStyles({
       main: {
-        [`${stylePrefix}originX`]: computed(() => this.originX.value !== null ? `${this.originX.value}px` : 'left'),
-        [`${stylePrefix}originY`]: computed(() => this.originY.value !== null ? `${this.originY.value}px` : 'top'),
-        [`${stylePrefix}insetX`]: computed(() => `${this.positionX.value}px`),
-        [`${stylePrefix}insetY`]: computed(() => `${this.positionY.value}px`)
+        [`${stylePrefix}originX`]: this.styleOriginX,
+        [`${stylePrefix}originY`]: this.styleOriginY,
+        [`${stylePrefix}insetX`]: this.styleInsetX,
+        [`${stylePrefix}insetY`]: this.styleInsetY
       }
     })
 
@@ -147,6 +147,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private readonly ifOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
+
+  private readonly styleOriginX = computed(() => this.originX.value !== null ? `${this.originX.value}px` : 'center') as ComputedRef<string>
+  private readonly styleOriginY = computed(() => this.originY.value !== null ? `${this.originY.value}px` : 'center') as ComputedRef<string>
+  private readonly styleInsetX = computed(() => `${this.positionX.value}px`) as ComputedRef<string>
+  private readonly styleInsetY = computed(() => `${this.positionY.value}px`) as ComputedRef<string>
 
   private async callbackStatus (event?: Event): Promise<void> {
     if (this.open.value) {
@@ -263,6 +268,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     this.coordinates.width = 0
     this.coordinates.height = 0
 
+    this.originX.value = null
+    this.originY.value = null
+
     return this
   }
 
@@ -326,8 +334,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       const rect = this.selectorBody()?.getBoundingClientRect()
 
       if (rect) {
-        this.originX.value = this.client.x ? this.client.x - (rect.left + (rect.width / 2)) : null
-        this.originY.value = this.client.y ? this.client.y - (rect.top + (rect.height / 2)) : null
+        this.originX.value = this.client.x ? this.client.x - rect.left : null
+        this.originY.value = this.client.y ? this.client.y - rect.top : null
       }
     } else {
       this.originX.value = this.client.x ? this.client.x - this.positionX.value : null
@@ -417,6 +425,22 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     }
   }
 
+  private watchCoordinates (): this {
+    frame(
+      () => {
+        if (
+          this.element.value &&
+          getComputedStyle(this.element.value).content === '"--MENU--"'
+        ) {
+          this.updateCoordinates()
+        }
+      },
+      () => this.open.value
+    )
+
+    return this
+  }
+
   private async watchPosition () {
     if (
       this.element.value &&
@@ -424,6 +448,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     ) {
       this.updateCoordinates()
         .updateOrigin()
+        .watchCoordinates()
     } else {
       this.restart()
     }

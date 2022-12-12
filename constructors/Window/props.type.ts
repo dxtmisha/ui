@@ -5,3 +5,10 @@ export type WindowAnimationOriginType =
   'left' |
   'right' |
   'top'
+
+export type WindowAlignmentType =
+  'bottom' |
+  'center' |
+  'left' |
+  'right' |
+  'top'
