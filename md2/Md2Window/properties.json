@@ -3,13 +3,23 @@
     "window": {
       "@style": "{d.window}",
       "var|sys": {
-        "background": "{sys.elevation.background.24}",
-        "index": "{sys.elevation.index.24}",
         "padding": "{ref.spacing.10} {ref.spacing.4}",
         "shadow": "{sys.elevation.shadow.24}",
         "scrim": {
           "background": "{sys.palette.onBackground}",
           "opacity": "{sys.opacity.scrim}"
+        },
+        "menu": {
+          "background": "{sys.elevation.background.8}",
+          "index": "{sys.elevation.index.8}",
+          "shadow": "{sys.elevation.shadow.8}",
+          "width": "{ref.spacing.px} * 256"
+        },
+        "modal": {
+          "background": "{sys.elevation.background.24}",
+          "index": "{sys.elevation.index.24}",
+          "shadow": "{sys.elevation.shadow.24}",
+          "width": "{ref.spacing.px} * 768"
         }
       },
       "section|rounded": {
@@ -35,27 +45,67 @@
       },
       "section|height": {
         "sm": {
-          "var|height": "{ref.spacing.px} * 256"
+          "var|sys": {
+            "menu": {
+              "var|height": "{ref.spacing.px} * 256"
+            },
+            "modal": {
+              "var|height": "{ref.spacing.px} * 256"
+            }
+          }
         },
         "md": {
-          "var|height": "{ref.spacing.px} * 512"
+          "var|sys": {
+            "menu": {
+              "var|height": "{ref.spacing.px} * 384"
+            },
+            "modal": {
+              "var|height": "{ref.spacing.px} * 512"
+            }
+          }
         },
         "lg": {
-          "var|height": "{ref.spacing.px} * 768"
-        },
-        "default": "md"
+          "var|sys": {
+            "menu": {
+              "var|height": "{ref.spacing.px} * 512"
+            },
+            "modal": {
+              "var|height": "{ref.spacing.px} * 768"
+            }
+          }
+        }
       },
       "section|width": {
         "sm": {
-          "var|width": "{ref.spacing.px} * 512"
+          "var|sys": {
+            "menu": {
+              "var|width": "{ref.spacing.px} * 128"
+            },
+            "modal": {
+              "var|width": "{ref.spacing.px} * 512"
+            }
+          }
         },
         "md": {
-          "var|width": "{ref.spacing.px} * 768"
+          "var|sys": {
+            "menu": {
+              "var|width": "{ref.spacing.px} * 256"
+            },
+            "modal": {
+              "var|width": "{ref.spacing.px} * 768"
+            }
+          }
         },
         "lg": {
-          "var|width": "{ref.spacing.px} * 1024"
-        },
-        "default": "md"
+          "var|sys": {
+            "menu": {
+              "var|width": "{ref.spacing.px} * 768"
+            },
+            "modal": {
+              "var|width": "{ref.spacing.px} * 1024"
+            }
+          }
+        }
       }
     }
   }

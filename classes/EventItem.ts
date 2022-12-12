@@ -145,4 +145,12 @@ export class EventItem<R = any, E = Event> {
   private findElement (element?: ElementType | string): ElementType {
     return (typeof element === 'string' ? document.querySelector(element) : element) || document.body
   }
+
+  static clientX (event: MouseEvent & TouchEvent): number {
+    return event?.clientX || event?.targetTouches?.[0].clientX || event?.touches?.[0].clientX || 0
+  }
+
+  static clientY (event: MouseEvent & TouchEvent): number {
+    return event?.clientY || event?.targetTouches?.[0].clientY || event?.touches?.[0].clientY || 0
+  }
 }

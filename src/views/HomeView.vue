@@ -160,6 +160,16 @@
       </template>
       <template v-slot:default>{{ text }}</template>
     </md2-window>
+    <md2-window adaptive="menu">
+      <template v-slot:control="binds">
+        <md2-button text="menu" :class="binds.classes" v-on="binds.on"/>
+      </template>
+      <template v-slot:default>
+        Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен 9 июня 1817 года в чине
+        коллежского секретаря (10-го класса, по Табели о рангах)[28], 13 июня высочайшим указом был определён в Коллегию
+        иностранных дел и 15 июня принёс присягу, подписав бланк клятвенного обещания императору[29].
+      </template>
+    </md2-window>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-window width="auto">

@@ -36,8 +36,7 @@ export const props = {
   },
   axis: {
     type: String as PropType<Md2WindowAxisType>,
-    default: defaultItem.defaultValue('axis'),
-    validator: defaultItem.validator('axis')
+    default: 'y'
   },
   height: {
     type: [Number, String] as PropType<Md2WindowWidthType>,
@@ -45,7 +44,7 @@ export const props = {
   },
   indent: {
     type: [Number, String] as PropType<Md2WindowIndentType>,
-    default: defaultItem.defaultValue('indent')
+    default: defaultItem.defaultValue('indent', 4)
   },
   inDom: Boolean,
   rounded: {

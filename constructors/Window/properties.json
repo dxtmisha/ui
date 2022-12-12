@@ -1,12 +1,50 @@
 {
   "d": {
     "window": {
+      "mixin|m": {
+        "mixin|menu": {
+          "var|sys": {
+            "scrim": {
+              "opacity": "0"
+            }
+          },
+          "var|l": {
+            "background": "{??sys.menu.background}",
+            "index": "{??sys.menu.index}",
+            "height": "{??sys.menu.height}",
+            "shadow": "{??sys.menu.shadow}",
+            "width": "{??sys.menu.width}"
+          },
+          "bottom": "auto",
+          "content": "'--MENU--'",
+          "display": "block",
+          "left": "{??_insetX}",
+          "padding": "0",
+          "right": "auto",
+          "top": "{??_insetY}",
+          "& .??__body": {
+            "max-width": "100vw",
+            "width": "{??_width}"
+          }
+        }
+      },
       "var|sys": {
-        "background": "255,255,255",
-        "index": "9999",
         "padding": "40px 16px",
-        "shadow": "none",
-        "transformOrigin": "{??_client-y} {??_client-x}",
+        "transformOrigin": "{??_originX} {??_originY}",
+        "menu": {
+          "background": "255,255,255",
+          "height": "auto",
+          "index": "9999",
+          "shadow": "none",
+          "width": "256px"
+        },
+        "modal": {
+          "background": "255,255,255",
+          "height": "auto",
+          "index": "9999",
+          "shadow": "none",
+          "width": "512px"
+        },
         "scrim": {
           "background": "0,0,0",
           "opacity": "0.32"
@@ -61,8 +99,13 @@
         }
       },
       "var|l": {
+        "background": "{??sys.modal.background}",
         "display": "{??sys.close.display}",
+        "index": "{??sys.modal.index}",
+        "height": "{??sys.modal.height}",
+        "shadow": "{??sys.modal.shadow}",
         "transition": "{??sys.close.transition}",
+        "width": "{??sys.modal.width}",
         "body": {
           "opacity": "{??sys.close.body.opacity}",
           "transform": "{??sys.close.body.transform}",
@@ -72,11 +115,13 @@
           "opacity": "{??sys.close.scrim.opacity}"
         }
       },
-      "var|_client-x": "center",
-      "var|_client-y": "center",
-      "var|_height": "512px",
+      "var|_height": "{??l.height}",
+      "var|_width": "{??l.width}",
+      "var|_insetX": "0px",
+      "var|_insetY": "0px",
+      "var|_originX": "center",
+      "var|_originY": "center",
       "var|_rounded": "0px",
-      "var|_width": "512px",
       "animate|persistent-active": {
         "0%": {
           "transform": "scale(1)"
@@ -99,7 +144,7 @@
       "position": "fixed",
       "transition": "{??l.transition}",
       "will-change": "=background-color, left, top, contents",
-      "z-index": "{??sys.index}",
+      "z-index": "{??l.index}",
       "section|animationOrigin": {
         "auto": {
           "--": "none"
@@ -150,9 +195,9 @@
         }
       },
       "#body": {
-        "background": "{??sys.background}",
+        "background": "{??l.background}",
         "border-radius": "{??_rounded}",
-        "box-shadow": "{??sys.shadow}",
+        "box-shadow": "{??l.shadow}",
         "display": "flex",
         "flex-flow": "column",
         "flex-shrink": "1",
@@ -172,6 +217,11 @@
       },
       "#control": {
         "--": "none"
+      },
+      "section|adaptive": {
+        "section|menu": {
+          "@style": "{??m.menu}"
+        }
       },
       "&[data-status='preparation']": {
         "var|l": {

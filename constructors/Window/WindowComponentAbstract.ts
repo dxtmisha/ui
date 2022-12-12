@@ -23,6 +23,20 @@ export type WindowClassicControlType = {
   static: string
 }
 
+export type WindowClientType = {
+  x: number
+  y: number
+}
+
+export type WindowCoordinatesType = {
+  top: number
+  right: number
+  bottom: number
+  left: number
+  width: number
+  height: number
+}
+
 export type WindowStatusType = 'preparation' | 'open' | 'hide' | 'close'
 
 export type WindowSetupType = ComponentBaseType & {
@@ -30,11 +44,9 @@ export type WindowSetupType = ComponentBaseType & {
   id: string
   open: Ref<boolean>
   status: Ref<WindowStatusType>
-  clientX: Ref<number>
-  clientY: Ref<number>
   ifOpen: ComputedRef<boolean>
   toggle: (value: boolean) => void
-  on: AssociativeType<(event: MouseEvent) => void>
+  on: AssociativeType<(event: MouseEvent & TouchEvent) => void>
   onAnimation: () => void
   onTransition: () => void
 }
@@ -60,8 +72,25 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
-  private clientX = ref(0) as Ref<number>
-  private clientY = ref(0) as Ref<number>
+  private readonly coordinates = {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    width: 0,
+    height: 0
+  } as WindowCoordinatesType
+
+  private readonly client = {
+    x: 0,
+    y: 0
+  } as WindowClientType
+
+  private readonly positionX = ref(0) as Ref<number>
+  private readonly positionY = ref(0) as Ref<number>
+
+  private readonly originX = ref(null) as Ref<number | null>
+  private readonly originY = ref(null) as Ref<number | null>
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -81,6 +110,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   setup (): WindowSetupType {
+    const stylePrefix = `--${this.getItem().getBasicClassName()}-`
+
     const classes = this.getClasses<WindowClassicType>({
       main: {
         [this.id]: true,
@@ -88,7 +119,14 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       },
       control: { [this.id]: true }
     })
-    const styles = this.getStyles()
+    const styles = this.getStyles({
+      main: {
+        [`${stylePrefix}originX`]: computed(() => this.originX.value !== null ? `${this.originX.value}px` : 'left'),
+        [`${stylePrefix}originY`]: computed(() => this.originY.value !== null ? `${this.originY.value}px` : 'top'),
+        [`${stylePrefix}insetX`]: computed(() => `${this.positionX.value}px`),
+        [`${stylePrefix}insetY`]: computed(() => `${this.positionY.value}px`)
+      }
+    })
 
     return {
       ...this.getBasic(),
@@ -97,13 +135,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       id: this.id,
       open: this.open,
       status: this.status,
-      clientX: this.clientX,
-      clientY: this.clientY,
       ifOpen: this.ifOpen,
       toggle: (value = true as boolean) => this.toggle(value),
       on: {
-        click: (event: MouseEvent) => this.onClick(event),
-        contextmenu: (event: MouseEvent) => this.onContextmenu(event)
+        click: (event: MouseEvent & TouchEvent) => this.onClick(event),
+        contextmenu: (event: MouseEvent & TouchEvent) => this.onContextmenu(event)
       },
       onAnimation: () => this.onAnimation(),
       onTransition: () => this.onTransition()
@@ -133,7 +169,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
         this.openFirst.value = toOpen
 
         await nextTick()
-        // watchPosition()
+        await this.watchPosition()
 
         requestAnimationFrame(() => {
           this.setStatus('open')
@@ -167,6 +203,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
   }
 
+  private getBodyName (): string {
+    return this.getItem().getClassName(['body'])
+  }
+
   private getControlName (): string {
     return this.getItem().getClassName(['control'])
   }
@@ -175,9 +215,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return (this.target.value || this.element.value || document.body) as R
   }
 
-  private async go (event: MouseEvent): Promise<void> {
-    this.clientX.value = event.clientX
-    this.clientY.value = event.clientY
+  private async go (event: MouseEvent & TouchEvent): Promise<void> {
+    this.client.x = EventItem.clientX(event)
+    this.client.y = EventItem.clientY(event)
 
     await this.verification(event.target as HTMLElement)
   }
@@ -215,6 +255,25 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       !this.findControl(this.focus.value)?.closest(this.selectorIsStatus('block'))
   }
 
+  private restart (): this {
+    this.coordinates.top = 0
+    this.coordinates.right = 0
+    this.coordinates.bottom = 0
+    this.coordinates.left = 0
+    this.coordinates.width = 0
+    this.coordinates.height = 0
+
+    return this
+  }
+
+  private selectorControl (): Element | undefined {
+    return document.querySelector(`.${this.getControlName()}.${this.id}`) || undefined
+  }
+
+  private selectorBody (): Element | undefined {
+    return document.querySelector(`.${this.getItem().getBasicClassName()}.${this.id} .${this.getBodyName()}`) || undefined
+  }
+
   private selectorIsStatus (name: keyof WindowClassicControlType) {
     return `.${this.id} .${this.getClassicControl(name)}`
   }
@@ -229,6 +288,101 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     if (this.open.value !== value) {
       await this.emitStatus()
     }
+  }
+
+  private updateCoordinates (): this {
+    const rect = this.selectorControl()?.getBoundingClientRect()
+
+    if (
+      this.element.value &&
+      rect && (
+        this.coordinates.top !== rect.top ||
+        this.coordinates.right !== rect.right ||
+        this.coordinates.bottom !== rect.bottom ||
+        this.coordinates.left !== rect.left ||
+        this.coordinates.width !== this.element.value.offsetWidth ||
+        this.coordinates.height !== this.element.value.offsetHeight
+      )
+    ) {
+      this.coordinates.top = rect.top
+      this.coordinates.right = rect.right
+      this.coordinates.bottom = rect.bottom
+      this.coordinates.left = rect.left
+      this.coordinates.width = this.element.value.offsetWidth
+      this.coordinates.height = this.element.value.offsetHeight
+
+      this.updateX()
+        .updateY()
+    }
+
+    return this
+  }
+
+  private updateOrigin (): this {
+    if (
+      this.element.value &&
+      getComputedStyle(this.element.value).content !== '"--MENU--"'
+    ) {
+      const rect = this.selectorBody()?.getBoundingClientRect()
+
+      if (rect) {
+        this.originX.value = this.client.x ? this.client.x - (rect.left + (rect.width / 2)) : null
+        this.originY.value = this.client.y ? this.client.y - (rect.top + (rect.height / 2)) : null
+      }
+    } else {
+      this.originX.value = this.client.x ? this.client.x - this.positionX.value : null
+      this.originY.value = this.client.y ? this.client.y - this.positionY.value : null
+    }
+
+    return this
+  }
+
+  private updateX (): this {
+    if (this.element.value) {
+      const indent = this.props.axis === 'x' ? this.props.indent : 0
+      const rectRight = this.props.contextmenu ? this.client.x : this.coordinates.right + indent
+      const rectLeft = this.props.contextmenu ? this.client.x : this.coordinates.left - indent
+      const argumentValues = [] as number[]
+
+      if (this.props.axis === 'x') {
+        argumentValues.push(rectRight, rectLeft)
+      } else {
+        argumentValues.push(rectLeft, rectRight)
+      }
+
+      this.positionX.value = this.getConstructor<typeof WindowComponentAbstract>().getInnerPosition(
+        argumentValues[0],
+        argumentValues[1],
+        this.element.value.offsetWidth,
+        window.innerWidth
+      )
+    }
+
+    return this
+  }
+
+  private updateY (): this {
+    if (this.element.value) {
+      const indent = this.props.axis === 'y' ? this.props.indent : 0
+      const rectTop = this.props.contextmenu ? this.client.y : this.coordinates.top - indent
+      const rectBottom = this.props.contextmenu ? this.client.y : this.coordinates.bottom + indent
+      const argumentValues = [] as number[]
+
+      if (this.props.axis === 'y') {
+        argumentValues.push(rectBottom, rectTop)
+      } else {
+        argumentValues.push(rectTop, rectBottom)
+      }
+
+      this.positionY.value = this.getConstructor<typeof WindowComponentAbstract>().getInnerPosition(
+        argumentValues[0],
+        argumentValues[1],
+        this.element.value.offsetHeight,
+        window.innerHeight
+      )
+    }
+
+    return this
   }
 
   async verification (target: HTMLElement) {
@@ -263,13 +417,25 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     }
   }
 
-  private async onClick (event: MouseEvent) {
+  private async watchPosition () {
+    if (
+      this.element.value &&
+      this.open.value
+    ) {
+      this.updateCoordinates()
+        .updateOrigin()
+    } else {
+      this.restart()
+    }
+  }
+
+  private async onClick (event: MouseEvent & TouchEvent) {
     if (!this.props.contextmenu) {
       await this.go(event)
     }
   }
 
-  private async onContextmenu (event: MouseEvent) {
+  private async onContextmenu (event: MouseEvent & TouchEvent) {
     if (this.props.contextmenu) {
       event.preventDefault()
       event.stopPropagation()
@@ -288,6 +454,21 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     if (this.status.value === 'hide') {
       this.open.value = false
       this.setStatus('close')
+    }
+  }
+
+  private static getInnerPosition (
+    inValue: number,
+    outValue: number,
+    length: number,
+    innerLength: number
+  ): number {
+    if (inValue + length <= innerLength) {
+      return inValue
+    } else if (outValue - length > 0) {
+      return outValue - length
+    } else {
+      return 0
     }
   }
 }
