@@ -25,6 +25,7 @@
           "right": "auto",
           "top": "{??_insetY}",
           "& .??__body": {
+            "border-radius": "{??_rounded}",
             "max-width": "100vw",
             "width": "{??_width}"
           }
@@ -192,6 +193,16 @@
           "var|sys": {
             "transformOrigin": "top center"
           }
+        }
+      },
+      "section|fullscreen": {
+        "padding": "0px",
+        "& .??__body": {
+          "border-radius": "0",
+          "height": "100%",
+          "max-height": "none",
+          "max-width": "none",
+          "width": "100%"
         }
       },
       "section|height": {

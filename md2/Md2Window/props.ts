@@ -42,6 +42,7 @@ export const props = {
     type: String as PropType<Md2WindowAxisType>,
     default: 'y'
   },
+  fullscreen: Boolean,
   height: {
     type: [Number, String] as PropType<Md2WindowWidthType>,
     default: defaultItem.defaultValue('height')

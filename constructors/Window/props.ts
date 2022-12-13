@@ -13,6 +13,7 @@ export const props = {
   adaptive: String,
   autoClose: Boolean,
   axis: String,
+  fullscreen: Boolean,
   height: [Number, String],
   indent: Number,
   inDom: Number,
