@@ -268,8 +268,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private ifNotBlock () {
-    return this.props.autoClose &&
-      !this.getTarget().classList.contains(this.getName()) &&
+    return !this.getTarget().classList.contains(this.getName()) &&
       !this.findControl(this.focus.value)?.closest(this.selectorIsStatus('block'))
   }
 
@@ -430,7 +429,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
         } else {
           await this.emitStatus()
         }
-      } else if (this.ifClose() || this.ifAutoClose()) {
+      } else if (
+        this.ifClose() ||
+        this.ifAutoClose() ||
+        !this.ifChildren()
+      ) {
         await this.emitStatus()
       }
     } else if (this.ifDisabled()) {

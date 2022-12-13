@@ -644,18 +644,6 @@
         Лагарп[19].
       </template>
     </md2-window>
-    <md2-window adaptive="menu" axis="y" indent="on">
-      <template v-slot:control="binds">
-        <md2-button text="32" :class="binds.classes" v-on="binds.on"/>
-      </template>
-      <template v-slot:default>
-        В лицейский период Пушкин написал много стихотворных произведений. Его вдохновляли французские поэты XVII—XVIII
-        веков, с творчеством которых он познакомился в детстве, читая книги из библиотеки отца. Любимые поэты и писатели
-        молодого Пушкина перечислены в стихотворении «Городок» (1815 г.): Вольтер, Гомер, Вергилий, Т. Тассо, Лафонтен,
-        Дмитриев, Крылов, Державин, Вержье, Грекур, Парни, Расин, Мольер, Фонвизин, Княжнин, Озеров, Руссо, Карамзин,
-        Лагарп[19].
-      </template>
-    </md2-window>
   </div>
   <div class="flex items-center gap-2 py-12 pl-8">
     <md2-scrollbar border style="height: 400px">
