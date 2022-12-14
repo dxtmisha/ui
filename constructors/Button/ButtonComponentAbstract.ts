@@ -29,7 +29,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
-  protected readonly stylesProps = ['width'] as string[]
+  protected readonly stylesProps = ['height', 'width'] as string[]
 
   protected abstract appearanceInverse: string[]
 

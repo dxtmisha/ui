@@ -102,6 +102,11 @@
     <button @click="onClickIcon">test 2</button>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
+    <md2-list-item
+      text="List item"
+    />
+  </div>
+  <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-window>
       <template v-slot:control="binds">
         <md2-button text="window" :class="binds.classes" v-on="binds.on"/>
@@ -1249,6 +1254,7 @@ import Md2Chip from '../../md2/Md2Chip/index.vue'
 import Md2Fab from '../../md2/Md2Fab/index.vue'
 import Md2Window from '../../md2/Md2Window/index.vue'
 import Md2Scrollbar from '../../md2/Md2Scrollbar/index.vue'
+import Md2ListItem from '../../md2/Md2ListItem/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -1257,6 +1263,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2ListItem,
     Md2Scrollbar,
     Md2Window,
     Md2Fab,

@@ -1,0 +1,13 @@
+{
+  "md2": {
+    "list-item": {
+      "@style": "{d.list-item}",
+      "mixin|m": {
+      },
+      "var|sys": {
+
+      },
+      "@font": "{font.subtitle1}"
+    }
+  }
+}

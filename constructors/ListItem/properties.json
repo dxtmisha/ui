@@ -1,0 +1,50 @@
+{
+  "d": {
+    "list-item": {
+      "mixin|m": {
+        "mixin|status": {
+          "var|palette": "{??sys.palette}",
+          "var|background": "{??sys.background}",
+          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
+          "var|gradient": "{??sys.gradient}",
+          "var|gradientOpacity": "{??sys.gradientOpacity}",
+          "var|text": "{??sys.text}",
+          "var|textOpacity": "{??sys.textOpacity}"
+        }
+      },
+      "var|sys": {
+        "palette": "",
+        "background": "{??sys.palette}",
+        "backgroundOpacity": "0",
+        "gradient": "{??sys.palette}",
+        "gradientOpacity": "0",
+        "active": {
+          "@style": "{??m.status}"
+        },
+        "disabled": {
+          "@style": "{??m.status}"
+        },
+        "focus": {
+          "@style": "{??m.status}"
+        },
+        "highlight": {
+          "@style": "{??m.status}"
+        },
+        "hover": {
+          "@style": "{??m.status}"
+        },
+        "selected": {
+          "@style": "{??m.status}"
+        }
+      },
+      "var|l": {
+        "background": "{??sys.background}",
+        "backgroundOpacity": "{??sys.backgroundOpacity}",
+        "gradient": "{??sys.gradient}",
+        "gradientOpacity": "{??sys.gradientOpacity}"
+      },
+      "palette-background": "{??l.background}",
+      "palette-gradient": "{??l.gradient}"
+    }
+  }
+}
