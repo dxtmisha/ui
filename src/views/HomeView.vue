@@ -110,6 +110,19 @@
         text="List item 2"
       />
       <md2-list-item
+        icon="face"
+        text="icon"
+      />
+      <md2-list-item
+        icon-trailing="close"
+        text="icon trailing"
+      />
+      <md2-list-item
+        icon="face"
+        icon-trailing="close"
+        text="icon/icon trailing"
+      />
+      <md2-list-item
         palette="teal"
         text="palette"
       />

@@ -2,9 +2,13 @@
   <component
     :is="tag"
     :class="classes.main"
-    :disabled="disabled"
     :style="styles.main"
+    @click="onClick"
   >
+    <md2-icon v-if="icon" v-bind="iconBind">
+      <md2-progress v-if="progress" dense v-bind="progressIconBind"/>
+    </md2-icon>
+    <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
     <span v-if="text" :class="classes.text">{{ text }}</span>
     <slot/>
   </component>

@@ -1,14 +1,21 @@
 import { computed, ComputedRef } from 'vue'
-import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { ButtonComponentItemAbstract } from '../Button/ButtonComponentItemAbstract'
 import { props } from './props'
 import {
   AssociativeType,
-  ComponentBaseType
+  ComponentBaseType,
+  EventCallbackRequiredType
 } from '../types'
 
-export type ListItemSetupType = ComponentBaseType
+export type ListItemSetupType = ComponentBaseType & {
+  iconBind: ComputedRef<string | AssociativeType>
+  iconTrailingBind: ComputedRef<string | AssociativeType>
+  progressIconBind: ComputedRef<AssociativeType>
+  progressTextBind: ComputedRef<AssociativeType>
+  onClick: EventCallbackRequiredType<void, MouseEvent>
+}
 
-export abstract class ListItemComponentAbstract extends ComponentAbstract {
+export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstract {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
@@ -21,12 +28,34 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract {
     return {
       ...this.getBasic(),
       classes,
-      styles
+      styles,
+      iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
+      iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
+      progressIconBind: this.progressIcon,
+      progressTextBind: this.progressText,
+      onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
 
-  readonly ifRipple = computed(() => this.props.ripple &&
-    !this.props.disabled &&
-    !this.props.readonly
-  ) as ComputedRef<boolean>
+  readonly ifInverse = computed(() => {
+    return this.props.selected && (
+      this.appearanceInverse.indexOf(this.props.appearance) !== -1 ||
+      this.appearanceInverse.indexOf('all') !== -1
+    )
+  }) as ComputedRef<boolean>
+
+  readonly progressIcon = computed(() => {
+    return {
+      inverse: this.ifInverse.value,
+      type: 'circular',
+      visible: true
+    }
+  })
+
+  readonly progressText = computed(() => {
+    return {
+      inverse: this.ifInverse.value,
+      visible: true
+    }
+  })
 }
