@@ -15,10 +15,10 @@ export const props = {
   detail: [Object],
   icon: [Object, String],
   iconTrailing: [Object, String],
-  highlight: String,
   prefix: [Number, String],
   suffix: [Number, String],
   text: [Number, String],
+  textHighlight: [Number, String],
   textShort: [Number, String],
   thumbnail: [Object, String],
   to: String,
@@ -26,6 +26,7 @@ export const props = {
 
   // Status
   disabled: Boolean,
+  highlight: Boolean,
   progress: Boolean,
   readonly: Boolean,
   selected: Boolean,
@@ -42,7 +43,7 @@ export const props = {
     default: defaultItem.defaultValue('appearance'),
     validator: defaultItem.validator('appearance')
   },
-  background: String as PropType<Md2PaletteType>,
+  overlay: [Boolean, String] as PropType<boolean | Md2PaletteType>,
   border: Boolean,
   dense: Boolean,
   height: {

@@ -3,7 +3,6 @@ import {
   ComputedRef,
   isRef,
   onBeforeUpdate,
-  onUpdated,
   reactive,
   ref,
   Ref,
@@ -45,6 +44,7 @@ export abstract class ComponentAbstract {
   protected readonly element = ref<HTMLElement | undefined>()
   protected readonly refs: AssociativeType<Ref>
   protected readonly classesProps = [] as string[]
+  protected readonly classesExtra = [] as string[]
   protected readonly stylesProps = [] as string[]
 
   abstract setup (): AssociativeType
@@ -56,7 +56,6 @@ export abstract class ComponentAbstract {
     this.refs = toRefs<AssociativeType>(props)
 
     onBeforeUpdate(() => console.log(`onBeforeUpdate: ${this.getConstructor().code}`))
-    // onUpdated(() => console.log(`onUpdated: ${this.getConstructor().code}`))
   }
 
   protected getConstructor<T = typeof ComponentAbstract> () {
@@ -82,7 +81,10 @@ export abstract class ComponentAbstract {
 
     forEach<ComponentPropertyType, string, void>(this.getItem().getProperties(), (item, name) => {
       if (this.isPropDesign(name)) {
-        if (typeof this.props[name] === 'boolean') {
+        if (
+          typeof this.props[name] === 'boolean' ||
+          this.classesExtra.indexOf(name) !== -1
+        ) {
           main[item.className] = true
         } else if (item?.values?.indexOf(this.props[name]) !== -1) {
           main[`${item.classValue}${this.props[name]}`] = true

@@ -229,7 +229,6 @@
           "textOpacity": "{??sys.disabled.textOpacity} !important"
         },
         "background-color": "{??l.background}",
-        "cursor": "default",
         "gradient-color": "{??l.gradient}"
       },
       "#text": {

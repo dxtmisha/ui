@@ -102,9 +102,49 @@
     <button @click="onClickIcon">test 2</button>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
-    <md2-list-item
-      text="List item"
-    />
+    <div class="w-96 border">
+      <md2-list-item
+        text="List item 1"
+      />
+      <md2-list-item
+        text="List item 2"
+      />
+      <md2-list-item
+        palette="teal"
+        text="palette"
+      />
+      <md2-list-item
+        selected
+        palette="teal"
+        text="palette+selected"
+      />
+      <md2-list-item
+        overlay="255,0,0"
+        text="background"
+      />
+      <md2-list-item
+        overlay
+        palette="red"
+        text="background"
+      />
+      <md2-list-item
+        highlight
+        text="highlight"
+      />
+      <md2-list-item
+        disabled
+        text="disabled"
+      />
+      <md2-list-item
+        selected
+        text="selected"
+      />
+      <md2-list-item
+        disabled
+        selected
+        text="selected+disabled"
+      />
+    </div>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-window>

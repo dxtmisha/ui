@@ -10,6 +10,12 @@
           "var|gradientOpacity": "{??sys.gradientOpacity}",
           "var|text": "{??sys.text}",
           "var|textOpacity": "{??sys.textOpacity}"
+        },
+        "mixin|rounded": {
+          "var|l": {
+            "marginX": "{??sys.rounded.marginX}",
+            "marginY": "{??sys.rounded.marginY}"
+          }
         }
       },
       "var|sys": {
@@ -18,33 +24,153 @@
         "backgroundOpacity": "0",
         "gradient": "{??sys.palette}",
         "gradientOpacity": "0",
+        "height": "",
+        "marginX": "0",
+        "marginY": "0",
+        "paddingX": "0",
+        "paddingY": "0",
+        "text": "unset",
+        "textOpacity": "unset",
+        "rounded": {
+          "marginX": "0",
+          "marginY": "0"
+        },
         "active": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "gradientOpacity": ""
         },
         "disabled": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "background": "{??sys.disabled.palette}",
+          "border": "{??sys.disabled.palette}",
+          "gradient": "{??sys.disabled.palette}",
+          "text": "{??sys.disabled.palette}",
+          "textOpacity": ""
         },
         "focus": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "gradientOpacity": ""
         },
         "highlight": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "background": "{??sys.highlight.palette}",
+          "gradient": "{??sys.highlight.palette}"
         },
         "hover": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "gradientOpacity": ""
         },
         "selected": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "gradient": "{??sys.selected.palette}",
+          "text": "{??sys.selected.palette}",
+          "textOpacity": ""
         }
       },
       "var|l": {
         "background": "{??sys.background}",
         "backgroundOpacity": "{??sys.backgroundOpacity}",
+        "height": "{??sys.height}",
         "gradient": "{??sys.gradient}",
-        "gradientOpacity": "{??sys.gradientOpacity}"
+        "gradientOpacity": "{??sys.gradientOpacity}",
+        "marginX": "{??sys.marginX}",
+        "marginY": "{??sys.marginY}",
+        "paddingX": "{??sys.paddingX}",
+        "paddingY": "{??sys.paddingY}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}"
       },
-      "palette-background": "{??l.background}",
-      "palette-gradient": "{??l.gradient}"
+      "var|_overlay": "{??l.background}",
+      "@flex": "{d.flex.x}",
+      "@readonly": "{d.font.readonly}",
+      "backgroundOpacity": "{??l.backgroundOpacity}",
+      "color": "{??l.text}",
+      "colorOpacity": "{??l.textOpacity}",
+      "cursor": "pointer",
+      "height": "{??l.height}",
+      "gradient-opacity": "{??l.gradientOpacity}",
+      "margin": "calc({??l.marginY} / 2) {??l.marginX}",
+      "min-height": "{??l.height} - {??l.marginY} - {??l.paddingY}",
+      "palette-background": "{??_overlay}",
+      "palette-gradient": "{??l.gradient}",
+      "padding": "{??l.paddingY} {??l.paddingX}",
+      "position": "relative",
+      "width": "100%",
+      "section|overlay": {
+        "var|l": {
+          "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important"
+        }
+      },
+      "section|highlight": {
+        "var|l": {
+          "palette": "{??sys.highlight.palette} !important",
+          "background": "{??sys.highlight.background} !important",
+          "backgroundOpacity": "{??sys.highlight.backgroundOpacity} !important",
+          "gradient": "{??sys.highlight.gradient} !important",
+          "gradientOpacity": "{??sys.highlight.gradientOpacity}",
+          "text": "{??sys.highlight.text} !important",
+          "textOpacity": "{??sys.highlight.textOpacity} !important"
+        }
+      },
+      "section|selected": {
+        "var|l": {
+          "palette": "{??sys.selected.palette} !important",
+          "background": "{??sys.selected.background} !important",
+          "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important",
+          "gradient": "{??sys.selected.gradient} !important",
+          "gradientOpacity": "{??sys.selected.gradientOpacity}",
+          "text": "{??sys.selected.text} !important",
+          "textOpacity": "{??sys.selected.textOpacity} !important"
+        },
+        "background-color": "{??l.background}"
+      },
+      "section|disabled": {
+        "var|l": {
+          "palette": "{??sys.disabled.palette} !important",
+          "background": "{??sys.disabled.background} !important",
+          "backgroundOpacity": "{??sys.disabled.backgroundOpacity} !important",
+          "gradient": "{??sys.disabled.gradient} !important",
+          "gradientOpacity": "{??sys.disabled.gradientOpacity} !important",
+          "text": "{??sys.disabled.text} !important",
+          "textOpacity": "{??sys.disabled.textOpacity} !important"
+        },
+        "background-color": "{??l.background}",
+        "cursor": "default",
+        "gradient-color": "{??l.gradient}"
+      },
+      ":hover": {
+        "var|l": {
+          "palette": "{??sys.hover.palette}",
+          "background": "{??sys.hover.background}",
+          "backgroundOpacity": "{??sys.hover.backgroundOpacity}",
+          "gradient": "{??sys.hover.gradient}",
+          "gradientOpacity": "{??sys.hover.gradientOpacity}",
+          "text": "{??sys.hover.text}",
+          "textOpacity": "{??sys.hover.textOpacity}"
+        }
+      },
+      ":focus": {
+        "var|l": {
+          "palette": "{??sys.focus.palette}",
+          "background": "{??sys.focus.background}",
+          "backgroundOpacity": "{??sys.focus.backgroundOpacity}",
+          "gradient": "{??sys.focus.gradient}",
+          "gradientOpacity": "{??sys.focus.gradientOpacity}",
+          "text": "{??sys.focus.text}",
+          "textOpacity": "{??sys.focus.textOpacity}"
+        }
+      },
+      ":active": {
+        "var|l": {
+          "palette": "{??sys.active.palette}",
+          "background": "{??sys.active.background}",
+          "backgroundOpacity": "{??sys.active.backgroundOpacity}",
+          "gradient": "{??sys.active.gradient}",
+          "gradientOpacity": "{??sys.active.gradientOpacity}",
+          "text": "{??sys.active.text}",
+          "textOpacity": "{??sys.active.textOpacity}"
+        }
+      }
     }
   }
 }

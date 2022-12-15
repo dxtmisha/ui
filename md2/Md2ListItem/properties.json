@@ -5,9 +5,40 @@
       "mixin|m": {
       },
       "var|sys": {
-
+        "palette": "{sys.palette.primary}",
+        "gradient": "{sys.palette.onSurface}",
+        "height": "{ref.spacing.12}",
+        "paddingX": "{ref.spacing.4}",
+        "paddingY": "{ref.spacing.1}",
+        "rounded": {
+          "marginX": "{ref.spacing.2}",
+          "marginY": "{ref.spacing.1}"
+        },
+        "active": {
+          "gradientOpacity": "{sys.opacity.dragged}"
+        },
+        "disabled": {
+          "palette": "{sys.palette.disabled}",
+          "textOpacity": "{sys.opacity.surface.disabled}"
+        },
+        "focus": {
+          "gradientOpacity": "{sys.opacity.focus}"
+        },
+        "highlight": {
+          "palette": "{sys.palette.warning}",
+          "backgroundOpacity": "{sys.opacity.selected}"
+        },
+        "hover": {
+          "gradientOpacity": "{sys.opacity.hover}"
+        },
+        "selected": {
+          "palette": "{sys.palette.primaryVariant}",
+          "backgroundOpacity": "{sys.opacity.selected}",
+          "textOpacity": "{sys.opacity.surface.high}"
+        }
       },
-      "@font": "{font.subtitle1}"
+      "@font": "{font.subtitle1}",
+      "@@palette": "{?palette}"
     }
   }
 }
