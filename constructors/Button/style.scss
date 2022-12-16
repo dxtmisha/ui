@@ -1,7 +1,8 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
 
 @mixin initButton($design) {
-  @include classInitService($design, 'button') using($class, $properties) {
+  @include propertiesInit($design, 'button') using($class, $properties) {
+    @include propertiesLink('??m.icon');
     @content($class, $properties);
   }
 }

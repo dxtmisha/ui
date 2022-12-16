@@ -1,9 +1,9 @@
 @import "../../styles/services/classesService";
 
 @mixin initProgress($design, $value) {
-  @include classInitService($design, 'progress') using($class, $properties) {
+  @include classInitService($design, 'progress') using($class, $component, $properties) {
     --#{$class}-_value: #{$value};
 
-    @content($class, $properties);
+    @content($class, $component, $properties);
   }
 }

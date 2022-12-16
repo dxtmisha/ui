@@ -1,7 +1,7 @@
 @import "../../styles/services/classesService";
 
 @mixin initScrollbar($design) {
-  @include classInitService($design, 'scrollbar') using($class, $properties) {
-    @content($class, $properties);
+  @include classInitService($design, 'scrollbar') using($class, $component, $properties) {
+    @content($class, $component, $properties);
   }
 }

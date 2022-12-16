@@ -3,7 +3,7 @@
 
 @import "../rules";
 
-@function getListSlash($keys) {
+@function getListSlash($keys, $separator: '.') {
   @if (meta.type-of($keys) == list) {
     $data: '';
 
@@ -11,7 +11,7 @@
       @if ($data == '') {
         $data: $item;
       } @else {
-        $data: #{$data}#{'-'}#{$item};
+        $data: #{$data}#{$separator}#{$item};
       }
     }
 

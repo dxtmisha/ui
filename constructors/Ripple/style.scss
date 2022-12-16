@@ -1,7 +1,7 @@
 @import "../../styles/services/classesService";
 
 @mixin initRipple($design) {
-  @include classInitService($design, 'ripple') using($class, $properties) {
-    @content($class, $properties);
+  @include classInitService($design, 'ripple') using($class, $component, $properties) {
+    @content($class, $component, $properties);
   }
 }

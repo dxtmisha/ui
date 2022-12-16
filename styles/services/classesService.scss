@@ -259,12 +259,13 @@ $designsProperties: () !default;
 ) {
   $map: getMapItem($designsProperties, $design);
   $properties: getMapItem($map, $keys);
-  $class: #{$design}-#{getListSlash($keys)};
+  $component: getListSlash($keys);
+  $class: #{$design}-#{getListSlash($keys, '-')};
 
   @if ($properties) {
     #{'.'}#{$class} {
       @include mixinInit($class, $properties, $init);
-      @content($class, $properties);
+      @content($class, $component, $properties);
     }
   }
 }

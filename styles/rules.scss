@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
+@use "sass:string";
 
 @function getMapItem(
   $map,
@@ -26,4 +27,14 @@
 
 @function setMapItem($map, $index, $value) {
   @return map.merge($map, (#{$index}: $value));
+}
+
+@function strToList($value, $separator: '.') {
+  $index: string.index($value, $separator);
+
+  @if ($index != null) {
+    @return string.slice($value, 1, $index - 1), strToList(string.slice($value, $index + 1), $separator)
+  } @else {
+    @return $value
+  }
 }

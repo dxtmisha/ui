@@ -5,10 +5,10 @@
   $clientX,
   $clientY
 ) {
-  @include classInitService($design, 'window') using($class, $properties) {
+  @include classInitService($design, 'window') using($class, $component, $properties) {
     --#{$class}-_client-x: #{$clientX};
     --#{$class}-_client-y: #{$clientY};
 
-    @content($class, $properties);
+    @content($class, $component, $properties);
   }
 }

@@ -1,7 +1,7 @@
 @import "../../styles/services/classesService";
 
 @mixin initFab($design) {
-  @include classInitService($design, 'fab') using($class, $properties) {
-    @content($class, $properties);
+  @include classInitService($design, 'fab') using($class, $component, $properties) {
+    @content($class, $component, $properties);
   }
 }

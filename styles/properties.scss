@@ -1,0 +1,34 @@
+@use "sass:string";
+
+@import "./services/classesService";
+@import "./rules";
+
+$currentDesign: '--' !default;
+$currentClass: '--' !default;
+$currentProperties: () !default;
+$designsProperties: () !default;
+
+@function getVarName($name, $separator: '.') {
+  @if (string.index($name, '??') == 1) {
+    @return #{$currentDesign}#{$separator}#{$separator}
+  }
+}
+
+@mixin propertiesInit(
+  $design,
+  $keys,
+  $init: ()
+) {
+  @include classInitService($design, 'button') using($class, $component, $properties) {
+    $currentDesign: $design !global;
+    $currentClass: $class !global;
+    $currentProperties: $properties !global;
+
+    @content($class, $component, $properties);
+  }
+}
+
+@mixin propertiesLink($name) {
+  --test: #{strToList($name)}
+}
+

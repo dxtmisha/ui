@@ -1,7 +1,7 @@
 @import "../../styles/services/classesService";
 
 @mixin initListItem($design) {
-  @include classInitService($design, 'list-item') using($class, $properties) {
-    @content($class, $properties);
+  @include classInitService($design, 'list-item') using($class, $component, $properties) {
+    @content($class, $component, $properties);
   }
 }
