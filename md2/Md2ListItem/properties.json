@@ -35,10 +35,33 @@
           "palette": "{sys.palette.primaryVariant}",
           "backgroundOpacity": "{sys.opacity.selected}",
           "textOpacity": "{sys.opacity.surface.high}"
+        },
+        "icon": {
+          "margin": "{ref.spacing.8}",
+          "trailing": {
+            "margin": "{ref.spacing.4}"
+          }
         }
       },
       "@font": "{font.subtitle1}",
-      "@@palette": "{?palette}"
+      "@@palette": "{?palette}",
+      "section|height": {
+        "sm": {
+          "var|l": {
+            "height": "{ref.spacing.12}"
+          }
+        },
+        "md": {
+          "var|l": {
+            "height": "{ref.spacing.14}"
+          }
+        },
+        "lg": {
+          "var|l": {
+            "height": "{ref.spacing.18}"
+          }
+        }
+      }
     }
   }
 }

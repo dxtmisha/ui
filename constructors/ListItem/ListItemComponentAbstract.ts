@@ -3,11 +3,25 @@ import { ButtonComponentItemAbstract } from '../Button/ButtonComponentItemAbstra
 import { props } from './props'
 import {
   AssociativeType,
+  ComponentAssociativeType,
   ComponentBaseType,
   EventCallbackRequiredType
 } from '../types'
+import { getExp } from '../../functions'
 
+export type ListItemClassesType = {
+  main: ComponentAssociativeType
+  description: ComponentAssociativeType
+  context: ComponentAssociativeType
+  prefix: ComponentAssociativeType
+  suffix: ComponentAssociativeType
+  text: ComponentAssociativeType
+  title: ComponentAssociativeType
+}
 export type ListItemSetupType = ComponentBaseType & {
+  classes: ComputedRef<ListItemClassesType>
+  ifFullText: ComputedRef<boolean>
+  textBind: ComputedRef<string>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
   progressIconBind: ComputedRef<AssociativeType>
@@ -22,13 +36,15 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
   protected abstract appearanceInverse: string[]
 
   setup (): ListItemSetupType {
-    const classes = this.getClasses()
+    const classes = this.getClasses<ListItemClassesType>()
     const styles = this.getStyles()
 
     return {
       ...this.getBasic(),
       classes,
       styles,
+      ifFullText: this.ifFullText,
+      textBind: this.text,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
       progressIconBind: this.progressIcon,
@@ -36,6 +52,15 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
       onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
+
+  readonly ifFullText = computed(() => {
+    return !!(
+      this.props.description ||
+      this.props.prefix ||
+      this.props.suffix ||
+      this.props.textHighlight
+    )
+  })
 
   readonly ifInverse = computed(() => {
     return this.props.selected && (
@@ -58,4 +83,12 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
       visible: true
     }
   })
+
+  readonly text = computed(() => this.props.text && this.props.textHighlight
+    ? this.props.text.replace(
+      getExp(this.props.textHighlight, '(:value)'),
+      (subtext: string) => `<span class="is-highlight">${subtext}</span>`
+    )
+    : this.props.text
+  ) as ComputedRef<string>
 }

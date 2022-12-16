@@ -57,6 +57,11 @@
   }
 
   html {
+    --d-direction__margin-left: 0px;
+    --d-direction__margin-right: 0px;
+    --d-direction__padding-left: 0px;
+    --d-direction__padding-right: 0px;
+
     --d-direction: 1;
     --d-direction-left: 1;
     --d-direction-right: 0;

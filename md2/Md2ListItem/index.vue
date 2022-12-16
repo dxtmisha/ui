@@ -9,7 +9,18 @@
       <md2-progress v-if="progress" dense v-bind="progressIconBind"/>
     </md2-icon>
     <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
-    <span v-if="text" :class="classes.text">{{ text }}</span>
+
+    <div :class="classes.text">
+      <template v-if="ifFullText">
+        <div :class="classes.title">
+          <span v-if="prefix" :class="classes.prefix">{{ prefix }}</span>
+          <span :class="classes.context" v-html="textBind"/>
+          <span v-if="suffix" :class="classes.suffix">{{ suffix }}</span>
+        </div>
+        <div v-if="description" :class="classes.description" v-html="description"/>
+      </template>
+      <template v-else-if="text">{{ text }}</template>
+    </div>
     <slot/>
   </component>
 </template>
