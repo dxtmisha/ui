@@ -1,7 +1,30 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/color";
+
+@mixin mixinIcon() {
+  @include linkTo('padding', '??sys.icon.padding');
+
+  @include link('icon.margin', 0px);
+  @include link('icon.space', 0px);
+  @include link('width', var(--sys-height));
+}
+
+@mixin mixinButton() {
+  @include propertiesLink('d.flex.inline.center');
+  @include propertiesLink('d.font.readonly');
+
+  @include mixinIcon;
+
+  @include mixinColor(v('??l.text'), v('??l.text-opacity'));
+  @include mixinPaletteBackground(v('??l.background'));
+  @include mixinBackgroundOpacity(v('??l.background-opacity'));
+  @include mixinPaletteGradient(v('??l.gradient'));
+  @include mixinGradientOpacity(v('??l.gradient-opacity'));
+}
 
 @mixin initButton($design) {
-  @include classInitService($design, 'button') using($class, $component, $properties) {
+  @include propertiesInit($design, 'button') using($class, $component, $properties) {
+    @include mixinButton;
     @content($class, $component, $properties);
   }
 }

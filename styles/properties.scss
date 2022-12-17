@@ -10,23 +10,30 @@ $currentComponent: '--' !default;
 $currentProperties: () !default;
 $designsProperties: () !default;
 
-@function getVar($name) {
-  $index: getVarName($name);
-  @return #{var(--#{strReplace($index, '.', '-')})}
+@function i($name) {
+  @return --#{getCode($name)};
 }
 
-@function getVarName($name, $separator: '.') {
+@function v($name) {
+  @return #{var(#{i($name)})}
+}
+
+@function getName($name) {
   @if (string.index($name, '??') == 1) {
-    @return #{$currentDesign}#{$separator}#{strReplace($currentComponent, '.', $separator)}#{$separator}#{string.slice($name, 3)}
+    @return #{$currentDesign}#{'.'}#{$currentComponent}#{'.'}#{string.slice($name, 3)};
   } @else if (string.index($name, '?') == 1) {
-    @return #{$currentDesign}#{$separator}#{string.slice($name, 2)}
+    @return #{$currentDesign}#{'.'}#{string.slice($name, 2)};
   } @else {
-    @return $name
+    @return $name;
   }
 }
 
+@function getCode($name) {
+  @return strReplace(getName($name), '.', '-');
+}
+
 @function findProperties($name) {
-  $index: strToList(getVarName($name));
+  $index: strToList(getName($name));
   $data: $designsProperties;
 
   @each $key in $index {
@@ -36,6 +43,30 @@ $designsProperties: () !default;
   }
 
   @return $data;
+}
+
+@mixin propertyCustom($name, $value) {
+  #{i($name)}: $value;
+}
+
+@mixin propertyCustomTo($name, $value) {
+  @include propertyCustom($name, v($value));
+}
+
+@mixin link($name, $value) {
+  @include propertyCustom(#{'??.l.'}#{$name}, $value)
+}
+
+@mixin linkTo($name, $value) {
+  @include link($name, v($value))
+}
+
+@mixin sys($name, $value) {
+  @include propertyCustom(#{'??.sys.'}#{$name}, $value)
+}
+
+@mixin sysTo($name, $value) {
+  @include sys($name, v($value))
 }
 
 @mixin propertiesInit(
@@ -56,4 +87,3 @@ $designsProperties: () !default;
 @mixin propertiesLink($name) {
   @include mixinInit($currentClass, findProperties($name));
 }
-
