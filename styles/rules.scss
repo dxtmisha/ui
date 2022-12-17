@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 @use "sass:string";
@@ -29,11 +30,21 @@
   @return map.merge($map, (#{$index}: $value));
 }
 
+@function strReplace($value, $pattern, $replacement) {
+  $index: string.index($value, $pattern);
+
+  @if ($index != null) {
+    @return #{string.slice($value, 1, $index - 1)}#{$replacement}#{strReplace(string.slice($value, $index + string.length($pattern)), $pattern, $replacement)}
+  } @else {
+    @return $value
+  }
+}
+
 @function strToList($value, $separator: '.') {
   $index: string.index($value, $separator);
 
   @if ($index != null) {
-    @return string.slice($value, 1, $index - 1), strToList(string.slice($value, $index + 1), $separator)
+    @return list.join((string.slice($value, 1, $index - 1)), strToList(string.slice($value, $index + 1), $separator))
   } @else {
     @return $value
   }

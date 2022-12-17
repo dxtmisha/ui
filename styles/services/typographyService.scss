@@ -57,30 +57,30 @@
   }
 
   html {
-    --d-direction__margin-left: 0px;
-    --d-direction__margin-right: 0px;
-    --d-direction__padding-left: 0px;
-    --d-direction__padding-right: 0px;
+    --d-dir-margin-left: 0px;
+    --d-dir-margin-right: 0px;
+    --d-dir-padding-left: 0px;
+    --d-dir-padding-right: 0px;
 
-    --d-direction: 1;
-    --d-direction-left: 1;
-    --d-direction-right: 0;
-    --d-direction-auto: auto;
-    --d-direction-justify-start: flex-start;
-    --d-direction-justify-end: flex-end;
-    --d-direction-text-left: left;
-    --d-direction-text-right: right;
+    --d-dir: 1;
+    --d-dir-left: 1;
+    --d-dir-right: 0;
+    --d-dir-auto: auto;
+    --d-dir-justify-start: flex-start;
+    --d-dir-justify-end: flex-end;
+    --d-dir-text-left: left;
+    --d-dir-text-right: right;
 
     &[dir="rtl"] {
-      --d-direction: -1;
-      --d-direction-left: 0;
-      --d-direction-right: 1;
-      --d-direction-auto: unset;
-      --d-direction-auto-rtl: auto;
-      --d-direction-justify-start: flex-end;
-      --d-direction-justify-end: flex-start;
-      --d-direction-text-left: right;
-      --d-direction-text-right: left;
+      --d-dir: -1;
+      --d-dir-left: 0;
+      --d-dir-right: 1;
+      --d-dir-auto: unset;
+      --d-dir-auto-rtl: auto;
+      --d-dir-justify-start: flex-end;
+      --d-dir-justify-end: flex-start;
+      --d-dir-text-left: right;
+      --d-dir-text-right: left;
       direction: rtl;
     }
   }

@@ -1,3 +1,4 @@
+@use "sass:meta";
 @use "sass:string";
 
 @import "./services/classesService";
@@ -5,13 +6,36 @@
 
 $currentDesign: '--' !default;
 $currentClass: '--' !default;
+$currentComponent: '--' !default;
 $currentProperties: () !default;
 $designsProperties: () !default;
 
+@function getVar($name) {
+  $index: getVarName($name);
+  @return #{var(--#{strReplace($index, '.', '-')})}
+}
+
 @function getVarName($name, $separator: '.') {
   @if (string.index($name, '??') == 1) {
-    @return #{$currentDesign}#{$separator}#{$separator}
+    @return #{$currentDesign}#{$separator}#{strReplace($currentComponent, '.', $separator)}#{$separator}#{string.slice($name, 3)}
+  } @else if (string.index($name, '?') == 1) {
+    @return #{$currentDesign}#{$separator}#{string.slice($name, 2)}
+  } @else {
+    @return $name
   }
+}
+
+@function findProperties($name) {
+  $index: strToList(getVarName($name));
+  $data: $designsProperties;
+
+  @each $key in $index {
+    @if ($data != null) {
+      $data: getMapItem(getValue($data), $key);
+    }
+  }
+
+  @return $data;
 }
 
 @mixin propertiesInit(
@@ -22,6 +46,7 @@ $designsProperties: () !default;
   @include classInitService($design, 'button') using($class, $component, $properties) {
     $currentDesign: $design !global;
     $currentClass: $class !global;
+    $currentComponent: $component !global;
     $currentProperties: $properties !global;
 
     @content($class, $component, $properties);
@@ -29,6 +54,6 @@ $designsProperties: () !default;
 }
 
 @mixin propertiesLink($name) {
-  --test: #{strToList($name)}
+  @include mixinInit($currentClass, findProperties($name));
 }
 

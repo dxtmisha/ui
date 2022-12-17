@@ -13,18 +13,18 @@
 }
 
 @mixin marginRight($value) {
-  --d-direction__margin-right: #{$value};
+  --d-dir-margin-right: #{$value};
   @include _marginDirectionX;
 }
 
 @mixin marginLeft($value) {
-  --d-direction__margin-left: #{$value};
+  --d-dir-margin-left: #{$value};
   @include _marginDirectionX;
 }
 
 @mixin _marginDirectionX() {
-  margin-left: calc((var(--d-direction-left) * var(--d-direction__margin-left)) + (var(--d-direction-right) * var(--d-direction__margin-right)));
-  margin-right: calc((var(--d-direction-left) * var(--d-direction__margin-right)) + (var(--d-direction-right) * var(--d-direction__margin-left)));
+  margin-left: calc((var(--d-dir-left) * var(--d-dir-margin-left)) + (var(--d-dir-right) * var(--d-dir-margin-right)));
+  margin-right: calc((var(--d-dir-left) * var(--d-dir-margin-right)) + (var(--d-dir-right) * var(--d-dir-margin-left)));
 }
 
 @mixin marginTop($value) {

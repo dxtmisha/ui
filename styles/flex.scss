@@ -6,9 +6,9 @@
 
 @mixin justifyContent($value) {
   @if ($value == 'flex-start') {
-    justify-content: var(--d-direction-justify-start);
+    justify-content: var(--d-dir-justify-start);
   } @else if ($value == 'flex-end') {
-    justify-content: var(--d-direction-justify-end);
+    justify-content: var(--d-dir-justify-end);
   } @else {
     justify-content: #{$value};
   }

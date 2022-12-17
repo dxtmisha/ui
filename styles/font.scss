@@ -1,8 +1,8 @@
 @mixin textAlign($value) {
   @if ($value == 'left') {
-    text-align: var(--d-direction-text-left);
+    text-align: var(--d-dir-text-left);
   } @else if ($value == 'right') {
-    text-align: var(--d-direction-text-right);
+    text-align: var(--d-dir-text-right);
   } @else {
     text-align: #{$value};
   }
