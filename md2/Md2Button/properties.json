@@ -26,20 +26,30 @@
         }
       },
       "var|sys": {
-        "palette": "{sys.palette.primary}",
         "borderWidth": "{ref.spacing.px}",
-        "dense": "{ref.spacing.2}",
         "padding": "{ref.spacing.4}",
+        "palette": "{sys.palette.primary}",
         "space": "{ref.spacing.1}",
-        "width": "{ref.spacing.28}",
+        "zIndex": "{sys.elevation.index.2}",
+        "dense": {
+          "padding": "{ref.spacing.2}"
+        },
+        "icon": {
+          "margin": "{ref.spacing.2}",
+          "padding": "{ref.spacing.1}",
+          "text": "{ref.font.size.2xl}",
+          "textTrailing": "{ref.font.size.xl}"
+        },
         "active": {
-          "gradientOpacity": "{sys.opacity.dragged}"
+          "gradientOpacity": "{sys.opacity.dragged}",
+          "zIndex": "{sys.elevation.index.8}"
         },
         "disabled": {
           "palette": "{sys.palette.disabled}"
         },
         "dragged": {
-          "shadow": "{sys.elevation.shadow.8}"
+          "shadow": "{sys.elevation.shadow.8}",
+          "zIndex": "{sys.elevation.index.8}"
         },
         "focus": {
           "gradientOpacity": "{sys.opacity.focus}"
@@ -49,12 +59,6 @@
         },
         "selected": {
           "palette": "{sys.palette.primaryVariant}"
-        },
-        "icon": {
-          "margin": "{ref.spacing.2}",
-          "padding": "{ref.spacing.1}",
-          "text": "{ref.font.size.2xl}",
-          "textTrailing": "{ref.font.size.xl}"
         }
       },
       "@font": "{font.button}",
@@ -92,7 +96,6 @@
           }
         }
       },
-      "z-index": "{sys.elevation.index.2}",
       "@@palette": "{?palette}",
       "section|adaptive": {
         "sm": {
@@ -109,14 +112,7 @@
           "media|{ref.screen.lg}": {
             "@style": "{??m.text}"
           }
-        },
-        "full": {
-          "@style": "{??m.text}"
-        },
-        "icon": {
-          "--": "none"
-        },
-        "default": "full"
+        }
       },
       "section|appearance": {
         "contained": {

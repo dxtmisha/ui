@@ -1264,7 +1264,8 @@
         "fontWeight": "{ref.font.weight.normal}",
         "fontSize": "{ref.font.size.sm}",
         "lineHeight": "{ref.lineHeight.sm}",
-        "letterSpacing": "{ref.letterSpacing.lg}"
+        "letterSpacing": "{ref.letterSpacing.lg}",
+        "textTransform": "none"
       },
       "button": {
         "fontFamily": "{ref.font.family.basic}",
@@ -1279,70 +1280,80 @@
         "fontWeight": "{ref.font.weight.normal}",
         "fontSize": "{ref.font.size.md}",
         "lineHeight": "{ref.lineHeight.sm}",
-        "letterSpacing": "{ref.letterSpacing.md}"
+        "letterSpacing": "{ref.letterSpacing.md}",
+        "textTransform": "none"
       },
       "body1": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.normal}",
         "fontSize": "{ref.font.size.lg}",
         "lineHeight": "{ref.lineHeight.lg}",
-        "letterSpacing": "{ref.letterSpacing.xl}"
+        "letterSpacing": "{ref.letterSpacing.xl}",
+        "textTransform": "none"
       },
       "subtitle2": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.md}",
         "lineHeight": "{ref.lineHeight.lg}",
-        "letterSpacing": "{ref.letterSpacing.xs}"
+        "letterSpacing": "{ref.letterSpacing.xs}",
+        "textTransform": "none"
       },
       "subtitle1": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.normal}",
         "fontSize": "{ref.font.size.lg}",
         "lineHeight": "{ref.lineHeight.lg}",
-        "letterSpacing": "{ref.letterSpacing.sm}"
+        "letterSpacing": "{ref.letterSpacing.sm}",
+        "textTransform": "none"
       },
       "headline6": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.headline.6}",
         "lineHeight": "{ref.lineHeight.headline.6}",
-        "letterSpacing": "{ref.letterSpacing.headline.6}"
+        "letterSpacing": "{ref.letterSpacing.headline.6}",
+        "textTransform": "none"
       },
       "headline5": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.headline.5}",
         "lineHeight": "{ref.lineHeight.headline.5}",
-        "letterSpacing": "{ref.letterSpacing.headline.5}"
+        "letterSpacing": "{ref.letterSpacing.headline.5}",
+        "textTransform": "none"
       },
       "headline4": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.headline.4}",
         "lineHeight": "{ref.lineHeight.headline.4}",
-        "letterSpacing": "{ref.letterSpacing.headline.4}"
+        "letterSpacing": "{ref.letterSpacing.headline.4}",
+        "textTransform": "none"
       },
       "headline3": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.headline.3}",
         "lineHeight": "{ref.lineHeight.headline.3}",
-        "letterSpacing": "{ref.letterSpacing.headline.3}"
+        "letterSpacing": "{ref.letterSpacing.headline.3}",
+        "textTransform": "none"
       },
       "headline2": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.headline.2}",
         "lineHeight": "{ref.lineHeight.headline.2}",
-        "letterSpacing": "{ref.letterSpacing.headline.2}"
+        "letterSpacing": "{ref.letterSpacing.headline.2}",
+        "textTransform": "none"
       },
       "headline1": {
         "fontFamily": "{ref.font.family.basic}",
         "fontWeight": "{ref.font.weight.bold}",
         "fontSize": "{ref.font.size.headline.1}",
         "lineHeight": "{ref.lineHeight.headline.1}",
-        "letterSpacing": "{ref.letterSpacing.headline.1}"
+        "letterSpacing": "{ref.letterSpacing.headline.1}",
+        "textTransform": "none"
       }
     },
     "elevation": {

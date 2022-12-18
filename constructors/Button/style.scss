@@ -1,5 +1,7 @@
 @import "../../styles/properties";
 @import "../../styles/color";
+@import "../../styles/margin";
+@import "../../styles/padding";
 
 @mixin mixinIcon() {
   @include linkTo('padding', '??sys.icon.padding');
@@ -9,17 +11,81 @@
   @include link('width', var(--sys-height));
 }
 
+@mixin mixinItemIcon() {
+  & #{c('?icon')} {
+    @include propertyCustomTo('?image.font.size', '??sys.icon.text');
+
+    @include marginLeft(v('??l.icon.margin'));
+    @include marginRight(v('??l.icon.space'));
+
+    &--in-end {
+      @include propertyCustomTo('?image.font.size', '??sys.icon.text-trailing');
+
+      @include marginLeft(v('??l.icon.space'));
+      @include marginRight(v('??l.icon.margin'));
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+@mixin mixinItemProgress() {
+  & #{c('?progress')}.is-visible ~ #{c('?icon')} {
+    opacity: 0;
+  }
+
+  & #{c('?progress')}.is-visible ~ &__text {
+    color: transparent;
+  }
+}
+
+@mixin mixinItemText() {
+  @include subClass(text) {
+    @include propertiesLink('d.flex.dynamic');
+
+    align-items: center;
+    display: v('??l.text-display');
+    max-width: inherit;
+    overflow: inherit;
+    text-overflow: inherit;
+    transition-property: color;
+    white-space: inherit;
+  }
+}
+
 @mixin mixinButton() {
   @include propertiesLink('d.flex.inline.center');
   @include propertiesLink('d.font.readonly');
-
-  @include mixinIcon;
 
   @include mixinColor(v('??l.text'), v('??l.text-opacity'));
   @include mixinPaletteBackground(v('??l.background'));
   @include mixinBackgroundOpacity(v('??l.background-opacity'));
   @include mixinPaletteGradient(v('??l.gradient'));
   @include mixinGradientOpacity(v('??l.gradient-opacity'));
+
+  box-shadow: v('??l.shadow');
+  min-width: v('??l.width');
+  @include paddingX(v('??l.padding'));
+
+  cursor: pointer;
+  position: relative;
+  max-width: 100%;
+  @include textAlign('center');
+  transition-property: color, background, box-shadow;
+
+  @include mixinIcon;
+  @include mixinItemIcon;
+  @include mixinItemProgress;
+  @include mixinItemText;
+
+  @include modClass(('disabled', 'readonly')) {
+    cursor: default;
+  }
+
+  @include modClass(('disabled')) {
+    @include mixinBackground(v('??l.background'));
+    @include mixinGradient(v('??l.gradient'));
+  }
 }
 
 @mixin initButton($design) {

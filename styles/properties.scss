@@ -10,6 +10,10 @@ $currentComponent: '--' !default;
 $currentProperties: () !default;
 $designsProperties: () !default;
 
+@function c($name) {
+  @return #{'.'}#{getCode($name)};
+}
+
 @function i($name) {
   @return --#{getCode($name)};
 }
@@ -86,4 +90,32 @@ $designsProperties: () !default;
 
 @mixin propertiesLink($name) {
   @include mixinInit($currentClass, findProperties($name));
+}
+
+@mixin modClass($name) {
+  @if (meta.type-of($name) == list) {
+    @each $key in $name {
+      &--#{$name} {
+        @content;
+      }
+    }
+  } @else {
+    &--#{$name} {
+      @content;
+    }
+  }
+}
+
+@mixin subClass($name) {
+  @if (meta.type-of($name) == list) {
+    @each $key in $name {
+      &__#{$name} {
+        @content;
+      }
+    }
+  } @else {
+    &__#{$name} {
+      @content;
+    }
+  }
 }

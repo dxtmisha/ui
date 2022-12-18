@@ -951,11 +951,15 @@
     <md2-button text="dragged" dragged/>
     <md2-button text="readonly" readonly/>
     <md2-button text="selected" selected/>
-    <md2-button text="selected+disabled" selected disabled/>
+    <md2-button text="selected+disabled" selected disabled ellipsis/>
     <md2-button text="disabled" disabled/>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-button text="link" tag="a"/>
+    <md2-button text="progress" progress/>
+    <md2-button icon="face" text="progress+icon" progress/>
+    <md2-button icon-trailing="close" text="progress+trailing" progress/>
+    <md2-button icon="face" icon-trailing="close" text="progress+icon+trailing" progress/>
   </div>
   <div class="flex items-center gap-2 pt-4 pl-8">
     <md2-button appearance="outlined" :disabled="disabled" text="button"/>
@@ -965,7 +969,7 @@
     <md2-button appearance="outlined" text="dragged" dragged/>
     <md2-button appearance="outlined" text="readonly" readonly/>
     <md2-button appearance="outlined" text="selected" selected/>
-    <md2-button appearance="outlined" text="selected+disabled" selected disabled/>
+    <md2-button appearance="outlined" text="selected+disabled" selected disabled ellipsis/>
     <md2-button appearance="outlined" text="disabled" disabled/>
   </div>
   <div class="flex items-center gap-2 pt-4 pl-8">

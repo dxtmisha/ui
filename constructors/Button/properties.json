@@ -2,24 +2,6 @@
   "d": {
     "button": {
       "mixin|m": {
-        "mixin|status": {
-          "var|palette": "{??sys.palette}",
-          "var|background": "{??sys.background}",
-          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
-          "var|border": "{??sys.border}",
-          "var|borderOpacity": "{??sys.borderOpacity}",
-          "var|gradient": "{??sys.gradient}",
-          "var|gradientOpacity": "{??sys.gradientOpacity}",
-          "var|shadow": "{??sys.shadow}",
-          "var|text": "{??sys.text}",
-          "var|textOpacity": "{??sys.textOpacity}"
-        },
-        "mixin|border": {
-          "@position": "{d.position.absolute}",
-          "border-opacity": "{??l.borderOpacity}",
-          "border-width": "{??l.borderWidth}",
-          "palette-border": "{??l.border}"
-        },
         "mixin|before": {
           "::before": {
             "@style": "{??m.border}",
@@ -31,6 +13,12 @@
               "transition-duration": "{d.sys.transitionDuration.sm}"
             }
           }
+        },
+        "mixin|border": {
+          "@position": "{d.position.absolute}",
+          "border-opacity": "{??l.borderOpacity}",
+          "border-width": "{??l.borderWidth}",
+          "palette-border": "{??l.border}"
         },
         "mixin|icon": {
           "var|l": {
@@ -52,10 +40,23 @@
             "var|?icon-size": "var(--sys-height) - ({??sys.icon.padding} * 2)"
           }
         },
+        "mixin|status": {
+          "var|palette": "{??sys.palette}",
+          "var|background": "{??sys.background}",
+          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
+          "var|border": "{??sys.border}",
+          "var|borderOpacity": "{??sys.borderOpacity}",
+          "var|gradient": "{??sys.gradient}",
+          "var|gradientOpacity": "{??sys.gradientOpacity}",
+          "var|shadow": "{??sys.shadow}",
+          "var|text": "{??sys.text}",
+          "var|textOpacity": "{??sys.textOpacity}",
+          "var|zIndex": "{??sys.zIndex}"
+        },
         "mixin|text": {
           "var|l": {
-            "textDisplay": "block",
             "padding": "{??sys.padding}",
+            "textDisplay": "block",
             "width": "{??sys.width}",
             "icon": {
               "margin": "{??sys.icon.margin} - {??sys.padding}",
@@ -65,33 +66,34 @@
         },
         "mixin|zIndex": {
           "z-index": "4"
-        },
-        "mixin|disabled": {
-          "cursor": "default",
-          "z-index": "auto"
         }
       },
       "var|sys": {
-        "palette": "#000000",
         "background": "{??sys.palette}",
         "backgroundOpacity": "0",
         "border": "{??sys.palette}",
         "borderOpacity": "0",
-        "borderWidth": "1px",
-        "dense": "8px",
+        "borderWidth": "",
         "gradient": "{??sys.palette}",
         "gradientOpacity": "0",
-        "padding": "16px",
+        "padding": "",
+        "palette": "",
         "shadow": "none",
-        "space": "4px",
+        "space": "",
         "text": "unset",
         "textOpacity": "unset",
-        "width": "80px",
-        "active": {
-          "@style": "{??m.status}",
-          "gradientOpacity": "0.08"
+        "width": "auto",
+        "zIndex": "",
+        "dense": {
+          "padding": ""
         },
-        "dragged": {
+        "icon": {
+          "margin": "",
+          "padding": "",
+          "text": "",
+          "textTrailing": ""
+        },
+        "active": {
           "@style": "{??m.status}"
         },
         "disabled": {
@@ -100,29 +102,23 @@
           "border": "{??sys.disabled.palette}",
           "gradient": "{??sys.disabled.palette}"
         },
+        "dragged": {
+          "@style": "{??m.status}"
+        },
         "focus": {
-          "@style": "{??m.status}",
-          "gradientOpacity": "0.12"
+          "@style": "{??m.status}"
         },
         "hover": {
-          "@style": "{??m.status}",
-          "gradientOpacity": "0.04"
+          "@style": "{??m.status}"
         },
         "selected": {
           "@style": "{??m.status}",
           "background": "{??sys.selected.palette}",
-          "border": "{??sys.selected.palette}"
-        },
-        "icon": {
-          "margin": "12px",
-          "padding": "4px",
-          "text": "20px",
-          "textTrailing": "18px"
+          "border": "{??sys.selected.palette}",
+          "gradient": "{??sys.selected.palette}"
         }
       },
       "var|l": {
-        "palette": "{??sys.palette}",
-        "align": "center",
         "background": "{??sys.background}",
         "backgroundOpacity": "{??sys.backgroundOpacity}",
         "border": "{??sys.border}",
@@ -130,38 +126,33 @@
         "borderWidth": "{??sys.borderWidth}",
         "gradient": "{??sys.gradient}",
         "gradientOpacity": "{??sys.gradientOpacity}",
+        "padding": "{??sys.padding}",
+        "palette": "{??sys.palette}",
         "shadow": "{??sys.shadow}",
         "text": "{??sys.text}",
+        "textDisplay": "none",
         "textOpacity": "{??sys.textOpacity}",
-        "textDisplay": "none"
+        "zIndex": "{??sys.zIndex}"
       },
-      "var|?image-font-size": "{??sys.icon.text}",
-      "box-shadow": "{??l.shadow}",
-      "cursor": "pointer",
-      "max-width": "100%",
-      "min-width": "{??l.width}",
-      "padding-x": "{??l.padding}",
-      "position": "relative",
-      "text-align": "center",
-      "transition-property": "color, background, box-shadow",
+      "@@ellipsis": "{d.font.ellipsis}",
+      "section|adaptive": {
+        "full": {
+          "@style": "{??m.text}"
+        },
+        "icon": {
+          "--": "none"
+        },
+        "default": "full"
+      },
       "section|align": {
         "@style": "{d.font.align}"
       },
       "section|dense": {
-        "var|sys": {
-          "padding": "{??sys.dense}"
-        },
-        "min-width": "auto"
-      },
-      "section|ellipsis": {
-        "@style": "{d.font.ellipsis}",
-        "default": true
-      },
-      "section|lowercase": {
-        "text-transform": "none"
+        "var|l": {
+          "padding": "{??sys.dense.padding}"
+        }
       },
       "section|dragged": {
-        "@style": "{??m.zIndex}",
         "var|l": {
           "palette": "{??sys.dragged.palette}",
           "background": "{??sys.dragged.background}",
@@ -172,24 +163,9 @@
           "gradientOpacity": "{??sys.dragged.gradientOpacity} !important",
           "shadow": "{??sys.dragged.shadow} !important",
           "text": "{??sys.dragged.text}",
-          "textOpacity": "{??sys.dragged.textOpacity}"
+          "textOpacity": "{??sys.dragged.textOpacity}",
+          "zIndex": "{??sys.dragged.zIndex}"
         }
-      },
-      "section|readonly": {
-        "@style": "{??m.disabled}",
-        "var|l": {
-          "palette": "{??sys.palette} !important",
-          "background": "{??sys.background} !important",
-          "backgroundOpacity": "{??sys.backgroundOpacity} !important",
-          "border": "{??sys.border} !important",
-          "borderOpacity": "{??sys.borderOpacity} !important",
-          "gradient": "{??sys.gradient} !important",
-          "gradientOpacity": "{??sys.gradientOpacity} !important",
-          "shadow": "{??sys.shadow} !important",
-          "text": "{??sys.text} !important",
-          "textOpacity": "{??sys.textOpacity} !important"
-        },
-        "cursor": "default"
       },
       "section|selected": {
         "var|l": {
@@ -202,11 +178,26 @@
           "gradientOpacity": "{??sys.selected.gradientOpacity}",
           "shadow": "{??sys.selected.shadow}",
           "text": "{??sys.selected.text} !important",
-          "textOpacity": "{??sys.selected.textOpacity}"
+          "textOpacity": "{??sys.selected.textOpacity}",
+          "zIndex": "{??sys.selected.zIndex}"
+        }
+      },
+      "section|readonly": {
+        "var|l": {
+          "palette": "{??sys.palette} !important",
+          "background": "{??sys.background} !important",
+          "backgroundOpacity": "{??sys.backgroundOpacity} !important",
+          "border": "{??sys.border} !important",
+          "borderOpacity": "{??sys.borderOpacity} !important",
+          "gradient": "{??sys.gradient} !important",
+          "gradientOpacity": "{??sys.gradientOpacity} !important",
+          "shadow": "{??sys.shadow} !important",
+          "text": "{??sys.text} !important",
+          "textOpacity": "{??sys.textOpacity} !important",
+          "zIndex": "{??sys.dragged.zIndex} !important"
         }
       },
       "section|disabled": {
-        "@style": "{??m.disabled}",
         "var|l": {
           "palette": "{??sys.disabled.palette} !important",
           "background": "{??sys.disabled.background} !important",
@@ -217,37 +208,12 @@
           "gradientOpacity": "{??sys.disabled.gradientOpacity} !important",
           "shadow": "{??sys.disabled.shadow} !important",
           "text": "{??sys.disabled.text} !important",
-          "textOpacity": "{??sys.disabled.textOpacity} !important"
-        },
-        "background-color": "{??l.background}",
-        "gradient-color": "{??l.gradient}"
-      },
-      "#text": {
-        "@dynamic": "{d.flex.dynamic}",
-        "align-items": "center",
-        "display": "{??l.textDisplay}",
-        "max-width": "inherit",
-        "overflow": "inherit",
-        "text-overflow": "inherit",
-        "transition-property": "color",
-        "white-space": "inherit"
-      },
-      "& .?icon": {
-        "margin-left": "{??l.icon.margin}",
-        "margin-right": "{??l.icon.space}",
-        "section|inEnd": {
-          "var|?image-font-size": "{??sys.icon.textTrailing}",
-          "margin-left": "{??l.icon.space}",
-          "margin-right": "{??l.icon.margin}",
-          "position": "relative",
-          "z-index": "4"
+          "textOpacity": "{??sys.disabled.textOpacity} !important",
+          "zIndex": "{??sys.disabled.zIndex} !important"
         }
       },
-      "& .?progress.is-visible~.??__text": {
-        "color": "transparent"
-      },
-      "& .?progress.is-visible~.?icon": {
-        "opacity": "0"
+      "#text": {
+        "--": "none"
       },
       "=isIcon": {
         "@style": "{??m.icon}"
