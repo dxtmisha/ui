@@ -63,9 +63,6 @@
               "space": "{??sys.space}"
             }
           }
-        },
-        "mixin|zIndex": {
-          "z-index": "4"
         }
       },
       "var|sys": {
@@ -134,6 +131,9 @@
         "textOpacity": "{??sys.textOpacity}",
         "zIndex": "{??sys.zIndex}"
       },
+      "#text": {
+        "--": "none"
+      },
       "@@ellipsis": "{d.font.ellipsis}",
       "section|adaptive": {
         "full": {
@@ -151,6 +151,11 @@
         "var|l": {
           "padding": "{??sys.dense.padding}"
         }
+      },
+      "section|width": {
+        "auto": "auto",
+        "full": "100%",
+        "rename": "var|??sys.width"
       },
       "section|dragged": {
         "var|l": {
@@ -212,14 +217,7 @@
           "zIndex": "{??sys.disabled.zIndex} !important"
         }
       },
-      "#text": {
-        "--": "none"
-      },
-      "=isIcon": {
-        "@style": "{??m.icon}"
-      },
       ":hover": {
-        "@style": "{??m.zIndex}",
         "var|l": {
           "palette": "{??sys.hover.palette}",
           "background": "{??sys.hover.background}",
@@ -230,11 +228,11 @@
           "gradientOpacity": "{??sys.hover.gradientOpacity}",
           "shadow": "{??sys.hover.shadow}",
           "text": "{??sys.hover.text}",
-          "textOpacity": "{??sys.hover.textOpacity}"
+          "textOpacity": "{??sys.hover.textOpacity}",
+          "zIndex": "{??sys.hover.zIndex}"
         }
       },
       ":focus": {
-        "@style": "{??m.zIndex}",
         "var|l": {
           "palette": "{??sys.focus.palette}",
           "background": "{??sys.focus.background}",
@@ -245,11 +243,11 @@
           "gradientOpacity": "{??sys.focus.gradientOpacity}",
           "shadow": "{??sys.focus.shadow}",
           "text": "{??sys.focus.text}",
-          "textOpacity": "{??sys.focus.textOpacity}"
+          "textOpacity": "{??sys.focus.textOpacity}",
+          "zIndex": "{??sys.focus.zIndex}"
         }
       },
       ":active": {
-        "@style": "{??m.zIndex}",
         "var|l": {
           "palette": "{??sys.active.palette}",
           "background": "{??sys.active.background}",
@@ -260,7 +258,8 @@
           "gradientOpacity": "{??sys.active.gradientOpacity}",
           "shadow": "{??sys.active.shadow}",
           "text": "{??sys.active.text}",
-          "textOpacity": "{??sys.active.textOpacity}"
+          "textOpacity": "{??sys.active.textOpacity}",
+          "zIndex": "{??sys.active.zIndex}"
         }
       }
     }

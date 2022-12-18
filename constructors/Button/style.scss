@@ -64,7 +64,7 @@
   @include mixinGradientOpacity(v('??l.gradient-opacity'));
 
   box-shadow: v('??l.shadow');
-  min-width: v('??l.width');
+  min-width: v('??sys.width');
   @include paddingX(v('??l.padding'));
 
   cursor: pointer;
@@ -73,7 +73,11 @@
   @include textAlign('center');
   transition-property: color, background, box-shadow;
 
-  @include mixinIcon;
+  &,
+  &.is-icon {
+    @include mixinIcon;
+  }
+
   @include mixinItemIcon;
   @include mixinItemProgress;
   @include mixinItemText;
