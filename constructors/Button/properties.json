@@ -2,17 +2,18 @@
   "d": {
     "button": {
       "mixin|m": {
-        "mixin|before": {
-          "::before": {
-            "@style": "{??m.border}",
-            "transition-duration": "{d.sys.transitionDuration.fade.through}",
-            "transition-property": "border-color"
-          },
-          ":active": {
-            "::before": {
-              "transition-duration": "{d.sys.transitionDuration.sm}"
-            }
-          }
+        "mixin|status": {
+          "var|palette": "{??sys.palette}",
+          "var|background": "{??sys.background}",
+          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
+          "var|border": "{??sys.border}",
+          "var|borderOpacity": "{??sys.borderOpacity}",
+          "var|gradient": "{??sys.gradient}",
+          "var|gradientOpacity": "{??sys.gradientOpacity}",
+          "var|shadow": "{??sys.shadow}",
+          "var|text": "{??sys.text}",
+          "var|textOpacity": "{??sys.textOpacity}",
+          "var|zIndex": "{??sys.zIndex}"
         },
         "mixin|border": {
           "@position": "{d.position.absolute}",
@@ -30,6 +31,29 @@
             }
           }
         },
+        "mixin|text": {
+          "var|l": {
+            "padding": "{??sys.padding}",
+            "textDisplay": "block",
+            "width": "{??sys.width}",
+            "icon": {
+              "margin": "{??sys.icon.margin} - {??sys.padding}",
+              "space": "{??sys.space}"
+            }
+          }
+        },
+        "mixin|before": {
+          "::before": {
+            "@style": "{??m.border}",
+            "transition-duration": "{d.sys.transitionDuration.fade.through}",
+            "transition-property": "border-color"
+          },
+          ":active": {
+            "::before": {
+              "transition-duration": "{d.sys.transitionDuration.sm}"
+            }
+          }
+        },
         "mixin|round": {
           "var|sys": {
             "icon": {
@@ -40,28 +64,19 @@
             "var|?icon-size": "var(--sys-height) - ({??sys.icon.padding} * 2)"
           }
         },
-        "mixin|status": {
-          "var|palette": "{??sys.palette}",
-          "var|background": "{??sys.background}",
-          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
-          "var|border": "{??sys.border}",
-          "var|borderOpacity": "{??sys.borderOpacity}",
-          "var|gradient": "{??sys.gradient}",
-          "var|gradientOpacity": "{??sys.gradientOpacity}",
-          "var|shadow": "{??sys.shadow}",
-          "var|text": "{??sys.text}",
-          "var|textOpacity": "{??sys.textOpacity}",
-          "var|zIndex": "{??sys.zIndex}"
-        },
-        "mixin|text": {
+        "mixin|readonly": {
           "var|l": {
-            "padding": "{??sys.padding}",
-            "textDisplay": "block",
-            "width": "{??sys.width}",
-            "icon": {
-              "margin": "{??sys.icon.margin} - {??sys.padding}",
-              "space": "{??sys.space}"
-            }
+            "palette": "{??sys.palette} !important",
+            "background": "{??sys.background} !important",
+            "backgroundOpacity": "{??sys.backgroundOpacity} !important",
+            "border": "{??sys.border} !important",
+            "borderOpacity": "{??sys.borderOpacity} !important",
+            "gradient": "{??sys.gradient} !important",
+            "gradientOpacity": "{??sys.gradientOpacity} !important",
+            "shadow": "{??sys.shadow} !important",
+            "text": "{??sys.text} !important",
+            "textOpacity": "{??sys.textOpacity} !important",
+            "zIndex": "{??sys.zIndex} !important"
           }
         }
       },
@@ -129,16 +144,21 @@
         "text": "{??sys.text}",
         "textDisplay": "none",
         "textOpacity": "{??sys.textOpacity}",
+        "width": "{??sys.width}",
         "zIndex": "{??sys.zIndex}"
       },
       "#text": {
         "--": "none"
       },
+      "@style": "{??m.icon}",
       "@@ellipsis": "{d.font.ellipsis}",
       "width": {
         "auto": "auto",
         "full": "100%",
         "rename": "var|??sys.width"
+      },
+      "&.is-icon": {
+        "@style": "{??m.icon}"
       },
       "section|adaptive": {
         "full": {
@@ -187,20 +207,8 @@
           "zIndex": "{??sys.selected.zIndex}"
         }
       },
-      "section|readonly": {
-        "var|l": {
-          "palette": "{??sys.palette} !important",
-          "background": "{??sys.background} !important",
-          "backgroundOpacity": "{??sys.backgroundOpacity} !important",
-          "border": "{??sys.border} !important",
-          "borderOpacity": "{??sys.borderOpacity} !important",
-          "gradient": "{??sys.gradient} !important",
-          "gradientOpacity": "{??sys.gradientOpacity} !important",
-          "shadow": "{??sys.shadow} !important",
-          "text": "{??sys.text} !important",
-          "textOpacity": "{??sys.textOpacity} !important",
-          "zIndex": "{??sys.dragged.zIndex} !important"
-        }
+      "section|progress": {
+        "@style": "{??m.readonly}"
       },
       "section|disabled": {
         "var|l": {

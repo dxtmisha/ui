@@ -48,7 +48,7 @@ export const props = {
     default: defaultItem.defaultValue('ellipsis')
   },
   height: {
-    type: [Number, String] as PropType<Md2ButtonHeightType>,
+    type: String as PropType<Md2ButtonHeightType>,
     default: defaultItem.defaultValue('height')
   },
   lowercase: {
@@ -70,7 +70,7 @@ export const props = {
     default: defaultItem.defaultValue('ripple', true)
   },
   width: {
-    type: [Number, String] as PropType<Md2ButtonWidthType>,
+    type: String as PropType<Md2ButtonWidthType>,
     default: defaultItem.defaultValue('width')
   }
 }

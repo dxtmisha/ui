@@ -3,14 +3,6 @@
 @import "../../styles/margin";
 @import "../../styles/padding";
 
-@mixin mixinIcon() {
-  @include linkTo('padding', '??sys.icon.padding');
-
-  @include link('icon.margin', 0px);
-  @include link('icon.space', 0px);
-  @include link('width', var(--sys-height));
-}
-
 @mixin mixinItemIcon() {
   & #{c('?icon')} {
     @include propertyCustomTo('?image.font.size', '??sys.icon.text');
@@ -64,7 +56,7 @@
   @include mixinGradientOpacity(v('??l.gradient-opacity'));
 
   box-shadow: v('??l.shadow');
-  min-width: v('??sys.width');
+  min-width: v('??l.width');
   @include paddingX(v('??l.padding'));
 
   cursor: pointer;
@@ -72,11 +64,6 @@
   max-width: 100%;
   @include textAlign('center');
   transition-property: color, background, box-shadow;
-
-  &,
-  &.is-icon {
-    @include mixinIcon;
-  }
 
   @include mixinItemIcon;
   @include mixinItemProgress;

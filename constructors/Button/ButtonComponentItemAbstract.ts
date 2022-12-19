@@ -3,10 +3,12 @@ import { useRouter } from 'vue-router'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 
 export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
-  readonly ifRipple = computed(() => this.props.ripple &&
-    !this.props.disabled &&
-    !this.props.readonly
-  ) as ComputedRef<boolean>
+  readonly ifRipple = computed(() => this.props.ripple && !this.ifStatic.value) as ComputedRef<boolean>
+  readonly ifStatic = computed(() => {
+    return this.props?.readonly ||
+      this.props?.disabled ||
+      this.props?.progress
+  }) as ComputedRef<boolean>
 
   readonly icon = computed(() => {
     return {
@@ -29,11 +31,7 @@ export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
   onClick (event: MouseEvent): void {
     let type = 'on-click'
 
-    if (
-      this.props?.readonly ||
-      this.props?.disabled ||
-      this.props?.progress
-    ) {
+    if (this.ifStatic.value) {
       event.preventDefault()
       event.stopPropagation()
     } else {

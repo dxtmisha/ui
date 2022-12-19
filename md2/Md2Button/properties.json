@@ -132,7 +132,7 @@
         "default": "contained"
       },
       "section|lowercase": {
-        "@font": "{font.body1}"
+        "@style": "{font.body1}"
       },
       "section|rounded": {
         "@style": "{?rounded}"
