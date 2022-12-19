@@ -26,17 +26,9 @@ export const props = {
     default: defaultItem.defaultValue('adaptive'),
     validator: defaultItem.validator('adaptive')
   },
-  ellipsis: {
-    type: Boolean,
-    default: defaultItem.defaultValue('ellipsis')
-  },
   height: {
     type: [Number, String] as PropType<Md2FabHeightType>,
     default: defaultItem.defaultValue('height')
-  },
-  lowercase: {
-    type: Boolean,
-    default: defaultItem.defaultValue('lowercase')
   },
   palette: String as PropType<Md2PaletteType>,
   rounded: {

@@ -3,17 +3,26 @@
     "fab": {
       "@style": "{d.fab}",
       "var|sys": {
-        "palette": "{sys.palette.primary}",
         "backgroundOpacity": "{sys.opacity.primary.high}",
         "borderWidth": "{ref.spacing.px}",
-        "dense": "{ref.spacing.2}",
         "gradient": "{sys.palette.onPrimary}",
         "padding": "{ref.spacing.5}",
+        "palette": "{sys.palette.primary}",
         "shadow": "{sys.elevation.shadow.6}",
         "space": "{ref.spacing.1}",
         "text": "{sys.palette.onPrimary}",
         "textOpacity": "{sys.opacity.primary.high}",
         "width": "auto",
+        "zIndex": "{sys.elevation.index.6}",
+        "dense": {
+          "padding": "{ref.spacing.2}"
+        },
+        "icon": {
+          "margin": "{ref.spacing.3}",
+          "padding": "{ref.spacing.1}",
+          "text": "{ref.font.size.2xl}",
+          "textTrailing": "{ref.font.size.xl}"
+        },
         "active": {
           "gradientOpacity": "{sys.opacity.dragged}",
           "shadow": "{sys.elevation.shadow.12}"
@@ -36,16 +45,12 @@
         },
         "selected": {
           "palette": "{sys.palette.primaryVariant}"
-        },
-        "icon": {
-          "margin": "{ref.spacing.3}",
-          "padding": "{ref.spacing.1}",
-          "text": "{ref.font.size.2xl}",
-          "textTrailing": "{ref.font.size.xl}"
         }
       },
+      "@ellipsis": "{d.font.ellipsis}",
       "@font": "{font.button}",
       "@round": "{??m.round}",
+      "@@palette": "{?palette}",
       "border-radius": "{sys.rounded.full}",
       "height": {
         "sm": "{ref.spacing.10}",
@@ -54,8 +59,6 @@
         "default": "md"
       },
       "gradient": "{??l.gradient}",
-      "z-index": "{sys.elevation.index.6}",
-      "@@palette": "{?palette}",
       "section|adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
@@ -79,9 +82,6 @@
           "--": "none"
         },
         "default": "full"
-      },
-      "section|lowercase": {
-        "@font": "{font.body1}"
       },
       "section|rounded": {
         "@style": "{?rounded}"

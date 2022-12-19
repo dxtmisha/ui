@@ -1,7 +1,13 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../Button/style";
+
+@mixin mixinFab() {
+  @include mixinButton;
+}
 
 @mixin initFab($design) {
-  @include classInitService($design, 'fab') using($class, $component, $properties) {
+  @include propertiesInit($design, 'fab') using($class, $component, $properties) {
+    @include mixinFab();
     @content($class, $component, $properties);
   }
 }
