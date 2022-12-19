@@ -46,7 +46,6 @@ module.exports = class extends PropertiesFileService {
           }
         } else {
           const key = item.getMark()
-
           PropertiesMapService.setItem(item)
 
           if (key in tree) {
@@ -141,13 +140,16 @@ module.exports = class extends PropertiesFileService {
     const isValue = property.isValue() &&
       property.parent?.getType() === 'property' &&
       property.getType() !== 'property' &&
-      property.getType() !== 'default'
+      property.getType() !== 'default' &&
+      property.getType() !== 'rename'
 
     if (isValue) {
       property.setType('section')
-      property.property[property.parent.getMark()] = {
+      property.property[property.parent.getRename() || property.parent.getMark()] = {
         value: property.property.value
       }
+
+      delete property.property.value
     }
 
     return isValue

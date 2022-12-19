@@ -79,6 +79,10 @@ module.exports = class {
     return this.parent?.parent ? this.parent.getName() : this.getIndex()
   }
 
+  getRename () {
+    return this.property?.rename?.value?.replace(/\./ig, '-')
+  }
+
   getOriginal () {
     return this.property?.value
   }
@@ -129,6 +133,8 @@ module.exports = class {
         this.type = 'none'
       } else if (selector === 'default') {
         this.type = 'default'
+      } else if (selector === 'rename') {
+        this.type = 'rename'
       } else if (selector.match(/^[^|]+\|.*?$/)) {
         this.type = selector.split('|')[0]
       } else if (selector.match(/^@@/)) {

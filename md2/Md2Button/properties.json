@@ -62,6 +62,7 @@
         }
       },
       "@font": "{font.button}",
+      "@@palette": "{?palette}",
       "border-radius": "{sys.rounded.standard}",
       "height": {
         "sm": "{ref.spacing.8}",
@@ -69,7 +70,11 @@
         "lg": "{ref.spacing.11}",
         "default": "md"
       },
-      "@@palette": "{?palette}",
+      "width": {
+        "sm": "{ref.spacing.20}",
+        "md": "{ref.spacing.28}",
+        "lg": "{ref.spacing.36}"
+      },
       "section|adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
@@ -131,11 +136,6 @@
       },
       "section|rounded": {
         "@style": "{?rounded}"
-      },
-      "section|width": {
-        "sm": "{ref.spacing.20}",
-        "md": "{ref.spacing.28}",
-        "lg": "{ref.spacing.36}"
       },
       "&.??--rounded--full": {
         "@style": "{??m.round}"

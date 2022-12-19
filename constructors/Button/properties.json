@@ -135,6 +135,11 @@
         "--": "none"
       },
       "@@ellipsis": "{d.font.ellipsis}",
+      "width": {
+        "auto": "auto",
+        "full": "100%",
+        "rename": "var|??sys.width"
+      },
       "section|adaptive": {
         "full": {
           "@style": "{??m.text}"
@@ -151,11 +156,6 @@
         "var|l": {
           "padding": "{??sys.dense.padding}"
         }
-      },
-      "section|width": {
-        "auto": "auto",
-        "full": "100%",
-        "rename": "var|??sys.width"
       },
       "section|dragged": {
         "var|l": {
