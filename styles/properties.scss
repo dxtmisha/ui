@@ -78,7 +78,7 @@ $designsProperties: () !default;
   $keys,
   $init: ()
 ) {
-  @include classInitService($design, 'button') using($class, $component, $properties) {
+  @include classInitService($design, $keys) using($class, $component, $properties) {
     $currentDesign: $design !global;
     $currentClass: $class !global;
     $currentComponent: $component !global;
@@ -95,7 +95,7 @@ $designsProperties: () !default;
 @mixin modClass($name) {
   @if (meta.type-of($name) == list) {
     @each $key in $name {
-      &--#{$name} {
+      &--#{$key} {
         @content;
       }
     }

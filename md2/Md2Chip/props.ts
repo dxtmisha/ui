@@ -45,12 +45,8 @@ export const props = {
     validator: defaultItem.validator('appearance')
   },
   dense: Boolean,
-  ellipsis: {
-    type: Boolean,
-    default: defaultItem.defaultValue('ellipsis')
-  },
   height: {
-    type: [Number, String] as PropType<Md2ChipHeightType>,
+    type: String as PropType<Md2ChipHeightType>,
     default: defaultItem.defaultValue('height')
   },
   palette: String as PropType<Md2PaletteType>,
@@ -68,7 +64,7 @@ export const props = {
     default: defaultItem.defaultValue('ripple', true)
   },
   width: {
-    type: [Number, String] as PropType<Md2ChipWidthType>,
+    type: String as PropType<Md2ChipWidthType>,
     default: defaultItem.defaultValue('width')
   }
 }

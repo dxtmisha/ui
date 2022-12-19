@@ -17,6 +17,7 @@ export type ButtonSetupType = ComponentBaseType & {
   ifInverse: ComputedRef<boolean>
   ifRipple: ComputedRef<boolean>
   ifText: ComputedRef<boolean>
+  disabledBind: ComputedRef<boolean | undefined>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
   progressBind: ComputedRef<AssociativeType>
@@ -48,6 +49,7 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
       ifInverse: this.ifInverse,
       ifRipple: this.ifRipple,
       ifText: this.ifText,
+      disabledBind: this.disabled,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
       progressBind: this.progress,
@@ -64,6 +66,8 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
   readonly ifText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
 
   readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>
+
+  readonly disabled = computed(() => this.props.disabled || undefined) as ComputedRef<boolean | undefined>
 
   readonly progress = computed(() => {
     return {

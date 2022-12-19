@@ -173,7 +173,7 @@
         "@style": "{d.font.align}"
       },
       "section|dense": {
-        "var|l": {
+        "var|sys": {
           "padding": "{??sys.dense.padding}"
         }
       },
