@@ -3,6 +3,47 @@
 @import "../../styles/margin";
 @import "../../styles/padding";
 
+@mixin initButton($design) {
+  @include propertiesInit($design, 'button') {
+    @include mixinButton;
+    @content;
+  }
+}
+
+@mixin mixinButton() {
+  @include propertiesLink('d.flex.inline.center');
+  @include propertiesLink('d.font.readonly');
+
+  @include mixinColor(v('??l.text'), v('??l.text-opacity'));
+  @include mixinPaletteBackground(v('??l.background'));
+  @include mixinBackgroundOpacity(v('??l.background-opacity'));
+  @include mixinPaletteGradient(v('??l.gradient'));
+  @include mixinGradientOpacity(v('??l.gradient-opacity'));
+
+  box-shadow: v('??l.shadow');
+  min-width: v('??l.width');
+  @include paddingX(v('??l.padding'));
+
+  cursor: pointer;
+  position: relative;
+  max-width: 100%;
+  @include textAlign('center');
+  transition-property: color, background, box-shadow;
+
+  @include mixinItemIcon;
+  @include mixinItemProgress;
+  @include mixinItemText;
+
+  @include modClass(('disabled', 'readonly')) {
+    cursor: default;
+  }
+
+  @include modClass(('disabled')) {
+    @include mixinBackground(v('??l.background'));
+    @include mixinGradient(v('??l.gradient'));
+  }
+}
+
 @mixin mixinItemIcon() {
   & #{c('?icon')} {
     @include propertyCustomTo('?image.font.size', '??sys.icon.text');
@@ -42,46 +83,5 @@
     text-overflow: inherit;
     transition-property: color;
     white-space: inherit;
-  }
-}
-
-@mixin mixinButton() {
-  @include propertiesLink('d.flex.inline.center');
-  @include propertiesLink('d.font.readonly');
-
-  @include mixinColor(v('??l.text'), v('??l.text-opacity'));
-  @include mixinPaletteBackground(v('??l.background'));
-  @include mixinBackgroundOpacity(v('??l.background-opacity'));
-  @include mixinPaletteGradient(v('??l.gradient'));
-  @include mixinGradientOpacity(v('??l.gradient-opacity'));
-
-  box-shadow: v('??l.shadow');
-  min-width: v('??l.width');
-  @include paddingX(v('??l.padding'));
-
-  cursor: pointer;
-  position: relative;
-  max-width: 100%;
-  @include textAlign('center');
-  transition-property: color, background, box-shadow;
-
-  @include mixinItemIcon;
-  @include mixinItemProgress;
-  @include mixinItemText;
-
-  @include modClass(('disabled', 'readonly')) {
-    cursor: default;
-  }
-
-  @include modClass(('disabled')) {
-    @include mixinBackground(v('??l.background'));
-    @include mixinGradient(v('??l.gradient'));
-  }
-}
-
-@mixin initButton($design) {
-  @include propertiesInit($design, 'button') using($class, $component, $properties) {
-    @include mixinButton;
-    @content($class, $component, $properties);
   }
 }

@@ -84,7 +84,7 @@ $designsProperties: () !default;
     $currentComponent: $component !global;
     $currentProperties: $properties !global;
 
-    @content($class, $component, $properties);
+    @content;
   }
 }
 

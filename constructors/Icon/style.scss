@@ -3,9 +3,9 @@
 @import "../../styles/dimension";
 
 @mixin initIcon($design) {
-  @include propertiesInit($design, 'icon') using($class, $component, $properties) {
+  @include propertiesInit($design, 'icon') {
     @include mixinIcon;
-    @content($class, $component, $properties);
+    @content;
   }
 }
 

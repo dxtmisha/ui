@@ -1,16 +1,16 @@
 @import "../../styles/properties";
 @import "../Button/style";
 
+@mixin initChip($design) {
+  @include propertiesInit($design, 'chip') {
+    @include mixinChip();
+    @content;
+  }
+}
+
 @mixin mixinChip() {
   @include mixinButton;
 
   @include propertyCustomTo('?progress.background', '??l.gradient');
   @include propertyCustomTo('?ripple.background', '??l.gradient');
-}
-
-@mixin initChip($design) {
-  @include propertiesInit($design, 'chip') using($class, $component, $properties) {
-    @include mixinChip();
-    @content($class, $component, $properties);
-  }
 }

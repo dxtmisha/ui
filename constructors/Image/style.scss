@@ -2,9 +2,9 @@
 @import "../../styles/color";
 
 @mixin initImage($design) {
-  @include propertiesInit($design, 'image') using($class, $component, $properties) {
+  @include propertiesInit($design, 'image') {
     @include mixinImage;
-    @content($class, $component, $properties);
+    @content;
   }
 }
 
