@@ -1,15 +1,85 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/color";
 
 @mixin initImage($design) {
-  @include classInitService($design, 'image') using($class, $component, $properties) {
-    @include mixinImageMaterial;
-    @include mixinImageLineAwesome;
-
+  @include propertiesInit($design, 'image') using($class, $component, $properties) {
+    @include mixinImage;
     @content($class, $component, $properties);
   }
 }
 
-@mixin mixinImageMaterial() {
+@mixin mixinImage() {
+  @include propertiesLink('d.flex.center');
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+  font-size: v('??_font-size');
+  direction: ltr;
+
+  position: absolute;
+  inset: 0;
+
+  transform: none;
+  transition-duration: v('d.sys.transition-duration.standard');
+  transition-property: background-color, background-size, color, filter, opacity, transform;
+
+  @include mixinLineAwesome;
+  @include mixinMaterial;
+
+  @include mixinType;
+
+  @include modClass('turn') {
+    transform: rotate(180deg);
+  }
+
+  @include modClass('disabled') {
+    @include mixinColorOpacity(v('??_disabled'));
+  }
+
+  @include modClass('hide') {
+    @include propertiesLink('d.animation.hide');
+  }
+}
+
+@mixin mixinType() {
+  &.is-type {
+    &--public {
+      @include propertiesLink('d.mixin.background-as-color');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: contain;
+    }
+
+    &--color,
+    &--image {
+      @include modClassByGlobal('disabled') {
+        @include mixinGrayscale;
+      }
+    }
+  }
+}
+
+@mixin mixinGrayscale() {
+  filter: grayscale(1) #{opacity}(#{v('??_disabled')});
+}
+
+@mixin mixinLineAwesome() {
+  &.la,
+  &.lab,
+  &.lad,
+  &.lal,
+  &.lar,
+  &.las {
+    &::before {
+      color: inherit;
+    }
+
+    @content;
+  }
+}
+
+@mixin mixinMaterial() {
   &.material-icons {
     @content;
 
@@ -32,20 +102,5 @@
         font-family: 'Material Icons Two Tone', sans-serif;
       }
     }
-  }
-}
-
-@mixin mixinImageLineAwesome() {
-  &.la,
-  &.lab,
-  &.lad,
-  &.lal,
-  &.lar,
-  &.las {
-    &::before {
-      color: inherit;
-    }
-
-    @content;
   }
 }

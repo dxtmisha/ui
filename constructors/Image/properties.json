@@ -1,47 +1,11 @@
 {
   "d": {
     "image": {
-      "var|_disabled": "0.38",
+      "var|_disabled": "",
       "var|_fontSize": "inherit",
-      "mixin|grayscale": {
-        "filter": "grayscale(1) opacity({??_disabled})"
-      },
-      "@flex": "{d.flex.center}",
-      "background-size": "cover",
-      "background-repeat": "no-repeat",
-      "border-radius": "inherit",
-      "font-size": "{??_fontSize}",
-      "direction": "ltr",
-      "inset": "0",
-      "position": "absolute",
-      "transform": "none",
-      "transition-duration": "{d.sys.transitionDuration.standard}",
-      "transition-property": "background-color, background-size, color, filter, opacity, transform",
-      "section|disabled": {
-        "color-opacity": "{??_disabled}",
-        "=isType": {
-          "section|color": {
-            "@grayscale": "{??grayscale}"
-          },
-          "section|image": {
-            "@grayscale": "{??grayscale}"
-          }
-        }
-      },
-      "section|hide": {
-        "@style": "{d.animation.hide}"
-      },
-      "section|turn": {
-        "transform": "rotate(180deg)"
-      },
-      "=isType": {
-        "public": {
-          "@style": "{d.mixin.backgroundAsColor}",
-          "mask-position": "center",
-          "mask-repeat": "no-repeat",
-          "mask-size": "contain"
-        }
-      }
+      "section|disabled": {},
+      "section|hide": {},
+      "section|turn": {}
     }
   }
 }

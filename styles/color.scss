@@ -85,26 +85,44 @@
   @if (isColorRbgOrVar($color)) {
     --sys-color: #{toColorRbg($color)};
     @include mixinColorOpacity($opacity);
-    color: rgba(var(--sys-color), var(--sys-color-opacity));
+    @include mixinColorInit;
   } @else {
     color: $color;
-  }
-}
-
-@mixin mixinStroke($color, $opacity: null) {
-  @if (isColorRbgOrVar($color)) {
-    --sys-color: #{toColorRbg($color)};
-    @include mixinColorOpacity($opacity);
-    stroke: rgba(var(--sys-color), var(--sys-color-opacity));
-  } @else {
-    stroke: $color;
   }
 }
 
 @mixin mixinColorOpacity($opacity) {
   @if ($opacity != null) {
     --sys-color-opacity: #{$opacity};
+    @include mixinColorInit;
   }
+}
+
+@mixin mixinColorInit() {
+  color: rgba(var(--sys-color), var(--sys-color-opacity));
+}
+
+/* Stroke */
+
+@mixin mixinStroke($color, $opacity: null) {
+  @if (isColorRbgOrVar($color)) {
+    --sys-color: #{toColorRbg($color)};
+    @include mixinColorOpacity($opacity);
+    @include mixinStrokeInit;
+  } @else {
+    stroke: $color;
+  }
+}
+
+@mixin mixinStrokeOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-color-opacity: #{$opacity};
+    @include mixinStrokeInit;
+  }
+}
+
+@mixin mixinStrokeInit() {
+  stroke: rgba(var(--sys-color), var(--sys-color-opacity));
 }
 
 /* Background */
@@ -113,26 +131,44 @@
   @if (isColorRbgOrVar($color)) {
     --sys-background: #{toColorRbg($color)};
     @include mixinBackgroundOpacity($opacity);
-    background-color: rgba(var(--sys-background), var(--sys-background-opacity));
+    @include mixinBackgroundInit;
   } @else {
     background-color: $color;
-  }
-}
-
-@mixin mixinFill($color, $opacity: null) {
-  @if (isColorRbgOrVar($color)) {
-    --sys-background: #{toColorRbg($color)};
-    @include mixinBackgroundOpacity($opacity);
-    fill: rgba(var(--sys-background), var(--sys-background-opacity));
-  } @else {
-    fill: $color;
   }
 }
 
 @mixin mixinBackgroundOpacity($opacity) {
   @if ($opacity != null) {
     --sys-background-opacity: #{$opacity};
+    @include mixinBackgroundInit;
   }
+}
+
+@mixin mixinBackgroundInit() {
+  background-color: rgba(var(--sys-background), var(--sys-background-opacity));
+}
+
+/* Fill */
+
+@mixin mixinFill($color, $opacity: null) {
+  @if (isColorRbgOrVar($color)) {
+    --sys-background: #{toColorRbg($color)};
+    @include mixinBackgroundOpacity($opacity);
+    @include mixinFillInit;
+  } @else {
+    fill: $color;
+  }
+}
+
+@mixin mixinFillOpacity($opacity) {
+  @if ($opacity != null) {
+    --sys-background-opacity: #{$opacity};
+    @include mixinFillInit;
+  }
+}
+
+@mixin mixinFillInit() {
+  fill: rgba(var(--sys-background), var(--sys-background-opacity));
 }
 
 /* Gradient */
@@ -141,7 +177,7 @@
   @if (isColorRbgOrVar($color)) {
     --sys-gradient: #{toColorRbg($color)};
     @include mixinGradientOpacity($opacity);
-    background-image: #{toGradient(#{rgba(var(--sys-gradient), var(--sys-gradient-opacity))})};
+    @include mixinGradientInit;
   } @else {
     background-image: $color;
   }
@@ -150,7 +186,12 @@
 @mixin mixinGradientOpacity($opacity) {
   @if ($opacity != null) {
     --sys-gradient-opacity: #{$opacity};
+    @include mixinGradientInit;
   }
+}
+
+@mixin mixinGradientInit() {
+  background-image: #{toGradient(#{rgba(var(--sys-gradient), var(--sys-gradient-opacity))})};
 }
 
 /* Border */
@@ -159,7 +200,7 @@
   @if (isColorRbgOrVar($color)) {
     --sys-border: #{toColorRbg($color)};
     @include mixinBorderOpacity($opacity);
-    border-color: rgba(var(--sys-border), var(--sys-border-opacity));
+    @include mixinBorderInit;
   } @else {
     border-color: $color;
   }
@@ -168,5 +209,10 @@
 @mixin mixinBorderOpacity($opacity) {
   @if ($opacity != null) {
     --sys-border-opacity: #{$opacity};
+    @include mixinBorderInit;
   }
+}
+
+@mixin mixinBorderInit() {
+  border-color: rgba(var(--sys-border), var(--sys-border-opacity));
 }

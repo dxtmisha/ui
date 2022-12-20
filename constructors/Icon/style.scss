@@ -2,31 +2,10 @@
 @import "../../styles/color";
 @import "../../styles/dimension";
 
-@mixin mixinAnimation() {
-  @include modClass('animation-type') {
-    @include modClass('type2') {
-      clip-path: inset(0 0 0 0);
-      transition: clip-path #{v('d.sys.transition-duration.fade.enter')} #{v('d.sys.transition-function.deceleration')},
-      margin #{v('d.ref.transition-duration.1')} linear,
-      background #{v('d.sys.transition-duration.standard')} linear,
-      transform #{v('d.sys.transition-duration.standard')} linear;
-
-      &#{c('??-hide')} {
-        clip-path: inset(0 100% 0 0);
-        margin: 0 calc(#{v('??_size')} * -1) 0 0 !important;
-        opacity: 1;
-        transform: none;
-        transition-duration: v('d.sys.transition-duration.fade.exit');
-        transition-timing-function: linear;
-      }
-    }
-  }
-}
-
-@mixin mixinAnimationShow() {
-  @include modClass('animation-show') {
-    animation-duration: v('d.sys.transition-duration.standard');
-    animation-name: getCode('??-show')
+@mixin initIcon($design) {
+  @include propertiesInit($design, 'icon') using($class, $component, $properties) {
+    @include mixinIcon;
+    @content($class, $component, $properties);
   }
 }
 
@@ -65,9 +44,30 @@
   }
 }
 
-@mixin initIcon($design) {
-  @include propertiesInit($design, 'icon') using($class, $component, $properties) {
-    @include mixinIcon;
-    @content($class, $component, $properties);
+@mixin mixinAnimation() {
+  @include modClass('animation-type') {
+    @include modClass('type2') {
+      clip-path: inset(0 0 0 0);
+      transition: clip-path #{v('d.sys.transition-duration.fade.enter')} #{v('d.sys.transition-function.deceleration')},
+      margin #{v('d.ref.transition-duration.1')} linear,
+      background #{v('d.sys.transition-duration.standard')} linear,
+      transform #{v('d.sys.transition-duration.standard')} linear;
+
+      &#{c('??-hide')} {
+        clip-path: inset(0 100% 0 0);
+        margin: 0 calc(#{v('??_size')} * -1) 0 0 !important;
+        opacity: 1;
+        transform: none;
+        transition-duration: v('d.sys.transition-duration.fade.exit');
+        transition-timing-function: linear;
+      }
+    }
+  }
+}
+
+@mixin mixinAnimationShow() {
+  @include modClass('animation-show') {
+    animation-duration: v('d.sys.transition-duration.standard');
+    animation-name: getCode('??-show')
   }
 }

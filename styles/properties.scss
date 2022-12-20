@@ -106,10 +106,18 @@ $designsProperties: () !default;
   }
 }
 
+@mixin modClassByGlobal($name) {
+  &#{'.'}#{$currentDesign}#{'-'}#{$currentComponent} {
+    @include modClass($name) {
+      @content;
+    }
+  }
+}
+
 @mixin subClass($name) {
   @if (meta.type-of($name) == list) {
     @each $key in $name {
-      &__#{$name} {
+      &__#{$key} {
         @content;
       }
     }
