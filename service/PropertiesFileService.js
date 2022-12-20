@@ -81,6 +81,8 @@ module.exports = class {
         data[index] = { value }
       } else if ('value' in value) {
         data[index] = value
+      } else if (Object.keys(value).length === 0) {
+        data[index] = this.toStandard({ '--': 'none' })
       } else if (isFilled(value)) {
         data[index] = this.toStandard(value)
       }

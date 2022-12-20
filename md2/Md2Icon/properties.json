@@ -20,7 +20,8 @@
         "xl": {
           "var|?image-fontSize": "{ref.font.size.headline.3}",
           "var|_rounded": "{?.sys.rounded.none}",
-          "var|_size": "{?.ref.spacing.25}"
+          "var|_size": "{?.ref.spacing.25}",
+          "width-aspect-ratio": "25/14"
         }
       }
     }

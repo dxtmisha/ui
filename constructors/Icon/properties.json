@@ -1,11 +1,11 @@
 {
   "d": {
     "icon": {
-      "var|_background": "0, 0, 0",
-      "var|_disabled": ".02",
-      "var|_opacity": ".08",
-      "var|_rounded": "4px",
-      "var|_size": "24px",
+      "var|_background": "",
+      "var|_disabled": "",
+      "var|_opacity": "",
+      "var|_rounded": "",
+      "var|_size": "",
       "animate|show": {
         "0%": {
           "opacity": "0",
@@ -22,58 +22,13 @@
           "transform": "none"
         }
       },
-      "@select": "{d.font.readonly}",
-      "border-radius": "{??_rounded}",
-      "display": "inline-block",
-      "min-width": "{??_size}",
-      "overflow": "hidden",
-      "position": "relative",
-      "transition-duration": "{d.sys.transitionDuration.standard}",
-      "transition-property": "background, clip-path, margin, opacity, transform",
-      "squared": "{??_size}",
-      "section|animationShow": {
-        "animation-duration": "{d.sys.transitionDuration.standard}",
-        "animation-name": "??--show"
-      },
+      "section|animationShow": {},
       "section|animationType": {
-        "type2": {
-          "clip-path": "inset(0 0 0 0)",
-          "transition": "=clip-path {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}, margin {d.ref.transitionDuration.1} linear, background {d.sys.transitionDuration.standard} linear, transform {d.sys.transitionDuration.standard} linear",
-          "??--hide": {
-            "clip-path": "inset(0 100% 0 0)",
-            "margin": "0 calc({??_size} * -1) 0 0 !important",
-            "opacity": "1",
-            "transform": "none",
-            "transition-duration": "{d.sys.transitionDuration.fade.exit}",
-            "transition-timing-function": "linear"
-          }
-        }
+        "type2": {}
       },
-      "section|background": {
-        "background-opacity": "{??_opacity}",
-        "palette-background": "{??_background}"
-      },
-      "section|disabled": {
-        "background-opacity": "{??_disabled}"
-      },
-      "section|inEnd": {
-        "order": "999999"
-      },
-      "section|hide": {
-        "@style": "{d.animation.hide}"
-      },
-      "section|size": {
-        "md": {
-          "var|_size": "40px"
-        },
-        "lg": {
-          "var|_size": "56px"
-        },
-        "xl": {
-          "var|_size": "100px",
-          "width-aspect-ratio": "25/14"
-        }
-      }
+      "section|background": {},
+      "section|disabled": {},
+      "section|hide": {}
     }
   }
 }
