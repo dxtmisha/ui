@@ -107,7 +107,7 @@
 @mixin mixinStroke($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-color: #{toColorRbg($color)};
-    @include mixinColorOpacity($opacity);
+    @include mixinStrokeOpacity($opacity);
     @include mixinStrokeInit;
   } @else {
     stroke: $color;
@@ -153,7 +153,7 @@
 @mixin mixinFill($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-background: #{toColorRbg($color)};
-    @include mixinBackgroundOpacity($opacity);
+    @include mixinFillOpacity($opacity);
     @include mixinFillInit;
   } @else {
     fill: $color;

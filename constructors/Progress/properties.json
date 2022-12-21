@@ -1,26 +1,72 @@
 {
   "d": {
     "progress": {
-      "var|_background": "0, 0, 0",
-      "var|_duration": "20s",
-      "var|_height": "4px",
-      "var|_inverse": "255, 255, 255",
-      "var|_opacity": ".1",
-      "var|_circular": {
-        "var|dasharray": "{??_circularLength} / 100",
-        "var|length": "calc(2 * 3.1415926535 * (({??_circularSize} - (2 * {??_circularPadding})) / 2))",
-        "var|padding": "4px",
-        "var|size": "48px"
+      "var|sys": {
+        "circular": {
+          "padding": "",
+          "size": ""
+        },
+        "duration": "20s",
+        "height": "",
+        "inverse": "",
+        "opacity": ""
       },
-      "var|bottom": "auto",
-      "var|top": "0",
-      "var|transformOrigin": "top",
-      "animate|linear-visible": {
+      "var|l": {
+        "bottom": "auto",
+        "top": "0",
+        "transformOrigin": "top"
+      },
+      "var|_background": "",
+      "animate|circle-hidden": {
         "0%": {
-          "transform": "scaleY(0)"
+          "opacity": "1"
         },
         "100%": {
-          "transform": "scaleY(1)"
+          "opacity": "0"
+        }
+      },
+      "animate|circle-type1": {
+        "0%": {
+          "stroke-dasharray": "1.256637061435917 125.66370614359173"
+        },
+        "5%": {
+          "stroke-dasharray": "50.265482457436692 125.66370614359173"
+        },
+        "50%": {
+          "stroke-dasharray": "113.09733552923253 125.66370614359173"
+        },
+        "100%": {
+          "stroke-dasharray": "125.66370614359173 125.66370614359173"
+        }
+      },
+      "animate|circle-type2": {
+        "0%": {
+          "transform": "rotate(0deg)"
+        },
+        "100%": {
+          "transform": "rotate(360deg)"
+        }
+      },
+      "animate|circle-type3": {
+        "0%": {
+          "stroke-dasharray": "1, 200",
+          "stroke-dashoffset": "0"
+        },
+        "50%": {
+          "stroke-dasharray": "89, 200",
+          "stroke-dashoffset": "-35"
+        },
+        "100%": {
+          "stroke-dasharray": "89, 200",
+          "stroke-dashoffset": "-124"
+        }
+      },
+      "animate|circle-visible": {
+        "0%": {
+          "opacity": "0"
+        },
+        "100%": {
+          "opacity": "1"
         }
       },
       "animate|linear-hidden": {
@@ -73,216 +119,39 @@
           "right": "-8%"
         }
       },
-      "animate|circle-visible": {
+      "animate|linear-visible": {
         "0%": {
-          "opacity": "0"
+          "transform": "scaleY(0)"
         },
         "100%": {
-          "opacity": "1"
+          "transform": "scaleY(1)"
         }
       },
-      "animate|circle-hidden": {
-        "0%": {
-          "opacity": "1"
-        },
-        "100%": {
-          "opacity": "0"
-        }
-      },
-      "animate|circle-type1": {
-        "0%": {
-          "stroke-dasharray": "1.256637061435917 125.66370614359173"
-        },
-        "5%": {
-          "stroke-dasharray": "50.265482457436692 125.66370614359173"
-        },
-        "50%": {
-          "stroke-dasharray": "113.09733552923253 125.66370614359173"
-        },
-        "100%": {
-          "stroke-dasharray": "125.66370614359173 125.66370614359173"
-        }
-      },
-      "animate|circle-type2": {
-        "0%": {
-          "transform": "rotate(0deg)"
-        },
-        "100%": {
-          "transform": "rotate(360deg)"
-        }
-      },
-      "animate|circle-type3": {
-        "0%": {
-          "stroke-dasharray": "1, 200",
-          "stroke-dashoffset": "0"
-        },
-        "50%": {
-          "stroke-dasharray": "89, 200",
-          "stroke-dashoffset": "-35"
-        },
-        "100%": {
-          "stroke-dasharray": "89, 200",
-          "stroke-dashoffset": "-124"
-        }
-      },
-      "mixin|short": {
-        "background-opacity": "1",
-        "bottom": "0",
-        "left": "0",
-        "palette-background": "{??_background}",
-        "position": "absolute",
-        "right": "100%",
-        "top": "0",
-        "transition-property": "background-color"
-      },
-      "animation-fill-mode": "forwards",
-      "appearance": "none",
-      "display": "none",
-      "position": "absolute",
-      "overflow": "hidden",
-      "transition-property": "background-color",
-      "z-index": "16",
       "section|bottom": {
-        "var|bottom": "0",
-        "var|top": "auto",
-        "var|transformOrigin": "bottom"
+        "var|l": {
+          "bottom": "0",
+          "top": "auto",
+          "transformOrigin": "bottom"
+        }
       },
       "section|dense": {
-        "var|_circular": {
-          "var|padding": "0px"
-        }
-      },
-      "section|indeterminate": {
-        "type1": {
-          "??--type": {
-            "circular": {
-              "& .??__circle": {
-                "animation-duration": "{??_duration}",
-                "animation-fill-mode": "forwards",
-                "animation-name": "??--circle-type1"
-              }
-            },
-            "linear": {
-              "::after": {
-                "animation-duration": "{??_duration}",
-                "animation-fill-mode": "forwards"
-              },
-              "=isMove": {
-                "animation-delay": "var(--d-sys-transition-duration-sm)",
-                "::after": {
-                  "animation-name": "??--linear-type1"
-                },
-                "::before": {
-                  "right": "0",
-                  "transition-property": "right"
-                }
-              },
-              "=isVisible": {
-                "::after": {
-                  "animation-name": "??--linear-type1"
-                }
-              }
-            }
-          }
-        },
-        "type2": {
-          "??--type": {
-            "circular": {
-              "& .??__circle": {
-                "animation": "??--circle-type2 2s linear infinite, ??--circle-type3 1.5s ease-in-out infinite",
-                "transform-origin": "center"
-              }
-            },
-            "linear": {
-              "::after": {
-                "animation": "??--linear-type3 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite",
-                "animation-delay": "1.15s"
-              },
-              "::before": {
-                "animation": "??--linear-type2 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite"
-              }
-            }
+        "var|sys": {
+          "circular": {
+            "padding": "0px"
           }
         }
       },
       "section|inverse": {
-        "var|_background": "{??_inverse}",
-        "& .??__circle": {
-          "stroke": "{??_background}"
-        }
+        "var|_background": "{??sys.inverse}"
+      },
+      "#circle": {},
+      "section|indeterminate": {
+        "type1": {},
+        "type2": {}
       },
       "section|type": {
-        "circular": {
-          "inset": "0",
-          "margin": "auto",
-          "max-height": "100%",
-          "padding": "{??_circular.padding}",
-          "squared": "{??_circular.size}",
-          "transform": "rotate(-90deg)",
-          "=isMove": {
-            "animation-name": "??--circle-hidden"
-          },
-          "=isVisible": {
-            "animation-name": "??--circle-visible"
-          }
-        },
-        "linear": {
-          "background-opacity": "{??_opacity}",
-          "bottom": "{??bottom}",
-          "height": "{??_height}",
-          "padding-x": "0",
-          "palette-background": "{??_background}",
-          "top": "{??top}",
-          "transform-origin": "{??transformOrigin}",
-          "width": "100%",
-          "::after": {
-            "@short": "{??short}"
-          },
-          "::before": {
-            "@short": "{??short}"
-          },
-          "=isMove": {
-            "animation-name": "??--linear-hidden"
-          },
-          "=isVisible": {
-            "animation-name": "??--linear-visible"
-          }
-        }
-      },
-      "#circle": {
-        "fill": "transparent",
-        "palette-stroke": "{??_background}",
-        "stroke-dasharray": "1, 200",
-        "stroke-dashoffset": "0",
-        "stroke-linecap": "round",
-        "stroke-opacity": "1",
-        "stroke-width": "{??_height}",
-        "transition-property": "background-color, stroke-dasharray"
-      },
-      "=isMove": {
-        "display": "block"
-      },
-      "=isValue": {
-        "display": "block",
-        "??--type": {
-          "linear": {
-            "::after": {
-              "display": "none"
-            },
-            "::before": {
-              "right": "{??_value}",
-              "transition-property": "right"
-            }
-          }
-        }
-      },
-      "=isVisible": {
-        "display": "block"
-      },
-      "&.isValue &__circle": {
-        "animation-name": "none",
-        "stroke-dasharray": "calc({??_value} * {??_circular.dasharray}) {??_circular.length}",
-        "stroke-linecap": "butt"
+        "circular": {},
+        "linear": {}
       }
     }
   }

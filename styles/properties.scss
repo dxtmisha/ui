@@ -127,3 +127,11 @@ $designsProperties: () !default;
     }
   }
 }
+
+@mixin subClassByGlobal($name) {
+  & #{'.'}#{$currentDesign}#{'-'}#{$currentComponent} {
+    @include subClass($name) {
+      @content;
+    }
+  }
+}

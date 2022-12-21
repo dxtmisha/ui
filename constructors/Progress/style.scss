@@ -1,9 +1,194 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/color";
+@import "../../styles/dimension";
+@import "../../styles/padding";
+@import "../../styles/position";
 
 @mixin initProgress($design, $value) {
-  @include classInitService($design, 'progress') using($class, $component, $properties) {
-    --#{$class}-_value: #{$value};
+  @include propertiesInit($design, 'progress') {
+    @include mixinProgress($value);
+    @content;
+  }
+}
 
-    @content($class, $component, $properties);
+@mixin mixinProgress($value) {
+  @include propertyCustom('??circular.length', #{calc(2 * 3.1415926535 * ((v('??sys.circular.size') - (2 * v('??sys.circular.padding')) / 2)))});
+  @include propertyCustom('??circular.dasharray', #{calc(v('??sys.circular.length') / 100)});
+
+  #{i('??value')}: #{$value};
+
+  appearance: none;
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  z-index: 16;
+
+  animation-fill-mode: forwards;
+  transition-property: background-color;
+
+  @include mixinCircular;
+
+  @include mixinLinear;
+  @include mixinCircle;
+
+  &.is-move,
+  &.is-value,
+  &.is-visible {
+    display: block;
+  }
+}
+
+@mixin mixinCircle {
+  @include subClass('circle') {
+    @include mixinPaletteStroke(v('??_background'));
+    fill: transparent;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    stroke-opacity: 1;
+    stroke-width: v('??sys.height');
+    transition-property: background-color, stroke-dasharray;
+
+    &.is-value {
+      animation-name: none;
+      stroke-dasharray: calc(#{v('??value')} * #{v('??circular.dasharray')}) #{v('??circular.length')};
+      stroke-linecap: butt;
+    }
+  }
+
+  @include modClass('inverse') {
+    @include subClassByGlobal('circle') {
+      @include mixinStroke(v('??_background'));
+    }
+  }
+}
+
+@mixin mixinShort() {
+  &::after,
+  &::before {
+    @include mixinPaletteBackground(v('??_background'));
+    @include mixinBackgroundOpacity(1);
+
+    content: ' ';
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+
+    transition-property: background-color;
+  }
+}
+
+@mixin mixinLinear() {
+  @include modClass('type') {
+    @include modClass('linear') {
+      @include mixinPaletteBackground(v('??_background'));
+      @include mixinBackgroundOpacity(v('??sys.opacity'));
+
+      height: v('??sys.height');
+      width: 100%;
+
+      @include paddingX(0);
+      top: v('??l.top');
+      bottom: v('??l.bottom');
+
+      transform-origin: v('??l.transform-origin');
+
+      &.is-move {
+        animation-name: getCode('??-linear-hidden');
+      }
+
+      &.is-visible {
+        animation-name: getCode('??-linear-visible');
+      }
+
+      &.is-value {
+        &::after {
+          display: none;
+        }
+
+        &::before {
+          right: v('??value');
+          transition-property: right;
+        }
+      }
+
+      @include mixinShort;
+      @include modClassByGlobal('indeterminate') {
+        @include modClass('type1') {
+          &::after {
+            animation-duration: v('??sys.duration');
+            animation-fill-mode: forwards;
+          }
+
+          &.is-move,
+          &.is-visible {
+            &::after {
+              animation-name: getCode('??-linear-type1')
+            }
+          }
+
+          &.is-move {
+            animation-delay: var(--d-sys-transition-duration-sm);
+
+            &::before {
+              right: 0;
+              transition-property: right
+            }
+          }
+        }
+
+        @include modClass('type2') {
+          &::after {
+            animation: #{getCode('??-linear-type3')} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+            animation-delay: 1.15s;
+          }
+
+          &::before {
+            animation: #{getCode('??-linear-type2')} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin mixinCircular() {
+  @include modClass('type') {
+    @include modClass('circular') {
+      @include inset(0);
+      @include squared(v('??sys.circular.size'));
+      margin: auto;
+      max-height: 100%;
+      padding: v('??sys.circular.padding');
+      transform: rotate(-90deg);
+
+      &.is-move {
+        animation-name: getCode('??-circle-hidden');
+      }
+
+      &.is-visible {
+        animation-name: getCode('??-circle-visible');
+      }
+
+      @include modClassByGlobal('indeterminate') {
+        @include modClass('type1') {
+          @include subClassByGlobal('circle') {
+            animation-duration: v('??sys.duration');
+            animation-fill-mode: forwards;
+            animation-name: getCode('??-circle-type1');
+          }
+        }
+
+        @include modClass('type2') {
+          @include subClassByGlobal('circle') {
+            animation: #{getCode('??-circle-type2')} 2s linear infinite, #{getCode('??-circle-type3')} 1.5s ease-in-out infinite;
+            transform-origin: center;
+          }
+        }
+      }
+    }
   }
 }
