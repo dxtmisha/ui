@@ -1,7 +1,60 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/color";
+@import "../../styles/position";
 
 @mixin initRipple($design) {
-  @include classInitService($design, 'ripple') using($class, $component, $properties) {
-    @content($class, $component, $properties);
+  @include propertiesInit($design, 'ripple') {
+    @include mixinRipple;
+    @content;
   }
+}
+
+@mixin mixinRipple() {
+  border-radius: inherit;
+  z-index: 1;
+
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+
+  @include mixinItem;
+
+  @include modClass('inverse') {
+    @include mixinPalette(v('??sys.inverse'));
+  }
+}
+
+@mixin mixinItem() {
+  @include subClass('item') {
+    @include mixinPaletteBackground(v('??_background'));
+    @include mixinBackgroundOpacity(v('??sys.opacity'));
+
+    position: absolute;
+    @include inset(0);
+
+    animation-duration: v('d.sys.transition-duration.fade.through');
+    animation-fill-mode: forwards;
+    animation-name: getCode('??-start');
+    animation-timing-function: linear;
+
+    &.is-end:not(:last-child) {
+      @include mixinEnd;
+    }
+  }
+
+  &:not(:active) {
+    @include subClassByGlobal('item') {
+      &.is-end {
+        @include mixinEnd;
+      }
+    }
+  }
+}
+
+@mixin mixinEnd() {
+  opacity: 0;
+
+  transition-delay: v('d.sys.transition-duration.fade.enter');
+  transition-duration: v('d.sys.transition-duration.fade.through');
+  transition-property: opacity;
 }

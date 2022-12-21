@@ -1,9 +1,11 @@
 {
   "d": {
     "ripple": {
-      "var|_background": "0, 0, 0",
-      "var|_inverse": "255, 255, 255",
-      "var|_opacity": ".1",
+      "var|sys": {
+        "inverse": "",
+        "opacity": ""
+      },
+      "var|_background": "",
       "var|_x": "50%",
       "var|_y": "50%",
       "animate|start": {
@@ -12,51 +14,18 @@
           "clip-path": "circle(000% at {??_x} {??_y})"
         },
         "50%": {
-          "gradient-opacity": "{??_opacity}",
+          "gradient-opacity": "{??sys.opacity}",
           "clip-path": "circle(075% at {??_x} {??_y})"
         },
         "100%": {
-          "gradient-opacity": "{??_opacity}",
+          "gradient-opacity": "{??sys.opacity}",
           "clip-path": "circle(150% at {??_x} {??_y})"
         }
       },
-      "mixin|end": {
-        "opacity": "0",
-        "transition-delay": "{d.sys.transitionDuration.fade.enter}",
-        "transition-duration": "{d.sys.transitionDuration.fade.through}",
-        "transition-property": "opacity"
+      "section|inverse": {
+        "var|_background": "{??sys.inverse}"
       },
-      "border-radius": "inherit",
-      "inset": "0",
-      "position": "absolute",
-      "overflow": "hidden",
-      "z-index": "1",
-      "inverse": {
-        "var|_background": "{??_inverse}",
-        "palette": "{??_inverse}"
-      },
-      "#item": {
-        "animation-duration": "{d.sys.transitionDuration.fade.through}",
-        "animation-fill-mode": "forwards",
-        "animation-name": "??--start",
-        "animation-timing-function": "linear",
-        "background-opacity": "{??_opacity}",
-        "inset": "0",
-        "palette-background": "{??_background}",
-        "position": "absolute",
-        "=isEnd": {
-          ":not(:last-child)": {
-            "@style": "{??end}"
-          }
-        }
-      },
-      ":not(:active)": {
-        "#item": {
-          "=isEnd": {
-            "@style": "{??end}"
-          }
-        }
-      }
+      "#item": {}
     }
   }
 }
