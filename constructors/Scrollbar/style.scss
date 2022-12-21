@@ -1,7 +1,84 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/color";
 
 @mixin initScrollbar($design) {
-  @include classInitService($design, 'scrollbar') using($class, $component, $properties) {
-    @content($class, $component, $properties);
+  @include propertiesInit($design, 'scrollbar') {
+    @include mixinScrollbar;
+    @content;
+  }
+}
+
+@mixin mixinScrollbar() {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+
+  &:not(.is-disabled) {
+    scrollbar-color: rgba(v('??sys.thumb.background'), v('??l.thumb.opacity')) v('??sys.background');
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      appearance: none;
+      width: v('??sys.size');
+      height: v('??sys.size');
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @include mixinBackground(v('??sys.thumb.background'), v('??l.thumb.opacity'));
+      border: transparent solid v('??sys.border.width');
+      border-radius: v('??sys.rounded');
+    }
+
+    &::-webkit-scrollbar-track {
+      background: v('??sys.background')
+    }
+  }
+
+  &:hover {
+    @include linkTo('thumb.opacity', '??sys.thumb.hover.opacity');
+  }
+
+  @include mixinBorder;
+
+  @include modClass('visible') {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+}
+
+@mixin mixinBorder() {
+  @include modClass('border') {
+    border-bottom-color: rgba(v('??sys.border.color'), v('??l.border.opacity.bottom'));
+    border-bottom-width: v('??sys.border.width');
+    border-top-color: rgba(v('??sys.border.color'), v('??l.border.opacity.top'));
+    border-top-width: v('??sys.border.width');
+
+    transition: border-color;
+    transition-duration: v('d.sys.transition-duration.fade.through');
+
+    &.is-top {
+      @include linkTo('border.opacity.top', '??sys.border.opacity')
+    }
+
+    &.is-bottom {
+      @include linkTo('border.opacity.bottom', '??sys.border.opacity')
+    }
+
+    @include modClassByGlobal('inverse') {
+      &.is-top {
+        @include link('border.opacity.top', 0);
+        @include linkTo('border.opacity.bottom', '??sys.border.opacity');
+      }
+
+      &.is-bottom {
+        @include linkTo('border.opacity.top', '??sys.border.opacity');
+        @include link('border.opacity.bottom', 0);
+
+        &.is-top {
+          @include link('border.opacity.top', 0);
+        }
+      }
+    }
   }
 }

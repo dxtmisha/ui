@@ -3,13 +3,13 @@
     "scrollbar": {
       "@style": "{d.scrollbar}",
       "var|sys": {
+        "rounded": "{sys.rounded.standard}",
+        "size": "{ref.spacing.2}",
         "border": {
           "color": "{sys.palette.onSurface}",
           "opacity": "{sys.opacity.border}",
           "width": "{ref.spacing.px}"
         },
-        "rounded": "{sys.rounded.standard}",
-        "size": "{ref.spacing.2}",
         "thumb": {
           "background": "{sys.palette.onSurface}",
           "opacity": "{sys.opacity.border}",
