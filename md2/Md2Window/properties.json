@@ -101,30 +101,30 @@
         "sm": {
           "var|sys": {
             "menu": {
-              "var|width": "{ref.spacing.px} * 128"
+              "width": "{ref.spacing.px} * 128"
             },
             "modal": {
-              "var|width": "{ref.spacing.px} * 512"
+              "width": "{ref.spacing.px} * 512"
             }
           }
         },
         "md": {
           "var|sys": {
             "menu": {
-              "var|width": "{ref.spacing.px} * 256"
+              "width": "{ref.spacing.px} * 256"
             },
             "modal": {
-              "var|width": "{ref.spacing.px} * 768"
+              "width": "{ref.spacing.px} * 768"
             }
           }
         },
         "lg": {
           "var|sys": {
             "menu": {
-              "var|width": "{ref.spacing.px} * 768"
+              "width": "{ref.spacing.px} * 768"
             },
             "modal": {
-              "var|width": "{ref.spacing.px} * 1024"
+              "width": "{ref.spacing.px} * 1024"
             }
           }
         }

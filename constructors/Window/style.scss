@@ -1,14 +1,135 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/position";
 
 @mixin initWindow(
   $design,
   $clientX,
   $clientY
 ) {
-  @include classInitService($design, 'window') using($class, $component, $properties) {
-    --#{$class}-_client-x: #{$clientX};
-    --#{$class}-_client-y: #{$clientY};
+  @include propertiesInit($design, 'window') {
+    @include mixinWindow($clientX, $clientY);
+    @content;
+  }
+}
 
-    @content($class, $component, $properties);
+@mixin mixinWindow($clientX, $clientY) {
+  @include mixinBackground(v('??sys.scrim.background'), v('??l.scrim.opacity'));
+  align-items: center;
+
+  display: v('??l.display');
+  flex-flow: column;
+  justify-content: center;
+  padding: v('??sys.padding');
+
+  position: fixed;
+  @include inset(0);
+  z-index: v('??l.index');
+
+  transition: v('??l.transition');
+  will-change: background-color, left, top, contents;
+
+  @include mixinBody;
+  @include mixinContext;
+
+  @include mixinAlignment;
+  @include mixinAnimationOrigin;
+  @include mixinFullscreen;
+  @include mixinPersistent;
+
+  #{i('??_client-x')}: #{$clientX};
+  #{i('??_client-y')}: #{$clientY};
+}
+
+@mixin mixinBody() {
+  @include subClass('body') {
+    background: v('??l.background');
+    border-radius: v('??_rounded');
+    box-shadow: v('??l.shadow');
+    display: flex;
+    flex-flow: column;
+    flex-shrink: 1;
+    max-height: v('??_height');
+    max-width: v('??_width');
+    opacity: v('??l.body.opacity');
+    overflow-y: auto;
+    transform: v('??l.body.transform');
+    transform-origin: v('??sys.transform-origin');
+    transition: v('??l.body.transition');
+    width: 100%;
+    will-change: opacity, visibility, transform, contents;
+  }
+}
+
+@mixin mixinContext() {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+@mixin mixinAlignment() {
+  @include modClass('alignment') {
+    @include modClass('top') {
+      justify-content: flex-start;
+    }
+
+    @include modClass('right') {
+      align-items: flex-end;
+    }
+
+    @include modClass('bottom') {
+      justify-content: flex-end;
+    }
+
+    @include modClass('left') {
+      align-items: flex-start;
+    }
+  }
+}
+
+@mixin mixinAnimationOrigin() {
+  @include modClass('animation-origin') {
+    @include modClass('center') {
+      @include sys('transform-origin', center);
+    }
+
+    @include modClass('top') {
+      @include sys('transform-origin', top center);
+    }
+
+    @include modClass('right') {
+      @include sys('transform-origin', center right);
+    }
+
+    @include modClass('bottom') {
+      @include sys('transform-origin', bottom center);
+    }
+
+    @include modClass('left') {
+      @include sys('transform-origin', center left);
+    }
+  }
+}
+
+@mixin mixinFullscreen() {
+  @include modClass('fullscreen') {
+    padding: 0;
+
+    @include subClassByGlobal('body') {
+      border-radius: 0;
+      height: 100%;
+      max-height: none;
+      max-width: none;
+      width: 100%;
+    }
+  }
+}
+
+@mixin mixinPersistent() {
+  &.is-persistent {
+    @include subClassByGlobal('body') {
+      animation-duration: v('d.sys.transition-duration.fade.through');
+      animation-name: getCode('??-persistent-active');
+      animation-timing-function: v('d.sys.transition-function.standard');
+      transform-origin: center;
+    }
   }
 }
