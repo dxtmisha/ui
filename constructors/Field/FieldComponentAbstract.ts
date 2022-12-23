@@ -17,6 +17,7 @@ export type FieldClassesType = {
   title: ComponentAssociativeType
   text: ComponentAssociativeType
   required: ComponentAssociativeType
+  scoreboard: ComponentAssociativeType
   border: ComponentAssociativeType
 }
 export type FieldSetupType = ComponentBaseType & {

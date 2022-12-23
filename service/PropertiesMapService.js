@@ -56,10 +56,18 @@ module.exports = class {
    */
   static setItem (property) {
     this.init()
-    this.list.push({
-      code: property.getCode(),
-      property
-    })
+
+    const code = property.getCode()
+    const old = this.list.find(item => item.code === code)
+
+    if (old) {
+      old.property = property
+    } else {
+      this.list.push({
+        code,
+        property
+      })
+    }
 
     this.setDesign(property.getDesign())
   }

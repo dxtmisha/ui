@@ -39,7 +39,7 @@
     @include linkTo('thumb.opacity', '??sys.thumb.hover.opacity');
   }
 
-  @include border;
+  @include mixinBorder;
 
   @include modClass('visible') {
     overflow-x: visible;

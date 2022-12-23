@@ -17,6 +17,10 @@
         </div>
       </div>
 
+      <div :class="classes.scoreboard">
+
+      </div>
+
       <div :class="classes.border"/>
     </div>
   </div>

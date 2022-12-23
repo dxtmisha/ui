@@ -2,7 +2,21 @@
   "md2": {
     "field": {
       "@style": "{d.field}",
+      "var|asdGo": "asd",
+      "mixin|m": {
+        "mixin|appearance": {
+          "mixin|filled": {
+            "var|sys": {
+              "background": "{sys.palette.overlay}",
+              "backgroundOpacity": "{sys.opacity.overlay}",
+              "asdTEST": "{sys.opacity.overlay}"
+            }
+          }
+        }
+      },
       "var|sys": {
+        "background": "{sys.palette.overlay}",
+        "backgroundOpacity": "0",
         "height": "{ref.spacing.14}",
         "padding": "{ref.spacing.3}",
         "space": "{ref.spacing.1}",
@@ -10,7 +24,8 @@
         "border": {
           "color": "{sys.palette.onSurface}",
           "opacity": "{sys.opacity.border}",
-          "width": "{ref.spacing.px}"
+          "width": "{ref.spacing.px}",
+          "focusWidth": "{ref.spacing.px} * 2"
         },
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}"
@@ -33,6 +48,12 @@
         "md": "{ref.spacing.14}",
         "lg": "{ref.spacing.16}",
         "xl": "{ref.spacing.20}"
+      },
+      "section|appearance": {
+        "filled": {
+          "@style": "{??m.appearance.filled}"
+        },
+        "default": "filled"
       },
       "section|rounded": {
         "@style": "{?rounded}"

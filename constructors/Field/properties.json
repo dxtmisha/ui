@@ -1,8 +1,30 @@
 {
   "d": {
     "field": {
-      "mixin|m": {},
+      "mixin|m": {
+        "mixin|appearance": {
+          "mixin|filled": {
+            "var|sys": {
+              "background": "123",
+              "backgroundOpacity": "",
+              "border": {
+                "width": "0",
+                "focusWidth": "0"
+              }
+            },
+            "& .??__body": {
+              "border-bottom-left-radius": "0",
+              "border-bottom-right-radius": "0"
+            },
+            "& .??__input": {
+
+            }
+          }
+        }
+      },
       "var|sys": {
+        "background": "",
+        "backgroundOpacity": "",
         "height": "",
         "padding": "",
         "space": "",
@@ -10,7 +32,8 @@
         "border": {
           "color": "",
           "opacity": "",
-          "width": ""
+          "width": "",
+          "focusWidth": ""
         },
         "disabled": {
           "textOpacity": ""
@@ -41,6 +64,7 @@
       "#label": {},
       "#required": {},
       "#scoreboard": {},
+      "#space": {},
       "#text": {},
       "#title": {}
     }

@@ -10,7 +10,7 @@ import {
 } from './props.type'
 import { Md2PaletteType } from '../props.type'
 
-export const defaultItem = ComponentDesign.getDefault('md2.button')
+export const defaultItem = ComponentDesign.getDefault('md2.field')
 export const props = {
   // Values
   counter: Number,

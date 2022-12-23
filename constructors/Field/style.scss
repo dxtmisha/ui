@@ -36,11 +36,15 @@
   @include mixinText;
   @include mixinRequired;
 
-  @include border;
+  @include mixinScoreboard;
+
+  @include mixinBorder;
 }
 
 @mixin mixinBody() {
   @include subClass('body') {
+    @include background(v('??sys.background'), v('??sys.background-opacity'));
+
     display: flex;
     flex-wrap: wrap;
 
@@ -164,7 +168,27 @@
   }
 }
 
-@mixin mixinasdBorder() {
+@mixin mixinScoreboard() {
+  @include subClass('scoreboard') {
+    @include colorOpacity(v('??sys.label.text-opacity'));
+
+    @include propertiesLink('d.flex.x');
+    @include paddingX(v('??sys.padding'));
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    height: 0;
+
+    transform: translateY(#{calc(-1 * #{v('??_half')})});
+  }
+
+  @include subClass('space') {
+    flex-grow: 1;
+  }
+}
+
+@mixin mixinBorder() {
   @include subClass('border') {
     position: absolute;
     @include inset;
