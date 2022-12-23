@@ -74,6 +74,18 @@
       <input type="checkbox" name="visible" v-model="visible"> visible
     </div>
   </div>
+  <div>
+    <md2-field></md2-field>
+  </div>
+  <div>
+    <md2-field width="auto"></md2-field>
+  </div>
+  <div>
+    <md2-field width="full"></md2-field>
+  </div>
+  <div class="flex items-center gap-2 pb-8">
+    <md2-field></md2-field>
+  </div>
   <div class="flex items-center gap-2">
     <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background"
               :hide="hide"
@@ -1281,6 +1293,7 @@ import Md2Fab from '../../md2/Md2Fab/index.vue'
 import Md2Window from '../../md2/Md2Window/index.vue'
 import Md2Scrollbar from '../../md2/Md2Scrollbar/index.vue'
 import Md2ListItem from '../../md2/Md2ListItem/index.vue'
+import Md2Field from '../../md2/Md2Field/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -1289,6 +1302,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Field,
     Md2ListItem,
     Md2Scrollbar,
     Md2Window,

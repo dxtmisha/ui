@@ -1,9 +1,12 @@
 import { PropType } from 'vue'
 import { ComponentDesign } from '../../classes/ComponentDesign'
 import {
-  Md2ButtonHeightType,
-  Md2ButtonRoundedType,
-  Md2ButtonWidthType, Md2FieldAlignType, Md2FieldAppearanceType, Md2FieldCancelType
+  Md2FieldAlignType,
+  Md2FieldAppearanceType,
+  Md2FieldCancelType,
+  Md2FieldHeightType,
+  Md2FieldRoundedType,
+  Md2FieldWidthType
 } from './props.type'
 import { Md2PaletteType } from '../props.type'
 
@@ -45,34 +48,40 @@ export const props = {
   },
   arrow: Boolean,
   cancel: {
-    type: [Boolean, String] as PropType<Md2FieldCancelType>,
+    type: String as PropType<Md2FieldCancelType>,
     default: defaultItem.defaultValue('cancel'),
     validator: defaultItem.validator('cancel')
   },
   height: {
-    type: [Number, String] as PropType<Md2ButtonHeightType>,
+    type: String as PropType<Md2FieldHeightType>,
     default: defaultItem.defaultValue('height')
   },
-  lowercase: {
-    type: Boolean,
-    default: defaultItem.defaultValue('lowercase')
-  },
   palette: String as PropType<Md2PaletteType>,
-  rounded: {
-    type: String as PropType<Md2ButtonRoundedType>,
-    default: defaultItem.defaultValue('rounded'),
-    validator: defaultItem.validator('rounded')
-  },
-  tag: {
-    type: String,
-    default: 'button'
-  },
   ripple: {
     type: Boolean,
     default: defaultItem.defaultValue('ripple', true)
   },
+  rounded: {
+    type: String as PropType<Md2FieldRoundedType>,
+    default: defaultItem.defaultValue('rounded'),
+    validator: defaultItem.validator('rounded')
+  },
   width: {
-    type: [Number, String] as PropType<Md2ButtonWidthType>,
+    type: [Number, String] as PropType<Md2FieldWidthType>,
     default: defaultItem.defaultValue('width')
+  },
+
+  // Icon
+  iconArrowLeft: {
+    type: [Object, String],
+    default: defaultItem.defaultValue('iconArrowLeft', 'chevron_left')
+  },
+  iconArrowRight: {
+    type: [Object, String],
+    default: defaultItem.defaultValue('iconArrowRight', 'chevron_right')
+  },
+  iconCancel: {
+    type: [Object, String],
+    default: defaultItem.defaultValue('iconCancel', 'cancel')
   }
 }

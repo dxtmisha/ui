@@ -1,7 +1,77 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
+@import "../../styles/color";
+@import "../../styles/padding";
 
-@mixin initField($design) {
-  @include classInitService($design, 'field') using($class, $component, $properties) {
-    @content($class, $component, $properties);
+@mixin initField(
+  $design,
+  $paddingLeft,
+  $paddingRight
+) {
+  @include propertiesInit($design, 'field') {
+    @include mixinField($paddingLeft, $paddingRight);
+    @content;
+  }
+}
+
+@mixin mixinField($paddingLeft, $paddingRight) {
+  width: v('??sys.width');
+
+  #{i('??_shift')}: 0px;
+  #{i('??_half')}: calc(#{v('??sys.height')} / 2);
+  #{i('??_half-text')}: calc(#{v('??sys.text.height')} / 2);
+  #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$paddingLeft});
+  #{i('??_right')}: calc(#{v('??sys.padding')} + (#{v('??sys.space')} / 2) + #{$paddingRight});
+
+  @include mixinBody;
+  @include mixinInput;
+}
+
+@mixin mixinBody() {
+  @include subClass('body') {
+    display: flex;
+    flex-wrap: wrap;
+
+    position: relative;
+
+    max-width: 100%;
+  }
+}
+
+@mixin mixinInput() {
+  @include subClass('input') {
+    -moz-appearance: textfield;
+    border-radius: inherit;
+
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    min-height: v('??sys.height');
+
+    @include paddingLeft(#{v('??_left')});
+    @include paddingRight(#{v('??_right')});
+    padding: {
+      top: calc(#{v('??_half')} - #{v('??_half-text')} + #{v('??_shift')});
+      bottom: calc(#{v('??_half')} - #{v('??_half-text')} - #{v('??_shift')});
+    }
+
+    &::placeholder {
+      @include mixinColorOpacity(v('??sys.disabled.text-opacity'));
+    }
+
+    &::-webkit-clear-button,
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button,
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
+
+    &:-webkit-autofill {
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+  @include subClass('hidden') {
+    display: none;
   }
 }

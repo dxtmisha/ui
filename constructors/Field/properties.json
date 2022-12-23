@@ -1,12 +1,31 @@
 {
   "d": {
     "field": {
-      "mixin|m": {
-      },
+      "mixin|m": {},
+      "var|l": {},
       "var|sys": {
+        "height": "",
+        "padding": "",
+        "space": "",
+        "width": "",
+        "text": {
+          "height": ""
+        },
+        "disabled": {
+          "textOpacity": ""
+        }
       },
-      "var|l": {
-      }
+      "width": {
+        "auto": "auto",
+        "full": "100%",
+        "rename": "var|sys.width"
+      },
+      "height": {
+        "rename": "var|sys.height"
+      },
+      "#body": {},
+      "#hidden": {},
+      "#input": {}
     }
   }
 }

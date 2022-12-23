@@ -1,7 +1,31 @@
 {
   "md2": {
     "field": {
-      "@style": "{d.field}"
+      "@style": "{d.field}",
+      "var|sys": {
+        "height": "{ref.spacing.14}",
+        "padding": "{ref.spacing.3}",
+        "space": "{ref.spacing.1}",
+        "width": "{ref.spacing.72}",
+        "text": {
+          "height": "{ref.spacing.6}"
+        },
+        "disabled": {
+          "textOpacity": "{sys.opacity.surface.disabled}"
+        }
+      },
+      "@font": "{font.subtitle1}",
+      "border-radius": "{sys.rounded.standard}",
+      "height": {
+        "xm": "{ref.spacing.10}",
+        "sm": "{ref.spacing.12}",
+        "md": "{ref.spacing.14}",
+        "lg": "{ref.spacing.16}",
+        "xl": "{ref.spacing.20}"
+      },
+      "section|rounded": {
+        "@style": "{?rounded}"
+      }
     }
   }
 }

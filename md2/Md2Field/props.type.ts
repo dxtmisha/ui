@@ -10,25 +10,22 @@ export type Md2FieldAppearanceType =
   'standard'
 
 export type Md2FieldCancelType =
-  boolean |
   'auto' |
   'always'
 
-export type Md2ButtonHeightType =
+export type Md2FieldHeightType =
   'sm' |
   'md' |
   'lg'
 
-export type Md2ButtonRoundedType =
+export type Md2FieldRoundedType =
   'none' |
   'standard' |
   'sm' |
   'md' |
+  'xl' |
   'full'
 
-export type Md2ButtonWidthType =
+export type Md2FieldWidthType =
   'auto' |
-  'sm' |
-  'md' |
-  'lg' |
   'full'
