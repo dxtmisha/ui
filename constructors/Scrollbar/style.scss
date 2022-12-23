@@ -25,7 +25,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      @include mixinBackground(v('??sys.thumb.background'), v('??l.thumb.opacity'));
+      @include background(v('??sys.thumb.background'), v('??l.thumb.opacity'));
       border: transparent solid v('??sys.border.width');
       border-radius: v('??sys.rounded');
     }
@@ -39,7 +39,7 @@
     @include linkTo('thumb.opacity', '??sys.thumb.hover.opacity');
   }
 
-  @include mixinBorder;
+  @include border;
 
   @include modClass('visible') {
     overflow-x: visible;

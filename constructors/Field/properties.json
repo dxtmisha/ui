@@ -2,19 +2,30 @@
   "d": {
     "field": {
       "mixin|m": {},
-      "var|l": {},
       "var|sys": {
         "height": "",
         "padding": "",
         "space": "",
         "width": "",
-        "text": {
-          "height": ""
+        "border": {
+          "color": "",
+          "opacity": "",
+          "width": ""
         },
         "disabled": {
           "textOpacity": ""
+        },
+        "label": {
+          "textOpacity": ""
+        },
+        "required": {
+          "text": ""
+        },
+        "text": {
+          "height": ""
         }
       },
+      "var|l": {},
       "width": {
         "auto": "auto",
         "full": "100%",
@@ -24,8 +35,14 @@
         "rename": "var|sys.height"
       },
       "#body": {},
+      "#border": {},
       "#hidden": {},
-      "#input": {}
+      "#input": {},
+      "#label": {},
+      "#required": {},
+      "#scoreboard": {},
+      "#text": {},
+      "#title": {}
     }
   }
 }

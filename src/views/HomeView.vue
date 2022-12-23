@@ -74,17 +74,33 @@
       <input type="checkbox" name="visible" v-model="visible"> visible
     </div>
   </div>
-  <div>
-    <md2-field></md2-field>
+  <div class="px-4">
+    <md2-field text="Interactive demo">
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes">
+      </template>
+    </md2-field>
   </div>
-  <div>
-    <md2-field width="auto"></md2-field>
+  <div class="px-4">
+    <md2-field text="Interactive demo" width="auto">
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes">
+      </template>
+    </md2-field>
   </div>
-  <div>
-    <md2-field width="full"></md2-field>
+  <div class="px-4">
+    <md2-field text="Interactive demo" width="full">
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes">
+      </template>
+    </md2-field>
   </div>
-  <div class="flex items-center gap-2 pb-8">
-    <md2-field></md2-field>
+  <div class="flex items-center gap-2 pb-8 px-4">
+    <md2-field text="Interactive demo" required>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes">
+      </template>
+    </md2-field>
   </div>
   <div class="flex items-center gap-2">
     <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background"

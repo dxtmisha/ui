@@ -7,11 +7,22 @@
         "padding": "{ref.spacing.3}",
         "space": "{ref.spacing.1}",
         "width": "{ref.spacing.72}",
-        "text": {
-          "height": "{ref.spacing.6}"
+        "border": {
+          "color": "{sys.palette.onSurface}",
+          "opacity": "{sys.opacity.border}",
+          "width": "{ref.spacing.px}"
         },
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}"
+        },
+        "label": {
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
+        "required": {
+          "text": "{sys.palette.error}"
+        },
+        "text": {
+          "height": "{ref.spacing.6}"
         }
       },
       "@font": "{font.subtitle1}",

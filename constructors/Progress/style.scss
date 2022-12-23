@@ -40,7 +40,7 @@
 
 @mixin mixinCircle {
   @include subClass('circle') {
-    @include mixinPaletteStroke(v('??_background'));
+    @include paletteStroke(v('??_background'));
     fill: transparent;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
@@ -58,7 +58,7 @@
 
   @include modClass('inverse') {
     @include subClassByGlobal('circle') {
-      @include mixinStroke(v('??_background'));
+      @include stroke(v('??_background'));
     }
   }
 }
@@ -66,8 +66,8 @@
 @mixin mixinShort() {
   &::after,
   &::before {
-    @include mixinPaletteBackground(v('??_background'));
-    @include mixinBackgroundOpacity(1);
+    @include paletteBackground(v('??_background'));
+    @include backgroundOpacity(1);
 
     content: ' ';
 
@@ -84,8 +84,8 @@
 @mixin mixinLinear() {
   @include modClass('type') {
     @include modClass('linear') {
-      @include mixinPaletteBackground(v('??_background'));
-      @include mixinBackgroundOpacity(v('??sys.opacity'));
+      @include paletteBackground(v('??_background'));
+      @include backgroundOpacity(v('??sys.opacity'));
 
       height: v('??sys.height');
       width: 100%;

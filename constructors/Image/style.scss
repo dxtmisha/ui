@@ -34,7 +34,7 @@
   }
 
   @include modClass('disabled') {
-    @include mixinColorOpacity(v('??_disabled'));
+    @include colorOpacity(v('??_disabled'));
   }
 
   @include modClass('hide') {

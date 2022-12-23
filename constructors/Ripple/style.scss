@@ -20,14 +20,14 @@
   @include mixinItem;
 
   @include modClass('inverse') {
-    @include mixinPalette(v('??sys.inverse'));
+    @include palette(v('??sys.inverse'));
   }
 }
 
 @mixin mixinItem() {
   @include subClass('item') {
-    @include mixinPaletteBackground(v('??_background'));
-    @include mixinBackgroundOpacity(v('??sys.opacity'));
+    @include paletteBackground(v('??_background'));
+    @include backgroundOpacity(v('??sys.opacity'));
 
     position: absolute;
     @include inset(0);

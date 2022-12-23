@@ -13,7 +13,7 @@
 }
 
 @mixin mixinWindow($clientX, $clientY) {
-  @include mixinBackground(v('??sys.scrim.background'), v('??l.scrim.opacity'));
+  @include background(v('??sys.scrim.background'), v('??l.scrim.opacity'));
   align-items: center;
 
   display: v('??l.display');

@@ -8,3 +8,15 @@
     left: $value;
   }
 }
+
+@mixin bottom($value: 0) {
+  bottom: $value;
+  right: $value;
+  left: $value;
+}
+
+@mixin top($value: 0) {
+  top: $value;
+  right: $value;
+  left: $value;
+}

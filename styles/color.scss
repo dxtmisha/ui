@@ -45,174 +45,174 @@
 
 /* Palette */
 
-@mixin mixinPalette($color) {
+@mixin palette($color) {
   --sys-palette: #{toColorRbg($color)};
 }
 
-@mixin mixinPaletteColor($color) {
+@mixin paletteColor($color) {
   --sys-_palette-color: #{getPalette($color)};
-  @include mixinColor(#{var(--sys-_palette-color)});
+  @include color(#{var(--sys-_palette-color)});
 }
 
-@mixin mixinPaletteStroke($color) {
+@mixin paletteStroke($color) {
   --sys-_palette-color: #{getPalette($color)};
-  @include mixinStroke(#{var(--sys-_palette-color)});
+  @include stroke(#{var(--sys-_palette-color)});
 }
 
-@mixin mixinPaletteBackground($color) {
+@mixin paletteBackground($color) {
   --sys-_palette-background: #{getPalette($color)};
-  @include mixinBackground(#{var(--sys-_palette-background)});
+  @include background(#{var(--sys-_palette-background)});
 }
 
-@mixin mixinPaletteFill($color) {
+@mixin paletteFill($color) {
   --sys-_palette-background: #{getPalette($color)};
-  @include mixinFill(#{var(--sys-_palette-background)});
+  @include fill(#{var(--sys-_palette-background)});
 }
 
-@mixin mixinPaletteGradient($color) {
+@mixin paletteGradient($color) {
   --sys-_palette-gradient: #{getPalette($color)};
-  @include mixinGradient(#{var(--sys-_palette-gradient)});
+  @include gradient(#{var(--sys-_palette-gradient)});
 }
 
-@mixin mixinPaletteBorder($color) {
+@mixin paletteBorder($color) {
   --sys-_palette-border: #{getPalette($color)};
-  @include mixinBorder(#{var(--sys-_palette-border)});
+  @include border(#{var(--sys-_palette-border)});
 }
 
 /* Color */
 
-@mixin mixinColor($color, $opacity: null) {
+@mixin color($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-color: #{toColorRbg($color)};
-    @include mixinColorOpacity($opacity);
-    @include mixinColorInit;
+    @include colorOpacity($opacity);
+    @include colorInit;
   } @else {
     color: $color;
   }
 }
 
-@mixin mixinColorOpacity($opacity) {
+@mixin colorOpacity($opacity) {
   @if ($opacity != null) {
     --sys-color-opacity: #{$opacity};
-    @include mixinColorInit;
+    @include colorInit;
   }
 }
 
-@mixin mixinColorInit() {
+@mixin colorInit() {
   color: rgba(var(--sys-color), var(--sys-color-opacity));
 }
 
 /* Stroke */
 
-@mixin mixinStroke($color, $opacity: null) {
+@mixin stroke($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-color: #{toColorRbg($color)};
-    @include mixinStrokeOpacity($opacity);
-    @include mixinStrokeInit;
+    @include strokeOpacity($opacity);
+    @include strokeInit;
   } @else {
     stroke: $color;
   }
 }
 
-@mixin mixinStrokeOpacity($opacity) {
+@mixin strokeOpacity($opacity) {
   @if ($opacity != null) {
     --sys-color-opacity: #{$opacity};
-    @include mixinStrokeInit;
+    @include strokeInit;
   }
 }
 
-@mixin mixinStrokeInit() {
+@mixin strokeInit() {
   stroke: rgba(var(--sys-color), var(--sys-color-opacity));
 }
 
 /* Background */
 
-@mixin mixinBackground($color, $opacity: null) {
+@mixin background($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-background: #{toColorRbg($color)};
-    @include mixinBackgroundOpacity($opacity);
-    @include mixinBackgroundInit;
+    @include backgroundOpacity($opacity);
+    @include backgroundInit;
   } @else {
     background-color: $color;
   }
 }
 
-@mixin mixinBackgroundOpacity($opacity) {
+@mixin backgroundOpacity($opacity) {
   @if ($opacity != null) {
     --sys-background-opacity: #{$opacity};
-    @include mixinBackgroundInit;
+    @include backgroundInit;
   }
 }
 
-@mixin mixinBackgroundInit() {
+@mixin backgroundInit() {
   background-color: rgba(var(--sys-background), var(--sys-background-opacity));
 }
 
 /* Fill */
 
-@mixin mixinFill($color, $opacity: null) {
+@mixin fill($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-background: #{toColorRbg($color)};
-    @include mixinFillOpacity($opacity);
-    @include mixinFillInit;
+    @include fillOpacity($opacity);
+    @include fillInit;
   } @else {
     fill: $color;
   }
 }
 
-@mixin mixinFillOpacity($opacity) {
+@mixin fillOpacity($opacity) {
   @if ($opacity != null) {
     --sys-background-opacity: #{$opacity};
-    @include mixinFillInit;
+    @include fillInit;
   }
 }
 
-@mixin mixinFillInit() {
+@mixin fillInit() {
   fill: rgba(var(--sys-background), var(--sys-background-opacity));
 }
 
 /* Gradient */
 
-@mixin mixinGradient($color, $opacity: null) {
+@mixin gradient($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-gradient: #{toColorRbg($color)};
-    @include mixinGradientOpacity($opacity);
-    @include mixinGradientInit;
+    @include gradientOpacity($opacity);
+    @include gradientInit;
   } @else {
     background-image: $color;
   }
 }
 
-@mixin mixinGradientOpacity($opacity) {
+@mixin gradientOpacity($opacity) {
   @if ($opacity != null) {
     --sys-gradient-opacity: #{$opacity};
-    @include mixinGradientInit;
+    @include gradientInit;
   }
 }
 
-@mixin mixinGradientInit() {
+@mixin gradientInit() {
   background-image: #{toGradient(#{rgba(var(--sys-gradient), var(--sys-gradient-opacity))})};
 }
 
 /* Border */
 
-@mixin mixinBorder($color, $opacity: null) {
+@mixin border($color, $opacity: null) {
   @if (isColorRbgOrVar($color)) {
     --sys-border: #{toColorRbg($color)};
-    @include mixinBorderOpacity($opacity);
-    @include mixinBorderInit;
+    @include borderOpacity($opacity);
+    @include borderInit;
   } @else {
     border-color: $color;
   }
 }
 
-@mixin mixinBorderOpacity($opacity) {
+@mixin borderOpacity($opacity) {
   @if ($opacity != null) {
     --sys-border-opacity: #{$opacity};
-    @include mixinBorderInit;
+    @include borderInit;
   }
 }
 
-@mixin mixinBorderInit() {
+@mixin borderInit() {
   border-color: rgba(var(--sys-border), var(--sys-border-opacity));
 }

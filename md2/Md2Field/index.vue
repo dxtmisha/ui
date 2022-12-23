@@ -2,7 +2,23 @@
   <div
     :class="classes.main"
   >
+    <div :class="classes.body">
+      <slot
+        :id="id"
+        :class-hidden="classes.hidden"
+        :classes="classes.input"
+      />
 
+      <div :class="classes.label">
+        <div :class="classes.title">
+          <label :class="classes.text">
+            {{ text }}<span v-if="required" :class="classes.required"/>
+          </label>
+        </div>
+      </div>
+
+      <div :class="classes.border"/>
+    </div>
   </div>
 </template>
 

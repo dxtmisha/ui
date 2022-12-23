@@ -14,11 +14,11 @@
   @include propertiesLink('d.flex.inline.center');
   @include propertiesLink('d.font.readonly');
 
-  @include mixinColor(v('??l.text'), v('??l.text-opacity'));
-  @include mixinPaletteBackground(v('??l.background'));
-  @include mixinBackgroundOpacity(v('??l.background-opacity'));
-  @include mixinPaletteGradient(v('??l.gradient'));
-  @include mixinGradientOpacity(v('??l.gradient-opacity'));
+  @include color(v('??l.text'), v('??l.text-opacity'));
+  @include paletteBackground(v('??l.background'));
+  @include backgroundOpacity(v('??l.background-opacity'));
+  @include paletteGradient(v('??l.gradient'));
+  @include gradientOpacity(v('??l.gradient-opacity'));
 
   box-shadow: v('??l.shadow');
   min-width: v('??l.width');
@@ -39,8 +39,8 @@
   }
 
   @include modClass(('disabled')) {
-    @include mixinBackground(v('??l.background'));
-    @include mixinGradient(v('??l.gradient'));
+    @include background(v('??l.background'));
+    @include gradient(v('??l.gradient'));
   }
 }
 

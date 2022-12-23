@@ -31,12 +31,12 @@
   }
 
   @include modClass('background') {
-    @include mixinPaletteBackground(v('??_background'));
-    @include mixinBackgroundOpacity(v('??_opacity'));
+    @include paletteBackground(v('??_background'));
+    @include backgroundOpacity(v('??_opacity'));
   }
 
   @include modClass('disabled') {
-    @include mixinBackgroundOpacity(#{calc(v('??_opacity') * v('??_disabled'))});
+    @include backgroundOpacity(#{calc(v('??_opacity') * v('??_disabled'))});
   }
 
   @include modClass('hide') {

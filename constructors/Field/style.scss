@@ -1,6 +1,7 @@
 @import "../../styles/properties";
 @import "../../styles/color";
 @import "../../styles/padding";
+@import "../../styles/position";
 
 @mixin initField(
   $design,
@@ -21,9 +22,21 @@
   #{i('??_half-text')}: calc(#{v('??sys.text.height')} / 2);
   #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$paddingLeft});
   #{i('??_right')}: calc(#{v('??sys.padding')} + (#{v('??sys.space')} / 2) + #{$paddingRight});
+  #{i('??_opacity')}: 1;
+
+  #{i('??_scale')}: 1;
+  #{i('??_translate-x')}: #{$paddingLeft};
+  #{i('??_translate-y')}: calc(#{v('??sys.height')} / 4);
 
   @include mixinBody;
   @include mixinInput;
+
+  @include mixinLabel;
+  @include mixinTitle;
+  @include mixinText;
+  @include mixinRequired;
+
+  @include border;
 }
 
 @mixin mixinBody() {
@@ -56,7 +69,7 @@
     }
 
     &::placeholder {
-      @include mixinColorOpacity(v('??sys.disabled.text-opacity'));
+      @include colorOpacity(v('??sys.disabled.text-opacity'));
     }
 
     &::-webkit-clear-button,
@@ -74,4 +87,101 @@
   @include subClass('hidden') {
     display: none;
   }
+}
+
+@mixin mixinLabel() {
+  @include subClass('label') {
+    @include colorOpacity(v('??sys.label.text-opacity'));
+
+    border-radius: inherit;
+
+    display: flex;
+    position: absolute;
+    @include top;
+    z-index: 2;
+
+    height: v('??_half');
+
+    &::before,
+    &::after {
+      content: " ";
+
+      flex-basis: v('??sys.padding');
+      min-width: v('??sys.padding');
+      @include mixinFieldBorderTop;
+    }
+
+    &::before {
+      border-top-left-radius: inherit;
+    }
+
+    &::after {
+      border-top-right-radius: inherit;
+      flex-grow: 1;
+    }
+  }
+}
+
+@mixin mixinTitle() {
+  @include subClass('title') {
+    @include propertiesLink('d.flex.x');
+
+    position: relative;
+    max-width: calc(100% - #{v('??_left')} - #{v('??_right')});
+    @include paddingX(v('??sys.space'));
+
+    &::after {
+      content: " ";
+      position: absolute;
+      @include top;
+      @include mixinFieldBorderTop;
+    }
+  }
+}
+
+@mixin mixinText() {
+  @include subClass('text') {
+    line-height: 1;
+    @include propertiesLink('d.font.ellipsis');
+    opacity: v('??_opacity');
+
+    max-width: 100%;
+
+    transform: translate(#{calc(#{v('??_translate-x')} * var(--d-dir))}, #{calc(#{v('??_translate-y')} - #{v('??_shift-y')})}) scale(#{v('??_scale')});
+    transform-origin: var(--d-dir-text-left);
+    transition-property: font-size, opacity, transform;
+    transition-timing-function: v('d.sys.transition-function.standard');
+  }
+}
+
+@mixin mixinRequired() {
+  @include subClass('required') {
+    @include color(v('??sys.required.text'));
+
+    &::after {
+      content: '*';
+    }
+  }
+}
+
+@mixin mixinasdBorder() {
+  @include subClass('border') {
+    position: absolute;
+    @include inset;
+
+    @include mixinFieldBorder;
+    border-right-width: v('??sys.border.width');
+    border-bottom-width: v('??sys.border.width');
+    border-left-width: v('??sys.border.width');
+    border-radius: inherit;
+  }
+}
+
+@mixin mixinFieldBorder() {
+  @include border(v('??sys.border.color'), v('??sys.border.opacity'));
+}
+
+@mixin mixinFieldBorderTop() {
+  @include mixinFieldBorder;
+  border-top-width: v('??sys.border.width');
 }
