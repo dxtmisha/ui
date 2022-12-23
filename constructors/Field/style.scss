@@ -68,8 +68,8 @@
     @include paddingLeft(#{v('??_left')});
     @include paddingRight(#{v('??_right')});
     padding: {
-      top: calc(#{v('??_half')} - #{v('??_half-text')} + #{v('??_shift')});
-      bottom: calc(#{v('??_half')} - #{v('??_half-text')} - #{v('??_shift')});
+      top: calc(#{v('??_half')} - #{v('??_half-text')} + #{v('??l.shift')});
+      bottom: calc(#{v('??_half')} - #{v('??_half-text')} - #{v('??l.shift')});
     }
 
     &::placeholder {
@@ -151,7 +151,7 @@
 
     max-width: 100%;
 
-    transform: translate(#{calc(#{v('??_translate-x')} * var(--d-dir))}, #{calc(#{v('??_translate-y')} - #{v('??_shift-y')})}) scale(#{v('??_scale')});
+    transform: translate(#{calc(#{v('??_translate-x')} * var(--d-dir))}, #{calc(#{v('??_translate-y')} - #{v('??l.shift')})}) scale(#{v('??_scale')});
     transform-origin: var(--d-dir-text-left);
     transition-property: font-size, opacity, transform;
     transition-timing-function: v('d.sys.transition-function.standard');

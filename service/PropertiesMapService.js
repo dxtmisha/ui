@@ -1,3 +1,5 @@
+const { replaceRecursive } = require('../functions')
+
 module.exports = class {
   static getItem (code) {
     this.init()
@@ -6,6 +8,27 @@ module.exports = class {
 
     if (item) {
       return item.property
+    } else {
+      console.error(`[ERROR] PropertiesMapService.getItem(${code})`)
+      return undefined
+    }
+  }
+
+  static getItems (code) {
+    this.init()
+
+    const item = this.list.find(item => item.code === code)
+
+    if (item) {
+      const property = {}
+
+      this.list.forEach(item => {
+        if (item.code === code) {
+          replaceRecursive(property, item.property.getProperty())
+        }
+      })
+
+      return property
     } else {
       console.error(`[ERROR] PropertiesMapService.getItem(${code})`)
       return undefined
@@ -56,18 +79,10 @@ module.exports = class {
    */
   static setItem (property) {
     this.init()
-
-    const code = property.getCode()
-    const old = this.list.find(item => item.code === code)
-
-    if (old) {
-      old.property = property
-    } else {
-      this.list.push({
-        code,
-        property
-      })
-    }
+    this.list.push({
+      code: property.getCode(),
+      property
+    })
 
     this.setDesign(property.getDesign())
   }

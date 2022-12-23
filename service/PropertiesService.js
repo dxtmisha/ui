@@ -35,11 +35,11 @@ module.exports = class extends PropertiesFileService {
           /**
            * @type {PropertiesItemService}
            */
-          const linkProperties = PropertiesMapService.getItem(item.getValueToCode())
+          const linkProperties = PropertiesMapService.getItems(item.getValueToCode())
 
           if (linkProperties) {
             this.initMap(
-              linkProperties.getProperty(),
+              linkProperties,
               tree,
               parentItem
             )

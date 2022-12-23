@@ -2,14 +2,12 @@
   "md2": {
     "field": {
       "@style": "{d.field}",
-      "var|asdGo": "asd",
       "mixin|m": {
         "mixin|appearance": {
           "mixin|filled": {
             "var|sys": {
               "background": "{sys.palette.overlay}",
-              "backgroundOpacity": "{sys.opacity.overlay}",
-              "asdTEST": "{sys.opacity.overlay}"
+              "backgroundOpacity": "{sys.opacity.overlay}"
             }
           }
         }
@@ -31,6 +29,7 @@
           "textOpacity": "{sys.opacity.surface.disabled}"
         },
         "label": {
+          "height": "{ref.spacing.6}",
           "textOpacity": "{sys.opacity.surface.medium}"
         },
         "required": {

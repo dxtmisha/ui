@@ -12,13 +12,14 @@
                 "focusWidth": "0"
               }
             },
+            "var|l": {
+              "shift": "{??sys.label.height} / 3"
+            },
             "& .??__body": {
               "border-bottom-left-radius": "0",
               "border-bottom-right-radius": "0"
             },
-            "& .??__input": {
-
-            }
+            "& .??__input": {}
           }
         }
       },
@@ -39,6 +40,7 @@
           "textOpacity": ""
         },
         "label": {
+          "height": "",
           "textOpacity": ""
         },
         "required": {
@@ -48,7 +50,9 @@
           "height": ""
         }
       },
-      "var|l": {},
+      "var|l": {
+        "shift": "0px"
+      },
       "width": {
         "auto": "auto",
         "full": "100%",
