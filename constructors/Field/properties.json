@@ -2,56 +2,162 @@
   "d": {
     "field": {
       "mixin|m": {
+        "mixin|status": {
+          "var|palette": "{??sys.palette}",
+          "var|background": "{??sys.background}",
+          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
+          "var|border": "{??sys.border}",
+          "var|borderOpacity": "{??sys.borderOpacity}",
+          "var|borderWidth": "{??sys.borderWidth}",
+          "var|gradient": "{??sys.gradient}",
+          "var|gradientOpacity": "{??sys.gradientOpacity}",
+          "var|shadow": "{??sys.shadow}",
+          "var|shift": "{??sys.shift}",
+          "var|text": "{??sys.text}",
+          "var|textOpacity": "{??sys.textOpacity}",
+          "var|label": {
+            "var|opacity": "{??sys.label.opacity}",
+            "var|scale": "{??sys.label.scale}",
+            "var|shift": "{??sys.label.shift}",
+            "var|text": "{??sys.label.text}",
+            "var|textOpacity": "{??sys.label.textOpacity}"
+          }
+        },
+        "mixin|borderBottom": {
+          "border-radius": "0",
+          "bottom": "0",
+          "left": "0",
+          "right": "0",
+          "position": "absolute"
+        },
         "mixin|appearance": {
           "mixin|filled": {
             "var|sys": {
-              "background": "123",
               "backgroundOpacity": "",
-              "border": {
-                "width": "0",
-                "focusWidth": "0"
+              "borderOpacity": "",
+              "focus": {
+                "border": "",
+                "borderOpacity": "",
+                "shift": "{??sys.label.height} / 3",
+                "label": {
+                  "scale": "0.875",
+                  "shift": "{??sys.label.height} / 2"
+                }
+              },
+              "hover": {
               }
             },
             "var|l": {
-              "shift": "{??sys.label.height} / 3"
+              "borderWidth": "0"
             },
             "& .??__body": {
               "border-bottom-left-radius": "0",
-              "border-bottom-right-radius": "0"
+              "border-bottom-right-radius": "0",
+              "hover": {
+                "var|l": {
+                  "gradientOpacity": "{??sys.hover.gradientOpacity}"
+                }
+              }
             },
-            "& .??__input": {}
+            "& .??__input": {},
+            "& .??__border": {
+              "after": {
+                "@style": "{??m.borderBottom}",
+                "background-color": "{??sys.focus.border}",
+                "background-opacity": "{??sys.focus.borderOpacity}",
+                "clip-path": "inset(0 50%)",
+                "height": "{??sys.focus.borderWidth}",
+                "transition-duration": "{??sys.transitionDuration}",
+                "transition-property": "clip-path",
+                "transition-function": "{d.sys.transitionFunction.standard}",
+                "z-index": "8"
+              },
+              "before": {
+                "@style": "{??m.borderBottom}",
+                "background-color": "{??sys.border}",
+                "background-opacity": "{??sys.borderOpacity}",
+                "height": "{??sys.borderWidth}"
+              }
+            },
+            "&:focus-within, &.??focus": {
+              "var|l": {
+                "shift": "{??sys.focus.shift}",
+                "label": {
+                  "scale": "{??sys.focus.label.scale}",
+                  "shift": "{??sys.focus.label.shift}"
+                }
+              },
+              "& .??__border::after": {
+                "clip-path": "inset(0 0)"
+              }
+            }
           }
         }
       },
       "var|sys": {
+        "palette": "",
         "background": "",
         "backgroundOpacity": "",
+        "border": "",
+        "borderOpacity": "",
+        "borderWidth": "",
+        "gradient": "",
+        "gradientOpacity": "",
         "height": "",
         "padding": "",
+        "shadow": "",
+        "shift": "0px",
         "space": "",
+        "text": "",
+        "textOpacity": "",
+        "transitionDuration": "{d.sys.transitionDuration.fade.enter}",
         "width": "",
-        "border": {
-          "color": "",
-          "opacity": "",
-          "width": "",
-          "focusWidth": ""
-        },
-        "disabled": {
-          "textOpacity": ""
-        },
         "label": {
           "height": "",
-          "textOpacity": ""
+          "opacity": "1",
+          "required": "",
+          "scale": "1",
+          "shift": "0px",
+          "text": "{??sys.text}",
+          "textOpacity": "{??sys.textOpacity}"
         },
-        "required": {
-          "text": ""
+        "active": {
+          "@style": "{??m.status}"
         },
-        "text": {
-          "height": ""
+        "disabled": {
+          "@style": "{??m.status}"
+        },
+        "hover": {
+          "@style": "{??m.status}"
+        },
+        "selected": {
+          "@style": "{??m.status}"
         }
       },
       "var|l": {
-        "shift": "0px"
+        "palette": "{??sys.palette}",
+        "background": "{??sys.background}",
+        "backgroundOpacity": "{??sys.backgroundOpacity}",
+        "border": "{??sys.border}",
+        "borderOpacity": "{??sys.borderOpacity}",
+        "borderWidth": "{??sys.borderWidth}",
+        "gradient": "{??sys.gradient}",
+        "gradientOpacity": "{??sys.gradientOpacity}",
+        "shadow": "{??sys.shadow}",
+        "shift": "{??sys.shift}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}",
+        "label": {
+          "opacity": "{??sys.label.opacity}",
+          "scale": "{??sys.label.scale}",
+          "shift": "{??sys.label.shift}",
+          "text": "{??sys.label.text}",
+          "textOpacity": "{??sys.label.textOpacity}",
+          "translate": {
+            "x": "0px",
+            "y": "{??sys.height} / 4"
+          }
+        }
       },
       "width": {
         "auto": "auto",
@@ -61,6 +167,7 @@
       "height": {
         "rename": "var|sys.height"
       },
+      "section|focus": {},
       "#body": {},
       "#border": {},
       "#hidden": {},

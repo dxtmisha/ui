@@ -6,37 +6,49 @@
         "mixin|appearance": {
           "mixin|filled": {
             "var|sys": {
-              "background": "{sys.palette.overlay}",
-              "backgroundOpacity": "{sys.opacity.overlay}"
+              "backgroundOpacity": "{sys.opacity.overlay}",
+              "borderOpacity": "{sys.opacity.primary.medium}",
+              "focus": {
+                "border": "{??sys.palette}",
+                "borderOpacity": "{sys.opacity.primary.high}"
+              }
             }
           }
         }
       },
       "var|sys": {
+        "palette": "{sys.palette.primary}",
         "background": "{sys.palette.overlay}",
         "backgroundOpacity": "0",
+        "border": "{sys.palette.onSurface}",
+        "borderOpacity": "{sys.opacity.border}",
+        "borderWidth": "{ref.spacing.px}",
+        "gradient": "{sys.palette.onSurface}",
+        "gradientOpacity": "0",
         "height": "{ref.spacing.14}",
         "padding": "{ref.spacing.3}",
+        "shadow": "none",
         "space": "{ref.spacing.1}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.high}",
         "width": "{ref.spacing.72}",
-        "border": {
-          "color": "{sys.palette.onSurface}",
-          "opacity": "{sys.opacity.border}",
-          "width": "{ref.spacing.px}",
-          "focusWidth": "{ref.spacing.px} * 2"
+        "label": {
+          "height": "{ref.spacing.6}",
+          "required": "{sys.palette.error}",
+          "textOpacity": "{sys.opacity.surface.medium}"
         },
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}"
         },
-        "label": {
-          "height": "{ref.spacing.6}",
-          "textOpacity": "{sys.opacity.surface.medium}"
+        "hover": {
+          "gradientOpacity": "{sys.opacity.hover}"
         },
-        "required": {
-          "text": "{sys.palette.error}"
-        },
-        "text": {
-          "height": "{ref.spacing.6}"
+        "focus": {
+          "borderWidth": "{ref.spacing.px} * 2",
+          "label": {
+            "text": "{??sys.palette}",
+            "textOpacity": "{sys.opacity.surface.high}"
+          }
         }
       },
       "@font": "{font.subtitle1}",

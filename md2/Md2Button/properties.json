@@ -26,9 +26,9 @@
         }
       },
       "var|sys": {
+        "palette": "{sys.palette.primary}",
         "borderWidth": "{ref.spacing.px}",
         "padding": "{ref.spacing.4}",
-        "palette": "{sys.palette.primary}",
         "space": "{ref.spacing.1}",
         "zIndex": "{sys.elevation.index.2}",
         "dense": {

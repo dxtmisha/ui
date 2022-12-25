@@ -18,8 +18,12 @@ $designsProperties: () !default;
   @return --#{getCode($name)};
 }
 
-@function v($name) {
-  @return #{var(#{i($name)})}
+@function v($name, $default: null) {
+  @if ($default) {
+    @return #{var(#{i($name)}, #{$default})}
+  } @else {
+    @return #{var(#{i($name)})}
+  }
 }
 
 @function getName($name) {
@@ -49,28 +53,75 @@ $designsProperties: () !default;
   @return $data;
 }
 
-@mixin propertyCustom($name, $value) {
-  #{i($name)}: $value;
+@function getPropertiesDefault($name, $default: null) {
+  $data: v(#{'??sys.'}#{$name});
+
+  @if ($default) {
+    @if (meta.type-of($default) == list) {
+      @each $code in $default {
+        $data: v(#{'??sys.'}#{$code}#{'.'}#{$name}, $data);
+      }
+    } @else {
+      $data: v(#{'??sys.'}#{$default}#{'.'}#{$name}, $data);
+    }
+  }
+
+  @return $data;
 }
 
-@mixin propertyCustomTo($name, $value) {
-  @include propertyCustom($name, v($value));
+@mixin propertyCustom(
+  $name,
+  $value,
+  $important: false
+) {
+  @if ($important) {
+    #{i($name)}: $value !important;
+  } @else {
+    #{i($name)}: $value;
+  }
 }
 
-@mixin link($name, $value) {
-  @include propertyCustom(#{'??l.'}#{$name}, $value)
+@mixin propertyCustomTo(
+  $name,
+  $value,
+  $default: null,
+  $important: false
+) {
+  @include propertyCustom($name, v($value, $default), $important);
 }
 
-@mixin linkTo($name, $value) {
-  @include link($name, v($value))
+@mixin link(
+  $name,
+  $value,
+  $important: false
+) {
+  @include propertyCustom(#{'??l.'}#{$name}, $value, $important)
 }
 
-@mixin sys($name, $value) {
-  @include propertyCustom(#{'??sys.'}#{$name}, $value)
+@mixin linkTo(
+  $name,
+  $value,
+  $default: null,
+  $important: false
+) {
+  @include link($name, v($value, $default), $important)
 }
 
-@mixin sysTo($name, $value) {
-  @include sys($name, v($value))
+@mixin sys(
+  $name,
+  $value,
+  $important: false
+) {
+  @include propertyCustom(#{'??sys.'}#{$name}, $value, $important)
+}
+
+@mixin sysTo(
+  $name,
+  $value,
+  $default: null,
+  $important: false
+) {
+  @include sys($name, v($value, $default), $important)
 }
 
 @mixin propertiesInit(
@@ -90,6 +141,24 @@ $designsProperties: () !default;
 
 @mixin propertiesLink($name) {
   @include mixinInit($currentClass, findProperties($name));
+}
+
+@mixin propertiesStatus(
+  $list,
+  $name,
+  $default: null,
+  $important: false
+) {
+  @if (meta.type-of($list) == list) {
+    @each $index in $list {
+      @include linkTo(
+                      $index,
+                      #{'??sys.'}#{$name}#{'.'}#{$index},
+                      getPropertiesDefault($index, $default),
+                      $important
+      );
+    }
+  }
 }
 
 @mixin modClass($name) {

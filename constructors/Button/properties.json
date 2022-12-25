@@ -81,6 +81,7 @@
         }
       },
       "var|sys": {
+        "palette": "",
         "background": "{??sys.palette}",
         "backgroundOpacity": "0",
         "border": "{??sys.palette}",
@@ -89,7 +90,6 @@
         "gradient": "{??sys.palette}",
         "gradientOpacity": "0",
         "padding": "",
-        "palette": "",
         "shadow": "none",
         "space": "",
         "text": "unset",

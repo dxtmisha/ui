@@ -77,7 +77,7 @@
   <div class="px-4 pb-4">
     <md2-field text="Interactive demo">
       <template v-slot:default="binds">
-        <input :id="binds.id" :class="binds.classes">
+        <input :id="binds.id" :class="binds.classes" placeholder="placeholder">
       </template>
     </md2-field>
   </div>
