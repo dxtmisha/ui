@@ -40,6 +40,9 @@
           "required": "{sys.palette.error}",
           "textOpacity": "{sys.opacity.surface.medium}"
         },
+        "prefix": {
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}"
         },

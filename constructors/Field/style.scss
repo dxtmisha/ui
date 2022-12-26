@@ -6,17 +6,34 @@
 @mixin initField(
   $design,
   $left,
-  $right
+  $right,
+  $prefix,
+  $suffix
 ) {
   @include propertiesInit($design, 'field') {
-    @include mixinField($left, $right);
+    @include mixinField(
+                    $left,
+                    $right,
+                    $prefix,
+                    $suffix
+    );
     @content;
   }
 }
 
-@mixin mixinField($left, $right) {
+@mixin mixinField(
+  $left,
+  $right,
+  $prefix,
+  $suffix
+) {
   #{i('??_half')}: calc(#{v('??sys.height')} / 2);
   #{i('??_label-half')}: calc(#{v('??sys.label.height')} / 2);
+
+  #{i('??_value-left')}: #{$left};
+  #{i('??_value-right')}: #{$right};
+  #{i('??_value-prefix')}: #{$prefix};
+  #{i('??_value-suffix')}: #{$suffix};
   #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$left});
   #{i('??_right')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$right});
 
@@ -31,6 +48,7 @@
   @include mixinRequired;
 
   @include mixinScoreboard;
+  @include mixinPrefix;
 
   @include mixinBorder;
 
@@ -67,11 +85,11 @@
     min-height: v('??sys.height');
 
     padding: {
-      top: calc(#{v('??_half')} - #{v('??_label-half')} + #{v('??l.label.shift')});
-      bottom: calc(#{v('??_half')} - #{v('??_label-half')} - #{v('??l.label.shift')});
+      top: calc(#{v('??_half')} - #{v('??_label-half')} + #{v('??l.shift')});
+      bottom: calc(#{v('??_half')} - #{v('??_label-half')} - #{v('??l.shift')});
     }
-    @include paddingLeft(#{v('??_left')});
-    @include paddingRight(#{v('??_right')});
+    @include paddingLeft(calc(#{v('??_left')} + #{v('??_value-prefix')}));
+    @include paddingRight(calc(#{v('??_right')} + #{v('??_value-suffix')}));
 
     &::placeholder {
       @include colorOpacity(v('??sys.label.text-opacity'));
@@ -150,7 +168,7 @@
 
     max-width: 100%;
 
-    transform: translate(#{calc(#{v('??l.label.translate.x')} * var(--d-dir))}, #{calc(#{v('??l.label.translate.y')} - #{v('??l.shift')})}) scale(#{v('??l.label.scale')});
+    transform: translate(#{calc(#{v('??l.label.translate.x')} * var(--d-dir))}, #{calc(#{v('??l.label.translate.y')} - #{v('??l.label.shift')})}) scale(#{v('??l.label.scale')});
     transform-origin: var(--d-dir-text-left);
     transition-duration: v('??sys.transition-duration');
     transition-property: color, font-size, opacity, transform;
@@ -182,10 +200,32 @@
     height: 0;
 
     transform: translateY(#{calc(-1 * #{v('??_half')})});
+
+    @include subClass('context') {
+      @include propertiesLink('d.flex.x');
+    }
+
+    @include subClass('space') {
+      flex-grow: 1;
+    }
+  }
+}
+
+@mixin mixinPrefix() {
+  &__prefix,
+  &__suffix {
+    @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
+    opacity: v('??l.prefix.opacity');
+    transform: translateY(v('??l.shift'));
+    transition-property: opacity;
   }
 
-  @include subClass('space') {
-    flex-grow: 1;
+  @include subClass('prefix') {
+    @include paddingLeft(v('??sys.space'));
+  }
+
+  @include subClass('suffix') {
+    @include paddingRight(v('??sys.space'));
   }
 }
 

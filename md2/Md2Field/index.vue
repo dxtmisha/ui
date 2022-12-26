@@ -18,7 +18,16 @@
       </div>
 
       <div :class="classes.scoreboard">
-
+        <div ref="leftElement" :class="classes.scoreboardContext">
+          <md2-icon v-if="icon" v-bind="iconBind"/>
+          <slot :id="id" :update="update" name="left"/>
+        </div>
+        <div v-if="ifPrefix" ref="prefixElement" :class="classes.prefix">
+          {{ prefix }}
+          <slot :id="id" :update="update" name="prefix"/>
+        </div>
+        <div :class="classes.scoreboardSpace"/>
+        <div ref="rightElement" :class="classes.scoreboardContext"></div>
       </div>
 
       <div :class="classes.border"/>
@@ -29,10 +38,11 @@
 <script lang="ts">
 import { FieldComponent } from './FieldComponent'
 import { props } from './props'
+import Md2Icon from '../Md2Icon/index.vue'
 
 export default {
   name: 'Md2Field',
-  components: {},
+  components: { Md2Icon },
   props,
   emits: FieldComponent.emits,
   setup (props: object, context: object) {
@@ -44,5 +54,11 @@ export default {
 <style lang="scss">
 @import '../../constructors/Field/style';
 
-@include initField('md2', v-bind(left), v-bind(right));
+@include initField(
+    'md2',
+    v-bind(left),
+    v-bind(right),
+    v-bind(prefixWidth),
+    v-bind(suffixWidth)
+);
 </style>

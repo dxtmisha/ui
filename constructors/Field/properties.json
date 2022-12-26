@@ -21,6 +21,11 @@
             "var|shift": "{??sys.label.shift}",
             "var|text": "{??sys.label.text}",
             "var|textOpacity": "{??sys.label.textOpacity}"
+          },
+          "var|prefix": {
+            "var|opacity": "{??sys.prefix.opacity}",
+            "var|text": "{??sys.prefix.text}",
+            "var|textOpacity": "{??sys.prefix.textOpacity}"
           }
         },
         "mixin|borderBottom": {
@@ -60,6 +65,11 @@
                 }
               }
             },
+            "& .??__prefix, & .??__suffix": {
+              "var|l": {
+                "shift": "{??sys.focus.shift}"
+              }
+            },
             "& .??__input": {},
             "& .??__border": {
               "after": {
@@ -96,6 +106,9 @@
                 "label": {
                   "scale": "{??sys.focus.label.scale}",
                   "shift": "{??sys.focus.label.shift}"
+                },
+                "prefix": {
+                  "opacity": "{??sys.focus.prefix.opacity}"
                 }
               }
             }
@@ -129,11 +142,22 @@
           "text": "{??sys.text}",
           "textOpacity": "{??sys.textOpacity}"
         },
+        "prefix": {
+          "opacity": "0",
+          "text": "{??sys.text}",
+          "textOpacity": "{??sys.textOpacity}"
+        },
         "active": {
           "@style": "{??m.status}"
         },
         "disabled": {
           "@style": "{??m.status}"
+        },
+        "focus": {
+          "@style": "{??m.status}",
+          "prefix": {
+            "opacity": "1"
+          }
         },
         "hover": {
           "@style": "{??m.status}"
@@ -162,9 +186,14 @@
           "text": "{??sys.label.text}",
           "textOpacity": "{??sys.label.textOpacity}",
           "translate": {
-            "x": "0px",
+            "x": "{??_valueLeft}",
             "y": "{??sys.height} / 4"
           }
+        },
+        "prefix": {
+          "opacity": "{??sys.prefix.opacity}",
+          "text": "{??sys.prefix.text}",
+          "textOpacity": "{??sys.prefix.textOpacity}"
         }
       },
       "width": {
@@ -181,9 +210,13 @@
       "#hidden": {},
       "#input": {},
       "#label": {},
+      "#prefix": {},
       "#required": {},
-      "#scoreboard": {},
-      "#space": {},
+      "#scoreboard": {
+        "#context": {},
+        "#space": {}
+      },
+      "#suffix": {},
       "#text": {},
       "#title": {}
     }
