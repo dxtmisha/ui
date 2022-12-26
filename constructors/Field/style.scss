@@ -34,7 +34,8 @@
 
   @include mixinBorder;
 
-  &:focus-within, #{c('??--focus')} {
+  &:focus-within, &#{c('??--focus')} {
+    @include linkTo('gradient-opacity', '??sys.focus.gradient-opacity', null, true);
     @include linkTo('label.text', '??sys.focus.label.text');
     @include linkTo('label.text-opacity', '??sys.focus.label.text-opacity');
   }
@@ -152,7 +153,7 @@
     transform: translate(#{calc(#{v('??l.label.translate.x')} * var(--d-dir))}, #{calc(#{v('??l.label.translate.y')} - #{v('??l.shift')})}) scale(#{v('??l.label.scale')});
     transform-origin: var(--d-dir-text-left);
     transition-duration: v('??sys.transition-duration');
-    transition-property: font-size, opacity, transform;
+    transition-property: color, font-size, opacity, transform;
     transition-timing-function: v('d.sys.transition-function.standard');
     opacity: v('??l.label.opacity');
   }

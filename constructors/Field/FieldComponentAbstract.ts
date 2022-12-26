@@ -6,7 +6,7 @@ import {
   ComponentAssociativeType,
   ComponentBaseType
 } from '../types'
-import { getIdElement } from '../../functions'
+import { getIdElement, isFilled } from '../../functions'
 
 export type FieldClassesType = {
   main: ComponentAssociativeType
@@ -48,7 +48,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   setup (): FieldSetupType {
-    const classes = this.getClasses<FieldClassesType>()
+    const classes = this.getClasses<FieldClassesType>({
+      main: {
+        'is-value': this.ifValue
+      }
+    })
     const styles = this.getStyles()
 
     return {
@@ -61,6 +65,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   }
 
+  protected readonly ifValue = computed<boolean>(() => isFilled(this.props.value))
   protected readonly left = computed<string>(() => '0px')
   protected readonly right = computed<string>(() => '0px')
 }

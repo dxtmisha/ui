@@ -10,6 +10,7 @@ export const props = {
   suffix: [Number, String],
   text: [Number, String],
   validationMessage: String,
+  value: undefined,
 
   // Status
   active: Boolean,

@@ -7,7 +7,10 @@
           "mixin|filled": {
             "var|sys": {
               "backgroundOpacity": "{sys.opacity.overlay}",
-              "borderOpacity": "{sys.opacity.primary.medium}",
+              "borderOpacity": "{sys.opacity.primary.disabled}",
+              "hover": {
+                "borderOpacity": "{sys.opacity.primary.medium}"
+              },
               "focus": {
                 "border": "{??sys.palette}",
                 "borderOpacity": "{sys.opacity.primary.high}"
@@ -45,6 +48,7 @@
         },
         "focus": {
           "borderWidth": "{ref.spacing.px} * 2",
+          "gradientOpacity": "{sys.opacity.focus}",
           "label": {
             "text": "{??sys.palette}",
             "textOpacity": "{sys.opacity.surface.high}"

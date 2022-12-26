@@ -75,16 +75,16 @@
     </div>
   </div>
   <div class="px-4 pb-4">
-    <md2-field text="Interactive demo">
+    <md2-field :value="inputValue" text="Interactive demo">
       <template v-slot:default="binds">
-        <input :id="binds.id" :class="binds.classes" placeholder="placeholder">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
       </template>
     </md2-field>
   </div>
   <div class="px-4 pb-4">
-    <md2-field text="Interactive demo" width="auto">
+    <md2-field text="Interactive demo" width="auto" :value="true">
       <template v-slot:default="binds">
-        <input :id="binds.id" :class="binds.classes">
+        <input :id="binds.id" :class="binds.classes" placeholder="placeholder">
       </template>
     </md2-field>
   </div>
@@ -99,6 +99,13 @@
     <md2-field text="Interactive demo" required>
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex items-center gap-2 pb-8 px-4 pb-4">
+    <md2-field text="Interactive demo" value="value" required>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value">
       </template>
     </md2-field>
   </div>
@@ -1355,6 +1362,7 @@ export default defineComponent({
       turn: ref(),
       background: ref(),
       animationShow: ref(),
+      inputValue: ref(''),
       text: `
       Карьера до прихода в правительство
 Служба в КГБ СССР (1975—1991)
