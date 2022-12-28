@@ -1,8 +1,9 @@
 <template>
   <div
+    ref="element"
     :class="classes.main"
   >
-    <div :class="classes.body">
+    <div :class="classes.body" @click="onClick">
       <slot
         :id="id"
         :class-hidden="classes.hidden"
@@ -27,7 +28,14 @@
           <slot :id="id" :update="update" name="prefix"/>
         </div>
         <div :class="classes.scoreboardSpace"/>
-        <div ref="rightElement" :class="classes.scoreboardContext"></div>
+        <div v-if="ifSuffix" ref="suffixElement" :class="classes.suffix">
+          <slot :id="id" :update="update" name="suffix"/>
+          {{ suffix }}
+        </div>
+        <div ref="rightElement" :class="classes.scoreboardContext">
+          <slot :id="id" :update="update" name="right"/>
+          <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
+        </div>
       </div>
 
       <div :class="classes.border"/>

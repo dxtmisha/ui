@@ -40,6 +40,7 @@ export type FieldSetupType = ComponentBaseType & {
   prefixWidth: Ref<string>
   suffixWidth: Ref<string>
   update: () => void
+  onClick: (event: MouseEvent) => void
 }
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
@@ -97,7 +98,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       right: this.right,
       prefixWidth: this.prefixWidth,
       suffixWidth: this.suffixWidth,
-      update: this.update
+      update: this.update,
+      onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
 
@@ -158,6 +160,14 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.suffixWidth.value = `${this.suffixElement.value.offsetWidth}px`
     } else {
       this.suffixWidth.value = '0px'
+    }
+  }
+
+  protected onClick<T = MouseEvent> (event: T) {
+    const inputElement = this.element.value?.querySelector<HTMLInputElement>(`.${this.getItem().getClassName(['input'])}`)
+
+    if (inputElement) {
+      inputElement.focus()
     }
   }
 }

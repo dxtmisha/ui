@@ -209,6 +209,12 @@
       flex-grow: 1;
     }
   }
+
+  &:focus-within, &#{c('??--focus')} {
+    @include subClassByGlobal('scoreboard') {
+      z-index: 1;
+    }
+  }
 }
 
 @mixin mixinPrefix() {
