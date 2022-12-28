@@ -203,6 +203,15 @@
 
     @include subClass('context') {
       @include propertiesLink('d.flex.x');
+      gap: 0 v('??sys.space');
+
+      &:first-child {
+        @include paddingRight(v('??sys.space'));
+      }
+
+      &:last-child {
+        @include paddingLeft(v('??sys.space'));
+      }
     }
 
     @include subClass('space') {
@@ -210,9 +219,11 @@
     }
   }
 
-  &:focus-within, &#{c('??--focus')} {
-    @include subClassByGlobal('scoreboard') {
-      z-index: 1;
+  &:not(.is-arrow) {
+    &:focus-within, &#{c('??--focus')} {
+      @include subClassByGlobal('scoreboard') {
+        z-index: 1;
+      }
     }
   }
 }

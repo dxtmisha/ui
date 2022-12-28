@@ -1,6 +1,7 @@
 export const props = {
   // Values
   counter: Number,
+  detail: [Object],
   helperMessage: String,
   icon: [Object, String],
   iconTrailing: [Object, String],

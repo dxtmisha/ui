@@ -14,6 +14,7 @@ export const defaultItem = ComponentDesign.getDefault('md2.field')
 export const props = {
   // Values
   counter: Number,
+  detail: [Object],
   helperMessage: String,
   icon: [Object, String],
   iconTrailing: [Object, String],
@@ -73,13 +74,19 @@ export const props = {
   },
 
   // Icon
-  iconArrowLeft: {
+  iconPrevious: {
     type: [Object, String],
-    default: defaultItem.defaultValue('iconArrowLeft', 'chevron_left')
+    default: defaultItem.defaultValue('iconPrevious', {
+      icon: 'chevron_left',
+      size: 'sm'
+    })
   },
-  iconArrowRight: {
+  iconNext: {
     type: [Object, String],
-    default: defaultItem.defaultValue('iconArrowRight', 'chevron_right')
+    default: defaultItem.defaultValue('iconNext', {
+      icon: 'chevron_right',
+      size: 'sm'
+    })
   },
   iconCancel: {
     type: [Object, String],

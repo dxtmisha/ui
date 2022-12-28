@@ -8,6 +8,9 @@
       "var|_rounded": "{?.sys.rounded.full}",
       "var|_size": "{?.ref.spacing.6}",
       "size": {
+        "sm": {
+          "var|_size": "{?.ref.spacing.8}"
+        },
         "md": {
           "var|?image-fontSize": "{ref.font.size.headline.5}",
           "var|_size": "{?.ref.spacing.10}"

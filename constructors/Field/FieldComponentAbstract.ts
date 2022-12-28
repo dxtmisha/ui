@@ -1,4 +1,4 @@
-import { computed, ComputedRef, nextTick, Ref, ref, watchEffect } from 'vue'
+import { computed, ComputedRef, Ref, ref, watchEffect } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -31,10 +31,13 @@ export type FieldSetupType = ComponentBaseType & {
   rightElement: Ref<HTMLElement | undefined>
   prefixElement: Ref<HTMLElement | undefined>
   suffixElement: Ref<HTMLElement | undefined>
+  ifRipple: ComputedRef<boolean>
   ifPrefix: ComputedRef<boolean>
   ifSuffix: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
+  iconPreviousBind: ComputedRef<string | AssociativeType>
+  iconNextBind: ComputedRef<string | AssociativeType>
   left: Ref<string>
   right: Ref<string>
   prefixWidth: Ref<string>
@@ -76,6 +79,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   setup (): FieldSetupType {
     const classes = this.getClasses<FieldClassesType>({
       main: {
+        'is-arrow': this.refs.arrow,
         'is-value': this.ifValue
       }
     })
@@ -90,10 +94,13 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       rightElement: this.rightElement,
       prefixElement: this.prefixElement,
       suffixElement: this.suffixElement,
+      ifRipple: this.ifRipple,
       ifPrefix: this.ifPrefix,
       ifSuffix: this.ifSuffix,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
+      iconPreviousBind: this.getBind(this.refs.iconPrevious, this.iconPrevious, 'icon'),
+      iconNextBind: this.getBind(this.refs.iconNext, this.iconNext, 'icon'),
       left: this.left,
       right: this.right,
       prefixWidth: this.prefixWidth,
@@ -103,6 +110,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   }
 
+  protected readonly ifRipple = computed(() => this.props.ripple && !this.props.disabled) as ComputedRef<boolean>
   protected readonly ifPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
   protected readonly ifSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
   protected readonly ifValue = computed<boolean>(() => isFilled(this.props.value))
@@ -122,6 +130,22 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   })
 
+  readonly iconPrevious = computed(() => {
+    return {
+      class: 'is-previous',
+      background: true,
+      disabled: this.props.disabled || this.props.disabledPrevious
+    }
+  })
+
+  readonly iconNext = computed(() => {
+    return {
+      class: 'is-next',
+      background: true,
+      disabled: this.props.disabled || this.props.disabledNext
+    }
+  })
+
   protected update () {
     requestAnimationFrame(() => {
       this.updateLeft()
@@ -132,7 +156,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   protected updateLeft () {
-    if (this.props.icon) {
+    if (
+      this.props.icon ||
+      this.props.arrow
+    ) {
       this.left.value = `${this.leftElement.value?.offsetWidth}px`
     } else {
       this.left.value = '0px'
@@ -140,7 +167,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   protected updateRight () {
-    if (this.props.icon) {
+    if (
+      this.props.icon ||
+      this.props.arrow
+    ) {
       this.right.value = `${this.rightElement.value?.offsetWidth}px`
     } else {
       this.right.value = '0px'
@@ -163,11 +193,31 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   }
 
-  protected onClick<T = MouseEvent> (event: T) {
+  protected onClick<T = MouseEvent> (event: Event & T) {
     const inputElement = this.element.value?.querySelector<HTMLInputElement>(`.${this.getItem().getClassName(['input'])}`)
 
-    if (inputElement) {
-      inputElement.focus()
+    if (
+      inputElement &&
+      !this.props.disabled
+    ) {
+      if (
+        !this.props.disabledPrevious &&
+        (event.target as HTMLElement)?.closest('.is-previous')
+      ) {
+        this.context.emit('on-previous', this.props.detail)
+      } else if (
+        !this.props.disabledNext &&
+        (event.target as HTMLElement)?.closest('.is-next')
+      ) {
+        this.context.emit('on-next', this.props.detail)
+      } else if (
+        (event.target as HTMLElement)?.closest('.is-trailing')
+      ) {
+        this.context.emit('on-trailing', this.props.detail)
+        inputElement.focus()
+      } else {
+        inputElement.focus()
+      }
     }
   }
 }

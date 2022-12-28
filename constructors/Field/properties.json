@@ -196,6 +196,7 @@
           "textOpacity": "{??sys.prefix.textOpacity}"
         }
       },
+      "?ripple-background": "{??l.background}",
       "width": {
         "auto": "auto",
         "full": "100%",

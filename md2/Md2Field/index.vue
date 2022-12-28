@@ -20,6 +20,9 @@
 
       <div :class="classes.scoreboard">
         <div ref="leftElement" :class="classes.scoreboardContext">
+          <md2-icon v-if="arrow" v-bind="iconPreviousBind">
+            <md2-ripple v-if="ifRipple"/>
+          </md2-icon>
           <md2-icon v-if="icon" v-bind="iconBind"/>
           <slot :id="id" :update="update" name="left"/>
         </div>
@@ -35,6 +38,9 @@
         <div ref="rightElement" :class="classes.scoreboardContext">
           <slot :id="id" :update="update" name="right"/>
           <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
+          <md2-icon v-if="arrow" v-bind="iconNextBind">
+            <md2-ripple v-if="ifRipple"/>
+          </md2-icon>
         </div>
       </div>
 
@@ -47,10 +53,14 @@
 import { FieldComponent } from './FieldComponent'
 import { props } from './props'
 import Md2Icon from '../Md2Icon/index.vue'
+import Md2Ripple from '../Md2Ripple/index.vue'
 
 export default {
   name: 'Md2Field',
-  components: { Md2Icon },
+  components: {
+    Md2Icon,
+    Md2Ripple
+  },
   props,
   emits: FieldComponent.emits,
   setup (props: object, context: object) {

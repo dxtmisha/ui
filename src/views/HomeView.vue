@@ -131,6 +131,28 @@
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
       </template>
     </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      text="Interactive demo"
+      arrow
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+      arrow
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
   </div>
   <div class="px-4 pb-4">
     <md2-field text="Interactive demo" width="auto" :value="true">
