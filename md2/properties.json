@@ -161,6 +161,9 @@
             "6": {
               "value": "{ref.spacing.px}*20"
             }
+          },
+          "interactiveDisplay": {
+            "value": "{ref.spacing.px}*72"
           }
         },
         "weight": {
@@ -253,6 +256,9 @@
           "6": {
             "value": "{ref.spacing.px}*24"
           }
+        },
+        "interactiveDisplay": {
+          "value": "{ref.spacing.px}*88"
         }
       },
       "screen": {
@@ -1353,6 +1359,14 @@
         "fontSize": "{ref.font.size.headline.1}",
         "lineHeight": "{ref.lineHeight.headline.1}",
         "letterSpacing": "{ref.letterSpacing.headline.1}",
+        "textTransform": "none"
+      },
+      "interactiveDisplay": {
+        "fontFamily": "{ref.font.family.basic}",
+        "fontWeight": "{ref.font.weight.bold}",
+        "fontSize": "{ref.font.size.interactiveDisplay}",
+        "lineHeight": "{ref.lineHeight.interactiveDisplay}",
+        "letterSpacing": "{ref.letterSpacing.none}",
         "textTransform": "none"
       }
     },
