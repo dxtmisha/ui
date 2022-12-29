@@ -15,9 +15,11 @@ export type Md2FieldCancelType =
   'hide'
 
 export type Md2FieldHeightType =
+  'xm' |
   'sm' |
   'md' |
-  'lg'
+  'lg' |
+  'xl'
 
 export type Md2FieldRoundedType =
   'none' |

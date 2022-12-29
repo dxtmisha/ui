@@ -65,7 +65,8 @@
         "sm": "{ref.spacing.12}",
         "md": "{ref.spacing.14}",
         "lg": "{ref.spacing.16}",
-        "xl": "{ref.spacing.20}"
+        "xl": "{ref.spacing.20}",
+        "asd": "{ref.spacing.20}"
       },
       "section|appearance": {
         "filled": {

@@ -59,7 +59,7 @@ module.exports = class extends PropertiesFileService {
 
           if (
             !item.isValue() ||
-            this.initValue(item)
+            this.initValue(item, tree)
           ) {
             this.initMap(
               property,
@@ -136,7 +136,7 @@ module.exports = class extends PropertiesFileService {
     return data
   }
 
-  initValue (property) {
+  initValue (property, tree) {
     const isValue = property.isValue() &&
       property.parent?.getType() === 'property' &&
       property.getType() !== 'property' &&
@@ -144,8 +144,11 @@ module.exports = class extends PropertiesFileService {
       property.getType() !== 'rename'
 
     if (isValue) {
+      const treeRename = tree?.rename?.item?.getValue()?.replace(/\./ig, '-')
+      const index = property.parent.getRename() || treeRename || property.parent.getMark()
+
       property.setType('section')
-      property.property[property.parent.getRename() || property.parent.getMark()] = {
+      property.property[index] = {
         value: property.property.value
       }
 

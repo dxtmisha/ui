@@ -239,6 +239,79 @@
       </template>
     </md2-field>
   </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+      height="xm"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+      height="sm"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+      height="md"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+      height="lg"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      icon-trailing="close"
+      text="Interactive demo"
+      height="xl"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
   <div class="px-4 pb-4">
     <md2-field text="Interactive demo" width="auto" :value="true">
       <template v-slot:default="binds">
