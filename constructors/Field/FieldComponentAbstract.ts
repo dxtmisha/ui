@@ -1,4 +1,4 @@
-import { computed, ComputedRef, Ref, ref, watchEffect } from 'vue'
+import { computed, ComputedRef, Ref, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
@@ -34,8 +34,10 @@ export type FieldSetupType = ComponentBaseType & {
   ifRipple: ComputedRef<boolean>
   ifPrefix: ComputedRef<boolean>
   ifSuffix: ComputedRef<boolean>
+  ifCancel: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
+  iconCancelBind: ComputedRef<string | AssociativeType>
   iconPreviousBind: ComputedRef<string | AssociativeType>
   iconNextBind: ComputedRef<string | AssociativeType>
   left: Ref<string>
@@ -73,13 +75,24 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
     this.id = `field--id--${getIdElement()}`
 
-    watchEffect(() => this.update())
+    watch([
+      this.refs.icon,
+      this.refs.iconTrailing,
+      this.refs.arrow,
+      this.refs.prefix,
+      this.refs.suffix,
+      this.ifCancel
+    ], () => this.update())
+
+    this.update()
   }
 
   setup (): FieldSetupType {
     const classes = this.getClasses<FieldClassesType>({
       main: {
         'is-arrow': this.refs.arrow,
+        'is-cancel': this.ifCancel,
+        'is-suffix': this.ifSuffix,
         'is-value': this.ifValue
       }
     })
@@ -97,8 +110,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       ifRipple: this.ifRipple,
       ifPrefix: this.ifPrefix,
       ifSuffix: this.ifSuffix,
+      ifCancel: this.ifCancel,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
+      iconCancelBind: this.getBind(this.refs.iconCancel, this.iconCancel, 'icon'),
       iconPreviousBind: this.getBind(this.refs.iconPrevious, this.iconPrevious, 'icon'),
       iconNextBind: this.getBind(this.refs.iconNext, this.iconNext, 'icon'),
       left: this.left,
@@ -114,6 +129,12 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected readonly ifPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
   protected readonly ifSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
   protected readonly ifValue = computed<boolean>(() => isFilled(this.props.value))
+  protected readonly ifCancel = computed<boolean>(() => {
+    return !this.props.disabled &&
+      this.ifValue.value &&
+      isFilled(this.props.cancel) &&
+      this.props.cancel !== 'hide'
+  })
 
   readonly icon = computed(() => {
     return {
@@ -127,6 +148,12 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       class: 'is-trailing',
       disabled: this.props.disabled,
       turn: this.props.turn
+    }
+  })
+
+  readonly iconCancel = computed(() => {
+    return {
+      class: 'is-cancel'
     }
   })
 
@@ -168,8 +195,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   protected updateRight () {
     if (
-      this.props.icon ||
-      this.props.arrow
+      this.props.iconTrailing ||
+      this.props.arrow ||
+      this.ifCancel.value
     ) {
       this.right.value = `${this.rightElement.value?.offsetWidth}px`
     } else {
@@ -214,6 +242,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
         (event.target as HTMLElement)?.closest('.is-trailing')
       ) {
         this.context.emit('on-trailing', this.props.detail)
+        inputElement.focus()
+      } else if (
+        (event.target as HTMLElement)?.closest('.is-cancel')
+      ) {
+        this.context.emit('on-cancel', this.props.detail)
         inputElement.focus()
       } else {
         inputElement.focus()

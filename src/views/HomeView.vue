@@ -154,6 +154,91 @@
       </template>
     </md2-field>
   </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      cancel="auto"
+      icon-trailing="close"
+      text="Interactive demo"
+      suffix="suffix"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      cancel="auto"
+      icon-trailing="close"
+      text="Interactive demo"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      cancel="always"
+      text="Interactive demo"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      cancel="auto"
+      arrow
+      icon-trailing="close"
+      text="Interactive demo"
+      prefix="pr"
+      align="center"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      cancel="auto"
+      arrow
+      icon-trailing="close"
+      text="Interactive demo"
+      prefix="pr"
+      align="left"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      :turn="turn"
+      icon="face"
+      cancel="auto"
+      arrow
+      icon-trailing="close"
+      text="Interactive demo"
+      prefix="pr"
+      align="right"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
   <div class="px-4 pb-4">
     <md2-field text="Interactive demo" width="auto" :value="true">
       <template v-slot:default="binds">

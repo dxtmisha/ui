@@ -20,9 +20,14 @@
 
       <div :class="classes.scoreboard">
         <div ref="leftElement" :class="classes.scoreboardContext">
-          <md2-icon v-if="arrow" v-bind="iconPreviousBind">
-            <md2-ripple v-if="ifRipple"/>
-          </md2-icon>
+          <template v-if="arrow">
+            <md2-icon v-if="align !== 'right'" v-bind="iconPreviousBind">
+              <md2-ripple v-if="ifRipple"/>
+            </md2-icon>
+            <md2-icon v-if="align === 'left'" v-bind="iconNextBind">
+              <md2-ripple v-if="ifRipple"/>
+            </md2-icon>
+          </template>
           <md2-icon v-if="icon" v-bind="iconBind"/>
           <slot :id="id" :update="update" name="left"/>
         </div>
@@ -37,10 +42,20 @@
         </div>
         <div ref="rightElement" :class="classes.scoreboardContext">
           <slot :id="id" :update="update" name="right"/>
-          <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
-          <md2-icon v-if="arrow" v-bind="iconNextBind">
+          <md2-icon v-if="ifCancel" v-bind="iconCancelBind">
             <md2-ripple v-if="ifRipple"/>
           </md2-icon>
+          <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind">
+            <md2-ripple v-if="ifRipple"/>
+          </md2-icon>
+          <template v-if="arrow">
+            <md2-icon v-if="align === 'right'" v-bind="iconPreviousBind">
+              <md2-ripple v-if="ifRipple"/>
+            </md2-icon>
+            <md2-icon v-if="align !== 'left'" v-bind="iconNextBind">
+              <md2-ripple v-if="ifRipple"/>
+            </md2-icon>
+          </template>
         </div>
       </div>
 

@@ -11,7 +11,8 @@ export type Md2FieldAppearanceType =
 
 export type Md2FieldCancelType =
   'auto' |
-  'always'
+  'always' |
+  'hide'
 
 export type Md2FieldHeightType =
   'sm' |

@@ -1,5 +1,6 @@
 @import "../../styles/properties";
 @import "../../styles/color";
+@import "../../styles/font";
 @import "../../styles/padding";
 @import "../../styles/position";
 
@@ -49,8 +50,11 @@
 
   @include mixinScoreboard;
   @include mixinPrefix;
+  @include mixinCancel;
 
   @include mixinBorder;
+
+  @include mixinAlign;
 
   &:focus-within, &#{c('??--focus')} {
     @include linkTo('gradient-opacity', '??sys.focus.gradient-opacity', null, true);
@@ -219,7 +223,14 @@
     }
   }
 
-  &:not(.is-arrow) {
+  .is-trailing,
+  .is-cancel,
+  .is-previous,
+  .is-next {
+    cursor: pointer;
+  }
+
+  &:not(.is-arrow, .is-cancel) {
     &:focus-within, &#{c('??--focus')} {
       @include subClassByGlobal('scoreboard') {
         z-index: 1;
@@ -244,6 +255,31 @@
   @include subClass('suffix') {
     @include paddingRight(v('??sys.space'));
   }
+
+  &.is-suffix {
+    @include subClassByGlobal('input') {
+      @include textAlign('right');
+    }
+  }
+}
+
+@mixin mixinCancel() {
+  @include subClass('scoreboard') {
+    @include subClass('context') {
+      & > .is-cancel {
+        transition-duration: v('??sys.transition-duration');
+        transition-property: opacity;
+      }
+    }
+  }
+
+  @include modClass('cancel') {
+    @include modClass('auto') {
+      &:not(:hover) .is-cancel {
+        opacity: 0;
+      }
+    }
+  }
 }
 
 @mixin mixinBorder() {
@@ -256,6 +292,28 @@
     border-bottom-width: v('??l.border-width');
     border-left-width: v('??l.border-width');
     border-radius: inherit;
+  }
+}
+
+@mixin mixinAlign() {
+  @include modClass('align') {
+    @include modClass('center') {
+      @include subClassByGlobal('input') {
+        @include textAlign('center');
+      }
+    }
+
+    @include modClass('left') {
+      @include subClassByGlobal('input') {
+        @include textAlign('left');
+      }
+    }
+
+    @include modClass('right') {
+      @include subClassByGlobal('input') {
+        @include textAlign('right');
+      }
+    }
   }
 }
 

@@ -205,6 +205,15 @@
       "height": {
         "rename": "var|sys.height"
       },
+      "section|align": {
+        "center": {},
+        "left": {},
+        "right": {}
+      },
+      "section|cancel": {
+        "auto": {},
+        "always": {}
+      },
       "section|focus": {},
       "#body": {},
       "#border": {},
