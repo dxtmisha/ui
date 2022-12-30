@@ -45,9 +45,7 @@
           <md2-icon v-if="ifCancel" v-bind="iconCancelBind">
             <md2-ripple v-if="ifRipple"/>
           </md2-icon>
-          <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind">
-            <md2-ripple v-if="ifRipple"/>
-          </md2-icon>
+          <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
           <template v-if="arrow">
             <md2-icon v-if="align === 'right'" v-bind="iconPreviousBind">
               <md2-ripple v-if="ifRipple"/>

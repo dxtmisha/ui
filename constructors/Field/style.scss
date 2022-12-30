@@ -55,12 +55,8 @@
   @include mixinBorder;
 
   @include mixinAlign;
-
-  &:focus-within, &#{c('??--focus')} {
-    @include linkTo('gradient-opacity', '??sys.focus.gradient-opacity', null, true);
-    @include linkTo('label.text', '??sys.focus.label.text');
-    @include linkTo('label.text-opacity', '??sys.focus.label.text-opacity');
-  }
+  @include mixinSelected;
+  @include mixinFocus;
 }
 
 @mixin mixinBody() {
@@ -118,7 +114,8 @@
 
 @mixin mixinLabel() {
   @include subClass('label') {
-    @include color(v('??l.label.text'), v('??l.label.text-opacity'));
+    @include paletteColor(v('??l.label.text'));
+    @include colorOpacity(v('??l.label.text-opacity'));
 
     display: flex;
     position: absolute;
@@ -313,6 +310,28 @@
       @include subClassByGlobal('input') {
         @include textAlign('right');
       }
+    }
+  }
+}
+
+@mixin mixinFocus() {
+  &:focus-within, &#{c('??--focus')} {
+    @include linkTo('gradient-opacity', '??sys.focus.gradient-opacity', null, true);
+    @include linkTo('label.text', '??sys.focus.label.text');
+    @include linkTo('label.text-opacity', '??sys.focus.label.text-opacity');
+  }
+}
+
+@mixin mixinSelected() {
+  @include modClass('selected') {
+    @include linkTo('background', '??sys.selected.background');
+    @include linkTo('gradient', '??sys.selected.gradient');
+    @include linkTo('text', '??sys.selected.text');
+
+    @include subClassByGlobal('body') {
+      @include paletteColor(v('??l.text'));
+      @include paletteBackground(v('??l.background'));
+      @include paletteGradient(v('??l.gradient'));
     }
   }
 }

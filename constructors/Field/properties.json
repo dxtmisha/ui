@@ -48,8 +48,6 @@
                   "scale": "0.875",
                   "shift": "{??sys.label.height} / 2"
                 }
-              },
-              "hover": {
               }
             },
             "var|l": {
@@ -74,7 +72,7 @@
             "& .??__border": {
               "after": {
                 "@style": "{??m.borderBottom}",
-                "background-color": "{??sys.focus.border}",
+                "palette-background": "{??sys.focus.border}",
                 "background-opacity": "{??sys.focus.borderOpacity}",
                 "clip-path": "inset(0 50%)",
                 "height": "{??sys.focus.borderWidth}",
@@ -163,7 +161,10 @@
           "@style": "{??m.status}"
         },
         "selected": {
-          "@style": "{??m.status}"
+          "@style": "{??m.status}",
+          "var|background": "{??sys.palette}",
+          "var|gradient": "{??sys.palette}",
+          "var|text": "{??sys.palette}"
         }
       },
       "var|l": {
@@ -215,6 +216,7 @@
         "always": {}
       },
       "section|focus": {},
+      "section|selected": {},
       "#body": {},
       "#border": {},
       "#hidden": {},

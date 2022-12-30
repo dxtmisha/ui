@@ -14,7 +14,6 @@ export const props = {
   value: undefined,
 
   // Status
-  active: Boolean,
   disabled: Boolean,
   disabledPrevious: Boolean,
   disabledNext: Boolean,

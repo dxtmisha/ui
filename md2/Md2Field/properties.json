@@ -59,6 +59,7 @@
         }
       },
       "@font": "{font.subtitle1}",
+      "@@palette": "{?palette}",
       "border-radius": "{sys.rounded.standard}",
       "height": {
         "xm": "{ref.spacing.10}",
@@ -91,7 +92,10 @@
         "default": "filled"
       },
       "section|rounded": {
-        "@style": "{?rounded}"
+        "@style": "{?rounded}",
+        "full": {
+          "border-radius": "{??sys.height} / 2"
+        }
       }
     }
   }

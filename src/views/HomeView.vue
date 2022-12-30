@@ -74,10 +74,120 @@
       <input type="checkbox" name="visible" v-model="visible"> visible
     </div>
   </div>
-  <div class="px-4 pb-4">
+  <div class="flex gap-4 px-4 pb-4">
     <md2-field
       :value="inputValue"
       text="Interactive demo"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="red"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="green"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      selected
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="red"
+      selected
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="green"
+      selected
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      rounded="none"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      rounded="standard"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      rounded="sm"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      icon="face"
+      :value="inputValue"
+      text="Interactive demo"
+      rounded="md"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      icon="face"
+      :value="inputValue"
+      text="Interactive demo"
+      rounded="xl"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      icon="face"
+      :value="inputValue"
+      text="Interactive demo"
+      rounded="full"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
