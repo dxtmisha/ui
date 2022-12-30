@@ -13,7 +13,7 @@
       <div :class="classes.label">
         <div :class="classes.title">
           <label :class="classes.text">
-            {{ text }}<span v-if="required" :class="classes.required"/>
+            {{ text }}<span v-if="ifRequired" :class="classes.required"/>
           </label>
         </div>
       </div>
@@ -22,10 +22,10 @@
         <div ref="leftElement" :class="classes.scoreboardContext">
           <template v-if="arrow">
             <md2-icon v-if="align !== 'right'" v-bind="iconPreviousBind">
-              <md2-ripple v-if="ifRipple"/>
+              <md2-ripple v-if="ifRipple && !disabledPrevious"/>
             </md2-icon>
             <md2-icon v-if="align === 'left'" v-bind="iconNextBind">
-              <md2-ripple v-if="ifRipple"/>
+              <md2-ripple v-if="ifRipple && !disabledNext"/>
             </md2-icon>
           </template>
           <md2-icon v-if="icon" v-bind="iconBind"/>
@@ -48,10 +48,10 @@
           <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
           <template v-if="arrow">
             <md2-icon v-if="align === 'right'" v-bind="iconPreviousBind">
-              <md2-ripple v-if="ifRipple"/>
+              <md2-ripple v-if="ifRipple && !disabledPrevious"/>
             </md2-icon>
             <md2-icon v-if="align !== 'left'" v-bind="iconNextBind">
-              <md2-ripple v-if="ifRipple"/>
+              <md2-ripple v-if="ifRipple && !disabledNext"/>
             </md2-icon>
           </template>
         </div>

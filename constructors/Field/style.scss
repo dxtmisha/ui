@@ -55,8 +55,11 @@
   @include mixinBorder;
 
   @include mixinAlign;
-  @include mixinSelected;
-  @include mixinFocus;
+
+  &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
+    @include mixinSelected;
+    @include mixinFocus;
+  }
 }
 
 @mixin mixinBody() {
@@ -230,7 +233,7 @@
   &:not(.is-arrow, .is-cancel) {
     &:focus-within, &#{c('??--focus')} {
       @include subClassByGlobal('scoreboard') {
-        z-index: 1;
+        z-index: 1
       }
     }
   }
@@ -323,7 +326,7 @@
 }
 
 @mixin mixinSelected() {
-  @include modClass('selected') {
+  @include subClassByGlobal('selected') {
     @include linkTo('background', '??sys.selected.background');
     @include linkTo('gradient', '??sys.selected.gradient');
     @include linkTo('text', '??sys.selected.text');

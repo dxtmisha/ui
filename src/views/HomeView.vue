@@ -463,6 +463,40 @@
         <input :id="binds.id" :class="binds.classes" value="value">
       </template>
     </md2-field>
+    <md2-field text="Interactive demo" value="value" required readonly>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="readonly" readonly>
+      </template>
+    </md2-field>
+    <md2-field text="Interactive demo" value="value" required disabled>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value" disabled>
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex items-center gap-2 pb-8 px-4 pb-4">
+    <md2-field text="Interactive demo" value="value" required disabled arrow>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value" disabled>
+      </template>
+    </md2-field>
+    <md2-field text="Interactive demo" value="value" required disabled-next arrow>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value" disabled>
+      </template>
+    </md2-field>
+    <md2-field text="Interactive demo" value="value" required disabled-previous arrow>
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value" disabled>
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex items-center gap-2 pb-8 px-4 pb-4">
+    <md2-field text="Interactive demo" value="value" required disabled arrow appearance="classic">
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value" disabled>
+      </template>
+    </md2-field>
   </div>
   <div class="flex items-center gap-2">
     <md2-icon :icon="{value: 'close', disabled: true}" :active="active" :turn="turn" :background="background"

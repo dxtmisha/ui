@@ -31,6 +31,7 @@ export type FieldSetupType = ComponentBaseType & {
   rightElement: Ref<HTMLElement | undefined>
   prefixElement: Ref<HTMLElement | undefined>
   suffixElement: Ref<HTMLElement | undefined>
+  ifRequired: ComputedRef<boolean>
   ifRipple: ComputedRef<boolean>
   ifPrefix: ComputedRef<boolean>
   ifSuffix: ComputedRef<boolean>
@@ -107,6 +108,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       rightElement: this.rightElement,
       prefixElement: this.prefixElement,
       suffixElement: this.suffixElement,
+      ifRequired: this.ifRequired,
       ifRipple: this.ifRipple,
       ifPrefix: this.ifPrefix,
       ifSuffix: this.ifSuffix,
@@ -124,6 +126,12 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
+
+  protected readonly ifRequired = computed(() => {
+    return this.props.required &&
+      !this.props?.readonly &&
+      !this.props?.disabled
+  }) as ComputedRef<boolean>
 
   protected readonly ifRipple = computed(() => this.props.ripple && !this.props.disabled) as ComputedRef<boolean>
   protected readonly ifPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
@@ -226,7 +234,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
     if (
       inputElement &&
-      !this.props.disabled
+      !this.props?.readonly &&
+      !this.props?.disabled
     ) {
       if (
         !this.props.disabledPrevious &&

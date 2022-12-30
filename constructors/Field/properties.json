@@ -55,13 +55,7 @@
             },
             "& .??__body": {
               "border-bottom-left-radius": "0",
-              "border-bottom-right-radius": "0",
-              "hover": {
-                "var|l": {
-                  "borderOpacity": "{??sys.hover.borderOpacity}",
-                  "gradientOpacity": "{??sys.hover.gradientOpacity}"
-                }
-              }
+              "border-bottom-right-radius": "0"
             },
             "& .??__prefix, & .??__suffix": {
               "var|l": {
@@ -88,17 +82,27 @@
                 "height": "{??sys.borderWidth}"
               }
             },
-            "&:focus-within, &.??focus": {
+            "&:not(.??--disabled, .??--readonly)": {
               "& .??__body": {
-                "var|l": {
-                  "gradientOpacity": "{??sys.focus.gradientOpacity}"
+                "hover": {
+                  "var|l": {
+                    "borderOpacity": "{??sys.hover.borderOpacity}",
+                    "gradientOpacity": "{??sys.hover.gradientOpacity}"
+                  }
                 }
               },
-              "& .??__border::after": {
-                "clip-path": "inset(0 0)"
+              "&:focus-within, &.??--focus": {
+                "& .??__body": {
+                  "var|l": {
+                    "gradientOpacity": "{??sys.focus.gradientOpacity}"
+                  }
+                },
+                "& .??__border::after": {
+                  "clip-path": "inset(0 0)"
+                }
               }
             },
-            "&:focus-within, &.??focus, &.is-value": {
+            "&:focus-within, &.??--focus, &.is-value": {
               "var|l": {
                 "shift": "{??sys.focus.shift}",
                 "label": {
@@ -215,7 +219,9 @@
         "auto": {},
         "always": {}
       },
+      "section|disabled": {},
       "section|focus": {},
+      "section|readonly": {},
       "section|selected": {},
       "#body": {},
       "#border": {},
