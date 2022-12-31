@@ -16,6 +16,7 @@
           "var|text": "{??sys.text}",
           "var|textOpacity": "{??sys.textOpacity}",
           "var|label": {
+            "var|fontSize": "{??sys.label.fontSize}",
             "var|opacity": "{??sys.label.opacity}",
             "var|scale": "{??sys.label.scale}",
             "var|shift": "{??sys.label.shift}",
@@ -105,9 +106,8 @@
                 }
               }
             },
-            "&:focus-within, &.??--focus, &.is-value": {
+            "&:focus-within, &.??--focus, &.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
               "var|l": {
-                "gradientOpacity": "{??sys.focus.gradientOpacity}",
                 "shift": "{??sys.focus.shift}",
                 "label": {
                   "scale": "{??sys.focus.label.scale}",
@@ -124,7 +124,51 @@
               }
             }
           },
-          "mixin|outlined": {}
+          "mixin|outlined": {
+            "var|sys": {
+              "focus": {
+                "border": "",
+                "borderOpacity": "",
+                "borderWidth": "",
+                "label": {
+                  "fontSize": "",
+                  "shift": "{??sys.height} / 2"
+                }
+              }
+            },
+            "&:not(.??--disabled, .??--readonly)": {
+              "& .??__body": {
+                "hover": {
+                  "var|l": {
+                    "borderOpacity": "{??sys.hover.borderOpacity}"
+                  }
+                }
+              },
+              "&:focus-within, &.??--focus": {
+                "& .??__body": {
+                  "var|l": {
+                    "border": "=var(--sys-palette, {??sys.focus.border})",
+                    "borderOpacity": "{??sys.focus.borderOpacity}",
+                    "borderWidth": "{??sys.focus.borderWidth}"
+                  }
+                }
+              }
+            },
+            "&:focus-within, &.??--focus, &.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
+              "var|l": {
+                "label": {
+                  "fontSize": "{??sys.focus.label.fontSize}",
+                  "shift": "{??sys.focus.label.shift}",
+                  "translate": {
+                    "x": "0px"
+                  }
+                }
+              },
+              "& .??__title:after": {
+                "border-opacity": "0"
+              }
+            }
+          }
         }
       },
       "var|sys": {
@@ -146,6 +190,7 @@
         "transitionDuration": "{d.sys.transitionDuration.fade.enter}",
         "width": "",
         "label": {
+          "fontSize": "inherit",
           "height": "",
           "opacity": "1",
           "required": "",

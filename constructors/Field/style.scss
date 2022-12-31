@@ -97,7 +97,7 @@
     @include paddingRight(calc(#{v('??_right')} + #{v('??_value-suffix')}));
 
     &::placeholder {
-      @include colorOpacity(v('??sys.label.text-opacity'));
+      @include color(v('??sys.label.text'), v('??sys.label.text-opacity'));
     }
 
     &::-webkit-clear-button,
@@ -170,6 +170,7 @@
 @mixin mixinText() {
   @include subClass('text') {
     @include propertiesLink('d.font.ellipsis');
+    font-size: v('??l.label.font-size', inherit);
     line-height: 1;
 
     max-width: 100%;

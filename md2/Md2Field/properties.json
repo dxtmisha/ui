@@ -19,6 +19,18 @@
                 "borderOpacity": "{sys.opacity.primary.high}"
               }
             }
+          },
+          "mixin|outlined": {
+            "var|sys": {
+              "focus": {
+                "border": "{??sys.palette}",
+                "borderOpacity": "{sys.opacity.surface.high}",
+                "borderWidth": "{ref.spacing.px} * 2",
+                "label": {
+                  "fontSize": "14px"
+                }
+              }
+            }
           }
         }
       },
@@ -53,6 +65,7 @@
           }
         },
         "hover": {
+          "borderOpacity": "{sys.opacity.surface.disabled}",
           "gradientOpacity": "{sys.opacity.hover}"
         },
         "focus": {

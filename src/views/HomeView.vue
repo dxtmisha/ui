@@ -89,6 +89,7 @@
       text="Interactive demo"
       palette="red"
       appearance="outlined"
+      icon="face"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
@@ -99,9 +100,38 @@
       text="Interactive demo"
       palette="green"
       appearance="outlined"
+      icon="face"
+      icon-trailing="close"
     >
       <template v-slot:default="binds">
-        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue" placeholder="placeholder">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="outlined"
+      icon="face"
+      icon-trailing="close"
+      disabled
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue" disabled>
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="green"
+      appearance="outlined"
+      icon="face"
+      icon-trailing="close"
+      disabled
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue" placeholder="placeholder" disabled>
       </template>
     </md2-field>
   </div>
@@ -120,7 +150,7 @@
       palette="red"
     >
       <template v-slot:default="binds">
-        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue" placeholder="placeholder">
       </template>
     </md2-field>
     <md2-field
