@@ -60,6 +60,8 @@
     @include mixinSelected;
     @include mixinFocus;
   }
+
+  @include mixinDisabled;
 }
 
 @mixin mixinBody() {
@@ -317,9 +319,19 @@
   }
 }
 
+@mixin mixinDisabled() {
+  @include modClass('disabled') {
+    @include linkTo('text-opacity', '??sys.disabled.text-opacity');
+    @include linkTo('label.text-opacity', '??sys.disabled.label.text-opacity');
+
+    @include subClassByGlobal('input') {
+      @include colorOpacity(v('??l.text-opacity'));
+    }
+  }
+}
+
 @mixin mixinFocus() {
   &:focus-within, &#{c('??--focus')} {
-    @include linkTo('gradient-opacity', '??sys.focus.gradient-opacity', null, true);
     @include linkTo('label.text', '??sys.focus.label.text');
     @include linkTo('label.text-opacity', '??sys.focus.label.text-opacity');
   }

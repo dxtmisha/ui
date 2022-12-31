@@ -78,6 +78,37 @@
     <md2-field
       :value="inputValue"
       text="Interactive demo"
+      appearance="outlined"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="red"
+      appearance="outlined"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      palette="green"
+      appearance="outlined"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
@@ -493,6 +524,11 @@
   </div>
   <div class="flex items-center gap-2 pb-8 px-4 pb-4">
     <md2-field text="Interactive demo" value="value" required disabled arrow appearance="classic">
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" value="value" disabled>
+      </template>
+    </md2-field>
+    <md2-field text="Interactive demo" value="value" required disabled icon="face" icon-trailing="close">
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" value="value" disabled>
       </template>

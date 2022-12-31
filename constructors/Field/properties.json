@@ -40,6 +40,9 @@
             "var|sys": {
               "backgroundOpacity": "",
               "borderOpacity": "",
+              "disabled": {
+                "borderOpacity": ""
+              },
               "focus": {
                 "border": "",
                 "borderOpacity": "",
@@ -104,6 +107,7 @@
             },
             "&:focus-within, &.??--focus, &.is-value": {
               "var|l": {
+                "gradientOpacity": "{??sys.focus.gradientOpacity}",
                 "shift": "{??sys.focus.shift}",
                 "label": {
                   "scale": "{??sys.focus.label.scale}",
@@ -113,8 +117,14 @@
                   "opacity": "{??sys.focus.prefix.opacity}"
                 }
               }
+            },
+            "&.??--disabled": {
+              "var|l": {
+                "borderOpacity": "{??sys.disabled.borderOpacity}"
+              }
             }
-          }
+          },
+          "mixin|outlined": {}
         }
       },
       "var|sys": {

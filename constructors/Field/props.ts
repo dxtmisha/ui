@@ -1,25 +1,25 @@
 export const props = {
   // Values
-  counter: Number,
   detail: [Object],
-  helperMessage: String,
   icon: [Object, String],
   iconTrailing: [Object, String],
-  maxlength: Number,
   prefix: [Number, String],
   required: Boolean,
   suffix: [Number, String],
   text: [Number, String],
-  validationMessage: String,
   value: undefined,
+
+  // Message
+  counter: Number,
+  helperMessage: String,
+  maxlength: Number,
+  validationMessage: String,
 
   // Status
   disabled: Boolean,
   disabledPrevious: Boolean,
   disabledNext: Boolean,
-  dragged: Boolean,
   focus: Boolean,
-  progress: Boolean,
   readonly: Boolean,
   selected: Boolean,
   turn: Boolean,

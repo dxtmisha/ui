@@ -8,6 +8,9 @@
             "var|sys": {
               "backgroundOpacity": "{sys.opacity.overlay}",
               "borderOpacity": "{sys.opacity.primary.disabled}",
+              "disabled": {
+                "borderOpacity": "{sys.opacity.disabled}"
+              },
               "hover": {
                 "borderOpacity": "{sys.opacity.primary.medium}"
               },
@@ -44,7 +47,10 @@
           "textOpacity": "{sys.opacity.surface.medium}"
         },
         "disabled": {
-          "textOpacity": "{sys.opacity.surface.disabled}"
+          "textOpacity": "{sys.opacity.surface.disabled}",
+          "label": {
+            "textOpacity": "{sys.opacity.surface.disabled}"
+          }
         },
         "hover": {
           "gradientOpacity": "{sys.opacity.hover}"
@@ -88,6 +94,9 @@
       "section|appearance": {
         "filled": {
           "@style": "{??m.appearance.filled}"
+        },
+        "outlined": {
+          "@style": "{??m.appearance.outlined}"
         },
         "default": "filled"
       },
