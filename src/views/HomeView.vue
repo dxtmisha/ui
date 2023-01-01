@@ -78,6 +78,37 @@
     <md2-field
       :value="inputValue"
       text="Interactive demo"
+      appearance="classic"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="classic"
+      disabled
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue" placeholder="placeholder">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="classic"
+      palette="deep-orange"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
       appearance="standard"
     >
       <template v-slot:default="binds">

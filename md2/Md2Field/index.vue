@@ -3,6 +3,13 @@
     ref="element"
     :class="classes.main"
   >
+    <label
+      v-if="appearance === 'classic'"
+      :class="classes.labelTop"
+      :for="id"
+    >
+      {{ text }}<span v-if="ifRequired" :class="classes.required"/>
+    </label>
     <div :class="classes.body" @click="onClick">
       <slot
         :id="id"
@@ -13,7 +20,7 @@
 
       <div :class="classes.label">
         <div :class="classes.title">
-          <label :class="classes.text">
+          <label v-if="appearance !== 'classic'" :class="classes.text">
             {{ text }}<span v-if="ifRequired" :class="classes.required"/>
           </label>
         </div>

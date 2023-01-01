@@ -225,6 +225,13 @@
               }
             }
           }
+        },
+        "mixin|labelTop": {
+          "var|sys": {
+            "label": {
+              "fontSize": "inherit"
+            }
+          }
         }
       },
       "var|sys": {
@@ -341,6 +348,7 @@
       "#hidden": {},
       "#input": {},
       "#label": {},
+      "#labelTop": {},
       "#prefix": {},
       "#required": {},
       "#scoreboard": {

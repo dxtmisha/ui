@@ -14,6 +14,7 @@ export type FieldClassesType = {
   input: ComponentAssociativeType
   hidden: ComponentAssociativeType
   label: ComponentAssociativeType
+  labelTop: ComponentAssociativeType
   title: ComponentAssociativeType
   text: ComponentAssociativeType
   required: ComponentAssociativeType

@@ -132,6 +132,13 @@
         "standard": {
           "@style": "{??m.appearance.standard}"
         },
+        "classic": {
+          "@label": "{??m.labelTop}",
+          "@style": "{??m.appearance.standard}",
+          "& .??__label-top": {
+            "@font": "{font.subtitle2}"
+          }
+        },
         "default": "filled"
       },
       "section|rounded": {

@@ -148,6 +148,11 @@
       flex-grow: 1;
     }
   }
+
+  @include subClass('label-top') {
+    @include paletteColor(v('??l.label.text'));
+    @include colorOpacity(v('??sys.label.text-opacity'));
+  }
 }
 
 @mixin mixinTitle() {
@@ -328,6 +333,10 @@
 
     @include subClassByGlobal('input') {
       @include colorOpacity(v('??l.text-opacity'));
+    }
+
+    @include subClassByGlobal('label-top') {
+      @include colorOpacity(v('??l.label.text-opacity'));
     }
   }
 }

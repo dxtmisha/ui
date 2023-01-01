@@ -1,56 +1,56 @@
 export type Md2PaletteType =
   'primary' |
-  'primaryVariant' |
+  'primary-variant' |
   'secondary' |
-  'secondaryVariant' |
+  'secondary-variant' |
   'background' |
   'surface' |
   'error' |
   'success' |
   'warning' |
-  'onPrimary' |
-  'onSecondary' |
-  'onBackground' |
-  'onSurface' |
-  'onError' |
+  'on-primary' |
+  'on-secondary' |
+  'on-background' |
+  'on-surface' |
+  'on-error' |
   'border' |
   'red' |
-  'redVariant' |
+  'red-variant' |
   'pink' |
-  'pinkVariant' |
+  'pink-variant' |
   'purple' |
-  'purpleVariant' |
-  'deepPurple' |
-  'deepPurpleVariant' |
+  'purple-variant' |
+  'deep-purple' |
+  'deep-purple-variant' |
   'indigo' |
-  'indigoVariant' |
+  'indigo-variant' |
   'blue' |
-  'blueVariant' |
-  'lightBlue' |
-  'lightBlueVariant' |
+  'blue-variant' |
+  'light-blue' |
+  'light-blue-variant' |
   'cyan' |
-  'cyanVariant' |
+  'cyan-variant' |
   'teal' |
-  'tealVariant' |
+  'teal-variant' |
   'green' |
-  'greenVariant' |
-  'lightGreen' |
-  'lightGreenVariant' |
+  'green-variant' |
+  'light-green' |
+  'light-green-variant' |
   'lime' |
-  'limeVariant' |
+  'lime-variant' |
   'yellow' |
-  'yellowVariant' |
+  'yellow-variant' |
   'amber' |
-  'amberVariant' |
+  'amber-variant' |
   'orange' |
-  'orangeVariant' |
-  'deepOrange' |
-  'deepOrangeVariant' |
+  'orange-variant' |
+  'deep-orange' |
+  'deep-orange-variant' |
   'brown' |
-  'brownVariant' |
+  'brown-variant' |
   'grey' |
-  'greyVariant' |
-  'greyBlue' |
-  'greyBlueVariant' |
+  'grey-variant' |
+  'grey-blue' |
+  'grey-blue-variant' |
   'white' |
   'black'
