@@ -13,18 +13,20 @@ import { Md2PaletteType } from '../props.type'
 export const defaultItem = ComponentDesign.getDefault('md2.field')
 export const props = {
   // Values
-  counter: Number,
   detail: [Object],
-  helperMessage: String,
   icon: [Object, String],
   iconTrailing: [Object, String],
-  maxlength: Number,
   prefix: [Number, String],
   required: Boolean,
   suffix: [Number, String],
   text: [Number, String],
-  validationMessage: String,
   value: undefined,
+
+  // Message
+  counter: Number,
+  helperMessage: String,
+  maxlength: Number,
+  validationMessage: String,
 
   // Status
   disabled: Boolean,
@@ -71,12 +73,9 @@ export const props = {
   },
 
   // Icon
-  iconPrevious: {
+  iconCancel: {
     type: [Object, String],
-    default: defaultItem.defaultValue('iconPrevious', {
-      icon: 'chevron_left',
-      size: 'sm'
-    })
+    default: defaultItem.defaultValue('iconCancel', 'cancel')
   },
   iconNext: {
     type: [Object, String],
@@ -85,8 +84,11 @@ export const props = {
       size: 'sm'
     })
   },
-  iconCancel: {
+  iconPrevious: {
     type: [Object, String],
-    default: defaultItem.defaultValue('iconCancel', 'cancel')
+    default: defaultItem.defaultValue('iconPrevious', {
+      icon: 'chevron_left',
+      size: 'sm'
+    })
   }
 }

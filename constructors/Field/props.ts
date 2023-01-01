@@ -36,9 +36,9 @@ export const props = {
   width: [Number, String],
 
   // Icon
-  iconArrowLeft: String,
-  iconArrowRight: String,
-  iconCancel: String
+  iconCancel: String,
+  iconNext: String,
+  iconPrevious: String
 }
 
 export default {

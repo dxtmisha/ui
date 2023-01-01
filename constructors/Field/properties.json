@@ -23,6 +23,10 @@
             "var|text": "{??sys.label.text}",
             "var|textOpacity": "{??sys.label.textOpacity}"
           },
+          "placeholder": {
+            "text": "{??sys.placeholder.text}",
+            "textOpacity": "{??sys.placeholder.textOpacity}"
+          },
           "var|prefix": {
             "var|opacity": "{??sys.prefix.opacity}",
             "var|text": "{??sys.prefix.text}",
@@ -118,6 +122,13 @@
                 }
               }
             },
+            "&.??--selected": {
+              "& .??__border": {
+                "before": {
+                  "palette-background": "{??l.border}"
+                }
+              }
+            },
             "&.??--disabled": {
               "var|l": {
                 "borderOpacity": "{??sys.disabled.borderOpacity}"
@@ -168,6 +179,51 @@
                 "border-opacity": "0"
               }
             }
+          },
+          "mixin|standard": {
+            "var|sys": {
+              "focus": {
+                "border": "",
+                "borderOpacity": "",
+                "borderWidth": "",
+                "label": {
+                  "textOpacity": "0"
+                }
+              },
+              "selected": {
+                "backgroundOpacity": ""
+              }
+            },
+            "&:not(.??--disabled, .??--readonly)": {
+              "& .??__body": {
+                "hover": {
+                  "var|l": {
+                    "borderOpacity": "{??sys.hover.borderOpacity}"
+                  }
+                }
+              },
+              "&:focus-within, &.??--focus": {
+                "& .??__body": {
+                  "var|l": {
+                    "border": "=var(--sys-palette, {??sys.focus.border})",
+                    "borderOpacity": "{??sys.focus.borderOpacity}",
+                    "borderWidth": "{??sys.focus.borderWidth}"
+                  }
+                }
+              }
+            },
+            "&.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
+              "var|l": {
+                "label": {
+                  "textOpacity": "{??sys.focus.label.textOpacity}"
+                }
+              }
+            },
+            "&.??--selected": {
+              "var|l": {
+                "backgroundOpacity": "{??sys.selected.backgroundOpacity}"
+              }
+            }
           }
         }
       },
@@ -199,13 +255,14 @@
           "text": "{??sys.text}",
           "textOpacity": "{??sys.textOpacity}"
         },
+        "placeholder": {
+          "text": "{??sys.text}",
+          "textOpacity": "{??sys.textOpacity}"
+        },
         "prefix": {
           "opacity": "0",
           "text": "{??sys.text}",
           "textOpacity": "{??sys.textOpacity}"
-        },
-        "active": {
-          "@style": "{??m.status}"
         },
         "disabled": {
           "@style": "{??m.status}"
@@ -222,6 +279,7 @@
         "selected": {
           "@style": "{??m.status}",
           "var|background": "{??sys.palette}",
+          "var|border": "{??sys.palette}",
           "var|gradient": "{??sys.palette}",
           "var|text": "{??sys.palette}"
         }

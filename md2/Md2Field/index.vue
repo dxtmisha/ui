@@ -8,6 +8,7 @@
         :id="id"
         :class-hidden="classes.hidden"
         :classes="classes.input"
+        :update="update"
       />
 
       <div :class="classes.label">

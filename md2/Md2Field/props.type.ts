@@ -7,7 +7,8 @@ export type Md2FieldAppearanceType =
   'classic' |
   'filled' |
   'outlined' |
-  'standard'
+  'standard' |
+  'tonal'
 
 export type Md2FieldCancelType =
   'auto' |

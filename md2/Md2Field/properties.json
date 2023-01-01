@@ -31,6 +31,18 @@
                 }
               }
             }
+          },
+          "mixin|standard": {
+            "var|sys": {
+              "focus": {
+                "border": "{??sys.palette}",
+                "borderOpacity": "{sys.opacity.surface.high}",
+                "borderWidth": "{ref.spacing.px} * 2"
+              },
+              "selected": {
+                "var|backgroundOpacity": "{sys.opacity.overlay}"
+              }
+            }
           }
         }
       },
@@ -55,12 +67,18 @@
           "required": "{sys.palette.error}",
           "textOpacity": "{sys.opacity.surface.medium}"
         },
+        "placeholder": {
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
         "prefix": {
           "textOpacity": "{sys.opacity.surface.medium}"
         },
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}",
           "label": {
+            "textOpacity": "{sys.opacity.surface.disabled}"
+          },
+          "placeholder": {
             "textOpacity": "{sys.opacity.surface.disabled}"
           }
         },
@@ -110,6 +128,9 @@
         },
         "outlined": {
           "@style": "{??m.appearance.outlined}"
+        },
+        "standard": {
+          "@style": "{??m.appearance.standard}"
         },
         "default": "filled"
       },

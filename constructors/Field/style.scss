@@ -97,7 +97,7 @@
     @include paddingRight(calc(#{v('??_right')} + #{v('??_value-suffix')}));
 
     &::placeholder {
-      @include color(v('??sys.label.text'), v('??sys.label.text-opacity'));
+      @include color(v('??sys.placeholder.text'), v('??sys.placeholder.text-opacity'));
     }
 
     &::-webkit-clear-button,
@@ -324,6 +324,7 @@
   @include modClass('disabled') {
     @include linkTo('text-opacity', '??sys.disabled.text-opacity');
     @include linkTo('label.text-opacity', '??sys.disabled.label.text-opacity');
+    @include linkTo('placeholder.text-opacity', '??sys.disabled.placeholder.text-opacity');
 
     @include subClassByGlobal('input') {
       @include colorOpacity(v('??l.text-opacity'));
@@ -339,8 +340,9 @@
 }
 
 @mixin mixinSelected() {
-  @include subClassByGlobal('selected') {
+  @include modClassByGlobal('selected') {
     @include linkTo('background', '??sys.selected.background');
+    @include linkTo('border', '??sys.selected.border');
     @include linkTo('gradient', '??sys.selected.gradient');
     @include linkTo('text', '??sys.selected.text');
 
@@ -348,6 +350,23 @@
       @include paletteColor(v('??l.text'));
       @include paletteBackground(v('??l.background'));
       @include paletteGradient(v('??l.gradient'));
+    }
+
+    @include subClassByGlobal('border') {
+      @include paletteBorder(v('??l.border'));
+    }
+
+    @include subClassByGlobal('label') {
+      &::before,
+      &::after {
+        @include paletteBorder(v('??l.border'));
+      }
+    }
+
+    @include subClassByGlobal('title') {
+      &::after {
+        @include paletteBorder(v('??l.border'));
+      }
     }
   }
 }

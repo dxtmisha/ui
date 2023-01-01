@@ -78,6 +78,60 @@
     <md2-field
       :value="inputValue"
       text="Interactive demo"
+      appearance="standard"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="standard"
+      palette="teal"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="standard"
+      selected
+      palette="teal"
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="standard"
+      selected
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
+      appearance="standard"
+      disabled
+    >
+      <template v-slot:default="binds">
+        <input :id="binds.id" :class="binds.classes" v-model="inputValue">
+      </template>
+    </md2-field>
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
+    <md2-field
+      :value="inputValue"
+      text="Interactive demo"
       appearance="outlined"
     >
       <template v-slot:default="binds">
@@ -166,7 +220,7 @@
   <div class="flex gap-4 px-4 pb-4">
     <md2-field
       :value="inputValue"
-      text="Interactive demo"
+      text="selected"
       selected
     >
       <template v-slot:default="binds">
@@ -175,7 +229,7 @@
     </md2-field>
     <md2-field
       :value="inputValue"
-      text="Interactive demo"
+      text="selected"
       palette="red"
       selected
     >
@@ -185,7 +239,7 @@
     </md2-field>
     <md2-field
       :value="inputValue"
-      text="Interactive demo"
+      text="selected"
       palette="green"
       selected
     >
