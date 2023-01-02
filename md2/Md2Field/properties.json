@@ -43,6 +43,11 @@
                 "var|backgroundOpacity": "{sys.opacity.overlay}"
               }
             }
+          },
+          "mixin|tonal": {
+            "var|sys": {
+              "backgroundOpacity": "{sys.opacity.overlay}"
+            }
           }
         }
       },
@@ -138,6 +143,9 @@
           "& .??__label-top": {
             "@font": "{font.subtitle2}"
           }
+        },
+        "tonal": {
+          "@style": "{??m.appearance.tonal}"
         },
         "default": "filled"
       },
