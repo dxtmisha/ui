@@ -1,0 +1,28 @@
+{
+  "d": {
+    "field-message": {
+      "mixin|m": {},
+      "var|sys": {
+        "palette": "",
+        "paddingTop": "",
+        "text": "",
+        "textOpacity": "",
+        "disabled": {
+          "text": "{??sys.text}",
+          "textOpacity": "{??sys.textOpacity}"
+        }
+      },
+      "var|l": {
+        "palette": "{??sys.palette}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}"
+      },
+      "var|_padding": "",
+      "padding": "{??_padding}",
+      "#counter": {},
+      "#helper": {},
+      "#info": {},
+      "#validation": {}
+    }
+  }
+}

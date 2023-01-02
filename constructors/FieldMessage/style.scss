@@ -1,0 +1,28 @@
+@import "../../styles/properties";
+@import "../../styles/color";
+@import "../../styles/font";
+@import "../../styles/padding";
+@import "../../styles/position";
+
+@mixin initFieldMessage($design) {
+  @include propertiesInit($design, 'field-message') {
+    @include mixinFieldMessage;
+    @content;
+  }
+}
+
+@mixin mixinFieldMessage() {
+  display: flex;
+  align-items: flex-start;
+
+  padding: v('??sys.padding-top') v('??_padding') 0;
+
+  @include mixinInfo;
+}
+
+@mixin mixinInfo() {
+  @include subClass('info') {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+}
