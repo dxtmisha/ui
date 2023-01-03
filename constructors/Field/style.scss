@@ -38,6 +38,7 @@
   #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$left});
   #{i('??_right')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$right});
 
+  @include color(v('??l.text'), v('??l.text-opacity'));
   width: v('??sys.width');
 
   @include mixinBody;
@@ -59,6 +60,7 @@
   &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
     @include mixinSelected;
     @include mixinFocus;
+    @include mixinValidation;
   }
 
   @include mixinDisabled;
@@ -345,6 +347,17 @@
   &:focus-within, &#{c('??--focus')} {
     @include linkTo('label.text', '??sys.focus.label.text');
     @include linkTo('label.text-opacity', '??sys.focus.label.text-opacity');
+  }
+}
+
+@mixin mixinValidation() {
+  &.is-validation {
+    @include linkTo('text', '??sys.validation.text', null, true);
+    @include linkTo('label.text', '??sys.validation.label.text', null, true);
+
+    @include subClassByGlobal('body') {
+      @include linkTo('border', '??sys.validation.border', null, true);
+    }
   }
 }
 

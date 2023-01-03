@@ -98,6 +98,9 @@
             "text": "{??sys.palette}",
             "textOpacity": "{sys.opacity.surface.high}"
           }
+        },
+        "validation": {
+          "palette": "{sys.palette.error}"
         }
       },
       "@font": "{font.subtitle1}",

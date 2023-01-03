@@ -37,6 +37,7 @@ export type FieldSetupType = ComponentBaseType & {
   ifPrefix: ComputedRef<boolean>
   ifSuffix: ComputedRef<boolean>
   ifCancel: ComputedRef<boolean>
+  ifValidation: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
   iconCancelBind: ComputedRef<string | AssociativeType>
@@ -46,6 +47,7 @@ export type FieldSetupType = ComponentBaseType & {
   right: Ref<string>
   prefixWidth: Ref<string>
   suffixWidth: Ref<string>
+  validationText: ComputedRef<string>
   update: () => void
   onClick: (event: MouseEvent) => void
 }
@@ -95,6 +97,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
         'is-arrow': this.refs.arrow,
         'is-cancel': this.ifCancel,
         'is-suffix': this.ifSuffix,
+        'is-validation': this.ifValidation,
         'is-value': this.ifValue
       }
     })
@@ -114,6 +117,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       ifPrefix: this.ifPrefix,
       ifSuffix: this.ifSuffix,
       ifCancel: this.ifCancel,
+      ifValidation: this.ifValidation,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
       iconCancelBind: this.getBind(this.refs.iconCancel, this.iconCancel, 'icon'),
@@ -123,6 +127,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       right: this.right,
       prefixWidth: this.prefixWidth,
       suffixWidth: this.suffixWidth,
+      validationText: this.validationText,
       update: this.update,
       onClick: (event: MouseEvent) => this.onClick(event)
     }
@@ -134,10 +139,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       !this.props?.disabled
   }) as ComputedRef<boolean>
 
-  protected readonly ifRipple = computed(() => this.props.ripple && !this.props.disabled) as ComputedRef<boolean>
+  protected readonly ifRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
   protected readonly ifPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
   protected readonly ifSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
   protected readonly ifValue = computed<boolean>(() => isFilled(this.props.value))
+  protected readonly ifValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
   protected readonly ifCancel = computed<boolean>(() => {
     return !this.props.disabled &&
       this.ifValue.value &&
@@ -180,6 +186,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       background: true,
       disabled: this.props.disabled || this.props.disabledNext
     }
+  })
+
+  readonly validationText = computed<string>(() => {
+    return typeof this.props.validationMessage === 'string' ? this.props.validationMessage : ''
   })
 
   protected update () {

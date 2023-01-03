@@ -320,10 +320,18 @@
         },
         "selected": {
           "@style": "{??m.status}",
-          "var|background": "{??sys.palette}",
-          "var|border": "{??sys.palette}",
-          "var|gradient": "{??sys.palette}",
-          "var|text": "{??sys.palette}"
+          "background": "{??sys.palette}",
+          "border": "{??sys.palette}",
+          "gradient": "{??sys.palette}",
+          "text": "{??sys.palette}"
+        },
+        "validation": {
+          "@style": "{??m.status}",
+          "border": "{??sys.validation.palette}",
+          "text": "{??sys.validation.palette}",
+          "label": {
+            "text": "{??sys.validation.palette}"
+          }
         }
       },
       "var|l": {

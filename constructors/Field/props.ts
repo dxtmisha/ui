@@ -13,7 +13,7 @@ export const props = {
   counter: Number,
   helperMessage: String,
   maxlength: Number,
-  validationMessage: String,
+  validationMessage: [Boolean, String],
 
   // Status
   disabled: Boolean,

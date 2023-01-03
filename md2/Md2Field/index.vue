@@ -71,7 +71,7 @@
       :counter="counter"
       :helper-message="helperMessage"
       :maxlength="maxlength"
-      :validation-message="validationMessage"
+      :validation-message="validationText"
       :disabled="disabled"
     >
       <template v-slot:default>
