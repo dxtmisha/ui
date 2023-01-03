@@ -12,6 +12,7 @@ export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 export type ElementType = Window | HTMLElement | Element
 
 export type RefType<T = any> = ComputedRef<T> | Ref<T>
+export type RefAssociativeType<T = any> = AssociativeType<Ref<T>>
 export type RefOrCallbackType<T = any> = RefType<T> | CallbackNullType<T>
 export type RefOrNormalType<T = any> = ComputedRef<T> | Ref<T> | T
 export type RefOrElementType<T = ElementType> = RefOrNormalType<T>
