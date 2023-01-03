@@ -356,6 +356,7 @@
           "textOpacity": "{??sys.prefix.textOpacity}"
         }
       },
+      "?field-message-padding": "{??sys.padding} + {??sys.space}",
       "?ripple-background": "{??l.background}",
       "height": {
         "rename": "var|sys.height"

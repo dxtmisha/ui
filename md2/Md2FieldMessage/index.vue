@@ -1,12 +1,15 @@
 <template>
   <div v-if="ifMessage" ref="element" :class="classes.main">
     <div :class="classes.info">
-      <div v-if="validationMessage" :class="classes.validation">{{ validationMessage }}</div>
-      <div v-else-if="helperMessage" :class="classes.helper">{{ helperMessage }}</div>
+      <div v-if="validationMessage && !disabled" :class="classes.validation">{{ validationMessage }}</div>
+      <div v-else-if="helperMessage || 'default' in $slots" :class="classes.helper">
+        {{ helperMessage }}
+        <slot/>
+      </div>
     </div>
     <div v-if="ifCounter" :class="classes.counter">
       <template v-if="ifMax">{{ counter }} / {{ maxlength }}</template>
-      <teleport v-else>{{ counter }}</teleport>
+      <template v-else>{{ counter }}</template>
     </div>
   </div>
 </template>

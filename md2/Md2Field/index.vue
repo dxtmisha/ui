@@ -67,6 +67,17 @@
 
       <div :class="classes.border"/>
     </div>
+    <md2-field-message
+      :counter="counter"
+      :helper-message="helperMessage"
+      :maxlength="maxlength"
+      :validation-message="validationMessage"
+      :disabled="disabled"
+    >
+      <template v-slot:default>
+        <slot name="message"/>
+      </template>
+    </md2-field-message>
   </div>
 </template>
 
@@ -75,10 +86,12 @@ import { FieldComponent } from './FieldComponent'
 import { props } from './props'
 import Md2Icon from '../Md2Icon/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
+import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 
 export default {
   name: 'Md2Field',
   components: {
+    Md2FieldMessage,
     Md2Icon,
     Md2Ripple
   },

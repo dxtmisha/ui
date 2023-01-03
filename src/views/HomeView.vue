@@ -79,6 +79,7 @@
       :value="inputValue"
       text="Interactive demo"
       appearance="tonal"
+      helper-message="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен 9 июня 1817 года в чине коллежского секретаря (10-го класса, по Табели о рангах)[28], 13 июня высочайшим указом был определён в Коллегию иностранных дел и 15 июня принёс присягу, подписав бланк клятвенного обещания императору[29]."
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
@@ -89,6 +90,8 @@
       text="Interactive demo"
       appearance="tonal"
       palette="red"
+      helper-message="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен 9 июня 1817 года"
+      validation-message="13 июня высочайшим указом был определён в Коллегию иностранных дел"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
@@ -100,6 +103,9 @@
       appearance="tonal"
       palette="red"
       selected
+      helper-message="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен 9 июня 1817 года"
+      validation-message="13 июня высочайшим указом был определён в Коллегию иностранных дел"
+      :counter="16"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
@@ -111,6 +117,10 @@
       :value="inputValue"
       text="Interactive demo"
       appearance="classic"
+      helper-message="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен 9 июня 1817 года"
+      validation-message="13 июня высочайшим указом был определён в Коллегию иностранных дел"
+      :counter="16"
+      :maxlength="20"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">
@@ -185,6 +195,10 @@
       text="Interactive demo"
       appearance="standard"
       disabled
+      helper-message="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен 9 июня 1817 года"
+      validation-message="13 июня высочайшим указом был определён в Коллегию иностранных дел"
+      :counter="16"
+      :maxlength="20"
     >
       <template v-slot:default="binds">
         <input :id="binds.id" :class="binds.classes" v-model="inputValue">

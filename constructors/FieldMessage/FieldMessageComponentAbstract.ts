@@ -39,12 +39,12 @@ export abstract class FieldMessageComponentAbstract extends ComponentAbstract {
     }
   }
 
-  protected readonly ifCounter = computed<boolean>(() => typeof this.refs.counter === 'number')
-  protected readonly ifMax = computed<boolean>(() => typeof this.refs.maxlength === 'number' && this.refs.maxlength > 0)
+  protected readonly ifCounter = computed<boolean>(() => typeof this.props.counter === 'number')
+  protected readonly ifMax = computed<boolean>(() => typeof this.props.maxlength === 'number' && this.props.maxlength > 0)
 
   protected readonly ifMessage = computed<boolean>(() => {
     return this.ifCounter.value ||
-      isFilled(this.refs.helperMessage) ||
-      isFilled(this.refs.validationMessage)
+      isFilled(this.props.helperMessage) ||
+      isFilled(this.props.validationMessage)
   })
 }

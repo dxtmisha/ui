@@ -1,8 +1,5 @@
 @import "../../styles/properties";
 @import "../../styles/color";
-@import "../../styles/font";
-@import "../../styles/padding";
-@import "../../styles/position";
 
 @mixin initFieldMessage($design) {
   @include propertiesInit($design, 'field-message') {
@@ -12,17 +9,37 @@
 }
 
 @mixin mixinFieldMessage() {
+  @include color(v('??l.text'), v('??l.text-opacity'));
   display: flex;
   align-items: flex-start;
 
   padding: v('??sys.padding-top') v('??_padding') 0;
 
   @include mixinInfo;
+  @include mixinCounter;
+
+  @include subClass('validation') {
+    @include linkTo('text', '??sys.validation.text');
+    @include linkTo('text-opacity', '??sys.validation.text-opacity');
+    @include color(v('??l.text'), v('??l.text-opacity'));
+  }
+
+  @include modClass('disabled') {
+    @include linkTo('text', '??sys.disabled.text');
+    @include linkTo('text-opacity', '??sys.disabled.text-opacity');
+  }
 }
 
 @mixin mixinInfo() {
   @include subClass('info') {
     flex-grow: 1;
     flex-shrink: 1;
+  }
+}
+
+@mixin mixinCounter() {
+  @include subClass('counter') {
+    padding-left: v('??sys.space');
+    white-space: nowrap;
   }
 }

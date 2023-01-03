@@ -3,12 +3,15 @@
     "field-message": {
       "@style": "{d.field-message}",
       "var|sys": {
-        "palette": "{sys.palette.primary}",
         "paddingTop": "{ref.spacing.1}",
+        "space": "{ref.spacing.2}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.medium}",
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}"
+        },
+        "validation": {
+          "text": "{sys.palette.error}"
         }
       },
       "var|_padding": "0px",
