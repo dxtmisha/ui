@@ -1,8 +1,8 @@
 import { ComputedRef, PropType, Ref } from 'vue'
-import { ButtonClassesType } from './Button/ButtonComponentAbstract'
 
 export type NumberOrStringType = number | string
 export type CallbackType<T = any, R = any> = (value: T) => R
+export type CallbackNullType<R = void> = () => R
 
 export type AssociativeType<T = any> = {
   [key: NumberOrStringType]: T
@@ -11,6 +11,8 @@ export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 
 export type ElementType = Window | HTMLElement | Element
 
+export type RefType<T = any> = ComputedRef<T> | Ref<T>
+export type RefOrCallbackType<T = any> = RefType<T> | CallbackNullType<T>
 export type RefOrNormalType<T = any> = ComputedRef<T> | Ref<T> | T
 export type RefOrElementType<T = ElementType> = RefOrNormalType<T>
 
@@ -103,3 +105,14 @@ export type ImageTypeValueType =
   | 'material'
 export type ImageTypeType = ComputedRef<ImageTypeValueType>
 export type ImageValueType = Ref<string | File>
+
+export type GeoType = {
+  country: string
+  countryAlternative?: string[]
+  firstDay?: string | null
+  language: string
+  languageAlternative?: string[]
+  phone?: string
+  phoneMask?: string | string[]
+  zone: string | null
+}

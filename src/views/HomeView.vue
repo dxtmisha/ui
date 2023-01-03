@@ -75,6 +75,9 @@
     </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">
+
+  </div>
+  <div class="flex gap-4 px-4 pb-4">
     <md2-field
       :value="inputValue"
       text="Interactive demo"

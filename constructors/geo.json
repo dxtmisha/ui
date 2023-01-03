@@ -1,0 +1,2082 @@
+[
+  {
+    "country": "US",
+    "countryAlternative": [
+      "EN"
+    ],
+    "firstDay": "Su",
+    "language": "en",
+    "languageAlternative": [
+      "us"
+    ],
+    "phone": "1",
+    "phoneMask": "+1-***-***-****",
+    "zone": "America/New_York"
+  },
+  {
+    "country": "GB",
+    "countryAlternative": [
+      "UK"
+    ],
+    "firstDay": "Mo",
+    "language": "en",
+    "phone": "44",
+    "phoneMask": "+44-**-****-****",
+    "zone": "Europe/London"
+  },
+  {
+    "country": "AF",
+    "firstDay": "Sa",
+    "language": "fa",
+    "phone": "93",
+    "phoneMask": "+93-**-***-****",
+    "zone": "Asia/Kabul"
+  },
+  {
+    "country": "AL",
+    "firstDay": "Mo",
+    "language": "sq",
+    "phone": "355",
+    "phoneMask": "+355-***-***-***",
+    "zone": "Europe/Tirane"
+  },
+  {
+    "country": "DZ",
+    "firstDay": "Sa",
+    "language": "ar",
+    "phone": "213",
+    "phoneMask": "+213-**-***-****",
+    "zone": "Africa/Algiers"
+  },
+  {
+    "country": "AS",
+    "firstDay": null,
+    "language": "en",
+    "phone": "1-684",
+    "phoneMask": "+1-684-***-****",
+    "zone": "Pacific/Pago_Pago"
+  },
+  {
+    "country": "AD",
+    "firstDay": "Mo",
+    "language": "ca",
+    "phone": "376",
+    "phoneMask": "+376-***-***",
+    "zone": "Europe/Andorra"
+  },
+  {
+    "country": "AO",
+    "firstDay": null,
+    "language": "pt",
+    "phone": "244",
+    "phoneMask": "+244-***-***-***",
+    "zone": "Africa/Lagos"
+  },
+  {
+    "country": "AI",
+    "firstDay": null,
+    "language": "en",
+    "phone": "1-264",
+    "phoneMask": "+1-264-***-****",
+    "zone": "America/Port_of_Spain"
+  },
+  {
+    "country": "AQ",
+    "firstDay": null,
+    "language": "",
+    "phone": "672",
+    "phoneMask": "+672-1-**-***",
+    "zone": "Antarctica/Troll"
+  },
+  {
+    "country": "AG",
+    "firstDay": null,
+    "language": "en",
+    "phone": "1-268",
+    "phoneMask": "+1-268-***-****",
+    "zone": "America/Antigua"
+  },
+  {
+    "country": "AR",
+    "phone": "54",
+    "zone": "America/Argentina/Buenos_Aires",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+54-***-***-****"
+  },
+  {
+    "country": "AM",
+    "phone": "374",
+    "zone": "Asia/Yerevan",
+    "language": "hy",
+    "firstDay": "Mo",
+    "phoneMask": "+374-**-***-***"
+  },
+  {
+    "country": "AW",
+    "phone": "297",
+    "zone": "America/Curacao",
+    "language": "nl",
+    "firstDay": null,
+    "phoneMask": "+297-***-****"
+  },
+  {
+    "country": "AU",
+    "phone": "61",
+    "zone": "Australia/Sydney",
+    "language": "en",
+    "firstDay": "Mo",
+    "phoneMask": "+61-*-****-****"
+  },
+  {
+    "country": "AT",
+    "phone": "43",
+    "zone": "Europe/Vienna",
+    "language": "de",
+    "firstDay": "Mo",
+    "phoneMask": "+43-***-***-****"
+  },
+  {
+    "country": "AZ",
+    "phone": "994",
+    "zone": "Asia/Baku",
+    "language": "az",
+    "firstDay": "Mo",
+    "phoneMask": "+994-**-***-**-**"
+  },
+  {
+    "country": "BS",
+    "phone": "1-242",
+    "zone": "America/Nassau",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-242-***-****"
+  },
+  {
+    "country": "BH",
+    "phone": "973",
+    "zone": "Asia/Bahrain",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+973-****-****"
+  },
+  {
+    "country": "BD",
+    "phone": "880",
+    "zone": "Asia/Dhaka",
+    "language": "bn",
+    "firstDay": null,
+    "phoneMask": "+880-**-***-***"
+  },
+  {
+    "country": "BB",
+    "phone": "1-246",
+    "zone": "America/Barbados",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-246-***-****"
+  },
+  {
+    "country": "BY",
+    "phone": "375",
+    "zone": "Europe/Minsk",
+    "language": "be",
+    "firstDay": "Mo",
+    "phoneMask": "+375-**-***-**-**"
+  },
+  {
+    "country": "BE",
+    "phone": "32",
+    "zone": "Europe/Brussels",
+    "language": "nl",
+    "firstDay": "Mo",
+    "phoneMask": "+32-***-***-***"
+  },
+  {
+    "country": "BZ",
+    "phone": "501",
+    "zone": "America/Belize",
+    "language": "en",
+    "firstDay": "Su",
+    "phoneMask": "+501-***-****"
+  },
+  {
+    "country": "BJ",
+    "phone": "229",
+    "zone": "Africa/Lagos",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+229-**-**-****"
+  },
+  {
+    "country": "BM",
+    "phone": "1-441",
+    "zone": "Atlantic/Bermuda",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-441-***-****"
+  },
+  {
+    "country": "BT",
+    "phone": "975",
+    "zone": "Asia/Thimphu",
+    "language": "dz",
+    "firstDay": null,
+    "phoneMask": [
+      "+975-*-***-***",
+      "+975-17-***-***"
+    ]
+  },
+  {
+    "country": "BO",
+    "phone": "591",
+    "zone": "America/La_Paz",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+591-*-***-****"
+  },
+  {
+    "country": "BA",
+    "phone": "387",
+    "zone": "Europe/Belgrade",
+    "language": "bs",
+    "firstDay": null,
+    "phoneMask": [
+      "+387-**-****",
+      "+387-**-*****"
+    ]
+  },
+  {
+    "country": "BW",
+    "phone": "267",
+    "zone": "Africa/Maputo",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+267-**-***-***"
+  },
+  {
+    "country": "BR",
+    "phone": "55",
+    "zone": "America/Sao_Paulo",
+    "language": "pt",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+55-**-****-****",
+      "+55-**-*****-****"
+    ]
+  },
+  {
+    "country": "IO",
+    "phone": "246",
+    "zone": "Indian/Chagos",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+246-***-****"
+  },
+  {
+    "country": "VG",
+    "phone": "1-284",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-284-***-****"
+  },
+  {
+    "country": "BN",
+    "phone": "673",
+    "zone": "Asia/Brunei",
+    "language": "ms",
+    "firstDay": "Mo",
+    "phoneMask": "+673-***-****"
+  },
+  {
+    "country": "BG",
+    "phone": "359",
+    "zone": "Europe/Sofia",
+    "language": "bg",
+    "firstDay": "Mo",
+    "phoneMask": "+359-***-***-***"
+  },
+  {
+    "country": "BF",
+    "phone": "226",
+    "zone": "Africa/Abidjan",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+226-**-**-****"
+  },
+  {
+    "country": "BI",
+    "phone": "257",
+    "zone": "Africa/Maputo",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+257-**-**-****"
+  },
+  {
+    "country": "KH",
+    "phone": "855",
+    "zone": "Asia/Phnom_Penh",
+    "language": "km",
+    "firstDay": null,
+    "phoneMask": "+855-**-***-***"
+  },
+  {
+    "country": "CM",
+    "phone": "237",
+    "zone": "Africa/Lagos",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+237-****-****"
+  },
+  {
+    "country": "CA",
+    "phone": "1",
+    "zone": "America/Toronto",
+    "language": "en",
+    "firstDay": "Su",
+    "phoneMask": "+1-***-***-****"
+  },
+  {
+    "country": "CV",
+    "phone": "238",
+    "zone": "Atlantic/Cape_Verde",
+    "language": "pt",
+    "firstDay": null,
+    "phoneMask": "+238-***-**-**"
+  },
+  {
+    "country": "KY",
+    "phone": "1-345",
+    "zone": "America/Cayman",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-345-***-****"
+  },
+  {
+    "country": "CF",
+    "phone": "236",
+    "zone": "Africa/Lagos",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+236-**-**-****"
+  },
+  {
+    "country": "TD",
+    "phone": "235",
+    "zone": "Africa/Ndjamena",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+235-**-**-**-**"
+  },
+  {
+    "country": "CL",
+    "phone": "56",
+    "zone": "America/Santiago",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+56-*-****-****"
+  },
+  {
+    "country": "CN",
+    "phone": "86",
+    "zone": "Asia/Shanghai",
+    "language": "zh",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+86-***-****-***",
+      "+86-***-****-****",
+      "+86-**-*****-*****"
+    ]
+  },
+  {
+    "country": "CX",
+    "phone": "61",
+    "zone": "Indian/Christmas",
+    "language": "en",
+    "firstDay": null
+  },
+  {
+    "country": "CC",
+    "phone": "61",
+    "zone": "Indian/Cocos",
+    "language": "ms",
+    "firstDay": null
+  },
+  {
+    "country": "CO",
+    "phone": "57",
+    "zone": "America/Bogota",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+57-***-***-****"
+  },
+  {
+    "country": "KM",
+    "phone": "269",
+    "zone": "Indian/Comoro",
+    "language": "ar",
+    "firstDay": null,
+    "phoneMask": "+269-**-*****"
+  },
+  {
+    "country": "CK",
+    "phone": "682",
+    "zone": "Pacific/Rarotonga",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+682-**-***"
+  },
+  {
+    "country": "CR",
+    "phone": "506",
+    "zone": "America/Costa_Rica",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+506-****-****"
+  },
+  {
+    "country": "HR",
+    "phone": "385",
+    "zone": "Europe/Belgrade",
+    "language": "hr",
+    "firstDay": "Mo",
+    "phoneMask": "+385-**-***-***"
+  },
+  {
+    "country": "CU",
+    "phone": "53",
+    "zone": "America/Havana",
+    "language": "es",
+    "firstDay": null,
+    "phoneMask": "+53-*-***-****"
+  },
+  {
+    "country": "CW",
+    "phone": "599",
+    "zone": "America/Curacao",
+    "language": "nl",
+    "firstDay": null,
+    "phoneMask": "+599-***-****"
+  },
+  {
+    "country": "CY",
+    "phone": "357",
+    "zone": "Asia/Nicosia",
+    "language": "el",
+    "firstDay": null,
+    "phoneMask": "+357-**-***-***"
+  },
+  {
+    "country": "CZ",
+    "phone": "420",
+    "zone": "Europe/Prague",
+    "language": "cs",
+    "firstDay": "Mo",
+    "phoneMask": "+420-***-***-***"
+  },
+  {
+    "country": "CD",
+    "phone": "243",
+    "zone": "Africa/Lagos",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+243-***-***-***"
+  },
+  {
+    "country": "DK",
+    "phone": "45",
+    "zone": "Europe/Copenhagen",
+    "language": "da",
+    "firstDay": "Mo",
+    "phoneMask": "+45-**-**-**-**"
+  },
+  {
+    "country": "DJ",
+    "phone": "253",
+    "zone": "Africa/Djibouti",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+253-**-**-**-**"
+  },
+  {
+    "country": "DM",
+    "phone": "1-767",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-767-***-****"
+  },
+  {
+    "country": "DO",
+    "phone": "1-809",
+    "zone": "North America",
+    "language": "America/Santo_Domingo",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+1-809-***-****",
+      "+1-829-***-****",
+      "+1-849-***-****"
+    ]
+  },
+  {
+    "country": "TL",
+    "phone": "670",
+    "zone": "Asia/Dili",
+    "language": "tet",
+    "firstDay": null,
+    "phoneMask": [
+      "+670-***-****",
+      "+670-77-*-*****",
+      "+670-78-*-*****"
+    ]
+  },
+  {
+    "country": "EC",
+    "phone": "593",
+    "zone": "America/Guayaquil",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+593-*-***-****",
+      "+593-**-***-****"
+    ]
+  },
+  {
+    "country": "EG",
+    "phone": "20",
+    "zone": "Africa/Cairo",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+20-***-***-****"
+  },
+  {
+    "country": "SV",
+    "phone": "503",
+    "zone": "America/El_Salvador",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+503-**-**-****"
+  },
+  {
+    "country": "GQ",
+    "phone": "240",
+    "zone": "Africa/Lagos",
+    "language": "es",
+    "firstDay": null,
+    "phoneMask": "+240-**-***-****"
+  },
+  {
+    "country": "ER",
+    "phone": "291",
+    "zone": "Africa/Asmara",
+    "language": "aa",
+    "firstDay": null,
+    "phoneMask": "+291-*-***-***"
+  },
+  {
+    "country": "EE",
+    "phone": "372",
+    "zone": "Europe/Tallinn",
+    "language": "et",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+372-***-****",
+      "+372-****-****"
+    ]
+  },
+  {
+    "country": "ET",
+    "phone": "251",
+    "zone": "Africa/Addis_Ababa",
+    "language": "am",
+    "firstDay": null,
+    "phoneMask": "+251-**-***-****"
+  },
+  {
+    "country": "FK",
+    "phone": "500",
+    "zone": "Atlantic/Stanley",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+500-*****"
+  },
+  {
+    "country": "FO",
+    "phone": "298",
+    "zone": "Atlantic/Faroe",
+    "language": "fo",
+    "firstDay": null,
+    "phoneMask": "+298-***-***"
+  },
+  {
+    "country": "FJ",
+    "phone": "679",
+    "zone": "Pacific/Fiji",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+679-**-*****"
+  },
+  {
+    "country": "FI",
+    "phone": "358",
+    "zone": "Europe/Helsinki",
+    "language": "fi",
+    "firstDay": "Mo",
+    "phoneMask": "+358-***-***-**-**"
+  },
+  {
+    "country": "FR",
+    "phone": "33",
+    "zone": "Europe/Paris",
+    "language": "fr",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+33-***-***-***",
+      "+262-*****-****",
+      "+508-**-****",
+      "+590-***-***-***"
+    ]
+  },
+  {
+    "country": "PF",
+    "phone": "689",
+    "zone": "Pacific/Tahiti",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+689-**-**-**"
+  },
+  {
+    "country": "GA",
+    "phone": "241",
+    "zone": "Africa/Lagos",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+241-*-**-**-**"
+  },
+  {
+    "country": "GM",
+    "phone": "220",
+    "zone": "Africa/Abidjan",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+220-***-**-**"
+  },
+  {
+    "country": "GE",
+    "phone": "995",
+    "zone": "Asia/Tbilisi",
+    "language": "ka",
+    "firstDay": "Mo",
+    "phoneMask": "+995-***-***-***"
+  },
+  {
+    "country": "DE",
+    "phone": "49",
+    "zone": "Europe/Berlin",
+    "language": "de",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+49-***-***",
+      "+49-***-***-****",
+      "+49-****-***-****"
+    ]
+  },
+  {
+    "country": "GH",
+    "phone": "233",
+    "zone": "Africa/Accra",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+233-***-***-***"
+  },
+  {
+    "country": "GI",
+    "phone": "350",
+    "zone": "Europe/Gibraltar",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+350-***-*****"
+  },
+  {
+    "country": "GR",
+    "phone": "30",
+    "zone": "Europe/Athens",
+    "language": "el",
+    "firstDay": "Mo",
+    "phoneMask": "+30-***-***-****"
+  },
+  {
+    "country": "GL",
+    "phone": "299",
+    "zone": "America/Godthab",
+    "language": "kl",
+    "firstDay": null,
+    "phoneMask": "+299-**-**-**"
+  },
+  {
+    "country": "GD",
+    "phone": "1-473",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-473-***-****"
+  },
+  {
+    "country": "GU",
+    "phone": "1-671",
+    "zone": "Pacific/Guam",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-671-***-****"
+  },
+  {
+    "country": "GT",
+    "phone": "502",
+    "zone": "America/Guatemala",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+502-*-***-****"
+  },
+  {
+    "country": "GG",
+    "phone": "44-1481",
+    "zone": "Europe/London",
+    "language": "en",
+    "firstDay": null
+  },
+  {
+    "country": "GN",
+    "phone": "224",
+    "zone": "Africa/Abidjan",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+224-**-***-***"
+  },
+  {
+    "country": "GW",
+    "phone": "245",
+    "zone": "Africa/Bissau",
+    "language": "pt",
+    "firstDay": null,
+    "phoneMask": "+245-*-******"
+  },
+  {
+    "country": "GY",
+    "phone": "592",
+    "zone": "America/Guyana",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+592-***-****"
+  },
+  {
+    "country": "HT",
+    "phone": "509",
+    "zone": "America/Port-au-Prince",
+    "language": "ht",
+    "firstDay": null,
+    "phoneMask": "+509-**-**-****"
+  },
+  {
+    "country": "HN",
+    "phone": "504",
+    "zone": "America/Tegucigalpa",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+504-****-****"
+  },
+  {
+    "country": "HK",
+    "phone": "852",
+    "zone": "Asia/Hong_Kong",
+    "language": "zh",
+    "firstDay": "Su",
+    "phoneMask": "+852-****-****"
+  },
+  {
+    "country": "HU",
+    "phone": "36",
+    "zone": "Europe/Budapest",
+    "language": "hu",
+    "firstDay": "Mo",
+    "phoneMask": "+36-***-***-***"
+  },
+  {
+    "country": "IS",
+    "phone": "354",
+    "zone": "Atlantic/Reykjavik",
+    "language": "is",
+    "firstDay": "Mo",
+    "phoneMask": "+354-***-****"
+  },
+  {
+    "country": "IN",
+    "phone": "91",
+    "zone": "Asia/Kolkata",
+    "language": "en",
+    "firstDay": "Mo",
+    "phoneMask": "+91-****-***-***"
+  },
+  {
+    "country": "ID",
+    "phone": "62",
+    "zone": "Asia/Jakarta",
+    "language": "id",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+62-**-***-**",
+      "+62-**-***-***",
+      "+62-**-***-****",
+      "+62-8-**-***-***",
+      "+62-8-**-***-****",
+      "+62-8-**-***-**-***"
+    ]
+  },
+  {
+    "country": "IR",
+    "phone": "98",
+    "zone": "Asia/Tehran",
+    "language": "fa",
+    "firstDay": "Sa",
+    "phoneMask": "+98-***-***-****"
+  },
+  {
+    "country": "IQ",
+    "phone": "964",
+    "zone": "Asia/Baghdad",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+964-***-***-****"
+  },
+  {
+    "country": "IE",
+    "firstDay": "Mo",
+    "language": "en",
+    "phone": "353",
+    "phoneMask": "+353-***-***-***",
+    "zone": "Europe/Dublin"
+  },
+  {
+    "country": "IM",
+    "firstDay": null,
+    "language": "Pound",
+    "phone": "44-1624",
+    "zone": "Isle of Man"
+  },
+  {
+    "country": "IL",
+    "firstDay": "Su",
+    "language": "he",
+    "languageAlternative": [
+      "il"
+    ],
+    "phone": "972",
+    "phoneMask": [
+      "+972-*-***-****",
+      "+972-5-*-***-****"
+    ],
+    "zone": "Asia/Jerusalem"
+  },
+  {
+    "country": "IT",
+    "firstDay": "Mo",
+    "language": "it",
+    "phone": "39",
+    "phoneMask": "+39-***-****-***",
+    "zone": "Europe/Rome"
+  },
+  {
+    "country": "CI",
+    "phone": "225",
+    "zone": "Africa/Abidjan",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+225-**-***-***"
+  },
+  {
+    "country": "JM",
+    "phone": "1-876",
+    "zone": "America/Jamaica",
+    "language": "en",
+    "firstDay": "Su",
+    "phoneMask": "+1-876-***-****"
+  },
+  {
+    "country": "JP",
+    "phone": "81",
+    "zone": "Asia/Tokyo",
+    "language": "ja",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+81-***-***-***",
+      "+81-**-****-****"
+    ]
+  },
+  {
+    "country": "JE",
+    "phone": "44-1534",
+    "zone": "Europe/London",
+    "language": "en",
+    "firstDay": null
+  },
+  {
+    "country": "JO",
+    "phone": "962",
+    "zone": "Asia/Amman",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+962-*-****-****"
+  },
+  {
+    "country": "KZ",
+    "phone": "7",
+    "zone": "Asia/Almaty",
+    "language": "kk",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+7-6-**-***-**-**",
+      "+7-7-**-***-**-**"
+    ]
+  },
+  {
+    "country": "KE",
+    "phone": "254",
+    "zone": "Africa/Nairobi",
+    "language": "en",
+    "firstDay": "Su",
+    "phoneMask": "+254-***-******"
+  },
+  {
+    "country": "KI",
+    "phone": "686",
+    "zone": "Pacific/Tarawa",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+686-**-***"
+  },
+  {
+    "country": "XK",
+    "phone": "383",
+    "zone": "Europe/Belgrade",
+    "language": "sq",
+    "firstDay": "Mo"
+  },
+  {
+    "country": "KW",
+    "phone": "965",
+    "zone": "Asia/Kuwait",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+965-****-****"
+  },
+  {
+    "country": "KG",
+    "phone": "996",
+    "zone": "Asia/Bishkek",
+    "language": "ky",
+    "firstDay": "Mo",
+    "phoneMask": "+996-***-***-***"
+  },
+  {
+    "country": "LA",
+    "phone": "856",
+    "zone": "Asia/Vientiane",
+    "language": "lo",
+    "firstDay": null,
+    "phoneMask": [
+      "+856-**-***-***",
+      "+856-20-**-***-***"
+    ]
+  },
+  {
+    "country": "LV",
+    "phone": "371",
+    "zone": "Europe/Riga",
+    "language": "lv",
+    "firstDay": "Mo",
+    "phoneMask": "+371-**-***-***"
+  },
+  {
+    "country": "LB",
+    "phone": "961",
+    "zone": "Asia/Beirut",
+    "language": "ar",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+961-*-***-***",
+      "+961-**-***-***"
+    ]
+  },
+  {
+    "country": "LS",
+    "phone": "266",
+    "zone": "Africa/Johannesburg",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+266-*-***-****"
+  },
+  {
+    "country": "LR",
+    "phone": "231",
+    "zone": "Africa/Monrovia",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+231-**-***-***"
+  },
+  {
+    "country": "LY",
+    "phone": "218",
+    "zone": "Africa/Tripoli",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": [
+      "+218-**-***-***",
+      "+218-21-***-****"
+    ]
+  },
+  {
+    "country": "LI",
+    "phone": "423",
+    "zone": "Europe/Zurich",
+    "language": "de",
+    "firstDay": null,
+    "phoneMask": "+423-***-***-****"
+  },
+  {
+    "country": "LT",
+    "phone": "370",
+    "zone": "Europe/Vilnius",
+    "language": "lt",
+    "firstDay": "Mo",
+    "phoneMask": "+370-***-**-***"
+  },
+  {
+    "country": "LU",
+    "phone": "352",
+    "zone": "Europe/Luxembourg",
+    "language": "lb",
+    "firstDay": "Mo",
+    "phoneMask": "+352-***-***-***"
+  },
+  {
+    "country": "MO",
+    "phone": "853",
+    "zone": "Asia/Macau",
+    "language": "zh",
+    "firstDay": null,
+    "phoneMask": "+853-****-****"
+  },
+  {
+    "country": "MK",
+    "phone": "389",
+    "zone": "Europe/Belgrade",
+    "language": "mk",
+    "firstDay": "Mo",
+    "phoneMask": "+389-**-***-***"
+  },
+  {
+    "country": "MG",
+    "phone": "261",
+    "zone": "Indian/Antananarivo",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+261-**-**-*****"
+  },
+  {
+    "country": "MW",
+    "phone": "265",
+    "zone": "Africa/Maputo",
+    "language": "ny",
+    "firstDay": null,
+    "phoneMask": [
+      "+265-*-****-****",
+      "+265-1-***-***"
+    ]
+  },
+  {
+    "country": "MY",
+    "phone": "60",
+    "zone": "Asia/Kuala_Lumpur",
+    "language": "ms",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+60-*-***-***",
+      "+60-**-***-***",
+      "+60-**-***-****",
+      "+60-***-***-***"
+    ]
+  },
+  {
+    "country": "MV",
+    "phone": "960",
+    "zone": "Indian/Maldives",
+    "language": "dv",
+    "firstDay": null,
+    "phoneMask": "+960-***-****"
+  },
+  {
+    "country": "ML",
+    "phone": "223",
+    "zone": "Africa/Abidjan",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+223-**-**-****"
+  },
+  {
+    "country": "MT",
+    "phone": "356",
+    "zone": "Europe/Malta",
+    "language": "mt",
+    "firstDay": null,
+    "phoneMask": "+356-****-****"
+  },
+  {
+    "country": "MH",
+    "phone": "692",
+    "zone": "Pacific/Majuro",
+    "language": "mh",
+    "firstDay": null,
+    "phoneMask": "+692-***-****"
+  },
+  {
+    "country": "MR",
+    "phone": "222",
+    "zone": "Africa/Abidjan",
+    "language": "ar",
+    "firstDay": null,
+    "phoneMask": "+222-**-**-****"
+  },
+  {
+    "country": "MU",
+    "phone": "230",
+    "zone": "Indian/Mauritius",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+230-***-****"
+  },
+  {
+    "country": "YT",
+    "phone": "262",
+    "zone": "Indian/Mayotte",
+    "language": "fr",
+    "firstDay": null
+  },
+  {
+    "country": "MX",
+    "phone": "52",
+    "zone": "America/Mexico_City",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+52-**-**-****",
+      "+52-***-***-****"
+    ]
+  },
+  {
+    "country": "FM",
+    "phone": "691",
+    "zone": "Pacific/Pohnpei",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+691-***-****"
+  },
+  {
+    "country": "MD",
+    "phone": "373",
+    "zone": "Europe/Chisinau",
+    "language": "ro",
+    "firstDay": null,
+    "phoneMask": "+373-****-****"
+  },
+  {
+    "country": "MC",
+    "phone": "377",
+    "zone": "Europe/Monaco",
+    "language": "fr",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+377-**-***-***",
+      "+377-***-***-***"
+    ]
+  },
+  {
+    "country": "MN",
+    "phone": "976",
+    "zone": "Asia/Ulaanbaatar",
+    "language": "mn",
+    "firstDay": "Mo",
+    "phoneMask": "+976-**-**-****"
+  },
+  {
+    "country": "ME",
+    "phone": "382",
+    "zone": "Europe/Belgrade",
+    "language": "sr",
+    "firstDay": null,
+    "phoneMask": "+382-**-***-***"
+  },
+  {
+    "country": "MS",
+    "phone": "1-664",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-664-***-****"
+  },
+  {
+    "country": "MA",
+    "phone": "212",
+    "zone": "Africa/Casablanca",
+    "language": "ar",
+    "firstDay": "Mo",
+    "phoneMask": "+212-**-****-***"
+  },
+  {
+    "country": "MZ",
+    "phone": "258",
+    "zone": "Africa/Maputo",
+    "language": "pt",
+    "firstDay": null,
+    "phoneMask": "+258-**-***-***"
+  },
+  {
+    "country": "MM",
+    "phone": "95",
+    "zone": "Asia/Rangoon",
+    "language": "my",
+    "firstDay": null,
+    "phoneMask": [
+      "+95-***-***",
+      "+95-*-***-***",
+      "+95-**-***-***"
+    ]
+  },
+  {
+    "country": "NA",
+    "phone": "264",
+    "zone": "Africa/Windhoek",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+264-**-***-****"
+  },
+  {
+    "country": "NR",
+    "phone": "674",
+    "zone": "Pacific/Nauru",
+    "language": "na",
+    "firstDay": null,
+    "phoneMask": "+674-***-****"
+  },
+  {
+    "country": "NP",
+    "phone": "977",
+    "zone": "Asia/Kathmandu",
+    "language": "ne",
+    "firstDay": null,
+    "phoneMask": "+977-**-***-***"
+  },
+  {
+    "country": "NL",
+    "phone": "31",
+    "zone": "Europe/Amsterdam",
+    "language": "nl",
+    "firstDay": "Mo",
+    "phoneMask": "+31-**-***-****"
+  },
+  {
+    "country": "AN",
+    "phone": "599",
+    "zone": "America/Curacao",
+    "language": "nl",
+    "firstDay": null,
+    "phoneMask": [
+      "+599-***-****",
+      "+599-9-***-****"
+    ]
+  },
+  {
+    "country": "NC",
+    "phone": "687",
+    "zone": "Pacific/Noumea",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+687-**-****"
+  },
+  {
+    "country": "NZ",
+    "phone": "64",
+    "zone": "Pacific/Auckland",
+    "language": "en",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+64-**-***-***",
+      "+64-***-***-***",
+      "+64-***-***-****"
+    ]
+  },
+  {
+    "country": "NI",
+    "phone": "505",
+    "zone": "America/Managua",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+505-****-****"
+  },
+  {
+    "country": "NE",
+    "phone": "227",
+    "zone": "Africa/Lagos",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+227-**-**-****"
+  },
+  {
+    "country": "NG",
+    "phone": "234",
+    "zone": "Africa/Lagos",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": [
+      "+234-**-***-**",
+      "+234-**-***-***",
+      "+234-***-***-****"
+    ]
+  },
+  {
+    "country": "NU",
+    "phone": "683",
+    "zone": "Pacific/Niue",
+    "language": "niu",
+    "firstDay": null,
+    "phoneMask": "+683-****"
+  },
+  {
+    "country": "KP",
+    "phone": "850",
+    "zone": "Asia/Pyongyang",
+    "language": "ko",
+    "firstDay": null,
+    "phoneMask": [
+      "+850-***-***",
+      "+850-**-***-***",
+      "+850-****-****",
+      "+850-***-****-***",
+      "+850-****-*************",
+      "+850-191-***-****"
+    ]
+  },
+  {
+    "country": "MP",
+    "phone": "1-670",
+    "zone": "Pacific/Saipan",
+    "language": "fil",
+    "firstDay": null,
+    "phoneMask": "+1-670-***-****"
+  },
+  {
+    "country": "NO",
+    "phone": "47",
+    "zone": "Europe/Oslo",
+    "language": "no",
+    "firstDay": "Mo",
+    "phoneMask": "+47-***-**-***"
+  },
+  {
+    "country": "OM",
+    "phone": "968",
+    "zone": "Asia/Muscat",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+968-**-***-***"
+  },
+  {
+    "country": "PK",
+    "phone": "92",
+    "zone": "Asia/Karachi",
+    "language": "ur",
+    "firstDay": "Mo",
+    "phoneMask": "+92-***-***-****"
+  },
+  {
+    "country": "PW",
+    "phone": "680",
+    "zone": "Pacific/Palau",
+    "language": "pau",
+    "firstDay": null,
+    "phoneMask": "+680-***-****"
+  },
+  {
+    "country": "PS",
+    "phone": "970",
+    "zone": "Asia/Hebron",
+    "language": "ar",
+    "firstDay": null,
+    "phoneMask": "+970-**-***-****"
+  },
+  {
+    "country": "PA",
+    "phone": "507",
+    "zone": "America/Panama",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+507-***-****"
+  },
+  {
+    "country": "PG",
+    "phone": "675",
+    "zone": "Pacific/Port_Moresby",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+675-***-**-***"
+  },
+  {
+    "country": "PY",
+    "phone": "595",
+    "zone": "America/Asuncion",
+    "language": "es",
+    "firstDay": "Mo",
+    "phoneMask": "+595-***-***-***"
+  },
+  {
+    "country": "PE",
+    "phone": "51",
+    "zone": "America/Lima",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+51-***-***-***"
+  },
+  {
+    "country": "PH",
+    "phone": "63",
+    "zone": "Asia/Manila",
+    "language": "tl",
+    "firstDay": "Su",
+    "phoneMask": "+63-***-***-****"
+  },
+  {
+    "country": "PN",
+    "phone": "64",
+    "zone": "Pacific/Pitcairn",
+    "language": "en",
+    "firstDay": null
+  },
+  {
+    "country": "PL",
+    "phone": "48",
+    "zone": "Europe/Warsaw",
+    "language": "pl",
+    "firstDay": "Mo",
+    "phoneMask": "+48-***-***-***"
+  },
+  {
+    "country": "PT",
+    "phone": "351",
+    "zone": "Europe/Lisbon",
+    "language": "pt",
+    "firstDay": "Mo",
+    "phoneMask": "+351-**-***-****"
+  },
+  {
+    "country": "PR",
+    "phone": "1-787",
+    "zone": "San Juan",
+    "language": "Dollar",
+    "firstDay": "Su"
+  },
+  {
+    "country": "QA",
+    "phone": "974",
+    "zone": "Asia/Qatar",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+974-****-****"
+  },
+  {
+    "country": "CG",
+    "phone": "242",
+    "zone": "Africa/Lagos",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+242-**-***-****"
+  },
+  {
+    "country": "RE",
+    "phone": "262",
+    "zone": "Indian/Reunion",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+262-*****-****"
+  },
+  {
+    "country": "RO",
+    "phone": "40",
+    "zone": "Europe/Bucharest",
+    "language": "ro",
+    "firstDay": "Mo",
+    "phoneMask": "+40-**-***-****"
+  },
+  {
+    "country": "RU",
+    "phone": "7",
+    "zone": "Europe/Moscow",
+    "language": "ru",
+    "firstDay": "Mo",
+    "phoneMask": "+7-***-***-**-**"
+  },
+  {
+    "country": "RW",
+    "phone": "250",
+    "zone": "Africa/Maputo",
+    "language": "rw",
+    "firstDay": null,
+    "phoneMask": "+250-***-***-***"
+  },
+  {
+    "country": "BL",
+    "phone": "590",
+    "zone": "America/Port_of_Spain",
+    "language": "fr",
+    "firstDay": null
+  },
+  {
+    "country": "SH",
+    "phone": "290",
+    "zone": "Africa/Abidjan",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+290-****"
+  },
+  {
+    "country": "KN",
+    "phone": "1-869",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-869-***-****"
+  },
+  {
+    "country": "LC",
+    "phone": "1-758",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-758-***-****"
+  },
+  {
+    "country": "MF",
+    "phone": "590",
+    "zone": "America/Port_of_Spain",
+    "language": "fr",
+    "firstDay": null
+  },
+  {
+    "country": "PM",
+    "phone": "508",
+    "zone": "America/Miquelon",
+    "language": "fr",
+    "firstDay": null
+  },
+  {
+    "country": "VC",
+    "phone": "1-784",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-784-***-****"
+  },
+  {
+    "country": "WS",
+    "phone": "685",
+    "zone": "Pacific/Apia",
+    "language": "sm",
+    "firstDay": null,
+    "phoneMask": "+685-**-****"
+  },
+  {
+    "country": "SM",
+    "phone": "378",
+    "zone": "Europe/Rome",
+    "language": "it",
+    "firstDay": null,
+    "phoneMask": "+378-****-******"
+  },
+  {
+    "country": "ST",
+    "phone": "239",
+    "zone": "Africa/Abidjan",
+    "language": "pt",
+    "firstDay": null,
+    "phoneMask": "+239-**-*****"
+  },
+  {
+    "country": "SA",
+    "phone": "966",
+    "zone": "Asia/Riyadh",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": [
+      "+966-*-***-****",
+      "+966-5-****-****"
+    ]
+  },
+  {
+    "country": "SN",
+    "phone": "221",
+    "zone": "Africa/Abidjan",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+221-**-***-****"
+  },
+  {
+    "country": "RS",
+    "phone": "381",
+    "zone": "Europe/Belgrade",
+    "language": "sr",
+    "firstDay": "Mo",
+    "phoneMask": "+381-**-***-****"
+  },
+  {
+    "country": "SC",
+    "phone": "248",
+    "zone": "Indian/Mahe",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+248-*-***-***"
+  },
+  {
+    "country": "SL",
+    "phone": "232",
+    "zone": "Africa/Abidjan",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+232-**-******"
+  },
+  {
+    "country": "SG",
+    "phone": "65",
+    "zone": "Asia/Singapore",
+    "language": "cmn",
+    "firstDay": "Mo",
+    "phoneMask": "+65-****-****"
+  },
+  {
+    "country": "SX",
+    "phone": "1-721",
+    "zone": "America/Curacao",
+    "language": "nl",
+    "firstDay": null,
+    "phoneMask": "+1-721-***-****"
+  },
+  {
+    "country": "SK",
+    "phone": "421",
+    "zone": "Europe/Prague",
+    "language": "sk",
+    "firstDay": "Mo",
+    "phoneMask": "+421-***-***-***"
+  },
+  {
+    "country": "SI",
+    "phone": "386",
+    "zone": "Europe/Belgrade",
+    "language": "sl",
+    "firstDay": null,
+    "phoneMask": "+386-**-***-***"
+  },
+  {
+    "country": "SB",
+    "phone": "677",
+    "zone": "Pacific/Guadalcanal",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": [
+      "+677-*****",
+      "+677-***-****"
+    ]
+  },
+  {
+    "country": "SO",
+    "phone": "252",
+    "zone": "Africa/Mogadishu",
+    "language": "so",
+    "firstDay": null,
+    "phoneMask": [
+      "+252-*-***-***",
+      "+252-**-***-***"
+    ]
+  },
+  {
+    "country": "ZA",
+    "phone": "27",
+    "zone": "Africa/Johannesburg",
+    "language": "zu",
+    "firstDay": "Su",
+    "phoneMask": "+27-**-***-****"
+  },
+  {
+    "country": "KR",
+    "phone": "82",
+    "zone": "Asia/Seoul",
+    "language": "ko",
+    "firstDay": "Su",
+    "phoneMask": "+82-**-***-****"
+  },
+  {
+    "country": "SS",
+    "phone": "211",
+    "zone": "Africa/Khartoum",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+211-**-***-****"
+  },
+  {
+    "country": "ES",
+    "phone": "34",
+    "zone": "Europe/Madrid",
+    "language": "es",
+    "firstDay": "Mo",
+    "phoneMask": "+34-***-***-***"
+  },
+  {
+    "country": "LK",
+    "phone": "94",
+    "zone": "Asia/Colombo",
+    "language": "si",
+    "firstDay": null,
+    "phoneMask": "+94-**-***-****"
+  },
+  {
+    "country": "SD",
+    "phone": "249",
+    "zone": "Africa/Khartoum",
+    "language": "ar",
+    "firstDay": null,
+    "phoneMask": "+249-**-***-****"
+  },
+  {
+    "country": "SR",
+    "phone": "597",
+    "zone": "America/Paramaribo",
+    "language": "nl",
+    "firstDay": null,
+    "phoneMask": [
+      "+597-***-***",
+      "+597-***-****"
+    ]
+  },
+  {
+    "country": "SJ",
+    "phone": "47",
+    "zone": "Europe/Oslo",
+    "language": "no",
+    "firstDay": null
+  },
+  {
+    "country": "SZ",
+    "phone": "268",
+    "zone": "Africa/Johannesburg",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+268-**-**-****"
+  },
+  {
+    "country": "SE",
+    "phone": "46",
+    "zone": "Europe/Stockholm",
+    "language": "sv",
+    "firstDay": "Mo",
+    "phoneMask": "+46-**-***-****"
+  },
+  {
+    "country": "CH",
+    "phone": "41",
+    "zone": "Europe/Zurich",
+    "language": "de",
+    "firstDay": "Mo",
+    "phoneMask": "+41-**-***-****"
+  },
+  {
+    "country": "SY",
+    "phone": "963",
+    "zone": "Asia/Damascus",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": "+963-**-****-***"
+  },
+  {
+    "country": "TW",
+    "phone": "886",
+    "zone": "Asia/Taipei",
+    "language": "zh",
+    "firstDay": "Su",
+    "phoneMask": [
+      "+886-****-****",
+      "+886-*-****-****"
+    ]
+  },
+  {
+    "country": "TJ",
+    "phone": "992",
+    "zone": "Asia/Dushanbe",
+    "language": "tg",
+    "firstDay": null,
+    "phoneMask": "+992-**-***-****"
+  },
+  {
+    "country": "TZ",
+    "phone": "255",
+    "zone": "Africa/Dar_es_Salaam",
+    "language": "sw",
+    "firstDay": null,
+    "phoneMask": "+255-**-***-****"
+  },
+  {
+    "country": "TH",
+    "phone": "66",
+    "zone": "Asia/Bangkok",
+    "language": "th",
+    "firstDay": "Mo",
+    "phoneMask": "+66-**-***-****"
+  },
+  {
+    "country": "TG",
+    "phone": "228",
+    "zone": "Africa/Abidjan",
+    "language": "fr",
+    "firstDay": null,
+    "phoneMask": "+228-**-***-***"
+  },
+  {
+    "country": "TK",
+    "phone": "690",
+    "zone": "Pacific/Fakaofo",
+    "language": "tkl",
+    "firstDay": null,
+    "phoneMask": "+690-****"
+  },
+  {
+    "country": "TO",
+    "phone": "676",
+    "zone": "Pacific/Tongatapu",
+    "language": "to",
+    "firstDay": null,
+    "phoneMask": "+676-*****"
+  },
+  {
+    "country": "TT",
+    "phone": "1-868",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-868-***-****"
+  },
+  {
+    "country": "TN",
+    "phone": "216",
+    "zone": "Africa/Tunis",
+    "language": "ar",
+    "firstDay": "Mo",
+    "phoneMask": "+216-**-***-***"
+  },
+  {
+    "country": "TR",
+    "phone": "90",
+    "zone": "Europe/Istanbul",
+    "language": "tr",
+    "firstDay": "Mo",
+    "phoneMask": "+90-***-***-****"
+  },
+  {
+    "country": "TM",
+    "phone": "993",
+    "zone": "Asia/Ashgabat",
+    "language": "tk",
+    "firstDay": null,
+    "phoneMask": "+993-*-***-****"
+  },
+  {
+    "country": "TC",
+    "phone": "1-649",
+    "zone": "America/Grand_Turk",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-649-***-****"
+  },
+  {
+    "country": "TV",
+    "phone": "688",
+    "zone": "Pacific/Funafuti",
+    "language": "tvl",
+    "firstDay": null,
+    "phoneMask": [
+      "+688-2-****",
+      "+688-90-****"
+    ]
+  },
+  {
+    "country": "VI",
+    "phone": "1-340",
+    "zone": "America/Port_of_Spain",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+1-340-***-****"
+  },
+  {
+    "country": "UG",
+    "phone": "256",
+    "zone": "Africa/Kampala",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+256-***-***-***"
+  },
+  {
+    "country": "UA",
+    "phone": "380",
+    "zone": "Europe/Kiev",
+    "language": "uk",
+    "languageAlternative": [
+      "ua"
+    ],
+    "firstDay": "Mo",
+    "phoneMask": "+380-**-***-**-**"
+  },
+  {
+    "country": "AE",
+    "phone": "971",
+    "zone": "Asia/Dubai",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": [
+      "+971-*-***-****",
+      "+971-5-*-***-****"
+    ]
+  },
+  {
+    "country": "UY",
+    "phone": "598",
+    "zone": "America/Montevideo",
+    "language": "es",
+    "firstDay": "Mo",
+    "phoneMask": "+598-*-***-**-**"
+  },
+  {
+    "country": "UZ",
+    "phone": "998",
+    "zone": "Asia/Tashkent",
+    "language": "uz",
+    "firstDay": "Mo",
+    "phoneMask": "+998-**-***-****"
+  },
+  {
+    "country": "VU",
+    "phone": "678",
+    "zone": "Pacific/Efate",
+    "language": "bi",
+    "firstDay": null,
+    "phoneMask": [
+      "+678-*****",
+      "+678-**-*****"
+    ]
+  },
+  {
+    "country": "VA",
+    "phone": "379",
+    "zone": "Europe/Rome",
+    "language": "la",
+    "firstDay": null,
+    "phoneMask": "+39-6-698-*****"
+  },
+  {
+    "country": "VE",
+    "phone": "58",
+    "zone": "America/Caracas",
+    "language": "es",
+    "firstDay": "Su",
+    "phoneMask": "+58-***-***-****"
+  },
+  {
+    "country": "VN",
+    "phone": "84",
+    "zone": "Asia/Ho_Chi_Minh",
+    "language": "vi",
+    "firstDay": "Mo",
+    "phoneMask": [
+      "+84-**-****-***",
+      "+84-***-****-***"
+    ]
+  },
+  {
+    "country": "WF",
+    "phone": "681",
+    "zone": "Pacific/Wallis",
+    "language": "wls",
+    "firstDay": null,
+    "phoneMask": "+681-**-****"
+  },
+  {
+    "country": "EH",
+    "phone": "212",
+    "zone": "Africa/El_Aaiun",
+    "language": "ar",
+    "firstDay": null
+  },
+  {
+    "country": "YE",
+    "phone": "967",
+    "zone": "Asia/Aden",
+    "language": "ar",
+    "firstDay": "Sa",
+    "phoneMask": [
+      "+967-*-***-***",
+      "+967-**-***-***",
+      "+967-***-***-***"
+    ]
+  },
+  {
+    "country": "ZM",
+    "phone": "260",
+    "zone": "Africa/Maputo",
+    "language": "en",
+    "firstDay": null,
+    "phoneMask": "+260-**-***-****"
+  },
+  {
+    "country": "ZW",
+    "phone": "263",
+    "zone": "Africa/Maputo",
+    "language": "en",
+    "firstDay": "Su",
+    "phoneMask": "+263-*-******"
+  },
+  {
+    "country": "GF",
+    "phone": "594",
+    "zone": "America/Cayenne",
+    "language": "fr",
+    "firstDay": "Mo",
+    "phoneMask": "+594-*****-****"
+  },
+  {
+    "country": "MQ",
+    "phone": "596",
+    "zone": "America/Martinique",
+    "language": "fr",
+    "firstDay": "Mo",
+    "phoneMask": "+596-***-**-**-**"
+  },
+  {
+    "country": "NF",
+    "phone": "672-3",
+    "zone": "Pacific/Norfolk",
+    "language": "en",
+    "firstDay": "Mo",
+    "phoneMask": "+672-3-**-***"
+  },
+  {
+    "country": "IC",
+    "phone": "3428",
+    "zone": "Europe/Berlin",
+    "language": "es",
+    "firstDay": "Mo"
+  }
+]
