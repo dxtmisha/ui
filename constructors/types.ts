@@ -1,6 +1,7 @@
 import { ComputedRef, PropType, Ref } from 'vue'
 
 export type NumberOrStringType = number | string
+export type NumberOrStringOrDateType = NumberOrStringType | Date
 export type CallbackType<T = any, R = any> = (value: T) => R
 export type CallbackNullType<R = void> = () => R
 
@@ -107,6 +108,11 @@ export type ImageTypeValueType =
 export type ImageTypeType = ComputedRef<ImageTypeValueType>
 export type ImageValueType = Ref<string | File>
 
+export type ItemType<T = any> = {
+  text: string,
+  value: T
+}
+
 export type GeoType = {
   country: string
   countryAlternative?: string[]
@@ -117,3 +123,5 @@ export type GeoType = {
   phoneMask?: string | string[]
   zone: string | null
 }
+export type GeoCodeType = RefType<string>
+export type GeoDateType = 'datetime' | 'date' | 'month' | 'time' | 'second'

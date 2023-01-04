@@ -5,8 +5,8 @@ import geo from '../constructors/geo.json'
 
 export class Geo {
   protected static storage: StorageItem
-  protected static data = ref<GeoType | undefined>()
 
+  public static data = ref<GeoType | undefined>()
   public static readonly lang = computed<string>(() => this.data.value?.language || 'en')
   public static readonly country = computed<string>(() => this.data.value?.country || 'GB')
   public static readonly code = computed<string>(() => this.toCode(this.data.value) || 'en-GB')
