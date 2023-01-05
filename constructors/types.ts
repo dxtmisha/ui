@@ -9,6 +9,7 @@ export type AssociativeType<T = any> = {
   [key: NumberOrStringType]: T
 }
 export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
+export type AssociativeStringType = AssociativeType<string>
 
 export type ElementType = Window | HTMLElement | Element
 
