@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initMask($design) {
+  @include propertiesInit($design, 'mask') {
+    @include mixinMask;
+    @content;
+  }
+}
+
+@mixin mixinMask() {
+}

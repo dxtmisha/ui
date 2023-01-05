@@ -1,13 +1,22 @@
 export const props = {
   // Values
-  detail: [Object],
-  icon: [Object, String],
-  iconTrailing: [Object, String],
-  prefix: [Number, String],
-  required: Boolean,
-  suffix: [Number, String],
-  text: [Number, String],
-  value: undefined,
+  mask: {
+    type: [Array, String],
+    required: true
+  },
+  match: {
+    type: RegExp,
+    default: /[0-9]/
+  },
+  max: String,
+  min: String,
+  on: {
+    type: Object,
+    default: {}
+  },
+  paste: Boolean,
+  pattern: [RegExp, String],
+  value: String,
 
   // Message
   counter: Number,
@@ -16,29 +25,29 @@ export const props = {
   validationMessage: [Boolean, String],
 
   // Status
-  disabled: Boolean,
-  disabledPrevious: Boolean,
-  disabledNext: Boolean,
-  focus: Boolean,
-  readonly: Boolean,
-  selected: Boolean,
-  turn: Boolean,
+  visible: {
+    type: Boolean,
+    default: true
+  },
 
   // Options
-  align: String,
-  appearance: String,
-  arrow: Boolean,
-  cancel: [Boolean, String],
-  height: [Number, String],
-  palette: String,
-  ripple: Boolean,
-  rounded: String,
-  width: [Number, String],
-
-  // Icon
-  iconCancel: String,
-  iconNext: String,
-  iconPrevious: String
+  input: {
+    type: String,
+    default: 'text'
+  },
+  locales: String,
+  placeholder: {
+    type: String,
+    default: true
+  },
+  special: {
+    type: String,
+    default: '_'
+  },
+  type: {
+    type: String,
+    default: 'text'
+  }
 }
 
 export default {
