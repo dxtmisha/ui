@@ -229,6 +229,57 @@ export class GeoDate extends GeoAbstract {
     return this.year.value
   }
 
+  locale (): ComputedRef<string>
+  locale (style: Intl.DateTimeFormatOptions['month']): ComputedRef<string>
+  locale (options: Intl.DateTimeFormatOptions): ComputedRef<string>
+  locale (styleOptions?: Intl.DateTimeFormatOptions['month'] | Intl.DateTimeFormatOptions): ComputedRef<string> {
+    if (typeof styleOptions === 'object') {
+      const options = {} as Intl.DateTimeFormatOptions
+
+      if (this.hour24.value) {
+        options.hour12 = false
+      }
+
+      return computed(() => {
+        return this.date.value.toLocaleString(this.lang.value, {
+          ...options,
+          ...styleOptions
+        })
+      })
+    } else {
+      return this.intl.date(
+        this.date.value,
+        this.type.value,
+        styleOptions,
+        this.hour24.value
+      )
+    }
+  }
+
+  localeDay (style = 'numeric' as Intl.DateTimeFormatOptions['day']): ComputedRef<string> {
+    return this.locale({ day: style })
+  }
+
+  localeHour (style = 'numeric' as Intl.DateTimeFormatOptions['hour']): ComputedRef<string> {
+    return this.locale({ hour: style })
+  }
+
+  localeMinute (style = 'numeric' as Intl.DateTimeFormatOptions['minute']): ComputedRef<string> {
+    return this.locale({ minute: style })
+  }
+
+  localeMonth (style = 'long' as Intl.DateTimeFormatOptions['month']): ComputedRef<string> {
+    return this.locale({ month: style })
+  }
+
+  localeSecond (style = 'numeric' as Intl.DateTimeFormatOptions['second']): ComputedRef<string> {
+    return this.locale({ second: style })
+  }
+
+  localeYear (style = 'numeric' as Intl.DateTimeFormatOptions['year']): ComputedRef<string> {
+    return this.locale({ year: style })
+  }
+
   moveByDay (value: number): this {
     this.setDay(this.date.value.getDate() + value)
     return this
@@ -318,6 +369,41 @@ export class GeoDate extends GeoAbstract {
     this.update()
 
     return this
+  }
+
+  standard (timeZone = true as boolean): ComputedRef<string> {
+    return computed(() => {
+      const geo = new GeoDate(
+        this.date.value,
+        this.type.value,
+        'en-GB'
+      )
+
+      let value = ''
+
+      if (['datetime', 'date', undefined, 'month'].indexOf(this.type.value) !== -1) {
+        value += `${geo.localeYear().value}-${geo.localeMonth('2-digit').value}`
+      }
+
+      if (['datetime', 'date', undefined].indexOf(this.type.value) !== -1) {
+        value += `-${geo.localeDay('2-digit').value}`
+      }
+
+      if (['datetime', 'time'].indexOf(this.type.value) !== -1) {
+        value += `${value !== '' ? 'T' : ''}${geo.locale({
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).value}`
+
+        if (timeZone) {
+          value += geo.getTimeZone().value
+        }
+      }
+
+      return value
+    })
   }
 
   protected init (): this {
