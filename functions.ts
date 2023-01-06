@@ -7,6 +7,7 @@ export const {
   forEach,
   getExp,
   isFilled,
+  isSelected,
   replaceRecursive,
   toCamelCase,
   toKebabCase

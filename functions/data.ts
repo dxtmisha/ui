@@ -67,6 +67,16 @@ export function isFilled<T = any> (value: T): boolean {
   return false
 }
 
+export function isSelected (value: any, selected: any | any[]): boolean {
+  if (Array.isArray(selected)) {
+    return selected.indexOf(value) !== -1
+  } else if (value === undefined) {
+    return false
+  } else {
+    return value === selected
+  }
+}
+
 export function replaceRecursive<T = any> (
   array: AssociativeType<T>,
   replacement?: AssociativeOrArrayType<T>,
@@ -133,6 +143,7 @@ export default {
   forEach,
   getExp,
   isFilled,
+  isSelected,
   replaceRecursive,
   toCamelCase,
   toKebabCase

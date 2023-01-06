@@ -1,5 +1,14 @@
 <template>
-  <div :class="classes.main"></div>
+  <label :class="classes.main">
+    <input
+      :type="input"
+      @input="onInput"
+      @keydown="onKeydown"
+      @keypress.prevent="onKeypress"
+    />
+    <input ref="dateElement"/>
+    <span ref="charsElement"></span>
+  </label>
 </template>
 
 <script lang="ts">

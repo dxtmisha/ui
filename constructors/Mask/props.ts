@@ -1,9 +1,9 @@
+import { PropType } from 'vue'
+import { ArrayOrStringType, GeoDateType } from '../types'
+
 export const props = {
   // Values
-  mask: {
-    type: [Array, String],
-    required: true
-  },
+  mask: [Array, String] as PropType<ArrayOrStringType>,
   match: {
     type: RegExp,
     default: /[0-9]/
@@ -15,14 +15,12 @@ export const props = {
     default: {}
   },
   paste: Boolean,
-  pattern: [RegExp, String],
+  pattern: [Array, String] as PropType<ArrayOrStringType>,
+  special: {
+    type: [Array, String] as PropType<ArrayOrStringType>,
+    default: '*'
+  },
   value: String,
-
-  // Message
-  counter: Number,
-  helperMessage: String,
-  maxlength: Number,
-  validationMessage: [Boolean, String],
 
   // Status
   visible: {
@@ -35,17 +33,9 @@ export const props = {
     type: String,
     default: 'text'
   },
-  locales: String,
-  placeholder: {
-    type: String,
-    default: true
-  },
-  special: {
-    type: String,
-    default: '_'
-  },
+  placeholder: String,
   type: {
-    type: String,
+    type: String as PropType<GeoDateType | 'text'>,
     default: 'text'
   }
 }
