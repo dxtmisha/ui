@@ -5,6 +5,16 @@ import { isSelected } from '../../functions'
 import { props } from './props'
 import { ArrayOrStringType, AssociativeType, ComponentBaseType } from '../types'
 
+export type MaskItemType = {
+  index: string
+  maxLength: number
+  full: boolean
+  chars: string[]
+  value: string
+}
+
+export type MaskItemsType = AssociativeType<MaskItemType>
+
 export type MaskSetupType = ComponentBaseType & {
   charsElement: Ref<HTMLSpanElement | undefined>
   dateElement: Ref<HTMLInputElement | undefined>
@@ -50,6 +60,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     watch(this.refs.value, value => this.newValue(value))
     watch(this.character, value => {
       this.length = value.length
+      console.log('valueByType', this.valueByType.value)
     })
     watch(this.mask, () => {
       const start = this.element.value?.selectionStart || 0 as number
@@ -190,6 +201,39 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     return value.join('')
   })
+
+  protected valueByType = computed<AssociativeType<string>>(() => {
+    const data = {} as AssociativeType<string>
+    const character = this.character.value
+    const special = this.special.value
+
+    this.mask.value.forEach((char, key) => {
+      console.log('mask', char, key)
+      if (
+        special.indexOf(char) !== -1 &&
+        key in character
+      ) {
+        console.log('indexOf', char)
+      }
+    })
+
+    console.log('standard', this.mask.value, this.special.value)
+    return { '*': 'asd' }
+  })
+
+  addValueByType (data: MaskItemsType, index: string): MaskItemsType {
+    if (!(index in data)) {
+      data[index] = {
+        index,
+        maxLength: 0,
+        full: false,
+        chars: [],
+        value: ''
+      }
+    }
+
+    return data
+  }
 
   cancel (): this {
     this.character.value = []
@@ -380,7 +424,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   popCharacter (selection: number): this {
-    this.character.value.splice(selection, 1)
+    this.resetCharacter(
+      this.character.value.splice(selection, 1)
+    )
+
     return this
   }
 
@@ -425,8 +472,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   }
 
+  resetCharacter (character: string[]): this {
+    this.character.value = [...character]
+    return this
+  }
+
   setCharacter (selection: number, char: string): this {
-    this.character.value.splice(selection, 0, char)
+    this.resetCharacter(
+      this.character.value.splice(selection, 0, char)
+    )
+
     return this
   }
 
