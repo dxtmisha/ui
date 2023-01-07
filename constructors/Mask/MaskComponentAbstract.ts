@@ -1,4 +1,4 @@
-import { computed, Ref, ref } from 'vue'
+import { computed, ComputedRef, Ref, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import { ArrayOrStringType, AssociativeType, ComponentBaseType } from '../types'
@@ -8,12 +8,13 @@ import { isSelected } from '../../functions'
 export type MaskSetupType = ComponentBaseType & {
   charsElement: Ref<HTMLSpanElement | undefined>
   dateElement: Ref<HTMLInputElement | undefined>
+  standard: ComputedRef<string>
   onInput: (event: InputEvent) => void
   onKeydown: (event: KeyboardEvent) => void
   onKeypress: (event: KeyboardEvent) => void
 }
 
-export abstract class MaskComponentAbstract extends ComponentAbstract {
+export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = [
     'on-change',
@@ -35,6 +36,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
   protected length = 0 as number
   protected unidentified?: boolean
 
+  constructor (
+    protected readonly props: AssociativeType & object,
+    protected readonly context: AssociativeType & object
+  ) {
+    super(props, context)
+
+    watch(this.refs.value, value => this.reset(value))
+    this.reset(this.props.value)
+  }
+
   setup (): MaskSetupType {
     const classes = this.getClasses()
     const styles = this.getStyles()
@@ -45,6 +56,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
       styles,
       charsElement: this.charsElement,
       dateElement: this.dateElement,
+      standard: this.standard,
       onInput: (event: InputEvent) => this.onInput(event),
       onKeydown: (event: KeyboardEvent) => this.onKeydown(event),
       onKeypress: (event: KeyboardEvent) => this.onKeypress(event)
@@ -84,6 +96,25 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
     return mask?.toString().split('') || []
   })
 
+  protected maxLength = computed<number>(() => {
+    if (
+      this.ifDate ||
+      !Array.isArray(this.props.mask)
+    ) {
+      return this.mask.value.length
+    } else {
+      let length = 0;
+
+      (this.props.mask as string[]).forEach(item => {
+        if (item.length > length) {
+          length = item.length
+        }
+      })
+
+      return length
+    }
+  })
+
   protected pattern = computed<ArrayOrStringType>(() => {
     if (this.geo.value) {
       return {
@@ -120,6 +151,46 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
     }
   })
 
+  protected standard = computed(() => {
+    const character = this.character.value
+    const value = [] as string[]
+    let stop: boolean
+    let key = 0 as number
+
+    if (character.length > 0) {
+      this.mask.value.forEach(char => {
+        if (!stop) {
+          if (!this.ifSpecial(char)) {
+            value.push(char)
+          } else if (key in character) {
+            value.push(character[key++])
+          } else {
+            stop = true
+          }
+        }
+      })
+    }
+
+    return value.join('')
+  })
+
+  protected characterToValue (selection: number): number {
+    let selectionChar = -1 as number
+    let value: number | undefined
+
+    this.mask.value.forEach((char, index) => {
+      if (this.ifSpecial(char)) {
+        selectionChar++
+      }
+
+      if (value === undefined && selectionChar >= selection) {
+        value = index
+      }
+    })
+
+    return value !== undefined ? value : this.mask.value.length
+  }
+
   protected getCharacter (text: string): string[] {
     const value = [] as string[]
 
@@ -148,6 +219,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
     return value
   }
 
+  protected goSelection (selection: number): this {
+    requestAnimationFrame(() => {
+      if (this.element.value) {
+        this.element.value.selectionEnd = selection
+        this.element.value.selectionStart = selection
+      }
+    })
+
+    return this
+  }
+
   protected ifSpecial (char: string): boolean {
     return isSelected(char, this.special.value)
   }
@@ -167,34 +249,56 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
 
-      if (target.selectionStart === target.selectionEnd) {
-        // popValue(target.selectionStart)
-      } else if (
-        target.selectionStart &&
-        target.selectionEnd
-      ) {
-        for (let i = target.selectionEnd; i > target.selectionStart; i--) {
-          // popValue(i, false)
+      if (target.selectionStart !== null) {
+        if (target.selectionStart === target.selectionEnd) {
+          this.popValue(target.selectionStart)
+        } else if (target.selectionEnd !== null) {
+          for (let i = target.selectionEnd; i > target.selectionStart; i--) {
+            this.popValue(i, false)
+          }
         }
       }
     }
   }
 
-  onKeypress (event: KeyboardEvent) {
+  onKeypress (event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement
 
-    if (target.selectionStart === target.selectionEnd) {
-      // setValue(target.selectionStart, event.key)
-    } else if (
-      target.selectionStart &&
-      target.selectionEnd
-    ) {
-      for (let i = target.selectionEnd; i > target.selectionStart; i--) {
-        // popValue(i, false)
-      }
+    if (target.selectionStart !== null) {
+      if (target.selectionStart === target.selectionEnd) {
+        this.setValue(target.selectionStart, event.key)
+      } else if (target.selectionEnd !== null) {
+        for (let i = target.selectionEnd; i > target.selectionStart; i--) {
+          this.popValue(i, false)
+        }
 
-      // setValue(event.target.selectionStart, event.key)
+        this.setValue(target.selectionStart, event.key)
+      }
     }
+  }
+
+  popCharacter (selection: number): this {
+    this.character.value.splice(selection, 1)
+    return this
+  }
+
+  popValue (selection: number, go = true): this {
+    const index = selection - 1
+
+    if (
+      this.maxLength.value >= selection && (
+        go ||
+        this.ifSpecial(this.getMaskChar(index))
+      )
+    ) {
+      const selectionChar = this.valueToCharacter(index)
+
+      this.popCharacter(selectionChar)
+      this.goSelection(this.characterToValue(selectionChar))
+      this.shiftCharacter(0)
+    }
+
+    return this
   }
 
   reset (value: string): string[] {
@@ -219,40 +323,57 @@ export abstract class MaskComponentAbstract extends ComponentAbstract {
     return data
   }
 
+  setCharacter (selection: number, char: string): this {
+    this.character.value.splice(selection, 0, char)
+    return this
+  }
+
   setValue (
     selection: number,
     char: string,
     focus = true as boolean
-  ) {
+  ): boolean {
     this.shiftCharacter()
 
     const wait = this.getMaskChar(selection)
-    /*
+
     if (
       wait &&
-      max.value > standard.value.length
+      this.maxLength.value > this.standard.value.length
     ) {
-      if (ifSpecialChar(wait)) {
-        if (char.toString().match(props.match)) {
-          const selectionChar = valueToCharacter(selection)
-          setCharacter(selectionChar, char)
+      if (this.ifSpecial(wait)) {
+        if (char.toString().match(this.props.match)) {
+          const selectionChar = this.valueToCharacter(selection)
+          this.setCharacter(selectionChar, char)
 
           if (focus) {
-            goSelection(characterToValue(selectionChar + 1))
+            this.goSelection(this.characterToValue(selectionChar + 1))
           }
 
           return true
         }
       } else {
-        return setValue(selection + 1, char)
+        return this.setValue(selection + 1, char)
       }
     }
-    */
+
     return false
   }
 
   protected shiftCharacter (status = 1): this {
     this.length = this.character.value.length + status
     return this
+  }
+
+  protected valueToCharacter (selection: number): number {
+    let value = -1
+
+    this.mask.value.forEach((char, index) => {
+      if (index <= selection && this.ifSpecial(char)) {
+        value++
+      }
+    })
+
+    return value
   }
 }

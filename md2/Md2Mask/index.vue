@@ -2,6 +2,7 @@
   <label :class="classes.main">
     <input
       :type="input"
+      :value="standard"
       @input="onInput"
       @keydown="onKeydown"
       @keypress.prevent="onKeypress"

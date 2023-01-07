@@ -25,7 +25,7 @@ import {
   NumberOrStringType
 } from '../constructors/types'
 
-export abstract class ComponentAbstract {
+export abstract class ComponentAbstract<E = HTMLElement> {
   static readonly code = 'none' as string
   static readonly instruction = {} as AssociativeType
   static readonly emits?: string[]
@@ -41,7 +41,7 @@ export abstract class ComponentAbstract {
     return this.getComponentItem().getProps() as R
   }
 
-  protected readonly element = ref<HTMLElement | undefined>()
+  protected readonly element = ref<E | undefined>()
   protected readonly refs: AssociativeType<Ref>
   protected readonly classesProps = [] as string[]
   protected readonly classesExtra = [] as string[]
@@ -116,7 +116,7 @@ export abstract class ComponentAbstract {
     return this
   }
 
-  protected getBasic (): ComponentBaseType {
+  protected getBasic (): ComponentBaseType<E> {
     const item = this.getItem()
 
     return {

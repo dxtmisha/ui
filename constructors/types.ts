@@ -57,8 +57,8 @@ export type ComponentStylesType = {
   [key: NumberOrStringType]: ComponentStyleItemType
 }
 
-export type ComponentBaseType = {
-  element: Ref<RefOrElementType | undefined>
+export type ComponentBaseType<E = RefOrElementType> = {
+  element: Ref<E | undefined>
   name: string
   design: string
   className: string
