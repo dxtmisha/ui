@@ -1,6 +1,7 @@
 <template>
   <label :class="classes.main">
     <input
+      ref="element"
       :type="input"
       :value="standard"
       @blur="onBlur"

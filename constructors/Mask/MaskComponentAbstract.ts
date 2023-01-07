@@ -497,7 +497,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             this.goSelection(this.characterToValue(selectionChar + 1))
           }
 
-          console.log('this.valueByType.value', this.valueByType.value)
           return true
         }
       } else {
