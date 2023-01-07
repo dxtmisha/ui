@@ -1,17 +1,21 @@
 import { computed, ComputedRef, Ref, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
-import { props } from './props'
-import { ArrayOrStringType, AssociativeType, ComponentBaseType } from '../types'
 import { GeoDate } from '../../classes/GeoDate'
 import { isSelected } from '../../functions'
+import { props } from './props'
+import { ArrayOrStringType, AssociativeType, ComponentBaseType } from '../types'
 
 export type MaskSetupType = ComponentBaseType & {
   charsElement: Ref<HTMLSpanElement | undefined>
   dateElement: Ref<HTMLInputElement | undefined>
   standard: ComputedRef<string>
+  onBlur: (event: FocusEvent) => void
+  onChange: (event: Event) => void
+  onFocus: (event: FocusEvent) => void
   onInput: (event: InputEvent) => void
   onKeydown: (event: KeyboardEvent) => void
   onKeypress: (event: KeyboardEvent) => void
+  onPaste: (event: ClipboardEvent) => void
 }
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
@@ -29,11 +33,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly character = ref<string[]>([])
 
   protected selection = {
-    start: null as number | null,
-    end: null as number | null
+    start: 0 as number,
+    end: 0 as number
   }
 
   protected length = 0 as number
+  protected change?: boolean
   protected unidentified?: boolean
 
   constructor (
@@ -42,8 +47,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   ) {
     super(props, context)
 
-    watch(this.refs.value, value => this.reset(value))
-    this.reset(this.props.value)
+    watch(this.refs.value, value => this.newValue(value))
+    watch(this.character, value => {
+      this.length = value.length
+    })
+    watch(this.mask, () => {
+      const start = this.element.value?.selectionStart || 0 as number
+      this.goSelection(start)
+    })
+
+    this.newValue(this.props.value)
   }
 
   setup (): MaskSetupType {
@@ -57,9 +70,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       charsElement: this.charsElement,
       dateElement: this.dateElement,
       standard: this.standard,
+      onBlur: (event: FocusEvent) => this.onBlur(event),
+      onChange: (event: Event) => this.onChange(event),
+      onFocus: (event: FocusEvent) => this.onFocus(event),
       onInput: (event: InputEvent) => this.onInput(event),
       onKeydown: (event: KeyboardEvent) => this.onKeydown(event),
-      onKeypress: (event: KeyboardEvent) => this.onKeypress(event)
+      onKeypress: (event: KeyboardEvent) => this.onKeypress(event),
+      onPaste: (event: ClipboardEvent) => this.onPaste(event)
     }
   }
 
@@ -174,6 +191,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value.join('')
   })
 
+  cancel (): this {
+    this.character.value = []
+    return this
+  }
+
   protected characterToValue (selection: number): number {
     let selectionChar = -1 as number
     let value: number | undefined
@@ -201,6 +223,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return value
+  }
+
+  protected async getClipboardData (event: ClipboardEvent): Promise<string> {
+    return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
   }
 
   protected getMaskChar (selection: number): string {
@@ -234,18 +260,58 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return isSelected(char, this.special.value)
   }
 
-  onInput (event: InputEvent) {
-    console.log('event', event)
+  newValue (value: string): this {
+    this.character.value = this.reset(value)
+    return this
   }
 
-  onKeydown (event: KeyboardEvent) {
+  onBlur (event: FocusEvent): void {
+    this.change = true
+    this.context.emit('on-blur', event)
+  }
+
+  onChange (event: Event): void {
+    const target = event.target as HTMLInputElement
+    this.newValue(target.value)
+  }
+
+  onFocus (event: FocusEvent): void {
+    this.context.emit('on-focus', event)
+  }
+
+  onInput (event: InputEvent) {
+    if (this.unidentified) {
+      const target = event.target as HTMLInputElement
+      this.unidentified = false
+
+      if (this.selection.start !== this.selection.end) {
+        for (let i = this.selection.end; i > this.selection.start; i--) {
+          this.popValue(i, false)
+        }
+      }
+
+      if (event.data) {
+        if (!this.setValue(this.selection.start, event.data)) {
+          target.value = this.standard.value
+          requestAnimationFrame(() => this.goSelection(this.selection.start))
+        }
+      } else if (
+        this.length > target.value.length &&
+        this.selection.start === this.selection.end
+      ) {
+        this.popValue(this.selection.start)
+      }
+    }
+  }
+
+  onKeydown (event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement
 
     if (event.key === 'Unidentified' || event.keyCode === 229) {
       this.unidentified = true
       this.length = target.value.length
-      this.selection.start = target.selectionStart
-      this.selection.end = target.selectionEnd
+      this.selection.start = target.selectionStart || 0
+      this.selection.end = target.selectionEnd || 0
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
 
@@ -275,6 +341,42 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         this.setValue(target.selectionStart, event.key)
       }
     }
+  }
+
+  async onPaste (event: ClipboardEvent): Promise<void> {
+    const target = event.target as HTMLInputElement
+    const start = target.selectionStart as number
+
+    if (
+      target.selectionEnd !== null &&
+      start !== target.selectionEnd
+    ) {
+      for (let i = target.selectionEnd; i > start; i--) {
+        this.popValue(i, false)
+      }
+    }
+
+    this.pasteValue(start, await this.getClipboardData(event))
+  }
+
+  pasteValue = (
+    selection: number,
+    value: string,
+    focus = true as boolean
+  ): this => {
+    let index = this.valueToCharacter(selection)
+
+    if (index === -1) {
+      index = 0
+    }
+
+    value.split('').forEach(char => {
+      if (char.toString().match(this.props.match)) {
+        this.setValue(this.characterToValue(index++), char, focus)
+      }
+    })
+
+    return this
   }
 
   popCharacter (selection: number): this {

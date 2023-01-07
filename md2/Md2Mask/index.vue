@@ -3,9 +3,14 @@
     <input
       :type="input"
       :value="standard"
+      @blur="onBlur"
+      @change="onChange"
+      @focus="onFocus"
       @input="onInput"
       @keydown="onKeydown"
+      v-on="on"
       @keypress.prevent="onKeypress"
+      @paste.prevent="onPaste"
     />
     <input ref="dateElement"/>
     <span ref="charsElement"></span>
