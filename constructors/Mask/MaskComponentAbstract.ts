@@ -60,7 +60,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     watch(this.refs.value, value => this.newValue(value))
     watch(this.character, value => {
       this.length = value.length
-      console.log('valueByType', this.valueByType.value)
     })
     watch(this.mask, () => {
       const start = this.element.value?.selectionStart || 0 as number
@@ -179,7 +178,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
-  protected standard = computed(() => {
+  protected standard = computed<string>(() => {
     const character = this.character.value
     const value = [] as string[]
     let stop: boolean
@@ -202,26 +201,28 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value.join('')
   })
 
-  protected valueByType = computed<AssociativeType<string>>(() => {
-    const data = {} as AssociativeType<string>
-    const character = this.character.value
+  protected valueByType = computed<MaskItemsType>(() => {
+    const data = {} as MaskItemsType
     const special = this.special.value
+    const standard = this.standard.value
 
-    this.mask.value.forEach((char, key) => {
-      console.log('mask', char, key)
-      if (
-        special.indexOf(char) !== -1 &&
-        key in character
-      ) {
-        console.log('indexOf', char)
+    this.mask.value.forEach((char, index) => {
+      if (isSelected(char, special)) {
+        const value = this.addValueByType(data, char)
+
+        if (standard[index] !== undefined) {
+          value.chars.push(standard[index])
+        }
+
+        value.maxLength++
+        value.full = value.maxLength === value.chars.length
       }
     })
 
-    console.log('standard', this.mask.value, this.special.value)
-    return { '*': 'asd' }
+    return data
   })
 
-  addValueByType (data: MaskItemsType, index: string): MaskItemsType {
+  addValueByType (data: MaskItemsType, index: string): MaskItemType {
     if (!(index in data)) {
       data[index] = {
         index,
@@ -232,7 +233,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     }
 
-    return data
+    return data[index]
   }
 
   cancel (): this {
@@ -424,10 +425,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   popCharacter (selection: number): this {
-    this.resetCharacter(
-      this.character.value.splice(selection, 1)
-    )
-
+    this.character.value.splice(selection, 1)
     return this
   }
 
@@ -472,16 +470,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   }
 
-  resetCharacter (character: string[]): this {
-    this.character.value = [...character]
-    return this
-  }
-
   setCharacter (selection: number, char: string): this {
-    this.resetCharacter(
-      this.character.value.splice(selection, 0, char)
-    )
-
+    this.character.value.splice(selection, 0, char)
     return this
   }
 
@@ -507,6 +497,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             this.goSelection(this.characterToValue(selectionChar + 1))
           }
 
+          console.log('this.valueByType.value', this.valueByType.value)
           return true
         }
       } else {
