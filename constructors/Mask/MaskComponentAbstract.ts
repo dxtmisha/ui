@@ -1,32 +1,10 @@
-import { computed, ComputedRef, Ref, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
 import { isSelected } from '../../functions'
 import { props } from './props'
-import { ArrayOrStringType, AssociativeType, ComponentBaseType } from '../types'
-
-export type MaskItemType = {
-  index: string
-  maxLength: number
-  full: boolean
-  chars: string[]
-  value: string
-}
-
-export type MaskItemsType = AssociativeType<MaskItemType>
-
-export type MaskSetupType = ComponentBaseType & {
-  charsElement: Ref<HTMLSpanElement | undefined>
-  dateElement: Ref<HTMLInputElement | undefined>
-  standard: ComputedRef<string>
-  onBlur: (event: FocusEvent) => void
-  onChange: (event: Event) => void
-  onFocus: (event: FocusEvent) => void
-  onInput: (event: InputEvent) => void
-  onKeydown: (event: KeyboardEvent) => void
-  onKeypress: (event: KeyboardEvent) => void
-  onPaste: (event: ClipboardEvent) => void
-}
+import { AssociativeType } from '../types'
+import { MaskItemsType, MaskItemType, MaskPatternType, MaskSetupType } from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -80,6 +58,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       charsElement: this.charsElement,
       dateElement: this.dateElement,
       standard: this.standard,
+      valueBind: this.value,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
       onFocus: (event: FocusEvent) => this.onFocus(event),
@@ -95,6 +74,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   })
 
   protected ifDate = computed<boolean>(() => this.props.type !== 'text')
+
+  // protected ifFull = computed<boolean>(() => )
 
   protected mask = computed<string[]>(() => {
     if (this.geo.value) {
@@ -142,7 +123,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
-  protected pattern = computed<ArrayOrStringType>(() => {
+  protected pattern = computed<MaskPatternType>(() => {
     if (this.geo.value) {
       return {
         Y: '[0-9]{4}',
@@ -165,8 +146,15 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         m: '00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59',
         s: '00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59'
       }
+    } else if (
+      typeof this.props.special === 'string' &&
+      ['function', 'string'].indexOf(typeof this.props.pattern) !== -1
+    ) {
+      return {
+        [this.props.special]: this.props.pattern
+      }
     } else {
-      return this.props.pattern
+      return {}
     }
   })
 
@@ -201,6 +189,22 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value.join('')
   })
 
+  protected value = computed<string>(() => {
+    if (this.ifDate.value) {
+      const date = this.valueByType.value
+      const value = (date?.Y?.value || '2000') +
+        `-${date?.M?.value || '01'}` +
+        `-${date?.D?.value || '01'}` +
+        `T${date?.h?.value || '00'}` +
+        `:${date?.m?.value || '00'}` +
+        `:${date?.s?.value || '00'}`
+
+      return value
+    } else {
+      return this.standard.value
+    }
+  })
+
   protected valueByType = computed<MaskItemsType>(() => {
     const data = {} as MaskItemsType
     const special = this.special.value
@@ -216,6 +220,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
         value.maxLength++
         value.full = value.maxLength === value.chars.length
+        value.value = value.full ? value.chars.join('') : ''
       }
     })
 

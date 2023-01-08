@@ -1,5 +1,6 @@
 <template>
   <label :class="classes.main">
+    {{ valueBind }}
     <input
       ref="element"
       :type="input"
