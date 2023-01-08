@@ -1,10 +1,17 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
-import { isSelected } from '../../functions'
+import { forEach, isSelected } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
-import { MaskItemsType, MaskItemType, MaskPatternType, MaskSetupType } from './types'
+import {
+  MaskItemsType,
+  MaskItemType,
+  MaskPatternType,
+  MaskPatternTypeType,
+  MaskSetupType,
+  MaskValidationType
+} from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -58,6 +65,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       charsElement: this.charsElement,
       dateElement: this.dateElement,
       standard: this.standard,
+      validation: this.validation,
+      validationMessage: this.validationMessage,
       valueBind: this.value,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
@@ -128,8 +137,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       return {
         Y: '[0-9]{4}',
         M: '01|02|03|04|05|06|07|08|09|10|11|12',
-        d: (value: AssociativeType<string>): string => {
-          const date = new GeoDate(`${value?.y || '2000'}-${value?.m || '01'}-01`).getMaxDay().value
+        D: (value: MaskItemsType): string => {
+          const date = new GeoDate(`${value?.y?.value || '2000'}-${value?.m?.value || '01'}-01`).getMaxDay().value
           const days = []
 
           for (let i = 1; i <= date; i++) {
@@ -188,6 +197,28 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     return value.join('')
   })
+
+  protected validation = computed<MaskValidationType | undefined>(() => {
+    let validation: MaskValidationType | undefined
+
+    forEach(this.valueByType.value, item => {
+      if (
+        !validation &&
+        item.full &&
+        item.index in this.pattern.value
+      ) {
+        const check = this.check(item)
+
+        if (!check.status) {
+          validation = check
+        }
+      }
+    })
+
+    return validation
+  })
+
+  protected validationMessage = computed<string>(() => this.validation.value?.validationMessage || '')
 
   protected value = computed<string>(() => {
     if (this.ifDate.value) {
@@ -263,6 +294,22 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value !== undefined ? value : this.mask.value.length
   }
 
+  protected check (item: MaskItemType): MaskValidationType {
+    const pattern = this.pattern.value[item.index]
+    const input = this.getInput(this.getInputAttributes(pattern))
+
+    input.value = item.value
+
+    return {
+      index: item.index,
+      input,
+      status: input?.checkValidity(),
+      validationMessage: input.validationMessage,
+      validity: input.validity,
+      pattern
+    }
+  }
+
   protected getCharacter (text: string): string[] {
     const value = [] as string[]
 
@@ -277,6 +324,39 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected async getClipboardData (event: ClipboardEvent): Promise<string> {
     return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
+  }
+
+  protected getInput (attributes: AssociativeType<string>): HTMLInputElement {
+    const input = document.createElement('input')
+
+    forEach<string, string, void>(attributes, (item, name) => {
+      input.setAttribute(name, item)
+    })
+
+    return input
+  }
+
+  protected getInputAttributes (pattern: MaskPatternTypeType): AssociativeType<string> {
+    const attributes = {} as AssociativeType<string>
+
+    switch (typeof pattern) {
+      case 'function':
+        attributes.pattern = pattern(this.valueByType.value)
+        break
+      case 'string':
+        attributes.pattern = pattern
+        break
+      case 'object':
+        Object.assign(attributes, { pattern: pattern.pattern })
+
+        if (pattern?.attributes && typeof pattern.attributes === 'object') {
+          Object.assign(attributes, pattern.attributes)
+        }
+
+        break
+    }
+
+    return attributes
   }
 
   protected getMaskChar (selection: number): string {

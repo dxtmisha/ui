@@ -1,6 +1,5 @@
 <template>
   <label :class="classes.main">
-    {{ valueBind }}
     <input
       ref="element"
       :type="input"
@@ -16,6 +15,8 @@
     />
     <input ref="dateElement"/>
     <span ref="charsElement"></span>
+    <div/>
+    {{ validation }}
   </label>
 </template>
 
