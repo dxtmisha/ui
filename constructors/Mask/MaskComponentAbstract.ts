@@ -84,7 +84,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected ifDate = computed<boolean>(() => this.props.type !== 'text')
 
-  // protected ifFull = computed<boolean>(() => )
+  protected ifFull = computed<boolean>(() => {
+    let empty = false
+
+    forEach(this.valueByType.value, item => {
+      if (!item.full) {
+        empty = true
+      }
+    })
+
+    return empty
+  })
 
   protected mask = computed<string[]>(() => {
     if (this.geo.value) {
