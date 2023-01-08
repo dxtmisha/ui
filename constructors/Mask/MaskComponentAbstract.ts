@@ -221,16 +221,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected validationMessage = computed<string>(() => this.validation.value?.validationMessage || '')
 
   protected value = computed<string>(() => {
-    if (this.ifDate.value) {
+    if (this.validation.value) {
+      return ''
+    } else if (this.ifDate.value) {
       const date = this.valueByType.value
-      const value = (date?.Y?.value || '2000') +
+
+      return `${date?.Y?.value || '2000'}` +
         `-${date?.M?.value || '01'}` +
         `-${date?.D?.value || '01'}` +
         `T${date?.h?.value || '00'}` +
         `:${date?.m?.value || '00'}` +
         `:${date?.s?.value || '00'}`
-
-      return value
     } else {
       return this.standard.value
     }
