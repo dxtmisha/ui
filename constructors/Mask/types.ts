@@ -3,16 +3,16 @@ import { ComputedRef, Ref } from 'vue'
 
 export type MaskItemType = {
   index: string
+  value: string
   maxLength: number
   full: boolean
   chars: string[]
-  value: string
 }
 export type MaskItemsType = AssociativeType<MaskItemType>
 
-export type MaskPatternFunctionType = (data: MaskItemsType) => string
+export type MaskPatternFunctionType = (data: MaskItemsType) => string | AssociativeType<string>
 export type MaskPatternItemType = {
-  pattern: string | MaskPatternFunctionType
+  pattern?: string | MaskPatternFunctionType | undefined
   attributes?: AssociativeType
   rubber?: boolean
   transitionChar?: string

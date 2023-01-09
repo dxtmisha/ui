@@ -76,13 +76,24 @@
   </div>
   <div class="px-4 pb-4">
     <div>mack1:
-      <md2-mask mask="+7(***) ***-**-**"/>
+      <md2-mask
+        mask="+7(***) ***-**-**"
+        @on-change="onEmit"
+        @on-input="onEmit"
+      />
     </div>
     <div>mack2:
-      <md2-mask :type="'datetime'"/>
+      <md2-mask
+        :type="'datetime'"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
     </div>
     <div>mack3:
       <md2-mask :type="'date'"/>
+    </div>
+    <div>mack4:
+      <md2-mask :type="'date'" :pattern="{check:{attributes:{type:'date', min:'1990-06-01', max:'2025-03-15'}}}"/>
     </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">

@@ -50,7 +50,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       const start = this.element.value?.selectionStart || 0 as number
       this.goSelection(start)
     })
-    watch(this.value, () => {
+
+    watch([
+      this.ifFull,
+      this.validationMessage,
+      this.value
+    ], () => {
       this.change = true
       this.on()
     })
@@ -97,7 +102,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     })
 
-    return empty
+    return !empty
   })
 
   protected mask = computed<string[]>(() => {
@@ -150,24 +155,44 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (this.geo.value) {
       return {
         Y: '[0-9]{4}',
-        M: '01|02|03|04|05|06|07|08|09|10|11|12',
-        D: (value: MaskItemsType): string => {
-          const date = new GeoDate(`${value?.y?.value || '2000'}-${value?.m?.value || '01'}-01`).getMaxDay().value
-          const days = []
-
-          for (let i = 1; i <= date; i++) {
-            if (i < 10) {
-              days.push(`0${i}`)
-            } else {
-              days.push(i)
-            }
+        M: {
+          attributes: {
+            max: '12',
+            min: '1',
+            type: 'number'
           }
-
-          return days.join('|')
         },
-        h: '00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23',
-        m: '00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59',
-        s: '00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59'
+        D: (value: MaskItemsType): AssociativeType<string> => {
+          const date = new GeoDate(`${value?.Y?.value || '2000'}-${value?.M?.value || '01'}-01`)
+
+          return {
+            max: date.getMaxDay().value.toString(),
+            min: '1',
+            type: 'number'
+          }
+        },
+        h: {
+          attributes: {
+            max: '23',
+            min: '0',
+            type: 'number'
+          }
+        },
+        m: {
+          attributes: {
+            max: '59',
+            min: '0',
+            type: 'number'
+          }
+        },
+        s: {
+          attributes: {
+            max: '59',
+            min: '0',
+            type: 'number'
+          }
+        },
+        ...this.props.pattern
       }
     } else if (
       typeof this.props.special === 'string' &&
@@ -177,7 +202,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         [this.props.special]: this.props.pattern
       }
     } else {
-      return {}
+      return this.props.pattern || {}
     }
   })
 
@@ -215,19 +240,35 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected validation = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
-    forEach(this.valueByType.value, item => {
-      if (
-        !validation &&
-        item.full &&
-        item.index in this.pattern.value
-      ) {
-        const check = this.check(item)
+    forEach<MaskPatternType, string, void>(this.pattern.value, (item, index) => {
+      if (!validation && index in this.valueByType.value) {
+        const valueByType = this.valueByType.value[index]
 
-        if (!check.status) {
-          validation = check
+        if (valueByType.full) {
+          const check = this.check(valueByType)
+
+          if (!check.status) {
+            validation = check
+          }
         }
       }
     })
+
+    return validation || this.validationCheck.value
+  })
+
+  protected validationCheck = computed<MaskValidationType | undefined>(() => {
+    let validation: MaskValidationType | undefined
+
+    if (this.ifFull.value && 'check' in this.pattern.value) {
+      const check = this.check(this.valueByItem.value)
+
+      if (!check.status) {
+        validation = check
+      }
+
+      console.log('validationCheck', validation, check, this.pattern.value.check, this.valueByItem.value)
+    }
 
     return validation
   })
@@ -240,14 +281,26 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     } else if (this.ifDate.value) {
       const date = this.valueByType.value
 
-      return `${date?.Y?.value || '2000'}` +
+      const value = `${date?.Y?.value || '2000'}` +
         `-${date?.M?.value || '01'}` +
         `-${date?.D?.value || '01'}` +
         `T${date?.h?.value || '00'}` +
         `:${date?.m?.value || '00'}` +
         `:${date?.s?.value || '00'}`
+
+      return new GeoDate(value, this.props.type).standard(false).value
     } else {
       return this.standard.value
+    }
+  })
+
+  protected valueByItem = computed<MaskItemType>(() => {
+    return {
+      index: 'check',
+      value: this.value.value,
+      maxLength: this.value.value.length,
+      full: true,
+      chars: this.value.value.split('')
     }
   })
 
@@ -356,7 +409,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     switch (typeof pattern) {
       case 'function':
-        attributes.pattern = pattern(this.valueByType.value)
+        Object.assign(attributes, this.getInputFunctionAttributes(pattern))
         break
       case 'string':
         attributes.pattern = pattern
@@ -372,6 +425,18 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
 
     return attributes
+  }
+
+  protected getInputFunctionAttributes (
+    callback: (value: MaskItemsType) => string | AssociativeType<string>
+  ): AssociativeType<string> {
+    const read = callback(this.valueByType.value)
+
+    if (typeof read === 'string') {
+      return { pattern: read }
+    } else {
+      return read
+    }
   }
 
   protected getMaskChar (selection: number): string {
@@ -413,6 +478,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   on (type = 'on-input') {
     this.context.emit(type, {
       checkValidity: this.validation.value === undefined,
+      required: this.ifFull.value,
       validation: this.validation.value,
       validationMessage: this.validationMessage.value,
       value: this.value.value
