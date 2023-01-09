@@ -50,6 +50,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       const start = this.element.value?.selectionStart || 0 as number
       this.goSelection(start)
     })
+    watch(this.value, () => {
+      this.change = true
+      this.on()
+    })
 
     this.newValue(this.props.value)
   }
@@ -406,8 +410,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
+  on (type = 'on-input') {
+    this.context.emit(type, {
+      checkValidity: this.validation.value === undefined,
+      validation: this.validation.value,
+      validationMessage: this.validationMessage.value,
+      value: this.value.value
+    })
+  }
+
   onBlur (event: FocusEvent): void {
-    this.change = true
+    if (this.change) {
+      this.on('on-change')
+    }
+
+    this.change = false
     this.context.emit('on-blur', event)
   }
 
@@ -417,6 +434,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   onFocus (event: FocusEvent): void {
+    this.change = false
     this.context.emit('on-focus', event)
   }
 
