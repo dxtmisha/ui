@@ -9,7 +9,7 @@ import {
   MaskItemType,
   MaskPatternType,
   MaskPatternTypeType,
-  MaskSetupType,
+  MaskSetupType, MaskSpecialItemType,
   MaskValidationType
 } from './types'
 
@@ -26,7 +26,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly dateElement = ref<HTMLInputElement | undefined>()
 
   protected readonly character = ref<string[]>([])
-  protected readonly rubber = ref<AssociativeType<number>>({})
+  protected readonly rubberItems = ref<AssociativeType<number>>({})
+  protected readonly rubberTransition = ref<AssociativeType<boolean>>({})
 
   protected selection = {
     start: 0 as number,
@@ -35,7 +36,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected change?: boolean
   protected length = 0 as number
-  protected rubberUpdate?: boolean
+  protected rubberUpdate = 0 as number
   protected unidentified?: boolean
 
   constructor (
@@ -50,7 +51,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
     watch(this.mask, () => {
       const start = this.element.value?.selectionStart || 0 as number
-      this.goSelection(start + (this.rubberUpdate ? 1 : 0))
+      this.goSelection(start + this.rubberUpdate)
+      this.rubberUpdate = 0
     })
 
     watch([
@@ -154,16 +156,30 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
+  protected rubber = computed<AssociativeType<MaskSpecialItemType> | undefined>(() => {
+    const rubber = {} as AssociativeType<MaskSpecialItemType>
+    let isRubber = false
+
+    if (typeof this.props.special === 'object') {
+      forEach<MaskSpecialItemType, string, void>(this.props.special, (item, index) => {
+        if (item?.rubber) {
+          rubber[index] = item
+          isRubber = true
+        }
+      })
+    }
+
+    return isRubber ? rubber : undefined
+  })
+
   protected pattern = computed<MaskPatternType>(() => {
     if (this.geo.value) {
       return {
         Y: '[0-9]{4}',
         M: {
-          attributes: {
-            max: '12',
-            min: '1',
-            type: 'number'
-          }
+          max: '12',
+          min: '1',
+          type: 'number'
         },
         D: (value: MaskItemsType): AssociativeType<string> => {
           const date = new GeoDate(`${value?.Y?.value || '2000'}-${value?.M?.value || '01'}-01`)
@@ -175,25 +191,19 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           }
         },
         h: {
-          attributes: {
-            max: '23',
-            min: '0',
-            type: 'number'
-          }
+          max: '23',
+          min: '0',
+          type: 'number'
         },
         m: {
-          attributes: {
-            max: '59',
-            min: '0',
-            type: 'number'
-          }
+          max: '59',
+          min: '0',
+          type: 'number'
         },
         s: {
-          attributes: {
-            max: '59',
-            min: '0',
-            type: 'number'
-          }
+          max: '59',
+          min: '0',
+          type: 'number'
         },
         ...this.props.pattern
       }
@@ -212,6 +222,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected special = computed<string[] | string>(() => {
     if (this.geo.value) {
       return ['Y', 'M', 'D', 'h', 'm', 's']
+    } else if (typeof this.props.special === 'object') {
+      return Object.keys(this.props.special)
     } else {
       return this.props.special
     }
@@ -219,7 +231,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected standard = computed<string>(() => {
     const character = this.character.value
+    const rubber = this.rubber.value
     const value = [] as string[]
+
     let stop: boolean
     let key = 0 as number
 
@@ -230,6 +244,15 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             value.push(char)
           } else if (key in character) {
             value.push(character[key++])
+
+            if (
+              rubber &&
+              char in rubber &&
+              key >= character.length &&
+              this.rubberTransition.value?.[char] !== true
+            ) {
+              stop = true
+            }
           } else {
             stop = true
           }
@@ -417,13 +440,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           attributes.pattern = pattern
           break
         case 'object':
-          if ('pattern' in pattern) {
-            Object.assign(attributes, { pattern: pattern.pattern })
-          }
-
-          if (pattern?.attributes && typeof pattern.attributes === 'object') {
-            Object.assign(attributes, pattern.attributes)
-          }
+          Object.assign(attributes, pattern)
 
           break
       }
@@ -451,7 +468,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected getRubber (mask?: string): string {
     let value = mask?.toString() || ''
 
-    forEach<number, string, void>(this.rubber.value, (rubber, index) => {
+    forEach<number, string, void>(this.rubberItems.value, (rubber, index) => {
       value = value.replace(getExp(index, 'ig', '([:value]+)'), (all: string) => {
         return `${all}${Array(rubber).fill(index).join('')}`
       })
@@ -493,6 +510,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return this
+  }
+
+  protected ifMatch (char: string): boolean {
+    return !!char.toString().match(this.props.match)
   }
 
   protected ifSpecial (char: string): boolean {
@@ -639,7 +660,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   popRubber (special: string): this {
-    const rubber = this.rubber.value
+    const rubber = this.rubberItems.value
 
     if (special in rubber) {
       if (rubber[special] > 0) {
@@ -651,6 +672,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     }
 
+    this.rubberTransition.value[special] = false
+    this.rubberUpdate = -1
     return this
   }
 
@@ -702,23 +725,35 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  setRubber (selection: number): boolean {
-    const special = this.getPatternImmediate(selection)
-    const pattern = this.pattern.value?.[special]
+  setRubber (selection: number, char: string): boolean {
+    if (this.rubber.value) {
+      const special = this.getPatternImmediate(selection)
+      const rubber = this.rubber.value?.[special]
+      const valueByType = this.valueByType.value?.[special]
 
-    if (typeof pattern === 'object' && pattern?.rubber) {
-      if (special in this.rubber.value) {
-        this.rubber.value[special]++
-      } else {
-        this.rubber.value[special] = 1
+      if (rubber) {
+        if (
+          rubber?.transitionChar === char || (
+            rubber?.maxLength &&
+            rubber?.maxLength <= valueByType?.maxLength
+          )
+        ) {
+          this.rubberTransition.value[special] = true
+        } else if (valueByType.full && this.ifMatch(char)) {
+          if (special in this.rubberItems.value) {
+            this.rubberItems.value[special]++
+          } else {
+            this.rubberItems.value[special] = 1
+          }
+
+          this.rubberTransition.value[special] = false
+          this.rubberUpdate = +1
+          return true
+        }
       }
-
-      this.rubberUpdate = true
-
-      return true
-    } else {
-      return false
     }
+
+    return false
   }
 
   setValue (
@@ -726,8 +761,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): boolean {
+    const rubber = this.setRubber(selection, char)
     const wait = this.getMaskChar(selection)
-    let rubber
 
     if (
       wait &&
@@ -736,7 +771,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.shiftCharacter()
 
       if (this.ifSpecial(wait)) {
-        if (char.toString().match(this.props.match)) {
+        if (this.ifMatch(char)) {
           const selectionChar = this.valueToCharacter(selection)
           this.setCharacter(selectionChar, char)
 
@@ -746,15 +781,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
           return true
         }
-      } else if (!(rubber = this.setRubber(selection))) {
+      } else {
         return this.setValue(selection + 1, char)
       }
-    } else {
-      rubber = this.setRubber(selection)
-    }
-
-    if (rubber) {
-      return this.setValue(selection, char, false)
+    } else if (rubber) {
+      return this.setValue(selection, char)
     }
 
     return false

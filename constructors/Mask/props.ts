@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
 import { ArrayOrStringType, GeoDateType } from '../types'
-import { MaskPatternType } from './types'
+import { MaskPatternType, MaskSpecialType } from './types'
 
 export const props = {
   // Values
@@ -18,7 +18,7 @@ export const props = {
   paste: Boolean,
   pattern: [Function, Object, String] as PropType<MaskPatternType>,
   special: {
-    type: [Array, String] as PropType<ArrayOrStringType>,
+    type: [Array, Object, String] as PropType<MaskSpecialType>,
     default: '*'
   },
   value: String,

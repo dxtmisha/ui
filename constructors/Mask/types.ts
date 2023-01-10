@@ -11,16 +11,16 @@ export type MaskItemType = {
 export type MaskItemsType = AssociativeType<MaskItemType>
 
 export type MaskPatternFunctionType = (data: MaskItemsType) => string | AssociativeType<string>
-export type MaskPatternItemType = {
-  pattern?: string | MaskPatternFunctionType | undefined
-  attributes?: AssociativeType
+export type MaskPatternTypeType = AssociativeType<string> | string | MaskPatternFunctionType
+export type MaskPatternType = AssociativeType<MaskPatternTypeType>
+
+export type MaskSpecialItemType = {
   rubber?: boolean
   transitionChar?: string
   maxLength?: number
   minLength?: number
 }
-export type MaskPatternTypeType = MaskPatternItemType | string | MaskPatternFunctionType
-export type MaskPatternType = AssociativeType<MaskPatternTypeType>
+export type MaskSpecialType = string | string[] | AssociativeType<MaskSpecialItemType>
 
 export type MaskValidationType = {
   index: string
