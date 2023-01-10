@@ -1,7 +1,7 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
-import { forEach, isFilled, isSelected } from '../../functions'
+import { forEach, getExp, isFilled, isSelected } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
@@ -26,14 +26,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly dateElement = ref<HTMLInputElement | undefined>()
 
   protected readonly character = ref<string[]>([])
+  protected readonly rubber = ref<AssociativeType<number>>({})
 
   protected selection = {
     start: 0 as number,
     end: 0 as number
   }
 
-  protected length = 0 as number
   protected change?: boolean
+  protected length = 0 as number
+  protected rubberUpdate?: boolean
   protected unidentified?: boolean
 
   constructor (
@@ -48,7 +50,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
     watch(this.mask, () => {
       const start = this.element.value?.selectionStart || 0 as number
-      this.goSelection(start)
+      this.goSelection(start + (this.rubberUpdate ? 1 : 0))
     })
 
     watch([
@@ -76,6 +78,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       standard: this.standard,
       validation: this.validation,
       validationMessage: this.validationMessage,
+      maskBind: this.mask,
       valueBind: this.value,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
@@ -129,7 +132,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       )
     }
 
-    return mask?.toString().split('') || []
+    return this.getRubber(mask).split('') || []
   })
 
   protected maxLength = computed<number>(() => {
@@ -445,6 +448,30 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this.mask.value?.[selection]
   }
 
+  protected getRubber (mask?: string): string {
+    let value = mask?.toString() || ''
+
+    forEach<number, string, void>(this.rubber.value, (rubber, index) => {
+      value = value.replace(getExp(index, 'ig', '([:value]+)'), (all: string) => {
+        return `${all}${Array(rubber).fill(index).join('')}`
+      })
+    })
+
+    return value
+  }
+
+  protected getPatternImmediate (selection: number): string {
+    const wait = this.getMaskChar(selection)
+
+    if (this.ifSpecial(wait)) {
+      return wait
+    } else if (selection > 0) {
+      return this.getPatternImmediate(selection - 1)
+    } else {
+      return ''
+    }
+  }
+
   protected getSpecialLength (mask?: string): number {
     let value = 0 as number
 
@@ -611,18 +638,36 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
+  popRubber (special: string): this {
+    const rubber = this.rubber.value
+
+    if (special in rubber) {
+      if (rubber[special] > 0) {
+        rubber[special]--
+      }
+
+      if (rubber[special] === 0) {
+        delete rubber[special]
+      }
+    }
+
+    return this
+  }
+
   popValue (selection: number, go = true): this {
     const index = selection - 1
+    const char = this.getMaskChar(index)
 
     if (
       this.maxLength.value >= selection && (
         go ||
-        this.ifSpecial(this.getMaskChar(index))
+        this.ifSpecial(char)
       )
     ) {
       const selectionChar = this.valueToCharacter(index)
 
       this.popCharacter(selectionChar)
+      this.popRubber(char)
       this.goSelection(this.characterToValue(selectionChar))
       this.shiftCharacter(0)
     }
@@ -657,12 +702,32 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
+  setRubber (selection: number): boolean {
+    const special = this.getPatternImmediate(selection)
+    const pattern = this.pattern.value?.[special]
+
+    if (typeof pattern === 'object' && pattern?.rubber) {
+      if (special in this.rubber.value) {
+        this.rubber.value[special]++
+      } else {
+        this.rubber.value[special] = 1
+      }
+
+      this.rubberUpdate = true
+
+      return true
+    } else {
+      return false
+    }
+  }
+
   setValue (
     selection: number,
     char: string,
     focus = true as boolean
   ): boolean {
     const wait = this.getMaskChar(selection)
+    let rubber
 
     if (
       wait &&
@@ -681,9 +746,15 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
           return true
         }
-      } else {
+      } else if (!(rubber = this.setRubber(selection))) {
         return this.setValue(selection + 1, char)
       }
+    } else {
+      rubber = this.setRubber(selection)
+    }
+
+    if (rubber) {
+      return this.setValue(selection, char, false)
     }
 
     return false

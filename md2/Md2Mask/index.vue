@@ -16,6 +16,7 @@
     <input ref="dateElement"/>
     <span ref="charsElement"></span>
     <div/>
+    {{ maskBind }}
     {{ validation }}
   </label>
 </template>

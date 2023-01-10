@@ -37,6 +37,7 @@ export type MaskSetupType = ComponentBaseType & {
   standard: ComputedRef<string>
   validation: ComputedRef<MaskValidationType | undefined>
   validationMessage: ComputedRef<string>
+  maskBind: ComputedRef<string[]>
   valueBind: ComputedRef<string>
   onBlur: (event: FocusEvent) => void
   onChange: (event: Event) => void
