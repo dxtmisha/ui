@@ -1,7 +1,7 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
-import { forEach, isSelected } from '../../functions'
+import { forEach, isFilled, isSelected } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
@@ -266,8 +266,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       if (!check.status) {
         validation = check
       }
-
-      console.log('validationCheck', validation, check, this.pattern.value.check, this.valueByItem.value)
     }
 
     return validation
@@ -407,21 +405,25 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected getInputAttributes (pattern: MaskPatternTypeType): AssociativeType<string> {
     const attributes = {} as AssociativeType<string>
 
-    switch (typeof pattern) {
-      case 'function':
-        Object.assign(attributes, this.getInputFunctionAttributes(pattern))
-        break
-      case 'string':
-        attributes.pattern = pattern
-        break
-      case 'object':
-        Object.assign(attributes, { pattern: pattern.pattern })
+    if (isFilled(pattern)) {
+      switch (typeof pattern) {
+        case 'function':
+          Object.assign(attributes, this.getInputFunctionAttributes(pattern))
+          break
+        case 'string':
+          attributes.pattern = pattern
+          break
+        case 'object':
+          if ('pattern' in pattern) {
+            Object.assign(attributes, { pattern: pattern.pattern })
+          }
 
-        if (pattern?.attributes && typeof pattern.attributes === 'object') {
-          Object.assign(attributes, pattern.attributes)
-        }
+          if (pattern?.attributes && typeof pattern.attributes === 'object') {
+            Object.assign(attributes, pattern.attributes)
+          }
 
-        break
+          break
+      }
     }
 
     return attributes
@@ -660,14 +662,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): boolean {
-    this.shiftCharacter()
-
     const wait = this.getMaskChar(selection)
 
     if (
       wait &&
       this.maxLength.value > this.standard.value.length
     ) {
+      this.shiftCharacter()
+
       if (this.ifSpecial(wait)) {
         if (char.toString().match(this.props.match)) {
           const selectionChar = this.valueToCharacter(selection)

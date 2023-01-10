@@ -95,6 +95,9 @@
     <div>mack4:
       <md2-mask :type="'date'" :pattern="{check:{attributes:{type:'date', min:'1990-06-01', max:'2025-03-15'}}}"/>
     </div>
+    <div>mack5:
+      <md2-mask mask="*" :pattern="{'*':{rubber:true}}"/>
+    </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field
