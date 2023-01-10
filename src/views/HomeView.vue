@@ -99,7 +99,7 @@
       <md2-mask mask="*" :special="{'*':{rubber:true}}"/>
     </div>
     <div>mack6:
-      <md2-mask mask="*.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
+      <md2-mask mask="is *.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
     </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">

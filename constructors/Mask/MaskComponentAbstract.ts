@@ -34,9 +34,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     end: 0 as number
   }
 
+  protected selectionCharacter = 0 as number
+
   protected change?: boolean
   protected length = 0 as number
-  protected rubberUpdate = 0 as number
   protected unidentified?: boolean
 
   constructor (
@@ -49,10 +50,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     watch(this.character, value => {
       this.length = value.length
     })
+
     watch(this.mask, () => {
-      const start = this.element.value?.selectionStart || 0 as number
-      this.goSelection(start + this.rubberUpdate)
-      this.rubberUpdate = 0
+      const selectionChar = this.characterToValue(this.selectionCharacter)
+      this.goSelection(selectionChar + 1)
     })
 
     watch([
@@ -350,7 +351,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   })
 
-  addValueByType (data: MaskItemsType, index: string): MaskItemType {
+  protected addValueByType (data: MaskItemsType, index: string): MaskItemType {
     if (!(index in data)) {
       data[index] = {
         index,
@@ -369,11 +370,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected characterToValue (selection: number): number {
+  protected characterToValue (selection: number, mask?: string[]): number {
+    const maskValue = mask || this.mask.value
     let selectionChar = -1 as number
     let value: number | undefined
 
-    this.mask.value.forEach((char, index) => {
+    maskValue.forEach((char, index) => {
       if (this.ifSpecial(char)) {
         selectionChar++
       }
@@ -383,7 +385,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     })
 
-    return value !== undefined ? value : this.mask.value.length
+    return value !== undefined ? value : maskValue.length
   }
 
   protected check (item: MaskItemType): MaskValidationType {
@@ -654,12 +656,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  popCharacter (selection: number): this {
+  protected popCharacter (selection: number): this {
     this.character.value.splice(selection, 1)
+    this.selectionCharacter = selection - 1
+
     return this
   }
 
-  popRubber (special: string): this {
+  protected popRubber (special: string): this {
     const rubber = this.rubberItems.value
 
     if (special in rubber) {
@@ -673,7 +677,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
 
     this.rubberTransition.value[special] = false
-    this.rubberUpdate = -1
     return this
   }
 
@@ -698,7 +701,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  reset (value: string): string[] {
+  protected reset (value: string): string[] {
     const data = [] as string[]
 
     if (value) {
@@ -720,12 +723,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   }
 
-  setCharacter (selection: number, char: string): this {
+  protected setCharacter (selection: number, char: string): this {
     this.character.value.splice(selection, 0, char)
+    this.selectionCharacter = selection
+
     return this
   }
 
-  setRubber (selection: number, char: string): boolean {
+  protected setRubber (selection: number, char: string): boolean {
     if (this.rubber.value) {
       const special = this.getPatternImmediate(selection)
       const rubber = this.rubber.value?.[special]
@@ -747,7 +752,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           }
 
           this.rubberTransition.value[special] = false
-          this.rubberUpdate = +1
           return true
         }
       }
@@ -796,10 +800,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected valueToCharacter (selection: number): number {
-    let value = -1
+  protected valueToCharacter (selection: number, mask?: string[]): number {
+    let value = -1;
 
-    this.mask.value.forEach((char, index) => {
+    (mask || this.mask.value).forEach((char, index) => {
       if (index <= selection && this.ifSpecial(char)) {
         value++
       }
