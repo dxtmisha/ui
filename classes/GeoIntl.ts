@@ -190,16 +190,25 @@ export class GeoIntl extends GeoAbstract {
   number (value: IntlNumberType, options?: Intl.NumberFormatOptions): ComputedRef<string> {
     return computed(() => {
       const number = To.number(isRef(value) ? value.value : value)
-      let text: string
-
-      try {
-        text = new Intl.NumberFormat(this.code.value, options).format(number)
-      } catch (e) {
-        text = value.toString()
-      }
-
-      return text
+      return this.numberObject(options)?.format(number) || value.toString()
     })
+  }
+
+  protected decimal = computed<string>(() => this.numberObject()?.formatToParts(1.2)?.find(item => item.type === 'decimal')?.value || '.')
+
+  numberDecimal (): ComputedRef<string> {
+    return this.decimal
+  }
+
+  numberObject (options?: Intl.NumberFormatOptions): Intl.NumberFormat | undefined {
+    let object: Intl.NumberFormat | undefined
+
+    try {
+      object = new Intl.NumberFormat(this.code.value, options)
+    } catch (e) {
+    }
+
+    return object
   }
 
   percent (value: IntlNumberType, options?: Intl.NumberFormatOptions): ComputedRef<string> {

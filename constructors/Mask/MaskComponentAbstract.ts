@@ -1,7 +1,8 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
-import { forEach, getExp, isFilled, isSelected } from '../../functions'
+import { GeoIntl } from '../../classes/GeoIntl'
+import { forEach, getExp, isFilled, isSelected, strFill } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
@@ -97,7 +98,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this.ifDate.value ? new GeoDate('1987-12-18T10:20:30', this.props.type) : undefined
   })
 
-  protected ifDate = computed<boolean>(() => this.props.type !== 'text')
+  protected geoIntl = computed<GeoIntl>(() => new GeoIntl())
+
+  protected ifDate = computed<boolean>(() => ['text', 'number', 'currency', 'phone'].indexOf(this.props.type) === -1)
 
   protected ifFull = computed<boolean>(() => {
     let empty = false
@@ -112,17 +115,25 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   })
 
   protected mask = computed<string[]>(() => {
-    if (this.geo.value) {
-      return this.geo.value.locale('numeric').value
-        .replace('1987', 'YYYY')
-        .replace('12', 'MM')
-        .replace('18', 'DD')
-        .replace('10', 'hh')
-        .replace('20', 'mm')
-        .replace('30', 'ss')
-        .split('')
-    } else {
-      return this.maskBasic.value
+    switch (this.props.type) {
+      case 'number':
+        return this.rubberByNumber.value
+          .replace(/9/ig, 'n')
+          .replace(/8/ig, 'f')
+          .split('')
+      default:
+        if (this.geo.value) {
+          return this.geo.value.locale('numeric').value
+            .replace('1987', 'YYYY')
+            .replace('12', 'MM')
+            .replace('18', 'DD')
+            .replace('10', 'hh')
+            .replace('20', 'mm')
+            .replace('30', 'ss')
+            .split('')
+        } else {
+          return this.maskBasic.value
+        }
     }
   })
 
@@ -161,17 +172,39 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const rubber = {} as AssociativeType<MaskSpecialItemType>
     let isRubber = false
 
-    if (typeof this.props.special === 'object') {
-      forEach<MaskSpecialItemType, string, void>(this.props.special, (item, index) => {
-        if (item?.rubber) {
-          rubber[index] = item
-          isRubber = true
+    switch (this.props.type) {
+      case 'number':
+        rubber.n = {
+          rubber: true,
+          transitionChar: this.props.fraction ? this.geoIntl.value.numberDecimal().value : undefined
         }
-      })
+        rubber.f = { rubber: this.props.fraction === true }
+        isRubber = true
+
+        break
+      default:
+        if (typeof this.props.special === 'object') {
+          forEach<MaskSpecialItemType, string, void>(this.props.special, (item, index) => {
+            if (item?.rubber) {
+              rubber[index] = item
+              isRubber = true
+            }
+          })
+        }
+
+        break
     }
 
     return isRubber ? rubber : undefined
   })
+
+  protected rubberByNumber = this.geoIntl.value.number(
+    computed<string>(() => {
+      const number = (this.rubberItems.value?.n || 0) + 1
+      const fraction = this.props.fraction || this.rubberItems.value?.f || 0
+      return `${strFill('9', number)}${fraction ? `.${strFill('8', fraction)}` : ''}`
+    })
+  )
 
   protected pattern = computed<MaskPatternType>(() => {
     if (this.geo.value) {
@@ -221,12 +254,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   })
 
   protected special = computed<string[] | string>(() => {
-    if (this.geo.value) {
-      return ['Y', 'M', 'D', 'h', 'm', 's']
-    } else if (typeof this.props.special === 'object') {
-      return Object.keys(this.props.special)
-    } else {
-      return this.props.special
+    switch (this.props.type) {
+      case 'number':
+        return ['n', 'f']
+      default:
+        if (this.geo.value) {
+          return ['Y', 'M', 'D', 'h', 'm', 's']
+        } else if (typeof this.props.special === 'object') {
+          return Object.keys(this.props.special)
+        } else {
+          return this.props.special
+        }
     }
   })
 
@@ -303,19 +341,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected value = computed<string>(() => {
     if (this.validation.value) {
       return ''
-    } else if (this.ifDate.value) {
-      const date = this.valueByType.value
-
-      const value = `${date?.Y?.value || '2000'}` +
-        `-${date?.M?.value || '01'}` +
-        `-${date?.D?.value || '01'}` +
-        `T${date?.h?.value || '00'}` +
-        `:${date?.m?.value || '00'}` +
-        `:${date?.s?.value || '00'}`
-
-      return new GeoDate(value, this.props.type).standard(false).value
     } else {
-      return this.standard.value
+      switch (this.props.type) {
+        case 'number':
+          return this.getValueByNumber()
+        default:
+          if (this.ifDate.value) {
+            return this.getValueByDate()
+          } else {
+            return this.standard.value
+          }
+      }
     }
   })
 
@@ -472,7 +508,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     forEach<number, string, void>(this.rubberItems.value, (rubber, index) => {
       value = value.replace(getExp(index, 'ig', '([:value]+)'), (all: string) => {
-        return `${all}${Array(rubber).fill(index).join('')}`
+        return `${all}${strFill(index, rubber)}`
       })
     })
 
@@ -512,6 +548,26 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return this
+  }
+
+  protected getValueByDate (): string {
+    const date = this.valueByType.value
+
+    const value = `${date?.Y?.value || '2000'}` +
+      `-${date?.M?.value || '01'}` +
+      `-${date?.D?.value || '01'}` +
+      `T${date?.h?.value || '00'}` +
+      `:${date?.m?.value || '00'}` +
+      `:${date?.s?.value || '00'}`
+
+    return new GeoDate(value, this.props.type).standard(false).value
+  }
+
+  protected getValueByNumber (): string {
+    const data = this.valueByType.value
+    const fraction = data?.f?.value
+
+    return `${data?.n?.value}${fraction ? `.${fraction}` : ''}`
   }
 
   protected ifMatch (char: string): boolean {

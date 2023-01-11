@@ -3,12 +3,14 @@ import element from './functions/element'
 import image from './functions/image'
 
 export const {
+  arrFill,
   executeFunction,
   forEach,
   getExp,
   isFilled,
   isSelected,
   replaceRecursive,
+  strFill,
   toCamelCase,
   toKebabCase
 } = data

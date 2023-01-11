@@ -1,9 +1,10 @@
 import { PropType } from 'vue'
-import { ArrayOrStringType, GeoDateType } from '../types'
-import { MaskPatternType, MaskSpecialType } from './types'
+import { ArrayOrStringType } from '../types'
+import { MaskPatternType, MaskSpecialType, MaskTypeType } from './types'
 
 export const props = {
   // Values
+  fraction: [Boolean, Number] as PropType<boolean | number>,
   mask: [Array, String] as PropType<ArrayOrStringType>,
   match: {
     type: RegExp,
@@ -36,7 +37,7 @@ export const props = {
   },
   placeholder: String,
   type: {
-    type: String as PropType<GeoDateType | 'text'>,
+    type: String as PropType<MaskTypeType>,
     default: 'text'
   }
 }

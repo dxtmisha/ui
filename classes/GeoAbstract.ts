@@ -10,7 +10,7 @@ export abstract class GeoAbstract {
   public readonly code = computed<string>(() => Geo.toCode(this.data.value) || 'en-GB')
   public readonly firstDay = computed<string>(() => this.data.value?.firstDay || 'Mo')
 
-  protected constructor (code?: GeoCodeType) {
+  constructor (code?: GeoCodeType) {
     this.data = computed(() => {
       let data: GeoType | undefined
 

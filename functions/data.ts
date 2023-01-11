@@ -1,5 +1,9 @@
 import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
 
+export function arrFill<T = any> (value: T, count: number): T[] {
+  return Array(count).fill(value)
+}
+
 export function executeFunction<T = any> (callback: T | (() => T)): T {
   return callback instanceof Function ? callback() : callback
 }
@@ -125,6 +129,10 @@ export function replaceRecursive<T = any> (
   return array
 }
 
+export function strFill (value: string, count: number): string {
+  return arrFill<string>(value, count).join('')
+}
+
 export function toCamelCase (value: NumberOrStringType): string {
   return value
     .toString()
@@ -139,12 +147,14 @@ export function toKebabCase (value: NumberOrStringType): string {
 }
 
 export default {
+  arrFill,
   executeFunction,
   forEach,
   getExp,
   isFilled,
   isSelected,
   replaceRecursive,
+  strFill,
   toCamelCase,
   toKebabCase
 }

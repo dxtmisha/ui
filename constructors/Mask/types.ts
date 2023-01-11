@@ -1,4 +1,4 @@
-import { AssociativeType, ComponentBaseType } from '../types'
+import { AssociativeType, ComponentBaseType, GeoDateType } from '../types'
 import { ComputedRef, Ref } from 'vue'
 
 export type MaskItemType = {
@@ -21,6 +21,8 @@ export type MaskSpecialItemType = {
   minLength?: number
 }
 export type MaskSpecialType = string | string[] | AssociativeType<MaskSpecialItemType>
+
+export type MaskTypeType = GeoDateType | 'text' | 'number' | 'currency' | 'phone'
 
 export type MaskValidationType = {
   index: string
