@@ -75,6 +75,13 @@
     </div>
   </div>
   <div class="px-4 pb-4">
+    <div>mack0:
+      <md2-mask
+        mask="***-**-**"
+        @on-change="onEmit"
+        @on-input="onEmit"
+      />
+    </div>
     <div>mack1:
       <md2-mask
         mask="+7(***) ***-**-**"

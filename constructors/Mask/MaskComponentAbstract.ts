@@ -176,9 +176,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       case 'number':
         rubber.n = {
           rubber: true,
-          transitionChar: this.props.fraction ? this.geoIntl.value.numberDecimal().value : undefined
+          transitionChar: this.props.fraction ? this.geoIntl.value.numberDecimal().value : undefined,
+          maxLength: 12
         }
-        rubber.f = { rubber: this.props.fraction === true }
+        rubber.f = {
+          rubber: this.props.fraction === true,
+          maxLength: 6
+        }
+
         isRubber = true
 
         break
@@ -786,7 +791,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected setRubber (selection: number, char: string): boolean {
+  protected setRubber (selection: number, char: string): boolean | number {
     if (this.rubber.value) {
       const special = this.getPatternImmediate(selection)
       const rubber = this.rubber.value?.[special]
@@ -815,7 +820,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           }
 
           transition[special] = false
-          return true
+          return this.mask.value.lastIndexOf(special)
         }
       }
     }
@@ -828,8 +833,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
-    const rubber = this.setRubber(selection, char)
     const wait = this.getMaskChar(selection)
+    const selectionChar = this.valueToCharacter(selection)
+    const rubber = this.setRubber(selection, char)
 
     if (this.ifMatch(char)) {
       if (
@@ -839,8 +845,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         this.shiftCharacter()
 
         if (this.ifSpecial(wait)) {
-          const selectionChar = this.valueToCharacter(selection)
-
           this.setCharacter(selectionChar, char)
 
           if (focus) {
@@ -851,8 +855,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         } else {
           return this.setValue(selection + 1, char)
         }
-      } else if (rubber) {
-        return this.setValue(selection, char)
+      } else if (typeof rubber === 'number') {
+        return this.setValue(rubber, char)
       }
     }
 
