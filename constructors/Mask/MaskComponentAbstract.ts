@@ -208,10 +208,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected rubberByNumber = this.geoIntl.value.number(
     computed<string>(() => {
-      const number = (this.rubberItems.value?.n || 0) + 1
-      const fraction = this.props.fraction || this.rubberItems.value?.f || 0
+      const rubberItems = this.rubberItems.value
+      const number = (rubberItems?.n || 0) + 1
+      const fraction = rubberItems?.f ? rubberItems.f + 1 : this.props.fraction || 0
+
       return `${strFill('9', number)}${fraction ? `.${strFill('8', fraction)}` : ''}`
-    })
+    }), { maximumFractionDigits: 9 }
   )
 
   protected pattern = computed<MaskPatternType>(() => {
@@ -802,7 +804,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       const transition = this.rubberTransition.value
       const valueByType = this.valueByType.value?.[special]
 
-      if (rubber) {
+      if (rubber && rubber.rubber) {
         if (
           rubber?.transitionChar === char || (
             rubber?.maxLength &&
@@ -814,7 +816,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           valueByType.full &&
           this.ifMatch(char) && (
             transition[special] !== true ||
-            this.getMaskChar(selection) === special
+            wait === special
           )
         ) {
           if (special in this.rubberItems.value) {
