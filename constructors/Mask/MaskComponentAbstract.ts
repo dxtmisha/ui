@@ -748,6 +748,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const char = this.getMaskChar(index)
 
     if (
+      selection > 0 &&
       this.maxLength.value >= selection && (
         go ||
         this.ifSpecial(char)
