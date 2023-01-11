@@ -53,7 +53,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     watch(this.mask, () => {
-      const selectionChar = this.characterToValue(this.selectionCharacter)
+      const selectionChar = this.selectionCharacter < 0
+        ? this.selectionCharacter
+        : this.characterToValue(this.selectionCharacter)
+
       this.goSelection(selectionChar + 1)
     })
 
