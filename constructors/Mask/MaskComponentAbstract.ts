@@ -716,7 +716,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       index = this.setValue(index, char, focus) || index
     })
 
-    this.rubberTransition.value = {}
     return this
   }
 
@@ -794,9 +793,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected setRubber (selection: number, char: string): boolean | number {
+  protected setRubber (selection: number, char: string): false | number {
     if (this.rubber.value) {
       const special = this.getPatternImmediate(selection)
+      const wait = this.getMaskChar(selection)
       const rubber = this.rubber.value?.[special]
       const transition = this.rubberTransition.value
       const valueByType = this.valueByType.value?.[special]
@@ -823,7 +823,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           }
 
           transition[special] = false
-          return this.mask.value.lastIndexOf(special)
+
+          if (wait !== special) {
+            return this.mask.value.lastIndexOf(special)
+          }
         }
       }
     }
@@ -836,9 +839,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
-    const wait = this.getMaskChar(selection)
-    const selectionChar = this.valueToCharacter(selection)
-    const rubber = this.setRubber(selection, char)
+    const rubber = this.setRubber(selection, char) || selection
+    const selectionChar = this.valueToCharacter(rubber)
+    const wait = this.getMaskChar(rubber)
 
     if (this.ifMatch(char)) {
       if (
@@ -854,12 +857,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             this.goSelection(this.characterToValue(selectionChar + 1))
           }
 
+          this.rubberTransition.value = {}
           return this.characterToValue(selectionChar) + 1
         } else {
-          return this.setValue(selection + 1, char)
+          return this.setValue(rubber + 1, char)
         }
-      } else if (typeof rubber === 'number') {
-        return this.setValue(rubber, char)
       }
     }
 
