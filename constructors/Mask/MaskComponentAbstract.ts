@@ -647,12 +647,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       index = 0
     }
 
+    index = this.characterToValue(index++)
     value.split('').forEach(char => {
-      if (char.toString().match(this.props.match)) {
-        this.setValue(this.characterToValue(index++), char, focus)
-      }
+      index = this.setValue(index, char, focus) || index
     })
 
+    this.rubberTransition.value = {}
     return this
   }
 
@@ -734,6 +734,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (this.rubber.value) {
       const special = this.getPatternImmediate(selection)
       const rubber = this.rubber.value?.[special]
+      const transition = this.rubberTransition.value
       const valueByType = this.valueByType.value?.[special]
 
       if (rubber) {
@@ -743,15 +744,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             rubber?.maxLength <= valueByType?.maxLength
           )
         ) {
-          this.rubberTransition.value[special] = true
-        } else if (valueByType.full && this.ifMatch(char)) {
+          transition[special] = true
+        } else if (
+          valueByType.full &&
+          this.ifMatch(char) && (
+            transition[special] !== true ||
+            this.getMaskChar(selection) === special
+          )
+        ) {
           if (special in this.rubberItems.value) {
             this.rubberItems.value[special]++
           } else {
             this.rubberItems.value[special] = 1
           }
 
-          this.rubberTransition.value[special] = false
+          transition[special] = false
           return true
         }
       }
@@ -764,35 +771,36 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     selection: number,
     char: string,
     focus = true as boolean
-  ): boolean {
+  ): number {
     const rubber = this.setRubber(selection, char)
     const wait = this.getMaskChar(selection)
 
-    if (
-      wait &&
-      this.maxLength.value > this.standard.value.length
-    ) {
-      this.shiftCharacter()
+    if (this.ifMatch(char)) {
+      if (
+        wait &&
+        this.maxLength.value > this.standard.value.length
+      ) {
+        this.shiftCharacter()
 
-      if (this.ifSpecial(wait)) {
-        if (this.ifMatch(char)) {
+        if (this.ifSpecial(wait)) {
           const selectionChar = this.valueToCharacter(selection)
+
           this.setCharacter(selectionChar, char)
 
           if (focus) {
             this.goSelection(this.characterToValue(selectionChar + 1))
           }
 
-          return true
+          return this.characterToValue(selectionChar) + 1
+        } else {
+          return this.setValue(selection + 1, char)
         }
-      } else {
-        return this.setValue(selection + 1, char)
+      } else if (rubber) {
+        return this.setValue(selection, char)
       }
-    } else if (rubber) {
-      return this.setValue(selection, char)
     }
 
-    return false
+    return 0
   }
 
   protected shiftCharacter (status = 1): this {
