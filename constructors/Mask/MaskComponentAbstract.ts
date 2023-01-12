@@ -10,7 +10,8 @@ import {
   MaskItemType,
   MaskPatternType,
   MaskPatternTypeType,
-  MaskSetupType, MaskSpecialItemType,
+  MaskSetupType,
+  MaskSpecialItemType,
   MaskValidationType
 } from './types'
 
@@ -97,10 +98,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
-  protected decimal = computed<string | undefined>(() => {
+  protected decimal = computed<string | string[] | undefined>(() => {
     const data = this.geoIntl.value.numberDecimal().value
 
-    return this.mask.value.indexOf(data) !== -1 ? data : undefined
+    return this.mask.value.indexOf(data) !== -1 ? [data, '.'] : undefined
   })
 
   protected geo = computed<GeoDate | undefined>(() => {
@@ -605,7 +606,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   newValue (value: string): this {
-    this.character.value = this.reset(value)
+    this.reset(value)
     return this
   }
 
@@ -794,11 +795,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           ? new GeoDate(value, this.props.type).locale().value
           : value
 
-        chars.split('').forEach((char, selection) => {
-          if (this.ifSpecial(this.getMaskChar(selection))) {
-            data.push(char)
-          }
-        })
+        this.character.value = []
+        this.pasteValue(0, chars, false)
       }
     }
 
@@ -822,7 +820,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
       if (rubber && rubber.rubber) {
         if (
-          rubber?.transitionChar === char || (
+          isSelected(char, rubber?.transitionChar) || (
             rubber?.maxLength &&
             rubber?.maxLength <= valueByType?.maxLength
           )

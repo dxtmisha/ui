@@ -151,6 +151,15 @@
         @on-input=" onEmit"
       />
     </div>
+    <div>mack8b:
+      <md2-mask
+        :type="'currency'"
+        value="123456.78"
+        currency="RUB"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field

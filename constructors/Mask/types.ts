@@ -16,7 +16,7 @@ export type MaskPatternType = AssociativeType<MaskPatternTypeType>
 
 export type MaskSpecialItemType = {
   rubber?: boolean
-  transitionChar?: string
+  transitionChar?: string | string[]
   maxLength?: number
   minLength?: number
 }
