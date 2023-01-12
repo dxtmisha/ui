@@ -136,6 +136,21 @@
         @on-input=" onEmit"
       />
     </div>
+    <div>mack8:
+      <md2-mask
+        :type="'currency'"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
+    <div>mack8a:
+      <md2-mask
+        :type="'currency'"
+        currency="RUB"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field

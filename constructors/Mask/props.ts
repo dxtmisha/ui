@@ -4,6 +4,10 @@ import { MaskPatternType, MaskSpecialType, MaskTypeType } from './types'
 
 export const props = {
   // Values
+  currency: {
+    type: String as PropType<string>,
+    default: 'USD'
+  },
   fraction: [Boolean, Number] as PropType<boolean | number>,
   mask: [Array, String] as PropType<ArrayOrStringType>,
   match: {

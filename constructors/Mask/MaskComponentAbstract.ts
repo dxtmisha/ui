@@ -97,6 +97,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
+  protected decimal = computed<string | undefined>(() => {
+    const data = this.geoIntl.value.numberDecimal().value
+
+    return this.mask.value.indexOf(data) !== -1 ? data : undefined
+  })
+
   protected geo = computed<GeoDate | undefined>(() => {
     return this.ifDate.value ? new GeoDate('1987-12-18T10:20:30', this.props.type) : undefined
   })
@@ -119,6 +125,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected mask = computed<string[]>(() => {
     switch (this.props.type) {
+      case 'currency':
+        return this.rubberByCurrency.value
+          .replace(/9/ig, 'n')
+          .replace(/8/ig, 'f')
+          .split('')
       case 'number':
         return this.rubberByNumber.value
           .replace(/9/ig, 'n')
@@ -176,10 +187,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     let isRubber = false
 
     switch (this.props.type) {
+      case 'currency':
       case 'number':
         rubber.n = {
           rubber: true,
-          transitionChar: this.props.fraction ? this.geoIntl.value.numberDecimal().value : undefined,
+          transitionChar: this.decimal.value,
           maxLength: 12
         }
         rubber.f = {
@@ -206,15 +218,18 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return isRubber ? rubber : undefined
   })
 
-  protected rubberByNumber = this.geoIntl.value.number(
-    computed<string>(() => {
-      const rubberItems = this.rubberItems.value
-      const number = (rubberItems?.n || 0) + 1
-      const fraction = rubberItems?.f ? rubberItems.f + 1 : this.props.fraction || 0
+  protected rubberByItem = computed<string>(() => {
+    const rubberItems = this.rubberItems.value
+    const number = strFill('9', (rubberItems?.n || 0) + 1)
+    const fraction = this.props.type === 'currency'
+      ? 2
+      : rubberItems?.f ? rubberItems.f + 1 : this.props.fraction || 0
 
-      return `${strFill('9', number)}${fraction ? `.${strFill('8', fraction)}` : ''}`
-    }), { maximumFractionDigits: 9 }
-  )
+    return `${number}${fraction ? `.${strFill('8', fraction)}` : ''}${this.props.type === 'currency' ? ` ${this.props.currency}` : ''}`
+  })
+
+  protected rubberByCurrency = this.geoIntl.value.currency(this.rubberByItem, { maximumFractionDigits: 2 })
+  protected rubberByNumber = this.geoIntl.value.number(this.rubberByItem, { maximumFractionDigits: 9 })
 
   protected pattern = computed<MaskPatternType>(() => {
     if (this.geo.value) {
@@ -265,6 +280,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected special = computed<string[] | string>(() => {
     switch (this.props.type) {
+      case 'currency':
       case 'number':
         return ['n', 'f']
       default:
