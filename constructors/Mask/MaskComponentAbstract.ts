@@ -454,7 +454,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const value = [] as string[]
 
     text.split('').forEach(char => {
-      if (char.match(this.props.match)) {
+      if (this.ifMatch(char)) {
         value.push(char)
       }
     })
