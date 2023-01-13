@@ -110,7 +110,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected geoIntl = computed<GeoIntl>(() => new GeoIntl())
 
-  protected ifDate = computed<boolean>(() => ['text', 'number', 'currency', 'phone'].indexOf(this.props.type) === -1)
+  protected ifDate = computed<boolean>(() => ['text', 'number', 'currency'].indexOf(this.props.type) === -1)
 
   protected ifFull = computed<boolean>(() => {
     let empty = false
