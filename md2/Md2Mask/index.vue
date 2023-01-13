@@ -14,10 +14,14 @@
       @paste.prevent="onPaste"
     />
     <input ref="dateElement"/>
-    <span ref="charsElement"></span>
-    <div/>
-    {{ maskBind }}
-    {{ validation }}
+    <span ref="charsElement">
+      <span
+        v-for="({type, value}, index) in viewBind"
+        :key="index"
+        :class="type"
+        v-html="value"
+      />
+    </span>
   </label>
 </template>
 

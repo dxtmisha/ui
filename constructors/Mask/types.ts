@@ -33,6 +33,11 @@ export type MaskValidationType = {
   pattern: MaskPatternTypeType
 }
 
+export type MaskViewType = {
+  type: string,
+  value: string
+}
+
 export type MaskSetupType = ComponentBaseType & {
   charsElement: Ref<HTMLSpanElement | undefined>
   dateElement: Ref<HTMLInputElement | undefined>
@@ -41,6 +46,7 @@ export type MaskSetupType = ComponentBaseType & {
   validationMessage: ComputedRef<string>
   maskBind: ComputedRef<string[]>
   valueBind: ComputedRef<string>
+  viewBind: ComputedRef<MaskViewType[]>
   onBlur: (event: FocusEvent) => void
   onChange: (event: Event) => void
   onFocus: (event: FocusEvent) => void

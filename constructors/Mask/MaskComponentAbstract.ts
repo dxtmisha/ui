@@ -12,7 +12,7 @@ import {
   MaskPatternTypeType,
   MaskSetupType,
   MaskSpecialItemType,
-  MaskValidationType
+  MaskValidationType, MaskViewType
 } from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
@@ -88,6 +88,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       validationMessage: this.validationMessage,
       maskBind: this.mask,
       valueBind: this.value,
+      viewBind: this.view,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
       onFocus: (event: FocusEvent) => this.onFocus(event),
@@ -414,6 +415,19 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   })
 
+  protected view = computed<MaskViewType[]>(() => {
+    const data = [] as MaskViewType[]
+
+    this.mask.value.forEach((item, index) => {
+      data.push({
+        type: `is-${this.getViewType(item, index)}`,
+        value: this.getViewValue(item, index)
+      })
+    })
+
+    return data
+  })
+
   protected addValueByType (data: MaskItemsType, index: string): MaskItemType {
     if (!(index in data)) {
       data[index] = {
@@ -595,6 +609,33 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const fraction = data?.f?.value
 
     return `${data?.n?.value}${fraction ? `.${fraction}` : ''}`
+  }
+
+  protected getViewType (item: string, index: number): string {
+    if (this.standard.value.length > index) {
+      return this.ifSpecial(item) ? 'special' : 'standard'
+    } else {
+      return 'placeholder'
+    }
+  }
+
+  protected getViewValue (item: string, index: number): string {
+    if (this.standard.value.length > index) {
+      return this.standard.value[index]
+    } else if (this.ifSpecial(item)) {
+      const view = this.props.view
+
+      switch (typeof view) {
+        case 'string':
+          return view
+        case 'object':
+          if (item in view) {
+            return view[item]
+          }
+      }
+    }
+
+    return item
   }
 
   protected ifMatch (char: string): boolean {

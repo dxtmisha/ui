@@ -43,6 +43,10 @@ export const props = {
   type: {
     type: String as PropType<MaskTypeType>,
     default: 'text'
+  },
+  view: {
+    type: [Object, String] as PropType<ArrayOrStringType>,
+    default: '_'
   }
 }
 
