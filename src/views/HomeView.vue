@@ -89,6 +89,13 @@
         @on-input="onEmit"
       />
     </div>
+    <div>mack1a:
+      <md2-mask
+        :mask="['+84 ***-**','+7(***) ***-**-**']"
+        @on-change="onEmit"
+        @on-input="onEmit"
+      />
+    </div>
     <div>mack2:
       <md2-mask
         :type="'datetime'"

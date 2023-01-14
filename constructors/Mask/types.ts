@@ -1,4 +1,4 @@
-import { AssociativeType, ComponentBaseType, GeoDateType } from '../types'
+import { AssociativeType, ComponentAssociativeType, ComponentBaseType, GeoDateType } from '../types'
 import { ComputedRef, Ref } from 'vue'
 
 export type MaskItemType = {
@@ -38,7 +38,14 @@ export type MaskViewType = {
   value: string
 }
 
+export type MaskClassesType = {
+  main: ComponentAssociativeType
+  input: ComponentAssociativeType
+  character: ComponentAssociativeType
+}
+
 export type MaskSetupType = ComponentBaseType & {
+  classes: ComputedRef<MaskClassesType>
   charsElement: Ref<HTMLSpanElement | undefined>
   dateElement: Ref<HTMLInputElement | undefined>
   standard: ComputedRef<string>

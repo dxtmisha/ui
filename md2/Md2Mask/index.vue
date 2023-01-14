@@ -2,6 +2,7 @@
   <label :class="classes.main">
     <input
       ref="element"
+      :class="classes.input"
       :type="input"
       :value="standard"
       @blur="onBlur"
@@ -13,14 +14,16 @@
       @keypress.prevent="onKeypress"
       @paste.prevent="onPaste"
     />
-    <input ref="dateElement"/>
     <span ref="charsElement">
-      <span
-        v-for="({type, value}, index) in viewBind"
-        :key="index"
-        :class="type"
-        v-html="value"
-      />
+      <template v-if="viewBind.length > 0">
+        <span
+          v-for="({type, value}, index) in viewBind"
+          :key="index"
+          :class="type"
+          v-html="value"
+        />
+      </template>
+      <teleport v-else>&nbsp;</teleport>
     </span>
   </label>
 </template>

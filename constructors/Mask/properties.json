@@ -1,6 +1,25 @@
 {
   "d": {
     "mask": {
+      "var|sys": {
+        "text": "",
+        "textOpacity": "",
+        "error": {
+          "text": ""
+        },
+        "standard": {
+          "textOpacity": ""
+        },
+        "special": {
+          "textOpacity": ""
+        }
+      },
+      "var|l": {
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}"
+      },
+      "#character": {},
+      "#input": {}
     }
   }
 }

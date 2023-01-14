@@ -1,7 +1,20 @@
 {
   "md2": {
     "mask": {
-      "@style": "{d.mask}"
+      "@style": "{d.mask}",
+      "var|sys": {
+        "textOpacity": "{sys.opacity.surface.disabled}",
+        "error": {
+          "text": "{sys.palette.error}",
+          "textOpacity": "{sys.opacity.surface.high}"
+        },
+        "standard": {
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
+        "special": {
+          "textOpacity": "{sys.opacity.surface.high}"
+        }
+      }
     }
   }
 }

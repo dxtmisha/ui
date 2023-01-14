@@ -1,6 +1,7 @@
 @import "../styles/services/classesService";
 @import "../styles/services/propertiesService";
 @import "../styles/services/typographyService";
+@import "../styles/properties";
 
 @mixin initMd2Service() {
   $name: 'md2';
@@ -32,4 +33,8 @@
                   #{var(--md2-sys-opacity-border)}
   );
   @include initMd2Service();
+
+  body {
+    @include propertiesLink('md2.font.body1');
+  }
 }

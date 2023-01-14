@@ -6,13 +6,15 @@ import { forEach, getExp, isFilled, isSelected, strFill } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
+  MaskClassesType,
   MaskItemsType,
   MaskItemType,
   MaskPatternType,
   MaskPatternTypeType,
   MaskSetupType,
   MaskSpecialItemType,
-  MaskValidationType, MaskViewType
+  MaskValidationType,
+  MaskViewType
 } from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
@@ -28,6 +30,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly dateElement = ref<HTMLInputElement | undefined>()
 
   protected readonly character = ref<string[]>([])
+  protected readonly length = ref<number>(0)
   protected readonly rubberItems = ref<AssociativeType<number>>({})
   protected readonly rubberTransition = ref<AssociativeType<boolean>>({})
 
@@ -39,7 +42,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected selectionCharacter = 0 as number
 
   protected change?: boolean
-  protected length = 0 as number
   protected unidentified?: boolean
 
   constructor (
@@ -50,7 +52,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     watch(this.refs.value, value => this.newValue(value))
     watch(this.character, value => {
-      this.length = value.length
+      this.length.value = value.length
     })
 
     watch(this.mask, () => {
@@ -74,7 +76,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   setup (): MaskSetupType {
-    const classes = this.getClasses()
+    const classes = this.getClasses<MaskClassesType>()
     const styles = this.getStyles()
 
     return {
@@ -158,7 +160,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     if (Array.isArray(mask)) {
       mask = mask.find(
-        (item, key) => this.getSpecialLength(item) >= this.length || key === mask.length - 1
+        (item, key) => this.getSpecialLength(item) >= this.length.value || key === mask.length - 1
       )
     }
 
@@ -167,7 +169,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected maxLength = computed<number>(() => {
     if (
-      this.ifDate ||
+      this.ifDate.value ||
       !Array.isArray(this.props.mask)
     ) {
       return this.mask.value.length
@@ -304,28 +306,26 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     let stop: boolean
     let key = 0 as number
 
-    if (character.length > 0) {
-      this.mask.value.forEach(char => {
-        if (!stop) {
-          if (!this.ifSpecial(char)) {
-            value.push(char)
-          } else if (key in character) {
-            value.push(character[key++])
+    this.mask.value.forEach(char => {
+      if (!stop) {
+        if (!this.ifSpecial(char)) {
+          value.push(char)
+        } else if (key in character) {
+          value.push(character[key++])
 
-            if (
-              rubber &&
-              char in rubber &&
-              key >= character.length &&
-              this.rubberTransition.value?.[char] !== true
-            ) {
-              stop = true
-            }
-          } else {
+          if (
+            rubber &&
+            char in rubber &&
+            key >= character.length &&
+            this.rubberTransition.value?.[char] !== true
+          ) {
             stop = true
           }
+        } else {
+          stop = true
         }
-      })
-    }
+      }
+    })
 
     return value.join('')
   })
@@ -420,7 +420,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.mask.value.forEach((item, index) => {
       data.push({
-        type: `is-${this.getViewType(item, index)}`,
+        type: `${this.getClassName(['character'])} is-${this.getViewType(item, index)}`,
         value: this.getViewValue(item, index)
       })
     })
@@ -576,7 +576,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         value++
       }
     })
-
+    console.log('value', value)
     return value
   }
 
@@ -613,7 +613,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected getViewType (item: string, index: number): string {
     if (this.standard.value.length > index) {
-      return this.ifSpecial(item) ? 'special' : 'standard'
+      if (!this.ifSpecial(item)) {
+        return 'standard'
+      } else if (this.validation.value?.index === item) {
+        return 'error'
+      } else {
+        return 'special'
+      }
     } else {
       return 'placeholder'
     }
@@ -697,7 +703,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           requestAnimationFrame(() => this.goSelection(this.selection.start))
         }
       } else if (
-        this.length > target.value.length &&
+        this.length.value > target.value.length &&
         this.selection.start === this.selection.end
       ) {
         this.popValue(this.selection.start)
@@ -710,7 +716,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     if (event.key === 'Unidentified' || event.keyCode === 229) {
       this.unidentified = true
-      this.length = target.value.length
+      this.length.value = target.value.length
       this.selection.start = target.selectionStart || 0
       this.selection.end = target.selectionEnd || 0
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
@@ -897,17 +903,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
-    const rubber = this.setRubber(selection, char) || selection
-    const selectionChar = this.valueToCharacter(rubber)
-    const wait = this.getMaskChar(rubber)
-
     if (this.ifMatch(char)) {
+      this.shiftCharacter()
+
+      const rubber = this.setRubber(selection, char) || selection
+      const selectionChar = this.valueToCharacter(rubber)
+      const wait = this.getMaskChar(rubber)
+
       if (
         wait &&
         this.maxLength.value > this.standard.value.length
       ) {
-        this.shiftCharacter()
-
         if (this.ifSpecial(wait)) {
           this.setCharacter(selectionChar, char)
 
@@ -927,7 +933,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   protected shiftCharacter (status = 1): this {
-    this.length = this.character.value.length + status
+    this.length.value = this.character.value.length + status
     return this
   }
 

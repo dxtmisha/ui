@@ -1,4 +1,6 @@
 @import "../../styles/properties";
+@import "../../styles/color";
+@import "../../styles/position";
 
 @mixin initMask($design) {
   @include propertiesInit($design, 'mask') {
@@ -8,4 +10,39 @@
 }
 
 @mixin mixinMask() {
+  position: relative;
+
+  @include mixinInput;
+  @include mixinCharacter;
+}
+
+@mixin mixinInput() {
+  @include subClass('input') {
+    caret-color: rgba(v('sys.color'), v('??sys.special.text-opacity'));
+    color: transparent;
+
+    position: absolute;
+    @include inset();
+    z-index: 4;
+  }
+}
+
+@mixin mixinCharacter() {
+  @include subClass('character') {
+    @include colorOpacity(v('??l.text-opacity'));
+
+    &.is-special {
+      @include linkTo('text-opacity', '??sys.special.text-opacity');
+    }
+
+    &.is-standard {
+      @include linkTo('text-opacity', '??sys.standard.text-opacity');
+    }
+
+    &.is-error {
+      @include linkTo('text', '??sys.error.text');
+      @include linkTo('text-opacity', '??sys.error.text-opacity');
+      @include color(v('??l.text'));
+    }
+  }
 }
