@@ -45,4 +45,12 @@
       @include color(v('??l.text'));
     }
   }
+
+  &:not(#{c('??-visible')}) {
+    @include subClassByGlobal('character') {
+      &.is-placeholder {
+        @include colorOpacity(0);
+      }
+    }
+  }
 }

@@ -576,7 +576,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         value++
       }
     })
-    console.log('value', value)
     return value
   }
 

@@ -14,8 +14,6 @@ export const props = {
     type: RegExp,
     default: /[0-9]/
   },
-  max: String,
-  min: String,
   on: {
     type: Object,
     default: {}
