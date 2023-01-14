@@ -1,5 +1,6 @@
 @import "../../styles/properties";
 @import "../../styles/color";
+@import "../../styles/font";
 @import "../../styles/position";
 
 @mixin initMask($design) {
@@ -9,14 +10,18 @@
   }
 }
 
-@mixin mixinMask() {
+@mixin mixinMask {
   position: relative;
 
   @include mixinInput;
   @include mixinCharacter;
+
+  &.is-right {
+    @include textAlign('right');
+  }
 }
 
-@mixin mixinInput() {
+@mixin mixinInput {
   @include subClass('input') {
     caret-color: rgba(v('sys.color'), v('??sys.special.text-opacity'));
     color: transparent;
@@ -24,6 +29,12 @@
     position: absolute;
     @include inset();
     z-index: 4;
+  }
+
+  &.is-right {
+    @include subClassByGlobal('input') {
+      @include textAlign('right');
+    }
   }
 }
 

@@ -37,7 +37,7 @@ export const props = {
     type: String,
     default: 'text'
   },
-  placeholder: String,
+  right: Boolean as PropType<boolean>,
   type: {
     type: String as PropType<MaskTypeType>,
     default: 'text'

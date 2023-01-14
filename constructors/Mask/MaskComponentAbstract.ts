@@ -27,7 +27,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   ] as string[]
 
   protected readonly charsElement = ref<HTMLSpanElement | undefined>()
-  protected readonly dateElement = ref<HTMLInputElement | undefined>()
 
   protected readonly character = ref<string[]>([])
   protected readonly length = ref<number>(0)
@@ -55,13 +54,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.length.value = value.length
     })
 
-    watch(this.mask, () => {
-      const selectionChar = this.selectionCharacter < 0
-        ? this.selectionCharacter
-        : this.characterToValue(this.selectionCharacter)
-
-      this.goSelection(selectionChar + 1)
-    })
+    watch(this.mask, () => this.goSelection())
 
     watch([
       this.ifFull,
@@ -76,7 +69,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   setup (): MaskSetupType {
-    const classes = this.getClasses<MaskClassesType>()
+    const classes = this.getClasses<MaskClassesType>({
+      main: { 'is-right': false }
+    })
     const styles = this.getStyles()
 
     return {
@@ -84,8 +79,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       classes,
       styles,
       charsElement: this.charsElement,
-      dateElement: this.dateElement,
       standard: this.standard,
+      standardByRight: this.standardByRight,
       validation: this.validation,
       validationMessage: this.validationMessage,
       maskBind: this.mask,
@@ -93,6 +88,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       viewBind: this.view,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
+      onClick: (event: MouseEvent) => this.onClick(event),
       onFocus: (event: FocusEvent) => this.onFocus(event),
       onInput: (event: InputEvent) => this.onInput(event),
       onKeydown: (event: KeyboardEvent) => this.onKeydown(event),
@@ -126,6 +122,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     return !empty
   })
+
+  protected ifRight = computed(() => ['number', 'currency'].indexOf(this.props.type) !== -1 || this.props.right)
 
   protected mask = computed<string[]>(() => {
     switch (this.props.type) {
@@ -330,6 +328,38 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value.join('')
   })
 
+  protected standardByRight = computed<string>(() => {
+    if (this.ifRight.value) {
+      let data = ''
+
+      this.view.value?.forEach(item => {
+        data += item.value
+      })
+
+      return data
+    } else {
+      return this.standard.value
+    }
+  })
+
+  protected transitionChar = computed<string[]>(() => {
+    const data = [] as string[]
+
+    if (this.rubber.value) {
+      forEach(this.rubber.value, item => {
+        if (item?.transitionChar) {
+          if (typeof item.transitionChar === 'string') {
+            data.push(item.transitionChar)
+          } else {
+            data.push(...item.transitionChar)
+          }
+        }
+      })
+    }
+
+    return data
+  })
+
   protected validation = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
@@ -420,7 +450,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.mask.value.forEach((item, index) => {
       data.push({
-        type: `${this.getClassName(['character'])} is-${this.getViewType(item, index)}`,
+        type: `${this.getClassName(['character'])} ${this.getViewType(item, index)}`,
         value: this.getViewValue(item, index)
       })
     })
@@ -579,11 +609,18 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value
   }
 
-  protected goSelection (selection: number): this {
+  protected goSelection (selection?: number): this {
+    const selectionChar = typeof selection === 'number'
+      ? selection
+      : this.selectionCharacter < 0
+        ? this.selectionCharacter
+        : this.characterToValue(this.selectionCharacter)
+
     requestAnimationFrame(() => {
       if (this.element.value) {
-        this.element.value.selectionEnd = selection
-        this.element.value.selectionStart = selection
+        this.element.value.selectionEnd = selectionChar + 1
+        this.element.value.selectionStart = selectionChar + 1
+        // this.toEnd(this.element.value)
       }
     })
 
@@ -613,14 +650,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected getViewType (item: string, index: number): string {
     if (this.standard.value.length > index) {
       if (!this.ifSpecial(item)) {
-        return 'standard'
+        return 'is-standard'
       } else if (this.validation.value?.index === item) {
-        return 'error'
+        return 'is-error'
       } else {
-        return 'special'
+        return 'is-special'
       }
     } else {
-      return 'placeholder'
+      return `is-placeholder${this.transitionChar.value.indexOf(item) !== -1 ? ' is-transition' : ''}`
     }
   }
 
@@ -680,9 +717,15 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.newValue(target.value)
   }
 
+  onClick (event: MouseEvent): void {
+    this.toEnd(event.target as HTMLInputElement)
+  }
+
   onFocus (event: FocusEvent): void {
     this.change = false
     this.context.emit('on-focus', event)
+
+    requestAnimationFrame(() => this.toEnd(event.target as HTMLInputElement))
   }
 
   onInput (event: InputEvent) {
@@ -691,15 +734,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.unidentified = false
 
       if (this.selection.start !== this.selection.end) {
-        for (let i = this.selection.end; i > this.selection.start; i--) {
-          this.popValue(i, false)
-        }
+        this.popValueList(this.selection.start, this.selection.end)
       }
 
       if (event.data) {
         if (!this.setValue(this.selection.start, event.data)) {
           target.value = this.standard.value
-          requestAnimationFrame(() => this.goSelection(this.selection.start))
+          requestAnimationFrame(() => this.goSelection())
         }
       } else if (
         this.length.value > target.value.length &&
@@ -725,9 +766,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         if (target.selectionStart === target.selectionEnd) {
           this.popValue(target.selectionStart)
         } else if (target.selectionEnd !== null) {
-          for (let i = target.selectionEnd; i > target.selectionStart; i--) {
-            this.popValue(i, false)
-          }
+          this.popValueList(target.selectionStart, target.selectionEnd)
         }
       }
     }
@@ -740,10 +779,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       if (target.selectionStart === target.selectionEnd) {
         this.setValue(target.selectionStart, event.key)
       } else if (target.selectionEnd !== null) {
-        for (let i = target.selectionEnd; i > target.selectionStart; i--) {
-          this.popValue(i, false)
-        }
-
+        this.popValueList(target.selectionStart, target.selectionEnd)
         this.setValue(target.selectionStart, event.key)
       }
     }
@@ -757,9 +793,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       target.selectionEnd !== null &&
       start !== target.selectionEnd
     ) {
-      for (let i = target.selectionEnd; i > start; i--) {
-        this.popValue(i, false)
-      }
+      this.popValueList(start, target.selectionEnd)
     }
 
     this.pasteValue(start, await this.getClipboardData(event))
@@ -808,7 +842,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  popValue (selection: number, go = true): this {
+  popValue (selection: number, go = true): string {
     const index = selection - 1
     const char = this.getMaskChar(index)
 
@@ -820,12 +854,32 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       )
     ) {
       const selectionChar = this.valueToCharacter(index)
-
       this.popCharacter(selectionChar)
-      this.popRubber(char)
-      this.goSelection(this.characterToValue(selectionChar))
+
+      if (go) {
+        this.popRubber(char)
+        this.goSelection()
+      }
+
       this.shiftCharacter(0)
+      return char
     }
+
+    return ''
+  }
+
+  popValueList (selectionStart: number, selectionEnd: number): this {
+    const chars = []
+
+    for (let i = selectionEnd; i > selectionStart; i--) {
+      chars.push(this.popValue(i, false))
+    }
+
+    chars.forEach(char => {
+      if (char !== '') {
+        this.popRubber(char)
+      }
+    })
 
     return this
   }
@@ -902,10 +956,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
+    const rubber = this.setRubber(selection, char) || selection
+
     if (this.ifMatch(char)) {
       this.shiftCharacter()
 
-      const rubber = this.setRubber(selection, char) || selection
       const selectionChar = this.valueToCharacter(rubber)
       const wait = this.getMaskChar(rubber)
 
@@ -917,7 +972,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           this.setCharacter(selectionChar, char)
 
           if (focus) {
-            this.goSelection(this.characterToValue(selectionChar + 1))
+            this.goSelection()
           }
 
           this.rubberTransition.value = {}
@@ -934,6 +989,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected shiftCharacter (status = 1): this {
     this.length.value = this.character.value.length + status
     return this
+  }
+
+  protected toEnd (target: HTMLInputElement): void {
+    if (
+      this.ifRight.value &&
+      target.selectionStart !== null &&
+      target.selectionStart > this.standard.value.length
+    ) {
+      target.selectionStart = this.standard.value.length
+      target.selectionEnd = this.standard.value.length
+    }
   }
 
   protected valueToCharacter (selection: number, mask?: string[]): number {
