@@ -17,6 +17,7 @@ import {
   MaskValidationType,
   MaskViewType
 } from './types'
+import { MaskRubberTransition } from './MaskRubberTransition'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -31,8 +32,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected readonly character = ref<string[]>([])
   protected readonly length = ref<number>(0)
+
   protected readonly rubberItems = ref<AssociativeType<number>>({})
-  protected readonly rubberTransition = ref<AssociativeType<boolean>>({})
+  protected readonly transition: MaskRubberTransition
 
   protected selection = {
     start: 0 as number,
@@ -49,6 +51,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     protected readonly context: AssociativeType & object
   ) {
     super(props, context)
+
+    this.transition = new MaskRubberTransition()
 
     watch(this.refs.value, value => this.newValue(value))
     watch(this.character, value => {
@@ -316,7 +320,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             rubber &&
             char in rubber &&
             key >= character.length &&
-            this.rubberTransition.value?.[char] !== true
+            this.transition.disabled(char)
           ) {
             stop = true
           }
@@ -846,7 +850,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     }
 
-    this.rubberTransition.value[special] = false
+    this.transition.reset()
     return this
   }
 
@@ -927,7 +931,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
       const wait = this.getMaskChar(selection)
       const rubber = this.rubber.value?.[special]
-      const transition = this.rubberTransition.value
       const valueByType = this.valueByType.value?.[special]
 
       if (rubber && rubber.rubber) {
@@ -937,11 +940,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             rubber?.maxLength <= valueByType?.maxLength
           )
         ) {
-          transition[special] = true
+          this.transition.set(special)
         } else if (
           valueByType.full &&
           this.ifMatch(char) && (
-            transition[special] !== true ||
+            this.transition.disabled(special) ||
             wait === special
           )
         ) {
@@ -952,8 +955,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           } else {
             this.rubberItems.value[special] = 1
           }
-
-          transition[special] = false
 
           return wait !== special
             ? this.characterToValue(character + 1)
@@ -970,14 +971,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
-    if (this.ifMatch(char)) {
-      const rubber = this.setRubber(selection, char)
+    const rubber = this.setRubber(selection, char)
 
+    if (this.ifMatch(char)) {
       this.shiftCharacter()
 
       const selectionChar = this.valueToCharacter(rubber)
       const wait = this.getMaskChar(rubber)
-      console.log('rubber', rubber, selectionChar, wait)
+
       if (
         wait &&
         this.maxLength.value > this.standard.value.length
@@ -989,7 +990,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             this.goSelection()
           }
 
-          this.rubberTransition.value = {}
+          this.transition.reset()
           return this.characterToValue(selectionChar) + 1
         } else {
           return this.setValue(rubber + 1, char)

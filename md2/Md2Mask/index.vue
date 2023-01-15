@@ -30,17 +30,18 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { MaskComponent } from './MaskComponent'
 import { props } from '../../constructors/Mask/props'
 
-export default {
+export default defineComponent({
   name: 'Md2Mask',
   components: {},
   props,
   setup (props: object, context: object) {
     return new MaskComponent(props, context).setup()
   }
-}
+})
 </script>
 
 <style lang="scss">
