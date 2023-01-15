@@ -10,6 +10,11 @@ export type MaskItemType = {
 }
 export type MaskItemsType = AssociativeType<MaskItemType>
 
+export type MaskImmediateType = {
+  special: string,
+  newSelection: number
+}
+
 export type MaskPatternFunctionType = (data: MaskItemsType) => string | AssociativeType<string>
 export type MaskPatternTypeType = AssociativeType<string> | string | MaskPatternFunctionType
 export type MaskPatternType = AssociativeType<MaskPatternTypeType>

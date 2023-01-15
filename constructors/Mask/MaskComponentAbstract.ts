@@ -7,6 +7,7 @@ import { props } from './props'
 import { AssociativeType } from '../types'
 import {
   MaskClassesType,
+  MaskImmediateType,
   MaskItemsType,
   MaskItemType,
   MaskPatternType,
@@ -586,15 +587,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value
   }
 
-  protected getPatternImmediate (selection: number): string {
+  protected getPatternImmediate (selection: number): MaskImmediateType {
     const wait = this.getMaskChar(selection)
 
     if (this.ifSpecial(wait)) {
-      return wait
+      return {
+        special: wait,
+        newSelection: selection
+      }
     } else if (selection > 0) {
       return this.getPatternImmediate(selection - 1)
     } else {
-      return ''
+      return {
+        special: '',
+        newSelection: 0
+      }
     }
   }
 
@@ -780,6 +787,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         this.setValue(target.selectionStart, event.key)
       } else if (target.selectionEnd !== null) {
         this.popValueList(target.selectionStart, target.selectionEnd)
+        console.log(this.selectionCharacter)
         this.setValue(target.selectionStart, event.key)
       }
     }
@@ -910,9 +918,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected setRubber (selection: number, char: string): false | number {
+  protected setRubber (selection: number, char: string): number {
     if (this.rubber.value) {
-      const special = this.getPatternImmediate(selection)
+      const {
+        special,
+        newSelection
+      } = this.getPatternImmediate(selection)
+
       const wait = this.getMaskChar(selection)
       const rubber = this.rubber.value?.[special]
       const transition = this.rubberTransition.value
@@ -933,6 +945,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
             wait === special
           )
         ) {
+          const character = this.valueToCharacter(newSelection)
+
           if (special in this.rubberItems.value) {
             this.rubberItems.value[special]++
           } else {
@@ -941,14 +955,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
           transition[special] = false
 
-          if (wait !== special) {
-            return this.mask.value.lastIndexOf(special)
-          }
+          return wait !== special
+            ? this.characterToValue(character + 1)
+            : this.characterToValue(character)
         }
       }
     }
 
-    return false
+    return selection
   }
 
   setValue (
@@ -956,14 +970,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
-    const rubber = this.setRubber(selection, char) || selection
-
     if (this.ifMatch(char)) {
+      const rubber = this.setRubber(selection, char)
+
       this.shiftCharacter()
 
       const selectionChar = this.valueToCharacter(rubber)
       const wait = this.getMaskChar(rubber)
-
+      console.log('rubber', rubber, selectionChar, wait)
       if (
         wait &&
         this.maxLength.value > this.standard.value.length
