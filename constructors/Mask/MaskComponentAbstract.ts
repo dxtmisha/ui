@@ -2,6 +2,7 @@ import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
 import { GeoIntl } from '../../classes/GeoIntl'
+import { MaskRubberTransition } from './MaskRubberTransition'
 import { forEach, getExp, isFilled, isSelected, strFill } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
@@ -17,7 +18,6 @@ import {
   MaskValidationType,
   MaskViewType
 } from './types'
-import { MaskRubberTransition } from './MaskRubberTransition'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -33,7 +33,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly character = ref<string[]>([])
   protected readonly length = ref<number>(0)
 
+  // DELETE
   protected readonly rubberItems = ref<AssociativeType<number>>({})
+
+  // DELETE
   protected readonly transition: MaskRubberTransition
 
   protected selection = {
@@ -102,6 +105,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
+  // DELETE
   protected decimal = computed<string | string[] | undefined>(() => {
     const data = this.geoIntl.value.numberDecimal().value
 
@@ -112,6 +116,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this.ifDate.value ? new GeoDate('1987-12-18T10:20:30', this.props.type) : undefined
   })
 
+  // DELETE
   protected geoIntl = computed<GeoIntl>(() => new GeoIntl())
 
   protected ifDate = computed<boolean>(() => ['text', 'number', 'currency'].indexOf(this.props.type) === -1)
@@ -189,6 +194,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
+  // DELETE
   protected rubber = computed<AssociativeType<MaskSpecialItemType> | undefined>(() => {
     const rubber = {} as AssociativeType<MaskSpecialItemType>
     let isRubber = false
@@ -225,6 +231,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return isRubber ? rubber : undefined
   })
 
+  // DELETE
   protected rubberByItem = computed<string>(() => {
     const rubberItems = this.rubberItems.value
     const number = strFill('9', (rubberItems?.n || 0) + 1)
@@ -235,6 +242,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return `${number}${fraction ? `.${strFill('8', fraction)}` : ''}${this.props.type === 'currency' ? ` ${this.props.currency}` : ''}`
   })
 
+  // DELETE
   protected rubberByCurrency = this.geoIntl.value.currency(this.rubberByItem, { maximumFractionDigits: 2 })
   protected rubberByNumber = this.geoIntl.value.number(this.rubberByItem, { maximumFractionDigits: 9 })
 
@@ -579,6 +587,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this.mask.value?.[selection]
   }
 
+  // DELETE
   protected getRubber (mask?: string): string {
     let value = mask?.toString() || ''
 
@@ -837,6 +846,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
+  // DELETE
   protected popRubber (special: string): this {
     const rubber = this.rubberItems.value
 
@@ -922,6 +932,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
+  // DELETE
   protected setRubber (selection: number, char: string): number {
     if (this.rubber.value) {
       const {
