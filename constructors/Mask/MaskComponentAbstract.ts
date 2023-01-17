@@ -18,6 +18,8 @@ import {
   MaskValidationType,
   MaskViewType
 } from './types'
+import { MaskCharacter } from './MaskCharacter'
+import { MaskRubber } from './MaskRubber'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -30,6 +32,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected readonly charsElement = ref<HTMLSpanElement | undefined>()
 
+  protected readonly characters: MaskCharacter
+  protected readonly rubbers: MaskRubber
+
+  // DELETE
   protected readonly character = ref<string[]>([])
   protected readonly length = ref<number>(0)
 
@@ -44,6 +50,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     end: 0 as number
   }
 
+  // DELETE
   protected selectionCharacter = 0 as number
 
   protected change?: boolean
@@ -55,9 +62,27 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   ) {
     super(props, context)
 
+    this.characters = new MaskCharacter(
+      this.mask,
+      this.refs.match,
+      this.special
+    )
+
+    this.rubbers = new MaskRubber(
+      this.refs.type,
+      this.refs.fraction,
+      this.refs.currency,
+      this.mask,
+      this.refs.match,
+      this.refs.special,
+      this.valueByType
+    )
+
     this.transition = new MaskRubberTransition()
 
     watch(this.refs.value, value => this.newValue(value))
+
+    // DELETE
     watch(this.character, value => {
       this.length.value = value.length
     })
@@ -524,6 +549,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
+  // DELETE
   protected getCharacter (text: string): string[] {
     const value = [] as string[]
 
@@ -794,15 +820,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   onKeypress (event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement
+    const start = target.selectionStart || 0
+    const end = target.selectionEnd || 0
 
-    if (target.selectionStart !== null) {
-      if (target.selectionStart === target.selectionEnd) {
-        this.setValue(target.selectionStart, event.key)
-      } else if (target.selectionEnd !== null) {
-        this.popValueList(target.selectionStart, target.selectionEnd)
-        console.log(this.selectionCharacter)
-        this.setValue(target.selectionStart, event.key)
-      }
+    if (start === end) {
+      this.setValue(start, event.key)
+    } else {
+      this.popValueList(start, end)
+      this.setValue(start, event.key)
     }
   }
 
@@ -839,6 +864,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
+  // DELETE
   protected popCharacter (selection: number): this {
     this.character.value.splice(selection, 1)
     this.selectionCharacter = selection - 1
@@ -925,6 +951,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   }
 
+  // DELETE
   protected setCharacter (selection: number, char: string): this {
     this.character.value.splice(selection, 0, char)
     this.selectionCharacter = selection
@@ -982,10 +1009,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     char: string,
     focus = true as boolean
   ): number {
-    const rubber = this.setRubber(selection, char)
+    this.characters.toCharacter(selection)
+    this.rubbers.set(this.characters.charMask.value, char)
+
+    const rubber = this.setRubber(selection, char) // DELETE
+
+    console.log(this.characters.maskSelection.value)
+    console.log(this.characters.maskSelectionNext.value)
+    console.log(this.characters.charMask.value)
+    console.log(this.characters.charMaskNext.value)
+    console.log(this.rubbers.get('*'))
+    console.log(this.rubbers.transition.data.value)
 
     if (this.ifMatch(char)) {
-      this.shiftCharacter()
+      this.shiftCharacter() // DELETE
+      this.characters.shift()
 
       const selectionChar = this.valueToCharacter(rubber)
       const wait = this.getMaskChar(rubber)
@@ -1012,6 +1050,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return 0
   }
 
+  // DELETE
   protected shiftCharacter (status = 1): this {
     this.length.value = this.character.value.length + status
     return this

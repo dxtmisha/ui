@@ -7,15 +7,15 @@ import { MaskItemsType, MaskSpecialItemType, MaskSpecialType } from './types'
 
 export class MaskRubber {
   protected readonly length = ref<AssociativeType<number>>({})
-  protected readonly transition: MaskRubberTransition
+  readonly transition: MaskRubberTransition
 
   constructor (
     protected readonly type: Ref<string>,
-    protected readonly special: Ref<MaskSpecialType>,
     protected readonly fraction: Ref<boolean | number>,
     protected readonly currency: Ref<string>,
     protected readonly mask: Ref<string[]>,
     protected readonly match: Ref<RegExp>,
+    protected readonly special: Ref<MaskSpecialType>,
     protected readonly values: ComputedRef<MaskItemsType>
   ) {
     this.transition = new MaskRubberTransition()
@@ -125,16 +125,11 @@ export class MaskRubber {
     return this
   }
 
-  set (
-    index: string,
-    char: string,
-    wait: string
-  ): boolean {
+  set (index: string, char: string): boolean {
     const item = this.getItem(index)
+    const value = this.getValue(index)
 
     if (item) {
-      const value = this.getValue(index)
-
       if (
         isSelected(char, item?.transitionChar) || (
           item?.maxLength &&
@@ -144,10 +139,8 @@ export class MaskRubber {
         this.transition.set(index)
       } else if (
         value.full &&
-        this.ifMatch(char) && (
-          this.transition.disabled(index) ||
-          wait === index
-        )
+        this.ifMatch(char) &&
+        this.transition.disabled(index)
       ) {
         this.add(index)
         this.transition.reset()
