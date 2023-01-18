@@ -1,10 +1,11 @@
-import { computed, Ref } from 'vue'
+import { computed } from 'vue'
 import { GeoDate } from '../../classes/GeoDate'
-import { AssociativeType, GeoDateType } from '../types'
+import { MaskType } from './MaskType'
+import { AssociativeType } from '../types'
 import { MaskItemsType, MaskPatternType } from './types'
 
 export class MaskDate {
-  readonly pattern = {
+  protected readonly pattern = {
     Y: '[0-9]{4}',
     M: {
       max: '12',
@@ -39,11 +40,11 @@ export class MaskDate {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    protected readonly type: Ref<GeoDateType>
+    protected readonly type: MaskType
   ) {
   }
 
-  protected geo = computed<GeoDate>(() => new GeoDate('1987-12-18T10:20:30', this.type.value))
+  protected geo = computed<GeoDate>(() => new GeoDate('1987-12-18T10:20:30', this.type.getDate()))
 
   getMaskByDate () {
     return this.geo.value.locale('numeric').value
@@ -54,5 +55,9 @@ export class MaskDate {
       .replace('20', 'mm')
       .replace('30', 'ss')
       .split('')
+  }
+
+  getPattern (): MaskPatternType {
+    return this.pattern
   }
 }

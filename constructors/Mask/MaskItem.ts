@@ -1,30 +1,48 @@
 import { computed, Ref } from 'vue'
 import { MaskDate } from './MaskDate'
-import { MaskRubber } from './MaskRubber'
+import { MaskFormat } from './MaskFormat'
+import { MaskRubberItem } from './MaskRubberItem'
+import { MaskSpecial } from './MaskSpecial'
+import { MaskType } from './MaskType'
 import { maxListLength } from '../../functions'
-import { ArrayOrStringType, GeoDateType } from '../types'
-import { MaskPatternType, MaskPatternTypeType, MaskSpecialType, MaskTypeType } from './types'
+import { ArrayOrStringType } from '../types'
 
 export class MaskItem {
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    protected readonly character: Ref<string[]>,
+    protected readonly type: MaskType,
+    protected readonly rubber: MaskRubberItem,
+    protected readonly format: MaskFormat,
+    protected readonly date: MaskDate,
+    protected readonly special: MaskSpecial,
     protected readonly mask: Ref<ArrayOrStringType>,
-    protected readonly type: Ref<GeoDateType & MaskTypeType>,
-    protected readonly rubbers: MaskRubber,
-    protected readonly special: Ref<MaskSpecialType>,
-    protected readonly pattern: Ref<MaskPatternType>
+    protected readonly character: Ref<string[]>
   ) {
   }
 
-  protected readonly date = computed(() => new MaskDate(this.type))
+  protected activeMask = computed<string[]>(() => {
+    if (this.type.isNumber()) {
+      return this.format.toMask()
+    } else if (this.type.isDate()) {
+      return this.date.getMaskByDate()
+    } else {
+      return this.basic.value
+    }
+  })
 
-  // DELETE
-  protected readonly ifDate = computed<boolean>(() => ['text', 'number', 'currency'].indexOf(this.type.value) === -1)
-  protected readonly ifNumber = computed<boolean>(() => ['number', 'currency'].indexOf(this.type.value) !== -1)
+  protected readonly basic = computed<string[]>(() => {
+    const mask = this.mask.value
 
-  readonly length = computed<number>(() => {
-    console.log('this.mask.value', this.mask.value)
+    if (Array.isArray(mask)) {
+      return this.rubber.getMask(
+        mask.find(item => this.getSpecialLength(item) >= this.character.value.length) || mask?.[0] || ''
+      ).split('')
+    } else {
+      return this.rubber.getMask(mask).split('')
+    }
+  })
+
+  protected readonly length = computed<number>(() => {
     if (Array.isArray(this.mask.value)) {
       return maxListLength(this.mask.value)
     } else {
@@ -32,69 +50,18 @@ export class MaskItem {
     }
   })
 
-  // DELETE
-  readonly specialChars = computed<string[]>(() => {
-    if (this.ifNumber.value) {
-      return ['n', 'f']
-    } else if (this.ifDate.value) {
-      return ['Y', 'M', 'D', 'h', 'm', 's']
-    } else if (typeof this.special.value === 'object') {
-      return Object.keys(this.special.value)
-    } else if (Array.isArray(this.special.value)) {
-      return this.special.value
-    } else {
-      return [this.special.value]
-    }
-  })
+  get (): string[] {
+    return this.activeMask.value
+  }
 
-  activeMask = computed<string[]>(() => {
-    if (this.ifNumber.value) {
-      return this.rubbers.getMaskByNumber()
-    } else if (this.ifDate.value) {
-      return this.date.value.getMaskByDate()
-    } else {
-      return this.basic.value
-    }
-  })
-
-  protected basic = computed<string[]>(() => {
-    const mask = this.mask.value
-
-    if (Array.isArray(mask)) {
-      return this.rubbers.get(
-        mask.find(item => this.getSpecialLength(item) >= this.character.value.length) || mask?.[0] || ''
-      ).split('')
-    } else {
-      console.log('this.rubbers.get(mask).split(\'\')', this.rubbers.get(mask).split(''))
-      return this.rubbers.get(mask).split('')
-    }
-  })
-
-  readonly patternChars = computed<MaskPatternType>(() => {
-    if (this.ifDate.value) {
-      return {
-        ...this.date.value.pattern,
-        ...this.pattern.value
-      }
-    } else if (
-      typeof this.special.value === 'string' &&
-      ['function', 'string'].indexOf(typeof this.pattern.value) !== -1
-    ) {
-      return { [this.special.value]: this.pattern.value as MaskPatternTypeType }
-    } else {
-      return this.pattern.value || {}
-    }
-  })
+  getLength (): number {
+    return this.length.value
+  }
 
   protected getSpecialLength (mask: string): number {
     return mask
       .split('')
-      .filter(char => this.ifSpecial(char))
+      .filter(char => this.special.isSpecial(char))
       .length
-  }
-
-  // DELETE
-  ifSpecial (char: string): boolean {
-    return this.specialChars.value.indexOf(char) !== -1
   }
 }

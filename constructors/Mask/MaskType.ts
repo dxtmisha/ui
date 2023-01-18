@@ -1,11 +1,16 @@
 import { Ref } from 'vue'
 import { MaskTypeType } from './types'
+import { GeoDateType } from '../types'
 
 export class MaskType {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     protected readonly type: Ref<MaskTypeType>
   ) {
+  }
+
+  getDate (): GeoDateType {
+    return this.isDate() ? (this.type.value as GeoDateType) : 'date'
   }
 
   isCurrency () {

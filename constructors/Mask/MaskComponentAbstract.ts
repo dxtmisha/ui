@@ -27,6 +27,8 @@ import { MaskSpecial } from './MaskSpecial'
 import { MaskMatch } from './MaskMatch'
 import { MaskNumber } from './MaskNumber'
 import { MaskFormat } from './MaskFormat'
+import { MaskDate } from './MaskDate'
+import { MaskPattern } from './MaskPattern'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -47,7 +49,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly match: MaskMatch
   protected readonly special: MaskSpecial
 
+  protected readonly date: MaskDate
   protected readonly number: MaskNumber
+
+  protected readonly pattern: MaskPattern
 
   protected readonly item: MaskItem
   protected readonly character = ref<string[]>([])
@@ -89,9 +94,17 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     )
 
     this.match = new MaskMatch(this.refs.match)
-
-    this.number = new MaskNumber(this.format)
     this.special = new MaskSpecial(this.type, this.refs.special)
+
+    this.date = new MaskDate(this.type)
+    this.number = new MaskNumber(this.format)
+
+    this.pattern = new MaskPattern(
+      this.type,
+      this.date,
+      this.special,
+      this.refs.pattern
+    )
 
     this.rubbers = new MaskRubber(
       this.type,
@@ -105,12 +118,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     )
 
     this.item = new MaskItem(
-      this.character,
+      this.type,
+      this.rubber,
+      this.format,
+      this.date,
+      this.special,
       this.refs.mask,
-      this.refs.type,
-      this.rubbers,
-      this.refs.special,
-      this.refs.pattern
+      this.character
     )
 
     this.characters = new MaskCharacter(
@@ -318,7 +332,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected rubberByNumber = this.geoIntl.value.number(this.rubberByItem, { maximumFractionDigits: 9 })
 
   // DELETE
-  protected pattern = computed<MaskPatternType>(() => {
+  protected deletePattern = computed<MaskPatternType>(() => {
     if (this.geo.value) {
       return {
         Y: '[0-9]{4}',
@@ -451,7 +465,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected validation = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
-    forEach<MaskPatternType, string, void>(this.pattern.value, (item, index) => {
+    forEach<MaskPatternType, string, void>(this.deletePattern.value, (item, index) => {
       if (!validation && index in this.valueByType.value) {
         const valueByType = this.valueByType.value[index]
 
@@ -471,7 +485,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected validationCheck = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
-    if (this.ifFull.value && 'check' in this.pattern.value) {
+    if (this.ifFull.value && 'check' in this.deletePattern.value) {
       const check = this.check(this.valueByItem.value)
 
       if (!check.status) {
@@ -584,7 +598,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   protected check (item: MaskItemType): MaskValidationType {
-    const pattern = this.pattern.value[item.index]
+    const pattern = this.deletePattern.value[item.index]
     const input = this.getInput(this.getInputAttributes(pattern))
 
     input.value = item.value

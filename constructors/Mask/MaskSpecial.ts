@@ -30,6 +30,10 @@ export class MaskSpecial {
     return this.item.value
   }
 
+  getOnly (): string {
+    return this.get()?.[0]
+  }
+
   getRubber (): AssociativeType<MaskSpecialItemType> {
     const data = {} as AssociativeType<MaskSpecialItemType>
 
@@ -52,5 +56,9 @@ export class MaskSpecial {
 
   isSpecial (char: string): boolean {
     return this.item.value.indexOf(char) !== -1
+  }
+
+  isString () {
+    return typeof this.special.value === 'string'
   }
 }
