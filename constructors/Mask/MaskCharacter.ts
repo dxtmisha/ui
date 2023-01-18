@@ -1,14 +1,16 @@
 import { computed, ComputedRef, Ref, ref, watch } from 'vue'
+import { MaskRubber } from './MaskRubber'
 import { isSelected } from '../../functions'
 
 export class MaskCharacter {
-  protected readonly character = ref<string[]>([])
   protected readonly length = ref<number>(0)
 
   selection = ref<number>(0)
 
   constructor (
+    protected readonly character: Ref<string[]>,
     protected readonly mask: Ref<string[]>,
+    protected readonly rubbers: MaskRubber,
     protected readonly match: Ref<RegExp>,
     protected readonly special: ComputedRef<string[] | string>
   ) {
@@ -22,6 +24,35 @@ export class MaskCharacter {
 
   maskSelectionNext = computed<number>(() => this.getSelection(this.selection.value + 1))
   maskSelection = computed<number>(() => this.getSelection(this.selection.value))
+
+  standard = computed<string>(() => {
+    const character = this.character.value
+    const value = [] as string[]
+
+    let stop: boolean
+    let key = 0 as number
+
+    this.mask.value.forEach(char => {
+      if (!stop) {
+        if (!this.ifSpecial(char)) {
+          value.push(char)
+        } else if (key in character) {
+          value.push(character[key++])
+
+          if (
+            key >= character.length &&
+            this.rubbers.transition.disabled(char)
+          ) {
+            stop = true
+          }
+        } else {
+          stop = true
+        }
+      }
+    })
+
+    return value.join('')
+  })
 
   protected getSelection (selection: number): number {
     let selectionChar = -1 as number

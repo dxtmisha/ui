@@ -9,6 +9,8 @@ export const {
   getExp,
   isFilled,
   isSelected,
+  maxListLength,
+  minListLength,
   replaceRecursive,
   strFill,
   toCamelCase,

@@ -3,9 +3,10 @@ import { GeoIntl } from '../../classes/GeoIntl'
 import { MaskRubberTransition } from './MaskRubberTransition'
 import { forEach, getExp, isSelected, strFill } from '../../functions'
 import { AssociativeType } from '../types'
-import { MaskItemsType, MaskSpecialItemType, MaskSpecialType } from './types'
+import { MaskItemsType, MaskItemType, MaskSpecialItemType, MaskSpecialType } from './types'
 
 export class MaskRubber {
+  protected values?: ComputedRef<MaskItemsType>
   protected readonly length = ref<AssociativeType<number>>({})
   readonly transition: MaskRubberTransition
 
@@ -13,10 +14,8 @@ export class MaskRubber {
     protected readonly type: Ref<string>,
     protected readonly fraction: Ref<boolean | number>,
     protected readonly currency: Ref<string>,
-    protected readonly mask: Ref<string[]>,
     protected readonly match: Ref<RegExp>,
-    protected readonly special: Ref<MaskSpecialType>,
-    protected readonly values: ComputedRef<MaskItemsType>
+    protected readonly special: Ref<MaskSpecialType>
   ) {
     this.transition = new MaskRubberTransition()
   }
@@ -67,6 +66,24 @@ export class MaskRubber {
     return Object.values(data).length > 0 ? data : undefined
   })
 
+  protected readonly transitionChars = computed<string[]>(() => {
+    const data = [] as string[]
+
+    if (this.rubber.value) {
+      forEach(this.rubber.value, item => {
+        if (item?.transitionChar) {
+          if (typeof item.transitionChar === 'string') {
+            data.push(item.transitionChar)
+          } else {
+            data.push(...item.transitionChar)
+          }
+        }
+      })
+    }
+
+    return data
+  })
+
   protected add (index: string): this {
     if (index in this.length.value) {
       this.length.value[index]++
@@ -85,8 +102,17 @@ export class MaskRubber {
         return `${all}${strFill(index, length)}`
       })
     })
-
+    console.log('value', value, this.length.value)
     return value
+  }
+
+  getMaskByNumber (): string[] {
+    const data = this.type.value === 'currency' ? this.formatCurrency.value : this.formatNumber.value
+
+    return data
+      .replace(/9/ig, 'n')
+      .replace(/8/ig, 'f')
+      .split('')
   }
 
   protected getFraction (): number {
@@ -105,8 +131,8 @@ export class MaskRubber {
     return this.rubber.value?.[special]
   }
 
-  protected getValue (special: string) {
-    return this.values.value?.[special]
+  protected getValue (special: string): MaskItemType | undefined {
+    return this.values?.value?.[special]
   }
 
   protected ifMatch (char: string): boolean {
@@ -129,7 +155,7 @@ export class MaskRubber {
     const item = this.getItem(index)
     const value = this.getValue(index)
 
-    if (item) {
+    if (item && value) {
       if (
         isSelected(char, item?.transitionChar) || (
           item?.maxLength &&
@@ -149,5 +175,10 @@ export class MaskRubber {
     }
 
     return false
+  }
+
+  setValues (values: ComputedRef<MaskItemsType>): this {
+    this.values = values
+    return this
   }
 }

@@ -81,6 +81,19 @@ export function isSelected (value: any, selected: any | any[]): boolean {
   }
 }
 
+export function maxListLength (data: AssociativeOrArrayType<string>): number {
+  return forEach<string, number, number>(data, item => item.length)
+    ?.sort()
+    ?.reverse()
+    ?.[0]
+}
+
+export function minListLength (data: AssociativeOrArrayType<string>): number {
+  return forEach<string, number, number>(data, item => item.length)
+    ?.sort()
+    ?.[0]
+}
+
 export function replaceRecursive<T = any> (
   array: AssociativeType<T>,
   replacement?: AssociativeOrArrayType<T>,
@@ -153,6 +166,8 @@ export default {
   getExp,
   isFilled,
   isSelected,
+  maxListLength,
+  minListLength,
   replaceRecursive,
   strFill,
   toCamelCase,
