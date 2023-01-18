@@ -21,6 +21,12 @@ import {
   MaskValidationType,
   MaskViewType
 } from './types'
+import { MaskRubberItem } from './MaskRubberItem'
+import { MaskType } from './MaskType'
+import { MaskSpecial } from './MaskSpecial'
+import { MaskMatch } from './MaskMatch'
+import { MaskNumber } from './MaskNumber'
+import { MaskFormat } from './MaskFormat'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -33,6 +39,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected readonly charsElement = ref<HTMLSpanElement | undefined>()
 
+  protected readonly type: MaskType
+  protected readonly rubber: MaskRubberItem
+  protected readonly transition: MaskRubberTransition
+
+  protected readonly format: MaskFormat
+  protected readonly match: MaskMatch
+  protected readonly special: MaskSpecial
+
+  protected readonly number: MaskNumber
+
   protected readonly item: MaskItem
   protected readonly character = ref<string[]>([])
   protected readonly characters: MaskCharacter
@@ -43,9 +59,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   // DELETE
   protected readonly rubberItems = ref<AssociativeType<number>>({})
-
-  // DELETE
-  protected readonly transition: MaskRubberTransition
 
   protected selection = {
     start: 0 as number,
@@ -64,12 +77,31 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   ) {
     super(props, context)
 
+    this.type = new MaskType(this.refs.type)
+    this.rubber = new MaskRubberItem()
+    this.transition = new MaskRubberTransition()
+
+    this.format = new MaskFormat(
+      this.type,
+      this.rubber,
+      this.refs.currency,
+      this.refs.fraction
+    )
+
+    this.match = new MaskMatch(this.refs.match)
+
+    this.number = new MaskNumber(this.format)
+    this.special = new MaskSpecial(this.type, this.refs.special)
+
     this.rubbers = new MaskRubber(
-      this.refs.type,
+      this.type,
+      this.rubber,
+      this.number,
+      this.special,
+      this.transition,
       this.refs.fraction,
       this.refs.currency,
-      this.refs.match,
-      this.refs.special
+      this.refs.match
     )
 
     this.item = new MaskItem(
@@ -86,7 +118,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.item.activeMask,
       this.rubbers,
       this.refs.match,
-      this.special
+      this.deleteSpecial
     )
 
     this.transition = new MaskRubberTransition()
@@ -234,7 +266,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   })
 
   // DELETE
-  protected rubber = computed<AssociativeType<MaskSpecialItemType> | undefined>(() => {
+  protected deleteRubber = computed<AssociativeType<MaskSpecialItemType> | undefined>(() => {
     const rubber = {} as AssociativeType<MaskSpecialItemType>
     let isRubber = false
 
@@ -334,7 +366,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   })
 
   // DELETE
-  protected special = computed<string[] | string>(() => {
+  protected deleteSpecial = computed<string[] | string>(() => {
     switch (this.props.type) {
       case 'currency':
       case 'number':
@@ -353,7 +385,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   // DELETE
   protected standard = computed<string>(() => {
     const character = this.character.value
-    const rubber = this.rubber.value
+    const rubber = this.deleteRubber.value
     const value = [] as string[]
 
     let stop: boolean
@@ -401,8 +433,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected transitionChar = computed<string[]>(() => {
     const data = [] as string[]
 
-    if (this.rubber.value) {
-      forEach(this.rubber.value, item => {
+    if (this.deleteRubber.value) {
+      forEach(this.deleteRubber.value, item => {
         if (item?.transitionChar) {
           if (typeof item.transitionChar === 'string') {
             data.push(item.transitionChar)
@@ -481,7 +513,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected valueByType = computed<MaskItemsType>(() => {
     const data = {} as MaskItemsType
-    const special = this.special.value
+    const special = this.deleteSpecial.value
     const standard = this.standard.value
 
     this.mask.value.forEach((char, index) => {
@@ -750,7 +782,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   protected ifSpecial (char: string): boolean {
-    return isSelected(char, this.special.value)
+    return isSelected(char, this.deleteSpecial.value)
   }
 
   newValue (value: string): this {
@@ -980,14 +1012,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   // DELETE
   protected setRubber (selection: number, char: string): number {
-    if (this.rubber.value) {
+    if (this.deleteRubber.value) {
       const {
         special,
         newSelection
       } = this.getPatternImmediate(selection)
 
       const wait = this.getMaskChar(selection)
-      const rubber = this.rubber.value?.[special]
+      const rubber = this.deleteRubber.value?.[special]
       const valueByType = this.valueByType.value?.[special]
 
       if (rubber && rubber.rubber) {
@@ -1038,7 +1070,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     console.log(this.characters.charMask.value)
     console.log(this.characters.charMaskNext.value)
     console.log(this.rubbers.get('*'))
-    console.log(this.rubbers.transition.data.value)
+    console.log(this.rubbers.transition.item.value)
     console.log('this.item.length.value', this.item.length.value)
     console.log('this.characters.standard.value.length', this.characters.standard.value.length)
     console.log('this.item.activeMask.value', this.item.activeMask.value)

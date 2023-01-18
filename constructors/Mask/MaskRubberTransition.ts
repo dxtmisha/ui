@@ -1,14 +1,14 @@
 import { ref } from 'vue'
 
 export class MaskRubberTransition {
-  readonly data = ref<string>('')
+  readonly item = ref<string>('')
 
   disabled (char: string): boolean {
-    return this.data.value !== char
+    return this.item.value !== char
   }
 
   get (): string {
-    return this.data.value
+    return this.item.value
   }
 
   reset (): this {
@@ -16,7 +16,7 @@ export class MaskRubberTransition {
   }
 
   set (char: string): this {
-    this.data.value = char
+    this.item.value = char
     return this
   }
 }

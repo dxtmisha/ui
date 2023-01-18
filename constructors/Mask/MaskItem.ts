@@ -19,6 +19,7 @@ export class MaskItem {
 
   protected readonly date = computed(() => new MaskDate(this.type))
 
+  // DELETE
   protected readonly ifDate = computed<boolean>(() => ['text', 'number', 'currency'].indexOf(this.type.value) === -1)
   protected readonly ifNumber = computed<boolean>(() => ['number', 'currency'].indexOf(this.type.value) !== -1)
 
@@ -31,6 +32,7 @@ export class MaskItem {
     }
   })
 
+  // DELETE
   readonly specialChars = computed<string[]>(() => {
     if (this.ifNumber.value) {
       return ['n', 'f']
@@ -91,6 +93,7 @@ export class MaskItem {
       .length
   }
 
+  // DELETE
   ifSpecial (char: string): boolean {
     return this.specialChars.value.indexOf(char) !== -1
   }
