@@ -54,7 +54,15 @@ export class MaskItem {
     return this.activeMask.value
   }
 
+  getChar (selection: number): string | undefined {
+    return this.get()?.[selection]
+  }
+
   getLength (): number {
+    return this.activeMask.value.length
+  }
+
+  getMaxLength (): number {
     return this.length.value
   }
 

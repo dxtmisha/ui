@@ -8,8 +8,8 @@ export class MaskPattern {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     protected readonly type: MaskType,
-    protected readonly date: MaskDate,
     protected readonly special: MaskSpecial,
+    protected readonly date: MaskDate,
     protected readonly pattern: Ref<MaskPatternType>
   ) {
   }

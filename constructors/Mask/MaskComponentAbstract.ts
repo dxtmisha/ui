@@ -29,6 +29,8 @@ import { MaskNumber } from './MaskNumber'
 import { MaskFormat } from './MaskFormat'
 import { MaskDate } from './MaskDate'
 import { MaskPattern } from './MaskPattern'
+import { MaskSelection } from './MaskSelection'
+import { MaskValue } from './MaskValue'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -40,6 +42,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   ] as string[]
 
   protected readonly charsElement = ref<HTMLSpanElement | undefined>()
+  protected readonly character = ref<string[]>([])
+  protected readonly value = ref<MaskItemsType>({})
 
   protected readonly type: MaskType
   protected readonly rubber: MaskRubberItem
@@ -55,8 +59,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly pattern: MaskPattern
 
   protected readonly item: MaskItem
-  protected readonly character = ref<string[]>([])
+  protected readonly selection: MaskSelection
   protected readonly characters: MaskCharacter
+  protected readonly values: MaskValue
+
   protected readonly rubbers: MaskRubber
 
   // DELETE
@@ -65,7 +71,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   // DELETE
   protected readonly rubberItems = ref<AssociativeType<number>>({})
 
-  protected selection = {
+  protected deleteSelection = {
     start: 0 as number,
     end: 0 as number
   }
@@ -101,8 +107,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.pattern = new MaskPattern(
       this.type,
-      this.date,
       this.special,
+      this.date,
       this.refs.pattern
     )
 
@@ -127,7 +133,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.character
     )
 
+    this.selection = new MaskSelection(this.item, this.special)
+
     this.characters = new MaskCharacter(
+      this.special,
       this.character,
       this.item.activeMask,
       this.rubbers,
@@ -135,7 +144,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.deleteSpecial
     )
 
-    this.transition = new MaskRubberTransition()
+    this.values = new MaskValue(
+      this.transition,
+      this.special,
+      this.item,
+      this.character,
+      this.value
+    )
 
     watch(this.refs.value, value => this.newValue(value))
 
@@ -149,7 +164,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     watch([
       this.ifFull,
       this.validationMessage,
-      this.value
+      this.deleteValue
     ], () => {
       this.change = true
       this.on()
@@ -174,7 +189,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       validation: this.validation,
       validationMessage: this.validationMessage,
       maskBind: this.mask,
-      valueBind: this.value,
+      valueBind: this.deleteValue,
       viewBind: this.view,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
@@ -498,7 +513,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected validationMessage = computed<string>(() => this.validation.value?.validationMessage || '')
 
-  protected value = computed<string>(() => {
+  protected deleteValue = computed<string>(() => {
     if (this.validation.value) {
       return ''
     } else {
@@ -518,10 +533,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected valueByItem = computed<MaskItemType>(() => {
     return {
       index: 'check',
-      value: this.value.value,
-      maxLength: this.value.value.length,
+      value: this.deleteValue.value,
+      maxLength: this.deleteValue.value.length,
       full: true,
-      chars: this.value.value.split('')
+      chars: this.deleteValue.value.split('')
     }
   })
 
@@ -560,6 +575,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   })
 
+  // DELETE
   protected addValueByType (data: MaskItemsType, index: string): MaskItemType {
     if (!(index in data)) {
       data[index] = {
@@ -810,7 +826,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       required: this.ifFull.value,
       validation: this.validation.value,
       validationMessage: this.validationMessage.value,
-      value: this.value.value
+      value: this.deleteValue.value
     })
   }
 
@@ -844,20 +860,20 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       const target = event.target as HTMLInputElement
       this.unidentified = false
 
-      if (this.selection.start !== this.selection.end) {
-        this.popValueList(this.selection.start, this.selection.end)
+      if (this.deleteSelection.start !== this.deleteSelection.end) {
+        this.popValueList(this.deleteSelection.start, this.deleteSelection.end)
       }
 
       if (event.data) {
-        if (!this.setValue(this.selection.start, event.data)) {
+        if (!this.setValue(this.deleteSelection.start, event.data)) {
           target.value = this.standard.value
           requestAnimationFrame(() => this.goSelection())
         }
       } else if (
         this.length.value > target.value.length &&
-        this.selection.start === this.selection.end
+        this.deleteSelection.start === this.deleteSelection.end
       ) {
-        this.popValue(this.selection.start)
+        this.popValue(this.deleteSelection.start)
       }
     }
   }
@@ -868,8 +884,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (event.key === 'Unidentified' || event.keyCode === 229) {
       this.unidentified = true
       this.length.value = target.value.length
-      this.selection.start = target.selectionStart || 0
-      this.selection.end = target.selectionEnd || 0
+      this.deleteSelection.start = target.selectionStart || 0
+      this.deleteSelection.end = target.selectionEnd || 0
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
 

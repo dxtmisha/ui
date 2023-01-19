@@ -7,6 +7,10 @@ export class MaskMatch {
   ) {
   }
 
+  filter (text: string): string[] {
+    return text.split('').filter(char => this.isMatch(char))
+  }
+
   isMatch (char: string): boolean {
     return !!char.match(this.match.value)
   }
