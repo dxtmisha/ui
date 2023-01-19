@@ -5,20 +5,13 @@ import { MaskCharacter } from './MaskCharacter'
 import { MaskItem } from './MaskItem'
 import { MaskRubber } from './MaskRubber'
 import { MaskRubberTransition } from './MaskRubberTransition'
-import { forEach, getExp, isFilled, isSelected, strFill } from '../../functions'
+import { isSelected } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
   MaskClassesType,
-  MaskImmediateType,
   MaskItemsType,
-  MaskItemType,
-  MaskPatternType,
-  MaskPatternTypeType,
-  MaskSetupType,
-  MaskSpecialItemType,
-  MaskValidationType,
-  MaskViewType
+  MaskSetupType
 } from './types'
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskType } from './MaskType'
@@ -189,7 +182,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       styles,
       charsElement: this.charsElement,
       standard: this.standard,
-      standardByRight: this.standardByRight,
+      standardByRight: this.standard,
       validation: this.validation,
       validationMessage: this.validationMessage,
       maskBind: this.mask,
@@ -208,11 +201,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected isRight = computed(() => this.type.isCurrencyOrNumber() || this.props.right)
 
-  protected standardByRight = computed<string>(() => {
+  protected standard = computed<string>(() => {
     if (this.isRight.value) {
       let data = ''
 
-      this.view.value?.forEach(item => {
+      this.view.get().forEach(item => {
         data += item.value
       })
 
@@ -221,21 +214,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       return this.values.getStandard()
     }
   })
-
-  // DELETE
-  protected addValueByType (data: MaskItemsType, index: string): MaskItemType {
-    if (!(index in data)) {
-      data[index] = {
-        index,
-        maxLength: 0,
-        full: false,
-        chars: [],
-        value: ''
-      }
-    }
-
-    return data[index]
-  }
 
   cancel (): this {
     this.character.value = []
@@ -260,68 +238,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return value !== undefined ? value : maskValue.length
   }
 
-  // DELETE
-  protected getCharacter (text: string): string[] {
-    const value = [] as string[]
-
-    text.split('').forEach(char => {
-      if (this.ifMatch(char)) {
-        value.push(char)
-      }
-    })
-
-    return value
-  }
-
   protected async getClipboardData (event: ClipboardEvent): Promise<string> {
     return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
   }
 
   protected getMaskChar (selection: number): string {
     return this.mask.value?.[selection]
-  }
-
-  // DELETE
-  protected getRubber (mask?: string): string {
-    let value = mask?.toString() || ''
-
-    forEach<number, string, void>(this.rubberItems.value, (rubber, index) => {
-      value = value.replace(getExp(index, 'ig', '([:value]+)'), (all: string) => {
-        return `${all}${strFill(index, rubber)}`
-      })
-    })
-
-    return value
-  }
-
-  protected getPatternImmediate (selection: number): MaskImmediateType {
-    const wait = this.getMaskChar(selection)
-
-    if (this.ifSpecial(wait)) {
-      return {
-        special: wait,
-        newSelection: selection
-      }
-    } else if (selection > 0) {
-      return this.getPatternImmediate(selection - 1)
-    } else {
-      return {
-        special: '',
-        newSelection: 0
-      }
-    }
-  }
-
-  // DELETE
-  protected getSpecialLength (mask?: string): number {
-    let value = 0 as number
-
-    mask?.split('').forEach(char => {
-      if (this.ifSpecial(char)) {
-        value++
-      }
-    })
-    return value
   }
 
   protected goSelection (selection?: number): this {
@@ -340,10 +262,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return this
-  }
-
-  protected ifMatch (char: string): boolean {
-    return !!char.toString().match(this.props.match)
   }
 
   protected ifSpecial (char: string): boolean {
@@ -481,14 +399,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   // DELETE
-  protected popCharacter (selection: number): this {
-    this.character.value.splice(selection, 1)
-    this.selectionCharacter = selection - 1
-
-    return this
-  }
-
-  // DELETE
   protected popRubber (special: string): this {
     const rubber = this.rubberItems.value
 
@@ -506,30 +416,29 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  popValue (selection: number, go = true): string {
+  popValue (
+    selection: number,
+    focus = true as boolean
+  ): boolean {
     const index = selection - 1
     const char = this.getMaskChar(index)
 
     if (
       selection > 0 &&
-      this.maxLength.value >= selection && (
-        go ||
-        this.ifSpecial(char)
-      )
+      this.item.getMaxLength() >= selection
     ) {
-      const selectionChar = this.valueToCharacter(index)
-      this.popCharacter(selectionChar)
+      this.characters.pop()
+      this.characters.shift(0)
 
-      if (go) {
+      if (focus) {
         this.popRubber(char)
         this.goSelection()
       }
 
-      this.shiftCharacter(0)
-      return char
+      return true
     }
 
-    return ''
+    return false
   }
 
   popValueList (selectionStart: number, selectionEnd: number): this {
@@ -548,12 +457,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected reset (value: string): string[] {
+  protected reset (value?: string): string[] {
     const data = [] as string[]
 
     if (value) {
       if (this.props.paste) {
-        data.push(...this.getCharacter(value))
+        data.push(...this.match.filter(value))
       } else {
         const chars = this.ifDate.value
           ? new GeoDate(value, this.props.type).locale().value
@@ -567,113 +476,33 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return data
   }
 
-  // DELETE
-  protected setCharacter (selection: number, char: string): this {
-    this.character.value.splice(selection, 0, char)
-    this.selectionCharacter = selection
-
-    return this
-  }
-
-  // DELETE
-  protected setRubber (selection: number, char: string): number {
-    if (this.deleteRubber.value) {
-      const {
-        special,
-        newSelection
-      } = this.getPatternImmediate(selection)
-
-      const wait = this.getMaskChar(selection)
-      const rubber = this.deleteRubber.value?.[special]
-      const valueByType = this.valueByType.value?.[special]
-
-      if (rubber && rubber.rubber) {
-        if (
-          isSelected(char, rubber?.transitionChar) || (
-            rubber?.maxLength &&
-            rubber?.maxLength <= valueByType?.maxLength
-          )
-        ) {
-          this.transition.set(special)
-        } else if (
-          valueByType.full &&
-          this.ifMatch(char) && (
-            this.transition.disabled(special) ||
-            wait === special
-          )
-        ) {
-          const character = this.valueToCharacter(newSelection)
-
-          if (special in this.rubberItems.value) {
-            this.rubberItems.value[special]++
-          } else {
-            this.rubberItems.value[special] = 1
-          }
-
-          return wait !== special
-            ? this.characterToValue(character + 1)
-            : this.characterToValue(character)
-        }
-      }
-    }
-
-    return selection
-  }
-
   setValue (
     selection: number,
     char: string,
     focus = true as boolean
-  ): number {
-    this.characters.toCharacter(selection)
-    this.rubbers.set(this.characters.charMask.value, char)
+  ): boolean {
+    this.selection.setByMask(selection)
+    this.rubbers.set(this.characters.getFocus(), char)
 
-    const rubber = this.setRubber(selection, char) // DELETE
-
-    console.log(this.characters.maskSelection.value)
-    console.log(this.characters.maskSelectionNext.value)
-    console.log(this.characters.charMask.value)
-    console.log(this.characters.charMaskNext.value)
-    console.log(this.rubbers.get('*'))
-    console.log(this.rubbers.transition.item.value)
-    console.log('this.item.length.value', this.item.length.value)
-    console.log('this.characters.standard.value.length', this.characters.standard.value.length)
-    console.log('this.item.activeMask.value', this.item.activeMask.value)
-    console.log('this.item.activeMask.value', this.item.activeMask.value)
-
-    if (this.ifMatch(char)) {
-      this.shiftCharacter() // DELETE
+    if (this.match.isMatch(char)) {
       this.characters.shift()
 
-      const selectionChar = this.valueToCharacter(rubber)
-      const wait = this.getMaskChar(rubber)
-
       if (
-        this.characters.charMask.value &&
-        this.item.length.value > this.characters.standard.value.length
+        this.characters.getFocus() &&
+        this.item.getMaxLength() > this.characters.getLength()
       ) {
-        if (this.ifSpecial(wait)) {
-          this.setCharacter(selectionChar, char)
+        this.characters.set(char)
+        this.transition.reset()
 
-          if (focus) {
-            this.goSelection()
-          }
-
-          this.transition.reset()
-          return this.characterToValue(selectionChar) + 1
-        } else {
-          return this.setValue(rubber + 1, char)
+        if (focus) {
+          this.goSelection()
         }
+
+        return true
       }
     }
 
-    return 0
-  }
-
-  // DELETE
-  protected shiftCharacter (status = 1): this {
-    this.length.value = this.character.value.length + status
-    return this
+    return false
   }
 
   protected toEnd (target: HTMLInputElement): void {

@@ -30,8 +30,8 @@ export class MaskCharacter {
     return this.next.value
   }
 
-  pop (selection: number): this {
-    this.character.value.splice(selection, 1)
+  pop (): this {
+    this.character.value.splice(this.selection.get() - 1, 1)
     this.selection.goBack()
 
     return this
@@ -44,8 +44,8 @@ export class MaskCharacter {
     return this
   }
 
-  set (selection: number, char: string): this {
-    this.character.value.splice(selection, 0, char)
+  set (char: string): this {
+    this.character.value.splice(this.selection.get(), 0, char)
     this.selection.goNext()
 
     return this
