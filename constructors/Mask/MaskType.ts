@@ -9,7 +9,7 @@ export class MaskType {
   ) {
   }
 
-  getDate (): GeoDateType {
+  getTypeDate (): GeoDateType {
     return this.isDate() ? (this.type.value as GeoDateType) : 'date'
   }
 
@@ -26,6 +26,6 @@ export class MaskType {
   }
 
   isDate (): boolean {
-    return ['text', 'number', 'currency'].indexOf(this.type.value) === -1
+    return ['datetime', 'date', 'month', 'time', 'second'].indexOf(this.type.value) !== -1
   }
 }

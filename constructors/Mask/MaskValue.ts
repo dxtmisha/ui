@@ -3,6 +3,7 @@ import { computed, Ref, watchEffect } from 'vue'
 import { MaskItem } from './MaskItem'
 import { MaskRubberTransition } from './MaskRubberTransition'
 import { MaskSpecial } from './MaskSpecial'
+import { forEach } from '../../functions'
 
 export class MaskValue {
   // eslint-disable-next-line no-useless-constructor
@@ -32,6 +33,18 @@ export class MaskValue {
       })
     })
   }
+
+  protected readonly full = computed<boolean>(() => {
+    let empty = false
+
+    forEach(this.values.value, item => {
+      if (!item.full) {
+        empty = true
+      }
+    })
+
+    return !empty
+  })
 
   protected readonly standard = computed<string>(() => {
     const character = this.character.value
@@ -76,12 +89,28 @@ export class MaskValue {
     return data[index]
   }
 
+  get (): MaskItemsType {
+    return this.values.value
+  }
+
+  getInfo (index: string): MaskItemType | undefined {
+    return this.get()?.[index]
+  }
+
   getItem (index: number): string {
     return this.getStandard()?.[index]
   }
 
   getStandard (): string {
     return this.standard.value
+  }
+
+  is (index: string): boolean {
+    return index in this.values.value
+  }
+
+  isFull (): boolean {
+    return this.full.value
   }
 
   isStandard (index: number): boolean {

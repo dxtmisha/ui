@@ -1,7 +1,6 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { GeoDate } from '../../classes/GeoDate'
-import { GeoIntl } from '../../classes/GeoIntl'
 import { MaskCharacter } from './MaskCharacter'
 import { MaskItem } from './MaskItem'
 import { MaskRubber } from './MaskRubber'
@@ -25,7 +24,6 @@ import { MaskRubberItem } from './MaskRubberItem'
 import { MaskType } from './MaskType'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskMatch } from './MaskMatch'
-import { MaskNumber } from './MaskNumber'
 import { MaskFormat } from './MaskFormat'
 import { MaskDate } from './MaskDate'
 import { MaskPattern } from './MaskPattern'
@@ -49,21 +47,19 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly rubber: MaskRubberItem
   protected readonly transition: MaskRubberTransition
 
+  protected readonly date: MaskDate
   protected readonly format: MaskFormat
+
   protected readonly match: MaskMatch
   protected readonly special: MaskSpecial
-
-  protected readonly date: MaskDate
-  protected readonly number: MaskNumber
-
   protected readonly pattern: MaskPattern
+
+  protected readonly rubbers: MaskRubber
 
   protected readonly item: MaskItem
   protected readonly selection: MaskSelection
   protected readonly characters: MaskCharacter
   protected readonly values: MaskValue
-
-  protected readonly rubbers: MaskRubber
 
   // DELETE
   protected readonly length = ref<number>(0)
@@ -92,6 +88,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.rubber = new MaskRubberItem()
     this.transition = new MaskRubberTransition()
 
+    this.date = new MaskDate(this.type)
     this.format = new MaskFormat(
       this.type,
       this.rubber,
@@ -101,14 +98,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.match = new MaskMatch(this.refs.match)
     this.special = new MaskSpecial(this.type, this.refs.special)
-
-    this.date = new MaskDate(this.type)
-    this.number = new MaskNumber(this.format)
-
     this.pattern = new MaskPattern(
       this.type,
-      this.special,
       this.date,
+      this.special,
       this.refs.pattern
     )
 
@@ -116,9 +109,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.type,
       this.rubber,
       this.transition,
+      this.format,
       this.match,
       this.special,
-      this.number,
       this.value
     )
 
@@ -128,18 +121,15 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.format,
       this.date,
       this.special,
-      this.mask,
+      this.refs.mask,
       this.character
     )
-
     this.selection = new MaskSelection(this.item, this.special)
-
     this.characters = new MaskCharacter(
       this.item,
       this.selection,
       this.character
     )
-
     this.values = new MaskValue(
       this.transition,
       this.special,
@@ -149,11 +139,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     )
 
     watch(this.refs.value, value => this.newValue(value))
-
-    // DELETE
-    watch(this.character, value => {
-      this.length.value = value.length
-    })
 
     watch(this.mask, () => this.goSelection())
 
@@ -198,250 +183,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
-  // DELETE
-  protected decimal = computed<string | string[] | undefined>(() => {
-    const data = this.geoIntl.value.numberDecimal().value
-
-    return this.mask.value.indexOf(data) !== -1 ? [data, '.'] : undefined
-  })
-
-  protected geo = computed<GeoDate | undefined>(() => {
-    return this.ifDate.value ? new GeoDate('1987-12-18T10:20:30', this.props.type) : undefined
-  })
-
-  // DELETE
-  protected geoIntl = computed<GeoIntl>(() => new GeoIntl())
-
-  protected ifDate = computed<boolean>(() => ['text', 'number', 'currency'].indexOf(this.props.type) === -1)
-
-  protected ifFull = computed<boolean>(() => {
-    let empty = false
-
-    forEach(this.valueByType.value, item => {
-      if (!item.full) {
-        empty = true
-      }
-    })
-
-    return !empty
-  })
-
-  protected ifRight = computed(() => ['number', 'currency'].indexOf(this.props.type) !== -1 || this.props.right)
-
-  // DELETE
-  protected mask = computed<string[]>(() => {
-    switch (this.props.type) {
-      case 'currency':
-        return this.rubberByCurrency.value
-          .replace(/9/ig, 'n')
-          .replace(/8/ig, 'f')
-          .split('')
-      case 'number':
-        return this.rubberByNumber.value
-          .replace(/9/ig, 'n')
-          .replace(/8/ig, 'f')
-          .split('')
-      default:
-        if (this.geo.value) {
-          return this.geo.value.locale('numeric').value
-            .replace('1987', 'YYYY')
-            .replace('12', 'MM')
-            .replace('18', 'DD')
-            .replace('10', 'hh')
-            .replace('20', 'mm')
-            .replace('30', 'ss')
-            .split('')
-        } else {
-          return this.maskBasic.value
-        }
-    }
-  })
-
-  // DELETE
-  protected maskBasic = computed<string[]>(() => {
-    let mask = this.props.mask
-
-    if (Array.isArray(mask)) {
-      mask = mask.find(
-        (item, key) => this.getSpecialLength(item) >= this.length.value || key === mask.length - 1
-      )
-    }
-
-    return this.getRubber(mask).split('') || []
-  })
-
-  // DELETE
-  protected maxLength = computed<number>(() => {
-    if (
-      this.ifDate.value ||
-      !Array.isArray(this.props.mask)
-    ) {
-      return this.mask.value.length
-    } else {
-      let length = 0;
-
-      (this.props.mask as string[]).forEach(item => {
-        if (item.length > length) {
-          length = item.length
-        }
-      })
-
-      return length
-    }
-  })
-
-  // DELETE
-  protected deleteRubber = computed<AssociativeType<MaskSpecialItemType> | undefined>(() => {
-    const rubber = {} as AssociativeType<MaskSpecialItemType>
-    let isRubber = false
-
-    switch (this.props.type) {
-      case 'currency':
-      case 'number':
-        rubber.n = {
-          rubber: true,
-          transitionChar: this.decimal.value,
-          maxLength: 12
-        }
-        rubber.f = {
-          rubber: this.props.fraction === true,
-          maxLength: 6
-        }
-
-        isRubber = true
-
-        break
-      default:
-        if (typeof this.props.special === 'object') {
-          forEach<MaskSpecialItemType, string, void>(this.props.special, (item, index) => {
-            if (item?.rubber) {
-              rubber[index] = item
-              isRubber = true
-            }
-          })
-        }
-
-        break
-    }
-
-    return isRubber ? rubber : undefined
-  })
-
-  // DELETE
-  protected rubberByItem = computed<string>(() => {
-    const rubberItems = this.rubberItems.value
-    const number = strFill('9', (rubberItems?.n || 0) + 1)
-    const fraction = this.props.type === 'currency'
-      ? 2
-      : rubberItems?.f ? rubberItems.f + 1 : this.props.fraction || 0
-
-    return `${number}${fraction ? `.${strFill('8', fraction)}` : ''}${this.props.type === 'currency' ? ` ${this.props.currency}` : ''}`
-  })
-
-  // DELETE
-  protected rubberByCurrency = this.geoIntl.value.currency(this.rubberByItem, { maximumFractionDigits: 2 })
-  protected rubberByNumber = this.geoIntl.value.number(this.rubberByItem, { maximumFractionDigits: 9 })
-
-  // DELETE
-  protected deletePattern = computed<MaskPatternType>(() => {
-    if (this.geo.value) {
-      return {
-        Y: '[0-9]{4}',
-        M: {
-          max: '12',
-          min: '1',
-          type: 'number'
-        },
-        D: (value: MaskItemsType): AssociativeType<string> => {
-          const date = new GeoDate(`${value?.Y?.value || '2000'}-${value?.M?.value || '01'}-01`)
-
-          return {
-            max: date.getMaxDay().value.toString(),
-            min: '1',
-            type: 'number'
-          }
-        },
-        h: {
-          max: '23',
-          min: '0',
-          type: 'number'
-        },
-        m: {
-          max: '59',
-          min: '0',
-          type: 'number'
-        },
-        s: {
-          max: '59',
-          min: '0',
-          type: 'number'
-        },
-        ...this.props.pattern
-      }
-    } else if (
-      typeof this.props.special === 'string' &&
-      ['function', 'string'].indexOf(typeof this.props.pattern) !== -1
-    ) {
-      return {
-        [this.props.special]: this.props.pattern
-      }
-    } else {
-      return this.props.pattern || {}
-    }
-  })
-
-  // DELETE
-  protected deleteSpecial = computed<string[] | string>(() => {
-    switch (this.props.type) {
-      case 'currency':
-      case 'number':
-        return ['n', 'f']
-      default:
-        if (this.geo.value) {
-          return ['Y', 'M', 'D', 'h', 'm', 's']
-        } else if (typeof this.props.special === 'object') {
-          return Object.keys(this.props.special)
-        } else {
-          return this.props.special
-        }
-    }
-  })
-
-  // DELETE
-  protected standard = computed<string>(() => {
-    const character = this.character.value
-    const rubber = this.deleteRubber.value
-    const value = [] as string[]
-
-    let stop: boolean
-    let key = 0 as number
-
-    this.mask.value.forEach(char => {
-      if (!stop) {
-        if (!this.ifSpecial(char)) {
-          value.push(char)
-        } else if (key in character) {
-          value.push(character[key++])
-
-          if (
-            rubber &&
-            char in rubber &&
-            key >= character.length &&
-            this.transition.disabled(char)
-          ) {
-            stop = true
-          }
-        } else {
-          stop = true
-        }
-      }
-    })
-
-    return value.join('')
-  })
+  protected isRight = computed(() => this.type.isCurrencyOrNumber() || this.props.right)
 
   protected standardByRight = computed<string>(() => {
-    if (this.ifRight.value) {
+    if (this.isRight.value) {
       let data = ''
 
       this.view.value?.forEach(item => {
@@ -450,47 +195,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
       return data
     } else {
-      return this.standard.value
+      return this.values.getStandard()
     }
-  })
-
-  // DELETE
-  protected transitionChar = computed<string[]>(() => {
-    const data = [] as string[]
-
-    if (this.deleteRubber.value) {
-      forEach(this.deleteRubber.value, item => {
-        if (item?.transitionChar) {
-          if (typeof item.transitionChar === 'string') {
-            data.push(item.transitionChar)
-          } else {
-            data.push(...item.transitionChar)
-          }
-        }
-      })
-    }
-
-    return data
-  })
-
-  protected validation = computed<MaskValidationType | undefined>(() => {
-    let validation: MaskValidationType | undefined
-
-    forEach<MaskPatternType, string, void>(this.deletePattern.value, (item, index) => {
-      if (!validation && index in this.valueByType.value) {
-        const valueByType = this.valueByType.value[index]
-
-        if (valueByType.full) {
-          const check = this.check(valueByType)
-
-          if (!check.status) {
-            validation = check
-          }
-        }
-      }
-    })
-
-    return validation || this.validationCheck.value
   })
 
   protected validationCheck = computed<MaskValidationType | undefined>(() => {
@@ -607,22 +313,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return value !== undefined ? value : maskValue.length
-  }
-
-  protected check (item: MaskItemType): MaskValidationType {
-    const pattern = this.deletePattern.value[item.index]
-    const input = this.getInput(this.getInputAttributes(pattern))
-
-    input.value = item.value
-
-    return {
-      index: item.index,
-      input,
-      status: input?.checkValidity(),
-      validationMessage: input.validationMessage,
-      validity: input.validity,
-      pattern
-    }
   }
 
   // DELETE
@@ -1139,7 +829,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected toEnd (target: HTMLInputElement): void {
     if (
-      this.ifRight.value &&
+      this.isRight.value &&
       target.selectionStart !== null &&
       target.selectionStart > this.standard.value.length
     ) {

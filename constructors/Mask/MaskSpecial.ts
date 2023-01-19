@@ -1,7 +1,7 @@
 import { computed, Ref } from 'vue'
 import { MaskType } from './MaskType'
+import { forEach } from '../../functions'
 import { MaskSpecialItemType, MaskSpecialType } from './types'
-import { forEach, isSelected } from '../../functions'
 import { AssociativeType } from '../types'
 
 export class MaskSpecial {
@@ -26,12 +26,12 @@ export class MaskSpecial {
     }
   })
 
-  get () {
+  get (): string[] {
     return this.item.value
   }
 
   getOnly (): string {
-    return this.get()?.[0]
+    return this.get()?.[0] || '*'
   }
 
   getRubber (): AssociativeType<MaskSpecialItemType> {
@@ -46,19 +46,11 @@ export class MaskSpecial {
     return data
   }
 
-  isArray () {
-    return Array.isArray(this.special.value)
-  }
-
-  isObject () {
-    return typeof this.special.value === 'object'
-  }
-
   isSpecial (char: string): boolean {
     return this.item.value.indexOf(char) !== -1
   }
 
-  isString () {
+  isString (): boolean {
     return typeof this.special.value === 'string'
   }
 }

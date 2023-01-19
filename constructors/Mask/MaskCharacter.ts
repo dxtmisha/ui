@@ -15,12 +15,24 @@ export class MaskCharacter {
     })
   }
 
-  focus = computed<string>(() => this.mask.getChar(this.selection.getFocus()) || '')
-  next = computed<string>(() => this.mask.getChar(this.selection.getNext()) || '')
+  readonly focus = computed<string>(() => this.mask.getItem(this.selection.getFocus()) || '')
+  readonly next = computed<string>(() => this.mask.getItem(this.selection.getNext()) || '')
+
+  getFocus (): string {
+    return this.focus.value
+  }
+
+  getLength (): number {
+    return this.length.value
+  }
+
+  getNext (): string {
+    return this.next.value
+  }
 
   pop (selection: number): this {
     this.character.value.splice(selection, 1)
-    this.selection.set(selection - 1)
+    this.selection.goBack()
 
     return this
   }
@@ -34,7 +46,7 @@ export class MaskCharacter {
 
   set (selection: number, char: string): this {
     this.character.value.splice(selection, 0, char)
-    this.selection.set(selection)
+    this.selection.goNext()
 
     return this
   }

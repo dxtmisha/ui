@@ -20,9 +20,9 @@ export class MaskItem {
   ) {
   }
 
-  protected activeMask = computed<string[]>(() => {
+  protected readonly activeMask = computed<string[]>(() => {
     if (this.type.isNumber()) {
-      return this.format.toMask()
+      return this.format.getMaskByNumber()
     } else if (this.type.isDate()) {
       return this.date.getMaskByDate()
     } else {
@@ -34,11 +34,11 @@ export class MaskItem {
     const mask = this.mask.value
 
     if (Array.isArray(mask)) {
-      return this.rubber.getMask(
+      return this.rubber.expandMask(
         mask.find(item => this.getSpecialLength(item) >= this.character.value.length) || mask?.[0] || ''
       ).split('')
     } else {
-      return this.rubber.getMask(mask).split('')
+      return this.rubber.expandMask(mask).split('')
     }
   })
 
@@ -54,8 +54,8 @@ export class MaskItem {
     return this.activeMask.value
   }
 
-  getChar (selection: number): string | undefined {
-    return this.get()?.[selection]
+  getItem (index: number): string | undefined {
+    return this.get()?.[index]
   }
 
   getLength (): number {

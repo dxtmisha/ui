@@ -47,6 +47,22 @@ export class MaskSelection {
     return this.next.value
   }
 
+  goBack (): this {
+    if (this.item.value > 0) {
+      this.item.value--
+    }
+
+    return this
+  }
+
+  goNext (): this {
+    if (this.next.value !== this.mask.getLength()) {
+      this.item.value++
+    }
+
+    return this
+  }
+
   set (selection: number): this {
     this.item.value = selection
     return this

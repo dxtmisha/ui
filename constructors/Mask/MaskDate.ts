@@ -44,9 +44,9 @@ export class MaskDate {
   ) {
   }
 
-  protected geo = computed<GeoDate>(() => new GeoDate('1987-12-18T10:20:30', this.type.getDate()))
+  protected geo = computed<GeoDate>(() => new GeoDate('1987-12-18T10:20:30', this.type.getTypeDate()))
 
-  getMaskByDate () {
+  getMaskByDate (): string[] {
     return this.geo.value.locale('numeric').value
       .replace('1987', 'YYYY')
       .replace('12', 'MM')

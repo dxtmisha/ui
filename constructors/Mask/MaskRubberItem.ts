@@ -1,30 +1,17 @@
 import { ref } from 'vue'
-import { AssociativeType } from '../types'
 import { forEach, getExp, strFill } from '../../functions'
+import { AssociativeType } from '../types'
 
 export class MaskRubberItem {
   protected readonly item = ref<AssociativeType<number>>({})
 
   add (index: string): this {
-    if (index in this.item.value) {
-      this.item.value[index]++
-    } else {
-      this.item.value[index] = 1
-    }
-
+    this.item.value[index] = this.getItem(index) + 1
     return this
   }
 
-  get (index: string): number {
-    return this.item.value?.[index] || 0
-  }
-
-  getItem (): AssociativeType<number> {
-    return this.item.value
-  }
-
-  getMask (mask?: string): string {
-    let value = mask || ''
+  expandMask (mask: string): string {
+    let value = mask
 
     forEach<number, string, void>(this.item.value, (length, index) => {
       value = value.replace(
@@ -36,15 +23,20 @@ export class MaskRubberItem {
     return value
   }
 
+  get (): AssociativeType<number> {
+    return this.item.value
+  }
+
+  getItem (index: string): number {
+    return this.item.value?.[index] || 0
+  }
+
   is (index: string): boolean {
     return index in this.item.value
   }
 
   pop (index: string): this {
-    if (
-      index in this.item.value &&
-      --this.item.value[index] <= 0
-    ) {
+    if (this.is(index) && --this.item.value[index] <= 0) {
       delete this.item.value[index]
     }
 

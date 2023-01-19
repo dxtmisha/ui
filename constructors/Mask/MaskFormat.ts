@@ -3,6 +3,8 @@ import { GeoIntl } from '../../classes/GeoIntl'
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskType } from './MaskType'
 import { strFill } from '../../functions'
+import { AssociativeType } from '../types'
+import { MaskSpecialItemType } from './types'
 
 export class MaskFormat {
   // eslint-disable-next-line no-useless-constructor
@@ -15,24 +17,29 @@ export class MaskFormat {
   }
 
   protected readonly intl = computed<GeoIntl>(() => new GeoIntl())
-
   protected readonly format = computed<string>(() => `${this.toNumber()}${this.toFraction()}${this.toCurrency()}`)
-  protected readonly formatCurrency = this.intl.value.currency(this.format, { maximumFractionDigits: 2 })
-  protected readonly formatNumber = this.intl.value.number(this.format, { maximumFractionDigits: 9 })
+
+  protected readonly formatCurrency = computed<string>(
+    () => this.intl.value.currency(this.format, { maximumFractionDigits: 2 }).value
+  )
+
+  protected readonly formatNumber = computed<string>(
+    () => this.intl.value.number(this.format, { maximumFractionDigits: 9 }).value
+  )
 
   getCurrency (): string {
     return this.formatCurrency.value
   }
 
-  getNumber (): string {
-    return this.formatNumber.value
+  getDecimal (): string[] {
+    return [this.intl.value.numberDecimal().value, '.']
   }
 
   getFraction (): number {
     if (this.type.isCurrency()) {
       return 2
     } else if (this.rubber.is('f')) {
-      return this.rubber.get('f') + 1
+      return this.rubber.getItem('f') + 1
     } else if (typeof this.fraction.value === 'number') {
       return this.fraction.value
     } else {
@@ -40,8 +47,29 @@ export class MaskFormat {
     }
   }
 
-  getDecimal (): string[] {
-    return [this.intl.value.numberDecimal().value, '.']
+  getMaskByNumber (): string[] {
+    return (this.type.isCurrency() ? this.getCurrency() : this.getNumber())
+      .replace(/9/ig, 'n')
+      .replace(/8/ig, 'f')
+      .split('')
+  }
+
+  getNumber (): string {
+    return this.formatNumber.value
+  }
+
+  getRubber (): AssociativeType<MaskSpecialItemType> {
+    return {
+      n: {
+        rubber: true,
+        transitionChar: this.getDecimal(),
+        maxLength: 12
+      },
+      f: {
+        rubber: this.isFractionRubber(),
+        maxLength: 6
+      }
+    }
   }
 
   isFractionRubber (): boolean {
@@ -57,14 +85,7 @@ export class MaskFormat {
     return data ? `.${strFill('8', data)}` : ''
   }
 
-  toMask (): string[] {
-    return (this.type.isCurrency() ? this.formatCurrency.value : this.formatNumber.value)
-      .replace(/9/ig, 'n')
-      .replace(/8/ig, 'f')
-      .split('')
-  }
-
   protected toNumber (): string {
-    return strFill('9', (this.rubber.get('n') || 0) + 1)
+    return strFill('9', (this.rubber.getItem('n') || 0) + 1)
   }
 }
