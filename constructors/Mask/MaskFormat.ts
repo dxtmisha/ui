@@ -4,7 +4,7 @@ import { MaskRubberItem } from './MaskRubberItem'
 import { MaskType } from './MaskType'
 import { strFill } from '../../functions'
 import { AssociativeType } from '../types'
-import { MaskSpecialItemType } from './types'
+import { MaskItemsType, MaskSpecialItemType } from './types'
 
 export class MaskFormat {
   // eslint-disable-next-line no-useless-constructor
@@ -12,7 +12,8 @@ export class MaskFormat {
     protected readonly type: MaskType,
     protected readonly rubber: MaskRubberItem,
     protected readonly currency: Ref<string>,
-    protected readonly fraction: Ref<boolean | number>
+    protected readonly fraction: Ref<boolean | number>,
+    protected readonly value: Ref<MaskItemsType>
   ) {
   }
 
@@ -70,6 +71,11 @@ export class MaskFormat {
         maxLength: 6
       }
     }
+  }
+
+  getValue (): string {
+    const data = this.value.value
+    return `${data?.n?.value || '0'}.${data?.f?.value || '0'}`
   }
 
   isFractionRubber (): boolean {

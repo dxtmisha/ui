@@ -2,7 +2,7 @@ import { computed, Ref } from 'vue'
 import { MaskDate } from './MaskDate'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
-import { MaskPatternType, MaskPatternTypeType } from './types'
+import { MaskItemType, MaskPatternType, MaskPatternTypeType } from './types'
 
 export class MaskPattern {
   // eslint-disable-next-line no-useless-constructor
@@ -34,8 +34,16 @@ export class MaskPattern {
     return this.item.value
   }
 
-  getItem (index: string): MaskPatternTypeType | undefined {
-    return this.get()?.[index]
+  getItem (index: string): MaskPatternTypeType {
+    return this.get()?.[index] || ''
+  }
+
+  is (index: string) {
+    return index in this.get()
+  }
+
+  isCheck () {
+    return this.is('check')
   }
 
   protected isOnly (): boolean {

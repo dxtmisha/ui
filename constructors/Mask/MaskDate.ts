@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, Ref } from 'vue'
 import { GeoDate } from '../../classes/GeoDate'
 import { MaskType } from './MaskType'
 import { AssociativeType } from '../types'
@@ -40,7 +40,8 @@ export class MaskDate {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    protected readonly type: MaskType
+    protected readonly type: MaskType,
+    protected readonly value: Ref<MaskItemsType>
   ) {
   }
 
@@ -59,5 +60,17 @@ export class MaskDate {
 
   getPattern (): MaskPatternType {
     return this.pattern
+  }
+
+  getValue (): string {
+    const date = this.value.value
+    const value = `${date?.Y?.value || '2000'}` +
+      `-${date?.M?.value || '01'}` +
+      `-${date?.D?.value || '01'}` +
+      `T${date?.h?.value || '00'}` +
+      `:${date?.m?.value || '00'}` +
+      `:${date?.s?.value || '00'}`
+
+    return new GeoDate(value, this.type.getTypeDate()).standard(false).value
   }
 }

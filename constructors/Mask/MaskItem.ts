@@ -12,8 +12,8 @@ export class MaskItem {
   constructor (
     protected readonly type: MaskType,
     protected readonly rubber: MaskRubberItem,
-    protected readonly format: MaskFormat,
     protected readonly date: MaskDate,
+    protected readonly format: MaskFormat,
     protected readonly special: MaskSpecial,
     protected readonly mask: Ref<ArrayOrStringType>,
     protected readonly character: Ref<string[]>

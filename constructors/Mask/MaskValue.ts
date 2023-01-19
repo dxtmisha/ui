@@ -1,26 +1,31 @@
 import { MaskItemsType, MaskItemType } from './types'
 import { computed, Ref, watchEffect } from 'vue'
+import { MaskDate } from './MaskDate'
+import { MaskFormat } from './MaskFormat'
 import { MaskItem } from './MaskItem'
 import { MaskRubberTransition } from './MaskRubberTransition'
 import { MaskSpecial } from './MaskSpecial'
+import { MaskType } from './MaskType'
 import { forEach } from '../../functions'
 
 export class MaskValue {
-  // eslint-disable-next-line no-useless-constructor
   constructor (
+    protected readonly type: MaskType,
     protected readonly transition: MaskRubberTransition,
+    protected readonly date: MaskDate,
+    protected readonly format: MaskFormat,
     protected readonly special: MaskSpecial,
     protected readonly mask: MaskItem,
     protected readonly character: Ref<string[]>,
-    protected readonly values: Ref<MaskItemsType>
+    protected readonly value: Ref<MaskItemsType>
   ) {
     watchEffect(() => {
       const standard = this.getStandard()
-      this.values.value = {} as MaskItemsType
+      this.value.value = {} as MaskItemsType
 
       this.mask.get().forEach((char, index) => {
         if (this.special.isSpecial(char)) {
-          const value = this.add(this.values.value, char)
+          const value = this.add(this.value.value, char)
 
           if (this.isStandard(index)) {
             value.chars.push(standard[index])
@@ -37,13 +42,37 @@ export class MaskValue {
   protected readonly full = computed<boolean>(() => {
     let empty = false
 
-    forEach(this.values.value, item => {
+    forEach(this.value.value, item => {
       if (!item.full) {
         empty = true
       }
     })
 
     return !empty
+  })
+
+  protected readonly item = computed<string>(() => {
+    if (this.isFull()) {
+      if (this.type.isCurrencyOrNumber()) {
+        return this.format.getValue()
+      } else if (this.type.isDate()) {
+        return this.date.getValue()
+      } else {
+        return this.standard.value
+      }
+    } else {
+      return ''
+    }
+  })
+
+  protected readonly itemForCheck = computed<MaskItemType>(() => {
+    return {
+      index: 'check',
+      value: this.item.value,
+      maxLength: this.item.value.length,
+      full: this.isFull(),
+      chars: this.item.value.split('')
+    }
   })
 
   protected readonly standard = computed<string>(() => {
@@ -90,7 +119,11 @@ export class MaskValue {
   }
 
   get (): MaskItemsType {
-    return this.values.value
+    return this.value.value
+  }
+
+  getForCheck (): MaskItemType {
+    return this.itemForCheck.value
   }
 
   getInfo (index: string): MaskItemType | undefined {
@@ -105,8 +138,12 @@ export class MaskValue {
     return this.standard.value
   }
 
+  getValue (): string {
+    return this.item.value
+  }
+
   is (index: string): boolean {
-    return index in this.values.value
+    return index in this.value.value
   }
 
   isFull (): boolean {

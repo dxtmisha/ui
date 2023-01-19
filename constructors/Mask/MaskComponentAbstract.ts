@@ -88,12 +88,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.rubber = new MaskRubberItem()
     this.transition = new MaskRubberTransition()
 
-    this.date = new MaskDate(this.type)
+    this.date = new MaskDate(this.type, this.value)
     this.format = new MaskFormat(
       this.type,
       this.rubber,
       this.refs.currency,
-      this.refs.fraction
+      this.refs.fraction,
+      this.value
     )
 
     this.match = new MaskMatch(this.refs.match)
@@ -118,8 +119,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.item = new MaskItem(
       this.type,
       this.rubber,
-      this.format,
       this.date,
+      this.format,
       this.special,
       this.refs.mask,
       this.character
@@ -131,7 +132,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.character
     )
     this.values = new MaskValue(
+      this.type,
       this.transition,
+      this.date,
+      this.format,
       this.special,
       this.item,
       this.character,
@@ -199,48 +203,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
-  protected validationCheck = computed<MaskValidationType | undefined>(() => {
-    let validation: MaskValidationType | undefined
-
-    if (this.ifFull.value && 'check' in this.deletePattern.value) {
-      const check = this.check(this.valueByItem.value)
-
-      if (!check.status) {
-        validation = check
-      }
-    }
-
-    return validation
-  })
-
   protected validationMessage = computed<string>(() => this.validation.value?.validationMessage || '')
-
-  protected deleteValue = computed<string>(() => {
-    if (this.validation.value) {
-      return ''
-    } else {
-      switch (this.props.type) {
-        case 'number':
-          return this.getValueByNumber()
-        default:
-          if (this.ifDate.value) {
-            return this.getValueByDate()
-          } else {
-            return this.standard.value
-          }
-      }
-    }
-  })
-
-  protected valueByItem = computed<MaskItemType>(() => {
-    return {
-      index: 'check',
-      value: this.deleteValue.value,
-      maxLength: this.deleteValue.value.length,
-      full: true,
-      chars: this.deleteValue.value.split('')
-    }
-  })
 
   protected valueByType = computed<MaskItemsType>(() => {
     const data = {} as MaskItemsType
@@ -332,49 +295,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
   }
 
-  protected getInput (attributes: AssociativeType<string>): HTMLInputElement {
-    const input = document.createElement('input')
-
-    forEach<string, string, void>(attributes, (item, name) => {
-      input.setAttribute(name, item)
-    })
-
-    return input
-  }
-
-  protected getInputAttributes (pattern: MaskPatternTypeType): AssociativeType<string> {
-    const attributes = {} as AssociativeType<string>
-
-    if (isFilled(pattern)) {
-      switch (typeof pattern) {
-        case 'function':
-          Object.assign(attributes, this.getInputFunctionAttributes(pattern))
-          break
-        case 'string':
-          attributes.pattern = pattern
-          break
-        case 'object':
-          Object.assign(attributes, pattern)
-
-          break
-      }
-    }
-
-    return attributes
-  }
-
-  protected getInputFunctionAttributes (
-    callback: (value: MaskItemsType) => string | AssociativeType<string>
-  ): AssociativeType<string> {
-    const read = callback(this.valueByType.value)
-
-    if (typeof read === 'string') {
-      return { pattern: read }
-    } else {
-      return read
-    }
-  }
-
   protected getMaskChar (selection: number): string {
     return this.mask.value?.[selection]
   }
@@ -438,26 +358,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return this
-  }
-
-  protected getValueByDate (): string {
-    const date = this.valueByType.value
-
-    const value = `${date?.Y?.value || '2000'}` +
-      `-${date?.M?.value || '01'}` +
-      `-${date?.D?.value || '01'}` +
-      `T${date?.h?.value || '00'}` +
-      `:${date?.m?.value || '00'}` +
-      `:${date?.s?.value || '00'}`
-
-    return new GeoDate(value, this.props.type).standard(false).value
-  }
-
-  protected getValueByNumber (): string {
-    const data = this.valueByType.value
-    const fraction = data?.f?.value
-
-    return `${data?.n?.value}${fraction ? `.${fraction}` : ''}`
   }
 
   protected getViewType (item: string, index: number): string {

@@ -18,7 +18,7 @@ export class MaskRubber {
     protected readonly format: MaskFormat,
     protected readonly match: MaskMatch,
     protected readonly special: MaskSpecial,
-    protected readonly value?: Ref<MaskItemsType>
+    protected readonly value: Ref<MaskItemsType>
   ) {
   }
 
