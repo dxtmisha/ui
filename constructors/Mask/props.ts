@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { ArrayOrStringType } from '../types'
+import { ArrayOrStringType, AssociativeOrStringType } from '../types'
 import { MaskPatternType, MaskSpecialType, MaskTypeType } from './types'
 
 export const props = {
@@ -43,7 +43,7 @@ export const props = {
     default: 'text'
   },
   view: {
-    type: [Object, String] as PropType<ArrayOrStringType>,
+    type: [Object, String] as PropType<AssociativeOrStringType>,
     default: '_'
   }
 }

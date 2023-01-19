@@ -13,7 +13,7 @@ export class MaskValidation {
   ) {
   }
 
-  protected readonly validation = computed<MaskValidationType | undefined>(() => {
+  protected readonly item = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
     forEach<MaskPatternType, string, void>(
@@ -53,6 +53,8 @@ export class MaskValidation {
     return validation
   })
 
+  protected readonly message = computed<string>(() => this.item.value?.validationMessage || '')
+
   protected check (item: MaskItemType): MaskValidationType {
     const pattern = this.pattern.getItem(item.index)
     const input = this.getInput(this.getAttributes(pattern))
@@ -67,6 +69,26 @@ export class MaskValidation {
       validity: input.validity,
       pattern
     }
+  }
+
+  protected executeFunction (
+    callback: (value: MaskItemsType) => string | AssociativeType<string>
+  ): AssociativeType<string> {
+    const read = callback(this.value.get())
+
+    if (typeof read === 'string') {
+      return { pattern: read }
+    } else {
+      return read
+    }
+  }
+
+  get (): MaskValidationType | undefined {
+    return this.item.value
+  }
+
+  getMessage (): string {
+    return this.message.value
   }
 
   protected getInput (attributes: AssociativeType<string>): HTMLInputElement {
@@ -99,19 +121,7 @@ export class MaskValidation {
     return attributes
   }
 
-  get (): MaskValidationType | undefined {
-    return this.validation.value
-  }
-
-  protected executeFunction (
-    callback: (value: MaskItemsType) => string | AssociativeType<string>
-  ): AssociativeType<string> {
-    const read = callback(this.value.get())
-
-    if (typeof read === 'string') {
-      return { pattern: read }
-    } else {
-      return read
-    }
+  is (index: string): boolean {
+    return this.get()?.index === index
   }
 }

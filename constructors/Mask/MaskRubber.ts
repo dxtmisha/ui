@@ -44,6 +44,10 @@ export class MaskRubber {
     return index in this.get()
   }
 
+  isTransition (index: string): boolean {
+    return this.transitionChars.value.indexOf(index) !== -1
+  }
+
   set (index: string, char: string): boolean {
     const item = this.getItem(index)
     const value = this.value?.value?.[index]

@@ -138,6 +138,14 @@ export class MaskValue {
     return this.standard.value
   }
 
+  getStandardItem (index: number): string | undefined {
+    return this.getStandard()?.[index]
+  }
+
+  getStandardLength (): number {
+    return this.getStandard().length
+  }
+
   getValue (): string {
     return this.item.value
   }

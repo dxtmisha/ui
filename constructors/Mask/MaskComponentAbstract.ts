@@ -29,6 +29,8 @@ import { MaskDate } from './MaskDate'
 import { MaskPattern } from './MaskPattern'
 import { MaskSelection } from './MaskSelection'
 import { MaskValue } from './MaskValue'
+import { MaskValidation } from './MaskValidation'
+import { MaskView } from './MaskView'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -60,6 +62,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly selection: MaskSelection
   protected readonly characters: MaskCharacter
   protected readonly values: MaskValue
+
+  protected readonly validation: MaskValidation
+  protected readonly view: MaskView
 
   // DELETE
   protected readonly length = ref<number>(0)
@@ -142,6 +147,20 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.value
     )
 
+    this.validation = new MaskValidation(
+      this.pattern,
+      this.values
+    )
+    this.view = new MaskView(
+      this.special,
+      this.rubbers,
+      this.item,
+      this.values,
+      this.validation,
+      this.refs.view,
+      this.getClassName(['character'])
+    )
+
     watch(this.refs.value, value => this.newValue(value))
 
     watch(this.mask, () => this.goSelection())
@@ -201,43 +220,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     } else {
       return this.values.getStandard()
     }
-  })
-
-  protected validationMessage = computed<string>(() => this.validation.value?.validationMessage || '')
-
-  protected valueByType = computed<MaskItemsType>(() => {
-    const data = {} as MaskItemsType
-    const special = this.deleteSpecial.value
-    const standard = this.standard.value
-
-    this.mask.value.forEach((char, index) => {
-      if (isSelected(char, special)) {
-        const value = this.addValueByType(data, char)
-
-        if (standard[index] !== undefined) {
-          value.chars.push(standard[index])
-        }
-
-        value.maxLength++
-        value.full = value.maxLength === value.chars.length
-        value.value = value.full ? value.chars.join('') : ''
-      }
-    })
-
-    return data
-  })
-
-  protected view = computed<MaskViewType[]>(() => {
-    const data = [] as MaskViewType[]
-
-    this.mask.value.forEach((item, index) => {
-      data.push({
-        type: `${this.getClassName(['character'])} ${this.getViewType(item, index)}`,
-        value: this.getViewValue(item, index)
-      })
-    })
-
-    return data
   })
 
   // DELETE
@@ -358,39 +340,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     return this
-  }
-
-  protected getViewType (item: string, index: number): string {
-    if (this.standard.value.length > index) {
-      if (!this.ifSpecial(item)) {
-        return 'is-standard'
-      } else if (this.validation.value?.index === item) {
-        return 'is-error'
-      } else {
-        return 'is-special'
-      }
-    } else {
-      return `is-placeholder${this.transitionChar.value.indexOf(item) !== -1 ? ' is-transition' : ''}`
-    }
-  }
-
-  protected getViewValue (item: string, index: number): string {
-    if (this.standard.value.length > index) {
-      return this.standard.value[index]
-    } else if (this.ifSpecial(item)) {
-      const view = this.props.view
-
-      switch (typeof view) {
-        case 'string':
-          return view
-        case 'object':
-          if (item in view) {
-            return view[item]
-          }
-      }
-    }
-
-    return item
   }
 
   protected ifMatch (char: string): boolean {
