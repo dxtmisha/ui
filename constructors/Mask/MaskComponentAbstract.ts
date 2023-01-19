@@ -115,12 +115,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.rubbers = new MaskRubber(
       this.type,
       this.rubber,
-      this.number,
-      this.special,
       this.transition,
-      this.refs.fraction,
-      this.refs.currency,
-      this.refs.match
+      this.match,
+      this.special,
+      this.number,
+      this.value
     )
 
     this.item = new MaskItem(
@@ -129,19 +128,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.format,
       this.date,
       this.special,
-      this.refs.mask,
+      this.mask,
       this.character
     )
 
     this.selection = new MaskSelection(this.item, this.special)
 
     this.characters = new MaskCharacter(
-      this.special,
-      this.character,
-      this.item.activeMask,
-      this.rubbers,
-      this.refs.match,
-      this.deleteSpecial
+      this.item,
+      this.selection,
+      this.character
     )
 
     this.values = new MaskValue(

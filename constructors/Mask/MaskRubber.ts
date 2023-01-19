@@ -1,28 +1,24 @@
-import { computed, ComputedRef, Ref, ref } from 'vue'
-import { GeoIntl } from '../../classes/GeoIntl'
+import { computed, Ref } from 'vue'
+import { MaskNumber } from './MaskNumber'
+import { MaskMatch } from './MaskMatch'
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskRubberTransition } from './MaskRubberTransition'
-import { forEach, getExp, isSelected, strFill } from '../../functions'
-import { AssociativeType } from '../types'
-import { MaskItemsType, MaskItemType, MaskSpecialItemType, MaskSpecialType } from './types'
 import { MaskSpecial } from './MaskSpecial'
-import { MaskNumber } from './MaskNumber'
 import { MaskType } from './MaskType'
+import { isSelected } from '../../functions'
+import { AssociativeType } from '../types'
+import { MaskItemsType, MaskItemType, MaskSpecialItemType } from './types'
 
 export class MaskRubber {
-  protected values?: ComputedRef<MaskItemsType>
-  protected readonly length = ref<AssociativeType<number>>({})
-
   // eslint-disable-next-line no-useless-constructor
   constructor (
     protected readonly type: MaskType,
     protected readonly item: MaskRubberItem,
-    protected readonly number: MaskNumber,
-    protected readonly special: MaskSpecial,
     protected readonly transition: MaskRubberTransition,
-    protected readonly fraction: Ref<boolean | number>,
-    protected readonly currency: Ref<string>,
-    protected readonly match: Ref<RegExp>
+    protected readonly match: MaskMatch,
+    protected readonly special: MaskSpecial,
+    protected readonly number: MaskNumber,
+    protected readonly value?: Ref<MaskItemsType>
   ) {
   }
 
@@ -36,12 +32,20 @@ export class MaskRubber {
       .flat() as string[]
   })
 
-  protected getItem (special: string) {
-    return this.rubber.value?.[special]
+  get (): AssociativeType<MaskSpecialItemType> {
+    return this.rubber.value
+  }
+
+  getItem (index: string): MaskSpecialItemType | undefined {
+    return this.get()?.[index]
   }
 
   protected getValue (special: string): MaskItemType | undefined {
-    return this.values?.value?.[special]
+    return this.value?.value?.[special]
+  }
+
+  is (index: string): boolean {
+    return index in this.get()
   }
 
   set (index: string, char: string): boolean {
@@ -58,7 +62,7 @@ export class MaskRubber {
         this.transition.set(index)
       } else if (
         value.full &&
-        this.ifMatch(char) &&
+        this.match.isMatch(char) &&
         this.transition.disabled(index)
       ) {
         this.item.add(index)
