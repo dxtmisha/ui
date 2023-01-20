@@ -20,7 +20,7 @@ export class MaskItem {
   ) {
   }
 
-  protected readonly activeMask = computed<string[]>(() => {
+  readonly activeMask = computed<string[]>(() => {
     if (this.type.isNumber()) {
       return this.format.getMaskByNumber()
     } else if (this.type.isDate()) {
@@ -30,7 +30,7 @@ export class MaskItem {
     }
   })
 
-  protected readonly basic = computed<string[]>(() => {
+  readonly basic = computed<string[]>(() => {
     const mask = this.mask.value
 
     if (Array.isArray(mask)) {
@@ -42,7 +42,7 @@ export class MaskItem {
     }
   })
 
-  protected readonly length = computed<number>(() => {
+  readonly length = computed<number>(() => {
     if (Array.isArray(this.mask.value)) {
       return maxListLength(this.mask.value)
     } else {

@@ -13,7 +13,7 @@ export class MaskValidation {
   ) {
   }
 
-  protected readonly item = computed<MaskValidationType | undefined>(() => {
+  readonly item = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
     forEach<MaskPatternType, string, void>(
@@ -36,7 +36,7 @@ export class MaskValidation {
     return validation || this.validationCheck.value
   })
 
-  protected readonly validationCheck = computed<MaskValidationType | undefined>(() => {
+  readonly validationCheck = computed<MaskValidationType | undefined>(() => {
     let validation: MaskValidationType | undefined
 
     if (
@@ -53,7 +53,7 @@ export class MaskValidation {
     return validation
   })
 
-  protected readonly message = computed<string>(() => this.item.value?.validationMessage || '')
+  readonly message = computed<string>(() => this.item.value?.validationMessage || '')
 
   protected check (item: MaskItemType): MaskValidationType {
     const pattern = this.pattern.getItem(item.index)

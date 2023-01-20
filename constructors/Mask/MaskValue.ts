@@ -51,7 +51,7 @@ export class MaskValue {
     return !empty
   })
 
-  protected readonly item = computed<string>(() => {
+  readonly item = computed<string>(() => {
     if (this.isFull()) {
       if (this.type.isCurrencyOrNumber()) {
         return this.format.getValue()
@@ -65,7 +65,7 @@ export class MaskValue {
     }
   })
 
-  protected readonly itemForCheck = computed<MaskItemType>(() => {
+  readonly itemForCheck = computed<MaskItemType>(() => {
     return {
       index: 'check',
       value: this.item.value,
@@ -75,7 +75,7 @@ export class MaskValue {
     }
   })
 
-  protected readonly standard = computed<string>(() => {
+  readonly standard = computed<string>(() => {
     const character = this.character.value
     const value = [] as string[]
 

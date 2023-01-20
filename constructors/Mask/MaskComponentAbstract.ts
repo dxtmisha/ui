@@ -1,29 +1,23 @@
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
-import { GeoDate } from '../../classes/GeoDate'
 import { MaskCharacter } from './MaskCharacter'
+import { MaskDate } from './MaskDate'
+import { MaskFormat } from './MaskFormat'
 import { MaskItem } from './MaskItem'
+import { MaskMatch } from './MaskMatch'
+import { MaskPattern } from './MaskPattern'
 import { MaskRubber } from './MaskRubber'
+import { MaskRubberItem } from './MaskRubberItem'
 import { MaskRubberTransition } from './MaskRubberTransition'
-import { isSelected } from '../../functions'
+import { MaskSelection } from './MaskSelection'
+import { MaskSpecial } from './MaskSpecial'
+import { MaskType } from './MaskType'
+import { MaskValidation } from './MaskValidation'
+import { MaskValue } from './MaskValue'
+import { MaskView } from './MaskView'
 import { props } from './props'
 import { AssociativeType } from '../types'
-import {
-  MaskClassesType,
-  MaskItemsType,
-  MaskSetupType
-} from './types'
-import { MaskRubberItem } from './MaskRubberItem'
-import { MaskType } from './MaskType'
-import { MaskSpecial } from './MaskSpecial'
-import { MaskMatch } from './MaskMatch'
-import { MaskFormat } from './MaskFormat'
-import { MaskDate } from './MaskDate'
-import { MaskPattern } from './MaskPattern'
-import { MaskSelection } from './MaskSelection'
-import { MaskValue } from './MaskValue'
-import { MaskValidation } from './MaskValidation'
-import { MaskView } from './MaskView'
+import { MaskClassesType, MaskItemsType, MaskSetupType } from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -62,16 +56,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   // DELETE
   protected readonly length = ref<number>(0)
 
-  // DELETE
-  protected readonly rubberItems = ref<AssociativeType<number>>({})
-
   protected deleteSelection = {
     start: 0 as number,
     end: 0 as number
   }
-
-  // DELETE
-  protected selectionCharacter = 0 as number
 
   protected change?: boolean
   protected unidentified?: boolean
@@ -154,6 +142,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.getClassName(['character'])
     )
 
+    /*
     watch(this.refs.value, value => this.newValue(value))
 
     watch(this.mask, () => this.goSelection())
@@ -168,6 +157,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     this.newValue(this.props.value)
+    */
   }
 
   setup (): MaskSetupType {
@@ -183,11 +173,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       charsElement: this.charsElement,
       standard: this.standard,
       standardByRight: this.standard,
-      validation: this.validation,
-      validationMessage: this.validationMessage,
-      maskBind: this.mask,
-      valueBind: this.deleteValue,
-      viewBind: this.view,
+      validation: this.validation.item,
+      validationMessage: this.validation.message,
+      maskBind: this.item.activeMask,
+      valueBind: this.values.item,
+      viewBind: this.view.item,
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
       onClick: (event: MouseEvent) => this.onClick(event),
@@ -220,52 +210,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected characterToValue (selection: number, mask?: string[]): number {
-    const maskValue = mask || this.mask.value
-    let selectionChar = -1 as number
-    let value: number | undefined
-
-    maskValue.forEach((char, index) => {
-      if (this.ifSpecial(char)) {
-        selectionChar++
-      }
-
-      if (value === undefined && selectionChar >= selection) {
-        value = index
-      }
-    })
-
-    return value !== undefined ? value : maskValue.length
-  }
-
   protected async getClipboardData (event: ClipboardEvent): Promise<string> {
     return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
   }
 
-  protected getMaskChar (selection: number): string {
-    return this.mask.value?.[selection]
-  }
-
-  protected goSelection (selection?: number): this {
-    const selectionChar = typeof selection === 'number'
-      ? selection
-      : this.selectionCharacter < 0
-        ? this.selectionCharacter
-        : this.characterToValue(this.selectionCharacter)
-
-    requestAnimationFrame(() => {
-      if (this.element.value) {
-        this.element.value.selectionEnd = selectionChar + 1
-        this.element.value.selectionStart = selectionChar + 1
-        // this.toEnd(this.element.value)
-      }
-    })
+  protected goSelection (focus = true as boolean): this {
+    if (focus) {
+      requestAnimationFrame(() => {
+        if (this.element.value) {
+          this.element.value.selectionEnd = this.selection.get()
+          this.element.value.selectionStart = this.selection.get()
+        }
+      })
+    }
 
     return this
-  }
-
-  protected ifSpecial (char: string): boolean {
-    return isSelected(char, this.deleteSpecial.value)
   }
 
   newValue (value: string): this {
@@ -275,11 +234,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   on (type = 'on-input') {
     this.context.emit(type, {
-      checkValidity: this.validation.value === undefined,
-      required: this.ifFull.value,
-      validation: this.validation.value,
-      validationMessage: this.validationMessage.value,
-      value: this.deleteValue.value
+      // checkValidity: this.validation.value === undefined,
+      // required: this.ifFull.value,
+      // validation: this.validation.value,
+      // validationMessage: this.validationMessage.value,
+      // value: this.deleteValue.value
     })
   }
 
@@ -314,11 +273,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.unidentified = false
 
       if (this.deleteSelection.start !== this.deleteSelection.end) {
-        this.popValueList(this.deleteSelection.start, this.deleteSelection.end)
+        this.popByList(this.deleteSelection.start, this.deleteSelection.end)
       }
 
       if (event.data) {
-        if (!this.setValue(this.deleteSelection.start, event.data)) {
+        if (!this.set(this.deleteSelection.start, event.data)) {
           target.value = this.standard.value
           requestAnimationFrame(() => this.goSelection())
         }
@@ -326,7 +285,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         this.length.value > target.value.length &&
         this.deleteSelection.start === this.deleteSelection.end
       ) {
-        this.popValue(this.deleteSelection.start)
+        this.pop(this.deleteSelection.start)
       }
     }
   }
@@ -344,9 +303,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
       if (target.selectionStart !== null) {
         if (target.selectionStart === target.selectionEnd) {
-          this.popValue(target.selectionStart)
+          this.pop(target.selectionStart)
         } else if (target.selectionEnd !== null) {
-          this.popValueList(target.selectionStart, target.selectionEnd)
+          this.popByList(target.selectionStart, target.selectionEnd)
         }
       }
     }
@@ -358,10 +317,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const end = target.selectionEnd || 0
 
     if (start === end) {
-      this.setValue(start, event.key)
+      this.set(start, event.key)
     } else {
-      this.popValueList(start, end)
-      this.setValue(start, event.key)
+      this.popByList(start, end)
+      this.set(start, event.key)
     }
   }
 
@@ -373,17 +332,18 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       target.selectionEnd !== null &&
       start !== target.selectionEnd
     ) {
-      this.popValueList(start, target.selectionEnd)
+      this.popByList(start, target.selectionEnd)
     }
 
-    this.pasteValue(start, await this.getClipboardData(event))
+    // this.pasteValue(start, await this.getClipboardData(event))
   }
 
   pasteValue = (
-    selection: number,
-    value: string,
-    focus = true as boolean
+    // selection: number,
+    // value: string,
+    // focus = true as boolean
   ): this => {
+    /*
     let index = this.valueToCharacter(selection)
 
     if (index === -1) {
@@ -392,91 +352,53 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     index = this.characterToValue(index++)
     value.split('').forEach(char => {
-      index = this.setValue(index, char, focus) || index
+      index = this.set(index, char, focus) || index
     })
+    */
 
     return this
   }
 
-  // DELETE
-  protected popRubber (special: string): this {
-    const rubber = this.rubberItems.value
-
-    if (special in rubber) {
-      if (rubber[special] > 0) {
-        rubber[special]--
-      }
-
-      if (rubber[special] === 0) {
-        delete rubber[special]
-      }
-    }
-
-    this.transition.reset()
-    return this
-  }
-
-  popValue (
+  pop (
     selection: number,
     focus = true as boolean
   ): boolean {
-    const index = selection - 1
-    const char = this.getMaskChar(index)
-
     if (
       selection > 0 &&
       this.item.getMaxLength() >= selection
     ) {
+      this.rubber.pop(this.characters.getFocus())
       this.characters.pop()
       this.characters.shift(0)
+      this.transition.reset()
 
-      if (focus) {
-        this.popRubber(char)
-        this.goSelection()
-      }
-
+      this.goSelection(focus)
       return true
     }
 
     return false
   }
 
-  popValueList (selectionStart: number, selectionEnd: number): this {
-    const chars = []
-
-    for (let i = selectionEnd; i > selectionStart; i--) {
-      chars.push(this.popValue(i, false))
+  popByList (start: number, end: number): this {
+    for (let i = end; i > start; i--) {
+      this.pop(i, false)
     }
-
-    chars.forEach(char => {
-      if (char !== '') {
-        this.popRubber(char)
-      }
-    })
 
     return this
   }
 
-  protected reset (value?: string): string[] {
-    const data = [] as string[]
-
+  reset (value: string): this {
     if (value) {
-      if (this.props.paste) {
-        data.push(...this.match.filter(value))
-      } else {
-        const chars = this.ifDate.value
-          ? new GeoDate(value, this.props.type).locale().value
-          : value
+      // const chars = this.type.isDate() ? this.date.getLocale(value) : value
 
-        this.character.value = []
-        this.pasteValue(0, chars, false)
-      }
+      this.characters.reset()
+      // this.pasteValue(0, chars, false)
     }
 
-    return data
+    return this
   }
 
-  setValue (
+  set (
     selection: number,
     char: string,
     focus = true as boolean
@@ -494,10 +416,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         this.characters.set(char)
         this.transition.reset()
 
-        if (focus) {
-          this.goSelection()
-        }
-
+        this.goSelection(focus)
         return true
       }
     }
@@ -514,17 +433,5 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       target.selectionStart = this.standard.value.length
       target.selectionEnd = this.standard.value.length
     }
-  }
-
-  protected valueToCharacter (selection: number, mask?: string[]): number {
-    let value = -1;
-
-    (mask || this.mask.value).forEach((char, index) => {
-      if (index <= selection && this.ifSpecial(char)) {
-        value++
-      }
-    })
-
-    return value
   }
 }

@@ -73,4 +73,8 @@ export class MaskDate {
 
     return new GeoDate(value, this.type.getTypeDate()).standard(false).value
   }
+
+  getLocale (value?: string): string {
+    return (value ? new GeoDate(value, this.type.getTypeDate()) : this.geo.value).locale().value
+  }
 }

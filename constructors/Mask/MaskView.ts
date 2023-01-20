@@ -21,7 +21,7 @@ export class MaskView {
   ) {
   }
 
-  protected readonly item = computed<MaskViewType[]>(() => {
+  readonly item = computed<MaskViewType[]>(() => {
     const data = [] as MaskViewType[]
 
     this.mask.get().forEach((item, index) => {
