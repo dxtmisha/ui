@@ -56,13 +56,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   // DELETE
   protected readonly length = ref<number>(0)
 
-  protected deleteSelection = {
+  protected unidentified?: boolean
+  protected unidentifiedSelection = {
     start: 0 as number,
     end: 0 as number
   }
 
   protected change?: boolean
-  protected unidentified?: boolean
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -272,41 +272,41 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       const target = event.target as HTMLInputElement
       this.unidentified = false
 
-      if (this.deleteSelection.start !== this.deleteSelection.end) {
-        this.popByList(this.deleteSelection.start, this.deleteSelection.end)
+      if (this.unidentifiedSelection.start !== this.unidentifiedSelection.end) {
+        this.pops(this.unidentifiedSelection.start, this.unidentifiedSelection.end)
       }
 
       if (event.data) {
-        if (!this.set(this.deleteSelection.start, event.data)) {
+        if (!this.set(this.unidentifiedSelection.start, event.data)) {
           target.value = this.standard.value
           requestAnimationFrame(() => this.goSelection())
         }
       } else if (
         this.length.value > target.value.length &&
-        this.deleteSelection.start === this.deleteSelection.end
+        this.unidentifiedSelection.start === this.unidentifiedSelection.end
       ) {
-        this.pop(this.deleteSelection.start)
+        this.pop(this.unidentifiedSelection.start)
       }
     }
   }
 
   onKeydown (event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement
+    const start = target.selectionStart || 0
+    const end = target.selectionEnd || 0
 
     if (event.key === 'Unidentified' || event.keyCode === 229) {
       this.unidentified = true
       this.length.value = target.value.length
-      this.deleteSelection.start = target.selectionStart || 0
-      this.deleteSelection.end = target.selectionEnd || 0
+      this.unidentifiedSelection.start = start
+      this.unidentifiedSelection.end = end
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
 
-      if (target.selectionStart !== null) {
-        if (target.selectionStart === target.selectionEnd) {
-          this.pop(target.selectionStart)
-        } else if (target.selectionEnd !== null) {
-          this.popByList(target.selectionStart, target.selectionEnd)
-        }
+      if (start === end) {
+        this.pop(start)
+      } else {
+        this.pops(start, end)
       }
     }
   }
@@ -319,7 +319,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (start === end) {
       this.set(start, event.key)
     } else {
-      this.popByList(start, end)
+      this.pops(start, end)
       this.set(start, event.key)
     }
   }
@@ -332,7 +332,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       target.selectionEnd !== null &&
       start !== target.selectionEnd
     ) {
-      this.popByList(start, target.selectionEnd)
+      this.pops(start, target.selectionEnd)
     }
 
     // this.pasteValue(start, await this.getClipboardData(event))
@@ -367,7 +367,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       selection > 0 &&
       this.item.getMaxLength() >= selection
     ) {
-      this.rubber.pop(this.characters.getFocus())
+      if (focus) {
+        this.selection.setByMask(selection)
+      }
+
+      // this.rubber.pop(this.characters.getFocus())
       this.characters.pop()
       this.characters.shift(0)
       this.transition.reset()
@@ -379,9 +383,23 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return false
   }
 
-  popByList (start: number, end: number): this {
+  pops (start: number, end: number): this {
+    let quantity = 0
+
     for (let i = end; i > start; i--) {
-      this.pop(i, false)
+      if (this.special.isSpecial(this.item.getItem(i))) {
+        quantity++
+      }
+    }
+
+    if (quantity > 0) {
+      this.selection.setByMask(end)
+
+      while (quantity--) {
+        this.pop(end, false)
+      }
+
+      this.goSelection()
     }
 
     return this
@@ -404,17 +422,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     focus = true as boolean
   ): boolean {
     this.selection.setByMask(selection)
-    // console.log('this.selection', this.selection.get())
-    // console.log('this.characters.getFocus', this.characters.getFocus())
     this.rubbers.set(this.characters.getFocus(), char)
-    // console.log('this.rubbers', this.rubbers.get())
-    // console.log('this.match.isMatch', char, this.match.isMatch(char))
 
     if (this.match.isMatch(char)) {
       this.characters.shift()
-      // console.log('this.characters.getFocus', this.characters.getFocus())
-      console.log('this.values.getStandardLength', this.values.getStandardLength())
-      console.log('this.item.getMaxLength', this.item.getMaxLength())
 
       if (
         this.characters.getFocus() &&

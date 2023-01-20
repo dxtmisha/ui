@@ -15,8 +15,8 @@ export class MaskCharacter {
     })
   }
 
-  readonly focus = computed<string>(() => this.mask.getItem(this.selection.getFocus()) || '')
-  readonly next = computed<string>(() => this.mask.getItem(this.selection.getNext()) || '')
+  readonly focus = computed<string>(() => this.mask.getItem(this.selection.getFocus()))
+  readonly next = computed<string>(() => this.mask.getItem(this.selection.getNext()))
 
   getFocus (): string {
     return this.focus.value

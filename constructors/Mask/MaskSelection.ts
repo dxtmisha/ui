@@ -56,7 +56,7 @@ export class MaskSelection {
   }
 
   goNext (): this {
-    if (this.next.value !== this.mask.getLength()) {
+    if (this.next.value <= this.mask.getLength()) {
       this.item.value++
     }
 
@@ -70,19 +70,19 @@ export class MaskSelection {
 
   setByMask (selection: number): this {
     let selectionChar = -1 as number
-    let value = 0 as number
+    let value: number | undefined
 
     this.mask.get().forEach((char, index) => {
       if (this.special.isSpecial(char)) {
         selectionChar++
 
-        if (value === 0 && index >= selection) {
+        if (value === undefined && index >= selection) {
           value = selectionChar
         }
       }
     })
 
-    this.set(value)
+    this.set(value !== undefined ? value : selectionChar + 1)
     return this
   }
 }

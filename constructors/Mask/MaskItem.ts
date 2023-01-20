@@ -54,8 +54,8 @@ export class MaskItem {
     return this.activeMask.value
   }
 
-  getItem (index: number): string | undefined {
-    return this.get()?.[index]
+  getItem (index: number): string {
+    return this.get()?.[index] || ''
   }
 
   getLength (): number {
