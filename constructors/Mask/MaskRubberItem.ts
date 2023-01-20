@@ -20,6 +20,8 @@ export class MaskRubberItem {
       )
     })
 
+    console.log('expandMask', value)
+
     return value
   }
 

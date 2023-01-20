@@ -9,6 +9,10 @@ export class MaskType {
   ) {
   }
 
+  get () {
+    return this.type.value
+  }
+
   getTypeDate (): GeoDateType {
     return this.isDate() ? (this.type.value as GeoDateType) : 'date'
   }

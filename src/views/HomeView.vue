@@ -75,7 +75,7 @@
     </div>
   </div>
   <div class="px-4 pb-4">
-    <div>mack0:
+<!--    <div>mack0:
       <md2-mask
         mask="***-**-**"
         @on-change="onEmit"
@@ -184,7 +184,7 @@
         @on-change=" onEmit"
         @on-input=" onEmit"
       />
-    </div>
+    </div>-->
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field
@@ -2015,7 +2015,7 @@ import Md2Window from '../../md2/Md2Window/index.vue'
 import Md2Scrollbar from '../../md2/Md2Scrollbar/index.vue'
 import Md2ListItem from '../../md2/Md2ListItem/index.vue'
 import Md2Field from '../../md2/Md2Field/index.vue'
-import Md2Mask from '../../md2/Md2Mask/index.vue'
+// import Md2Mask from '../../md2/Md2Mask/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -2024,7 +2024,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Md2Mask,
+    // Md2Mask,
     Md2Field,
     Md2ListItem,
     Md2Scrollbar,

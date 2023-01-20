@@ -21,11 +21,12 @@ export class MaskItem {
   }
 
   readonly activeMask = computed<string[]>(() => {
-    if (this.type.isNumber()) {
+    if (this.type.isCurrencyOrNumber()) {
       return this.format.getMaskByNumber()
     } else if (this.type.isDate()) {
       return this.date.getMaskByDate()
     } else {
+      console.log('this.type', this.type.get())
       return this.basic.value
     }
   })
