@@ -75,116 +75,117 @@
     </div>
   </div>
   <div class="px-4 pb-4">
-<!--    <div>mack0:
+    <div>mack0:
       <md2-mask
         mask="***-**-**"
         @on-change="onEmit"
         @on-input="onEmit"
       />
     </div>
-    <div>mack1:
-      <md2-mask
-        mask="+7(***) ***-**-**"
-        @on-change="onEmit"
-        @on-input="onEmit"
-      />
-    </div>
-    <div>mack1a:
-      <md2-mask
-        :mask="['+84 ***-**','+7(***) ***-**-**']"
-        @on-change="onEmit"
-        @on-input="onEmit"
-      />
-    </div>
-    <div>mack1b:
-      <md2-mask
-        :mask="['+84 ***-**','+7(***) ***-**-**']"
-        :visible="false"
-        @on-change="onEmit"
-        @on-input="onEmit"
-      />
-    </div>
-    <div>mack2:
-      <md2-mask
-        :type="'datetime'"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>
-    <div>mack3:
-      <md2-mask :type="'date'"/>
-    </div>
-    <div>mack3a:
-      <md2-mask :type="'month'"/>
-    </div>
-    <div>mack3b:
-      <md2-mask :type="'time'"/>
-    </div>
-    <div>mack3c:
-      <md2-mask :type="'second'"/>
-    </div>
-    <div>mack4:
-      <md2-mask :type="'date'" :pattern="{check:{type:'date', min:'1990-06-01', max:'2025-03-15'}}"/>
-    </div>
-    <div>mack5:
-      <md2-mask mask="*" :special="{'*':{rubber:true}}"/>
-    </div>
-    <div>mack6:
-      <md2-mask mask="is *.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
-    </div>
-    <div>mack7:
-      <md2-mask :type="'number'"/>
-    </div>
-    <div>mack7a:
-      <md2-mask
-        :type="'number'"
-        :fraction="3"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>
-    <div>mack7b:
-      <md2-mask
-        :type="'number'"
-        :fraction="true"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>
-    <div>mack8:
-      <md2-mask
-        :type="'currency'"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>
-    <div>mack8a:
-      <md2-mask
-        :type="'currency'"
-        currency="RUB"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>
-    <div>mack8b:
-      <md2-mask
-        :type="'currency'"
-        value="123456.78"
-        currency="RUB"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>
-    <div>mack8c:
-      <md2-mask
-        :type="'currency'"
-        value="123456"
-        class="w-96 block"
-        currency="RUB"
-        @on-change=" onEmit"
-        @on-input=" onEmit"
-      />
-    </div>-->
+    <!--
+        <div>mack1:
+          <md2-mask
+            mask="+7(***) ***-**-**"
+            @on-change="onEmit"
+            @on-input="onEmit"
+          />
+        </div>
+        <div>mack1a:
+          <md2-mask
+            :mask="['+84 ***-**','+7(***) ***-**-**']"
+            @on-change="onEmit"
+            @on-input="onEmit"
+          />
+        </div>
+        <div>mack1b:
+          <md2-mask
+            :mask="['+84 ***-**','+7(***) ***-**-**']"
+            :visible="false"
+            @on-change="onEmit"
+            @on-input="onEmit"
+          />
+        </div>
+        <div>mack2:
+          <md2-mask
+            :type="'datetime'"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>
+        <div>mack3:
+          <md2-mask :type="'date'"/>
+        </div>
+        <div>mack3a:
+          <md2-mask :type="'month'"/>
+        </div>
+        <div>mack3b:
+          <md2-mask :type="'time'"/>
+        </div>
+        <div>mack3c:
+          <md2-mask :type="'second'"/>
+        </div>
+        <div>mack4:
+          <md2-mask :type="'date'" :pattern="{check:{type:'date', min:'1990-06-01', max:'2025-03-15'}}"/>
+        </div>
+        <div>mack5:
+          <md2-mask mask="*" :special="{'*':{rubber:true}}"/>
+        </div>
+        <div>mack6:
+          <md2-mask mask="is *.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
+        </div>
+        <div>mack7:
+          <md2-mask :type="'number'"/>
+        </div>
+        <div>mack7a:
+          <md2-mask
+            :type="'number'"
+            :fraction="3"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>
+        <div>mack7b:
+          <md2-mask
+            :type="'number'"
+            :fraction="true"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>
+        <div>mack8:
+          <md2-mask
+            :type="'currency'"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>
+        <div>mack8a:
+          <md2-mask
+            :type="'currency'"
+            currency="RUB"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>
+        <div>mack8b:
+          <md2-mask
+            :type="'currency'"
+            value="123456.78"
+            currency="RUB"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>
+        <div>mack8c:
+          <md2-mask
+            :type="'currency'"
+            value="123456"
+            class="w-96 block"
+            currency="RUB"
+            @on-change=" onEmit"
+            @on-input=" onEmit"
+          />
+        </div>-->
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field
@@ -2015,7 +2016,7 @@ import Md2Window from '../../md2/Md2Window/index.vue'
 import Md2Scrollbar from '../../md2/Md2Scrollbar/index.vue'
 import Md2ListItem from '../../md2/Md2ListItem/index.vue'
 import Md2Field from '../../md2/Md2Field/index.vue'
-// import Md2Mask from '../../md2/Md2Mask/index.vue'
+import Md2Mask from '../../md2/Md2Mask/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -2024,7 +2025,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
-    // Md2Mask,
+    Md2Mask,
     Md2Field,
     Md2ListItem,
     Md2Scrollbar,

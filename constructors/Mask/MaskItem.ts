@@ -26,7 +26,6 @@ export class MaskItem {
     } else if (this.type.isDate()) {
       return this.date.getMaskByDate()
     } else {
-      console.log('this.type', this.type.get())
       return this.basic.value
     }
   })

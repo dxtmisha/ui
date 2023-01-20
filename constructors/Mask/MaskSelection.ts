@@ -69,18 +69,20 @@ export class MaskSelection {
   }
 
   setByMask (selection: number): this {
-    let value = -1
+    let selectionChar = -1 as number
+    let value = 0 as number
 
     this.mask.get().forEach((char, index) => {
-      if (
-        index <= selection &&
-        this.special.isSpecial(char)
-      ) {
-        value++
+      if (this.special.isSpecial(char)) {
+        selectionChar++
+
+        if (value === 0 && index >= selection) {
+          value = selectionChar
+        }
       }
     })
 
-    this.set(value !== -1 ? value : 0)
+    this.set(value)
     return this
   }
 }

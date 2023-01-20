@@ -218,8 +218,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (focus) {
       requestAnimationFrame(() => {
         if (this.element.value) {
-          this.element.value.selectionEnd = this.selection.get()
-          this.element.value.selectionStart = this.selection.get()
+          this.element.value.selectionEnd = this.selection.getFocus()
+          this.element.value.selectionStart = this.selection.getFocus()
         }
       })
     }
@@ -404,14 +404,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     focus = true as boolean
   ): boolean {
     this.selection.setByMask(selection)
+    // console.log('this.selection', this.selection.get())
+    // console.log('this.characters.getFocus', this.characters.getFocus())
     this.rubbers.set(this.characters.getFocus(), char)
+    // console.log('this.rubbers', this.rubbers.get())
+    // console.log('this.match.isMatch', char, this.match.isMatch(char))
 
     if (this.match.isMatch(char)) {
       this.characters.shift()
+      // console.log('this.characters.getFocus', this.characters.getFocus())
+      console.log('this.values.getStandardLength', this.values.getStandardLength())
+      console.log('this.item.getMaxLength', this.item.getMaxLength())
 
       if (
         this.characters.getFocus() &&
-        this.item.getMaxLength() > this.characters.getLength()
+        this.item.getMaxLength() > this.values.getStandardLength()
       ) {
         this.characters.set(char)
         this.transition.reset()
