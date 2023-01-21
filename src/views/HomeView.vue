@@ -82,6 +82,18 @@
         @on-input="onEmit"
       />
     </div>
+
+    <div>mack7:
+      <md2-mask :type="'number'"/>
+    </div>
+    <div>mack7b:
+      <md2-mask
+        :type="'number'"
+        :fraction="true"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
     <!--
         <div>mack1:
           <md2-mask
@@ -133,21 +145,10 @@
         <div>mack6:
           <md2-mask mask="is *.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
         </div>
-        <div>mack7:
-          <md2-mask :type="'number'"/>
-        </div>
         <div>mack7a:
           <md2-mask
             :type="'number'"
             :fraction="3"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>
-        <div>mack7b:
-          <md2-mask
-            :type="'number'"
-            :fraction="true"
             @on-change=" onEmit"
             @on-input=" onEmit"
           />

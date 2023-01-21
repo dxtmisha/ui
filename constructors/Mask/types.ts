@@ -8,12 +8,12 @@ export type MaskItemType = {
   full: boolean
   chars: string[]
 }
-export type MaskItemsType = AssociativeType<MaskItemType>
-
-export type MaskImmediateType = {
-  special: string,
-  newSelection: number
+export type MaskItemSpecialType = {
+  index: number,
+  key: number,
+  char: string
 }
+export type MaskItemsType = AssociativeType<MaskItemType>
 
 export type MaskPatternFunctionType = (data: MaskItemsType) => string | AssociativeType<string>
 export type MaskPatternTypeType = AssociativeType<string> | string | MaskPatternFunctionType

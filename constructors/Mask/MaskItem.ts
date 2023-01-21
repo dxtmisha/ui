@@ -6,6 +6,7 @@ import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
 import { maxListLength } from '../../functions'
 import { ArrayOrStringType } from '../types'
+import { MaskItemSpecialType } from './types'
 
 export class MaskItem {
   // eslint-disable-next-line no-useless-constructor
@@ -50,6 +51,23 @@ export class MaskItem {
     }
   })
 
+  readonly specialOnly = computed<MaskItemSpecialType[]>(() => {
+    const data = [] as MaskItemSpecialType[]
+    let index = 0
+
+    this.activeMask.value.forEach((char, key) => {
+      if (this.special.isSpecial(char)) {
+        data.push({
+          index: index++,
+          key,
+          char
+        })
+      }
+    })
+
+    return data
+  })
+
   get (): string[] {
     return this.activeMask.value
   }
@@ -62,8 +80,16 @@ export class MaskItem {
     return this.activeMask.value.length
   }
 
+  getLengthBySpecial (): number {
+    return this.specialOnly.value.length
+  }
+
   getMaxLength (): number {
     return this.length.value
+  }
+
+  getSpecial (): MaskItemSpecialType[] {
+    return this.specialOnly.value
   }
 
   protected getSpecialLength (mask: string): number {

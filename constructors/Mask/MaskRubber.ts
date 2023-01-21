@@ -52,6 +52,8 @@ export class MaskRubber {
     const item = this.getItem(index)
     const value = this.value?.value?.[index]
 
+    console.log('item', index, item, value)
+
     if (item && value) {
       if (
         isSelected(char, item?.transitionChar) || (
@@ -59,12 +61,14 @@ export class MaskRubber {
           item?.maxLength <= value?.maxLength
         )
       ) {
+        console.log('transition', index)
         this.transition.set(index)
       } else if (
         value.full &&
         this.match.isMatch(char) &&
         this.transition.disabled(index)
       ) {
+        console.log('add', index)
         this.rubber.add(index)
         this.transition.reset()
         return true

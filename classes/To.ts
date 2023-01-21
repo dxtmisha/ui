@@ -1,6 +1,10 @@
 import { NumberOrStringOrDateType } from '../constructors/types'
 
 export class To {
+  static array<T = any> (value: T | T[]): T[] {
+    return Array.isArray(value) ? value : [value]
+  }
+
   static date<Type = Date> (value?: NumberOrStringOrDateType): Type | Date {
     if (value instanceof Date) {
       return value

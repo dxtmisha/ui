@@ -4,6 +4,7 @@ import { MaskSpecial } from './MaskSpecial'
 
 export class MaskSelection {
   protected readonly item = ref<number>(0)
+  protected readonly immediate = ref<number>(0)
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -19,20 +20,15 @@ export class MaskSelection {
     return this.item.value
   }
 
-  getCharacter (selection: number): number {
-    let selectionChar = -1 as number
+  protected getCharacter (selection: number): number {
     let value: number | undefined
 
-    this.mask.get().forEach((char, index) => {
-      if (this.special.isSpecial(char)) {
-        selectionChar++
-      }
-
+    this.mask.getSpecial().forEach(item => {
       if (
         value === undefined &&
-        selectionChar >= selection
+        item.index >= selection
       ) {
-        value = index
+        value = item.key
       }
     })
 
@@ -41,6 +37,10 @@ export class MaskSelection {
 
   getFocus (): number {
     return this.focus.value
+  }
+
+  getImmediate (): number {
+    return this.immediate.value
   }
 
   getNext (): number {
@@ -68,21 +68,28 @@ export class MaskSelection {
     return this
   }
 
+  setImmediate (selection: number): this {
+    this.immediate.value = selection
+    return this
+  }
+
   setByMask (selection: number): this {
-    let selectionChar = -1 as number
     let value: number | undefined
+    let immediate: number | undefined
 
-    this.mask.get().forEach((char, index) => {
-      if (this.special.isSpecial(char)) {
-        selectionChar++
+    this.mask.getSpecial().forEach(item => {
+      if (value === undefined && item.key >= selection) {
+        value = item.index
+      }
 
-        if (value === undefined && index >= selection) {
-          value = selectionChar
-        }
+      if (item.key <= selection) {
+        immediate = item.index
       }
     })
 
-    this.set(value !== undefined ? value : selectionChar + 1)
+    this.set(value !== undefined ? value : this.mask.getLengthBySpecial() + 1)
+    this.setImmediate(immediate !== undefined ? immediate : this.mask.getLengthBySpecial())
+
     return this
   }
 }

@@ -16,10 +16,15 @@ export class MaskCharacter {
   }
 
   readonly focus = computed<string>(() => this.mask.getItem(this.selection.getFocus()))
+  readonly immediate = computed<string>(() => this.mask.getItem(this.selection.getImmediate()))
   readonly next = computed<string>(() => this.mask.getItem(this.selection.getNext()))
 
   getFocus (): string {
     return this.focus.value
+  }
+
+  getImmediate (): string {
+    return this.immediate.value
   }
 
   getLength (): number {

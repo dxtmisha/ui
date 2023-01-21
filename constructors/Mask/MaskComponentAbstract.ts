@@ -16,8 +16,9 @@ import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
 import { props } from './props'
-import { AssociativeType } from '../types'
+import { ArrayOrStringType, AssociativeType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType } from './types'
+import { To } from '../../classes/To'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -418,28 +419,37 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   set (
     selection: number,
-    char: string,
+    chars: ArrayOrStringType,
     focus = true as boolean
   ): boolean {
-    this.selection.setByMask(selection)
-    this.rubbers.set(this.characters.getFocus(), char)
+    let add = false
 
-    if (this.match.isMatch(char)) {
-      this.characters.shift()
-
-      if (
-        this.characters.getFocus() &&
-        this.item.getMaxLength() > this.values.getStandardLength()
-      ) {
-        this.characters.set(char)
-        this.transition.reset()
-
-        this.goSelection(focus)
-        return true
-      }
+    if (focus) {
+      this.selection.setByMask(selection)
     }
 
-    return false
+    To.array(chars).forEach(char => {
+      this.rubbers.set(this.characters.getImmediate(), char)
+
+      if (this.match.isMatch(char)) {
+        this.characters.shift()
+
+        if (
+          this.characters.getFocus() &&
+          this.item.getMaxLength() > this.values.getStandardLength()
+        ) {
+          this.characters.set(char)
+          add = true
+        }
+      }
+    })
+
+    if (add) {
+      this.transition.reset()
+      this.goSelection(focus)
+    }
+
+    return add
   }
 
   protected toEnd (target: HTMLInputElement): void {
