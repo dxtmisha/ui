@@ -52,6 +52,10 @@ export class MaskRubber {
     return this.transitionChars.value.indexOf(index) !== -1
   }
 
+  pop (index: string): boolean {
+    return this.rubber.pop(index)
+  }
+
   set (index: string, char: string): boolean {
     if (this.isByValue(index)) {
       const item = this.getItem(index)

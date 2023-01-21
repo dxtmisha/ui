@@ -20,9 +20,9 @@ export class MaskSelection {
   readonly focusByImmediate = computed<number>(() => this.getCharacter(this.immediate.value))
   readonly focusByShift = computed<number>(() => {
     if (this.shift.value) {
-      return this.getCharacter(this.item.value - 1) + 1
+      return this.item.value > 0 ? (this.getCharacter(this.item.value - 1) + 1) : 0
     } else {
-      return this.getCharacter(this.item.value)
+      return this.focus.value
     }
   })
 

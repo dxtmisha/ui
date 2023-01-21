@@ -91,6 +91,7 @@ export class MaskValue {
 
           if (
             key >= character.length &&
+            this.transition.is() &&
             this.transition.disabled(char)
           ) {
             stop = true

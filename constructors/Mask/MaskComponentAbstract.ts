@@ -273,7 +273,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.unidentified = false
 
       if (this.unidentifiedSelection.start !== this.unidentifiedSelection.end) {
-        this.pops(this.unidentifiedSelection.start, this.unidentifiedSelection.end)
+        this.pop(this.unidentifiedSelection.start, this.unidentifiedSelection.end)
       }
 
       if (event.data) {
@@ -306,7 +306,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       if (start === end) {
         this.pop(start)
       } else {
-        this.pops(start, end)
+        this.pop(start, end)
       }
     }
   }
@@ -319,8 +319,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (start === end) {
       this.set(start, event.key)
     } else {
-      this.pops(start, end)
-      this.set(start, event.key)
+      this.pop(start, end)
+        .set(start, event.key)
     }
   }
 
@@ -332,7 +332,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       target.selectionEnd !== null &&
       start !== target.selectionEnd
     ) {
-      this.pops(start, target.selectionEnd)
+      // this.pops(start, target.selectionEnd)
     }
 
     // this.pasteValue(start, await this.getClipboardData(event))
@@ -360,46 +360,31 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   pop (
-    selection: number,
+    start: number,
+    end = start as number,
     focus = true as boolean
-  ): boolean {
+  ): this {
     if (
-      selection > 0 &&
-      this.item.getMaxLength() >= selection
+      start > 0 &&
+      end <= this.item.getMaxLength()
     ) {
+      let quantity = this.item.getSpecialQuantity(start, end)
+
       if (focus) {
-        this.selection.setByMask(selection)
+        this.selection.setByMask(end)
       }
-
-      // this.rubber.pop(this.characters.getFocus())
-      this.characters.pop()
-      this.characters.shift(0)
-      this.transition.reset()
-
-      this.goSelection(focus)
-      return true
-    }
-
-    return false
-  }
-
-  pops (start: number, end: number): this {
-    let quantity = 0
-
-    for (let i = end; i > start; i--) {
-      if (this.special.isSpecial(this.item.getItem(i))) {
-        quantity++
-      }
-    }
-
-    if (quantity > 0) {
-      this.selection.setByMask(end)
 
       while (quantity--) {
-        this.pop(end, false)
-      }
+        this.transition.reset()
 
-      this.goSelection()
+        this.characters.pop()
+        this.characters.shift(0)
+
+        this.selection.setShift(
+          this.rubbers.pop(this.characters.getFocus())
+        )
+      }
+      this.goSelection(focus)
     }
 
     return this
@@ -424,6 +409,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.selection.setByMask(selection, focus)
 
     To.array(chars).forEach(char => {
+      this.transition.reset()
       this.selection.setShift(
         this.rubbers.set(this.characters.getImmediate(), char)
       )
@@ -436,7 +422,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           this.item.getMaxLength() > this.values.getStandardLength()
         ) {
           this.characters.set(char)
-          this.transition.reset()
         }
       } else if (focus && this.transition.is()) {
         this.selection.setByMask(this.item.getByChar(this.transition.get(), this.selection.getImmediate()) + 1, focus)

@@ -35,11 +35,15 @@ export class MaskRubberItem {
     return index in this.item.value
   }
 
-  pop (index: string): this {
-    if (this.is(index) && --this.item.value[index] <= 0) {
-      delete this.item.value[index]
+  pop (index: string): boolean {
+    if (this.is(index)) {
+      if (--this.item.value[index] <= 0) {
+        delete this.item.value[index]
+      }
+
+      return true
     }
 
-    return this
+    return false
   }
 }

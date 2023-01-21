@@ -72,7 +72,7 @@ export class MaskItem {
     return this.activeMask.value
   }
 
-  getByChar (char: string, selection = 0 as number): number {
+  getByChar (char: string, selection = -1 as number): number {
     let data = selection
 
     this.get().forEach((item, index) => {
@@ -102,6 +102,22 @@ export class MaskItem {
 
   getSpecial (): MaskItemSpecialType[] {
     return this.specialOnly.value
+  }
+
+  getSpecialQuantity (start: number, end: number): number {
+    if (start === end) {
+      return 1
+    } else {
+      let quantity = 0
+
+      for (let i = start; i <= end; i++) {
+        if (this.special.isSpecial(this.getItem(i))) {
+          quantity++
+        }
+      }
+
+      return quantity
+    }
   }
 
   protected getSpecialLength (mask: string): number {
