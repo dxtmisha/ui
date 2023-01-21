@@ -110,7 +110,7 @@ export class MaskItem {
     } else {
       let quantity = 0
 
-      for (let i = start; i <= end; i++) {
+      for (let i = start; i < end; i++) {
         if (this.special.isSpecial(this.getItem(i))) {
           quantity++
         }

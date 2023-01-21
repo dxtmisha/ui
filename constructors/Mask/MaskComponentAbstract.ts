@@ -15,10 +15,10 @@ import { MaskType } from './MaskType'
 import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
+import { To } from '../../classes/To'
 import { props } from './props'
 import { ArrayOrStringType, AssociativeType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType } from './types'
-import { To } from '../../classes/To'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -53,6 +53,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected readonly validation: MaskValidation
   protected readonly view: MaskView
+
+  protected focus = false as boolean
 
   // DELETE
   protected readonly length = ref<number>(0)
@@ -215,8 +217,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
   }
 
-  protected goSelection (focus = true as boolean): this {
-    if (focus) {
+  protected goSelection (): this {
+    if (this.focus) {
       requestAnimationFrame(() => {
         if (this.element.value) {
           this.element.value.selectionEnd = this.selection.getShift()
@@ -248,6 +250,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.on('on-change')
     }
 
+    this.focus = false
     this.change = false
     this.context.emit('on-blur', event)
   }
@@ -262,6 +265,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   onFocus (event: FocusEvent): void {
+    this.focus = true
     this.change = false
     this.context.emit('on-focus', event)
     this.toEnd(event.target as HTMLInputElement)
@@ -302,12 +306,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.unidentifiedSelection.end = end
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
-
-      if (start === end) {
-        this.pop(start)
-      } else {
-        this.pop(start, end)
-      }
+      this.pop(start, end)
     }
   }
 
@@ -320,7 +319,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.set(start, event.key)
     } else {
       this.pop(start, end)
-        .set(start, event.key)
+        .set(start, event.key, false)
     }
   }
 
@@ -365,7 +364,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     focus = true as boolean
   ): this {
     if (
-      start > 0 &&
+      start >= 0 &&
       end <= this.item.getMaxLength()
     ) {
       let quantity = this.item.getSpecialQuantity(start, end)
@@ -384,7 +383,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           this.rubbers.pop(this.characters.getFocus())
         )
       }
-      this.goSelection(focus)
+
+      this.goSelection()
     }
 
     return this
@@ -428,7 +428,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     })
 
-    this.goSelection(focus)
+    this.goSelection()
     return this
   }
 
