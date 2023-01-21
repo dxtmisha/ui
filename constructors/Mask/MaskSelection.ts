@@ -5,6 +5,7 @@ import { MaskSpecial } from './MaskSpecial'
 export class MaskSelection {
   protected readonly item = ref<number>(0)
   protected readonly immediate = ref<number>(0)
+  protected readonly shift = ref<boolean>(false)
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -15,6 +16,15 @@ export class MaskSelection {
 
   readonly focus = computed<number>(() => this.getCharacter(this.item.value))
   readonly next = computed<number>(() => this.getCharacter(this.item.value + 1))
+
+  readonly focusByImmediate = computed<number>(() => this.getCharacter(this.immediate.value))
+  readonly focusByShift = computed<number>(() => {
+    if (this.shift.value) {
+      return this.getCharacter(this.item.value - 1) + 1
+    } else {
+      return this.getCharacter(this.item.value)
+    }
+  })
 
   get (): number {
     return this.item.value
@@ -40,11 +50,15 @@ export class MaskSelection {
   }
 
   getImmediate (): number {
-    return this.immediate.value
+    return this.focusByImmediate.value
   }
 
   getNext (): number {
     return this.next.value
+  }
+
+  getShift (): number {
+    return this.focusByShift.value
   }
 
   goBack (): this {
@@ -73,23 +87,30 @@ export class MaskSelection {
     return this
   }
 
-  setByMask (selection: number): this {
-    let value: number | undefined
-    let immediate: number | undefined
+  setByMask (selection: number, focus = true as boolean): this {
+    if (focus) {
+      let value: number | undefined
+      let immediate: number | undefined
 
-    this.mask.getSpecial().forEach(item => {
-      if (value === undefined && item.key >= selection) {
-        value = item.index
-      }
+      this.mask.getSpecial().forEach(item => {
+        if (value === undefined && item.key >= selection) {
+          value = item.index
+        }
 
-      if (item.key <= selection) {
-        immediate = item.index
-      }
-    })
+        if (item.key <= selection) {
+          immediate = item.index
+        }
+      })
 
-    this.set(value !== undefined ? value : this.mask.getLengthBySpecial())
-    this.setImmediate(immediate !== undefined ? immediate : this.mask.getLengthBySpecial())
+      this.set(value !== undefined ? value : this.mask.getLengthBySpecial())
+      this.setImmediate(immediate !== undefined ? immediate : this.mask.getLengthBySpecial())
+    }
 
+    return this
+  }
+
+  setShift (value: boolean): this {
+    this.shift.value = value
     return this
   }
 }

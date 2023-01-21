@@ -200,8 +200,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         data += item.value
       })
 
-      console.log('data', data)
-
       return data
     } else {
       return this.values.getStandard()
@@ -221,8 +219,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     if (focus) {
       requestAnimationFrame(() => {
         if (this.element.value) {
-          this.element.value.selectionEnd = this.selection.getFocus()
-          this.element.value.selectionStart = this.selection.getFocus()
+          this.element.value.selectionEnd = this.selection.getShift()
+          this.element.value.selectionStart = this.selection.getShift()
         }
       })
     }
@@ -422,15 +420,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     selection: number,
     chars: ArrayOrStringType,
     focus = true as boolean
-  ): boolean {
-    let add = false
-
-    if (focus) {
-      this.selection.setByMask(selection)
-    }
+  ): this {
+    this.selection.setByMask(selection, focus)
 
     To.array(chars).forEach(char => {
-      this.rubbers.set(this.characters.getImmediate(), char)
+      this.selection.setShift(
+        this.rubbers.set(this.characters.getImmediate(), char)
+      )
 
       if (this.match.isMatch(char)) {
         this.characters.shift()
@@ -440,17 +436,15 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           this.item.getMaxLength() > this.values.getStandardLength()
         ) {
           this.characters.set(char)
-          add = true
+          this.transition.reset()
         }
+      } else if (focus && this.transition.is()) {
+        this.selection.setByMask(this.item.getByChar(this.transition.get(), this.selection.getImmediate()) + 1, focus)
       }
     })
 
-    if (add) {
-      this.transition.reset()
-      this.goSelection(focus)
-    }
-
-    return add
+    this.goSelection(focus)
+    return this
   }
 
   protected toEnd (target: HTMLInputElement): void {

@@ -24,6 +24,7 @@ export class MaskCharacter {
   }
 
   getImmediate (): string {
+    console.log('this.immediate.value', this.immediate.value, this.selection.getImmediate())
     return this.immediate.value
   }
 

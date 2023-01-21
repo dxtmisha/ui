@@ -72,6 +72,18 @@ export class MaskItem {
     return this.activeMask.value
   }
 
+  getByChar (char: string, selection = 0 as number): number {
+    let data = selection
+
+    this.get().forEach((item, index) => {
+      if (item === char && index >= selection) {
+        data = index
+      }
+    })
+
+    return data
+  }
+
   getItem (index: number): string {
     return this.get()?.[index] || ''
   }

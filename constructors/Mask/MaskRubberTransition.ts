@@ -11,6 +11,10 @@ export class MaskRubberTransition {
     return this.item.value
   }
 
+  is (): boolean {
+    return this.item.value !== ''
+  }
+
   reset (): this {
     return this.set('')
   }
