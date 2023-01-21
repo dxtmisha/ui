@@ -163,7 +163,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   setup (): MaskSetupType {
     const classes = this.getClasses<MaskClassesType>({
-      main: { 'is-right': false }
+      main: { 'is-right': this.isRight }
     })
     const styles = this.getStyles()
 
@@ -199,6 +199,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.view.get().forEach(item => {
         data += item.value
       })
+
+      console.log('data', data)
 
       return data
     } else {
@@ -264,8 +266,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   onFocus (event: FocusEvent): void {
     this.change = false
     this.context.emit('on-focus', event)
-
-    requestAnimationFrame(() => this.toEnd(event.target as HTMLInputElement))
+    this.toEnd(event.target as HTMLInputElement)
   }
 
   onInput (event: InputEvent) {
@@ -453,13 +454,18 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   protected toEnd (target: HTMLInputElement): void {
-    if (
-      this.isRight.value &&
-      target.selectionStart !== null &&
-      target.selectionStart > this.standard.value.length
-    ) {
-      target.selectionStart = this.standard.value.length
-      target.selectionEnd = this.standard.value.length
+    if (this.isRight.value) {
+      const length = this.values.getStandardLength()
+      const start = target.selectionStart || 0
+      const end = target.selectionEnd || 0
+
+      if (start > length) {
+        target.selectionStart = length
+      }
+
+      if (end > length) {
+        target.selectionEnd = length
+      }
     }
   }
 }

@@ -84,12 +84,21 @@
     </div>
 
     <div>mack7:
-      <md2-mask :type="'number'"/>
+      <md2-mask :type="'number'" class="w-96 block"/>
     </div>
     <div>mack7b:
       <md2-mask
         :type="'number'"
         :fraction="true"
+        class="w-96 block"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
+    <div>mack8a:
+      <md2-mask
+        :type="'currency'"
+        currency="RUB"
         @on-change=" onEmit"
         @on-input=" onEmit"
       />
@@ -156,14 +165,6 @@
         <div>mack8:
           <md2-mask
             :type="'currency'"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>
-        <div>mack8a:
-          <md2-mask
-            :type="'currency'"
-            currency="RUB"
             @on-change=" onEmit"
             @on-input=" onEmit"
           />

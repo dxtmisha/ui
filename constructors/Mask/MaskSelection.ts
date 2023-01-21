@@ -87,7 +87,7 @@ export class MaskSelection {
       }
     })
 
-    this.set(value !== undefined ? value : this.mask.getLengthBySpecial() + 1)
+    this.set(value !== undefined ? value : this.mask.getLengthBySpecial())
     this.setImmediate(immediate !== undefined ? immediate : this.mask.getLengthBySpecial())
 
     return this
