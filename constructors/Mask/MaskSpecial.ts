@@ -37,11 +37,13 @@ export class MaskSpecial {
   getRubber (): AssociativeType<MaskSpecialItemType> {
     const data = {} as AssociativeType<MaskSpecialItemType>
 
-    forEach<MaskSpecialItemType, string, void>(this.get(), (item, index) => {
-      if (item?.rubber) {
-        data[index] = item
-      }
-    })
+    if (typeof this.special.value === 'object') {
+      forEach<MaskSpecialItemType, string, void>(this.special.value, (item, index) => {
+        if (item?.rubber) {
+          data[index] = item
+        }
+      })
+    }
 
     return data
   }

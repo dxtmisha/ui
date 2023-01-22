@@ -104,14 +104,57 @@
         @on-input="onEmit"
       />
     </div>
+    <div>mack2:
+      <md2-mask
+        :type="'datetime'"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
+    <div>mack3:
+      <md2-mask :type="'date'"/>
+    </div>
+    <div>mack3a:
+      <md2-mask :type="'month'"/>
+    </div>
+    <div>mack3b:
+      <md2-mask :type="'time'"/>
+    </div>
+    <div>mack3c:
+      <md2-mask :type="'second'"/>
+    </div>
+    <div>mack4:
+      <md2-mask :type="'date'" :pattern="{check:{type:'date', min:'1990-06-01', max:'2025-03-15'}}"/>
+    </div>
+    <div>mack5:
+      <md2-mask mask="*" :special="{'*':{rubber:true}}"/>
+    </div>
+    <div>mack6:
+      <md2-mask mask="is *.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
+    </div>
     <div>mack7:
       <md2-mask :type="'number'" class="w-96 block"/>
+    </div>
+    <div>mack7a:
+      <md2-mask
+        :type="'number'"
+        :fraction="3"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
     </div>
     <div>mack7b:
       <md2-mask
         :type="'number'"
         :fraction="true"
         class="w-96 block"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
+    <div>mack8:
+      <md2-mask
+        :type="'currency'"
         @on-change=" onEmit"
         @on-input=" onEmit"
       />
@@ -143,51 +186,6 @@
         @on-input=" onEmit"
       />
     </div>
-    <!--
-
-        <div>mack2:
-          <md2-mask
-            :type="'datetime'"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>
-        <div>mack3:
-          <md2-mask :type="'date'"/>
-        </div>
-        <div>mack3a:
-          <md2-mask :type="'month'"/>
-        </div>
-        <div>mack3b:
-          <md2-mask :type="'time'"/>
-        </div>
-        <div>mack3c:
-          <md2-mask :type="'second'"/>
-        </div>
-        <div>mack4:
-          <md2-mask :type="'date'" :pattern="{check:{type:'date', min:'1990-06-01', max:'2025-03-15'}}"/>
-        </div>
-        <div>mack5:
-          <md2-mask mask="*" :special="{'*':{rubber:true}}"/>
-        </div>
-        <div>mack6:
-          <md2-mask mask="is *.dd.eee" :special="{'*':{rubber:true, transitionChar: '.'}, d:{}, e:{}}"/>
-        </div>
-        <div>mack7a:
-          <md2-mask
-            :type="'number'"
-            :fraction="3"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>
-        <div>mack8:
-          <md2-mask
-            :type="'currency'"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>-->
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field

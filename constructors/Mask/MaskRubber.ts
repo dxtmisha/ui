@@ -57,6 +57,7 @@ export class MaskRubber {
   }
 
   set (index: string, char: string): boolean {
+    console.log('this.get()', this.get())
     if (this.isByValue(index)) {
       const item = this.getItem(index)
       const value = this.value?.value?.[index]

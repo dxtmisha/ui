@@ -228,7 +228,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       required: this.values.isFull(),
       validation: this.validation.get(),
       validationMessage: this.validation.getMessage(),
-      value: this.value.value
+      value: this.values.getValue()
     })
   }
 
