@@ -55,6 +55,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly view: MaskView
 
   protected focus = false as boolean
+  protected selectionCounter?: number
 
   // DELETE
   protected readonly length = ref<number>(0)
@@ -219,7 +220,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected goSelection (): this {
     if (this.focus) {
-      requestAnimationFrame(() => {
+      if (this.selectionCounter) {
+        cancelAnimationFrame(this.selectionCounter)
+      }
+
+      this.selectionCounter = requestAnimationFrame(() => {
+        this.selectionCounter = undefined
         if (this.element.value) {
           this.element.value.selectionEnd = this.selection.getShift()
           this.element.value.selectionStart = this.selection.getShift()
@@ -319,7 +325,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.set(start, event.key)
     } else {
       this.pop(start, end)
-        .set(start, event.key, false)
+        .set(this.selection.getShift(), event.key)
     }
   }
 
@@ -423,7 +429,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         ) {
           this.characters.set(char)
         }
-      } else if (focus && this.transition.is()) {
+      } else if (this.transition.is()) {
         this.selection.setByMask(this.item.getByChar(this.transition.get(), this.selection.getImmediate()) + 1, focus)
       }
     })
