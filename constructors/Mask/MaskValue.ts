@@ -17,27 +17,33 @@ export class MaskValue {
     protected readonly special: MaskSpecial,
     protected readonly mask: MaskItem,
     protected readonly character: Ref<string[]>,
-    protected readonly value: Ref<MaskItemsType>
+    protected readonly valueIn: Ref<MaskItemsType>
   ) {
     watchEffect(() => {
-      const standard = this.getStandard()
-      this.value.value = {} as MaskItemsType
-
-      this.mask.get().forEach((char, index) => {
-        if (this.special.isSpecial(char)) {
-          const value = this.add(this.value.value, char)
-
-          if (this.isStandard(index)) {
-            value.chars.push(standard[index])
-          }
-
-          value.maxLength++
-          value.full = value.maxLength === value.chars.length
-          value.value = value.full ? value.chars.join('') : ''
-        }
-      })
+      this.valueIn.value = this.value.value
     })
   }
+
+  readonly value = computed<MaskItemsType>(() => {
+    const standard = this.getStandard()
+    const data = {} as MaskItemsType
+
+    this.mask.get().forEach((char, index) => {
+      if (this.special.isSpecial(char)) {
+        const value = this.add(data, char)
+
+        if (this.isStandard(index)) {
+          value.chars.push(standard[index])
+        }
+
+        value.maxLength++
+        value.full = value.maxLength === value.chars.length
+        value.value = value.full ? value.chars.join('') : ''
+      }
+    })
+
+    return data
+  })
 
   protected readonly full = computed<boolean>(() => {
     let empty = false

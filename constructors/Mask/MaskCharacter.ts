@@ -37,21 +37,21 @@ export class MaskCharacter {
 
   pop (): this {
     this.character.value.splice(this.selection.get() - 1, 1)
-    this.selection.goBack()
+    this.selection.goBack().resetImmediate()
 
     return this
   }
 
   reset (): this {
     this.character.value = []
-    this.selection.set(0)
+    this.selection.set(0).resetImmediate()
 
     return this
   }
 
   set (char: string): this {
     this.character.value.splice(this.selection.get(), 0, char)
-    this.selection.goNext()
+    this.selection.goNext().resetImmediate()
 
     return this
   }

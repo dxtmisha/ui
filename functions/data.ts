@@ -32,6 +32,10 @@ export function forEach<T, K = NumberOrStringType, R = undefined> (
   }
 }
 
+export async function getClipboardData (event: ClipboardEvent): Promise<string> {
+  return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
+}
+
 export function getExp (
   value: string,
   flags = 'ig' as string,
@@ -163,6 +167,7 @@ export default {
   arrFill,
   executeFunction,
   forEach,
+  getClipboardData,
   getExp,
   isFilled,
   isSelected,

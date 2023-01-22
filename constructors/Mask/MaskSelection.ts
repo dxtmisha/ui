@@ -77,6 +77,11 @@ export class MaskSelection {
     return this
   }
 
+  resetImmediate (): this {
+    this.immediate.value = this.item.value <= 0 ? 0 : this.item.value - 1
+    return this
+  }
+
   set (selection: number): this {
     this.item.value = selection
     return this

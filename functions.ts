@@ -6,6 +6,7 @@ export const {
   arrFill,
   executeFunction,
   forEach,
+  getClipboardData,
   getExp,
   isFilled,
   isSelected,

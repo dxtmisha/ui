@@ -18,7 +18,7 @@ export class MaskRubber {
     protected readonly format: MaskFormat,
     protected readonly match: MaskMatch,
     protected readonly special: MaskSpecial,
-    protected readonly value: Ref<MaskItemsType>
+    protected value: Ref<MaskItemsType>
   ) {
   }
 
@@ -82,5 +82,10 @@ export class MaskRubber {
     }
 
     return false
+  }
+
+  setValue (value: Ref<MaskItemsType>): this {
+    this.value = value
+    return this
   }
 }

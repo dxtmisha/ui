@@ -19,6 +19,7 @@ import { To } from '../../classes/To'
 import { props } from './props'
 import { ArrayOrStringType, AssociativeType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType } from './types'
+import { getClipboardData } from '../../functions'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -55,7 +56,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly view: MaskView
 
   protected focus = false as boolean
-  protected selectionCounter?: number
 
   // DELETE
   protected readonly length = ref<number>(0)
@@ -146,6 +146,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.getClassName(['character'])
     )
 
+    this.rubbers.setValue(this.values.value)
+
     /*
     watch(this.refs.value, value => this.newValue(value))
 
@@ -214,18 +216,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  protected async getClipboardData (event: ClipboardEvent): Promise<string> {
-    return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
-  }
-
   protected goSelection (): this {
     if (this.focus) {
-      if (this.selectionCounter) {
-        cancelAnimationFrame(this.selectionCounter)
-      }
-
-      this.selectionCounter = requestAnimationFrame(() => {
-        this.selectionCounter = undefined
+      requestAnimationFrame(() => {
         if (this.element.value) {
           this.element.value.selectionEnd = this.selection.getShift()
           this.element.value.selectionStart = this.selection.getShift()
@@ -274,7 +267,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.focus = true
     this.change = false
     this.context.emit('on-focus', event)
-    this.toEnd(event.target as HTMLInputElement)
   }
 
   onInput (event: InputEvent) {
@@ -331,37 +323,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   async onPaste (event: ClipboardEvent): Promise<void> {
     const target = event.target as HTMLInputElement
-    const start = target.selectionStart as number
+    const start = target.selectionStart || 0
+    const end = target.selectionEnd || 0
+    const text = (await getClipboardData(event)).split('')
 
-    if (
-      target.selectionEnd !== null &&
-      start !== target.selectionEnd
-    ) {
-      // this.pops(start, target.selectionEnd)
+    if (start === end) {
+      this.set(start, text)
+    } else {
+      this.pop(start, end)
+        .set(this.selection.getShift(), text)
     }
-
-    // this.pasteValue(start, await this.getClipboardData(event))
-  }
-
-  pasteValue = (
-    // selection: number,
-    // value: string,
-    // focus = true as boolean
-  ): this => {
-    /*
-    let index = this.valueToCharacter(selection)
-
-    if (index === -1) {
-      index = 0
-    }
-
-    index = this.characterToValue(index++)
-    value.split('').forEach(char => {
-      index = this.set(index, char, focus) || index
-    })
-    */
-
-    return this
   }
 
   pop (
@@ -413,9 +384,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     focus = true as boolean
   ): this {
     this.selection.setByMask(selection, focus)
+    this.transition.reset()
 
     To.array(chars).forEach(char => {
-      this.transition.reset()
       this.selection.setShift(
         this.rubbers.set(this.characters.getImmediate(), char)
       )
