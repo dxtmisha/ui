@@ -43,6 +43,8 @@ export class MaskFormat {
       return this.rubber.getItem('f') + 1
     } else if (typeof this.fraction.value === 'number') {
       return this.fraction.value
+    } else if (this.fraction.value === true) {
+      return 1
     } else {
       return 0
     }
