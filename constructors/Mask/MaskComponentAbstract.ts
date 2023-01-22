@@ -32,6 +32,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   protected readonly charsElement = ref<HTMLSpanElement | undefined>()
   protected readonly character = ref<string[]>([])
+  protected readonly length = ref<number>(0)
   protected readonly value = ref<MaskItemsType>({})
 
   protected readonly type: MaskType
@@ -58,9 +59,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected change?: boolean
   protected focus = false as boolean
   protected isReset?: boolean
-
-  // DELETE
-  protected readonly length = ref<number>(0)
 
   protected unidentified?: boolean
   protected unidentifiedSelection = {
@@ -113,13 +111,14 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.format,
       this.special,
       this.refs.mask,
-      this.character
+      this.length
     )
     this.selection = new MaskSelection(this.item, this.special)
     this.characters = new MaskCharacter(
       this.item,
       this.selection,
-      this.character
+      this.character,
+      this.length
     )
     this.values = new MaskValue(
       this.type,

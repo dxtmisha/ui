@@ -1,14 +1,13 @@
-import { computed, Ref, ref, watch } from 'vue'
+import { computed, Ref, watch } from 'vue'
 import { MaskItem } from './MaskItem'
 import { MaskSelection } from './MaskSelection'
 
 export class MaskCharacter {
-  protected readonly length = ref<number>(0)
-
   constructor (
     protected readonly mask: MaskItem,
     protected readonly selection: MaskSelection,
-    protected readonly character: Ref<string[]>
+    protected readonly character: Ref<string[]>,
+    protected readonly length: Ref<number>
   ) {
     watch(this.character, value => {
       this.length.value = value.length

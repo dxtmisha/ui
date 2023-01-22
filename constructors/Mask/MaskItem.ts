@@ -17,7 +17,7 @@ export class MaskItem {
     protected readonly format: MaskFormat,
     protected readonly special: MaskSpecial,
     protected readonly mask: Ref<ArrayOrStringType>,
-    protected readonly character: Ref<string[]>
+    protected readonly character: Ref<number>
   ) {
   }
 
@@ -36,7 +36,7 @@ export class MaskItem {
 
     if (Array.isArray(mask)) {
       return this.rubber.expandMask(
-        mask.find(item => this.getSpecialLength(item) >= this.character.value.length) || mask?.[0] || ''
+        mask.find(item => this.getSpecialLength(item) >= this.character.value) || mask?.[mask.length - 1] || ''
       ).split('')
     } else {
       return this.rubber.expandMask(mask).split('')
