@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { MaskCharacter } from './MaskCharacter'
 import { MaskDate } from './MaskDate'
@@ -55,7 +55,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly validation: MaskValidation
   protected readonly view: MaskView
 
+  protected change?: boolean
   protected focus = false as boolean
+  protected isReset?: boolean
 
   // DELETE
   protected readonly length = ref<number>(0)
@@ -65,8 +67,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     start: 0 as number,
     end: 0 as number
   }
-
-  protected change?: boolean
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -148,22 +148,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.rubbers.setValue(this.values.value)
 
-    /*
-    watch(this.refs.value, value => this.newValue(value))
-
-    watch(this.mask, () => this.goSelection())
-
+    watch(this.refs.value, value => this.reset(value))
     watch([
-      this.ifFull,
-      this.validationMessage,
-      this.deleteValue
+      this.validation.item,
+      this.values.full,
+      this.values.value
     ], () => {
-      this.change = true
-      this.on()
+      if (this.isReset) {
+        this.isReset = false
+      } else {
+        this.change = true
+        this.on()
+      }
     })
 
-    this.newValue(this.props.value)
-    */
+    this.reset(this.props.value)
   }
 
   setup (): MaskSetupType {
@@ -211,11 +210,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
-  cancel (): this {
-    this.character.value = []
-    return this
-  }
-
   protected goSelection (): this {
     if (this.focus) {
       requestAnimationFrame(() => {
@@ -229,18 +223,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  newValue (value: string): this {
-    this.reset(value)
-    return this
-  }
-
   on (type = 'on-input') {
     this.context.emit(type, {
-      // checkValidity: this.validation.value === undefined,
-      // required: this.ifFull.value,
-      // validation: this.validation.value,
-      // validationMessage: this.validationMessage.value,
-      // value: this.deleteValue.value
+      checkValidity: this.validation.checkValidity(),
+      required: this.values.isFull(),
+      validation: this.validation.get(),
+      validationMessage: this.validation.getMessage(),
+      value: this.value.value
     })
   }
 
@@ -250,13 +239,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
 
     this.focus = false
-    this.change = false
     this.context.emit('on-blur', event)
   }
 
   onChange (event: Event): void {
-    const target = event.target as HTMLInputElement
-    this.newValue(target.value)
+    this.reset((event.target as HTMLInputElement).value)
   }
 
   onClick (event: MouseEvent): void {
@@ -369,10 +356,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   reset (value: string): this {
     if (value) {
-      // const chars = this.type.isDate() ? this.date.getLocale(value) : value
+      const chars = this.type.isDate() ? this.date.getLocale(value) : value
 
+      this.isReset = true
       this.characters.reset()
-      // this.pasteValue(0, chars, false)
+      this.set(0, chars.split(''))
     }
 
     return this

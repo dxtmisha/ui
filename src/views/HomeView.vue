@@ -82,7 +82,28 @@
         @on-input="onEmit"
       />
     </div>
-
+    <div>mack1:
+      <md2-mask
+        mask="+7(***) ***-**-**"
+        @on-change="onEmit"
+        @on-input="onEmit"
+      />
+    </div>
+    <div>mack1a:
+      <md2-mask
+        :mask="['+84 ***-**','+7(***) ***-**-**']"
+        @on-change="onEmit"
+        @on-input="onEmit"
+      />
+    </div>
+    <div>mack1b:
+      <md2-mask
+        :mask="['+84 ***-**','+7(***) ***-**-**']"
+        :visible="false"
+        @on-change="onEmit"
+        @on-input="onEmit"
+      />
+    </div>
     <div>mack7:
       <md2-mask :type="'number'" class="w-96 block"/>
     </div>
@@ -103,29 +124,27 @@
         @on-input=" onEmit"
       />
     </div>
+    <div>mack8b:
+      <md2-mask
+        :type="'currency'"
+        value="123456.78"
+        currency="RUB"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
+    <div>mack8c:
+      <md2-mask
+        :type="'currency'"
+        value="123456"
+        class="w-96 block"
+        currency="RUB"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
     <!--
-        <div>mack1:
-          <md2-mask
-            mask="+7(***) ***-**-**"
-            @on-change="onEmit"
-            @on-input="onEmit"
-          />
-        </div>
-        <div>mack1a:
-          <md2-mask
-            :mask="['+84 ***-**','+7(***) ***-**-**']"
-            @on-change="onEmit"
-            @on-input="onEmit"
-          />
-        </div>
-        <div>mack1b:
-          <md2-mask
-            :mask="['+84 ***-**','+7(***) ***-**-**']"
-            :visible="false"
-            @on-change="onEmit"
-            @on-input="onEmit"
-          />
-        </div>
+
         <div>mack2:
           <md2-mask
             :type="'datetime'"
@@ -165,25 +184,6 @@
         <div>mack8:
           <md2-mask
             :type="'currency'"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>
-        <div>mack8b:
-          <md2-mask
-            :type="'currency'"
-            value="123456.78"
-            currency="RUB"
-            @on-change=" onEmit"
-            @on-input=" onEmit"
-          />
-        </div>
-        <div>mack8c:
-          <md2-mask
-            :type="'currency'"
-            value="123456"
-            class="w-96 block"
-            currency="RUB"
             @on-change=" onEmit"
             @on-input=" onEmit"
           />

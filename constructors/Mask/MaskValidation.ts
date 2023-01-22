@@ -71,6 +71,10 @@ export class MaskValidation {
     }
   }
 
+  checkValidity (): boolean {
+    return this.item.value === undefined
+  }
+
   protected executeFunction (
     callback: (value: MaskItemsType) => string | AssociativeType<string>
   ): AssociativeType<string> {

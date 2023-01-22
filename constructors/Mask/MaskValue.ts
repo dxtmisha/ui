@@ -45,7 +45,7 @@ export class MaskValue {
     return data
   })
 
-  protected readonly full = computed<boolean>(() => {
+  readonly full = computed<boolean>(() => {
     let empty = false
 
     forEach(this.value.value, item => {
