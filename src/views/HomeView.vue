@@ -186,6 +186,15 @@
         @on-input=" onEmit"
       />
     </div>
+    <div>mack8c:
+      <md2-mask
+        :type="'currency'"
+        class="w-96 block"
+        currency="VND"
+        @on-change=" onEmit"
+        @on-input=" onEmit"
+      />
+    </div>
   </div>
   <div class="flex gap-4 px-4 pb-4">
     <md2-field

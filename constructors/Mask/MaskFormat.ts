@@ -21,7 +21,7 @@ export class MaskFormat {
   protected readonly format = computed<string>(() => `${this.toNumber()}${this.toFraction()}${this.toCurrency()}`)
 
   protected readonly formatCurrency = computed<string>(
-    () => this.intl.value.currency(this.format, { maximumFractionDigits: 2 }).value
+    () => this.intl.value.currency(this.format).value
   )
 
   protected readonly formatNumber = computed<string>(
@@ -53,7 +53,7 @@ export class MaskFormat {
   getMaskByNumber (): string[] {
     return (this.type.isCurrency() ? this.getCurrency() : this.getNumber())
       .replace(/9/ig, 'n')
-      .replace(/8/ig, 'f')
+      .replace(/0/ig, 'f')
       .split('')
   }
 
@@ -90,7 +90,7 @@ export class MaskFormat {
 
   protected toFraction (): string {
     const data = this.getFraction()
-    return data ? `.${strFill('8', data)}` : ''
+    return data ? `.${strFill('0', data)}` : ''
   }
 
   protected toNumber (): string {
