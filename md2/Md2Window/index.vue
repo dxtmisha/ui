@@ -8,7 +8,7 @@
   />
   <teleport to="body">
     <div
-      v-if="ifOpen"
+      v-if="isOpen"
       ref="element"
       :class="classes.main"
       :data-status="status"

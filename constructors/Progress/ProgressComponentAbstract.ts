@@ -16,7 +16,7 @@ export type ProgressClassesType = {
 export type ProgressSetupType = ComponentBaseType & {
   classes: ComputedRef<ProgressClassesType>
   tag: ComputedRef<string>
-  ifCircular: ComputedRef<boolean>
+  isCircular: ComputedRef<boolean>
   valueInPercent: ComputedRef<string | null>
   onAnimation: EventCallbackRequiredType<void, AnimationEvent>
 }
@@ -62,19 +62,19 @@ export abstract class ProgressComponentAbstract extends ComponentAbstract {
       classes,
       styles,
       tag: this.tag,
-      ifCircular: this.ifCircular,
+      isCircular: this.isCircular,
       valueInPercent: this.valueInPercent,
       onAnimation: event => this.onAnimation(event)
     }
   }
 
-  public readonly ifCircular = computed(() => this.props.type === 'circular') as ComputedRef<boolean>
+  public readonly isCircular = computed(() => this.props.type === 'circular') as ComputedRef<boolean>
 
   public readonly tag = computed(() => this.props.type !== 'linear' ? 'svg' : 'div') as ComputedRef<string>
 
   public readonly valueInPercent = computed(() => {
     if (typeof this.props.value === 'number') {
-      return this.ifCircular.value
+      return this.isCircular.value
         ? `${(100 / (this.props.max || 100) * this.props.value)}`
         : `${100 - (100 / (this.props.max || 100) * this.props.value)}%`
     } else {

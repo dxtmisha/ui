@@ -7,7 +7,7 @@ import {
 } from '../types'
 
 export type IconSetupType = ComponentBaseType & {
-  ifActive: ComputedRef<boolean>
+  isActive: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconActiveBind: ComputedRef<string | AssociativeType>
 }
@@ -23,13 +23,13 @@ export abstract class IconComponentAbstract extends ComponentAbstract {
       ...this.getBasic(),
       classes,
       styles,
-      ifActive: this.ifActive,
+      isActive: this.isActive,
       iconBind: this.getBind(this.refs.icon, this.image),
       iconActiveBind: this.getBind(this.refs.iconActive, this.image)
     }
   }
 
-  protected readonly ifActive = computed(() => this.props.iconActive && this.props.active)
+  protected readonly isActive = computed(() => this.props.iconActive && this.props.active)
 
   protected readonly image = computed(() => {
     return {

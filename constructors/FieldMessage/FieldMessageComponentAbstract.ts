@@ -17,9 +17,9 @@ export type FieldClassesType = {
 }
 export type FieldSetupType = ComponentBaseType & {
   classes: ComputedRef<FieldClassesType>
-  ifCounter: ComputedRef<boolean>
-  ifMax: ComputedRef<boolean>
-  ifMessage: ComputedRef<boolean>
+  isCounter: ComputedRef<boolean>
+  isMax: ComputedRef<boolean>
+  isMessage: ComputedRef<boolean>
 }
 
 export abstract class FieldMessageComponentAbstract extends ComponentAbstract {
@@ -33,17 +33,17 @@ export abstract class FieldMessageComponentAbstract extends ComponentAbstract {
       ...this.getBasic(),
       classes,
       styles,
-      ifCounter: this.ifCounter,
-      ifMax: this.ifMax,
-      ifMessage: this.ifMessage
+      isCounter: this.isCounter,
+      isMax: this.isMax,
+      isMessage: this.isMessage
     }
   }
 
-  protected readonly ifCounter = computed<boolean>(() => typeof this.props.counter === 'number')
-  protected readonly ifMax = computed<boolean>(() => typeof this.props.maxlength === 'number' && this.props.maxlength > 0)
+  protected readonly isCounter = computed<boolean>(() => typeof this.props.counter === 'number')
+  protected readonly isMax = computed<boolean>(() => typeof this.props.maxlength === 'number' && this.props.maxlength > 0)
 
-  protected readonly ifMessage = computed<boolean>(() => {
-    return this.ifCounter.value ||
+  protected readonly isMessage = computed<boolean>(() => {
+    return this.isCounter.value ||
       isFilled(this.props.helperMessage) ||
       isFilled(this.props.validationMessage)
   })

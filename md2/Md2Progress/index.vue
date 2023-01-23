@@ -6,7 +6,7 @@
     @animationend.stop="onAnimation"
   >
     <circle
-      v-if="ifCircular"
+      v-if="isCircular"
       :class="classes.circle"
       cx="24"
       cy="24"

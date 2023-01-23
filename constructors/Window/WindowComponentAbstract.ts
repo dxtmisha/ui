@@ -51,7 +51,7 @@ export type WindowSetupType = ComponentBaseType & {
   id: string
   open: Ref<boolean>
   status: Ref<WindowStatusType>
-  ifOpen: ComputedRef<boolean>
+  isOpen: ComputedRef<boolean>
   toggle: (value: boolean) => void
   on: AssociativeType<(event: MouseEvent & TouchEvent) => void>
   onAnimation: () => void
@@ -142,7 +142,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       id: this.id,
       open: this.open,
       status: this.status,
-      ifOpen: this.ifOpen,
+      isOpen: this.isOpen,
       toggle: (value = true as boolean) => this.toggle(value),
       on: {
         click: (event: MouseEvent & TouchEvent) => this.onClick(event),
@@ -153,7 +153,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     }
   }
 
-  private readonly ifOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
+  private readonly isOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
 
   private readonly styleOriginX = computed(() => this.originX.value !== null ? `${this.originX.value}px` : 'center') as ComputedRef<string>
   private readonly styleOriginY = computed(() => this.originY.value !== null ? `${this.originY.value}px` : 'center') as ComputedRef<string>
