@@ -74,9 +74,149 @@
       <input type="checkbox" name="visible" v-model="visible"> visible
     </div>
   </div>
-  <div class="px-4 py-4">
+  <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      icon="face"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+      icon="face"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+      icon="face"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+      prefix="prefix"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+      prefix="prefix"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+      prefix="prefix"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      prefix="prefix"
+      icon-trailing="close"
+      name="name"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+      prefix="prefix"
+      icon-trailing="close"
+      name="name"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+      prefix="prefix"
+      icon-trailing="close"
+      name="name"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+      suffix="suffix"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+      suffix="suffix"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+      icon="face"
+      icon-trailing="close"
+      name="name"
+      suffix="suffix"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      suffix="suffix"
+      icon-trailing="close"
+      name="name"
+    />
+    <md2-input
+      text="text"
+      placeholder="placeholder"
+      suffix="suffix"
+      icon-trailing="close"
+      name="name"
+    />
+    <md2-input
+      text="text"
+      value="is value"
+      suffix="suffix"
+      icon-trailing="close"
+      name="name"
     />
   </div>
   <div class="px-4 py-4">

@@ -27,7 +27,7 @@
       </div>
 
       <div :class="classes.scoreboard">
-        <div ref="leftElement" :class="classes.scoreboardContext">
+        <div v-if="isLeft" ref="leftElement" :class="classes.scoreboardContext">
           <template v-if="arrow">
             <md2-icon v-if="align !== 'right'" v-bind="iconPreviousBind">
               <md2-ripple v-if="isRipple && !disabledPrevious"/>
@@ -48,7 +48,7 @@
           <slot :id="id" :update="update" name="suffix"/>
           {{ suffix }}
         </div>
-        <div ref="rightElement" :class="classes.scoreboardContext">
+        <div v-if="isRight" ref="rightElement" :class="classes.scoreboardContext">
           <slot :id="id" :update="update" name="right"/>
           <md2-icon v-if="isCancel" v-bind="iconCancelBind">
             <md2-ripple v-if="isRipple"/>

@@ -1,6 +1,14 @@
 <template>
-  <md2-field v-bind="fieldBind" v-slot:default="slotDefault">
-    <input :class="slotDefault.classes">
+  <md2-field
+    v-slot:default="slotDefault"
+    v-bind="fieldBind"
+  >
+    <input
+      :id="slotDefault.id"
+      :class="slotDefault.classes"
+      v-bind="inputBind"
+      v-on="on"
+    >
   </md2-field>
 </template>
 

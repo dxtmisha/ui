@@ -32,7 +32,9 @@ export type FieldSetupType = ComponentBaseType & {
   rightElement: Ref<HTMLElement | undefined>
   prefixElement: Ref<HTMLElement | undefined>
   suffixElement: Ref<HTMLElement | undefined>
+  isLeft: ComputedRef<boolean>
   isRequired: ComputedRef<boolean>
+  isRight: ComputedRef<boolean>
   isRipple: ComputedRef<boolean>
   isPrefix: ComputedRef<boolean>
   isSuffix: ComputedRef<boolean>
@@ -112,7 +114,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       rightElement: this.rightElement,
       prefixElement: this.prefixElement,
       suffixElement: this.suffixElement,
+      isLeft: this.isLeft,
       isRequired: this.isRequired,
+      isRight: this.isRight,
       isRipple: this.isRipple,
       isPrefix: this.isPrefix,
       isSuffix: this.isSuffix,
@@ -132,6 +136,14 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       onClick: (event: MouseEvent) => this.onClick(event)
     }
   }
+
+  protected readonly isLeft = computed<boolean>(
+    () => isFilled(this.props.arrow) || isFilled(this.props.icon) || 'left' in this.context.slots
+  )
+
+  protected readonly isRight = computed<boolean>(
+    () => isFilled(this.props.arrow) || isFilled(this.props.iconTrailing) || 'right' in this.context.slots || this.isCancel.value
+  )
 
   protected readonly isRequired = computed(() => {
     return this.props.required &&
