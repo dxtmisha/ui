@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initInput($design) {
+  @include propertiesInit($design, 'input') {
+    @include mixinInput;
+    @content;
+  }
+}
+
+@mixin mixinInput() {
+}
