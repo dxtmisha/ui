@@ -32,12 +32,12 @@ export type FieldSetupType = ComponentBaseType & {
   rightElement: Ref<HTMLElement | undefined>
   prefixElement: Ref<HTMLElement | undefined>
   suffixElement: Ref<HTMLElement | undefined>
-  ifRequired: ComputedRef<boolean>
-  ifRipple: ComputedRef<boolean>
-  ifPrefix: ComputedRef<boolean>
-  ifSuffix: ComputedRef<boolean>
-  ifCancel: ComputedRef<boolean>
-  ifValidation: ComputedRef<boolean>
+  isRequired: ComputedRef<boolean>
+  isRipple: ComputedRef<boolean>
+  isPrefix: ComputedRef<boolean>
+  isSuffix: ComputedRef<boolean>
+  isCancel: ComputedRef<boolean>
+  isValidation: ComputedRef<boolean>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
   iconCancelBind: ComputedRef<string | AssociativeType>
@@ -85,7 +85,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.refs.arrow,
       this.refs.prefix,
       this.refs.suffix,
-      this.ifCancel
+      this.isCancel
     ], () => this.update())
 
     this.update()
@@ -95,10 +95,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     const classes = this.getClasses<FieldClassesType>({
       main: {
         'is-arrow': this.refs.arrow,
-        'is-cancel': this.ifCancel,
-        'is-suffix': this.ifSuffix,
-        'is-validation': this.ifValidation,
-        'is-value': this.ifValue
+        'is-cancel': this.isCancel,
+        'is-suffix': this.isSuffix,
+        'is-validation': this.isValidation,
+        'is-value': this.isValue
       }
     })
     const styles = this.getStyles()
@@ -112,12 +112,12 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       rightElement: this.rightElement,
       prefixElement: this.prefixElement,
       suffixElement: this.suffixElement,
-      ifRequired: this.ifRequired,
-      ifRipple: this.ifRipple,
-      ifPrefix: this.ifPrefix,
-      ifSuffix: this.ifSuffix,
-      ifCancel: this.ifCancel,
-      ifValidation: this.ifValidation,
+      isRequired: this.isRequired,
+      isRipple: this.isRipple,
+      isPrefix: this.isPrefix,
+      isSuffix: this.isSuffix,
+      isCancel: this.isCancel,
+      isValidation: this.isValidation,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
       iconCancelBind: this.getBind(this.refs.iconCancel, this.iconCancel, 'icon'),
@@ -133,20 +133,20 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   }
 
-  protected readonly ifRequired = computed(() => {
+  protected readonly isRequired = computed(() => {
     return this.props.required &&
       !this.props?.readonly &&
       !this.props?.disabled
   }) as ComputedRef<boolean>
 
-  protected readonly ifRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
-  protected readonly ifPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
-  protected readonly ifSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
-  protected readonly ifValue = computed<boolean>(() => isFilled(this.props.value))
-  protected readonly ifValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
-  protected readonly ifCancel = computed<boolean>(() => {
+  protected readonly isRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
+  protected readonly isPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
+  protected readonly isSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
+  protected readonly isValue = computed<boolean>(() => isFilled(this.props.value))
+  protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
+  protected readonly isCancel = computed<boolean>(() => {
     return !this.props.disabled &&
-      this.ifValue.value &&
+      this.isValue.value &&
       isFilled(this.props.cancel) &&
       this.props.cancel !== 'hide'
   })
@@ -216,7 +216,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     if (
       this.props.iconTrailing ||
       this.props.arrow ||
-      this.ifCancel.value
+      this.isCancel.value
     ) {
       this.right.value = `${this.rightElement.value?.offsetWidth}px`
     } else {

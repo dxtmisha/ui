@@ -8,7 +8,7 @@
       :class="classes.labelTop"
       :for="id"
     >
-      {{ text }}<span v-if="ifRequired" :class="classes.required"/>
+      {{ text }}<span v-if="isRequired" :class="classes.required"/>
     </label>
     <div :class="classes.body" @click="onClick">
       <slot
@@ -21,7 +21,7 @@
       <div :class="classes.label">
         <div :class="classes.title">
           <label v-if="appearance !== 'classic'" :class="classes.text">
-            {{ text }}<span v-if="ifRequired" :class="classes.required"/>
+            {{ text }}<span v-if="isRequired" :class="classes.required"/>
           </label>
         </div>
       </div>
@@ -30,36 +30,36 @@
         <div ref="leftElement" :class="classes.scoreboardContext">
           <template v-if="arrow">
             <md2-icon v-if="align !== 'right'" v-bind="iconPreviousBind">
-              <md2-ripple v-if="ifRipple && !disabledPrevious"/>
+              <md2-ripple v-if="isRipple && !disabledPrevious"/>
             </md2-icon>
             <md2-icon v-if="align === 'left'" v-bind="iconNextBind">
-              <md2-ripple v-if="ifRipple && !disabledNext"/>
+              <md2-ripple v-if="isRipple && !disabledNext"/>
             </md2-icon>
           </template>
           <md2-icon v-if="icon" v-bind="iconBind"/>
           <slot :id="id" :update="update" name="left"/>
         </div>
-        <div v-if="ifPrefix" ref="prefixElement" :class="classes.prefix">
+        <div v-if="isPrefix" ref="prefixElement" :class="classes.prefix">
           {{ prefix }}
           <slot :id="id" :update="update" name="prefix"/>
         </div>
         <div :class="classes.scoreboardSpace"/>
-        <div v-if="ifSuffix" ref="suffixElement" :class="classes.suffix">
+        <div v-if="isSuffix" ref="suffixElement" :class="classes.suffix">
           <slot :id="id" :update="update" name="suffix"/>
           {{ suffix }}
         </div>
         <div ref="rightElement" :class="classes.scoreboardContext">
           <slot :id="id" :update="update" name="right"/>
-          <md2-icon v-if="ifCancel" v-bind="iconCancelBind">
-            <md2-ripple v-if="ifRipple"/>
+          <md2-icon v-if="isCancel" v-bind="iconCancelBind">
+            <md2-ripple v-if="isRipple"/>
           </md2-icon>
           <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
           <template v-if="arrow">
             <md2-icon v-if="align === 'right'" v-bind="iconPreviousBind">
-              <md2-ripple v-if="ifRipple && !disabledPrevious"/>
+              <md2-ripple v-if="isRipple && !disabledPrevious"/>
             </md2-icon>
             <md2-icon v-if="align !== 'left'" v-bind="iconNextBind">
-              <md2-ripple v-if="ifRipple && !disabledNext"/>
+              <md2-ripple v-if="isRipple && !disabledNext"/>
             </md2-icon>
           </template>
         </div>
