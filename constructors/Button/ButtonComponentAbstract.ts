@@ -14,9 +14,9 @@ export type ButtonClassesType = {
 }
 export type ButtonSetupType = ComponentBaseType & {
   classes: ComputedRef<ButtonClassesType>
-  ifInverse: ComputedRef<boolean>
-  ifRipple: ComputedRef<boolean>
-  ifText: ComputedRef<boolean>
+  isInverse: ComputedRef<boolean>
+  isRipple: ComputedRef<boolean>
+  isText: ComputedRef<boolean>
   disabledBind: ComputedRef<boolean | undefined>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
@@ -46,9 +46,9 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
       ...this.getBasic(),
       classes,
       styles,
-      ifInverse: this.ifInverse,
-      ifRipple: this.ifRipple,
-      ifText: this.ifText,
+      isInverse: this.isInverse,
+      isRipple: this.isRipple,
+      isText: this.isText,
       disabledBind: this.disabled,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
@@ -58,20 +58,20 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
     }
   }
 
-  readonly ifInverse = computed(() => {
+  readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.isText.value) as ComputedRef<boolean>
+
+  readonly isInverse = computed(() => {
     return this.appearanceInverse.indexOf(this.props.appearance) !== -1 ||
       this.appearanceInverse.indexOf('all') !== -1
   }) as ComputedRef<boolean>
 
-  readonly ifText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
-
-  readonly isIcon = computed(() => (this.refs.icon || this.refs.iconTrailing) && !this.ifText.value) as ComputedRef<boolean>
+  readonly isText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
 
   readonly disabled = computed(() => this.props.disabled || undefined) as ComputedRef<boolean | undefined>
 
   readonly progress = computed(() => {
     return {
-      inverse: this.ifInverse.value,
+      inverse: this.isInverse.value,
       type: 'circular',
       visible: true
     }

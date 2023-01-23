@@ -18,7 +18,7 @@
     <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
     <span v-if="text" :class="classes.text">{{ text }}</span>
     <slot/>
-    <md2-ripple v-if="ifRipple" :inverse="ifInverse"/>
+    <md2-ripple v-if="isRipple" :inverse="isInverse"/>
   </component>
 </template>
 

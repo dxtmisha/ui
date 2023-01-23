@@ -12,7 +12,7 @@
     <md2-progress v-else-if="progress" v-bind="progressBind"/>
     <span v-if="text" :class="classes.text">{{ text }}</span>
     <slot/>
-    <md2-ripple v-if="ifRipple" :inverse="ifInverse"/>
+    <md2-ripple v-if="isRipple" :inverse="isInverse"/>
   </component>
 </template>
 
