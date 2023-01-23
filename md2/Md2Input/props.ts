@@ -101,6 +101,10 @@ export const props = {
     type: [Number, String] as PropType<Md2FieldWidthType>,
     default: defaultItem.defaultValue('width')
   },
+  field: {
+    type: Object,
+    default: defaultItem.defaultValue('field')
+  },
 
   // Icon
   iconCancel: {

@@ -66,6 +66,7 @@ export const props = {
     default: 'text'
   },
   width: [Number, String],
+  field: Object,
 
   // Icon
   iconCancel: String,
