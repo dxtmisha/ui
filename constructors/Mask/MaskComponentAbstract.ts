@@ -16,10 +16,10 @@ import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
 import { To } from '../../classes/To'
+import { getClipboardData } from '../../functions'
 import { props } from './props'
 import { ArrayOrStringType, AssociativeType } from '../types'
-import { MaskClassesType, MaskItemsType, MaskSetupType } from './types'
-import { getClipboardData } from '../../functions'
+import { MaskClassesType, MaskItemsType, MaskSetupType, MaskUnidentifiedType } from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -60,11 +60,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected focus = false as boolean
   protected isReset?: boolean
 
-  protected unidentified?: boolean
-  protected unidentifiedSelection = {
-    start: 0 as number,
-    end: 0 as number
-  }
+  protected unidentified?: MaskUnidentifiedType
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -258,23 +254,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   onInput (event: InputEvent) {
     if (this.unidentified) {
       const target = event.target as HTMLInputElement
-      this.unidentified = false
 
-      if (this.unidentifiedSelection.start !== this.unidentifiedSelection.end) {
-        this.pop(this.unidentifiedSelection.start, this.unidentifiedSelection.end)
+      if (
+        this.unidentified.length > target.value.length ||
+        this.unidentified.start !== this.unidentified.end
+      ) {
+        this.pop(this.unidentified.start, this.unidentified.end)
       }
 
       if (event.data) {
-        if (!this.set(this.unidentifiedSelection.start, event.data)) {
-          target.value = this.standard.value
-          requestAnimationFrame(() => this.goSelection())
-        }
-      } else if (
-        this.length.value > target.value.length &&
-        this.unidentifiedSelection.start === this.unidentifiedSelection.end
-      ) {
-        this.pop(this.unidentifiedSelection.start)
+        this.set(this.unidentified.start, event.data)
+        target.value = this.standard.value
+        requestAnimationFrame(() => this.goSelection())
       }
+
+      this.unidentified = undefined
     }
   }
 
@@ -284,10 +278,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const end = target.selectionEnd || 0
 
     if (event.key === 'Unidentified' || event.keyCode === 229) {
-      this.unidentified = true
-      this.length.value = target.value.length
-      this.unidentifiedSelection.start = start
-      this.unidentifiedSelection.end = end
+      this.unidentified = {
+        start,
+        end,
+        length: target.value.length
+      }
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
       this.pop(start, end)
@@ -369,7 +364,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     selection: number,
     chars: ArrayOrStringType,
     focus = true as boolean
-  ): this {
+  ): boolean {
+    let update = false as boolean
+
     this.selection.setByMask(selection, focus)
     this.transition.reset()
 
@@ -386,6 +383,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
           this.item.getMaxLength() > this.values.getStandardLength()
         ) {
           this.characters.set(char)
+          update = true
         }
       } else if (this.transition.is()) {
         this.selection.setByMask(this.item.getByChar(this.transition.get(), this.selection.getImmediate()) + 1, focus)
@@ -393,7 +391,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     })
 
     this.goSelection()
-    return this
+    return update
   }
 
   protected toEnd (target: HTMLInputElement): void {

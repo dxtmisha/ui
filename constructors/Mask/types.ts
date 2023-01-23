@@ -43,6 +43,12 @@ export type MaskViewType = {
   value: string
 }
 
+export type MaskUnidentifiedType = {
+  start: number
+  end: number
+  length: number
+}
+
 export type MaskClassesType = {
   main: ComponentAssociativeType
   input: ComponentAssociativeType
