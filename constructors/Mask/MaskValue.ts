@@ -58,16 +58,12 @@ export class MaskValue {
   })
 
   readonly item = computed<string>(() => {
-    if (this.isFull()) {
-      if (this.type.isCurrencyOrNumber()) {
-        return this.format.getValue()
-      } else if (this.type.isDate()) {
-        return this.date.getValue()
-      } else {
-        return this.standard.value
-      }
+    if (this.type.isCurrencyOrNumber()) {
+      return this.format.getValue()
+    } else if (this.type.isDate()) {
+      return this.date.getValue()
     } else {
-      return ''
+      return this.standard.value
     }
   })
 
