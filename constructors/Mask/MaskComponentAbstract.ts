@@ -18,7 +18,7 @@ import { MaskView } from './MaskView'
 import { To } from '../../classes/To'
 import { getClipboardData } from '../../functions'
 import { props } from './props'
-import { ArrayOrStringType, AssociativeType } from '../types'
+import { ArrayOrStringType, AssociativeType, ValidationType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType, MaskUnidentifiedType } from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
@@ -219,13 +219,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   on (type = 'on-input') {
+    const validation = this.validation.get()
+
     this.context.emit(type, {
       checkValidity: this.validation.checkValidity(),
+      input: validation?.input,
       required: this.values.isFull(),
-      validation: this.validation.get(),
+      validation,
       validationMessage: this.validation.getMessage(),
       value: this.values.getValue()
-    })
+    } as ValidationType)
   }
 
   onBlur (event: FocusEvent): void {

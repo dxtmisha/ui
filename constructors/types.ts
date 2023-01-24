@@ -131,3 +131,12 @@ export type GeoDateType = 'datetime' | 'date' | 'month' | 'time' | 'second'
 export type GeoFirstDayType = 1 | 6 | 0
 export type GeoHoursType = '12' | '24'
 export type GeoTimeZoneStyleType = 'minute' | 'hour' | 'ISO8601' | 'RFC'
+
+export type ValidationType = {
+  checkValidity: boolean
+  input?: HTMLInputElement
+  required?: boolean
+  validation?: AssociativeType
+  validationMessage?: string
+  value?: NumberOrStringType
+}

@@ -1,3 +1,5 @@
+import { AssociativeType } from '../types'
+
 export type InputTypeType =
   'date' |
   'datetime' |
@@ -10,3 +12,17 @@ export type InputTypeType =
   'text' |
   'time' |
   'url'
+
+export type InputValidationType = AssociativeType & {
+  badInput?: string
+  customError?: string
+  patternMismatch?: string
+  rangeOverflow?: string
+  rangeUnderflow?: string
+  stepMismatch?: string
+  tooLong?: string
+  tooShort?: string
+  typeMismatch?: string
+  valid?: string
+  valueMissing?: string
+}

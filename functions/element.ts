@@ -1,12 +1,12 @@
 import { executeFunction, forEach } from './data'
 import { ElementOptionsItemType, ElementOptionsType } from '../constructors/types'
 
-export function createElement (
-  parentElement: HTMLElement,
+export function createElement<T = HTMLElement> (
+  parentElement?: HTMLElement | undefined,
   tagName = 'div' as string,
   options = undefined as ElementOptionsType,
   referenceElement = null as HTMLElement | null
-) {
+): T {
   const element = document.createElement(tagName)
 
   if (typeof options === 'function') {
@@ -19,8 +19,9 @@ export function createElement (
     })
   }
 
-  parentElement.insertBefore(element, referenceElement)
-  return element
+  parentElement?.insertBefore(element, referenceElement)
+
+  return element as T
 }
 
 export function frame (
