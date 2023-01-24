@@ -132,6 +132,14 @@ export type GeoFirstDayType = 1 | 6 | 0
 export type GeoHoursType = '12' | '24'
 export type GeoTimeZoneStyleType = 'minute' | 'hour' | 'ISO8601' | 'RFC'
 
+export type UserType = {
+  id: number | string
+  login: string
+  name?: string
+  avatar?: string
+  [key: number | string]: any
+}
+
 export type ValidationType = {
   checkValidity: boolean
   input?: HTMLInputElement

@@ -12,6 +12,7 @@ export const {
   isSelected,
   maxListLength,
   minListLength,
+  random,
   replaceRecursive,
   strFill,
   toCamelCase,

@@ -98,6 +98,10 @@ export function minListLength (data: AssociativeOrArrayType<string>): number {
     ?.[0]
 }
 
+export function random (min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 export function replaceRecursive<T = any> (
   array: AssociativeType<T>,
   replacement?: AssociativeOrArrayType<T>,
@@ -173,6 +177,7 @@ export default {
   isSelected,
   maxListLength,
   minListLength,
+  random,
   replaceRecursive,
   strFill,
   toCamelCase,
