@@ -11,9 +11,10 @@ export abstract class StorageAbstract<T = any> {
   }
 
   get (): ComputedRef<T | undefined>
-  get (value: RefType<T>): ComputedRef<T | undefined>
-  get (callback: CallbackNullType<T>): ComputedRef<T | undefined>
-  get (valueCallback?: RefOrCallbackType<T>): ComputedRef<T | undefined> {
+  get (value: T): ComputedRef<T>
+  get (value: RefType<T>): ComputedRef<T>
+  get (callback: CallbackNullType<T>): ComputedRef<T>
+  get (valueCallback?: T | RefOrCallbackType<T>): ComputedRef<T | undefined> {
     return computed<T | undefined>(() => {
       if (isFilled(this.value.value)) {
         return this.value.value

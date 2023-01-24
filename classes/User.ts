@@ -8,62 +8,47 @@ export class User {
   protected static limit = 5 as number
 
   protected static item: StorageItem<UserType>
-  protected static _userList: StorageItem<UserType[]>
-  protected static _token: StorageItem<string>
-  protected static _signature: StorageItem<string>
-  protected static _refresh: Cookie
+  protected static list: StorageItem<UserType[]>
+  protected static refresh: Cookie
+  protected static signature: StorageItem<string>
+  protected static token: StorageItem<string>
 
-  static get user (): ComputedRef<UserType | undefined> {
+  static get (): ComputedRef<UserType | undefined> {
     return this.item.get()
   }
 
-  static get userList (): ComputedRef<UserType[] | undefined> {
-    return this._userList.get()
-  }
+  static set (value: UserType): void {
+    const list = this.list.get().value?.filter(item => item.id !== value.id) || []
 
-  static setUser (value: UserType): void {
-    const list = this.userList.value || []
-    const index = list.findIndex(item => item.id === value.id)
-
-    if (index >= 0) {
-      list[index] = value
-    } else {
-      list.push(value)
-
-      if (list.length > this.limit) {
-        list.shift()
-      }
-    }
-
+    this.list.set([...list, value].splice(this.limit))
     this.item.set(value)
-    this._userList.set(list)
   }
 
-  static get token (): ComputedRef<string> {
-    return this._token.get('')
+  static getRefresh (): ComputedRef<string> {
+    return this.refresh.get('')
+  }
+
+  static getSignature (): ComputedRef<string> {
+    return this.signature.get(() => `${new Date().getMilliseconds()}-${random(100000, 900000)}`)
+  }
+
+  static getToken (): ComputedRef<string> {
+    return this.token.get('')
   }
 
   static setToken (value: string): void {
-    this._token.set(value)
-  }
-
-  static get signature (): ComputedRef<string> {
-    return this._signature.get(() => `${new Date().getMilliseconds()}-${random(100000, 900000)}`)
-  }
-
-  static get refresh (): ComputedRef<string> {
-    return this._refresh.get('')
+    this.token.set(value)
   }
 
   static setRefresh (value: string): void {
-    this._refresh.set(value, 30 * 24 * 60 * 60)
+    this.refresh.set(value, 30 * 24 * 60 * 60)
   }
 
   static {
     this.item = new StorageItem('user')
-    this._userList = new StorageItem('user-list')
-    this._token = new StorageItem('user-token')
-    this._signature = new StorageItem('user-signature')
-    this._refresh = new Cookie('user-refresh')
+    this.list = new StorageItem('user-list')
+    this.token = new StorageItem('user-token')
+    this.signature = new StorageItem('user-signature')
+    this.refresh = new Cookie('user-refresh')
   }
 }
