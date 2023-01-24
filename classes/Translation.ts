@@ -1,5 +1,6 @@
 import { computed, ComputedRef, Ref, ref } from 'vue'
-import { AssociativeStringType } from '../constructors/types'
+import { AssociativeStringType, AssociativeType } from '../constructors/types'
+import { toReplaceTemplate } from '../functions'
 
 export class Translation {
   protected static url = process.env.VUE_APP_TRANSLATION || 'translation'
@@ -27,9 +28,13 @@ export class Translation {
     }
   }
 
-  static get (index: string): ComputedRef<string> {
+  static get (index: string, replaces?: ComputedRef<AssociativeType<string>>): ComputedRef<string> {
     return computed<string>(() => {
-      return this.translations.value?.[index] || ''
+      if (replaces && index in this.translations.value) {
+        return toReplaceTemplate(this.translations.value[index], replaces.value)
+      } else {
+        return this.translations.value?.[index] || ''
+      }
     })
   }
 
