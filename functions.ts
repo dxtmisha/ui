@@ -16,7 +16,8 @@ export const {
   replaceRecursive,
   strFill,
   toCamelCase,
-  toKebabCase
+  toKebabCase,
+  toReplaceTemplate
 } = data
 
 export const {

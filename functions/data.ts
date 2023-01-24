@@ -167,6 +167,16 @@ export function toKebabCase (value: NumberOrStringType): string {
     .replace(/[A-Z]/g, all => `-${all.toLowerCase()}`)
 }
 
+export function toReplaceTemplate (value: string, replaces: AssociativeType<string>): string {
+  let data = value
+
+  forEach<string, string, void>(replaces, (replacement, pattern) => {
+    data = data.replace(`[${pattern}]`, replacement)
+  })
+
+  return data
+}
+
 export default {
   arrFill,
   executeFunction,
@@ -181,5 +191,6 @@ export default {
   replaceRecursive,
   strFill,
   toCamelCase,
-  toKebabCase
+  toKebabCase,
+  toReplaceTemplate
 }
