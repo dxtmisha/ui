@@ -1,9 +1,11 @@
 import { computed } from 'vue'
 import { AssociativeType } from '../constructors/types'
+import { isSelected } from '../functions'
 
 export abstract class ComponentPropsAbstract {
   protected abstract readonly name: string
   protected abstract readonly list: AssociativeType
+  protected abstract readonly exception: string[]
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -16,7 +18,11 @@ export abstract class ComponentPropsAbstract {
     const data = {} as AssociativeType
 
     Object.keys(this.list).forEach(name => {
-      if (name !== this.name && name in this.props) {
+      if (
+        name !== this.name &&
+        name in this.props &&
+        !isSelected(name, this.exception)
+      ) {
         data[name] = this.props[name]
       }
     })

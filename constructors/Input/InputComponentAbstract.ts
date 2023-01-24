@@ -1,12 +1,13 @@
-import { computed, ComputedRef } from 'vue'
+import { computed, ComputedRef, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { FieldProps } from '../Field/FieldProps'
 import { props } from './props'
 import {
   AssociativeType,
   ComponentAssociativeType,
-  ComponentBaseType
+  ComponentBaseType, NumberOrStringType
 } from '../types'
+import { InputValue } from './InputValue'
 
 export type InputClassesType = {
   main: ComponentAssociativeType
@@ -14,6 +15,7 @@ export type InputClassesType = {
 export type InputSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
+  valueBind: Ref<NumberOrStringType>
 }
 
 export abstract class InputComponentAbstract extends ComponentAbstract {
@@ -26,6 +28,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract {
   ] as string[]
 
   protected readonly field: FieldProps
+  protected readonly value: InputValue
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -34,6 +37,10 @@ export abstract class InputComponentAbstract extends ComponentAbstract {
     super(props, context)
 
     this.field = new FieldProps(props)
+    this.value = new InputValue(
+      this.refs.value,
+      this.refs.modelValue
+    )
   }
 
   setup (): InputSetupType {
@@ -45,7 +52,8 @@ export abstract class InputComponentAbstract extends ComponentAbstract {
       classes,
       styles,
       fieldBind: this.field.get(),
-      inputBind: this.input
+      inputBind: this.input,
+      valueBind: this.value.value
     }
   }
 
@@ -53,7 +61,6 @@ export abstract class InputComponentAbstract extends ComponentAbstract {
     return {
       name: this.refs.name.value,
       required: this.refs.required.value,
-      value: this.refs.value.value,
       autocomplete: this.refs.autocomplete.value,
       autofocus: this.refs.autofocus.value,
       inputmode: this.refs.inputmode.value,
