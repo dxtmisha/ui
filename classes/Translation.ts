@@ -1,5 +1,5 @@
 import { computed, ComputedRef, Ref, ref } from 'vue'
-import { AssociativeStringType, AssociativeType } from '../constructors/types'
+import { ArrayOrStringType, AssociativeOrStringType, AssociativeStringType } from '../constructors/types'
 import { toReplaceTemplate } from '../functions'
 
 export class Translation {
@@ -28,12 +28,22 @@ export class Translation {
     }
   }
 
-  static get (index: string, replaces?: ComputedRef<AssociativeType<string>>): ComputedRef<string> {
-    return computed<string>(() => {
-      if (replaces && index in this.translations.value) {
-        return toReplaceTemplate(this.translations.value[index], replaces.value)
+  static get (index: string): ComputedRef<string>
+  static get (list: string[]): ComputedRef<AssociativeStringType>
+  static get (indexList: ArrayOrStringType, replaces?: ComputedRef<AssociativeStringType>): ComputedRef<AssociativeOrStringType> {
+    return computed<AssociativeOrStringType>(() => {
+      if (Array.isArray(indexList)) {
+        const data = {} as AssociativeStringType
+
+        indexList.forEach(index => {
+          data[index] = this.get(index).value
+        })
+
+        return data
+      } else if (replaces && indexList in this.translations.value) {
+        return toReplaceTemplate(this.translations.value[indexList], replaces.value)
       } else {
-        return this.translations.value?.[index] || ''
+        return this.translations.value?.[indexList] || ''
       }
     })
   }
