@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { InputTypeType, InputValidationType } from './types'
+import { InputMatchType, InputTypeType, InputValidationType } from './types'
 
 export const props = {
   // Values
@@ -30,6 +30,7 @@ export const props = {
   placeholder: String,
   spellcheck: Boolean,
   input: Object,
+  inputMatch: [Object, String] as PropType<InputMatchType>,
 
   // Message
   counter: Number,

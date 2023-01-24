@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
 import { ComponentDesign } from '../../classes/ComponentDesign'
-import { InputTypeType } from '../../constructors/Input/types'
+import { InputMatchType, InputTypeType } from '../../constructors/Input/types'
 import { Md2PaletteType } from '../props.type'
 import {
   Md2FieldAlignType,
@@ -41,6 +41,7 @@ export const props = {
   placeholder: String,
   spellcheck: Boolean,
   input: Object,
+  inputMatch: [Object, String] as PropType<InputMatchType>,
 
   // Message
   counter: Number,

@@ -1,5 +1,11 @@
 import { AssociativeType } from '../types'
 
+export type InputMatchItemType = {
+  name: string
+  text: string
+}
+export type InputMatchType = string | InputMatchItemType
+
 export type InputTypeType =
   'date' |
   'datetime' |
