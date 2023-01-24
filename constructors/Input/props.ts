@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { InputMatchType, InputTypeType, InputValidationType } from './types'
+import { InputMatchType, InputTypeType, InputValidityType } from './types'
 
 export const props = {
   // Values
@@ -35,7 +35,7 @@ export const props = {
   // Message
   counter: Number,
   helperMessage: String,
-  validationCode: [Object, String] as PropType<string | InputValidationType>,
+  validationCode: [Object, String] as PropType<string | InputValidityType>,
   validationMessage: [Boolean, String],
 
   // On

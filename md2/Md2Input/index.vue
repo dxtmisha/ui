@@ -6,6 +6,7 @@
   >
     <input
       :id="slotDefault.id"
+      ref="element"
       v-model="valueBind"
       :class="slotDefault.classes"
       v-bind="inputBind"

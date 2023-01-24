@@ -1,7 +1,7 @@
 import { computed, Ref } from 'vue'
 import { InputValue } from './InputValue'
 import { Translation } from '../../classes/Translation'
-import { InputMatchType } from './types'
+import { InputMatchType, InputValidationType } from './types'
 
 export class InputMatch {
   // eslint-disable-next-line no-useless-constructor
@@ -20,17 +20,25 @@ export class InputMatch {
     () => typeof this.match.value === 'object' ? this.match.value?.text : (Translation.get('Your entries must match.').value)
   )
 
-  check (): string | undefined {
-    const input = this.input.value?.form?.querySelector<HTMLInputElement>(`[name="${this.name.value}"]`) ||
-      document.querySelector<HTMLInputElement>(this.name.value)
+  check (): InputValidationType | undefined {
+    if (this.name.value) {
+      const input = this.input.value?.form?.querySelector<HTMLInputElement>(`[name="${this.name.value}"]`) ||
+        document.querySelector<HTMLInputElement>(this.name.value)
 
-    if (
-      input &&
-      input.value !== this.value.get()
-    ) {
-      return this.text.value
-    } else {
-      return undefined
+      if (
+        input &&
+        input.value.trim() &&
+        input.value !== this.value.get()
+      ) {
+        return {
+          input,
+          status: true,
+          validationMessage: this.text.value,
+          validity: input.validity
+        }
+      }
     }
+
+    return undefined
   }
 }

@@ -1,4 +1,5 @@
 import { AssociativeType } from '../types'
+import { MaskPatternTypeType } from '../Mask/types'
 
 export type InputMatchItemType = {
   name: string
@@ -19,7 +20,14 @@ export type InputTypeType =
   'time' |
   'url'
 
-export type InputValidationType = AssociativeType & {
+export type InputValidationType = {
+  status: boolean
+  input?: HTMLInputElement
+  validationMessage: string
+  validity?: ValidityState
+}
+
+export type InputValidityType = AssociativeType & {
   badInput?: string
   customError?: string
   patternMismatch?: string

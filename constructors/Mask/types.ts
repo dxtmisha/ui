@@ -34,7 +34,7 @@ export type MaskValidationType = {
   status: boolean
   input: HTMLInputElement
   validationMessage: string
-  validity: ValidityState,
+  validity: ValidityState
   pattern: MaskPatternTypeType
 }
 

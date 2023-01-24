@@ -8,6 +8,8 @@ import {
   ComponentBaseType, NumberOrStringType
 } from '../types'
 import { InputValue } from './InputValue'
+import { InputMatch } from './InputMatch'
+import { InputValidation } from './InputValidation'
 
 export type InputClassesType = {
   main: ComponentAssociativeType
@@ -18,7 +20,7 @@ export type InputSetupType = ComponentBaseType & {
   valueBind: Ref<NumberOrStringType>
 }
 
-export abstract class InputComponentAbstract extends ComponentAbstract {
+export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = [
     'on-input',
@@ -30,6 +32,9 @@ export abstract class InputComponentAbstract extends ComponentAbstract {
   protected readonly field: FieldProps
   protected readonly value: InputValue
 
+  protected readonly match: InputMatch
+  protected readonly validation: InputValidation
+
   constructor (
     protected readonly props: AssociativeType & object,
     protected readonly context: AssociativeType & object
@@ -40,6 +45,19 @@ export abstract class InputComponentAbstract extends ComponentAbstract {
     this.value = new InputValue(
       this.refs.value,
       this.refs.modelValue
+    )
+
+    this.match = new InputMatch(
+      this.element,
+      this.refs.inputMatch,
+      this.value
+    )
+    this.validation = new InputValidation(
+      this.input,
+      this.value,
+      this.match,
+      this.refs.validationCode,
+      this.refs.validationMessage
     )
   }
 
