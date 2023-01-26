@@ -1,24 +1,14 @@
-import { computed, ComputedRef, Ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { FieldProps } from '../Field/FieldProps'
-import { props } from './props'
-import {
-  AssociativeType,
-  ComponentAssociativeType,
-  ComponentBaseType, NumberOrStringType
-} from '../types'
-import { InputValue } from './InputValue'
 import { InputMatch } from './InputMatch'
+import { InputValue } from './InputValue'
 import { InputValidation } from './InputValidation'
-
-export type InputClassesType = {
-  main: ComponentAssociativeType
-}
-export type InputSetupType = ComponentBaseType & {
-  fieldBind: ComputedRef<AssociativeType>
-  inputBind: ComputedRef<AssociativeType>
-  valueBind: Ref<NumberOrStringType>
-}
+import { props } from './props'
+import { AssociativeType } from '../types'
+import { InputClassesType, InputSetupType } from './types'
+import { InputEvent } from './InputEvent'
+import { InputChange } from './InputChange'
 
 export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -30,10 +20,13 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
   ] as string[]
 
   protected readonly field: FieldProps
+
   protected readonly value: InputValue
+  protected readonly change: InputChange
 
   protected readonly match: InputMatch
   protected readonly validation: InputValidation
+  protected readonly event: InputEvent
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -42,10 +35,12 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
     super(props, context)
 
     this.field = new FieldProps(props)
+
     this.value = new InputValue(
       this.refs.value,
       this.refs.modelValue
     )
+    this.change = new InputChange(this.value)
 
     this.match = new InputMatch(
       this.element,
@@ -55,9 +50,13 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
     this.validation = new InputValidation(
       this.input,
       this.value,
+      this.change,
       this.match,
       this.refs.validationCode,
       this.refs.validationMessage
+    )
+    this.event = new InputEvent(
+      this.change
     )
   }
 
@@ -71,7 +70,9 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       styles,
       fieldBind: this.field.get(),
       inputBind: this.input,
-      valueBind: this.value.value
+      validationMessageBind: this.validation.message,
+      valueBind: this.value.value,
+      onChange: () => this.event.onChange()
     }
   }
 
@@ -91,6 +92,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       placeholder: this.refs.placeholder.value,
       spellcheck: this.refs.spellcheck.value,
       readonly: this.refs.readonly.value,
+      type: this.refs.type.value,
       ...this.refs.input.value
     }
   })

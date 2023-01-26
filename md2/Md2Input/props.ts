@@ -47,7 +47,7 @@ export const props = {
   counter: Number,
   helperMessage: String,
   validationCode: [Object],
-  validationMessage: [Boolean, String],
+  validationMessage: String,
 
   // On
   modelValue: undefined,

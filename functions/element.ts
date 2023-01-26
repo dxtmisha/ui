@@ -1,4 +1,4 @@
-import { executeFunction, forEach } from './data'
+import { executeFunction, forEach, isFilled } from './data'
 import { ElementOptionsItemType, ElementOptionsType } from '../constructors/types'
 
 export function createElement<T = HTMLElement> (
@@ -13,9 +13,11 @@ export function createElement<T = HTMLElement> (
     options(element)
   } else if (typeof options === 'object') {
     forEach<ElementOptionsItemType, string, void>(options, (value, key) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      element[key] = executeFunction<string>(value)
+      if (isFilled(value)) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        element[key] = executeFunction<string>(value)
+      }
     })
   }
 

@@ -1,4 +1,5 @@
 import { computed, ComputedRef, Ref } from 'vue'
+import { InputChange } from './InputChange'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
 import { createElement } from '../../functions'
@@ -10,6 +11,7 @@ export class InputValidation {
   constructor (
     protected readonly input: ComputedRef<AssociativeType>,
     protected readonly value: InputValue,
+    protected readonly change?: InputChange,
     protected readonly match?: InputMatch,
     protected readonly validationCode?: Ref<string | InputValidityType>,
     protected readonly validationMessage?: Ref<string>
@@ -20,9 +22,13 @@ export class InputValidation {
     return createElement(undefined, 'input', this.input.value)
   })
 
-  readonly item = computed<InputValidationType | undefined>(
-    () => this.checkGlobal() || this.check() || this.match?.check()
-  )
+  readonly item = computed<InputValidationType | undefined>(() => {
+    if (this.change?.get() !== false) {
+      return this.checkGlobal() || this.check() || this.match?.check()
+    } else {
+      return undefined
+    }
+  })
 
   readonly message = computed<string>(() => this.item.value?.validationMessage || '')
 

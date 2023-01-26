@@ -26,7 +26,7 @@ export const props = {
   counter: Number,
   helperMessage: String,
   maxlength: Number,
-  validationMessage: [Boolean, String],
+  validationMessage: String,
 
   // Status
   disabled: Boolean,

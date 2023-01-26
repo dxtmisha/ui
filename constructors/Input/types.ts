@@ -1,5 +1,5 @@
-import { AssociativeType } from '../types'
-import { MaskPatternTypeType } from '../Mask/types'
+import { AssociativeType, ComponentAssociativeType, ComponentBaseType, NumberOrStringType } from '../types'
+import { ComputedRef, Ref } from 'vue'
 
 export type InputMatchItemType = {
   name: string
@@ -39,4 +39,16 @@ export type InputValidityType = AssociativeType & {
   typeMismatch?: string
   valid?: string
   valueMissing?: string
+}
+
+export type InputClassesType = {
+  main: ComponentAssociativeType
+}
+
+export type InputSetupType = ComponentBaseType & {
+  fieldBind: ComputedRef<AssociativeType>
+  inputBind: ComputedRef<AssociativeType>
+  validationMessageBind: ComputedRef<string>
+  valueBind: Ref<NumberOrStringType>
+  onChange: (event?: Event) => void
 }

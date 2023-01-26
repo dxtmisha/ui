@@ -219,6 +219,31 @@
       name="name"
     />
   </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      :type="'email'"
+      icon-trailing="close"
+      name="name"
+      required
+      text="text"
+    />
+    <md2-input
+      :type="'email'"
+      icon-trailing="close"
+      name="name"
+      placeholder="placeholder"
+      required
+      text="text"
+    />
+    <md2-input
+      :type="'email'"
+      icon-trailing="close"
+      name="name"
+      text="text"
+      required
+      value="is value"
+    />
+  </div>
   <div class="px-4 py-4">
     <div>mack0:
       <md2-mask
