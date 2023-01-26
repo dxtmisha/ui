@@ -32,6 +32,10 @@ export class InputEvent {
     return this
   }
 
+  onBlur (): void {
+    this.change?.set(true)
+  }
+
   onCancel (): void {
     this.value.reset()
     this.on().onChange()

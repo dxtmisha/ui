@@ -77,6 +77,10 @@
   <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
+      type="email"
+      required
+      @on-input="onEmit"
+      @on-change="onEmit"
     />
     <md2-input
       text="text"
@@ -85,6 +89,7 @@
     <md2-input
       text="text"
       value="is value"
+      validation-message="is validation message"
     />
   </div>
   <div class="flex gap-4 px-4 py-4">

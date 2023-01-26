@@ -1,14 +1,14 @@
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { FieldProps } from '../Field/FieldProps'
+import { InputChange } from './InputChange'
+import { InputEvent } from './InputEvent'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
 import { InputValidation } from './InputValidation'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import { InputClassesType, InputSetupType } from './types'
-import { InputEvent } from './InputEvent'
-import { InputChange } from './InputChange'
 
 export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -38,7 +38,8 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
 
     this.value = new InputValue(
       this.refs.value,
-      this.refs.modelValue
+      this.refs.modelValue,
+      this.refs.readonly
     )
     this.change = new InputChange(this.value)
 
@@ -56,7 +57,11 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       this.refs.validationMessage
     )
     this.event = new InputEvent(
-      this.change
+      this.context.emit,
+      this.value,
+      this.change,
+      this.validation,
+      this.refs.validationMessage
     )
   }
 
@@ -72,7 +77,9 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       inputBind: this.input,
       validationMessageBind: this.validation.message,
       valueBind: this.value.value,
-      onChange: () => this.event.onChange()
+      onBlur: () => this.event.onBlur(),
+      onChange: () => this.event.onChange(),
+      onInput: (event: Event) => this.event.onInput(event)
     }
   }
 
@@ -88,12 +95,22 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       max: this.refs.max.value,
       minlength: this.refs.minlength.value,
       maxlength: this.refs.maxlength.value,
-      pattern: this.refs.pattern.value,
+      pattern: this.pattern.value,
       placeholder: this.refs.placeholder.value,
       spellcheck: this.refs.spellcheck.value,
       readonly: this.refs.readonly.value,
       type: this.refs.type.value,
       ...this.refs.input.value
+    }
+  })
+
+  protected readonly pattern = computed(() => {
+    if (this.props.pattern) {
+      return this.props.pattern
+    } else if (this.props.type === 'email') {
+      return '[\\S]+@[\\S]{2,}\\.[\\w]{2,}'
+    } else {
+      return undefined
     }
   })
 }

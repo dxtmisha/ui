@@ -74,12 +74,12 @@
             "& .??__border": {
               "after": {
                 "@style": "{??m.borderBottom}",
-                "palette-background": "{??sys.focus.border}",
+                "palette-background": "{??l.label.text}",
                 "background-opacity": "{??sys.focus.borderOpacity}",
                 "clip-path": "inset(0 50%)",
                 "height": "{??sys.focus.borderWidth}",
                 "transition-duration": "{??sys.transitionDuration}",
-                "transition-property": "clip-path",
+                "transition-property": "background-color, clip-path",
                 "transition-function": "{d.sys.transitionFunction.standard}",
                 "z-index": "8"
               },

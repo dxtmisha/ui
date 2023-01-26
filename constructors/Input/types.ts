@@ -1,5 +1,10 @@
-import { AssociativeType, ComponentAssociativeType, ComponentBaseType, NumberOrStringType } from '../types'
 import { ComputedRef, Ref } from 'vue'
+import {
+  AssociativeType,
+  BooleanOrNumberOrStringType,
+  ComponentAssociativeType,
+  ComponentBaseType
+} from '../types'
 
 export type InputMatchItemType = {
   name: string
@@ -49,6 +54,8 @@ export type InputSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
   validationMessageBind: ComputedRef<string>
-  valueBind: Ref<NumberOrStringType>
-  onChange: (event?: Event) => void
+  valueBind: Ref<BooleanOrNumberOrStringType>
+  onBlur: () => void
+  onChange: () => void
+  onInput: (event: Event) => void
 }

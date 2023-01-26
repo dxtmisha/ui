@@ -11,7 +11,9 @@
       v-model="valueBind"
       :class="slotDefault.classes"
       v-bind="inputBind"
+      @blur="onBlur"
       @change="onChange"
+      @input="onInput"
       v-on="on"
     >
   </md2-field>
@@ -29,11 +31,6 @@ export default {
   emits: InputComponent.emits,
   setup (props: object, context: object) {
     return new InputComponent(props, context).setup()
-  },
-  methods: {
-    asd () {
-      this.$emit()
-    }
   }
 }
 </script>
