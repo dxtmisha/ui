@@ -85,17 +85,30 @@
     <md2-input
       text="text"
       placeholder="placeholder"
+      type="email"
+      required
+      validation-code="is validation code"
+      @on-input="onEmit"
+      @on-change="onEmit"
     />
     <md2-input
       text="text"
       value="is value"
+      type="email"
+      required
       validation-message="is validation message"
+      @on-input="onEmit"
+      @on-change="onEmit"
     />
   </div>
   <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
       icon="face"
+      required
+      :validation-code="{valueMissing:'is validation code'}"
+      @on-input="onEmit"
+      @on-change="onEmit"
     />
     <md2-input
       text="text"

@@ -36,6 +36,7 @@ export class InputValidation {
     const input = this.element.value
 
     input.value = this.value.get().toString().trim()
+    console.log('input.validity', input.validity)
 
     if (input.checkValidity()) {
       return undefined
@@ -43,7 +44,7 @@ export class InputValidation {
       return {
         input,
         status: true,
-        validationMessage: input.validationMessage,
+        validationMessage: this.getCode(input.validity) || input.validationMessage,
         validity: input.validity
       }
     }
@@ -85,6 +86,28 @@ export class InputValidation {
   }
 
   protected getIndexCode (state: ValidityState): string {
-    return Object.entries(state).find(item => item[1])?.[0] as string
+    if (state.badInput) {
+      return 'badInput'
+    } else if (state.customError) {
+      return 'customError'
+    } else if (state.patternMismatch) {
+      return 'patternMismatch'
+    } else if (state.rangeOverflow) {
+      return 'rangeOverflow'
+    } else if (state.rangeUnderflow) {
+      return 'rangeUnderflow'
+    } else if (state.stepMismatch) {
+      return 'stepMismatch'
+    } else if (state.tooLong) {
+      return 'tooLong'
+    } else if (state.tooShort) {
+      return 'tooShort'
+    } else if (state.typeMismatch) {
+      return 'typeMismatch'
+    } else if (state.valueMissing) {
+      return 'valueMissing'
+    } else {
+      return ''
+    }
   }
 }

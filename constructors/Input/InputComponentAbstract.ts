@@ -41,7 +41,10 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       this.refs.modelValue,
       this.refs.readonly
     )
-    this.change = new InputChange(this.value)
+    this.change = new InputChange(
+      this.value,
+      this.refs.validationMessage
+    )
 
     this.match = new InputMatch(
       this.element,
