@@ -77,7 +77,8 @@
   <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
-      type="email"
+      type="text"
+      name="is-match"
       required
       @on-input="onEmit"
       @on-change="onEmit"
@@ -85,9 +86,9 @@
     <md2-input
       text="text"
       placeholder="placeholder"
-      type="email"
+      type="text"
+      input-match="input[name='is-match']"
       required
-      validation-code="is validation code"
       @on-input="onEmit"
       @on-change="onEmit"
     />

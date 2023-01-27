@@ -29,7 +29,6 @@ export class InputChange {
 
   updateMessage (): boolean {
     const isMessage = isFilled(this.validationMessage?.value)
-    console.log('this.validationMessage?.value', this.validationMessage?.value, isMessage)
 
     if (isMessage) {
       this.set(true)

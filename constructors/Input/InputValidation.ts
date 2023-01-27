@@ -36,7 +36,6 @@ export class InputValidation {
     const input = this.element.value
 
     input.value = this.value.get().toString().trim()
-    console.log('input.validity', input.validity)
 
     if (input.checkValidity()) {
       return undefined

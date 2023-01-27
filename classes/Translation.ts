@@ -43,7 +43,7 @@ export class Translation {
       } else if (replaces && indexList in this.translations.value) {
         return toReplaceTemplate(this.translations.value[indexList], replaces.value)
       } else {
-        return this.translations.value?.[indexList] || ''
+        return this.translations.value?.[indexList] || indexList
       }
     })
   }

@@ -10,6 +10,7 @@ export class InputMatch {
     protected readonly match: Ref<InputMatchType>,
     protected readonly value: InputValue
   ) {
+    console.log('match', typeof this.match.value === 'object' ? this.match.value?.name : (this.match.value || ''))
   }
 
   readonly name = computed<string>(
@@ -21,6 +22,7 @@ export class InputMatch {
   )
 
   check (): InputValidationType | undefined {
+    console.log('this.name.value', this.name.value, this.text.value)
     if (this.name.value) {
       const input = this.input.value?.form?.querySelector<HTMLInputElement>(`[name="${this.name.value}"]`) ||
         document.querySelector<HTMLInputElement>(this.name.value)
