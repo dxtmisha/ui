@@ -56,7 +56,11 @@ export type InputSetupType = ComponentBaseType & {
   counterBind: ComputedRef<NumberOrUndefinedType>
   validationMessageBind: ComputedRef<string>
   valueBind: Ref<BooleanOrNumberOrStringType>
+  disabledPrevious: ComputedRef<boolean>
+  disabledNext: ComputedRef<boolean>
   onBlur: () => void
   onChange: () => void
   onInput: (event: Event) => void
+  onPrevious: () => void
+  onNext: () => void
 }

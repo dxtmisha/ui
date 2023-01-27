@@ -47,8 +47,6 @@ export const props = {
 
   // Status
   disabled: Boolean,
-  disabledPrevious: Boolean,
-  disabledNext: Boolean,
   focus: Boolean,
   readonly: Boolean,
   selected: Boolean,

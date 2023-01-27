@@ -2,9 +2,13 @@
   <md2-field
     v-slot:default="slotDefault"
     :counter="counterBind"
+    :disabled-next="disabledNext"
+    :disabled-previous="disabledPrevious"
     :validation-message="validationMessageBind"
     :value="valueBind"
     v-bind="fieldBind"
+    @on-previous="onPrevious"
+    @on-next="onNext"
   >
     <input
       :id="slotDefault.id"

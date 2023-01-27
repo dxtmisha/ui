@@ -18,6 +18,10 @@ export class InputValue {
     return this.value.value
   }
 
+  getByNumber (): number {
+    return parseFloat(this.get().toString() || '0')
+  }
+
   getLength (): number {
     const value = this.get()
 

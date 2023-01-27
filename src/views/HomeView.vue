@@ -87,6 +87,32 @@
   </div>
   <div class="flex gap-4 px-4 py-4">
     <md2-input
+      arrow
+      text="text"
+      type="number"
+      @on-input="onEmit"
+      @on-change="onEmit"
+    />
+    <md2-input
+      :min="10"
+      arrow
+      text="text"
+      type="number"
+      @on-input="onEmit"
+      @on-change="onEmit"
+    />
+    <md2-input
+      :max="30"
+      :min="10"
+      arrow
+      text="text"
+      type="number"
+      @on-input="onEmit"
+      @on-change="onEmit"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
       text="text"
       type="text"
       name="is-match"

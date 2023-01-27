@@ -1,6 +1,7 @@
 import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { FieldProps } from '../Field/FieldProps'
+import { InputArrow } from './InputArrow'
 import { InputChange } from './InputChange'
 import { InputCounter } from './InputCounter'
 import { InputEvent } from './InputEvent'
@@ -25,6 +26,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
   protected readonly value: InputValue
   protected readonly change: InputChange
   protected readonly counter: InputCounter
+  protected readonly arrow: InputArrow
 
   protected readonly match: InputMatch
   protected readonly validation: InputValidation
@@ -50,6 +52,12 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
     this.counter = new InputCounter(
       this.value,
       this.refs.counter
+    )
+    this.arrow = new InputArrow(
+      this.value,
+      this.refs.arrow,
+      this.refs.min,
+      this.refs.max
     )
 
     this.match = new InputMatch(
@@ -87,9 +95,13 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       counterBind: this.counter.item,
       validationMessageBind: this.validation.message,
       valueBind: this.value.value,
+      disabledPrevious: this.arrow.isPrevious,
+      disabledNext: this.arrow.isNext,
       onBlur: () => this.event.onBlur(),
       onChange: () => this.event.onChange(),
-      onInput: (event: Event) => this.event.onInput(event)
+      onInput: (event: Event) => this.event.onInput(event),
+      onPrevious: () => this.onPrevious(),
+      onNext: () => this.onNext()
     }
   }
 
@@ -123,4 +135,14 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       return undefined
     }
   })
+
+  onPrevious (): void {
+    this.arrow.setPrevious()
+    this.event.on().onChange()
+  }
+
+  onNext (): void {
+    this.arrow.setNext()
+    this.event.on().onChange()
+  }
 }
