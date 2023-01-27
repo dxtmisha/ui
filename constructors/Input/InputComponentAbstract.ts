@@ -11,6 +11,7 @@ import { InputValidation } from './InputValidation'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import { InputClassesType, InputSetupType } from './types'
+import { getClipboardData } from '../../functions'
 
 export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -98,6 +99,8 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       disabledPrevious: this.arrow.isPrevious,
       disabledNext: this.arrow.isNext,
       onBlur: () => this.event.onBlur(),
+      onKeypress: (event: KeyboardEvent) => this.onKeypress(event),
+      onPaste: (event: ClipboardEvent) => this.onPaste(event),
       onChange: () => this.event.onChange(),
       onInput: (event: Event) => this.event.onInput(event),
       onPrevious: () => this.onPrevious(),
@@ -135,6 +138,46 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       return undefined
     }
   })
+
+  onKeypress (event: KeyboardEvent) {
+    if (
+      this.props.type === 'tel' &&
+      !event.key.toString().match(/[0-9]/)
+    ) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  }
+
+  async onPaste (event: ClipboardEvent) {
+    if (this.props.type === 'tel') {
+      const paste = (await getClipboardData(event)).replace(/[^0-9]+/ig, '')
+
+      if (
+        paste &&
+        paste.length > 0
+      ) {
+        event.preventDefault()
+
+        const target = event.target as HTMLInputElement
+        const start = target.selectionStart || 0
+        const end = target.selectionEnd || 0
+        const value = target.value
+        const selection = start + paste.length
+
+        this.value.set(
+          `${value.substring(0, start)}${paste}${value.substring(end)}`
+        )
+
+        requestAnimationFrame(() => {
+          target.selectionEnd = selection
+          target.selectionStart = selection
+        })
+
+        this.event.on()
+      }
+    }
+  }
 
   onPrevious (): void {
     this.arrow.setPrevious()

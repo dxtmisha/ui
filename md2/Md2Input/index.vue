@@ -19,6 +19,8 @@
       @blur="onBlur"
       @change="onChange"
       @input="onInput"
+      @keypress="onKeypress"
+      @paste="onPaste"
       v-on="on"
     >
   </md2-field>

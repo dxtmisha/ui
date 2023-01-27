@@ -59,6 +59,8 @@ export type InputSetupType = ComponentBaseType & {
   disabledPrevious: ComputedRef<boolean>
   disabledNext: ComputedRef<boolean>
   onBlur: () => void
+  onKeypress: (event: KeyboardEvent) => void
+  onPaste: (event: ClipboardEvent) => void
   onChange: () => void
   onInput: (event: Event) => void
   onPrevious: () => void
