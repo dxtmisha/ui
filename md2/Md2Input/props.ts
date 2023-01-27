@@ -44,7 +44,7 @@ export const props = {
   inputMatch: [Object, String] as PropType<InputMatchType>,
 
   // Message
-  counter: Number,
+  counter: Boolean,
   helperMessage: String,
   validationCode: [Object],
   validationMessage: String,

@@ -18,6 +18,12 @@ export class InputValue {
     return this.value.value
   }
 
+  getLength (): number {
+    const value = this.get()
+
+    return Array.isArray(value) ? value.length : value?.toString()?.length || 0
+  }
+
   protected getValueByTarget (target: HTMLInputElement): this {
     this.set(target.type === 'checkbox' ? target.checked : target.value)
     return this

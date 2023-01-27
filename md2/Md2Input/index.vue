@@ -1,6 +1,7 @@
 <template>
   <md2-field
     v-slot:default="slotDefault"
+    :counter="counterBind"
     :validation-message="validationMessageBind"
     :value="valueBind"
     v-bind="fieldBind"

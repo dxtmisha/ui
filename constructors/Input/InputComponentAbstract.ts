@@ -2,6 +2,7 @@ import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { FieldProps } from '../Field/FieldProps'
 import { InputChange } from './InputChange'
+import { InputCounter } from './InputCounter'
 import { InputEvent } from './InputEvent'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
@@ -23,6 +24,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
 
   protected readonly value: InputValue
   protected readonly change: InputChange
+  protected readonly counter: InputCounter
 
   protected readonly match: InputMatch
   protected readonly validation: InputValidation
@@ -44,6 +46,10 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
     this.change = new InputChange(
       this.value,
       this.refs.validationMessage
+    )
+    this.counter = new InputCounter(
+      this.value,
+      this.refs.counter
     )
 
     this.match = new InputMatch(
@@ -78,6 +84,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       styles,
       fieldBind: this.field.get(),
       inputBind: this.input,
+      counterBind: this.counter.item,
       validationMessageBind: this.validation.message,
       valueBind: this.value.value,
       onBlur: () => this.event.onBlur(),

@@ -4,6 +4,7 @@ export type ArrayOrStringType = string[] | string
 export type BooleanOrNumberOrStringType = boolean | number | string
 export type NumberOrStringType = number | string
 export type NumberOrStringOrDateType = NumberOrStringType | Date
+export type NumberOrUndefinedType = number | undefined
 export type CallbackType<T = any, R = any> = (value: T) => R
 export type CallbackNullType<R = void> = () => R
 

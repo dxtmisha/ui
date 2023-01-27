@@ -33,7 +33,7 @@ export const props = {
   inputMatch: [Object, String] as PropType<InputMatchType>,
 
   // Message
-  counter: Number,
+  counter: Boolean,
   helperMessage: String,
   validationCode: [Object, String] as PropType<string | InputValidityType>,
   validationMessage: String,

@@ -2,7 +2,7 @@ import { computed, Ref } from 'vue'
 import { MaskDate } from './MaskDate'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
-import { MaskItemType, MaskPatternType, MaskPatternTypeType } from './types'
+import { MaskPatternType, MaskPatternTypeType } from './types'
 
 export class MaskPattern {
   // eslint-disable-next-line no-useless-constructor

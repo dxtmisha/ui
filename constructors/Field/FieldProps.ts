@@ -5,5 +5,5 @@ import { AssociativeType } from '../types'
 export class FieldProps extends ComponentPropsAbstract {
   protected readonly name = 'field'
   protected readonly list = props as AssociativeType
-  protected readonly exception = ['validationMessage', 'value'] as string[]
+  protected readonly exception = ['counter', 'validationMessage', 'value'] as string[]
 }

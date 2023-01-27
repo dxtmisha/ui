@@ -3,7 +3,7 @@ import {
   AssociativeType,
   BooleanOrNumberOrStringType,
   ComponentAssociativeType,
-  ComponentBaseType
+  ComponentBaseType, NumberOrUndefinedType
 } from '../types'
 
 export type InputMatchItemType = {
@@ -53,6 +53,7 @@ export type InputClassesType = {
 export type InputSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
+  counterBind: ComputedRef<NumberOrUndefinedType>
   validationMessageBind: ComputedRef<string>
   valueBind: Ref<BooleanOrNumberOrStringType>
   onBlur: () => void

@@ -39,7 +39,10 @@ export abstract class FieldMessageComponentAbstract extends ComponentAbstract {
     }
   }
 
-  protected readonly isCounter = computed<boolean>(() => typeof this.props.counter === 'number')
+  protected readonly isCounter = computed<boolean>(
+    () => typeof this.props.counter === 'number' && (this.props.counter > 0 || this.isMax.value)
+  )
+
   protected readonly isMax = computed<boolean>(() => typeof this.props.maxlength === 'number' && this.props.maxlength > 0)
 
   protected readonly isMessage = computed<boolean>(() => {
