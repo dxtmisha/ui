@@ -74,7 +74,7 @@
             "& .??__border": {
               "after": {
                 "@style": "{??m.borderBottom}",
-                "palette-background": "{??l.label.text}",
+                "palette-background": "{??sys.focus.palette}",
                 "background-opacity": "{??sys.focus.borderOpacity}",
                 "clip-path": "inset(0 50%)",
                 "height": "{??sys.focus.borderWidth}",
@@ -119,6 +119,13 @@
                 },
                 "prefix": {
                   "opacity": "{??sys.focus.prefix.opacity}"
+                }
+              }
+            },
+            "&.is-validation": {
+              "& .??__border": {
+                "after": {
+                  "palette-background": "{??sys.validation.palette}"
                 }
               }
             },
