@@ -69,17 +69,15 @@ export const props = {
   },
   appearance: {
     type: String as PropType<Md2FieldAppearanceType>,
-    default: defaultItem.defaultValue('appearance'),
-    validator: defaultItem.validator('appearance')
+    default: defaultItem.defaultValue('appearance')
   },
   arrow: Boolean,
   cancel: {
     type: String as PropType<Md2FieldCancelType>,
-    default: defaultItem.defaultValue('cancel'),
-    validator: defaultItem.validator('cancel')
+    default: defaultItem.defaultValue('cancel', 'auto')
   },
   height: {
-    type: String as PropType<Md2FieldHeightType>,
+    type: [Number, String] as PropType<Md2FieldHeightType>,
     default: defaultItem.defaultValue('height')
   },
   palette: String as PropType<Md2PaletteType>,

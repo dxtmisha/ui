@@ -9,6 +9,7 @@
     v-bind="fieldBind"
     @on-previous="onPrevious"
     @on-next="onNext"
+    @on-cancel="onCancel"
   >
     <input
       :id="slotDefault.id"

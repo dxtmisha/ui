@@ -65,4 +65,5 @@ export type InputSetupType = ComponentBaseType & {
   onInput: (event: Event) => void
   onPrevious: () => void
   onNext: () => void
+  onCancel: () => void
 }

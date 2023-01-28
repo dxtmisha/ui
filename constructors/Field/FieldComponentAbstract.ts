@@ -172,7 +172,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   readonly iconTrailing = computed(() => {
     return {
-      class: 'is-trailing',
+      class: 'is-icon is-trailing',
       disabled: this.props.disabled,
       turn: this.props.turn
     }
@@ -180,13 +180,13 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   readonly iconCancel = computed(() => {
     return {
-      class: 'is-cancel'
+      class: 'is-icon is-cancel'
     }
   })
 
   readonly iconPrevious = computed(() => {
     return {
-      class: 'is-previous',
+      class: 'is-icon is-previous',
       background: true,
       disabled: this.props.disabled || this.props.disabledPrevious
     }
@@ -194,7 +194,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   readonly iconNext = computed(() => {
     return {
-      class: 'is-next',
+      class: 'is-icon is-next',
       background: true,
       disabled: this.props.disabled || this.props.disabledNext
     }

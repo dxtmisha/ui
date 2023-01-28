@@ -8,10 +8,10 @@ import { InputEvent } from './InputEvent'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
 import { InputValidation } from './InputValidation'
+import { getClipboardData } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import { InputClassesType, InputSetupType } from './types'
-import { getClipboardData } from '../../functions'
 
 export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -104,7 +104,8 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       onChange: () => this.event.onChange(),
       onInput: (event: Event) => this.event.onInput(event),
       onPrevious: () => this.onPrevious(),
-      onNext: () => this.onNext()
+      onNext: () => this.onNext(),
+      onCancel: () => this.event.onCancel()
     }
   }
 
