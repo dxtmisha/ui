@@ -143,6 +143,7 @@
         "classic": {
           "@label": "{??m.labelTop}",
           "@style": "{??m.appearance.standard}",
+          "@classic": "{??m.appearance.classic}",
           "?field-message-padding": "0px",
           "& .??__label-top": {
             "@font": "{font.subtitle2}"

@@ -41,7 +41,30 @@
           "position": "absolute"
         },
         "mixin|appearance": {
+          "mixin|classic": {
+            "&.??--disabled": {
+              "&:focus-within, &.??--focus, &.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
+                "var|l": {
+                  "label": {
+                    "textOpacity": "{??sys.disabled.label.textOpacity}"
+                  }
+                }
+              }
+            }
+          },
           "mixin|filled": {
+            "mixin|focus": {
+              "var|l": {
+                "shift": "{??sys.focus.shift}",
+                "label": {
+                  "scale": "{??sys.focus.label.scale}",
+                  "shift": "{??sys.focus.label.shift}"
+                },
+                "prefix": {
+                  "opacity": "{??sys.focus.prefix.opacity}"
+                }
+              }
+            },
             "var|sys": {
               "backgroundOpacity": "",
               "borderOpacity": "",
@@ -100,6 +123,7 @@
                 }
               },
               "&:focus-within, &.??--focus": {
+                "@style": "{??m.appearance.filled.focus}",
                 "& .??__body": {
                   "var|l": {
                     "gradientOpacity": "{??sys.focus.gradientOpacity}"
@@ -110,17 +134,8 @@
                 }
               }
             },
-            "&:focus-within, &.??--focus, &.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
-              "var|l": {
-                "shift": "{??sys.focus.shift}",
-                "label": {
-                  "scale": "{??sys.focus.label.scale}",
-                  "shift": "{??sys.focus.label.shift}"
-                },
-                "prefix": {
-                  "opacity": "{??sys.focus.prefix.opacity}"
-                }
-              }
+            "&.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
+              "@style": "{??m.appearance.filled.focus}"
             },
             "&.is-validation": {
               "& .??__border": {
@@ -143,6 +158,20 @@
             }
           },
           "mixin|outlined": {
+            "mixin|focus": {
+              "var|l": {
+                "label": {
+                  "fontSize": "{??sys.focus.label.fontSize}",
+                  "shift": "{??sys.focus.label.shift}",
+                  "translate": {
+                    "x": "0px"
+                  }
+                }
+              },
+              "& .??__title:after": {
+                "border-opacity": "0"
+              }
+            },
             "var|sys": {
               "focus": {
                 "border": "",
@@ -163,6 +192,7 @@
                 }
               },
               "&:focus-within, &.??--focus": {
+                "@style": "{??m.appearance.outlined.focus}",
                 "& .??__body": {
                   "var|l": {
                     "border": "=var(--sys-palette, {??sys.focus.border})",
@@ -172,19 +202,8 @@
                 }
               }
             },
-            "&:focus-within, &.??--focus, &.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
-              "var|l": {
-                "label": {
-                  "fontSize": "{??sys.focus.label.fontSize}",
-                  "shift": "{??sys.focus.label.shift}",
-                  "translate": {
-                    "x": "0px"
-                  }
-                }
-              },
-              "& .??__title:after": {
-                "border-opacity": "0"
-              }
+            "&.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
+              "@style": "{??m.appearance.outlined.focus}"
             }
           },
           "mixin|standard": {
@@ -388,7 +407,8 @@
       },
       "section|cancel": {
         "auto": {},
-        "always": {}
+        "always": {},
+        "hide": {}
       },
       "section|disabled": {},
       "section|focus": {},

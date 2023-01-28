@@ -125,6 +125,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       placeholder: this.refs.placeholder.value,
       spellcheck: this.refs.spellcheck.value,
       readonly: this.refs.readonly.value,
+      disabled: this.refs.disabled.value,
       type: this.refs.type.value,
       ...this.refs.input.value
     }

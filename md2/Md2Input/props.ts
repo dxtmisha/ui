@@ -58,7 +58,6 @@ export const props = {
 
   // Status
   disabled: Boolean,
-  focus: Boolean,
   readonly: Boolean,
   selected: Boolean,
 

@@ -157,8 +157,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected readonly isValue = computed<boolean>(() => isFilled(this.props.value))
   protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
   protected readonly isCancel = computed<boolean>(() => {
-    return !this.props.disabled &&
-      this.isValue.value &&
+    return this.isValue.value &&
+      !this.props.disabled &&
+      !this.props.readonly &&
       isFilled(this.props.cancel) &&
       this.props.cancel !== 'hide'
   })
