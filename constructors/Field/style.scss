@@ -315,6 +315,15 @@
       @include subClassByGlobal('input') {
         @include textAlign('center');
       }
+
+      &.is-arrow {
+        @include linkTo('label.translate-x', '0px');
+        @include subClassByGlobal('label') {
+          &::before {
+            flex-grow: 1;
+          }
+        }
+      }
     }
 
     @include modClass('left') {
@@ -326,6 +335,12 @@
     @include modClass('right') {
       @include subClassByGlobal('input') {
         @include textAlign('right');
+      }
+
+      &.is-arrow {
+        @include subClassByGlobal('input') {
+          @include textAlign('left');
+        }
       }
     }
   }

@@ -77,6 +77,46 @@
   <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
+      align="left"
+      appearance="outlined"
+      v-model="inputValue"
+    />
+    <md2-input
+      text="text"
+      align="right"
+      appearance="outlined"
+      v-model="inputValue"
+    />
+    <md2-input
+      text="text"
+      align="center"
+      appearance="outlined"
+      v-model="inputValue"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
+      align="left"
+      arrow
+      v-model="inputValue"
+    />
+    <md2-input
+      text="text"
+      align="right"
+      arrow
+      v-model="inputValue"
+    />
+    <md2-input
+      text="text"
+      align="center"
+      arrow
+      v-model="inputValue"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
       type="text"
       counter
       name="is-match"

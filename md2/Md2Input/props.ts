@@ -62,10 +62,7 @@ export const props = {
   selected: Boolean,
 
   // Options
-  align: {
-    type: String as PropType<Md2FieldAlignType>,
-    validator: defaultItem.validator('align')
-  },
+  align: String as PropType<Md2FieldAlignType>,
   appearance: {
     type: String as PropType<Md2FieldAppearanceType>,
     default: defaultItem.defaultValue('appearance')

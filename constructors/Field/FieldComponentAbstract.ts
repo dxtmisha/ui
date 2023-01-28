@@ -138,11 +138,16 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   protected readonly isLeft = computed<boolean>(
-    () => isFilled(this.props.arrow) || isFilled(this.props.icon) || 'left' in this.context.slots
+    () => (isFilled(this.props.arrow) && this.props.align !== 'right') ||
+      isFilled(this.props.icon) ||
+      'left' in this.context.slots
   )
 
   protected readonly isRight = computed<boolean>(
-    () => isFilled(this.props.arrow) || isFilled(this.props.iconTrailing) || 'right' in this.context.slots || this.isCancel.value
+    () => (isFilled(this.props.arrow) && this.props.align !== 'left') ||
+      isFilled(this.props.iconTrailing) ||
+      'right' in this.context.slots ||
+      this.isCancel.value
   )
 
   protected readonly isRequired = computed(() => {
@@ -160,6 +165,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     return this.isValue.value &&
       !this.props.disabled &&
       !this.props.readonly &&
+      !this.props.arrow &&
       isFilled(this.props.cancel) &&
       this.props.cancel !== 'hide'
   })
@@ -215,10 +221,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   protected updateLeft () {
-    if (
-      this.props.icon ||
-      this.props.arrow
-    ) {
+    if (this.isLeft.value) {
       this.left.value = `${this.leftElement.value?.offsetWidth}px`
     } else {
       this.left.value = '0px'
@@ -226,11 +229,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   protected updateRight () {
-    if (
-      this.props.iconTrailing ||
-      this.props.arrow ||
-      this.isCancel.value
-    ) {
+    if (this.isRight.value) {
       this.right.value = `${this.rightElement.value?.offsetWidth}px`
     } else {
       this.right.value = '0px'
