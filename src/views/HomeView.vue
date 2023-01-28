@@ -91,6 +91,12 @@
       @on-input="onEmit"
       @on-change="onEmit"
     />
+    <md2-input
+      text="tel"
+      type="tel"
+      required
+      v-model="inputValue"
+    />
   </div>
   <div class="flex gap-4 px-4 py-4">
     <md2-input

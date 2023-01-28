@@ -260,18 +260,18 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       !this.props?.readonly &&
       !this.props?.disabled
     ) {
-      if ((event.target as HTMLElement)?.closest('.is-previous')) {
+      if ((event.target as HTMLElement)?.closest('.is-icon.is-previous')) {
         if (!this.props.disabledPrevious) {
           this.context.emit('on-previous', this.props.detail)
         }
-      } else if ((event.target as HTMLElement)?.closest('.is-next')) {
+      } else if ((event.target as HTMLElement)?.closest('.is-icon.is-next')) {
         if (!this.props.disabledNext) {
           this.context.emit('on-next', this.props.detail)
         }
-      } else if ((event.target as HTMLElement)?.closest('.is-trailing')) {
+      } else if ((event.target as HTMLElement)?.closest('.is-icon.is-trailing')) {
         this.context.emit('on-trailing', this.props.detail)
         inputElement.focus()
-      } else if ((event.target as HTMLElement)?.closest('.is-cancel')) {
+      } else if ((event.target as HTMLElement)?.closest('.is-icon.is-cancel')) {
         this.context.emit('on-cancel', this.props.detail)
         inputElement.focus()
       } else {
