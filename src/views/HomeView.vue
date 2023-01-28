@@ -77,6 +77,13 @@
   <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
+      :type="'password'"
+      v-model="inputValue"
+    />
+  </div>
+  <div class="flex gap-4 px-4 py-4">
+    <md2-input
+      text="text"
       align="left"
       appearance="outlined"
       v-model="inputValue"

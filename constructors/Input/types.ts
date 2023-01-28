@@ -52,6 +52,7 @@ export type InputClassesType = {
 
 export type InputSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
+  iconTrailingBind: ComputedRef<AssociativeType | string | undefined>
   inputBind: ComputedRef<AssociativeType>
   counterBind: ComputedRef<NumberOrUndefinedType>
   validationMessageBind: ComputedRef<string>
@@ -66,4 +67,5 @@ export type InputSetupType = ComponentBaseType & {
   onPrevious: () => void
   onNext: () => void
   onCancel: () => void
+  onTrailing: () => void
 }

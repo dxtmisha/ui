@@ -4,12 +4,14 @@
     :counter="counterBind"
     :disabled-next="disabledNext"
     :disabled-previous="disabledPrevious"
+    :icon-trailing="iconTrailingBind"
     :validation-message="validationMessageBind"
     :value="valueBind"
     v-bind="fieldBind"
     @on-previous="onPrevious"
     @on-next="onNext"
     @on-cancel="onCancel"
+    @on-trailing="onTrailing"
   >
     <input
       :id="slotDefault.id"

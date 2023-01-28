@@ -6,6 +6,7 @@ import { InputChange } from './InputChange'
 import { InputCounter } from './InputCounter'
 import { InputEvent } from './InputEvent'
 import { InputMatch } from './InputMatch'
+import { InputType } from './InputType'
 import { InputValue } from './InputValue'
 import { InputValidation } from './InputValidation'
 import { getClipboardData } from '../../functions'
@@ -24,6 +25,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
 
   protected readonly field: FieldProps
 
+  protected readonly type: InputType
   protected readonly value: InputValue
   protected readonly change: InputChange
   protected readonly counter: InputCounter
@@ -41,6 +43,11 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
 
     this.field = new FieldProps(props)
 
+    this.type = new InputType(
+      this.refs.type,
+      this.refs.iconVisibility,
+      this.refs.iconVisibilityOff
+    )
     this.value = new InputValue(
       this.refs.value,
       this.refs.modelValue,
@@ -92,6 +99,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       classes,
       styles,
       fieldBind: this.field.get(),
+      iconTrailingBind: this.iconTrailingBind,
       inputBind: this.input,
       counterBind: this.counter.item,
       validationMessageBind: this.validation.message,
@@ -105,9 +113,20 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       onInput: (event: Event) => this.event.onInput(event),
       onPrevious: () => this.onPrevious(),
       onNext: () => this.onNext(),
-      onCancel: () => this.event.onCancel()
+      onCancel: () => this.event.onCancel(),
+      onTrailing: () => this.onTrailing()
     }
   }
+
+  protected readonly iconTrailingBind = computed<AssociativeType | string | undefined>(() => {
+    if (this.props.iconTrailing) {
+      return this.props.iconTrailing
+    } else if (this.props.type === 'password') {
+      return this.type.getIcon()
+    } else {
+      return undefined
+    }
+  })
 
   protected readonly input = computed<AssociativeType>(() => {
     return {
@@ -126,7 +145,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       spellcheck: this.refs.spellcheck.value,
       readonly: this.refs.readonly.value,
       disabled: this.refs.disabled.value,
-      type: this.refs.type.value,
+      type: this.type.get(),
       ...this.refs.input.value
     }
   })
@@ -136,6 +155,8 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       return this.props.pattern
     } else if (this.props.type === 'email') {
       return '[\\S]+@[\\S]{2,}\\.[\\w]{2,}'
+    } else if (this.props.type === 'password') {
+      return '[0-9a-zA-Z-!@#$%^&*]+'
     } else {
       return undefined
     }
@@ -189,5 +210,19 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
   onNext (): void {
     this.arrow.setNext()
     this.event.on().onChange()
+  }
+
+  onTrailing (): void {
+    const start = this.element.value?.selectionStart || 0
+    const end = this.element.value?.selectionEnd || 0
+
+    this.type.toggleVisibility()
+
+    requestAnimationFrame(() => {
+      if (this.element.value) {
+        this.element.value.selectionEnd = start
+        this.element.value.selectionStart = end
+      }
+    })
   }
 }

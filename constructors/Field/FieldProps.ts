@@ -10,6 +10,7 @@ export class FieldProps extends ComponentPropsAbstract {
     'detail',
     'disabledPrevious',
     'disabledNext',
+    'iconTrailing',
     'validationMessage',
     'value'
   ] as string[]
