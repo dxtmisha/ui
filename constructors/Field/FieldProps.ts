@@ -7,6 +7,7 @@ export class FieldProps extends ComponentPropsAbstract {
   protected readonly list = props as AssociativeType
   protected readonly exception = [
     'counter',
+    'detail',
     'disabledPrevious',
     'disabledNext',
     'validationMessage',

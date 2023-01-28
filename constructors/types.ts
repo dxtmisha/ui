@@ -149,4 +149,5 @@ export type ValidationType = {
   validation?: AssociativeType
   validationMessage?: string
   value?: NumberOrStringType
+  detail?: AssociativeType
 }

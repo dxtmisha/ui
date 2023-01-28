@@ -10,7 +10,8 @@ export class InputEvent {
     protected readonly value: InputValue,
     protected readonly change?: InputChange,
     protected readonly validation?: InputValidation,
-    protected readonly validationMessage?: Ref<string>
+    protected readonly validationMessage?: Ref<string>,
+    protected readonly detail?: Ref<AssociativeType>
   ) {
     watch(this.value.value, value => {
       this.emit('update:value', value)
@@ -26,7 +27,8 @@ export class InputEvent {
       input: validation?.input,
       validation,
       validationMessage: this.validation?.getMessage(),
-      value: this.value.get()
+      value: this.value.get(),
+      detail: this.detail?.value
     } as ValidationType)
 
     return this
