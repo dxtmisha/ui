@@ -101,6 +101,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       fieldBind: this.field.get(),
       iconTrailingBind: this.iconTrailingBind,
       inputBind: this.input,
+      maskBind: this.maskBind,
       counterBind: this.counter.item,
       validationMessageBind: this.validation.message,
       valueBind: this.value.value,
@@ -147,6 +148,22 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       disabled: this.refs.disabled.value,
       type: this.type.get(),
       ...this.refs.input.value
+    }
+  })
+
+  protected readonly maskBind = computed<AssociativeType | undefined>(() => {
+    switch (this.type.get()) {
+      case 'date':
+      case 'datetime':
+      case 'month':
+      case 'second':
+      case 'time':
+        return {
+          type: this.type.get(),
+          ...(this.props.mask || {})
+        }
+      default:
+        return this.props.mask ? this.getBind(this.refs.mask, 'mask').value : undefined
     }
   })
 

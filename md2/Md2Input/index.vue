@@ -13,7 +13,16 @@
     @on-cancel="onCancel"
     @on-trailing="onTrailing"
   >
+    <md2-mask
+      v-if="maskBind"
+      :id="slotDefault.id"
+      ref="element"
+      :class="slotDefault.classes"
+      v-bind="maskBind"
+      v-on="on"
+    />
     <input
+      v-else
       :id="slotDefault.id"
       ref="element"
       v-model="valueBind"
@@ -33,10 +42,14 @@
 import { InputComponent } from './InputComponent'
 import { props } from './props'
 import Md2Field from '../Md2Field/index.vue'
+import Md2Mask from '../Md2Mask/index.vue'
 
 export default {
   name: 'Md2Input',
-  components: { Md2Field },
+  components: {
+    Md2Field,
+    Md2Mask
+  },
   props,
   emits: InputComponent.emits,
   setup (props: object, context: object) {

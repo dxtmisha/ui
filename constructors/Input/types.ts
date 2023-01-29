@@ -20,6 +20,7 @@ export type InputTypeType =
   'number' |
   'password' |
   'search' |
+  'second' |
   'tel' |
   'text' |
   'time' |
@@ -54,6 +55,7 @@ export type InputSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
   iconTrailingBind: ComputedRef<AssociativeType | string | undefined>
   inputBind: ComputedRef<AssociativeType>
+  maskBind: ComputedRef<AssociativeType | undefined>
   counterBind: ComputedRef<NumberOrUndefinedType>
   validationMessageBind: ComputedRef<string>
   valueBind: Ref<BooleanOrNumberOrStringType>

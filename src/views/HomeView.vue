@@ -80,6 +80,11 @@
       :type="'password'"
       v-model="inputValue"
     />
+    <md2-input
+      text="text"
+      mask="+7(***) **-**-**"
+      v-model="inputValue"
+    />
   </div>
   <div class="flex gap-4 px-4 py-4">
     <md2-input

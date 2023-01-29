@@ -27,7 +27,7 @@ export type MaskSpecialItemType = {
 }
 export type MaskSpecialType = string | string[] | AssociativeType<MaskSpecialItemType>
 
-export type MaskTypeType = GeoDateType | 'text' | 'number' | 'currency' | 'phone'
+export type MaskTypeType = GeoDateType | 'text' | 'number' | 'currency'
 
 export type MaskValidationType = {
   index: string
