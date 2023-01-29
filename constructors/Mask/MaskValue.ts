@@ -9,6 +9,8 @@ import { MaskType } from './MaskType'
 import { forEach } from '../../functions'
 
 export class MaskValue {
+  protected old?: string
+
   constructor (
     protected readonly type: MaskType,
     protected readonly transition: MaskRubberTransition,
@@ -61,7 +63,13 @@ export class MaskValue {
     if (this.type.isCurrencyOrNumber()) {
       return this.format.getValue()
     } else if (this.type.isDate()) {
-      return this.date.getValue()
+      if (this.isFull()) {
+        this.old = this.date.getValue()
+      } else if (this.standard.value === '') {
+        this.old = ''
+      }
+
+      return this.old || ''
     } else {
       return this.standard.value
     }

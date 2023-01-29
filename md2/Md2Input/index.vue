@@ -21,6 +21,7 @@
       :value="valueOriginalBind"
       v-bind="maskBind"
       v-on="on"
+      @on-blur="onBlur"
       @on-change="onChange"
       @on-input="onInput"
     />
