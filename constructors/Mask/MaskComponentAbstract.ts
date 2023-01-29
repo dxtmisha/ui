@@ -143,7 +143,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.rubbers.setValue(this.values.value)
 
-    watch(this.refs.value, value => this.reset(value))
+    // watch(this.refs.value, value => this.reset(value))
     watch([
       this.validation.item,
       this.values.full,

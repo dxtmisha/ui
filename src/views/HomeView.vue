@@ -87,6 +87,7 @@
     <md2-input
       text="text"
       type="date"
+      value="1987-09-21"
       @on-input="onEmit"
     />
   </div>

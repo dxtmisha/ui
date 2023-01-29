@@ -64,11 +64,10 @@ export class GeoIntl extends GeoAbstract {
     return computed(() => {
       const date = To.date(isRef(value) ? value.value : value)
       const display = typeof styleOptions === 'string' ? styleOptions : 'short'
-      const displayYear = styleOptions === '2-digit' ? '2-digit' : 'numeric'
       let options = {} as Intl.DateTimeFormatOptions
 
       if (['datetime', 'date', undefined, 'month'].indexOf(type) !== -1) {
-        options.year = displayYear
+        options.year = 'numeric'
         options.month = display
       }
 

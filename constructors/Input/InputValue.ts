@@ -1,5 +1,6 @@
-import { ref, Ref, watch } from 'vue'
+import { computed, ref, Ref, watch } from 'vue'
 import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
+import { isFilled } from '../../functions'
 
 export class InputValue {
   readonly value = ref<BooleanOrNumberOrStringType>('')
@@ -13,6 +14,16 @@ export class InputValue {
     watch([this.valueIn, this.modelValue], () => this.update())
     this.update()
   }
+
+  readonly valueForInput = computed<string>(() => {
+    if (typeof this.value.value === 'boolean') {
+      return this.value.value ? '1' : '0'
+    } else if (isFilled(this.value.value)) {
+      return this.value.value?.toString() || ''
+    } else {
+      return ''
+    }
+  })
 
   get (): BooleanOrNumberOrStringType {
     return this.value.value

@@ -104,7 +104,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       maskBind: this.maskBind,
       counterBind: this.counter.item,
       validationMessageBind: this.validation.message,
-      valueBind: this.value.value,
+      valueBind: this.value.valueForInput,
       disabledPrevious: this.arrow.isPrevious,
       disabledNext: this.arrow.isNext,
       onBlur: () => this.event.onBlur(),
