@@ -1,6 +1,12 @@
 <template>
   <label :class="classes.main">
     <input
+      v-if="name"
+      :name="name"
+      :value="valueBind"
+      type="hidden"
+    >
+    <input
       ref="element"
       :class="classes.input"
       :type="input"

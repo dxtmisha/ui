@@ -87,7 +87,8 @@
     <md2-input
       text="text"
       type="date"
-      value="1987-09-21"
+      name="is-date"
+      v-model="inputValue"
       @on-input="onEmit"
     />
   </div>

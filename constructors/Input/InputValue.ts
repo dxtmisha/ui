@@ -15,15 +15,8 @@ export class InputValue {
     this.update()
   }
 
-  readonly valueForInput = computed<string>(() => {
-    if (typeof this.value.value === 'boolean') {
-      return this.value.value ? '1' : '0'
-    } else if (isFilled(this.value.value)) {
-      return this.value.value?.toString() || ''
-    } else {
-      return ''
-    }
-  })
+  readonly valueForInput = computed<string>(() => this.toString(this.value.value))
+  readonly valueForOriginal = computed<string>(() => this.toString(this.valueIn.value || this.modelValue.value))
 
   get (): BooleanOrNumberOrStringType {
     return this.value.value
@@ -85,6 +78,16 @@ export class InputValue {
     }
 
     return this
+  }
+
+  protected toString (value: BooleanOrNumberOrStringType): string {
+    if (typeof value === 'boolean') {
+      return value ? '1' : '0'
+    } else if (isFilled(value)) {
+      return value?.toString() || ''
+    } else {
+      return ''
+    }
   }
 
   protected update (): this {

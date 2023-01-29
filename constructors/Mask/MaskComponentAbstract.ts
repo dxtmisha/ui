@@ -143,7 +143,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.rubbers.setValue(this.values.value)
 
-    // watch(this.refs.value, value => this.reset(value))
+    watch(this.refs.value, value => this.reset(value))
     watch([
       this.validation.item,
       this.values.full,
@@ -352,11 +352,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   reset (value: string): this {
+    this.isReset = true
+    this.characters.reset()
+
     if (value) {
       const chars = this.type.isDate() ? this.date.getLocale(value) : value
-
-      this.isReset = true
-      this.characters.reset()
       this.set(0, chars.split(''))
     }
 

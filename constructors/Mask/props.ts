@@ -14,6 +14,7 @@ export const props = {
     type: RegExp,
     default: /[0-9]/
   },
+  name: String,
   on: {
     type: Object,
     default: {}

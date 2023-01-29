@@ -18,7 +18,7 @@
       :id="slotDefault.id"
       ref="element"
       :class="slotDefault.classes"
-      :value="valueBind"
+      :value="valueOriginalBind"
       v-bind="maskBind"
       v-on="on"
       @on-change="onChange"
