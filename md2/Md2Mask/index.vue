@@ -38,6 +38,7 @@ export default defineComponent({
   name: 'Md2Mask',
   components: {},
   props,
+  emits: MaskComponent.emits,
   setup (props: object, context: object) {
     return new MaskComponent(props, context).setup()
   }

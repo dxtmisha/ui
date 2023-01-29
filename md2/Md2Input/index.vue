@@ -20,6 +20,8 @@
       :class="slotDefault.classes"
       v-bind="maskBind"
       v-on="on"
+      @on-change="onChange"
+      @on-input="onInput"
     />
     <input
       v-else

@@ -1,4 +1,4 @@
-import { computed, ComputedRef, Ref } from 'vue'
+import { computed, ComputedRef, ref, Ref } from 'vue'
 import { InputChange } from './InputChange'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
@@ -7,6 +7,8 @@ import { AssociativeType } from '../types'
 import { InputValidationType, InputValidityType } from './types'
 
 export class InputValidation {
+  protected readonly validation = ref<InputValidationType | undefined>()
+
   // eslint-disable-next-line no-useless-constructor
   constructor (
     protected readonly input: ComputedRef<AssociativeType>,
@@ -42,7 +44,7 @@ export class InputValidation {
     } else {
       return {
         input,
-        status: true,
+        checkValidity: true,
         validationMessage: this.getCode(input.validity) || input.validationMessage,
         validity: input.validity
       }
@@ -52,9 +54,11 @@ export class InputValidation {
   protected checkGlobal (): InputValidationType | undefined {
     if (this.validationMessage?.value) {
       return {
-        status: true,
+        checkValidity: true,
         validationMessage: this.validationMessage.value
       }
+    } else if (this.validation.value) {
+      return this.validation.value
     } else {
       return undefined
     }
@@ -108,5 +112,23 @@ export class InputValidation {
     } else {
       return ''
     }
+  }
+
+  set (validation: InputValidationType | AssociativeType): this {
+    if (
+      'checkValidity' in validation &&
+      'validationMessage' in validation
+    ) {
+      this.validation.value = {
+        checkValidity: validation.checkValidity,
+        input: validation.input,
+        validity: validation.validity,
+        validationMessage: validation.validationMessage
+      }
+    } else {
+      this.validation.value = undefined
+    }
+
+    return this
   }
 }

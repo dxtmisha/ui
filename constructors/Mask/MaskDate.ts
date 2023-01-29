@@ -71,7 +71,10 @@ export class MaskDate {
       `:${date?.m?.value || '00'}` +
       `:${date?.s?.value || '00'}`
 
-    return new GeoDate(value, this.type.getTypeDate()).standard(false).value
+    return new GeoDate(
+      isNaN(Date.parse(value)) ? '2000-01-01T00:00:00' : value,
+      this.type.getTypeDate()
+    ).standard(false).value
   }
 
   getLocale (value?: string): string {

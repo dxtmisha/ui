@@ -27,7 +27,7 @@ export type InputTypeType =
   'url'
 
 export type InputValidationType = {
-  status: boolean
+  checkValidity: boolean
   input?: HTMLInputElement
   validationMessage: string
   validity?: ValidityState

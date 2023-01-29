@@ -53,7 +53,8 @@ export class InputEvent {
     this.on().onChange()
   }
 
-  onInput (event: Event): void {
+  onInput (event: Event | AssociativeType): void {
+    this.validation?.set(event)
     this.value.setByEvent(event)
     this.on()
   }

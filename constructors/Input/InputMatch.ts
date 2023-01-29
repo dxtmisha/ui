@@ -31,8 +31,8 @@ export class InputMatch {
         input.value !== this.value.get()
       ) {
         return {
+          checkValidity: true,
           input,
-          status: true,
           validationMessage: this.text.value,
           validity: input.validity
         }
