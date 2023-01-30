@@ -49,6 +49,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       this.refs.iconVisibilityOff
     )
     this.value = new InputValue(
+      this.context.emit,
       this.refs.value,
       this.refs.modelValue,
       this.refs.readonly

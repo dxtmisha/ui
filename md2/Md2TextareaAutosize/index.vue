@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <textarea
+    ref="element"
+    v-model="valueBind"
+  />
 </template>
 
 <script lang="ts">

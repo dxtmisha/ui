@@ -5,6 +5,7 @@ import { InputValue } from './InputValue'
 import { AssociativeType, ValidationType } from '../types'
 
 export class InputEvent {
+  // eslint-disable-next-line no-useless-constructor
   constructor (
     protected readonly emit: (type: string, options: AssociativeType | any) => void,
     protected readonly value: InputValue,
@@ -13,10 +14,6 @@ export class InputEvent {
     protected readonly validationMessage?: Ref<string>,
     protected readonly detail?: Ref<AssociativeType>
   ) {
-    watch(this.value.value, value => {
-      this.emit('update:value', value)
-      this.emit('update:modelValue', value)
-    })
   }
 
   on (type = 'on-input'): this {
