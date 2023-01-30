@@ -45,6 +45,7 @@ export type FieldSetupType = ComponentBaseType & {
   iconCancelBind: ComputedRef<string | AssociativeType>
   iconPreviousBind: ComputedRef<string | AssociativeType>
   iconNextBind: ComputedRef<string | AssociativeType>
+  messageBind: ComputedRef<AssociativeType>
   left: Ref<string>
   right: Ref<string>
   prefixWidth: Ref<string>
@@ -127,6 +128,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       iconCancelBind: this.getBind(this.refs.iconCancel, this.iconCancel, 'icon'),
       iconPreviousBind: this.getBind(this.refs.iconPrevious, this.iconPrevious, 'icon'),
       iconNextBind: this.getBind(this.refs.iconNext, this.iconNext, 'icon'),
+      messageBind: this.message,
       left: this.left,
       right: this.right,
       prefixWidth: this.prefixWidth,
@@ -204,6 +206,16 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       class: 'is-icon is-next',
       background: true,
       disabled: this.props.disabled || this.props.disabledNext
+    }
+  })
+
+  readonly message = computed<AssociativeType>(() => {
+    return {
+      counter: this.props.counter,
+      disabled: this.props.disabled,
+      helperMessage: this.props.helperMessage,
+      maxlength: this.props.maxlength,
+      validationMessage: this.validationText.value
     }
   })
 

@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="element"
-    :class="classes.main"
-  >
+  <div ref="element" :class="classes.main">
     <label
       v-if="appearance === 'classic'"
       :class="classes.labelTop"
@@ -67,13 +64,7 @@
 
       <div :class="classes.border"/>
     </div>
-    <md2-field-message
-      :counter="counter"
-      :helper-message="helperMessage"
-      :maxlength="maxlength"
-      :validation-message="validationText"
-      :disabled="disabled"
-    >
+    <md2-field-message v-bind="messageBind">
       <template v-slot:default>
         <slot name="message"/>
       </template>
@@ -84,9 +75,9 @@
 <script lang="ts">
 import { FieldComponent } from './FieldComponent'
 import { props } from './props'
+import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 import Md2Icon from '../Md2Icon/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
-import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 
 export default {
   name: 'Md2Field',
