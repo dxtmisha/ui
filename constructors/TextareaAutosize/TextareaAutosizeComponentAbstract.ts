@@ -1,11 +1,13 @@
-import { ComputedRef } from 'vue'
+import { Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { InputValue } from '../Input/InputValue'
 import { props } from './props'
-import { AssociativeType, ComponentBaseType } from '../types'
+import { AssociativeType, BooleanOrNumberOrStringType, ComponentBaseType } from '../types'
 
 export type TextareaAutosizeSetupType = ComponentBaseType & {
-  valueBind: ComputedRef<string>
+  valueBind: Ref<BooleanOrNumberOrStringType>
+  onChange: () => void
+  onInput: (event: Event) => void
 }
 
 export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstract<HTMLTextAreaElement> {
@@ -40,7 +42,23 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
       ...this.getBasic(),
       classes,
       styles,
-      valueBind: this.value.valueForInput
+      valueBind: this.value.value,
+      onChange: () => this.onChange(),
+      onInput: (event: Event) => this.onInput(event)
     }
+  }
+
+  on (type = 'on-input'): this {
+    this.context.emit(type, this.value.get())
+    return this
+  }
+
+  onChange (): void {
+    this.on('on-change')
+  }
+
+  onInput (event: Event | AssociativeType): void {
+    this.value.setByEvent(event)
+    this.on()
   }
 }

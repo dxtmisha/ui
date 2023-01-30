@@ -75,6 +75,10 @@
     </div>
   </div>
   <div class="flex gap-4 px-4 py-4">
+    <md2-textarea-autosize v-model="inputValue"/>
+    <md2-textarea-autosize @on-input="onEmit"/>
+  </div>
+  <div class="flex gap-4 px-4 py-4">
     <md2-input
       text="text"
       :type="'password'"
@@ -2473,6 +2477,7 @@ import Md2ListItem from '../../md2/Md2ListItem/index.vue'
 import Md2Field from '../../md2/Md2Field/index.vue'
 import Md2Mask from '../../md2/Md2Mask/index.vue'
 import Md2Input from '../../md2/Md2Input/index.vue'
+import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -2481,6 +2486,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2TextareaAutosize,
     Md2Input,
     Md2Mask,
     Md2Field,

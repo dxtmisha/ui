@@ -2,6 +2,10 @@
   <textarea
     ref="element"
     v-model="valueBind"
+    v-bind="$attrs"
+    @change="onChange"
+    @input="onInput"
+    v-on="on"
   />
 </template>
 

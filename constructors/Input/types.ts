@@ -58,7 +58,7 @@ export type InputSetupType = ComponentBaseType & {
   maskBind: ComputedRef<AssociativeType | undefined>
   counterBind: ComputedRef<NumberOrUndefinedType>
   validationMessageBind: ComputedRef<string>
-  valueBind: ComputedRef<string>
+  valueBind: Ref<BooleanOrNumberOrStringType>
   valueOriginalBind: ComputedRef<string>
   disabledPrevious: ComputedRef<boolean>
   disabledNext: ComputedRef<boolean>
