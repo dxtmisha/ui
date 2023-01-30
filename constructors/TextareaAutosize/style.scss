@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initTextareaAutosize($design) {
+  @include propertiesInit($design, 'textarea-autosize') {
+    @include mixinTextareaAutosize;
+    @content;
+  }
+}
+
+@mixin mixinTextareaAutosize() {
+}

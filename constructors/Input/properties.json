@@ -1,12 +1,5 @@
 {
   "d": {
-    "input": {
-      "mixin|m": {
-      },
-      "var|sys": {
-      },
-      "var|l": {
-      }
-    }
+    "input": {}
   }
 }
