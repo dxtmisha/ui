@@ -2,16 +2,19 @@
   <textarea
     ref="element"
     v-model="valueBind"
+    :class="classes.main"
+    :style="styles.main"
     v-bind="$attrs"
     @change="onChange"
     @input="onInput"
     v-on="on"
   />
+  <div v-once ref="clone" :class="classes.clone"/>
 </template>
 
 <script lang="ts">
 import { TextareaAutosizeComponent } from './TextareaAutosizeComponent'
-import { props } from '../../constructors/TextareaAutosize/props'
+import { props } from './props'
 
 export default {
   name: 'Md2TextareaAutosize',

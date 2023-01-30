@@ -1,10 +1,17 @@
-import { Ref } from 'vue'
+import { ComputedRef, ref, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { InputValue } from '../Input/InputValue'
 import { props } from './props'
-import { AssociativeType, BooleanOrNumberOrStringType, ComponentBaseType } from '../types'
+import { AssociativeType, BooleanOrNumberOrStringType, ComponentAssociativeType, ComponentBaseType } from '../types'
+
+export type TextareaAutosizeClassesType = {
+  main: ComponentAssociativeType
+  clone: ComponentAssociativeType
+}
 
 export type TextareaAutosizeSetupType = ComponentBaseType & {
+  classes: ComputedRef<TextareaAutosizeClassesType>
+  cloneElement: Ref<HTMLDivElement | undefined>
   valueBind: Ref<BooleanOrNumberOrStringType>
   onChange: () => void
   onInput: (event: Event) => void
@@ -18,6 +25,8 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
     'update:value',
     'update:modelValue'
   ] as string[]
+
+  protected readonly cloneElement = ref()
 
   protected readonly value: InputValue
 
@@ -35,13 +44,14 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
   }
 
   setup (): TextareaAutosizeSetupType {
-    const classes = this.getClasses()
+    const classes = this.getClasses<TextareaAutosizeClassesType>()
     const styles = this.getStyles()
 
     return {
       ...this.getBasic(),
       classes,
       styles,
+      cloneElement: this.cloneElement,
       valueBind: this.value.value,
       onChange: () => this.onChange(),
       onInput: (event: Event) => this.onInput(event)

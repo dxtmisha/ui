@@ -5,7 +5,10 @@ export const props = {
   on: {
     type: Object,
     default: {}
-  }
+  },
+
+  // Options
+  height: [Number, String]
 }
 
 export default {

@@ -2,9 +2,12 @@
   "d": {
     "textarea-autosize": {
       "var|sys": {
+        "height": ""
       },
-      "var|l": {
-      }
+      "height": {
+        "rename": "var|sys.height"
+      },
+      "#clone": {}
     }
   }
 }

@@ -74,9 +74,27 @@
       <input type="checkbox" name="visible" v-model="visible"> visible
     </div>
   </div>
-  <div class="flex gap-4 px-4 py-4">
-    <md2-textarea-autosize v-model="inputValue"/>
-    <md2-textarea-autosize @on-input="onEmit"/>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <div class="border">
+      <md2-textarea-autosize v-model="inputValue"/>
+    </div>
+    <div class="border">
+      <md2-textarea-autosize @on-input="onEmit"/>
+    </div>
+    <div class="border">
+      <md2-textarea-autosize height="99px" @on-input="onEmit"/>
+    </div>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <div class="border">
+      <md2-textarea-autosize height="sm" @on-input="onEmit"/>
+    </div>
+    <div class="border">
+      <md2-textarea-autosize height="md" @on-input="onEmit"/>
+    </div>
+    <div class="border">
+      <md2-textarea-autosize height="lg" @on-input="onEmit"/>
+    </div>
   </div>
   <div class="flex gap-4 px-4 py-4">
     <md2-input

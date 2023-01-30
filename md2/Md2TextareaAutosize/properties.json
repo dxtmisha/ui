@@ -1,7 +1,15 @@
 {
   "md2": {
     "textarea-autosize": {
-      "@style": "{d.textarea-autosize}"
+      "@style": "{d.textarea-autosize}",
+      "var|sys": {
+        "height": "{ref.spacing.20}"
+      },
+      "height": {
+        "sm": "{ref.spacing.14}",
+        "md": "{ref.spacing.20}",
+        "lg": "{ref.spacing.26}"
+      }
     }
   }
 }
