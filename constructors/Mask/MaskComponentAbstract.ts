@@ -132,6 +132,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.values
     )
     this.view = new MaskView(
+      this.type,
       this.special,
       this.rubbers,
       this.item,

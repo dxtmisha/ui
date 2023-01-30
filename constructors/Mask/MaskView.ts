@@ -2,6 +2,7 @@ import { computed, Ref } from 'vue'
 import { MaskItem } from './MaskItem'
 import { MaskRubber } from './MaskRubber'
 import { MaskSpecial } from './MaskSpecial'
+import { MaskType } from './MaskType'
 import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 
@@ -11,6 +12,7 @@ import { MaskViewType } from './types'
 export class MaskView {
   // eslint-disable-next-line no-useless-constructor
   constructor (
+    protected readonly type: MaskType,
     protected readonly special: MaskSpecial,
     protected readonly rubbers: MaskRubber,
     protected readonly mask: MaskItem,
@@ -34,6 +36,21 @@ export class MaskView {
     return data
   })
 
+  protected readonly view = computed<AssociativeOrStringType>(() => {
+    if (this.type.isDate() && typeof this.viewChar.value !== 'object') {
+      return {
+        Y: 'y',
+        M: 'm',
+        D: 'd',
+        h: 'h',
+        m: 'm',
+        s: 's'
+      }
+    } else {
+      return this.viewChar.value
+    }
+  })
+
   get (): MaskViewType[] {
     return this.item.value
   }
@@ -44,7 +61,7 @@ export class MaskView {
 
   protected getSpecial (item: string): string {
     if (this.special.isSpecial(item)) {
-      const view = this.viewChar.value
+      const view = this.view.value
 
       switch (typeof view) {
         case 'string':
