@@ -26,7 +26,7 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
     'update:modelValue'
   ] as string[]
 
-  protected readonly cloneElement = ref()
+  protected readonly cloneElement = ref<HTMLDivElement>()
 
   protected readonly value: InputValue
 

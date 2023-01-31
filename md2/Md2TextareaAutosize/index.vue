@@ -9,7 +9,7 @@
     @input="onInput"
     v-on="on"
   />
-  <div v-once ref="clone" :class="classes.clone"/>
+  <div v-once ref="cloneElement" :class="classes.clone"/>
 </template>
 
 <script lang="ts">
