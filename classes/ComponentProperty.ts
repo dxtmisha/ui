@@ -36,6 +36,10 @@ export class ComponentProperty {
     return this.getByType(this.codeToKebabCase(code, name), 'link-class')
   }
 
+  static getRename (code: string, name?: string): string | undefined {
+    return this.getByType(this.codeToKebabCase(code, `${name}.rename`), 'rename')?.value
+  }
+
   static getProperties (
     code: string,
     instruction: AssociativeType
@@ -126,5 +130,6 @@ export class ComponentProperty {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
+    console.log('this.designMain', this.designMain)
   }
 }

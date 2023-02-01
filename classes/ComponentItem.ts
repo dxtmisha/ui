@@ -95,6 +95,7 @@ export class ComponentItem {
       ComponentProperty.getProperties(this.code, this.instruction)
         .forEach(name => {
           const link = ComponentProperty.getByValueClassType(this.code, name)
+          const rename = ComponentProperty.getRename(this.code, name)
           const index = link?.value || `${this.code}.${name}`
           const className = ComponentProperty.toClass(index)
           const values = ComponentProperty.getValues(index)
@@ -102,7 +103,7 @@ export class ComponentItem {
           data[name] = {
             index,
             className,
-            classStyle: className.replace(CLASS_VAL, '-'),
+            classStyle: rename || className.replace(CLASS_VAL, '-'),
             classValue: `${className}${CLASS_VAL}`,
             values
           }

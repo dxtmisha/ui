@@ -11,11 +11,11 @@ const REG_SEARCH = /^([^|]+\||@@|@|#|::|:)/ig
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 const REG_VAR = /{([^{}]+)}/ig
 
-module.exports = class {
+class PropertiesItemService {
   constructor (
     selector,
-    parent,
-    property
+    parent = undefined,
+    property = undefined
   ) {
     this.selector = selector
     this.parent = parent
@@ -38,15 +38,19 @@ module.exports = class {
    */
   getIndex () {
     if (!('index' in this)) {
-      this.index = toKebabCase(
-        this.getSelector()
-          .replace(REG_SEARCH, '')
-          .replace(REG_MARK, '')
-          .trim()
-      )
+      this.index = this.getIndexByName(this.getSelector())
     }
 
     return this.index
+  }
+
+  getIndexByName (selector) {
+    return toKebabCase(
+      selector
+        .replace(REG_SEARCH, '')
+        .replace(REG_MARK, '')
+        .trim()
+    )
   }
 
   getIndexList () {
@@ -65,14 +69,18 @@ module.exports = class {
    */
   getMark () {
     if (!('mark' in this)) {
-      this.mark = toKebabCase(
-        this.getSelector()
-          .replace(REG_SEARCH, '')
-          .trim()
-      )
+      this.mark = this.getMarkBySelector(this.getSelector())
     }
 
     return this.mark
+  }
+
+  getMarkBySelector (selector) {
+    return toKebabCase(
+      selector
+        .replace(REG_SEARCH, '')
+        .trim()
+    )
   }
 
   getName () {
@@ -81,6 +89,11 @@ module.exports = class {
 
   getRename () {
     return this.property?.rename?.value?.replace(/\./ig, '-')
+  }
+
+  getRenameValue () {
+    const item = new PropertiesItemService(this.getValue())
+    return this.toFullName(item.getMark()).replace('.', '-')
   }
 
   getOriginal () {
@@ -315,3 +328,5 @@ module.exports = class {
     return value.split('.', 2)[0]
   }
 }
+
+module.exports = PropertiesItemService

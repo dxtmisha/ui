@@ -49,6 +49,13 @@ module.exports = class {
             value: item.property.getValueToCode()
           }
           break
+        case 'rename':
+          data[item.code] = {
+            type: item.property.getType(),
+            value: item.property.getRenameValue()
+          }
+
+          break
         case 'property':
           if (!item.property.isValue()) {
             data[item.code] = item.property.getType()
@@ -56,7 +63,10 @@ module.exports = class {
           break
         case 'subclass':
         case 'section':
-          data[item.code] = item.property.getType()
+          if (item.code.match(/^[\w-.]+$/ig)) {
+            data[item.code] = item.property.getType()
+          }
+
           break
       }
     })

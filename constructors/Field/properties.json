@@ -393,12 +393,12 @@
       "?field-message-padding": "{??sys.padding} + {??sys.space}",
       "?ripple-background": "{??l.background}",
       "height": {
-        "rename": "var|sys.height"
+        "rename": "var|??sys.height"
       },
       "width": {
         "auto": "auto",
         "full": "100%",
-        "rename": "var|sys.width"
+        "rename": "var|??sys.width"
       },
       "section|align": {
         "center": {},
