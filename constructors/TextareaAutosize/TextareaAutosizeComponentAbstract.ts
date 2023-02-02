@@ -45,7 +45,8 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
     )
     this.resize = new TextareaAutosizeResize(
       this.element,
-      this.cloneElement
+      this.cloneElement,
+      this.value.value
     )
   }
 
