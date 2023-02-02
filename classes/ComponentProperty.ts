@@ -130,6 +130,5 @@ export class ComponentProperty {
 
   static {
     this.designMain = JSON.parse(process.env.VUE_APP_DESIGNS || '{}')
-    console.log('this.designMain', this.designMain)
   }
 }

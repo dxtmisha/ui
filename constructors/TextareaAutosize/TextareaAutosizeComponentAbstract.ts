@@ -3,6 +3,7 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { InputValue } from '../Input/InputValue'
 import { props } from './props'
 import { AssociativeType, BooleanOrNumberOrStringType, ComponentAssociativeType, ComponentBaseType } from '../types'
+import { TextareaAutosizeResize } from './TextareaAutosizeResize'
 
 export type TextareaAutosizeClassesType = {
   main: ComponentAssociativeType
@@ -29,6 +30,7 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
   protected readonly cloneElement = ref<HTMLDivElement>()
 
   protected readonly value: InputValue
+  protected readonly resize: TextareaAutosizeResize
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -40,6 +42,10 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
       this.context.emit,
       this.refs.value,
       this.refs.modelValue
+    )
+    this.resize = new TextareaAutosizeResize(
+      this.element,
+      this.cloneElement
     )
   }
 
