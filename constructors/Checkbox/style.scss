@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initCheckbox($design) {
+  @include propertiesInit($design, 'checkbox') {
+    @include mixinCheckbox;
+    @content;
+  }
+}
+
+@mixin mixinCheckbox() {
+}

@@ -75,6 +75,9 @@
     </div>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
+    <md2-checkbox/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
     <md2-textarea text="text" v-model="inputValue" placeholder="placeholder"/>
     <md2-textarea text="text" @on-input="onEmit" appearance="tonal" value="value"/>
     <md2-textarea text="text" @on-input="onEmit" appearance="outlined"/>
@@ -2548,6 +2551,7 @@ import Md2Mask from '../../md2/Md2Mask/index.vue'
 import Md2Input from '../../md2/Md2Input/index.vue'
 import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
 import Md2Textarea from '../../md2/Md2Textarea/index.vue'
+import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -2556,6 +2560,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Checkbox,
     Md2Textarea,
     Md2TextareaAutosize,
     Md2Input,
