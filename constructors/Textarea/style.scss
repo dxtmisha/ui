@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initTextarea($design) {
+  @include propertiesInit($design, 'textarea') {
+    @include mixinTextarea;
+    @content;
+  }
+}
+
+@mixin mixinTextarea() {
+}

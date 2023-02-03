@@ -1,4 +1,4 @@
-import { computed, ref, Ref, watch } from 'vue'
+import { computed, ref, Ref, ToRefs, watch } from 'vue'
 import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
 import { isFilled } from '../../functions'
 
@@ -99,5 +99,14 @@ export class InputValue {
   protected update (): this {
     this.value.value = this.valueIn.value || this.modelValue.value || ''
     return this
+  }
+
+  static init (refs: ToRefs<AssociativeType>, context: AssociativeType) {
+    return new InputValue(
+      context.emit,
+      refs.value,
+      refs.modelValue,
+      refs.readonly
+    )
   }
 }

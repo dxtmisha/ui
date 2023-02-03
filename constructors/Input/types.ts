@@ -47,10 +47,6 @@ export type InputValidityType = AssociativeType & {
   valueMissing?: string
 }
 
-export type InputClassesType = {
-  main: ComponentAssociativeType
-}
-
 export type InputSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
   iconTrailingBind: ComputedRef<AssociativeType | string | undefined>
@@ -62,6 +58,7 @@ export type InputSetupType = ComponentBaseType & {
   valueOriginalBind: ComputedRef<string>
   disabledPrevious: ComputedRef<boolean>
   disabledNext: ComputedRef<boolean>
+  checkValidity: () => boolean
   onBlur: () => void
   onKeypress: (event: KeyboardEvent) => void
   onPaste: (event: ClipboardEvent) => void

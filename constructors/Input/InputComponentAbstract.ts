@@ -12,7 +12,7 @@ import { InputValidation } from './InputValidation'
 import { getClipboardData } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
-import { InputClassesType, InputSetupType } from './types'
+import { InputSetupType } from './types'
 
 export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -48,12 +48,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       this.refs.iconVisibility,
       this.refs.iconVisibilityOff
     )
-    this.value = new InputValue(
-      this.context.emit,
-      this.refs.value,
-      this.refs.modelValue,
-      this.refs.readonly
-    )
+    this.value = InputValue.init(this.refs, this.context)
     this.change = new InputChange(
       this.value,
       this.refs.validationMessage
@@ -92,7 +87,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
   }
 
   setup (): InputSetupType {
-    const classes = this.getClasses<InputClassesType>()
+    const classes = this.getClasses()
     const styles = this.getStyles()
 
     return {
@@ -109,6 +104,7 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       valueOriginalBind: this.value.valueForOriginal,
       disabledPrevious: this.arrow.isPrevious,
       disabledNext: this.arrow.isNext,
+      checkValidity: () => this.validation.checkValidity(),
       onBlur: () => this.event.onBlur(),
       onKeypress: (event: KeyboardEvent) => this.onKeypress(event),
       onPaste: (event: ClipboardEvent) => this.onPaste(event),
