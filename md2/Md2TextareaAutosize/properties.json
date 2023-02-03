@@ -6,9 +6,12 @@
         "height": "{ref.spacing.20}"
       },
       "height": {
-        "sm": "{ref.spacing.14}",
+        "xm": "{ref.spacing.10}",
+        "sm": "{ref.spacing.12}",
         "md": "{ref.spacing.20}",
-        "lg": "{ref.spacing.26}"
+        "lg": "{ref.spacing.24}",
+        "xl": "{ref.spacing.32}",
+        "2xl": "{ref.spacing.27}"
       }
     }
   }

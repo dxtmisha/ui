@@ -116,7 +116,7 @@
           "@font": "{font.interactiveDisplay}",
           "var|sys": {
             "height": "{ref.spacing.27}",
-            "padding": "0px",
+            "padding": "0px !important",
             "label": {
               "height": "{ref.lineHeight.interactiveDisplay}"
             }
@@ -157,7 +157,10 @@
       "section|rounded": {
         "@style": "{?rounded}",
         "full": {
-          "border-radius": "{??sys.height} / 2"
+          "border-radius": "{??sys.height} / 2",
+          "var|sys": {
+            "padding": "{??sys.height} / 2"
+          }
         }
       }
     }

@@ -104,9 +104,9 @@ export class InputValue {
   static init (refs: ToRefs<AssociativeType>, context: AssociativeType) {
     return new InputValue(
       context.emit,
-      refs.value,
-      refs.modelValue,
-      refs.readonly
+      refs?.value,
+      refs?.modelValue,
+      refs?.readonly
     )
   }
 }

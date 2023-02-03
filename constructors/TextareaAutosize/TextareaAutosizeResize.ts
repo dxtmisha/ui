@@ -35,6 +35,9 @@ export class TextareaAutosizeResize {
     ) {
       const style = getComputedStyle(this.element.value)
 
+      this.cloneElement.value.style.font = style.font
+      this.cloneElement.value.style.lineHeight = style.lineHeight
+      this.cloneElement.value.style.letterSpacing = style.letterSpacing
       this.cloneElement.value.style.paddingTop = style.paddingTop
       this.cloneElement.value.style.paddingRight = style.paddingRight
       this.cloneElement.value.style.paddingBottom = style.paddingBottom

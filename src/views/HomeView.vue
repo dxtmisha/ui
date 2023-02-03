@@ -75,6 +75,58 @@
     </div>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" v-model="inputValue" placeholder="placeholder"/>
+    <md2-textarea text="text" @on-input="onEmit" appearance="tonal" value="value"/>
+    <md2-textarea text="text" @on-input="onEmit" appearance="outlined"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-input text="text" height="xm" v-model="inputValue"/>
+    <md2-input text="text" height="sm" @on-input="onEmit" appearance="tonal"/>
+    <md2-input text="text" height="md" @on-input="onEmit" appearance="outlined"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" height="xm" v-model="inputValue"/>
+    <md2-textarea text="text" height="sm" @on-input="onEmit" appearance="tonal"/>
+    <md2-textarea text="text" height="md" @on-input="onEmit" appearance="outlined"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-input text="text" height="lg" v-model="inputValue"/>
+    <md2-input text="text" height="xl" @on-input="onEmit" appearance="tonal"/>
+    <md2-input text="text" height="2xl" @on-input="onEmit" appearance="tonal" selected/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" height="lg" v-model="inputValue"/>
+    <md2-textarea text="text" height="xl" @on-input="onEmit" appearance="tonal"/>
+    <md2-textarea text="text" height="2xl" @on-input="onEmit" appearance="tonal" selected/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" :maxlength="12" v-model="inputValue" helper-message="helper message"/>
+    <md2-textarea text="text" :maxlength="24" counter @on-input="onEmit" appearance="tonal"/>
+    <md2-textarea text="text" counter @on-input="onEmit" helper-message="helper message" required appearance="tonal"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" disabled/>
+    <md2-textarea text="text" readonly value="value"/>
+    <md2-textarea text="text" palette="red"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" rounded="md" appearance="tonal"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" rounded="standard"/>
+    <md2-textarea text="text" rounded="full" appearance="tonal"/>
+    <md2-textarea text="text" rounded="none"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" width="full"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" width="auto"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-textarea text="text" width="560px"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
     <div class="border">
       <md2-textarea-autosize v-model="inputValue"/>
     </div>
@@ -100,7 +152,6 @@
     <md2-input
       text="text"
       :type="'password'"
-      v-model="inputValue"
     />
     <md2-input
       text="text"
@@ -2496,6 +2547,7 @@ import Md2Field from '../../md2/Md2Field/index.vue'
 import Md2Mask from '../../md2/Md2Mask/index.vue'
 import Md2Input from '../../md2/Md2Input/index.vue'
 import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
+import Md2Textarea from '../../md2/Md2Textarea/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -2504,6 +2556,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Textarea,
     Md2TextareaAutosize,
     Md2Input,
     Md2Mask,

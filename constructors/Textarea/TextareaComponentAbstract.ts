@@ -28,7 +28,7 @@ export abstract class TextareaComponentAbstract extends ComponentAbstract<HTMLTe
   protected readonly validation: InputValidation
   protected readonly event: InputEvent
 
-  protected constructor (
+  constructor (
     protected readonly props: AssociativeType & object,
     protected readonly context: AssociativeType & object
   ) {
@@ -96,6 +96,7 @@ export abstract class TextareaComponentAbstract extends ComponentAbstract<HTMLTe
       spellcheck: this.refs.spellcheck.value,
       readonly: this.refs.readonly.value,
       disabled: this.refs.disabled.value,
+      height: this.refs.height.value,
       ...this.refs.input.value
     }
   })

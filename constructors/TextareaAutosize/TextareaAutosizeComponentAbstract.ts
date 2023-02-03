@@ -14,6 +14,7 @@ export type TextareaAutosizeSetupType = ComponentBaseType & {
   classes: ComputedRef<TextareaAutosizeClassesType>
   cloneElement: Ref<HTMLDivElement | undefined>
   valueBind: Ref<BooleanOrNumberOrStringType>
+  onBlur: () => void
   onChange: () => void
   onInput: (event: Event) => void
 }
@@ -21,6 +22,7 @@ export type TextareaAutosizeSetupType = ComponentBaseType & {
 export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstract<HTMLTextAreaElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = [
+    'on-blur',
     'on-input',
     'on-change',
     'update:value',
@@ -60,6 +62,7 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
       styles,
       cloneElement: this.cloneElement,
       valueBind: this.value.value,
+      onBlur: () => this.onBlur(),
       onChange: () => this.onChange(),
       onInput: (event: Event) => this.onInput(event)
     }
@@ -68,6 +71,10 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
   on (type = 'on-input'): this {
     this.context.emit(type, this.value.get())
     return this
+  }
+
+  onBlur (): void {
+    this.on('on-blur')
   }
 
   onChange (): void {

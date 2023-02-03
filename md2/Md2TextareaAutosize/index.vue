@@ -5,6 +5,7 @@
     :class="classes.main"
     :style="styles.main"
     v-bind="$attrs"
+    @blur="onBlur"
     @change="onChange"
     @input="onInput"
     v-on="on"

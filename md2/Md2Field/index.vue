@@ -1,5 +1,5 @@
 <template>
-  <div ref="element" :class="classes.main">
+  <div ref="element" :class="classes.main" :style="styles.main">
     <label
       v-if="appearance === 'classic'"
       :class="classes.labelTop"

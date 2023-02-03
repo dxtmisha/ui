@@ -20,14 +20,14 @@ export type Md2FieldHeightType =
   'sm' |
   'md' |
   'lg' |
-  'xl'
+  'xl' |
+  '2xl'
 
 export type Md2FieldRoundedType =
   'none' |
   'standard' |
   'sm' |
   'md' |
-  'xl' |
   'full'
 
 export type Md2FieldWidthType =
