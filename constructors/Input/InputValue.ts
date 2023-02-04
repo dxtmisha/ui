@@ -1,6 +1,6 @@
 import { computed, ref, Ref, ToRefs, watch } from 'vue'
-import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
 import { isFilled } from '../../functions'
+import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
 
 export class InputValue {
   readonly value = ref<BooleanOrNumberOrStringType>('')
@@ -22,6 +22,7 @@ export class InputValue {
   }
 
   readonly valueForInput = computed<string>(() => this.toString(this.value.value))
+  readonly valueForCheckbox = computed<boolean>(() => isFilled(this.value.value))
   readonly valueForOriginal = computed<string>(() => this.toString(this.valueIn.value || this.modelValue.value))
 
   get (): BooleanOrNumberOrStringType {

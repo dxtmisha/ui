@@ -1,5 +1,34 @@
 {
   "d": {
-    "checkbox": {}
+    "checkbox": {
+      "var|sys": {
+        "palette": "",
+        "gap": "",
+        "item": {
+          "borderWidth": "",
+          "size": "",
+          "text": "",
+          "textOpacity": ""
+        },
+        "label": {
+          "required": ""
+        },
+        "active": {
+          "item": {
+            "borderOpacity": "",
+            "backgroundOpacity": ""
+          }
+        },
+        "hover": {
+          "item": {
+            "backgroundOpacity": ""
+          }
+        }
+      },
+      "#input": {},
+      "#item": {},
+      "#required": {},
+      "#text": {}
+    }
   }
 }

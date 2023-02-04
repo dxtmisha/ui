@@ -1,7 +1,31 @@
 {
   "md2": {
     "checkbox": {
-      "@style": "{d.checkbox}"
+      "@style": "{d.checkbox}",
+      "var|sys": {
+        "palette": "{sys.palette.primary}",
+        "gap": "{ref.spacing.3}",
+        "item": {
+          "borderWidth": "{ref.spacing.px}",
+          "size": "{ref.spacing.10}",
+          "text": "{sys.palette.onPrimary}",
+          "textOpacity": "{sys.opacity.primary.high}"
+        },
+        "label": {
+          "required": "{sys.palette.error}"
+        },
+        "active": {
+          "item": {
+            "borderOpacity": "{sys.opacity.border}",
+            "backgroundOpacity": "{sys.opacity.disabled}"
+          }
+        },
+        "hover": {
+          "item": {
+            "backgroundOpacity": "{sys.opacity.hover}"
+          }
+        }
+      }
     }
   }
 }

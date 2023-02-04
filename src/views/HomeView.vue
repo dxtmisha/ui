@@ -75,7 +75,7 @@
     </div>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
-    <md2-checkbox/>
+    <md2-checkbox @on-input="onEmit"/>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
     <md2-textarea text="text" v-model="inputValue" placeholder="placeholder"/>

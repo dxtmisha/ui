@@ -1,5 +1,19 @@
 <template>
-  <div>CheckboxComponent</div>
+  <label :class="classes.main">
+    <input :name="name" type="hidden" value="0">
+    <input
+      ref="input"
+      v-model="valueBind"
+      :checked="valueBind"
+      :class="classes.input"
+      :type="type"
+      :value="valueDefault"
+      v-bind="inputBind"
+      v-on="on"
+      @input.prevent="onChecked"
+    >
+    <span :class="classes.item"></span>
+  </label>
 </template>
 
 <script lang="ts">

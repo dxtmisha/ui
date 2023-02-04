@@ -8,6 +8,11 @@
   }
 }
 
+@mixin circle($value) {
+  @include squared($value);
+  border-radius: 100%;
+}
+
 @mixin height($value) {
   --sys-height: #{$value};
   height: $value;

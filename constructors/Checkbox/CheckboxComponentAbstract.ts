@@ -5,7 +5,7 @@ import { InputValue } from '../Input/InputValue'
 import { InputValidation } from '../Input/InputValidation'
 import { props } from './props'
 import { AssociativeType } from '../types'
-import { CheckboxSetupType } from './types'
+import { CheckboxClassesType, CheckboxSetupType } from './types'
 
 export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -47,20 +47,20 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
   }
 
   setup (): CheckboxSetupType {
-    const classes = this.getClasses()
+    const classes = this.getClasses<CheckboxClassesType>()
     const styles = this.getStyles()
 
     return {
       ...this.getBasic(),
       classes,
       styles,
+      type: this.type,
       inputBind: this.input,
       validationMessageBind: this.validation.message,
       valueBind: this.value.value,
       valueOriginalBind: this.value.valueForOriginal,
       checkValidity: () => this.validation.checkValidity(),
-      onChange: () => this.event.onChange(),
-      onInput: (event: Event) => this.event.onInput(event)
+      onChecked: (event: Event) => this.event.onChecked(event)
     }
   }
 
