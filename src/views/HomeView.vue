@@ -80,8 +80,14 @@
     <md2-checkbox @on-input="onEmit" text="text" right required/>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
-    <md2-checkbox @on-input="onEmit" text="text" helper-message="Helper message"/>
+    <md2-checkbox @on-input="onEmit" helper-message="Helper message">
+      is text <a href="#test">link</a>
+    </md2-checkbox>
     <md2-checkbox @on-input="onEmit" text="text" validation-message="Validation message"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
+    <md2-checkbox @on-input="onEmit" text="text" :value="0" disabled/>
+    <md2-checkbox @on-input="onEmit" text="text" :value="true" disabled/>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
     <md2-textarea text="text" v-model="inputValue" placeholder="placeholder"/>

@@ -8,7 +8,7 @@ export const props = {
   name: String,
   required: Boolean,
   text: [Number, String],
-  value: [Number, String],
+  value: [Boolean, Number, String],
   valueDefault: {
     type: String,
     default: '1'

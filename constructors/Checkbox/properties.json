@@ -5,6 +5,7 @@
         "palette": "",
         "gap": "",
         "text": "",
+        "textOpacity": "",
         "icon": {
           "backgroundOpacity": "0",
           "borderOpacity": "",
@@ -40,18 +41,37 @@
           "palette": "",
           "icon": {
             "backgroundOpacity": "{??sys.icon.textOpacity}",
-            "borderOpacity": "{??sys.icon.textOpacity}",
+            "borderOpacity": "0",
             "text": "{??sys.icon.text}",
             "textOpacity": "{??sys.icon.textOpacity}"
           }
         },
         "error": {
-          "palette": ""
+          "palette": "",
+          "text": "{??sys.error.palette}"
+        },
+        "disabled": {
+          "palette": "",
+          "textOpacity": "",
+          "icon": {
+            "borderOpacity": "{??sys.disabled.textOpacity}"
+          },
+          "item": {
+            "backgroundOpacity": "0",
+            "borderOpacity": "0"
+          },
+          "checked": {
+            "icon": {
+              "backgroundOpacity": "{??sys.disabled.textOpacity}",
+              "borderOpacity": "0"
+            }
+          }
         }
       },
       "var|l": {
         "palette": "{??sys.palette}",
         "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}",
         "icon": {
           "backgroundOpacity": "{??sys.icon.backgroundOpacity}",
           "borderOpacity": "{??sys.icon.borderOpacity}",
@@ -63,6 +83,7 @@
           "borderOpacity": "{??sys.item.borderOpacity}"
         }
       },
+      "#disabled": {},
       "#icon": {},
       "#input": {},
       "#item": {},

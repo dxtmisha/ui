@@ -11,8 +11,10 @@
 }
 
 @mixin mixinCheckbox() {
-  @include propertiesLink('d.flex.inline.center');
-  @include color(v('??sys.item.text'));
+  @include color(v('??l.text'), v('??l.text-opacity'));
+
+  display: inline-flex;
+  align-items: flex-start;
 
   @include mixinInput;
   @include mixinText;
@@ -29,7 +31,10 @@
 
   &.is-error {
     @include linkTo('palette', '??sys.error.palette');
+    @include linkTo('text', '??sys.error.text');
   }
+
+  @include mixinDisabled;
 }
 
 @mixin mixinInput() {
@@ -42,6 +47,7 @@
 @mixin mixinText() {
   @include subClass('text') {
     @include marginLeft(v('??sys.gap'));
+    padding-top: calc((#{v('??sys.item.size')} - #{v('??sys.label.line-height')}) / 2);
 
     > * {
       display: block;
@@ -90,10 +96,12 @@
   }
 
   input:active + {
-    @include subClassByGlobal('item') {
+    * {
       @include linkTo('item.background-opacity', '??sys.active.item.background-opacity');
       @include linkTo('item.border-opacity', '??sys.active.item.border-opacity');
+    }
 
+    @include subClassByGlobal('item') {
       &::after {
         transition-duration: 0s;
       }
@@ -121,18 +129,42 @@
   }
 
   input:checked + {
+    * {
+      @include linkTo('icon.background-opacity', '??sys.checked.icon.background-opacity');
+      @include linkTo('icon.border-opacity', '??sys.checked.icon.border-opacity');
+      @include linkTo('icon.text', '??sys.checked.icon.text');
+      @include linkTo('icon.text-opacity', '??sys.checked.icon.text-opacity');
+    }
+
     @include subClassByGlobal('item') {
       @include subClassByGlobal('icon') {
-        @include linkTo('icon.background-opacity', '??sys.checked.icon.background-opacity');
-        @include linkTo('icon.border-opacity', '??sys.checked.icon.border-opacity');
-        @include linkTo('icon.text', '??sys.checked.icon.text');
-        @include linkTo('icon.text-opacity', '??sys.checked.icon.text-opacity');
-
         > * {
           clip-path: inset(0 0 0 0);
           transition-property: clip-path, opacity, transform;
         }
       }
+    }
+  }
+}
+
+@mixin mixinDisabled() {
+  @include modClass('disabled') {
+    @include linkTo('palette', '??sys.disabled.palette');
+    @include linkTo('text-opacity', '??sys.disabled.text-opacity');
+    @include linkTo('icon.border-opacity', '??sys.disabled.icon.border-opacity');
+
+    input:active +,
+    input:hover + {
+      * {
+        @include linkTo('item.background-opacity', '??sys.disabled.item.background-opacity');
+        @include linkTo('item.border-opacity', '??sys.disabled.item.border-opacity');
+      }
+    }
+
+    input:checked ~ * {
+      @include linkTo('palette', '??sys.disabled.palette');
+      @include linkTo('icon.background-opacity', '??sys.disabled.checked.icon.background-opacity');
+      @include linkTo('icon.border-opacity', '??sys.disabled.checked.icon.border-opacity');
     }
   }
 }
