@@ -13,7 +13,20 @@
       @input.prevent="onChecked"
     >
     <span :class="classes.item">
-      <span :class="classes.icon"></span>
+      <span :class="classes.icon">
+        <md2-image v-bind="iconBind"/>
+      </span>
+    </span>
+    <span v-if="isText" :class="classes.text">
+      <span>
+        {{ text }}<slot/>
+        <span v-if="required" :class="classes.required"/>
+      </span>
+      <md2-field-message v-bind="messageBind">
+        <template v-slot:default>
+          <slot name="message"/>
+        </template>
+      </md2-field-message>
     </span>
   </label>
 </template>
@@ -21,10 +34,15 @@
 <script lang="ts">
 import { CheckboxComponent } from './CheckboxComponent'
 import { props } from './props'
+import Md2FieldMessage from '../Md2FieldMessage/index.vue'
+import Md2Image from '../Md2Image/index.vue'
 
 export default {
   name: 'Md2Checkbox',
-  components: {},
+  components: {
+    Md2FieldMessage,
+    Md2Image
+  },
   props,
   emits: CheckboxComponent.emits,
   setup (props: object, context: object) {

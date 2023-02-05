@@ -5,22 +5,23 @@
         "palette": "",
         "gap": "",
         "text": "",
-        "textOpacity": "",
         "icon": {
           "backgroundOpacity": "0",
+          "borderOpacity": "",
           "borderWidth": "",
           "rounded": "",
-          "size": ""
+          "size": "",
+          "text": "",
+          "textOpacity": ""
         },
         "item": {
           "backgroundOpacity": "0",
           "borderOpacity": "0",
           "borderWidth": "",
-          "size": "",
-          "text": "",
-          "textOpacity": ""
+          "size": ""
         },
         "label": {
+          "lineHeight": "",
           "required": ""
         },
         "active": {
@@ -36,15 +37,26 @@
           }
         },
         "checked": {
+          "palette": "",
+          "icon": {
+            "backgroundOpacity": "{??sys.icon.textOpacity}",
+            "borderOpacity": "{??sys.icon.textOpacity}",
+            "text": "{??sys.icon.text}",
+            "textOpacity": "{??sys.icon.textOpacity}"
+          }
+        },
+        "error": {
           "palette": ""
         }
       },
       "var|l": {
         "palette": "{??sys.palette}",
         "text": "{??sys.text}",
-        "textOpacity": "{??sys.textOpacity}",
         "icon": {
-          "backgroundOpacity": "{??sys.icon.backgroundOpacity}"
+          "backgroundOpacity": "{??sys.icon.backgroundOpacity}",
+          "borderOpacity": "{??sys.icon.borderOpacity}",
+          "text": "{??sys.icon.text}",
+          "textOpacity": "{??sys.icon.textOpacity}"
         },
         "item": {
           "backgroundOpacity": "{??sys.item.backgroundOpacity}",
@@ -55,7 +67,11 @@
       "#input": {},
       "#item": {},
       "#required": {},
-      "#text": {}
+      "#right": {},
+      "#text": {},
+      "& .?field-message": {
+        "padding-top": "0"
+      }
     }
   }
 }

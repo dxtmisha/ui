@@ -4,19 +4,19 @@
       "@style": "{d.checkbox}",
       "var|sys": {
         "palette": "{sys.palette.onSurface}",
-        "gap": "{ref.spacing.3}",
+        "gap": "{ref.spacing.2}",
         "text": "{sys.palette.onSurface}",
-        "textOpacity": "{sys.opacity.surface.medium}",
         "icon": {
           "borderWidth": "{ref.spacing.px} * 2",
+          "borderOpacity": "{sys.opacity.primary.medium}",
           "rounded": "{ref.spacing.1}",
-          "size": "{ref.spacing.5}"
+          "size": "{ref.spacing.5}",
+          "text": "{sys.palette.onPrimary}",
+          "textOpacity": "{sys.opacity.primary.high}"
         },
         "item": {
           "borderWidth": "{ref.spacing.px}",
-          "size": "{ref.spacing.10}",
-          "text": "{sys.palette.onPrimary}",
-          "textOpacity": "{sys.opacity.primary.high}"
+          "size": "{ref.spacing.10}"
         },
         "label": {
           "required": "{sys.palette.error}"
@@ -34,6 +34,9 @@
         },
         "checked": {
           "palette": "{sys.palette.primary}"
+        },
+        "error": {
+          "palette": "{sys.palette.error}"
         }
       }
     }

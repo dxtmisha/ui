@@ -24,6 +24,10 @@ export class InputValidation {
     return createElement(undefined, 'input', this.input.value)
   })
 
+  readonly error = computed<boolean>(() => !this.checkValidity())
+
+  protected readonly isCheckbox = computed(() => ['checkbox', 'radio'].indexOf(this.element.value.type) !== -1)
+
   readonly item = computed<InputValidationType | undefined>(() => {
     if (this.change?.get() !== false) {
       return this.checkGlobal() || this.check() || this.match?.check()
@@ -37,7 +41,11 @@ export class InputValidation {
   protected check (): InputValidationType | undefined {
     const input = this.element.value
 
-    input.value = this.value.get().toString().trim()
+    if (this.isCheckbox.value) {
+      input.checked = this.value.is()
+    } else {
+      input.value = this.value.get().toString().trim()
+    }
 
     if (input.checkValidity()) {
       return undefined

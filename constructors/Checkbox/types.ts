@@ -12,16 +12,20 @@ export type CheckboxClassesType = {
   input: ComponentAssociativeType
   item: ComponentAssociativeType
   required: ComponentAssociativeType
+  right: ComponentAssociativeType
   text: ComponentAssociativeType
 }
 
 export type CheckboxSetupType = ComponentBaseType & {
   classes: ComputedRef<CheckboxClassesType>
   type: string
+  isText: ComputedRef<boolean>
+  iconBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
   validationMessageBind: ComputedRef<string>
   valueBind: Ref<BooleanOrNumberOrStringType>
   valueOriginalBind: ComputedRef<string>
+  messageBind: ComputedRef<AssociativeType>
   checkValidity: () => boolean
   onChecked: (event: Event) => void
 }

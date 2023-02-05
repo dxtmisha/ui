@@ -11,7 +11,8 @@
 }
 
 @mixin mixinCheckbox() {
-  display: inline-flex;
+  @include propertiesLink('d.flex.inline.center');
+  @include color(v('??sys.item.text'));
 
   @include mixinInput;
   @include mixinText;
@@ -20,8 +21,14 @@
   @include mixinItem;
   @include mixinIcon;
 
+  @include mixinRight;
+
   &.is-value {
     @include linkTo('palette', '??sys.checked.palette');
+  }
+
+  &.is-error {
+    @include linkTo('palette', '??sys.error.palette');
   }
 }
 
@@ -33,7 +40,7 @@
 }
 
 @mixin mixinText() {
-  @include subClass('label') {
+  @include subClass('text') {
     @include marginLeft(v('??sys.gap'));
 
     > * {
@@ -57,7 +64,6 @@
     @include propertiesLink('d.flex.center');
     position: relative;
 
-    @include color(v('??l.item.text'), v('??l.item.text-opacity'));
     @include background(v('??l.palette'), v('??l.item.background-opacity'));
 
     @include circle(v('??sys.item.size'));
@@ -97,12 +103,13 @@
 
 @mixin mixinIcon() {
   @include subClass('icon') {
+    @include color(v('??l.icon.text'), v('??l.icon.text-opacity'));
     @include background(v('??l.palette'), v('??l.icon.background-opacity'));
 
     position: relative;
     @include squared(v('??sys.icon.size'));
 
-    @include border(v('??l.palette'), v('??l.text-opacity'));
+    @include border(v('??l.palette'), v('??l.icon.border-opacity'));
     border-width: v('??sys.icon.border-width');
     border-radius: v('??sys.icon.rounded');
 
@@ -110,6 +117,36 @@
 
     > * {
       clip-path: inset(0 100% 0 0);
+    }
+  }
+
+  input:checked + {
+    @include subClassByGlobal('item') {
+      @include subClassByGlobal('icon') {
+        @include linkTo('icon.background-opacity', '??sys.checked.icon.background-opacity');
+        @include linkTo('icon.border-opacity', '??sys.checked.icon.border-opacity');
+        @include linkTo('icon.text', '??sys.checked.icon.text');
+        @include linkTo('icon.text-opacity', '??sys.checked.icon.text-opacity');
+
+        > * {
+          clip-path: inset(0 0 0 0);
+          transition-property: clip-path, opacity, transform;
+        }
+      }
+    }
+  }
+}
+
+@mixin mixinRight() {
+  @include modClass('right') {
+    & > * {
+      order: 2;
+    }
+
+    @include subClassByGlobal('text') {
+      @include marginLeft(0px);
+      @include marginRight(v('??sys.gap'));
+      order: 1;
     }
   }
 }
