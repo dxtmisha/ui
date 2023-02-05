@@ -19,6 +19,7 @@ export type CheckboxClassesType = {
 export type CheckboxSetupType = ComponentBaseType & {
   classes: ComputedRef<CheckboxClassesType>
   type: string
+  isRipple: ComputedRef<boolean>
   isText: ComputedRef<boolean>
   iconBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>

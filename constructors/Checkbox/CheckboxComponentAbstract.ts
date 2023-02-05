@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, ComputedRef } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { InputChange } from '../Input/InputChange'
 import { InputEvent } from '../Input/InputEvent'
@@ -68,6 +68,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       classes,
       styles,
       type: this.type,
+      isRipple: this.isRipple,
       isText: this.isText,
       iconBind: this.getBind(this.refs.icon, 'value'),
       inputBind: this.input,
@@ -80,6 +81,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
     }
   }
 
+  readonly isRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
   readonly isText = computed<boolean>(() => isFilled(this.props.text) || 'default' in this.context.slots)
 
   readonly input = computed<AssociativeType>(() => {

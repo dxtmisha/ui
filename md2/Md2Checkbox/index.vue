@@ -16,6 +16,7 @@
       <span :class="classes.icon">
         <md2-image v-bind="iconBind"/>
       </span>
+      <md2-ripple v-if="isRipple"/>
     </span>
     <span v-if="isText" :class="classes.text">
       <span>
@@ -36,10 +37,12 @@ import { CheckboxComponent } from './CheckboxComponent'
 import { props } from './props'
 import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 import Md2Image from '../Md2Image/index.vue'
+import Md2Ripple from '../Md2Ripple/index.vue'
 
 export default {
   name: 'Md2Checkbox',
   components: {
+    Md2Ripple,
     Md2FieldMessage,
     Md2Image
   },

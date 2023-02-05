@@ -90,6 +90,7 @@
       "#required": {},
       "#right": {},
       "#text": {},
+      "?ripple-background": "{??l.palette}",
       "& .?field-message": {
         "padding-top": "0"
       }
