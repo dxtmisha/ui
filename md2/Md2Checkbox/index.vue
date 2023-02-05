@@ -12,7 +12,9 @@
       v-on="on"
       @input.prevent="onChecked"
     >
-    <span :class="classes.item"></span>
+    <span :class="classes.item">
+      <span :class="classes.icon"></span>
+    </span>
   </label>
 </template>
 

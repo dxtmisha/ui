@@ -18,6 +18,11 @@
   @include mixinRequired;
 
   @include mixinItem;
+  @include mixinIcon;
+
+  &.is-value {
+    @include linkTo('palette', '??sys.checked.palette');
+  }
 }
 
 @mixin mixinInput() {
@@ -52,18 +57,20 @@
     @include propertiesLink('d.flex.center');
     position: relative;
 
-    @include color(v('??sys.item.text'), v('??sys.item.text-opacity'));
-    @include background(v('??sys.palette'), 0);
+    @include color(v('??l.item.text'), v('??l.item.text-opacity'));
+    @include background(v('??l.palette'), v('??l.item.background-opacity'));
 
     @include circle(v('??sys.item.size'));
     min-width: v('??sys.item.size');
+
+    transition-property: background-color;
 
     &::after {
       content: " ";
       position: absolute;
       @include inset();
 
-      @include border(v('??sys.palette'), 0);
+      @include border(v('??l.palette'), v('??l.item.border-opacity'));
       border-style: solid;
       border-width: v('??sys.item.border-width');
       border-radius: inherit;
@@ -71,18 +78,38 @@
     }
 
     &:hover {
-      @include backgroundOpacity(v('??sys.hover.item.background-opacity'));
+      @include linkTo('item.background-opacity', '??sys.hover.item.background-opacity');
+      @include linkTo('item.border-opacity', '??sys.hover.item.border-opacity');
     }
   }
 
   input:active + {
     @include subClassByGlobal('item') {
-      @include backgroundOpacity(v('??sys.active.item.background-opacity'));
+      @include linkTo('item.background-opacity', '??sys.active.item.background-opacity');
+      @include linkTo('item.border-opacity', '??sys.active.item.border-opacity');
 
       &::after {
-        @include borderOpacity(v('??sys.active.item.border-opacity'));
         transition-duration: 0s;
       }
+    }
+  }
+}
+
+@mixin mixinIcon() {
+  @include subClass('icon') {
+    @include background(v('??l.palette'), v('??l.icon.background-opacity'));
+
+    position: relative;
+    @include squared(v('??sys.icon.size'));
+
+    @include border(v('??l.palette'), v('??l.text-opacity'));
+    border-width: v('??sys.icon.border-width');
+    border-radius: v('??sys.icon.rounded');
+
+    transition-property: background-color, border-color;
+
+    > * {
+      clip-path: inset(0 100% 0 0);
     }
   }
 }

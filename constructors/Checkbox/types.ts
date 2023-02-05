@@ -8,6 +8,7 @@ import {
 
 export type CheckboxClassesType = {
   main: ComponentAssociativeType
+  icon: ComponentAssociativeType
   input: ComponentAssociativeType
   item: ComponentAssociativeType
   required: ComponentAssociativeType

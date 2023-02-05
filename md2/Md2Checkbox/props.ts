@@ -6,7 +6,10 @@ export const defaultItem = ComponentDesign.getDefault('md2.checkbox')
 export const props = {
   // Values
   detail: [Object],
-  icon: [Object, String],
+  icon: {
+    type: [Object, String],
+    default: 'check'
+  },
   name: String,
   required: Boolean,
   text: [Number, String],

@@ -3,8 +3,15 @@
     "checkbox": {
       "@style": "{d.checkbox}",
       "var|sys": {
-        "palette": "{sys.palette.primary}",
+        "palette": "{sys.palette.onSurface}",
         "gap": "{ref.spacing.3}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.medium}",
+        "icon": {
+          "borderWidth": "{ref.spacing.px} * 2",
+          "rounded": "{ref.spacing.1}",
+          "size": "{ref.spacing.5}"
+        },
         "item": {
           "borderWidth": "{ref.spacing.px}",
           "size": "{ref.spacing.10}",
@@ -24,6 +31,9 @@
           "item": {
             "backgroundOpacity": "{sys.opacity.hover}"
           }
+        },
+        "checked": {
+          "palette": "{sys.palette.primary}"
         }
       }
     }

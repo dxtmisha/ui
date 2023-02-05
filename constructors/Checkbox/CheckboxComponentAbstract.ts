@@ -47,7 +47,11 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
   }
 
   setup (): CheckboxSetupType {
-    const classes = this.getClasses<CheckboxClassesType>()
+    const classes = this.getClasses<CheckboxClassesType>({
+      main: {
+        'is-value': this.value.valueForCheckbox
+      }
+    })
     const styles = this.getStyles()
 
     return {

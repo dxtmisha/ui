@@ -44,6 +44,10 @@ export class InputValue {
     return this
   }
 
+  is (): boolean {
+    return this.valueForCheckbox.value
+  }
+
   reset (): this {
     this.value.value = ''
     return this

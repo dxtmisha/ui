@@ -4,7 +4,17 @@
       "var|sys": {
         "palette": "",
         "gap": "",
+        "text": "",
+        "textOpacity": "",
+        "icon": {
+          "backgroundOpacity": "0",
+          "borderWidth": "",
+          "rounded": "",
+          "size": ""
+        },
         "item": {
+          "backgroundOpacity": "0",
+          "borderOpacity": "0",
           "borderWidth": "",
           "size": "",
           "text": "",
@@ -15,16 +25,33 @@
         },
         "active": {
           "item": {
-            "borderOpacity": "",
-            "backgroundOpacity": ""
+            "backgroundOpacity": "0",
+            "borderOpacity": "0"
           }
         },
         "hover": {
           "item": {
-            "backgroundOpacity": ""
+            "backgroundOpacity": "0",
+            "borderOpacity": "0"
           }
+        },
+        "checked": {
+          "palette": ""
         }
       },
+      "var|l": {
+        "palette": "{??sys.palette}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}",
+        "icon": {
+          "backgroundOpacity": "{??sys.icon.backgroundOpacity}"
+        },
+        "item": {
+          "backgroundOpacity": "{??sys.item.backgroundOpacity}",
+          "borderOpacity": "{??sys.item.borderOpacity}"
+        }
+      },
+      "#icon": {},
       "#input": {},
       "#item": {},
       "#required": {},
