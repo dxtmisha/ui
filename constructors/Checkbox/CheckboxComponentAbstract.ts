@@ -1,4 +1,4 @@
-import { computed, ComputedRef } from 'vue'
+import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { InputChange } from '../Input/InputChange'
 import { InputEvent } from '../Input/InputEvent'
@@ -87,6 +87,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
   readonly input = computed<AssociativeType>(() => {
     return {
       name: this.refs.name.value,
+      value: this.refs.valueDefault.value,
       required: this.refs.required.value,
       readonly: this.refs.readonly.value,
       disabled: this.refs.disabled.value,

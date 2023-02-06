@@ -40,7 +40,7 @@ export class InputValue {
   }
 
   protected getValueByTarget (target: HTMLInputElement): this {
-    this.set(target.type === 'checkbox' ? target.checked : target.value)
+    this.set(['checkbox', 'radio'].indexOf(target.type) !== -1 ? target.checked : target.value)
     return this
   }
 

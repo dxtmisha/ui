@@ -1,0 +1,13 @@
+@import "../../styles/properties";
+@import "../Checkbox/style";
+
+@mixin initRadio($design) {
+  @include propertiesInit($design, 'radio') {
+    @include mixinRadio;
+    @content;
+  }
+}
+
+@mixin mixinRadio() {
+  @include mixinCheckbox;
+}
