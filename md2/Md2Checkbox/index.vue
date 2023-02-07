@@ -4,10 +4,8 @@
     <input
       ref="input"
       v-model="valueBind"
-      :checked="valueBind"
+      :checked="isValue"
       :class="classes.input"
-      :type="type"
-      :value="valueDefault"
       v-bind="inputBind"
       v-on="on"
       @input.prevent="onChecked"

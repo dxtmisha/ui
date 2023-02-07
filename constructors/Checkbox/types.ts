@@ -8,6 +8,7 @@ import {
 
 export type CheckboxClassesType = {
   main: ComponentAssociativeType
+  circle: ComponentAssociativeType
   icon: ComponentAssociativeType
   input: ComponentAssociativeType
   item: ComponentAssociativeType
@@ -21,6 +22,7 @@ export type CheckboxSetupType = ComponentBaseType & {
   type: string
   isRipple: ComputedRef<boolean>
   isText: ComputedRef<boolean>
+  isValue: ComputedRef<boolean>
   iconBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
   validationMessageBind: ComputedRef<string>
@@ -29,4 +31,5 @@ export type CheckboxSetupType = ComponentBaseType & {
   messageBind: ComputedRef<AssociativeType>
   checkValidity: () => boolean
   onChecked: (event: Event) => void
+  onRadio: (event: Event) => void
 }

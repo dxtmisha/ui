@@ -26,7 +26,7 @@ export class InputValidation {
 
   readonly error = computed<boolean>(() => !this.checkValidity())
 
-  protected readonly isCheckbox = computed(() => ['checkbox', 'radio'].indexOf(this.element.value.type) !== -1)
+  protected readonly isCheckbox = computed(() => ['checkbox'].indexOf(this.element.value.type) !== -1)
 
   readonly item = computed<InputValidationType | undefined>(() => {
     if (this.change?.get() !== false) {

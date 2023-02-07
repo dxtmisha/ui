@@ -1,20 +1,18 @@
 <template>
   <label :class="classes.main">
-    <input :name="name" type="hidden" value="0">
     <input
       ref="input"
       v-model="valueBind"
-      :checked="valueBind"
+      :checked="isValue"
       :class="classes.input"
-      :type="type"
-      :value="valueDefault"
       v-bind="inputBind"
       v-on="on"
-      @input.prevent="onChecked"
+      @input.prevent="onRadio"
     >
     <span :class="classes.item">
       <span :class="classes.icon">
-        <md2-image v-bind="iconBind"/>
+        <md2-image v-if="icon" v-bind="iconBind"/>
+        <span v-else :class="classes.circle"/>
       </span>
       <md2-ripple v-if="isRipple"/>
     </span>
@@ -34,13 +32,13 @@
 
 <script lang="ts">
 import { RadioComponent } from './RadioComponent'
-import { props } from '../Md2Checkbox/props'
+import { props } from './props'
 import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 import Md2Image from '../Md2Image/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
 
 export default {
-  name: 'Md2Checkbox',
+  name: 'Md2Radio',
   components: {
     Md2Ripple,
     Md2FieldMessage,

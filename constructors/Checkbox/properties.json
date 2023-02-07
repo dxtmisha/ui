@@ -86,11 +86,12 @@
       "#disabled": {},
       "#icon": {},
       "#input": {},
-      "#item": {},
+      "#item": {
+        "?ripple-background": "{??l.palette}"
+      },
       "#required": {},
       "#right": {},
       "#text": {},
-      "?ripple-background": "{??l.palette}",
       "& .?field-message": {
         "padding-top": "0"
       }

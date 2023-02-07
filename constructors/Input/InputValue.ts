@@ -1,6 +1,7 @@
 import { computed, ref, Ref, ToRefs, watch } from 'vue'
 import { isFilled } from '../../functions'
 import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
+import { RadioComponent } from '../../md2/Md2Radio/RadioComponent'
 
 export class InputValue {
   readonly value = ref<BooleanOrNumberOrStringType>('')
@@ -40,7 +41,7 @@ export class InputValue {
   }
 
   protected getValueByTarget (target: HTMLInputElement): this {
-    this.set(['checkbox', 'radio'].indexOf(target.type) !== -1 ? target.checked : target.value)
+    this.set(['checkbox'].indexOf(target.type) !== -1 ? target.checked : target.value)
     return this
   }
 
@@ -63,6 +64,13 @@ export class InputValue {
 
   setByChecked (event: Event): this {
     this.set((event.target as HTMLInputElement).checked)
+    return this
+  }
+
+  setByRadio (event: Event): this {
+    const input = event.target as HTMLInputElement
+
+    this.set(input.checked ? input.value : '')
     return this
   }
 

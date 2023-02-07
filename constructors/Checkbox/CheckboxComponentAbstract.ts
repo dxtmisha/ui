@@ -57,7 +57,6 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
   setup (): CheckboxSetupType {
     const classes = this.getClasses<CheckboxClassesType>({
       main: {
-        'is-value': this.value.valueForCheckbox,
         'is-error': this.validation.error
       }
     })
@@ -70,6 +69,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       type: this.type,
       isRipple: this.isRipple,
       isText: this.isText,
+      isValue: this.value.valueForCheckbox,
       iconBind: this.getBind(this.refs.icon, 'value'),
       inputBind: this.input,
       validationMessageBind: this.validation.message,
@@ -77,7 +77,8 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       valueOriginalBind: this.value.valueForOriginal,
       messageBind: this.message,
       checkValidity: () => this.validation.checkValidity(),
-      onChecked: (event: Event) => this.event.onChecked(event)
+      onChecked: (event: Event) => this.event.onChecked(event),
+      onRadio: (event: Event) => this.event.onRadio(event)
     }
   }
 

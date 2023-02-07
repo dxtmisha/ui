@@ -56,6 +56,11 @@ export class InputEvent {
     this.on()
   }
 
+  onRadio (event: Event): void {
+    this.value.setByRadio(event)
+    this.on().onChange()
+  }
+
   onSelect (event: Event): void {
     this.value.setByEvent(event)
     this.on().onChange()

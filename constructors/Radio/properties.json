@@ -1,7 +1,15 @@
 {
   "d": {
     "radio": {
-      "@style": "{d.checkbox}"
+      "@style": "{d.checkbox}",
+      "var|sys": {
+        "circle": {
+          "font": "",
+          "size": ""
+        }
+      },
+      "#circle": {},
+      "?image-font-size": "{??sys.circle.font}"
     }
   }
 }

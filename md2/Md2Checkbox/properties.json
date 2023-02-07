@@ -44,7 +44,8 @@
           "palette": "{sys.palette.disabled}",
           "textOpacity": "{sys.opacity.surface.disabled}"
         }
-      }
+      },
+      "@@palette": "{?palette}"
     }
   }
 }

@@ -25,11 +25,12 @@
 
   @include mixinRight;
 
-  &.is-value {
+  input:checked ~ * {
     @include linkTo('palette', '??sys.checked.palette');
   }
 
-  &.is-error {
+  &.is-error,
+  &.is-error input:checked ~ * {
     @include linkTo('palette', '??sys.error.palette');
     @include linkTo('text', '??sys.error.text');
   }
@@ -70,7 +71,8 @@
     @include propertiesLink('d.flex.center');
     position: relative;
 
-    @include background(v('??l.palette'), v('??l.item.background-opacity'));
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??l.item.background-opacity'));
 
     @include circle(v('??sys.item.size'));
     min-width: v('??sys.item.size');
@@ -82,7 +84,8 @@
       position: absolute;
       @include inset();
 
-      @include border(v('??l.palette'), v('??l.item.border-opacity'));
+      @include paletteBorder(v('??l.palette'));
+      @include borderOpacity(v('??l.item.border-opacity'));
       border-style: solid;
       border-width: v('??sys.item.border-width');
       border-radius: inherit;
@@ -112,12 +115,14 @@
 @mixin mixinIcon() {
   @include subClass('icon') {
     @include color(v('??l.icon.text'), v('??l.icon.text-opacity'));
-    @include background(v('??l.palette'), v('??l.icon.background-opacity'));
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??l.icon.background-opacity'));
 
     position: relative;
     @include squared(v('??sys.icon.size'));
 
-    @include border(v('??l.palette'), v('??l.icon.border-opacity'));
+    @include paletteBorder(v('??l.palette'));
+    @include borderOpacity(v('??l.icon.border-opacity'));
     border-width: v('??sys.icon.border-width');
     border-radius: v('??sys.icon.rounded');
 

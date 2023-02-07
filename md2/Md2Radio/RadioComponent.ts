@@ -1,5 +1,5 @@
 import { RadioComponentAbstract } from '../../constructors/Radio/RadioComponentAbstract'
-import { props } from '../Md2Checkbox/props'
+import { props } from './props'
 import { AssociativeType } from '../../constructors/types'
 
 export class RadioComponent extends RadioComponentAbstract {

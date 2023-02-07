@@ -75,9 +75,16 @@
     </div>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
+    <md2-radio name="radio" value-default="value1" text="radio 1" @on-input="onEmit"/>
+    <md2-radio name="radio" value-default="value2" text="radio 2" @on-input="onEmit" disabled/>
+    <md2-radio name="radio" value-default="value3" text="radio 3" @on-input="onEmit" validation-message="Validation message"/>
+    <md2-radio name="radio" value-default="value3" text="radio 3" @on-input="onEmit" palette="brown"/>
+  </div>
+  <div class="flex items-start gap-4 px-4 py-4">
     <md2-checkbox @on-input="onEmit"/>
     <md2-checkbox @on-input="onEmit" text="text"/>
-    <md2-checkbox @on-input="onEmit" text="text" right required/>
+    <md2-checkbox @on-input="onEmit" text="text" right required :value="true"/>
+    <md2-checkbox @on-input="onEmit" text="text" right required :value="true" palette="brown"/>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">
     <md2-checkbox @on-input="onEmit" helper-message="Helper message">
@@ -2564,6 +2571,7 @@ import Md2Input from '../../md2/Md2Input/index.vue'
 import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
 import Md2Textarea from '../../md2/Md2Textarea/index.vue'
 import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
+import Md2Radio from '../../md2/Md2Radio/index.vue'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
 
@@ -2572,6 +2580,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Radio,
     Md2Checkbox,
     Md2Textarea,
     Md2TextareaAutosize,

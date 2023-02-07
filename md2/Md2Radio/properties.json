@@ -1,12 +1,16 @@
 {
   "md2": {
-    "checkbox": {
-      "@style": "{d.checkbox}",
+    "radio": {
+      "@style": "{d.radio}",
       "var|sys": {
         "palette": "{sys.palette.onSurface}",
         "gap": "{ref.spacing.2}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
+        "circle": {
+          "font": "{ref.spacing.4}",
+          "size": "{ref.spacing.3}"
+        },
         "icon": {
           "borderWidth": "{ref.spacing.px} * 2",
           "borderOpacity": "{sys.opacity.surface.medium}",
@@ -44,7 +48,8 @@
           "palette": "{sys.palette.disabled}",
           "textOpacity": "{sys.opacity.surface.disabled}"
         }
-      }
+      },
+      "@@palette": "{?palette}"
     }
   }
 }
