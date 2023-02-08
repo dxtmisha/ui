@@ -161,6 +161,7 @@ export function toCamelCase (value: NumberOrStringType): string {
 }
 
 export function toKebabCase (value: NumberOrStringType): string {
+  console.log('value', value)
   return value
     .toString()
     .replace(/^[A-Z]/g, all => all.toLowerCase())

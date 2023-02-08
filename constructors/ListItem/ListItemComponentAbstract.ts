@@ -8,6 +8,7 @@ import {
   EventCallbackRequiredType
 } from '../types'
 import { getExp } from '../../functions'
+import { toKebabCase } from '../../functions/data'
 
 export type ListItemClassesType = {
   main: ComponentAssociativeType
@@ -20,7 +21,7 @@ export type ListItemClassesType = {
 }
 export type ListItemSetupType = ComponentBaseType & {
   classes: ComputedRef<ListItemClassesType>
-  ifFullText: ComputedRef<boolean>
+  isFullText: ComputedRef<boolean>
   textBind: ComputedRef<string>
   iconBind: ComputedRef<string | AssociativeType>
   iconTrailingBind: ComputedRef<string | AssociativeType>
@@ -34,6 +35,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
   protected abstract appearanceInverse: string[]
+  protected readonly stylesProps = [''] as string[]
 
   setup (): ListItemSetupType {
     const classes = this.getClasses<ListItemClassesType>()
@@ -43,7 +45,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
       ...this.getBasic(),
       classes,
       styles,
-      ifFullText: this.ifFullText,
+      isFullText: this.isFullText,
       textBind: this.text,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
@@ -53,7 +55,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
     }
   }
 
-  readonly ifFullText = computed(() => {
+  readonly isFullText = computed(() => {
     return !!(
       this.props.description ||
       this.props.prefix ||
@@ -62,7 +64,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
     )
   })
 
-  readonly ifInverse = computed(() => {
+  readonly isInverse = computed(() => {
     return this.props.selected && (
       this.appearanceInverse.indexOf(this.props.appearance) !== -1 ||
       this.appearanceInverse.indexOf('all') !== -1
@@ -71,7 +73,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
 
   readonly progressIcon = computed(() => {
     return {
-      inverse: this.ifInverse.value,
+      inverse: this.isInverse.value,
       type: 'circular',
       visible: true
     }
@@ -79,7 +81,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
 
   readonly progressText = computed(() => {
     return {
-      inverse: this.ifInverse.value,
+      inverse: this.isInverse.value,
       visible: true
     }
   })

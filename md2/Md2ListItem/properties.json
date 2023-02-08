@@ -10,8 +10,17 @@
         "height": "{ref.spacing.12}",
         "paddingX": "{ref.spacing.4}",
         "paddingY": "{ref.spacing.1}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.high}",
+        "icon": {
+          "margin": "{ref.spacing.8}",
+          "trailing": {
+            "margin": "{ref.spacing.4}"
+          }
+        },
         "rounded": {
           "marginX": "{ref.spacing.2}",
+          "marginA": "{ref.spacing.2}",
           "marginY": "{ref.spacing.1}"
         },
         "active": {
@@ -33,14 +42,7 @@
         },
         "selected": {
           "palette": "{sys.palette.primaryVariant}",
-          "backgroundOpacity": "{sys.opacity.selected}",
-          "textOpacity": "{sys.opacity.surface.high}"
-        },
-        "icon": {
-          "margin": "{ref.spacing.8}",
-          "trailing": {
-            "margin": "{ref.spacing.4}"
-          }
+          "backgroundOpacity": "{sys.opacity.selected}"
         }
       },
       "@font": "{font.subtitle1}",

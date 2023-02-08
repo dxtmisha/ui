@@ -1,7 +1,47 @@
-@import "../../styles/services/classesService";
+@import "../../styles/properties";
 
 @mixin initListItem($design) {
-  @include classInitService($design, 'list-item') using($class, $component, $properties) {
-    @content($class, $component, $properties);
+  @include propertiesInit($design, 'list-item') {
+    @include mixinListItem;
+    @content;
+  }
+}
+
+@mixin mixinListItem {
+  @include propertiesLink('d.flex.x');
+  @include propertiesLink('d.font.readonly');
+
+  @include color(v('??l.text'), v('??l.text-opacity'));
+  @include paletteBackground(v('??_overlay'));
+  @include backgroundOpacity(v('??l.background-opacity'));
+  @include paletteGradient(v('??l.gradient'));
+  @include gradientOpacity(v('??l.gradient-opacity'));
+
+  position: relative;
+  padding: 0 v('??l.paddingX');
+  margin: calc(#{v('??l.margin-y')} / 2) v('??l.margin-x');
+
+  width: 100%;
+  min-height: calc(#{v('??l.height')} - #{v('??l.margin-y')} - #{v('??l.padding-y')});
+
+  cursor: pointer;
+
+  @include mixinText;
+}
+
+@mixin mixinText {
+  @include subClass('text') {
+    @include propertiesLink('d.flex.dynamic');
+
+    display: v('??l.body.display');
+    flex-direction: inherit;
+    flex-wrap: wrap;
+
+    align-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    position: relative;
+    padding: v('??l.paddingY') 0;
   }
 }

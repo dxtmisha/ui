@@ -74,6 +74,33 @@
       <input type="checkbox" name="visible" v-model="visible"> visible
     </div>
   </div>
+  <div class="flex gap-2 pt-8 pl-8">
+    <div class="w-96 border">
+      <md2-list-item text="List item 1" :progress="visible"/>
+      <md2-list-item text="List item 2" :progress="visible"/>
+      <md2-list-item text="prefix" :progress="visible" prefix="+100"/>
+      <md2-list-item text="suffix" :progress="visible" suffix="Clt+P"/>
+      <md2-list-item text="description" :progress="visible"
+                     description="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен"/>
+      <md2-list-item text="prefix + suffix" :progress="visible" prefix="+100" suffix="Clt+P"/>
+      <md2-list-item icon="face" text="icon" :progress="visible"/>
+      <md2-list-item icon-trailing="close" text="icon trailing" :progress="visible"/>
+      <md2-list-item icon="face" icon-trailing="close" text="icon/icon trailing" :progress="visible"/>
+      <md2-list-item palette="teal" text="palette"/>
+      <md2-list-item selected palette="teal" text="palette+selected"/>
+      <md2-list-item overlay="255,0,0" text="background"/>
+      <md2-list-item overlay palette="red" text="background"/>
+      <md2-list-item highlight text="highlight"/>
+      <md2-list-item disabled text="disabled"/>
+      <md2-list-item selected text="selected"/>
+      <md2-list-item disabled selected text="selected + disabled"/>
+    </div>
+    <div class="w-96 border">
+      <md2-list-item text="List item 1" :progress="visible" height="sm"/>
+      <md2-list-item text="List item 2" :progress="visible" height="md"/>
+      <md2-list-item text="List item 3" :progress="visible" height="lg"/>
+    </div>
+  </div>
   <div class="flex items-start gap-4 px-4 py-4">
     <md2-switch @on-input="onEmit"/>
     <md2-switch @on-input="onEmit" text="text"/>
@@ -1391,33 +1418,6 @@
       <input type="checkbox" name="animationShow" v-model="animationShow"> animationShow
     </div>
     <button @click="onClickIcon">test 2</button>
-  </div>
-  <div class="flex gap-2 pt-8 pl-8">
-    <div class="w-96 border">
-      <md2-list-item text="List item 1" :progress="visible"/>
-      <md2-list-item text="List item 2" :progress="visible"/>
-      <md2-list-item text="prefix" :progress="visible" prefix="+100"/>
-      <md2-list-item text="suffix" :progress="visible" suffix="Clt+P"/>
-      <md2-list-item text="description" :progress="visible"
-                     description="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен"/>
-      <md2-list-item text="prefix + suffix" :progress="visible" prefix="+100" suffix="Clt+P"/>
-      <md2-list-item icon="face" text="icon" :progress="visible"/>
-      <md2-list-item icon-trailing="close" text="icon trailing" :progress="visible"/>
-      <md2-list-item icon="face" icon-trailing="close" text="icon/icon trailing" :progress="visible"/>
-      <md2-list-item palette="teal" text="palette"/>
-      <md2-list-item selected palette="teal" text="palette+selected"/>
-      <md2-list-item overlay="255,0,0" text="background"/>
-      <md2-list-item overlay palette="red" text="background"/>
-      <md2-list-item highlight text="highlight"/>
-      <md2-list-item disabled text="disabled"/>
-      <md2-list-item selected text="selected"/>
-      <md2-list-item disabled selected text="selected + disabled"/>
-    </div>
-    <div class="w-96 border">
-      <md2-list-item text="List item 1" :progress="visible" height="sm"/>
-      <md2-list-item text="List item 2" :progress="visible" height="md"/>
-      <md2-list-item text="List item 3" :progress="visible" height="lg"/>
-    </div>
   </div>
   <div class="flex items-center gap-2 pt-8 pl-8">
     <md2-window>

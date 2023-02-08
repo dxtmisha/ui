@@ -31,9 +31,15 @@
         "paddingY": "0px",
         "text": "unset",
         "textOpacity": "unset",
+        "icon": {
+          "margin": "",
+          "trailing": {
+            "margin": ""
+          }
+        },
         "rounded": {
-          "marginX": "0",
-          "marginY": "0"
+          "marginX": "0px",
+          "marginY": "0px"
         },
         "active": {
           "@style": "{??m.status}",
@@ -65,12 +71,6 @@
           "gradient": "{??sys.selected.palette}",
           "text": "{??sys.selected.palette}",
           "textOpacity": ""
-        },
-        "icon": {
-          "margin": "",
-          "trailing": {
-            "margin": ""
-          }
         }
       },
       "var|l": {
@@ -90,20 +90,6 @@
         }
       },
       "var|_overlay": "{??l.background}",
-      "@flex": "{d.flex.x}",
-      "@readonly": "{d.font.readonly}",
-      "backgroundOpacity": "{??l.backgroundOpacity}",
-      "color": "{??l.text}",
-      "colorOpacity": "{??l.textOpacity}",
-      "cursor": "pointer",
-      "gradient-opacity": "{??l.gradientOpacity}",
-      "margin": "calc({??l.marginY} / 2) {??l.marginX}",
-      "min-height": "{??l.height} - {??l.marginY} - {??l.paddingY}",
-      "palette-background": "{??_overlay}",
-      "palette-gradient": "{??l.gradient}",
-      "padding": "0 {??l.paddingX}",
-      "position": "relative",
-      "width": "100%",
       "section|overlay": {
         "var|l": {
           "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important"
@@ -179,17 +165,7 @@
           "textOpacity": "{??sys.active.textOpacity}"
         }
       },
-      "#text": {
-        "@dynamic": "{d.flex.dynamic}",
-        "align-content": "center",
-        "align-items": "center",
-        "align-self": "stretch",
-        "display": "{??l.body.display}",
-        "flex-direction": "inherit",
-        "flex-wrap": "wrap",
-        "padding": "{??l.paddingY} 0",
-        "position": "relative"
-      },
+      "#text": {},
       "& .?icon": {
         "margin-right": "{??sys.icon.margin}",
         "section|inEnd": {
