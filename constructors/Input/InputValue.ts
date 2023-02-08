@@ -1,7 +1,6 @@
 import { computed, ref, Ref, ToRefs, watch } from 'vue'
 import { isFilled } from '../../functions'
 import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
-import { RadioComponent } from '../../md2/Md2Radio/RadioComponent'
 
 export class InputValue {
   readonly value = ref<BooleanOrNumberOrStringType>('')

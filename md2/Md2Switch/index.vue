@@ -10,11 +10,11 @@
       v-on="on"
       @input.prevent="onChecked"
     >
-    <span :class="classes.item">
-      <span :class="classes.icon">
-        <md2-image v-bind="iconBind"/>
+    <span :class="classes.switch">
+      <span :class="classes.circle">
+        <md2-image v-if="icon" v-bind="iconBind"/>
+        <md2-ripple v-if="isRipple"/>
       </span>
-      <md2-ripple v-if="isRipple"/>
     </span>
     <span v-if="isText" :class="classes.text">
       <span>
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../constructors/Checkbox/style';
+@import '../../constructors/Switch/style';
 
-@include initCheckbox('md2');
+@include initSwitch('md2');
 </style>

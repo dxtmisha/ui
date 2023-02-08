@@ -1,7 +1,31 @@
 {
   "d": {
     "switch": {
-      "@style": "{d.checkbox}"
+      "@style": "{d.checkbox}",
+      "var|sys": {
+        "circle": {
+          "background": "",
+          "backgroundOpacity": "1",
+          "shadow": ""
+        },
+        "switch": {
+          "backgroundOpacity": "",
+          "height": "",
+          "width": ""
+        },
+        "checked": {
+          "circle": {
+            "background": "{??sys.checked.palette}",
+            "backgroundOpacity": "1"
+          }
+        }
+      },
+      "var|l": {
+        "circle": {
+          "background": "{??sys.circle.background}",
+          "backgroundOpacity": "{??sys.circle.backgroundOpacity}"
+        }
+      }
     }
   }
 }

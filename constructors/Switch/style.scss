@@ -10,4 +10,67 @@
 
 @mixin mixinSwitch() {
   @include mixinCheckbox;
+  @include mixinSwitchSwitch;
+  @include mixinSwitchCircle;
+}
+
+@mixin mixinSwitchSwitch() {
+  @include subClass('switch') {
+    @include propertiesLink('d.flex.x');
+
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??sys.switch.background-opacity'));
+
+    width: v('??sys.switch.width');
+    height: v('??sys.switch.height');
+    border-radius: 1024px;
+
+    transform: translateY(calc((#{v('??sys.item.size')} - #{v('??sys.switch.height')}) / 2));
+    transition-property: background-color;
+  }
+}
+
+@mixin mixinSwitchCircle() {
+  @include subClass('circle') {
+    --_switch-checked: calc(#{v('??sys.switch.width')} - #{v('??sys.item.size')});
+    --_switch-shift: calc((#{v('??sys.switch.height')} / 2) - (#{v('??sys.switch.width')} / 2));
+
+    @include mixinItemSelect;
+    transform: translateX(var(--_switch-shift));
+    transition-property: transform;
+
+    &:active {
+      @include mixinItemActive;
+      @include mixinItemBackground;
+    }
+
+    &::before {
+      content: " ";
+
+      @include squared(v('??sys.icon.size'));
+      @include background(v('??l.circle.background'), v('??l.circle.background-opacity'));
+      border-radius: inherit;
+      box-shadow: v('??sys.circle.shadow');
+
+      transition-property: background-color;
+    }
+  }
+
+  input:active ~ {
+    @include subClassByGlobal('switch') {
+      @include subClassByGlobal('circle') {
+        @include mixinItemActive;
+      }
+    }
+  }
+
+  input:checked ~ {
+    @include subClassByGlobal('switch') {
+      @include subClassByGlobal('circle') {
+        @include linkTo('circle.background', '??l.palette');
+        @include linkTo('circle.background-opacity', '??sys.checked.circle.background-opacity');
+        transform: translateX(#{calc(var(--_switch-shift) * -1)});
+      }
+    }
+  }
 }

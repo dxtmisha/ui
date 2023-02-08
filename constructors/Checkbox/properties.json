@@ -83,6 +83,7 @@
           "borderOpacity": "{??sys.item.borderOpacity}"
         }
       },
+      "#circle": {},
       "#disabled": {},
       "#icon": {},
       "#input": {},
@@ -91,6 +92,9 @@
       },
       "#required": {},
       "#right": {},
+      "#switch": {
+        "?ripple-background": "{??l.palette}"
+      },
       "#text": {},
       "& .?field-message": {
         "padding-top": "0"

@@ -65,47 +65,60 @@
 
 @mixin mixinItem() {
   @include subClass('item') {
-    @include propertiesLink('d.flex.center');
-    position: relative;
+    @include mixinItemSelect;
 
-    @include paletteBackground(v('??l.palette'));
-    @include backgroundOpacity(v('??l.item.background-opacity'));
-
-    @include circle(v('??sys.item.size'));
-    min-width: v('??sys.item.size');
-
-    transition-property: background-color;
-
-    &::after {
-      content: " ";
-      position: absolute;
-      @include inset();
-
-      @include paletteBorder(v('??l.palette'));
-      @include borderOpacity(v('??l.item.border-opacity'));
-      border-style: solid;
-      border-width: v('??sys.item.border-width');
-      border-radius: inherit;
-      transition-property: border-color;
-    }
-
-    &:hover {
-      @include linkTo('item.background-opacity', '??sys.hover.item.background-opacity');
-      @include linkTo('item.border-opacity', '??sys.hover.item.border-opacity');
-    }
+    transition-duration: v('d.sys.transitionDuration.fade.through');
+    transition-property: background-color, transform;
   }
 
-  input:active + {
+  input:active ~ {
     * {
-      @include linkTo('item.background-opacity', '??sys.active.item.background-opacity');
-      @include linkTo('item.border-opacity', '??sys.active.item.border-opacity');
+      @include mixinItemBackground;
     }
 
     @include subClassByGlobal('item') {
-      &::after {
-        transition-duration: 0s;
-      }
+      @include mixinItemActive;
     }
+  }
+}
+
+@mixin mixinItemActive() {
+  &::after {
+    transition-duration: v('d.sys.transitionDuration.sm');
+  }
+}
+
+@mixin mixinItemBackground() {
+  @include linkTo('item.background-opacity', '??sys.active.item.background-opacity');
+  @include linkTo('item.border-opacity', '??sys.active.item.border-opacity');
+}
+
+@mixin mixinItemSelect() {
+  @include propertiesLink('d.flex.center');
+  position: relative;
+
+  @include paletteBackground(v('??l.palette'));
+  @include backgroundOpacity(v('??l.item.background-opacity'));
+
+  @include circle(v('??sys.item.size'));
+  min-width: v('??sys.item.size');
+
+  &::after {
+    content: " ";
+    position: absolute;
+    @include inset();
+
+    @include paletteBorder(v('??l.palette'));
+    @include borderOpacity(v('??l.item.border-opacity'));
+    border-style: solid;
+    border-width: v('??sys.item.border-width');
+    border-radius: inherit;
+    transition-property: border-color;
+  }
+
+  &:hover {
+    @include linkTo('item.background-opacity', '??sys.hover.item.background-opacity');
+    @include linkTo('item.border-opacity', '??sys.hover.item.border-opacity');
   }
 }
 

@@ -6,6 +6,7 @@ export const defaultItem = ComponentDesign.getDefault('md2.switch')
 export const props = {
   // Values
   detail: [Object],
+  icon: [Object, String],
   name: String,
   required: Boolean,
   text: [Number, String],

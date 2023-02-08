@@ -14,6 +14,7 @@ export type CheckboxClassesType = {
   item: ComponentAssociativeType
   required: ComponentAssociativeType
   right: ComponentAssociativeType
+  switch: ComponentAssociativeType
   text: ComponentAssociativeType
 }
 

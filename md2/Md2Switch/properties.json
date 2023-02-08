@@ -4,9 +4,13 @@
       "@style": "{d.switch}",
       "var|sys": {
         "palette": "{sys.palette.onSurface}",
-        "gap": "{ref.spacing.2}",
+        "gap": "{ref.spacing.4}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
+        "circle": {
+          "background": "{sys.palette.onPrimary}",
+          "shadow": "{ref.elevation.shadow.1}"
+        },
         "icon": {
           "borderWidth": "{ref.spacing.px} * 2",
           "borderOpacity": "{sys.opacity.surface.medium}",
@@ -22,6 +26,11 @@
         "label": {
           "lineHeight": "{ref.spacing.6}",
           "required": "{sys.palette.error}"
+        },
+        "switch": {
+          "backgroundOpacity": "{sys.opacity.scrim}",
+          "height": "{ref.spacing.px} * 14",
+          "width": "{ref.spacing.9}"
         },
         "active": {
           "item": {
