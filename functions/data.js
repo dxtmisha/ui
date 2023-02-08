@@ -130,7 +130,6 @@ function toCamelCase (value) {
 }
 exports.toCamelCase = toCamelCase
 function toKebabCase (value) {
-  console.log('value', value)
   return value
     .toString()
     .replace(/^[A-Z]/g, all => all.toLowerCase())
