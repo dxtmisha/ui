@@ -1,6 +1,4 @@
 @import "../../styles/properties";
-@import "../../styles/color";
-@import "../../styles/dimension";
 
 @mixin initIcon($design) {
   @include propertiesInit($design, 'icon') {

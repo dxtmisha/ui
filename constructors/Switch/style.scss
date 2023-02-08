@@ -1,0 +1,13 @@
+@import "../../styles/properties";
+@import "../Checkbox/style";
+
+@mixin initSwitch($design) {
+  @include propertiesInit($design, 'switch') {
+    @include mixinSwitch;
+    @content;
+  }
+}
+
+@mixin mixinSwitch() {
+  @include mixinCheckbox;
+}

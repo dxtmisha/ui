@@ -1,5 +1,4 @@
 @import "../../styles/properties";
-@import "../../styles/color";
 
 @mixin initFieldMessage($design) {
   @include propertiesInit($design, 'field-message') {

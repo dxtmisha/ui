@@ -2,7 +2,15 @@
 @use "sass:string";
 
 @import "./services/classesService";
+
 @import "./rules";
+@import "./color";
+@import "./dimension";
+@import "./flex";
+@import "./font";
+@import "./margin";
+@import "./padding";
+@import "./position";
 
 $currentDesign: '--' !default;
 $currentClass: '--' !default;

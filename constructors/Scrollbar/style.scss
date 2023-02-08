@@ -1,5 +1,4 @@
 @import "../../styles/properties";
-@import "../../styles/color";
 
 @mixin initScrollbar($design) {
   @include propertiesInit($design, 'scrollbar') {

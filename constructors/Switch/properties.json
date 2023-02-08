@@ -1,0 +1,7 @@
+{
+  "d": {
+    "switch": {
+      "@style": "{d.checkbox}"
+    }
+  }
+}

@@ -1,7 +1,4 @@
 @import "../../styles/properties";
-@import "../../styles/color";
-@import "../../styles/margin";
-@import "../../styles/padding";
 
 @mixin initButton($design) {
   @include propertiesInit($design, 'button') {

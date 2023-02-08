@@ -1,7 +1,4 @@
 @import "../../styles/properties";
-@import "../../styles/color";
-@import "../../styles/font";
-@import "../../styles/position";
 
 @mixin initMask($design) {
   @include propertiesInit($design, 'mask') {

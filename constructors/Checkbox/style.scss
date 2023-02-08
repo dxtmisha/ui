@@ -1,7 +1,4 @@
 @import "../../styles/properties";
-@import "../../styles/dimension";
-@import "../../styles/margin";
-@import "../../styles/position";
 
 @mixin initCheckbox($design) {
   @include propertiesInit($design, 'checkbox') {

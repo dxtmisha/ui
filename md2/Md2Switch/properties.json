@@ -1,0 +1,51 @@
+{
+  "md2": {
+    "switch": {
+      "@style": "{d.switch}",
+      "var|sys": {
+        "palette": "{sys.palette.onSurface}",
+        "gap": "{ref.spacing.2}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.high}",
+        "icon": {
+          "borderWidth": "{ref.spacing.px} * 2",
+          "borderOpacity": "{sys.opacity.surface.medium}",
+          "rounded": "{ref.spacing.1}",
+          "size": "{ref.spacing.5}",
+          "text": "{sys.palette.onPrimary}",
+          "textOpacity": "{sys.opacity.primary.high}"
+        },
+        "item": {
+          "borderWidth": "{ref.spacing.px}",
+          "size": "{ref.spacing.10}"
+        },
+        "label": {
+          "lineHeight": "{ref.spacing.6}",
+          "required": "{sys.palette.error}"
+        },
+        "active": {
+          "item": {
+            "borderOpacity": "{sys.opacity.border}",
+            "backgroundOpacity": "{sys.opacity.disabled}"
+          }
+        },
+        "hover": {
+          "item": {
+            "backgroundOpacity": "{sys.opacity.hover}"
+          }
+        },
+        "checked": {
+          "palette": "{sys.palette.primary}"
+        },
+        "error": {
+          "palette": "{sys.palette.error}"
+        },
+        "disabled": {
+          "palette": "{sys.palette.disabled}",
+          "textOpacity": "{sys.opacity.surface.disabled}"
+        }
+      },
+      "@@palette": "{?palette}"
+    }
+  }
+}
