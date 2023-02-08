@@ -64,6 +64,11 @@
       "ecmaVersion": 2020
     },
     "rules": {
+      "camelcase": "off",
+      "no-sequences": "off",
+      "no-void": "off",
+      "no-unused-expressions": "off",
+      "@typescript-eslint/camelcase": "off",
       "@typescript-eslint/no-explicit-any": "off"
     },
     "overrides": [

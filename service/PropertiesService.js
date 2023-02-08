@@ -111,7 +111,7 @@ module.exports = class extends PropertiesFileService {
       const index = item.getIndex()
       const type = item.getType()
       if (index === 'marginX') {
-        console.log('index', item)
+        // console.log('index', item)
       }
       if (type !== 'mixin') {
         if (
