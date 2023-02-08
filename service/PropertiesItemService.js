@@ -45,24 +45,6 @@ class PropertiesItemService {
   }
 
   getIndexByName (selector) {
-    if (selector === 'marginX') {
-      console.log(
-        'this.getSelector()',
-        selector,
-        selector
-          .replace(REG_SEARCH, '')
-          .replace(REG_MARK, '')
-          .trim(),
-        toKebabCase(
-          selector
-            .replace(REG_SEARCH, '')
-            .replace(REG_MARK, '')
-            .trim()
-        ),
-        toKebabCase('marginX')
-      )
-    }
-
     return toKebabCase(
       selector
         .replace(REG_SEARCH, '')

@@ -19,9 +19,6 @@ module.exports = class extends PropertiesFileService {
   }
 
   getScss () {
-    console.log(
-      this.initScssObject()?.md2?.value?.['list-item']?.value
-    )
     return `$designsProperties: (${this.initScss(this.initScssObject())});`
   }
 
@@ -110,9 +107,7 @@ module.exports = class extends PropertiesFileService {
 
       const index = item.getIndex()
       const type = item.getType()
-      if (index === 'marginX') {
-        // console.log('index', item)
-      }
+
       if (type !== 'mixin') {
         if (
           type !== 'section' &&
