@@ -18,7 +18,7 @@
   @include gradientOpacity(v('??l.gradient-opacity'));
 
   position: relative;
-  padding: 0 v('??l.paddingX');
+  padding: 0 v('??l.padding-x');
   margin: calc(#{v('??l.margin-y')} / 2) v('??l.margin-x');
 
   width: 100%;
@@ -27,6 +27,9 @@
   cursor: pointer;
 
   @include mixinText;
+
+  @include mixinSelected;
+  @include mixinDisabled;
 }
 
 @mixin mixinText {
@@ -42,6 +45,21 @@
     align-self: stretch;
 
     position: relative;
-    padding: v('??l.paddingY') 0;
+    padding: v('??l.padding-y') 0;
+  }
+}
+
+@mixin mixinSelected {
+  @include modClass('selected') {
+    @include background(v('??l.background'));
+  }
+}
+
+@mixin mixinDisabled {
+  @include modClass('disabled') {
+    @include background(v('??l.background'));
+    @include gradient(v('??l.gradient'));
+
+    cursor: default;
   }
 }

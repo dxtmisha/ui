@@ -90,6 +90,12 @@
         }
       },
       "var|_overlay": "{??l.background}",
+      "& .?icon": {
+        "margin-right": "{??sys.icon.margin}",
+        "section|inEnd": {
+          "margin-left": "{??sys.trailing.margin}"
+        }
+      },
       "section|overlay": {
         "var|l": {
           "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important"
@@ -115,8 +121,7 @@
           "gradientOpacity": "{??sys.selected.gradientOpacity}",
           "text": "{??sys.selected.text} !important",
           "textOpacity": "{??sys.selected.textOpacity} !important"
-        },
-        "background-color": "{??l.background}"
+        }
       },
       "section|disabled": {
         "var|l": {
@@ -127,10 +132,7 @@
           "gradientOpacity": "{??sys.disabled.gradientOpacity} !important",
           "text": "{??sys.disabled.text} !important",
           "textOpacity": "{??sys.disabled.textOpacity} !important"
-        },
-        "background-color": "{??l.background}",
-        "cursor": "default",
-        "gradient-color": "{??l.gradient}"
+        }
       },
       ":hover": {
         "var|l": {
@@ -165,13 +167,7 @@
           "textOpacity": "{??sys.active.textOpacity}"
         }
       },
-      "#text": {},
-      "& .?icon": {
-        "margin-right": "{??sys.icon.margin}",
-        "section|inEnd": {
-          "margin-left": "{??sys.trailing.margin}"
-        }
-      }
+      "#text": {}
     }
   }
 }
