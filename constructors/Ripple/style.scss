@@ -3,56 +3,50 @@
 @mixin initRipple($design) {
   @include propertiesInit($design, 'ripple') {
     @include mixinRipple;
+    @include mixinItem;
+
+    @include mixinInverseMod;
+
     @content;
   }
 }
 
 @mixin mixinRipple() {
+  @include absolute;
+  z-index: 8;
+
   border-radius: inherit;
-  z-index: 1;
 
   overflow: hidden;
-  position: absolute;
-  inset: 0;
-
-  @include mixinItem;
-
-  @include modClass('inverse') {
-    @include palette(v('??sys.inverse'));
-  }
 }
 
 @mixin mixinItem() {
   @include subClass('item') {
+    @include absolute;
+
     @include paletteBackground(v('??_background'));
     @include backgroundOpacity(v('??sys.opacity'));
-
-    position: absolute;
-    @include inset(0);
 
     animation-duration: v('d.sys.transition-duration.fade.through');
     animation-fill-mode: forwards;
     animation-name: getCode('??-start');
     animation-timing-function: linear;
-
-    &.is-end:not(:last-child) {
-      @include mixinEnd;
-    }
   }
 
-  &:not(:active) {
-    @include subClassByGlobal('item') {
-      &.is-end {
-        @include mixinEnd;
-      }
+  #{s('item')}:not(:last-child),
+  &:not(:active) #{s('item')} {
+    &.is-end {
+      opacity: 0;
+
+      transition-delay: v('d.sys.transition-duration.fade.enter');
+      transition-duration: v('d.sys.transition-duration.fade.through');
+      transition-property: opacity;
     }
   }
 }
 
-@mixin mixinEnd() {
-  opacity: 0;
-
-  transition-delay: v('d.sys.transition-duration.fade.enter');
-  transition-duration: v('d.sys.transition-duration.fade.through');
-  transition-property: opacity;
+@mixin mixinInverseMod() {
+  @include modClass('inverse') {
+    @include palette(v('??sys.inverse.background'));
+  }
 }

@@ -2,11 +2,13 @@
   "md2": {
     "ripple": {
       "@style": "{d.ripple}",
+      "var|_background": "{sys.palette.primary}",
       "var|sys": {
-        "inverse": "{sys.palette.onPrimary}",
+        "inverse": {
+          "background": "{sys.palette.onPrimary}"
+        },
         "opacity": "{sys.opacity.pressed}"
-      },
-      "var|_background": "{sys.palette.primary}"
+      }
     }
   }
 }

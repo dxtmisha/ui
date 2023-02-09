@@ -15,18 +15,16 @@ export abstract class RippleComponentAbstract extends ComponentAbstract {
 
   setup (): RippleSetupType {
     const classes = this.getClasses()
-    const styles = this.getStyles()
 
     return {
       ...this.getBasic(),
       classes,
-      styles,
       onClick: (event: MouseEvent) => this.add(event.offsetX, event.offsetY)
     }
   }
 
   add (x: number, y: number): void {
-    if (this.element.value) {
+    if (!this.props.disabled && this.element.value) {
       const className = this.getItem().getBasicClassName()
 
       createElement(this.element.value, 'span', item => {

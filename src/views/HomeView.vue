@@ -1,4 +1,18 @@
 <template>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40">
+      ripple
+      <md2-ripple/>
+    </div>
+    <div class="relative w-40 h-40 bg-cyan-800">
+      inverse
+      <md2-ripple inverse/>
+    </div>
+    <div class="relative w-40 h-40 bg-cyan-800">
+      disabled
+      <md2-ripple disabled/>
+    </div>
+  </div>
   <div class="home flex flex-wrap">
     <div class="relative w-64 h-64">
       <md2-image

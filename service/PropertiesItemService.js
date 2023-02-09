@@ -7,7 +7,7 @@ const cssSelectors = require('../constructors/cssSelectors.json')
 const cssSelectorsVirtual = require('../constructors/cssSelectorsVirtual.json')
 
 const REG_MARK = /^(&|=|\?|\?\?)/ig
-const REG_SEARCH = /^([^|]+\||@@|@|#|::|:)/ig
+const REG_SEARCH = /^([^|]+\||@@|@|#|::|:|~)/ig
 const REG_SUB = /(?<={[^}]*?){([^{}]+)}(?=[^{]*?})/ig
 const REG_VAR = /{([^{}]+)}/ig
 
@@ -156,6 +156,8 @@ class PropertiesItemService {
         this.type = 'link'
       } else if (selector.match(/^#/)) {
         this.type = 'subclass'
+      } else if (selector.match(/^~/)) {
+        this.type = 'section'
       } else if (this.parent?.getType() === 'var') {
         this.type = 'var'
       } else if (

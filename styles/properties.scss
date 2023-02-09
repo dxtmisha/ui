@@ -22,6 +22,10 @@ $designsProperties: () !default;
   @return #{'.'}#{getCode($name)};
 }
 
+@function s($name) {
+  @return #{'.'}#{$currentDesign}#{'-'}#{$currentComponent}#{'__'}#{$name};
+}
+
 @function i($name) {
   @return --#{getCode($name)};
 }

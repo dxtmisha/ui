@@ -1,3 +1,8 @@
+@mixin absolute($value: 0) {
+  position: absolute;
+  @include inset($value);
+}
+
 @mixin inset($value: 0) {
   inset: $value;
 

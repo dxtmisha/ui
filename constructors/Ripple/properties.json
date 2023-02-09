@@ -1,13 +1,7 @@
 {
   "d": {
     "ripple": {
-      "var|sys": {
-        "inverse": "",
-        "opacity": ""
-      },
-      "var|_background": "",
-      "var|_x": "50%",
-      "var|_y": "50%",
+      "#item": {},
       "animate|start": {
         "0%": {
           "gradient-opacity": "0",
@@ -22,10 +16,14 @@
           "clip-path": "circle(150% at {??_x} {??_y})"
         }
       },
-      "section|inverse": {
-        "var|_background": "{??sys.inverse}"
+      "var|_background": "",
+      "var|sys": {
+        "inverse": {
+          "background": ""
+        },
+        "opacity": ""
       },
-      "#item": {}
+      "~inverse": {}
     }
   }
 }
