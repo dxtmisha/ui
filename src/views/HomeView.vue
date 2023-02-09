@@ -80,6 +80,7 @@
       <md2-list-item text="List item 2" :progress="visible"/>
       <md2-list-item text="prefix" :progress="visible" prefix="+100"/>
       <md2-list-item text="suffix" :progress="visible" suffix="Clt+P"/>
+      <md2-list-item text="Validation message" text-highlight="message"/>
       <md2-list-item text="description" :progress="visible"
                      description="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен"/>
       <md2-list-item text="prefix + suffix" :progress="visible" prefix="+100" suffix="Clt+P"/>
@@ -92,6 +93,13 @@
       <md2-list-item overlay palette="red" text="background"/>
       <md2-list-item highlight text="highlight"/>
       <md2-list-item disabled text="disabled"/>
+      <md2-list-item
+        description="Свидетельство, выданное Пушкину по окончании лицея Из лицея Пушкин был выпущен"
+        disabled
+        prefix="+100"
+        suffix="Clt+P"
+        text="disabled"
+      />
       <md2-list-item selected text="selected"/>
       <md2-list-item disabled selected text="selected + disabled"/>
     </div>
@@ -110,7 +118,8 @@
   <div class="flex items-start gap-4 px-4 py-4">
     <md2-radio name="radio" value-default="value1" text="radio 1" @on-input="onEmit"/>
     <md2-radio name="radio" value-default="value2" text="radio 2" @on-input="onEmit" disabled/>
-    <md2-radio name="radio" value-default="value3" text="radio 3" @on-input="onEmit" validation-message="Validation message"/>
+    <md2-radio name="radio" value-default="value3" text="radio 3" @on-input="onEmit"
+               validation-message="Validation message"/>
     <md2-radio name="radio" value-default="value3" text="radio 3" @on-input="onEmit" palette="brown"/>
   </div>
   <div class="flex items-start gap-4 px-4 py-4">

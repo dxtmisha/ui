@@ -31,7 +31,7 @@ export abstract class RippleComponentAbstract extends ComponentAbstract {
 
       createElement(this.element.value, 'span', item => {
         item.onanimationend = () => item.classList.add('is-end')
-        // item.ontransitionend = () => item.parentElement?.removeChild(item)
+        item.ontransitionend = () => item.parentElement?.removeChild(item)
 
         item.style.setProperty(`--${className}-_x`, `${x}px`)
         item.style.setProperty(`--${className}-_y`, `${y}px`)

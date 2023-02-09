@@ -8,7 +8,6 @@ import {
   EventCallbackRequiredType
 } from '../types'
 import { getExp } from '../../functions'
-import { toKebabCase } from '../../functions/data'
 
 export type ListItemClassesType = {
   main: ComponentAssociativeType
@@ -35,7 +34,12 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
   protected abstract appearanceInverse: string[]
-  protected readonly stylesProps = [''] as string[]
+  protected readonly stylesProps = [
+    'height',
+    'overlay',
+    'palette',
+    'rounded'
+  ] as string[]
 
   setup (): ListItemSetupType {
     const classes = this.getClasses<ListItemClassesType>()
@@ -88,7 +92,7 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
 
   readonly text = computed(() => this.props.text && this.props.textHighlight
     ? this.props.text.replace(
-      getExp(this.props.textHighlight, '(:value)'),
+      getExp(this.props.textHighlight, 'ig', '(:value)'),
       (subtext: string) => `<span class="is-highlight">${subtext}</span>`
     )
     : this.props.text

@@ -9,7 +9,19 @@
           "var|gradient": "{??sys.gradient}",
           "var|gradientOpacity": "{??sys.gradientOpacity}",
           "var|text": "{??sys.text}",
-          "var|textOpacity": "{??sys.textOpacity}"
+          "var|textOpacity": "{??sys.textOpacity}",
+          "var|description": {
+            "text": "{??sys.description.text}",
+            "textOpacity": "{??sys.description.textOpacity}"
+          },
+          "var|prefix": {
+            "text": "{??sys.prefix.text}",
+            "textOpacity": "{??sys.prefix.textOpacity}"
+          },
+          "var|suffix": {
+            "text": "{??sys.suffix.text}",
+            "textOpacity": "{??sys.suffix.textOpacity}"
+          }
         },
         "mixin|rounded": {
           "var|l": {
@@ -31,11 +43,26 @@
         "paddingY": "0px",
         "text": "unset",
         "textOpacity": "unset",
+        "description": {
+          "text": "{??sys.text}",
+          "textOpacity": "{??sys.textOpacity}",
+          "padding": ""
+        },
         "icon": {
           "margin": "",
           "trailing": {
             "margin": ""
           }
+        },
+        "prefix": {
+          "text": "{??sys.description.text}",
+          "textOpacity": "{??sys.description.textOpacity}",
+          "padding": ""
+        },
+        "suffix": {
+          "text": "{??sys.description.text}",
+          "textOpacity": "{??sys.description.textOpacity}",
+          "padding": ""
         },
         "rounded": {
           "marginX": "0px",
@@ -51,7 +78,10 @@
           "border": "{??sys.disabled.palette}",
           "gradient": "{??sys.disabled.palette}",
           "text": "{??sys.disabled.palette}",
-          "textOpacity": ""
+          "textOpacity": "",
+          "description": {
+            "text": "{??sys.disabled.palette}"
+          }
         },
         "focus": {
           "@style": "{??m.status}",
@@ -60,17 +90,21 @@
         "highlight": {
           "@style": "{??m.status}",
           "background": "{??sys.highlight.palette}",
-          "gradient": "{??sys.highlight.palette}"
-        },
-        "hover": {
-          "@style": "{??m.status}",
-          "gradientOpacity": ""
+          "gradient": "{??sys.highlight.palette}",
+          "text": "",
+          "textOpacity": "{??sys.textOpacity}",
+          "description": {
+            "text": "{??sys.highlight.palette}"
+          }
         },
         "selected": {
           "@style": "{??m.status}",
           "gradient": "{??sys.selected.palette}",
           "text": "{??sys.selected.palette}",
-          "textOpacity": ""
+          "textOpacity": "",
+          "description": {
+            "text": "{??sys.selected.palette}"
+          }
         }
       },
       "var|l": {
@@ -87,15 +121,34 @@
         "textOpacity": "{??sys.textOpacity}",
         "body": {
           "display": "flex"
+        },
+        "description": {
+          "text": "{??sys.prefix.text}",
+          "textOpacity": "{??sys.prefix.textOpacity}"
+        },
+        "prefix": {
+          "text": "{??sys.prefix.text}",
+          "textOpacity": "{??sys.prefix.textOpacity}"
+        },
+        "suffix": {
+          "text": "{??sys.suffix.text}",
+          "textOpacity": "{??sys.suffix.textOpacity}"
         }
       },
       "var|_overlay": "{??l.background}",
       "& .?icon": {
         "margin-right": "{??sys.icon.margin}",
         "section|inEnd": {
-          "margin-left": "{??sys.trailing.margin}"
+          "margin-left": "{??sys.icon.trailing.margin}",
+          "margin-right": "0"
         }
       },
+      "#description": {},
+      "#context": {},
+      "#prefix": {},
+      "#suffix": {},
+      "#text": {},
+      "#title": {},
       "section|overlay": {
         "var|l": {
           "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important"
@@ -136,13 +189,7 @@
       },
       ":hover": {
         "var|l": {
-          "palette": "{??sys.hover.palette}",
-          "background": "{??sys.hover.background}",
-          "backgroundOpacity": "{??sys.hover.backgroundOpacity}",
-          "gradient": "{??sys.hover.gradient}",
-          "gradientOpacity": "{??sys.hover.gradientOpacity}",
-          "text": "{??sys.hover.text}",
-          "textOpacity": "{??sys.hover.textOpacity}"
+          "gradientOpacity": "{??sys.gradientOpacity}"
         }
       },
       ":focus": {
@@ -166,8 +213,7 @@
           "text": "{??sys.active.text}",
           "textOpacity": "{??sys.active.textOpacity}"
         }
-      },
-      "#text": {}
+      }
     }
   }
 }

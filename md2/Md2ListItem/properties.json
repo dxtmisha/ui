@@ -18,6 +18,13 @@
             "margin": "{ref.spacing.4}"
           }
         },
+        "prefix": {
+          "textOpacity": "{sys.opacity.surface.medium}",
+          "padding": "{ref.spacing.4}"
+        },
+        "suffix": {
+          "padding": "{ref.spacing.6}"
+        },
         "rounded": {
           "marginX": "{ref.spacing.2}",
           "marginA": "{ref.spacing.2}",
@@ -35,10 +42,8 @@
         },
         "highlight": {
           "palette": "{sys.palette.warning}",
-          "backgroundOpacity": "{sys.opacity.selected}"
-        },
-        "hover": {
-          "gradientOpacity": "{sys.opacity.hover}"
+          "backgroundOpacity": "{sys.opacity.selected}",
+          "text": "{sys.palette.warning}"
         },
         "selected": {
           "palette": "{sys.palette.primaryVariant}",
@@ -47,6 +52,9 @@
       },
       "@font": "{font.subtitle1}",
       "@@palette": "{?palette}",
+      "#suffix": {
+        "@font": "{font.subtitle2}"
+      },
       "section|height": {
         "sm": {
           "var|l": {
@@ -62,6 +70,16 @@
           "var|l": {
             "height": "{ref.spacing.18}"
           }
+        }
+      },
+      "media|{ref.screen.md}": {
+        "var|sys": {
+          "paddingX": "{ref.spacing.6}"
+        }
+      },
+      ":hover": {
+        "var|l": {
+          "gradientOpacity": "{sys.opacity.hover}"
         }
       }
     }

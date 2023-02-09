@@ -27,6 +27,9 @@
   cursor: pointer;
 
   @include mixinText;
+  @include mixinTitle;
+  @include mixinPrefix;
+  @include mixinSuffix;
 
   @include mixinSelected;
   @include mixinDisabled;
@@ -46,6 +49,37 @@
 
     position: relative;
     padding: v('??l.padding-y') 0;
+
+    .is-highlight {
+      @include color(v('??sys.highlight.text'), v('??sys.highlight.text-opacity'));
+    }
+  }
+}
+
+@mixin mixinTitle {
+  @include subClass('title') {
+    @include propertiesLink('d.flex.x');
+    flex-basis: 100%;
+  }
+
+  @include subClass('context') {
+    @include propertiesLink('d.flex.dynamic');
+  }
+}
+
+@mixin mixinPrefix() {
+  @include subClass('prefix') {
+    @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
+    @include paddingRight(v('??l.prefix.padding'));
+    white-space: nowrap;
+  }
+}
+
+@mixin mixinSuffix() {
+  @include subClass('suffix') {
+    @include color(v('??l.suffix.text'), v('??l.suffix.text-opacity'));
+    @include paddingLeft(v('??l.suffix.padding'));
+    white-space: nowrap;
   }
 }
 

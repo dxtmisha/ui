@@ -24,7 +24,7 @@
   @include mixinAnimation;
   @include mixinAnimationShow;
 
-  &.in-end {
+  @include modClass('in-end') {
     order: 999999;
   }
 
