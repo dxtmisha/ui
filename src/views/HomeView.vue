@@ -1,5 +1,35 @@
 <template>
   <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image/svg</div>
+      <md2-image
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image value="#00aae0"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40">
       ripple
       <md2-ripple/>

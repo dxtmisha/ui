@@ -3,11 +3,16 @@
 @mixin initImage($design) {
   @include propertiesInit($design, 'image') {
     @include mixinImage;
+
+    @include mixinLineAwesome;
+    @include mixinMaterial;
+
     @content;
   }
 }
 
 @mixin mixinImage() {
+  @include absolute;
   @include propertiesLink('d.flex.center');
 
   background-size: cover;
@@ -16,15 +21,9 @@
   font-size: v('??_font-size');
   direction: ltr;
 
-  position: absolute;
-  inset: 0;
-
   transform: none;
   transition-duration: v('d.sys.transition-duration.standard');
   transition-property: background-color, background-size, color, filter, opacity, transform;
-
-  @include mixinLineAwesome;
-  @include mixinMaterial;
 
   @include mixinType;
 
@@ -44,7 +43,7 @@
 @mixin mixinType() {
   &.is-type {
     &--public {
-      @include propertiesLink('d.mixin.background-as-color');
+      @include backgroundAsColor;
       mask-position: center;
       mask-repeat: no-repeat;
       mask-size: contain;
@@ -53,14 +52,10 @@
     &--color,
     &--image {
       @include modClassByGlobal('disabled') {
-        @include mixinGrayscale;
+        filter: grayscale(1) #{opacity}(#{v('??_disabled')});
       }
     }
   }
-}
-
-@mixin mixinGrayscale() {
-  filter: grayscale(1) #{opacity}(#{v('??_disabled')});
 }
 
 @mixin mixinLineAwesome() {
@@ -84,7 +79,7 @@
 
     direction: ltr;
 
-    &.type- {
+    &.is-type-- {
       &outlined {
         font-family: 'Material Icons Outlined', sans-serif;
       }

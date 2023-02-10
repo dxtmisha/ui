@@ -216,3 +216,8 @@
 @mixin borderInit() {
   border-color: rgba(var(--sys-border), var(--sys-border-opacity));
 }
+
+/* As */
+@mixin backgroundAsColor() {
+  @include background(var(--sys-color), var(--sys-color-opacity));
+}

@@ -3,9 +3,9 @@
     "image": {
       "var|_disabled": "",
       "var|_fontSize": "inherit",
-      "section|disabled": {},
-      "section|hide": {},
-      "section|turn": {}
+      "~disabled": {},
+      "~hide": {},
+      "~turn": {}
     }
   }
 }

@@ -144,20 +144,6 @@ export class Image {
     }
   }) as ImageTypeType
 
-  readonly isShow = computed<boolean>(() => {
-    switch (this.type.value) {
-      case 'image':
-      case 'file':
-        return !!(
-          this.data.is() && (
-            !this.adaptive.value || this.backgroundSize.value
-          )
-        )
-      default:
-        return true
-    }
-  })
-
   readonly backgroundImage = computed<string | null>(() => this.data.getSrc())
 
   readonly backgroundSize = computed<string | undefined>(() => {
