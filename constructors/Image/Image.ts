@@ -31,8 +31,7 @@ export class Image {
     public readonly adaptive: Ref<boolean>,
     public readonly width: Ref<number>,
     public readonly height: Ref<number>,
-    public readonly url: Ref<string>,
-    public readonly className: string
+    public readonly url: Ref<string>
   ) {
     this.dataImage = ref(undefined)
 
@@ -50,71 +49,27 @@ export class Image {
     }
   }
 
-  private async update (): Promise<void> {
-    switch (this.type.value) {
-      case 'image':
-      case 'file':
-        this.dataImage.value = await createImage(this.image.value)
-        break
-      case 'public':
-        this.dataImage.value = Icon.get(
-          this.image.value as string,
-          this.url.value
-        )
-        break
-      default:
-        this.dataImage.value = undefined
-        break
-    }
-  }
+  public readonly type = computed(() => {
+    const image = this.image.value
 
-  public updateAdaptive () {
-    if (
-      this.adaptive.value &&
-      this.adaptiveObject.value === undefined &&
-      this.dataImage.value &&
-      typeof this.dataImage.value !== 'string'
-    ) {
-      this.adaptiveObject.value = ImageAdaptive.add(
-        this.element,
-        this.adaptive,
-        this.dataImage as Ref<ImageItemType>,
-        this.width,
-        this.height
-      )
-    }
-  }
-
-  public readonly backgroundImage = computed(() => {
-    const dataImage = this.dataImage.value
-
-    return dataImage && this.isShow.value
-      ? `url("${typeof dataImage === 'string' ? dataImage : dataImage.src}")`
-      : null
-  }) as ComputedRef<string | null>
-
-  public readonly backgroundSize = computed(() => {
-    const coordinatorSize = this.coordinatorSize.value
-    const size = this.size.value
-
-    if (coordinatorSize) {
-      return this.getSizeImage(
-        `${100 / coordinatorSize.width * 100}%`,
-        `${100 / coordinatorSize.height * 100}%`
-      )
-    } else if (
-      this.adaptive.value &&
-      this.adaptiveObject.value
-    ) {
-      return this.adaptiveObject.value?.backgroundSize
-    } else if (size && isFilled(size)) {
-      return size.toString().match(/%$/) ? this.getSizeImage(size, size) : size
+    if (image) {
+      if (image instanceof File) {
+        return 'file'
+      } else if (image.match(/\//)) {
+        return 'image'
+      } else if (image.match(/^#/)) {
+        return 'color'
+      } else if (image.match(/^@/)) {
+        return 'public'
+      } else {
+        return image.match(/^(la|lab|filled|outlined|round|sharp|two-tone)-/)?.[1] || 'material'
+      }
     } else {
       return undefined
     }
-  }) as ComputedRef<string | undefined>
+  }) as ImageTypeType
 
-  public readonly classes = computed(() => {
+  readonly classes = computed<object>(() => {
     const type = this.type.value
     const data = { [`is-type--${type}`]: true }
 
@@ -137,63 +92,9 @@ export class Image {
     }
 
     return data
-  }) as ComputedRef<object>
+  })
 
-  public readonly coordinatorSize = computed(() => {
-    const coordinator = this.coordinator.value
-
-    if (coordinator) {
-      return {
-        width: 100 - coordinator?.[1] - coordinator?.[3],
-        height: 100 - coordinator?.[2] - coordinator?.[0]
-      }
-    } else {
-      return undefined
-    }
-  }) as ComputedRef<ImageItemSizeType | undefined>
-
-  public readonly isShow = computed(() => {
-    switch (this.type.value) {
-      case 'image':
-      case 'file':
-        return this.dataImage.value && (
-          !this.adaptive.value ||
-          (this.adaptiveObject.value && this.backgroundSize.value)
-        )
-      default:
-        return true
-    }
-  }) as ComputedRef<boolean>
-
-  public readonly positionX = computed(() => {
-    const coordinator = this.coordinator.value
-    const coordinatorSize = this.coordinatorSize.value
-
-    if (
-      coordinator &&
-      coordinatorSize
-    ) {
-      return `${coordinator?.[3] + (coordinatorSize.width / 2)}%`
-    } else {
-      return this.x.value || null
-    }
-  }) as ComputedRef<string | number | null>
-
-  public readonly positionY = computed(() => {
-    const coordinator = this.coordinator.value
-    const coordinatorSize = this.coordinatorSize.value
-
-    if (
-      coordinator &&
-      coordinatorSize
-    ) {
-      return `${coordinator?.[0] + (coordinatorSize.height / 2)}%`
-    } else {
-      return this.y.value || null
-    }
-  }) as ComputedRef<string | number | null>
-
-  public readonly styles = computed(() => {
+  readonly styles = computed<object | undefined>(() => {
     const image = this.image.value
 
     switch (this.type.value) {
@@ -213,7 +114,7 @@ export class Image {
     return undefined
   })
 
-  public readonly text = computed(() => {
+  readonly text = computed(() => {
     const image = this.image.value
     const type = this.type.value
 
@@ -235,25 +136,126 @@ export class Image {
     }
   }) as ImageOptionType
 
-  public readonly type = computed(() => {
-    const image = this.image.value
+  readonly isShow = computed<boolean>(() => {
+    switch (this.type.value) {
+      case 'image':
+      case 'file':
+        return !!(
+          this.dataImage.value && (
+            !this.adaptive.value ||
+            (this.adaptiveObject.value && this.backgroundSize.value)
+          )
+        )
+      default:
+        return true
+    }
+  })
 
-    if (image) {
-      if (image instanceof File) {
-        return 'file'
-      } else if (image.match(/\//)) {
-        return 'image'
-      } else if (image.match(/^#/)) {
-        return 'color'
-      } else if (image.match(/^@/)) {
-        return 'public'
-      } else {
-        return image.match(/^(la|lab|filled|outlined|round|sharp|two-tone)-/)?.[1] || 'material'
+  readonly backgroundImage = computed<string | null>(() => {
+    const dataImage = this.dataImage.value
+
+    return dataImage && this.isShow.value
+      ? `url("${typeof dataImage === 'string' ? dataImage : dataImage.src}")`
+      : null
+  })
+
+  readonly backgroundSize = computed<string | undefined>(() => {
+    const coordinatorSize = this.coordinatorSize.value
+    const size = this.size.value
+
+    if (coordinatorSize) {
+      return this.getSizeImage(
+        `${100 / coordinatorSize.width * 100}%`,
+        `${100 / coordinatorSize.height * 100}%`
+      )
+    } else if (
+      this.adaptive.value &&
+      this.adaptiveObject.value
+    ) {
+      console.log('this.adaptiveObject.value', this.adaptiveObject.value)
+      return this.adaptiveObject.value?.getBackground()
+    } else if (size && isFilled(size)) {
+      return size.toString().match(/%$/) ? this.getSizeImage(size, size) : size.toString()
+    } else {
+      return undefined
+    }
+  })
+
+  readonly positionX = computed<string | number | null>(() => {
+    const coordinator = this.coordinator.value
+    const coordinatorSize = this.coordinatorSize.value
+
+    if (
+      coordinator &&
+      coordinatorSize
+    ) {
+      return `${coordinator?.[3] + (coordinatorSize.width / 2)}%`
+    } else {
+      return this.x.value || null
+    }
+  })
+
+  readonly positionY = computed<string | number | null>(() => {
+    const coordinator = this.coordinator.value
+    const coordinatorSize = this.coordinatorSize.value
+
+    if (
+      coordinator &&
+      coordinatorSize
+    ) {
+      return `${coordinator?.[0] + (coordinatorSize.height / 2)}%`
+    } else {
+      return this.y.value || null
+    }
+  })
+
+  readonly coordinatorSize = computed<ImageItemSizeType | undefined>(() => {
+    const coordinator = this.coordinator.value
+
+    if (coordinator) {
+      return {
+        width: 100 - coordinator?.[1] - coordinator?.[3],
+        height: 100 - coordinator?.[2] - coordinator?.[0]
       }
     } else {
       return undefined
     }
-  }) as ImageTypeType
+  })
+
+  protected async update (): Promise<void> {
+    switch (this.type.value) {
+      case 'image':
+      case 'file':
+        this.dataImage.value = await createImage(this.image.value)
+        break
+      case 'public':
+        this.dataImage.value = Icon.get(
+          this.image.value as string,
+          this.url.value
+        )
+        break
+      default:
+        this.dataImage.value = undefined
+        break
+    }
+  }
+
+  protected updateAdaptive (): void {
+    if (
+      this.adaptive.value &&
+      this.adaptiveObject.value === undefined &&
+      this.dataImage.value &&
+      typeof this.dataImage.value !== 'string'
+    ) {
+      this.adaptiveObject.value = ImageAdaptive.add(
+        this.element,
+        this.adaptive,
+        this.dataImage as Ref<ImageItemType>,
+        this.width,
+        this.height
+      )
+    }
+  }
 
   protected getSizeImage (width: NumberOrStringType, height: NumberOrStringType): string | undefined {
     const dataImage = this.dataImage.value

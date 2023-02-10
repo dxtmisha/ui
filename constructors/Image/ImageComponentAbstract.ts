@@ -15,8 +15,17 @@ export type ImageSetupType = ComponentBaseType & {
 export abstract class ImageComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
 
-  setup (): ImageSetupType {
-    const image = new Image(
+  protected readonly stylesProps = [''] as string[]
+
+  protected readonly image: Image
+
+  constructor (
+    protected readonly props: AssociativeType & object,
+    protected readonly context: AssociativeType & object
+  ) {
+    super(props, context)
+
+    this.image = new Image(
       this.element,
       this.refs.value,
       this.refs.coordinator,
@@ -26,20 +35,21 @@ export abstract class ImageComponentAbstract extends ComponentAbstract {
       this.refs.adaptive,
       this.refs.objectWidth,
       this.refs.objectHeight,
-      this.refs.url,
-      this.getClassName()
+      this.refs.url
     )
+  }
 
-    const classes = this.getClasses({ main: image.classes })
-    const styles = this.getStyles({ main: image.styles })
+  setup (): ImageSetupType {
+    const classes = this.getClasses({ main: this.image.classes })
+    const styles = this.getStyles({ main: this.image.styles })
 
-    onUnmounted(() => image.destructor())
+    onUnmounted(() => this.image.destructor())
 
     return {
       ...this.getBasic(),
       classes,
       styles,
-      text: image.text
+      text: this.image.text
     }
   }
 }

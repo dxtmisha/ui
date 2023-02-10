@@ -1,4 +1,4 @@
-import { Ref, watch } from 'vue'
+import { ref, Ref, watch } from 'vue'
 import { EventItem } from '../../classes/EventItem'
 import { ImageAdaptiveItem } from './ImageAdaptiveItem'
 import { ImageItemSizeType, ImageItemType } from '../types'
@@ -15,6 +15,8 @@ export class ImageAdaptive {
   private static offset: ImageItemSizeType
   private static size: ImageItemSizeType
 
+  private static factorMax = ref<number>(1)
+
   static add (
     element: Ref<HTMLElement | undefined>,
     adaptive: Ref<boolean>,
@@ -27,7 +29,8 @@ export class ImageAdaptive {
       adaptive,
       data,
       width,
-      height
+      height,
+      this.factorMax
     )
 
     this.objects.push(object)
@@ -168,7 +171,7 @@ export class ImageAdaptive {
         }
       })
 
-      this.objectsAdaptive.forEach(item => item.setBackgroundSize(factorMax))
+      this.factorMax.value = factorMax
     }
   }
 

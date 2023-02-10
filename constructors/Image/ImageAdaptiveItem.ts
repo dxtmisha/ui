@@ -1,29 +1,43 @@
-import { computed, ComputedRef, ref, Ref } from 'vue'
+import { computed, ref, Ref } from 'vue'
 import { ImageItemType } from '../types'
 
 export const MAX_BEYOND = 256
 
 export class ImageAdaptiveItem {
-  readonly percentWidth: Ref<number>
-  readonly percentHeight: Ref<number>
-  readonly backgroundSize: Ref<string | undefined>
+  readonly percentWidth = ref<number>(0)
+  readonly percentHeight = ref<number>(0)
 
   private beyond = false as boolean
   private visible = false as boolean
 
+  // eslint-disable-next-line no-useless-constructor
   constructor (
     public element: Ref<HTMLElement | undefined>,
     public adaptive: Ref<boolean>,
     public data: Ref<ImageItemType>,
     public width: Ref<number>,
-    public height: Ref<number>
+    public height: Ref<number>,
+    public factorMax: Ref<number>
   ) {
-    this.percentWidth = ref(0)
-    this.percentHeight = ref(0)
-    this.backgroundSize = ref()
   }
 
-  readonly factor = computed(() => {
+  readonly type = computed<'x' | 'y' | undefined>(() => {
+    if (
+      this.width.value &&
+      this.percentWidth.value > 0
+    ) {
+      return 'x'
+    } else if (
+      this.height.value &&
+      this.percentHeight.value > 0
+    ) {
+      return 'y'
+    } else {
+      return undefined
+    }
+  })
+
+  readonly factor = computed<number>(() => {
     const element = this.element.value
     const size = this.size.value
 
@@ -42,9 +56,9 @@ export class ImageAdaptiveItem {
     }
 
     return 1
-  }) as ComputedRef<number>
+  })
 
-  readonly size = computed(() => {
+  readonly size = computed<number>(() => {
     const element = this.element.value
     const data = this.data.value
 
@@ -61,23 +75,23 @@ export class ImageAdaptiveItem {
     }
 
     return 0
-  }) as ComputedRef<number>
+  })
 
-  readonly type = computed(() => {
-    if (
-      this.width.value &&
-      this.percentWidth.value > 0
-    ) {
-      return 'x'
-    } else if (
-      this.height.value &&
-      this.percentHeight.value > 0
-    ) {
-      return 'y'
-    } else {
-      return undefined
+  private readonly background = computed<string>(() => {
+    switch (this.type.value) {
+      case 'x':
+        return `${100 * this.percentWidth.value * this.factorMax.value}% auto`
+      case 'y':
+        return `auto ${100 * this.percentHeight.value * this.factorMax.value}%`
+      default:
+        return ''
     }
-  }) as ComputedRef<'x' | 'y' | undefined>
+  })
+
+  getBackground (): string {
+    console.log('this.backgroundSize', this.background, this.background.value)
+    return this.background.value
+  }
 
   isAdaptive (): boolean {
     return !!(
@@ -116,21 +130,6 @@ export class ImageAdaptiveItem {
 
   isVisible (): boolean {
     return this.visible
-  }
-
-  setBackgroundSize (factorMax: number): this {
-    switch (this.type.value) {
-      case 'x':
-        this.backgroundSize.value = `${100 * this.percentWidth.value * factorMax}% auto`
-        break
-      case 'y':
-        this.backgroundSize.value = `auto ${100 * this.percentHeight.value * factorMax}%`
-        break
-      default:
-        this.backgroundSize.value = undefined
-    }
-
-    return this
   }
 
   setPercent (width: number, height: number): this {
