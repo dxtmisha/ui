@@ -12,12 +12,12 @@ export class ImageAdaptiveItem {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    public element: Ref<HTMLElement | undefined>,
-    public adaptive: Ref<boolean>,
-    public data: Ref<ImageItemType>,
-    public width: Ref<number>,
-    public height: Ref<number>,
-    public factorMax: Ref<number>
+    public readonly element: Ref<HTMLElement | undefined>,
+    public readonly adaptive: Ref<boolean>,
+    public readonly data: Ref<ImageItemType>,
+    public readonly width: Ref<number>,
+    public readonly height: Ref<number>,
+    public readonly factorMax: Ref<number>
   ) {
   }
 
@@ -62,10 +62,7 @@ export class ImageAdaptiveItem {
     const element = this.element.value
     const data = this.data.value
 
-    if (
-      element &&
-      data
-    ) {
+    if (element && data) {
       switch (this.type.value) {
         case 'x':
           return data.height * (element.offsetWidth * this.percentWidth.value / data.width)
@@ -77,21 +74,16 @@ export class ImageAdaptiveItem {
     return 0
   })
 
-  private readonly background = computed<string>(() => {
+  readonly backgroundSize = computed<string | undefined>(() => {
     switch (this.type.value) {
       case 'x':
         return `${100 * this.percentWidth.value * this.factorMax.value}% auto`
       case 'y':
         return `auto ${100 * this.percentHeight.value * this.factorMax.value}%`
-      default:
-        return ''
     }
-  })
 
-  getBackground (): string {
-    console.log('this.backgroundSize', this.background, this.background.value)
-    return this.background.value
-  }
+    return undefined
+  })
 
   isAdaptive (): boolean {
     return !!(
@@ -103,6 +95,21 @@ export class ImageAdaptiveItem {
   }
 
   isBeyond (): boolean {
+    return this.beyond
+  }
+
+  isVisible (): boolean {
+    return this.visible
+  }
+
+  setPercent (width: number, height: number): this {
+    this.percentWidth.value = width
+    this.percentHeight.value = height
+
+    return this
+  }
+
+  updateStatus (): this {
     this.beyond = false
     this.visible = false
 
@@ -124,17 +131,6 @@ export class ImageAdaptiveItem {
         )
       }
     }
-
-    return this.beyond
-  }
-
-  isVisible (): boolean {
-    return this.visible
-  }
-
-  setPercent (width: number, height: number): this {
-    this.percentWidth.value = width
-    this.percentHeight.value = height
 
     return this
   }

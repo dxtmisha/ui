@@ -47,7 +47,7 @@ export class ImageAdaptive {
     return object
   }
 
-  static remove (object: ImageAdaptiveItem) {
+  static remove (object: ImageAdaptiveItem): void {
     const key = this.objects.findIndex(item => item === object)
 
     if (key !== -1) {
@@ -55,8 +55,6 @@ export class ImageAdaptive {
     }
 
     this.init()
-
-    return this
   }
 
   static init (): void {
@@ -97,6 +95,8 @@ export class ImageAdaptive {
 
     this.objectsAdaptive = []
     this.objects.forEach((item, index) => {
+      item.updateStatus()
+
       if (item.isBeyond()) {
         this.objectsAdaptive.push(item)
 
