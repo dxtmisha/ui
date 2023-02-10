@@ -1,8 +1,7 @@
-import { computed, ComputedRef, ref, Ref, watchEffect } from 'vue'
-import { Icon } from './Icon'
-import { ImageAdaptive } from './ImageAdaptive'
-import { ImageAdaptiveItem } from './ImageAdaptiveItem'
-import { createImage, isFilled } from '../../functions'
+import { computed, ref, Ref } from 'vue'
+import { ImageAdaptiveObject } from './ImageAdaptiveObject'
+import { ImageData } from './ImageData'
+import { isFilled } from '../../functions'
 
 import {
   ImageCoordinatorType,
@@ -10,14 +9,15 @@ import {
   ImageItemSizeType,
   ImageOptionType,
   ImageTypeType,
-  ImageValueType,
-  NumberOrStringType
+  ImageValueType
 } from '../types'
 
 export class Image {
+  readonly data: ImageData
+  readonly adaptiveItem: ImageAdaptiveObject
+
   readonly dataImage: Ref<ImageItemType | string | undefined>
 
-  readonly adaptiveObject: Ref<ImageAdaptiveItem | undefined>
   readonly adaptiveWidth: Ref<number>
   readonly adaptiveHeight: Ref<number>
 
@@ -33,41 +33,29 @@ export class Image {
     public readonly height: Ref<number>,
     public readonly url: Ref<string>
   ) {
+    this.data = new ImageData(
+      this.type,
+      this.image,
+      this.url
+    )
+
+    this.adaptiveItem = new ImageAdaptiveObject(
+      this.element,
+      this.adaptive,
+      this.data,
+      this.width,
+      this.height
+    )
+
     this.dataImage = ref(undefined)
 
-    this.adaptiveObject = ref(undefined)
     this.adaptiveWidth = ref(0)
     this.adaptiveHeight = ref(0)
-
-    watchEffect(() => this.update())
-    watchEffect(() => this.updateAdaptive())
   }
 
   destructor (): void {
-    if (this.adaptiveObject.value) {
-      ImageAdaptive.remove(this.adaptiveObject.value)
-    }
+    this.adaptiveItem.remove()
   }
-
-  public readonly type = computed(() => {
-    const image = this.image.value
-
-    if (image) {
-      if (image instanceof File) {
-        return 'file'
-      } else if (image.match(/\//)) {
-        return 'image'
-      } else if (image.match(/^#/)) {
-        return 'color'
-      } else if (image.match(/^@/)) {
-        return 'public'
-      } else {
-        return image.match(/^(la|lab|filled|outlined|round|sharp|two-tone)-/)?.[1] || 'material'
-      }
-    } else {
-      return undefined
-    }
-  }) as ImageTypeType
 
   readonly classes = computed<object>(() => {
     const type = this.type.value
@@ -136,14 +124,33 @@ export class Image {
     }
   }) as ImageOptionType
 
+  protected readonly type = computed(() => {
+    const image = this.image.value
+
+    if (image) {
+      if (image instanceof File) {
+        return 'file'
+      } else if (image.match(/\//)) {
+        return 'image'
+      } else if (image.match(/^#/)) {
+        return 'color'
+      } else if (image.match(/^@/)) {
+        return 'public'
+      } else {
+        return image.match(/^(la|lab|filled|outlined|round|sharp|two-tone)-/)?.[1] || 'material'
+      }
+    } else {
+      return undefined
+    }
+  }) as ImageTypeType
+
   readonly isShow = computed<boolean>(() => {
     switch (this.type.value) {
       case 'image':
       case 'file':
         return !!(
-          this.dataImage.value && (
-            !this.adaptive.value ||
-            (this.adaptiveObject.value && this.backgroundSize.value)
+          this.data.is() && (
+            !this.adaptive.value || this.backgroundSize.value
           )
         )
       default:
@@ -151,61 +158,23 @@ export class Image {
     }
   })
 
-  readonly backgroundImage = computed<string | null>(() => {
-    const dataImage = this.dataImage.value
-
-    return dataImage && this.isShow.value
-      ? `url("${typeof dataImage === 'string' ? dataImage : dataImage.src}")`
-      : null
-  })
+  readonly backgroundImage = computed<string | null>(() => this.data.getSrc())
 
   readonly backgroundSize = computed<string | undefined>(() => {
     const coordinatorSize = this.coordinatorSize.value
     const size = this.size.value
 
     if (coordinatorSize) {
-      return this.getSizeImage(
+      return this.data.getSize(
         `${100 / coordinatorSize.width * 100}%`,
         `${100 / coordinatorSize.height * 100}%`
       )
-    } else if (
-      this.adaptive.value &&
-      this.adaptiveObject.value
-    ) {
-      console.log('this.adaptiveObject.value', this.adaptiveObject.value)
-      return this.adaptiveObject.value?.getBackground()
+    } else if (this.adaptiveItem.is()) {
+      return this.adaptiveItem.getSize()
     } else if (size && isFilled(size)) {
-      return size.toString().match(/%$/) ? this.getSizeImage(size, size) : size.toString()
+      return size.toString().match(/%$/) ? this.data.getSize(size, size) : size.toString()
     } else {
       return undefined
-    }
-  })
-
-  readonly positionX = computed<string | number | null>(() => {
-    const coordinator = this.coordinator.value
-    const coordinatorSize = this.coordinatorSize.value
-
-    if (
-      coordinator &&
-      coordinatorSize
-    ) {
-      return `${coordinator?.[3] + (coordinatorSize.width / 2)}%`
-    } else {
-      return this.x.value || null
-    }
-  })
-
-  readonly positionY = computed<string | number | null>(() => {
-    const coordinator = this.coordinator.value
-    const coordinatorSize = this.coordinatorSize.value
-
-    if (
-      coordinator &&
-      coordinatorSize
-    ) {
-      return `${coordinator?.[0] + (coordinatorSize.height / 2)}%`
-    } else {
-      return this.y.value || null
     }
   })
 
@@ -222,48 +191,31 @@ export class Image {
     }
   })
 
-  protected async update (): Promise<void> {
-    switch (this.type.value) {
-      case 'image':
-      case 'file':
-        this.dataImage.value = await createImage(this.image.value)
-        break
-      case 'public':
-        this.dataImage.value = Icon.get(
-          this.image.value as string,
-          this.url.value
-        )
-        break
-      default:
-        this.dataImage.value = undefined
-        break
-    }
-  }
+  private readonly positionX = computed<string | number | null>(() => {
+    const coordinator = this.coordinator.value
+    const coordinatorSize = this.coordinatorSize.value
 
-  protected updateAdaptive (): void {
     if (
-      this.adaptive.value &&
-      this.adaptiveObject.value === undefined &&
-      this.dataImage.value &&
-      typeof this.dataImage.value !== 'string'
+      coordinator &&
+      coordinatorSize
     ) {
-      this.adaptiveObject.value = ImageAdaptive.add(
-        this.element,
-        this.adaptive,
-        this.dataImage as Ref<ImageItemType>,
-        this.width,
-        this.height
-      )
-    }
-  }
-
-  protected getSizeImage (width: NumberOrStringType, height: NumberOrStringType): string | undefined {
-    const dataImage = this.dataImage.value
-
-    if (dataImage && typeof dataImage !== 'string') {
-      return dataImage.height < dataImage.width ? `auto ${height}` : `${width} auto`
+      return `${coordinator?.[3] + (coordinatorSize.width / 2)}%`
     } else {
-      return undefined
+      return this.x.value || null
     }
-  }
+  })
+
+  private readonly positionY = computed<string | number | null>(() => {
+    const coordinator = this.coordinator.value
+    const coordinatorSize = this.coordinatorSize.value
+
+    if (
+      coordinator &&
+      coordinatorSize
+    ) {
+      return `${coordinator?.[0] + (coordinatorSize.height / 2)}%`
+    } else {
+      return this.y.value || null
+    }
+  })
 }
