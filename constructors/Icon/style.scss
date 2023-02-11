@@ -8,15 +8,15 @@
 }
 
 @mixin mixinIcon() {
-  @include propertiesLink('d.font.readonly');
-
-  border-radius: v('??_rounded');
   display: inline-block;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 
-  min-width: v('??_size');
   @include squared(v('??_size'));
+  min-width: v('??_size');
+  border-radius: v('??_rounded');
+
+  @include propertiesLink('d.font.readonly');
 
   transition-duration: v('d.sys.transition-duration.standard');
   transition-property: background, clip-path, margin, opacity, transform;

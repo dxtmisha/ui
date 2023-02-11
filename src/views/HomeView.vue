@@ -36,6 +36,230 @@
       <md2-image :value="file"/>
     </div>
   </div>
+  <div class="flex gap-2 p-4 font-bold">disabled</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image disabled value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image disabled value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        disabled
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / svg</div>
+      <md2-image
+        disabled
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image disabled value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image disabled value="#00aae0"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: file</div>
+      <md2-image disabled :value="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image :disabled="toggle" value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image :disabled="toggle" value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        :disabled="toggle"
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / svg</div>
+      <md2-image
+        :disabled="toggle"
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image :disabled="toggle" value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image :disabled="toggle" value="#00aae0"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: file</div>
+      <md2-image :disabled="toggle" :value="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">hide</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image :hide="toggle" value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image :hide="toggle" value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        :hide="toggle"
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / svg</div>
+      <md2-image
+        :hide="toggle"
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image :hide="toggle" value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image :hide="toggle" value="#00aae0"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: file</div>
+      <md2-image :hide="toggle" :value="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">turn</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image :turn="toggle" value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image :turn="toggle" value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        :turn="toggle"
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / svg</div>
+      <md2-image
+        :turn="toggle"
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image :turn="toggle" value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image :turn="toggle" value="#00aae0"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: file</div>
+      <md2-image :turn="toggle" :value="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">hide + turn</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image hide :turn="toggle" value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image hide :turn="toggle" value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        hide
+        :turn="toggle"
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / svg</div>
+      <md2-image
+        hide
+        :turn="toggle"
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image hide :turn="toggle" value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image hide :turn="toggle" value="#00aae0"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: file</div>
+      <md2-image hide :turn="toggle" :value="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon</div>
+      <md2-image :hide="toggle" turn value="face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: icon / outlined</div>
+      <md2-image :hide="toggle" turn value="outlined-face"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image</div>
+      <md2-image
+        :hide="toggle"
+        turn
+        value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / svg</div>
+      <md2-image
+        :hide="toggle"
+        turn
+        value="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: svg</div>
+      <md2-image :hide="toggle" turn value="@test"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: color</div>
+      <md2-image :hide="toggle" turn value="#00aae0"/>
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: file</div>
+      <md2-image :hide="toggle" turn :value="file"/>
+    </div>
+  </div>
   <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40 border p-2">
       <div class="relative text-center z-10">image: image / coordinator</div>
@@ -63,6 +287,36 @@
       <md2-image
         :y="'100%'"
         value="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+  </div>
+  <div class="flex gap-2 p-4">
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / coordinator</div>
+      <md2-image
+        :coordinator="[25,25,25,25]"
+        :value="file"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / coordinator</div>
+      <md2-image
+        :coordinator="[75,75,0,0]"
+        :value="file"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / x</div>
+      <md2-image
+        :x="'0%'"
+        :value="file"
+      />
+    </div>
+    <div class="relative w-40 h-40 border p-2">
+      <div class="relative text-center z-10">image: image / y</div>
+      <md2-image
+        :y="'100%'"
+        :value="file"
       />
     </div>
   </div>
@@ -2701,9 +2955,16 @@ export default defineComponent({
     const data = ref('close')
     const icon = ref('close') as Ref<string | AssociativeType>
     const file = ref() as Ref<File | undefined>
+    const toggle = ref(false)
+
+    setInterval(() => {
+      toggle.value = !toggle.value
+    }, 1600)
+
     return {
       data,
       file,
+      toggle,
       onClick () {
         data.value = 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e'
       },

@@ -4,6 +4,11 @@
   @include propertiesInit($design, 'image') {
     @include mixinImage;
 
+    @include mixinType;
+    @include mixinTurn;
+    @include mixinDisabled;
+    @include mixinHide;
+
     @include mixinLineAwesome;
     @include mixinMaterial;
 
@@ -11,7 +16,7 @@
   }
 }
 
-@mixin mixinImage() {
+@mixin mixinImage {
   @include absolute;
   @include propertiesLink('d.flex.center');
 
@@ -24,23 +29,9 @@
   transform: none;
   transition-duration: v('d.sys.transition-duration.standard');
   transition-property: background-color, background-size, color, filter, opacity, transform;
-
-  @include mixinType;
-
-  @include modClass('turn') {
-    transform: rotate(180deg);
-  }
-
-  @include modClass('disabled') {
-    @include colorOpacity(v('??_disabled'));
-  }
-
-  @include modClass('hide') {
-    @include propertiesLink('d.animation.hide');
-  }
 }
 
-@mixin mixinType() {
+@mixin mixinType {
   &.is-type {
     &--public {
       @include backgroundAsColor;
@@ -50,6 +41,7 @@
     }
 
     &--color,
+    &--file,
     &--image {
       @include modClassByGlobal('disabled') {
         filter: grayscale(1) #{opacity}(#{v('??_disabled')});
@@ -58,7 +50,29 @@
   }
 }
 
-@mixin mixinLineAwesome() {
+@mixin mixinTurn {
+  @include modClass('turn') {
+    transform: rotate(180deg);
+  }
+}
+
+@mixin mixinDisabled {
+  @include modClass('disabled') {
+    @include colorOpacity(v('??_disabled'));
+  }
+}
+
+@mixin mixinHide {
+  @include modClass('hide') {
+    @include propertiesLink('d.animation.hide');
+
+    @include modClassByGlobal('turn') {
+      transform: scale(.8) rotate(180deg);
+    }
+  }
+}
+
+@mixin mixinLineAwesome {
   &.la,
   &.lab,
   &.lad,
@@ -73,7 +87,7 @@
   }
 }
 
-@mixin mixinMaterial() {
+@mixin mixinMaterial {
   &.material-icons {
     @content;
 

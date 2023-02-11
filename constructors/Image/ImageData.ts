@@ -58,7 +58,6 @@ export class ImageData {
       case 'image':
       case 'file':
         this.item.value = await createImage(this.image.value)
-        console.log('this.item.value', this.item.value)
         break
       case 'public':
         this.item.value = Icon.get(
