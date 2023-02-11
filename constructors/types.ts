@@ -92,9 +92,9 @@ export type ImageItemType = {
   width: number
   height: number
 }
-export type ImageItemSizeType = {
-  width: number
-  height: number
+export type ImageItemSizeType<T = number> = {
+  width: T
+  height: T
 }
 export type ImageOptionType = Ref<NumberOrStringType | undefined>
 export type ImageTypeValueType =

@@ -1,4 +1,4 @@
-import { ref, Ref, watchEffect } from 'vue'
+import { computed, ref, Ref, watchEffect } from 'vue'
 import { Icon } from './Icon'
 import { createImage } from '../../functions'
 import { ImageItemType, ImageTypeType, ImageValueType, NumberOrStringType } from '../types'
@@ -13,6 +13,16 @@ export class ImageData {
   ) {
     watchEffect(() => this.update())
   }
+
+  private readonly src = computed<string | null>(() => {
+    if (typeof this.item.value === 'string') {
+      return `url("${this.item.value}")`
+    } else if (this.item.value) {
+      return `url("${this.item.value.src}")`
+    } else {
+      return null
+    }
+  })
 
   is (): boolean {
     return this.item.value !== undefined
@@ -40,13 +50,7 @@ export class ImageData {
   }
 
   getSrc (): string | null {
-    if (typeof this.item.value === 'string') {
-      return `url("${this.item.value}")`
-    } else if (this.item.value) {
-      return `url("${this.item.value.src}")`
-    } else {
-      return null
-    }
+    return this.src.value
   }
 
   private async update (): Promise<void> {
@@ -54,6 +58,7 @@ export class ImageData {
       case 'image':
       case 'file':
         this.item.value = await createImage(this.image.value)
+        console.log('this.item.value', this.item.value)
         break
       case 'public':
         this.item.value = Icon.get(
