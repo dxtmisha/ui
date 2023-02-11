@@ -36,9 +36,9 @@ export type ComponentAssociativeRefType = RefOrNormalType<ComponentAssociativeVa
 export type ComponentAssociativeType = AssociativeType<ComponentAssociativeRefType>
 export type ComponentAssociativeItemsType = AssociativeType<ComponentAssociativeType>
 export type ComponentValueType = RefOrNormalType<string>
-export type ComponentClassesType = {
-  main: ComponentAssociativeType
-  [key: NumberOrStringType]: ComponentAssociativeType
+export type ComponentClassesType<T = ComponentAssociativeType> = {
+  main: T
+  [key: NumberOrStringType]: T
 }
 export type ComponentPropOptionsType<T = any, D = T> = {
   type?: PropType<T> | true | null

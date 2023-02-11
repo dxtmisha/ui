@@ -3510,7 +3510,7 @@ export default defineComponent({
     const toggle = ref(false)
 
     setInterval(() => {
-      toggle.value = !toggle.value
+      // toggle.value = !toggle.value
     }, 1600)
 
     return {

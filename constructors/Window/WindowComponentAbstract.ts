@@ -3,60 +3,17 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { EventItem } from '../../classes/EventItem'
 import { frame, getIdElement } from '../../functions'
 import { props } from './props'
+import { AssociativeType } from '../types'
 import {
-  AssociativeType,
-  ComponentBaseType,
-  ComponentClassesType
-} from '../types'
-
-export type WindowClassicType = ComponentClassesType & {
-  body: string
-  control: string
-  context: string
-}
-
-export type WindowClassicControlType = {
-  [key: string]: string
-  block: string
-  close: string
-  controlStatic: string
-  static: string
-}
-
-export type WindowClientType = {
-  x: number
-  y: number
-}
-
-export type WindowCoordinatesType = {
-  top: number
-  right: number
-  bottom: number
-  left: number
-  width: number
-  height: number
-}
-
-export type WindowEmitType = {
-  open: boolean,
-  element: HTMLElement | undefined
-  control: HTMLElement | undefined
-  id: string
-}
-
-export type WindowStatusType = 'preparation' | 'open' | 'hide' | 'close'
-
-export type WindowSetupType = ComponentBaseType & {
-  classes: ComputedRef<WindowClassicType>
-  id: string
-  open: Ref<boolean>
-  status: Ref<WindowStatusType>
-  isOpen: ComputedRef<boolean>
-  toggle: (value: boolean) => void
-  on: AssociativeType<(event: MouseEvent & TouchEvent) => void>
-  onAnimation: () => void
-  onTransition: () => void
-}
+  WindowClassicControlType,
+  WindowClassicType,
+  WindowClientType,
+  WindowCoordinatesType,
+  WindowEmitType,
+  WindowSetupType,
+  WindowStatusType
+} from './types'
+import { WindowElements } from './WindowElements'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -68,6 +25,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     controlStatic: 'window-control-static',
     static: 'window-static'
   } as WindowClassicControlType
+
+  private readonly elements: WindowElements
 
   private readonly id: string
   private readonly open: Ref<boolean>
@@ -105,6 +64,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   ) {
     super(props, context)
 
+    this.elements = new WindowElements(
+      this.getItem()
+    )
+
     this.id = `window--id--${getIdElement()}`
     this.open = ref(false)
     this.persistent = ref(false)
@@ -128,10 +91,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     })
     const styles = this.getStyles({
       main: {
-        [`${stylePrefix}originX`]: this.styleOriginX,
-        [`${stylePrefix}originY`]: this.styleOriginY,
-        [`${stylePrefix}insetX`]: this.styleInsetX,
-        [`${stylePrefix}insetY`]: this.styleInsetY
+        [`${stylePrefix}origin-x`]: this.styleOriginX,
+        [`${stylePrefix}origin-y`]: this.styleOriginY,
+        [`${stylePrefix}inset-x`]: this.styleInsetX,
+        [`${stylePrefix}inset-y`]: this.styleInsetY
       }
     })
 
@@ -290,10 +253,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return document.querySelector<HTMLElement>(`.${this.getControlName()}.${this.id}`) || undefined
   }
 
-  private selectorBody (): Element | undefined {
-    return document.querySelector(`.${this.getItem().getBasicClassName()}.${this.id} .${this.getBodyName()}`) || undefined
-  }
-
   private selectorIsStatus (name: keyof WindowClassicControlType) {
     return `.${this.id} .${this.getClassicControl(name)}`
   }
@@ -343,7 +302,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       this.element.value &&
       getComputedStyle(this.element.value).content !== '"--MENU--"'
     ) {
-      const rect = this.selectorBody()?.getBoundingClientRect()
+      const rect = this.elements.getBody()?.getBoundingClientRect()
 
       if (rect) {
         this.originX.value = this.client.x ? this.client.x - rect.left : null
