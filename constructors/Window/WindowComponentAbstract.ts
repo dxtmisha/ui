@@ -1,7 +1,7 @@
 import { computed, ComputedRef, nextTick, onUnmounted, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { EventItem } from '../../classes/EventItem'
-import { frame, getIdElement } from '../../functions'
+import { frame } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
@@ -28,7 +28,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
   private readonly elements: WindowElements
 
-  private readonly id: string
   private readonly open: Ref<boolean>
   private readonly persistent: Ref<boolean>
   private eventStatus: EventItem
@@ -68,7 +67,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       this.getItem()
     )
 
-    this.id = `window--id--${getIdElement()}`
     this.open = ref(false)
     this.persistent = ref(false)
     this.eventStatus = new EventItem<void>(document.body, async (event) => this.callbackStatus(event))
@@ -84,10 +82,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
     const classes = this.getClasses<WindowClassicType>({
       main: {
-        [this.id]: true,
+        [this.elements.getId()]: true,
         'is-persistent': this.persistent
       },
-      control: { [this.id]: true }
+      control: { [this.elements.getId()]: true }
     })
     const styles = this.getStyles({
       main: {
@@ -102,7 +100,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       ...this.getBasic(),
       classes,
       styles,
-      id: this.id,
+      id: this.elements.getId(),
       open: this.open,
       status: this.status,
       isOpen: this.isOpen,
@@ -170,26 +168,18 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
       this.emitWindow({
         open: toOpen,
         element: this.element.value,
-        control: this.selectorControl(),
-        id: this.id
+        control: this.elements.getControl(),
+        id: this.elements.getId()
       })
     }
   }
 
   private findControl (focus?: HTMLElement): Element | undefined {
-    return document.querySelector(`.${this.getControlName()}.${focus?.dataset.window}`) || undefined
+    return document.querySelector(`.${this.elements.getClassControl()}.${focus?.dataset.window}`) || undefined
   }
 
   private getClassicControl (name: keyof WindowClassicControlType): string {
     return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
-  }
-
-  private getBodyName (): string {
-    return this.getItem().getClassName(['body'])
-  }
-
-  private getControlName (): string {
-    return this.getItem().getClassName(['control'])
   }
 
   private getTarget<R = Element> (): R {
@@ -205,13 +195,13 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
   private ifAutoClose (): boolean {
     return this.props.autoClose &&
-      !this.getTarget().closest(`${this.selectorIsStatus('static')}, .${this.id} .${this.getControlName()}`)
+      !this.getTarget().closest(`${this.selectorIsStatus('static')}, .${this.elements.getId()} .${this.elements.getClassControl()}`)
   }
 
   private ifChildren (target = this.getTarget() as Element): boolean {
     const focus = target.closest<HTMLElement>(this.getSelector())
 
-    return focus !== null && (focus.dataset.window === this.id || this.ifChildren(this.findControl(focus)))
+    return focus !== null && (focus.dataset.window === this.elements.getId() || this.ifChildren(this.findControl(focus)))
   }
 
   private ifClose (): boolean {
@@ -249,12 +239,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return this
   }
 
-  private selectorControl (): HTMLElement | undefined {
-    return document.querySelector<HTMLElement>(`.${this.getControlName()}.${this.id}`) || undefined
-  }
-
   private selectorIsStatus (name: keyof WindowClassicControlType) {
-    return `.${this.id} .${this.getClassicControl(name)}`
+    return `.${this.elements.getId()} .${this.getClassicControl(name)}`
   }
 
   private setStatus (value: WindowStatusType): this {
@@ -270,7 +256,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private updateCoordinates (): this {
-    const rect = this.selectorControl()?.getBoundingClientRect()
+    const rect = this.elements.getRect()
 
     if (
       this.element.value &&
