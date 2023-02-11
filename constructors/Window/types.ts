@@ -29,7 +29,7 @@ export type WindowCoordinatesType = {
   height: number
 }
 
-export type WindowClassicControlType = {
+export type WindowClassesControlType = {
   [key: string]: string
   block: string
   close: string
@@ -37,14 +37,14 @@ export type WindowClassicControlType = {
   static: string
 }
 
-export type WindowClassicType<T = ComponentAssociativeType> = ComponentClassesType<T> & {
+export type WindowClassesType<T = ComponentAssociativeType> = ComponentClassesType<T> & {
   control: T
   body: T
   context: T
 }
 
 export type WindowSetupType = ComponentBaseType & {
-  classes: ComputedRef<WindowClassicType>
+  classes: ComputedRef<WindowClassesType>
   id: string
   open: Ref<boolean>
   status: Ref<WindowStatusType>

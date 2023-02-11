@@ -5,8 +5,7 @@ import { frame } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
-  WindowClassicControlType,
-  WindowClassicType,
+  WindowClassesType,
   WindowClientType,
   WindowCoordinatesType,
   WindowEmitType,
@@ -18,13 +17,6 @@ import { WindowElements } from './WindowElements'
 export abstract class WindowComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
-
-  static readonly CLASSES = {
-    block: 'window-block',
-    close: 'window-close',
-    controlStatic: 'window-control-static',
-    static: 'window-static'
-  } as WindowClassicControlType
 
   private readonly elements: WindowElements
 
@@ -80,7 +72,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   setup (): WindowSetupType {
     const stylePrefix = `--${this.getItem().getBasicClassName()}-`
 
-    const classes = this.getClasses<WindowClassicType>({
+    const classes = this.getClasses<WindowClassesType>({
       main: {
         [this.elements.getId()]: true,
         'is-persistent': this.persistent
@@ -178,10 +170,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     return document.querySelector(`.${this.elements.getClassControl()}.${focus?.dataset.window}`) || undefined
   }
 
-  private getClassicControl (name: keyof WindowClassicControlType): string {
-    return (this.constructor as typeof WindowComponentAbstract).CLASSES?.[name] || ''
-  }
-
   private getTarget<R = Element> (): R {
     return (this.target.value || this.element.value || document.body) as R
   }
@@ -195,7 +183,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
   private ifAutoClose (): boolean {
     return this.props.autoClose &&
-      !this.getTarget().closest(`${this.selectorIsStatus('static')}, .${this.elements.getId()} .${this.elements.getClassControl()}`)
+      !this.getTarget().closest(`${this.elements.getByStatus('static')}, .${this.elements.getId()} .${this.elements.getClassControl()}`)
   }
 
   private ifChildren (target = this.getTarget() as Element): boolean {
@@ -205,11 +193,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private ifClose (): boolean {
-    return !!this.getTarget().closest(`${this.selectorIsStatus('close')}:not(${this.selectorIsStatus('static')})`)
+    return !!this.getTarget().closest(`${this.elements.getByStatus('close')}:not(${this.elements.getByStatus('static')})`)
   }
 
   private ifDisabled (): boolean {
-    return !this.props.disabled && !this.getTarget().closest(this.selectorIsStatus('controlStatic'))
+    return !this.props.disabled && !this.getTarget().closest(this.elements.getByStatus('controlStatic'))
   }
 
   private ifElementIsFocus (): boolean {
@@ -222,7 +210,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
   private ifNotBlock () {
     return !this.getTarget().classList.contains(this.getName()) &&
-      !this.findControl(this.focus.value)?.closest(this.selectorIsStatus('block'))
+      !this.findControl(this.focus.value)?.closest(this.elements.getByStatus('block'))
   }
 
   private restart (): this {
@@ -237,10 +225,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
     this.originY.value = null
 
     return this
-  }
-
-  private selectorIsStatus (name: keyof WindowClassicControlType) {
-    return `.${this.elements.getId()} .${this.getClassicControl(name)}`
   }
 
   private setStatus (value: WindowStatusType): this {
