@@ -3,11 +3,20 @@
 @mixin initIcon($design) {
   @include propertiesInit($design, 'icon') {
     @include mixinIcon;
+
+    @include mixinIconAnimation;
+    @include mixinIconAnimationShow;
+
+    @include mixinIconBackground;
+    @include mixinIconInEnd;
+    @include mixinIconDisabled;
+    @include mixinIconHide;
+
     @content;
   }
 }
 
-@mixin mixinIcon() {
+@mixin mixinIcon {
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -20,32 +29,13 @@
 
   transition-duration: v('d.sys.transition-duration.standard');
   transition-property: background, clip-path, margin, opacity, transform;
-
-  @include mixinAnimation;
-  @include mixinAnimationShow;
-
-  @include modClass('in-end') {
-    order: 999999;
-  }
-
-  @include modClass('background') {
-    @include paletteBackground(v('??_background'));
-    @include backgroundOpacity(v('??_opacity'));
-  }
-
-  @include modClass('disabled') {
-    @include backgroundOpacity(#{calc(v('??_opacity') * v('??_disabled'))});
-  }
-
-  @include modClass('hide') {
-    @include propertiesLink('d.animation.hide');
-  }
 }
 
-@mixin mixinAnimation() {
+@mixin mixinIconAnimation {
   @include modClass('animation-type') {
     @include modClass('type2') {
       clip-path: inset(0 0 0 0);
+
       transition: clip-path #{v('d.sys.transition-duration.fade.enter')} #{v('d.sys.transition-function.deceleration')},
       margin #{v('d.ref.transition-duration.1')} linear,
       background #{v('d.sys.transition-duration.standard')} linear,
@@ -55,6 +45,7 @@
         clip-path: inset(0 100% 0 0);
         margin: 0 calc(#{v('??_size')} * -1) 0 0 !important;
         opacity: 1;
+
         transform: none;
         transition-duration: v('d.sys.transition-duration.fade.exit');
         transition-timing-function: linear;
@@ -63,9 +54,34 @@
   }
 }
 
-@mixin mixinAnimationShow() {
+@mixin mixinIconAnimationShow {
   @include modClass('animation-show') {
     animation-duration: v('d.sys.transition-duration.standard');
     animation-name: getCode('??-show')
+  }
+}
+
+@mixin mixinIconBackground {
+  @include modClass('background') {
+    @include paletteBackground(v('??_background'));
+    @include backgroundOpacity(v('??_opacity'));
+  }
+}
+
+@mixin mixinIconInEnd {
+  @include modClass('in-end') {
+    order: 999999;
+  }
+}
+
+@mixin mixinIconDisabled {
+  @include modClass('disabled') {
+    @include backgroundOpacity(#{calc(v('??_opacity') * v('??_disabled'))});
+  }
+}
+
+@mixin mixinIconHide {
+  @include modClass('hide') {
+    @include propertiesLink('d.animation.hide');
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.main">
+  <div :class="classes.main" :style="styles.main">
     <slot/>
     <md2-image v-if="icon" v-bind="iconBind" :hide="isActive"/>
     <md2-image v-if="iconActive" v-bind="iconActiveBind" :hide="!isActive"/>

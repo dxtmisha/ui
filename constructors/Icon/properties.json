@@ -22,14 +22,15 @@
           "transform": "none"
         }
       },
-      "section|animationShow": {},
-      "section|animationType": {
+      "~animationShow": {},
+      "~animationType": {
+        "type1": {},
         "type2": {}
       },
-      "section|background": {},
-      "section|disabled": {},
-      "section|inEnd": {},
-      "section|hide": {}
+      "~background": {},
+      "~disabled": {},
+      "~hide": {},
+      "~inEnd": {}
     }
   }
 }

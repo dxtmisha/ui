@@ -55,7 +55,7 @@ export class Image {
 
   readonly classes = computed<object>(() => {
     const type = this.type.value
-    const data = { [`is-type--${type}`]: true }
+    const data = { [`is-type--${type}`]: type !== undefined }
 
     switch (type) {
       case 'la':

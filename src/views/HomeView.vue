@@ -2,6 +2,558 @@
   <div class="flex gap-2 p-4">
     <input type="file" @input="onFile">
   </div>
+  <div class="flex gap-2 p-4 font-bold">icon</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: end</div>
+      <md2-icon class="border" icon="start" in-end/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / active</div>
+      <md2-icon class="border" icon="face" icon-active="close" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / active / object</div>
+      <md2-icon class="border" icon="face" :icon-active="{value: 'outlined-face', turn: true}" :active="toggle"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: background</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" background icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" background="255,0,0" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" background icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        background
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        background
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" background icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" background icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" background :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: size / xs</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" size="xs" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="xs" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="xs" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        size="xs"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        size="xs"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" size="xs" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" size="xs" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" size="xs" :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: size / sm</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" size="sm" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="sm" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="sm" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        size="sm"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        size="sm"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" size="sm" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" size="sm" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" size="sm" :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: size / md</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" size="md" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="md" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="md" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        size="md"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        size="md"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" size="md" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" size="md" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" size="md" :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: size / md</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" size="xl" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="xl" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="xl" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        size="xl"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        size="xl"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" size="xl" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" size="xl" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" size="xl" :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: animation-show</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" animation-show icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" animation-show icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" animation-show icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        animation-show
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        animation-show
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" animation-show icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" animation-show icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" animation-show :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: disabled</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" disabled icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" disabled icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" disabled icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        disabled
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        disabled
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" disabled icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" disabled icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" disabled :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: hide</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" :hide="toggle" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" :hide="toggle" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" :hide="toggle" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        :hide="toggle"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        :hide="toggle"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" :hide="toggle" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" :hide="toggle" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" :hide="toggle" :icon="file"/>
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: animation-type</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" animation-type="type2" :hide="toggle" icon="face"/> demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" animation-type="type2" :hide="toggle" icon="outlined-face"/> demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" animation-type="type2" :hide="toggle" icon="face" icon-active="outlined-face"
+                :active="toggle"/>
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        animation-type="type2"
+        :hide="toggle"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        animation-type="type2"
+        :hide="toggle"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" animation-type="type2" :hide="toggle" icon="@test"/>
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" animation-type="type2" :hide="toggle" icon="#00aae0"/>
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" animation-type="type2" :hide="toggle" :icon="file"/>
+      demo
+    </div>
+  </div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" size="xl" animation-type="type2" :hide="toggle" icon="face"/> demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="xl" animation-type="type2" :hide="toggle" icon="outlined-face"/> demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" size="xl" animation-type="type2" :hide="toggle" icon="face" icon-active="outlined-face"
+                :active="toggle"/>
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        animation-type="type2"
+        :hide="toggle"
+        size="xl"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        animation-type="type2"
+        :hide="toggle"
+        size="xl"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" size="xl" animation-type="type2" :hide="toggle" icon="@test"/>
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" size="xl" animation-type="type2" :hide="toggle" icon="#00aae0"/>
+      demo
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" size="xl" animation-type="type2" :hide="toggle" :icon="file"/>
+      demo
+    </div>
+  </div>
+  <div class="flex gap-2 p-4 font-bold">icon: turn</div>
+  <div class="flex gap-2 p-4">
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon</div>
+      <md2-icon class="border" :turn="toggle" icon="face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" :turn="toggle" icon="outlined-face"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: icon / outlined</div>
+      <md2-icon class="border" :turn="toggle" icon="face" icon-active="outlined-face" :active="toggle"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image</div>
+      <md2-icon
+        class="border"
+        :turn="toggle"
+        icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: image / svg</div>
+      <md2-icon
+        class="border"
+        :turn="toggle"
+        icon="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg"
+      />
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: svg</div>
+      <md2-icon class="border" :turn="toggle" icon="@test"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: color</div>
+      <md2-icon class="border" :turn="toggle" icon="#00aae0"/>
+    </div>
+    <div class="relative p-2">
+      <div class="relative text-center z-10">icon: file</div>
+      <md2-icon class="border" :turn="toggle" :icon="file"/>
+    </div>
+  </div>
+
   <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40 border p-2">
       <div class="relative text-center z-10">image: icon</div>
@@ -36,7 +588,7 @@
       <md2-image :value="file"/>
     </div>
   </div>
-  <div class="flex gap-2 p-4 font-bold">disabled</div>
+  <div class="flex gap-2 p-4 font-bold">image: disabled</div>
   <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40 border p-2">
       <div class="relative text-center z-10">image: icon</div>
@@ -109,7 +661,7 @@
       <md2-image :disabled="toggle" :value="file"/>
     </div>
   </div>
-  <div class="flex gap-2 p-4 font-bold">hide</div>
+  <div class="flex gap-2 p-4 font-bold">image: hide</div>
   <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40 border p-2">
       <div class="relative text-center z-10">image: icon</div>
@@ -146,7 +698,7 @@
       <md2-image :hide="toggle" :value="file"/>
     </div>
   </div>
-  <div class="flex gap-2 p-4 font-bold">turn</div>
+  <div class="flex gap-2 p-4 font-bold">image: turn</div>
   <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40 border p-2">
       <div class="relative text-center z-10">image: icon</div>
@@ -183,7 +735,7 @@
       <md2-image :turn="toggle" :value="file"/>
     </div>
   </div>
-  <div class="flex gap-2 p-4 font-bold">hide + turn</div>
+  <div class="flex gap-2 p-4 font-bold">image: hide + turn</div>
   <div class="flex gap-2 p-4">
     <div class="relative w-40 h-40 border p-2">
       <div class="relative text-center z-10">image: icon</div>

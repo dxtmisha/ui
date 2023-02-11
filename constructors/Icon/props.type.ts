@@ -3,7 +3,7 @@ export type IconIndeterminateType =
   'type2'
 
 export type IconSizeType =
-  'xm' |
+  'xs' |
   'sm' |
   'md' |
   'lg' |

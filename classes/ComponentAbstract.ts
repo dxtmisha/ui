@@ -140,8 +140,13 @@ export abstract class ComponentAbstract<E = HTMLElement> {
       const isName = typeof nameExtra === 'string'
       const extra = isName ? {} : nameExtra
       const data = (isRef(extra) ? extra.value : extra) || {}
+      const index = isName ? nameExtra : name
 
-      if (typeof value.value === 'object') {
+      if (
+        value.value &&
+        typeof value.value === 'object' &&
+        index in value.value
+      ) {
         return {
           ...data,
           ...value.value
@@ -149,7 +154,7 @@ export abstract class ComponentAbstract<E = HTMLElement> {
       } else {
         return {
           ...data,
-          [isName ? nameExtra : name]: value.value
+          [index]: value.value
         } as R
       }
     })
