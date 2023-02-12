@@ -15,6 +15,7 @@ import { WindowCoordinates } from './WindowCoordinates'
 import { WindowClient } from './WindowClient'
 import { WindowPosition } from './WindowPosition'
 import { WindowOrigin } from './WindowOrigin'
+import { WindowPersistent } from './WindowPersistent'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -27,8 +28,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private readonly position: WindowPosition
   private readonly origin: WindowOrigin
 
+  private readonly persistentItem: WindowPersistent
+
   private readonly open: Ref<boolean>
-  private readonly persistent: Ref<boolean>
   private eventStatus: EventItem
 
   private readonly openFirst = ref(false) as Ref<boolean>
@@ -69,8 +71,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       styleName
     )
 
+    this.persistentItem = new WindowPersistent(this.refs.persistent)
+
     this.open = ref(false)
-    this.persistent = ref(false)
     this.eventStatus = new EventItem<void>(document.body, async (event) => this.callbackStatus(event))
       .setDom(this.element)
 
@@ -82,10 +85,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   setup (): WindowSetupType {
     const classes = this.getClasses<WindowClassesType>({
       main: {
-        [this.elements.getId()]: true,
-        'is-persistent': this.persistent
+        ...this.elements.getClass(),
+        ...this.persistentItem.getClass()
       },
-      control: { [this.elements.getId()]: true }
+      control: this.elements.getClass()
     })
 
     const styles = this.getStyles({
@@ -259,9 +262,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
           }
         }
       } else if (this.ifElementIsTarget()) {
-        if (this.props.persistent) {
-          this.persistent.value = true
-        } else {
+        if (!this.persistentItem.on()) {
           await this.emitStatus()
         }
       } else if (
@@ -321,9 +322,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   }
 
   private onAnimation (): void {
-    if (this.persistent.value) {
-      this.persistent.value = false
-    }
+    this.persistentItem.disabled()
   }
 
   private onTransition (): void {

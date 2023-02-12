@@ -19,6 +19,10 @@ export class WindowElements {
     return this.id
   }
 
+  getClass (): object {
+    return { [this.id]: true }
+  }
+
   getClassControl (): string {
     return this.classControl
   }
