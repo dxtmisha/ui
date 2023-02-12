@@ -9,7 +9,9 @@ export class WindowCoordinates {
     bottom: 0,
     left: 0,
     width: 0,
-    height: 0
+    height: 0,
+    innerWidth: 0,
+    innerHeight: 0
   } as WindowCoordinatesType
 
   // eslint-disable-next-line no-useless-constructor
@@ -58,7 +60,9 @@ export class WindowCoordinates {
         this.item.bottom !== rect.bottom ||
         this.item.left !== rect.left ||
         this.item.width !== this.element.value.offsetWidth ||
-        this.item.height !== this.element.value.offsetHeight
+        this.item.height !== this.element.value.offsetHeight ||
+        this.item.innerWidth !== window.innerWidth ||
+        this.item.innerHeight !== window.innerHeight
       )
     ) {
       this.item.top = rect.top
@@ -67,6 +71,8 @@ export class WindowCoordinates {
       this.item.left = rect.left
       this.item.width = this.element.value.offsetWidth
       this.item.height = this.element.value.offsetHeight
+      this.item.innerWidth = window.innerWidth
+      this.item.innerHeight = window.innerHeight
 
       return true
     }

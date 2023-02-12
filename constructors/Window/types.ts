@@ -27,6 +27,8 @@ export type WindowCoordinatesType = {
   left: number
   width: number
   height: number
+  innerWidth: number
+  innerHeight: number
 }
 
 export type WindowClassesControlType = {
