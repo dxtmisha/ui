@@ -13,6 +13,7 @@ import {
 import { WindowElements } from './WindowElements'
 import { WindowCoordinates } from './WindowCoordinates'
 import { WindowClient } from './WindowClient'
+import { WindowPosition } from './WindowPosition'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -20,8 +21,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
   private readonly elements: WindowElements
   private readonly coordinates: WindowCoordinates
-
   private readonly client: WindowClient
+
+  private readonly position: WindowPosition
 
   private readonly open: Ref<boolean>
   private readonly persistent: Ref<boolean>
@@ -32,9 +34,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
-  private readonly positionX = ref(0) as Ref<number>
-  private readonly positionY = ref(0) as Ref<number>
-
   private readonly originX = ref(null) as Ref<number | null>
   private readonly originY = ref(null) as Ref<number | null>
 
@@ -44,15 +43,24 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   ) {
     super(props, context)
 
-    this.elements = new WindowElements(
-      this.getItem()
-    )
+    const styleName = this.getStyleName()
+
+    this.elements = new WindowElements(this.getItem())
     this.coordinates = new WindowCoordinates(
       this.element,
       this.elements
     )
-
     this.client = new WindowClient()
+
+    this.position = new WindowPosition(
+      this.element,
+      this.coordinates,
+      this.client,
+      styleName,
+      this.refs.axis,
+      this.refs.indent,
+      this.refs.contextmenu
+    )
 
     this.open = ref(false)
     this.persistent = ref(false)
@@ -78,8 +86,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       main: {
         [`${stylePrefix}origin-x`]: this.styleOriginX,
         [`${stylePrefix}origin-y`]: this.styleOriginY,
-        [`${stylePrefix}inset-x`]: this.styleInsetX,
-        [`${stylePrefix}inset-y`]: this.styleInsetY
+        ...this.position.getStyle()
       }
     })
 
@@ -101,12 +108,14 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     }
   }
 
+  getStyleName (): string {
+    return `--${this.getItem().getBasicClassName()}-`
+  }
+
   private readonly isOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
 
   private readonly styleOriginX = computed(() => this.originX.value !== null ? `${this.originX.value}px` : 'center') as ComputedRef<string>
   private readonly styleOriginY = computed(() => this.originY.value !== null ? `${this.originY.value}px` : 'center') as ComputedRef<string>
-  private readonly styleInsetX = computed(() => `${this.positionX.value}px`) as ComputedRef<string>
-  private readonly styleInsetY = computed(() => `${this.positionY.value}px`) as ComputedRef<string>
 
   private callbackOpening () {
     if (this.props.opening) {
@@ -231,14 +240,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     }
   }
 
-  private updateCoordinates (): this {
-    if (this.coordinates.update()) {
-      this.updateX().updateY()
-    }
-
-    return this
-  }
-
   private updateOrigin (): this {
     if (
       this.element.value &&
@@ -251,56 +252,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
         this.originY.value = this.client.getShiftY(rect.top)
       }
     } else {
-      this.originX.value = this.client.getShiftX(this.positionX.value)
-      this.originY.value = this.client.getShiftY(this.positionY.value)
-    }
-
-    return this
-  }
-
-  private updateX (): this {
-    if (this.element.value) {
-      const indent = this.props.axis === 'x' ? this.props.indent : 0
-      const rectRight = this.props.contextmenu ? this.client.getX() : this.coordinates.getRight() + indent
-      const rectLeft = this.props.contextmenu ? this.client.getX() : this.coordinates.getLeft() - indent
-      const argumentValues = [] as number[]
-
-      if (this.props.axis === 'x') {
-        argumentValues.push(rectRight, rectLeft)
-      } else {
-        argumentValues.push(rectLeft, rectRight)
-      }
-
-      this.positionX.value = this.getConstructor<typeof WindowComponentAbstract>().getInnerPosition(
-        argumentValues[0],
-        argumentValues[1],
-        this.element.value.offsetWidth,
-        window.innerWidth
-      )
-    }
-
-    return this
-  }
-
-  private updateY (): this {
-    if (this.element.value) {
-      const indent = this.props.axis === 'y' ? this.props.indent : 0
-      const rectTop = this.props.contextmenu ? this.client.getY() : this.coordinates.getTop() - indent
-      const rectBottom = this.props.contextmenu ? this.client.getY() : this.coordinates.getBottom() + indent
-      const argumentValues = [] as number[]
-
-      if (this.props.axis === 'y') {
-        argumentValues.push(rectBottom, rectTop)
-      } else {
-        argumentValues.push(rectTop, rectBottom)
-      }
-
-      this.positionY.value = this.getConstructor<typeof WindowComponentAbstract>().getInnerPosition(
-        argumentValues[0],
-        argumentValues[1],
-        this.element.value.offsetHeight,
-        window.innerHeight
-      )
+      this.originX.value = this.client.getShiftX(this.position.getX())
+      this.originY.value = this.client.getShiftY(this.position.getY())
     }
 
     return this
@@ -349,7 +302,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
           this.element.value &&
           getComputedStyle(this.element.value).content === '"--MENU--"'
         ) {
-          this.updateCoordinates()
+          this.position.update()
         }
       },
       () => this.open.value
@@ -363,9 +316,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.element.value &&
       this.open.value
     ) {
-      this.updateCoordinates()
-        .updateOrigin()
-        .watchCoordinates()
+      this.position.update()
+      this.updateOrigin()
+      this.watchCoordinates()
     } else {
       this.restart()
     }
@@ -397,21 +350,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.open.value = false
       this.setStatus('close')
       this.callbackOpening()
-    }
-  }
-
-  private static getInnerPosition (
-    inValue: number,
-    outValue: number,
-    length: number,
-    innerLength: number
-  ): number {
-    if (inValue + length <= innerLength) {
-      return inValue
-    } else if (outValue - length > 0) {
-      return outValue - length
-    } else {
-      return 0
     }
   }
 }
