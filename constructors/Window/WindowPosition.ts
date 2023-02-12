@@ -1,6 +1,6 @@
 import { computed, Ref, ref } from 'vue'
-import { WindowCoordinates } from './WindowCoordinates'
 import { WindowClient } from './WindowClient'
+import { WindowCoordinates } from './WindowCoordinates'
 
 export class WindowPosition {
   private readonly x = ref<number>(0)

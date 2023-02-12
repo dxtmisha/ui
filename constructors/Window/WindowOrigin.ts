@@ -1,20 +1,33 @@
-import { ref, Ref } from 'vue'
+import { computed, ref, Ref } from 'vue'
 import { WindowElements } from './WindowElements'
 import { WindowClient } from './WindowClient'
+import { WindowPosition } from './WindowPosition'
 
 export class WindowOrigin {
-  private readonly originX = ref(null) as Ref<number | null>
-  private readonly originY = ref(null) as Ref<number | null>
+  private readonly x = ref(null) as Ref<number | null>
+  private readonly y = ref(null) as Ref<number | null>
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly element: Ref<HTMLDivElement | undefined>,
     private readonly elements: WindowElements,
-    private readonly client: WindowClient
+    private readonly client: WindowClient,
+    private readonly position: WindowPosition,
+    private readonly className: string
   ) {
   }
 
-  private update (): this {
+  private readonly styleX = computed<string>(() => this.x.value !== null ? `${this.x.value}px` : 'center')
+  private readonly styleY = computed<string>(() => this.y.value !== null ? `${this.y.value}px` : 'center')
+
+  getStyle (): object {
+    return {
+      [`${this.className}origin-x`]: this.styleX,
+      [`${this.className}origin-y`]: this.styleY
+    }
+  }
+
+  update (): this {
     if (
       this.element.value &&
       getComputedStyle(this.element.value).content !== '"--MENU--"'
@@ -22,13 +35,20 @@ export class WindowOrigin {
       const rect = this.elements.getBody()?.getBoundingClientRect()
 
       if (rect) {
-        this.originX.value = this.client.getShiftX(rect.left)
-        this.originY.value = this.client.getShiftY(rect.top)
+        this.x.value = this.client.getShiftX(rect.left)
+        this.y.value = this.client.getShiftY(rect.top)
       }
     } else {
-      this.originX.value = this.client.x ? this.client.x - this.positionX.value : null
-      this.originY.value = this.client.y ? this.client.y - this.positionY.value : null
+      this.x.value = this.client.getShiftX(this.position.getX())
+      this.y.value = this.client.getShiftY(this.position.getY())
     }
+
+    return this
+  }
+
+  restart (): this {
+    this.x.value = null
+    this.y.value = null
 
     return this
   }

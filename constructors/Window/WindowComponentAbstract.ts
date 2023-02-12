@@ -14,6 +14,7 @@ import { WindowElements } from './WindowElements'
 import { WindowCoordinates } from './WindowCoordinates'
 import { WindowClient } from './WindowClient'
 import { WindowPosition } from './WindowPosition'
+import { WindowOrigin } from './WindowOrigin'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -24,6 +25,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private readonly client: WindowClient
 
   private readonly position: WindowPosition
+  private readonly origin: WindowOrigin
 
   private readonly open: Ref<boolean>
   private readonly persistent: Ref<boolean>
@@ -33,9 +35,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private readonly status = ref('close') as Ref<WindowStatusType>
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
-
-  private readonly originX = ref(null) as Ref<number | null>
-  private readonly originY = ref(null) as Ref<number | null>
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -62,6 +61,14 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.refs.contextmenu
     )
 
+    this.origin = new WindowOrigin(
+      this.element,
+      this.elements,
+      this.client,
+      this.position,
+      styleName
+    )
+
     this.open = ref(false)
     this.persistent = ref(false)
     this.eventStatus = new EventItem<void>(document.body, async (event) => this.callbackStatus(event))
@@ -73,8 +80,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   }
 
   setup (): WindowSetupType {
-    const stylePrefix = `--${this.getItem().getBasicClassName()}-`
-
     const classes = this.getClasses<WindowClassesType>({
       main: {
         [this.elements.getId()]: true,
@@ -82,10 +87,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       },
       control: { [this.elements.getId()]: true }
     })
+
     const styles = this.getStyles({
       main: {
-        [`${stylePrefix}origin-x`]: this.styleOriginX,
-        [`${stylePrefix}origin-y`]: this.styleOriginY,
+        ...this.origin.getStyle(),
         ...this.position.getStyle()
       }
     })
@@ -113,9 +118,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   }
 
   private readonly isOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
-
-  private readonly styleOriginX = computed(() => this.originX.value !== null ? `${this.originX.value}px` : 'center') as ComputedRef<string>
-  private readonly styleOriginY = computed(() => this.originY.value !== null ? `${this.originY.value}px` : 'center') as ComputedRef<string>
 
   private callbackOpening () {
     if (this.props.opening) {
@@ -221,9 +223,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
   private restart (): this {
     this.coordinates.restart()
-
-    this.originX.value = null
-    this.originY.value = null
+    this.origin.restart()
 
     return this
   }
@@ -238,25 +238,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     if (this.open.value !== value) {
       await this.emitStatus()
     }
-  }
-
-  private updateOrigin (): this {
-    if (
-      this.element.value &&
-      getComputedStyle(this.element.value).content !== '"--MENU--"'
-    ) {
-      const rect = this.elements.getBody()?.getBoundingClientRect()
-
-      if (rect) {
-        this.originX.value = this.client.getShiftX(rect.left)
-        this.originY.value = this.client.getShiftY(rect.top)
-      }
-    } else {
-      this.originX.value = this.client.getShiftX(this.position.getX())
-      this.originY.value = this.client.getShiftY(this.position.getY())
-    }
-
-    return this
   }
 
   async verification (target: HTMLElement) {
@@ -317,7 +298,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.open.value
     ) {
       this.position.update()
-      this.updateOrigin()
+      this.origin.update()
       this.watchCoordinates()
     } else {
       this.restart()
