@@ -1,6 +1,8 @@
+import { PropType } from 'vue'
+
 export const props = {
   // Values
-  beforeOpening: Function,
+  beforeOpening: Function as PropType<(status: boolean) => boolean>,
   opening: Function,
   contextmenu: Boolean,
 

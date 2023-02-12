@@ -9,7 +9,8 @@ export class WindowElements {
   private readonly classBody: string
 
   constructor (
-    private readonly item: ComponentItem
+    private readonly item: ComponentItem,
+    private readonly status: WindowStatus
   ) {
     this.classControl = item.getClassName(['control'])
     this.classBody = item.getClassName(['body'])
@@ -44,6 +45,6 @@ export class WindowElements {
   }
 
   getByStatus (name: keyof WindowClassesControlType): string {
-    return `.${this.getId()} .${WindowStatus.get(name)}`
+    return `.${this.getId()} ${this.status.getClassByName(name)}`
   }
 }

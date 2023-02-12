@@ -7,8 +7,7 @@ import { AssociativeType } from '../types'
 import {
   WindowClassesType,
   WindowEmitType,
-  WindowSetupType,
-  WindowStatusType
+  WindowSetupType
 } from './types'
 import { WindowElements } from './WindowElements'
 import { WindowCoordinates } from './WindowCoordinates'
@@ -16,11 +15,13 @@ import { WindowClient } from './WindowClient'
 import { WindowPosition } from './WindowPosition'
 import { WindowOrigin } from './WindowOrigin'
 import { WindowPersistent } from './WindowPersistent'
+import { WindowStatus } from './WindowStatus'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
 
+  private readonly status: WindowStatus
   private readonly elements: WindowElements
   private readonly coordinates: WindowCoordinates
   private readonly client: WindowClient
@@ -34,7 +35,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private eventStatus: EventItem
 
   private readonly openFirst = ref(false) as Ref<boolean>
-  private readonly status = ref('close') as Ref<WindowStatusType>
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
@@ -46,7 +46,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
     const styleName = this.getStyleName()
 
-    this.elements = new WindowElements(this.getItem())
+    this.status = new WindowStatus()
+    this.elements = new WindowElements(
+      this.getItem(),
+      this.status
+    )
     this.coordinates = new WindowCoordinates(
       this.element,
       this.elements
@@ -104,7 +108,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       styles,
       id: this.elements.getId(),
       open: this.open,
-      status: this.status,
+      status: this.status.item,
       isOpen: this.isOpen,
       toggle: (value = true as boolean) => this.toggle(value),
       on: {
@@ -149,7 +153,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       await this.props.beforeOpening(toOpen)
     ) {
       if (toOpen) {
-        this.setStatus('preparation')
+        this.status.set('preparation')
         this.open.value = toOpen
         this.openFirst.value = toOpen
 
@@ -157,12 +161,12 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
         await this.watchPosition()
 
         requestAnimationFrame(() => {
-          this.setStatus('open')
+          this.status.set('open')
           this.eventStatus.go()
           this.callbackOpening()
         })
       } else {
-        this.setStatus('hide')
+        this.status.set('hide')
         this.eventStatus.stop()
       }
 
@@ -227,12 +231,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private restart (): this {
     this.coordinates.restart()
     this.origin.restart()
-
-    return this
-  }
-
-  private setStatus (value: WindowStatusType): this {
-    this.status.value = value
 
     return this
   }
@@ -326,9 +324,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   }
 
   private onTransition (): void {
-    if (this.status.value === 'hide') {
+    if (this.status.isHide()) {
       this.open.value = false
-      this.setStatus('close')
+      this.status.set('close')
       this.callbackOpening()
     }
   }
