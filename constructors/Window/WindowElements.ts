@@ -1,5 +1,5 @@
 import { ComponentItem } from '../../classes/ComponentItem'
-import { WindowClasses } from './WindowClasses'
+import { WindowStatus } from './WindowStatus'
 import { getIdElement } from '../../functions'
 import { WindowClassesControlType } from './types'
 
@@ -39,7 +39,7 @@ export class WindowElements {
     return document.querySelector<HTMLDivElement>(`.${this.item.getBasicClassName()}.${this.id} .${this.classBody}`) || undefined
   }
 
-  getByStatus (name: keyof WindowClassesControlType) {
-    return `.${this.getId()} .${WindowClasses.get(name)}`
+  getByStatus (name: keyof WindowClassesControlType): string {
+    return `.${this.getId()} .${WindowStatus.get(name)}`
   }
 }

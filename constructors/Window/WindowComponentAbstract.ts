@@ -13,12 +13,14 @@ import {
   WindowStatusType
 } from './types'
 import { WindowElements } from './WindowElements'
+import { WindowCoordinates } from './WindowCoordinates'
 
-export abstract class WindowComponentAbstract extends ComponentAbstract {
+export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
 
   private readonly elements: WindowElements
+  private readonly coordinates: WindowCoordinates
 
   private readonly open: Ref<boolean>
   private readonly persistent: Ref<boolean>
@@ -28,15 +30,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private readonly status = ref('close') as Ref<WindowStatusType>
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
-
-  private readonly coordinates = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    width: 0,
-    height: 0
-  } as WindowCoordinatesType
 
   private readonly client = {
     x: 0,
@@ -57,6 +50,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
 
     this.elements = new WindowElements(
       this.getItem()
+    )
+    this.coordinates = new WindowCoordinates(
+      this.element,
+      this.elements
     )
 
     this.open = ref(false)
@@ -214,12 +211,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private restart (): this {
-    this.coordinates.top = 0
-    this.coordinates.right = 0
-    this.coordinates.bottom = 0
-    this.coordinates.left = 0
-    this.coordinates.width = 0
-    this.coordinates.height = 0
+    this.coordinates.restart()
 
     this.originX.value = null
     this.originY.value = null
@@ -240,28 +232,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   }
 
   private updateCoordinates (): this {
-    const rect = this.elements.getRect()
-
-    if (
-      this.element.value &&
-      rect && (
-        this.coordinates.top !== rect.top ||
-        this.coordinates.right !== rect.right ||
-        this.coordinates.bottom !== rect.bottom ||
-        this.coordinates.left !== rect.left ||
-        this.coordinates.width !== this.element.value.offsetWidth ||
-        this.coordinates.height !== this.element.value.offsetHeight
-      )
-    ) {
-      this.coordinates.top = rect.top
-      this.coordinates.right = rect.right
-      this.coordinates.bottom = rect.bottom
-      this.coordinates.left = rect.left
-      this.coordinates.width = this.element.value.offsetWidth
-      this.coordinates.height = this.element.value.offsetHeight
-
-      this.updateX()
-        .updateY()
+    if (this.coordinates.update()) {
+      this.updateX().updateY()
     }
 
     return this
@@ -289,8 +261,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private updateX (): this {
     if (this.element.value) {
       const indent = this.props.axis === 'x' ? this.props.indent : 0
-      const rectRight = this.props.contextmenu ? this.client.x : this.coordinates.right + indent
-      const rectLeft = this.props.contextmenu ? this.client.x : this.coordinates.left - indent
+      const rectRight = this.props.contextmenu ? this.client.x : this.coordinates.getRight() + indent
+      const rectLeft = this.props.contextmenu ? this.client.x : this.coordinates.getLeft() - indent
       const argumentValues = [] as number[]
 
       if (this.props.axis === 'x') {
@@ -313,8 +285,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract {
   private updateY (): this {
     if (this.element.value) {
       const indent = this.props.axis === 'y' ? this.props.indent : 0
-      const rectTop = this.props.contextmenu ? this.client.y : this.coordinates.top - indent
-      const rectBottom = this.props.contextmenu ? this.client.y : this.coordinates.bottom + indent
+      const rectTop = this.props.contextmenu ? this.client.y : this.coordinates.getTop() - indent
+      const rectBottom = this.props.contextmenu ? this.client.y : this.coordinates.getBottom() + indent
       const argumentValues = [] as number[]
 
       if (this.props.axis === 'y') {

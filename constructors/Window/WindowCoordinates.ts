@@ -1,3 +1,5 @@
+import { Ref } from 'vue'
+import { WindowElements } from './WindowElements'
 import { WindowCoordinatesType } from './types'
 
 export class WindowCoordinates {
@@ -10,35 +12,69 @@ export class WindowCoordinates {
     height: 0
   } as WindowCoordinatesType
 
-  private updateCoordinates (): this {
-    const rect = this.selectorControl()?.getBoundingClientRect()
+  // eslint-disable-next-line no-useless-constructor
+  constructor (
+    private readonly element: Ref<HTMLDivElement | undefined>,
+    private readonly elements: WindowElements
+  ) {
+  }
+
+  get (): WindowCoordinatesType {
+    return this.item
+  }
+
+  getTop (): number {
+    return this.item.top
+  }
+
+  getRight (): number {
+    return this.item.right
+  }
+
+  getBottom (): number {
+    return this.item.bottom
+  }
+
+  getLeft (): number {
+    return this.item.left
+  }
+
+  getWidth (): number {
+    return this.item.width
+  }
+
+  getHeight (): number {
+    return this.item.height
+  }
+
+  update (): boolean {
+    const rect = this.elements.getRect()
 
     if (
       this.element.value &&
       rect && (
-        this.coordinates.top !== rect.top ||
-        this.coordinates.right !== rect.right ||
-        this.coordinates.bottom !== rect.bottom ||
-        this.coordinates.left !== rect.left ||
-        this.coordinates.width !== this.element.value.offsetWidth ||
-        this.coordinates.height !== this.element.value.offsetHeight
+        this.item.top !== rect.top ||
+        this.item.right !== rect.right ||
+        this.item.bottom !== rect.bottom ||
+        this.item.left !== rect.left ||
+        this.item.width !== this.element.value.offsetWidth ||
+        this.item.height !== this.element.value.offsetHeight
       )
     ) {
-      this.coordinates.top = rect.top
-      this.coordinates.right = rect.right
-      this.coordinates.bottom = rect.bottom
-      this.coordinates.left = rect.left
-      this.coordinates.width = this.element.value.offsetWidth
-      this.coordinates.height = this.element.value.offsetHeight
+      this.item.top = rect.top
+      this.item.right = rect.right
+      this.item.bottom = rect.bottom
+      this.item.left = rect.left
+      this.item.width = this.element.value.offsetWidth
+      this.item.height = this.element.value.offsetHeight
 
-      this.updateX()
-        .updateY()
+      return true
     }
 
-    return this
+    return false
   }
 
-  private restart (): this {
+  restart (): this {
     this.item.top = 0
     this.item.right = 0
     this.item.bottom = 0

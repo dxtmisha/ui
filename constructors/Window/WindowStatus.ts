@@ -1,6 +1,6 @@
 import { WindowClassesControlType } from './types'
 
-export class WindowClasses {
+export class WindowStatus {
   static readonly CLASSES = {
     block: 'window-block',
     close: 'window-close',
