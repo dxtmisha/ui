@@ -1,12 +1,10 @@
-import { computed, ComputedRef, nextTick, onUnmounted, Ref, ref } from 'vue'
+import { computed, onUnmounted, Ref, ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { EventItem } from '../../classes/EventItem'
-import { frame } from '../../functions'
 import { props } from './props'
 import { AssociativeType } from '../types'
 import {
   WindowClassesType,
-  WindowEmitType,
   WindowSetupType
 } from './types'
 import { WindowElements } from './WindowElements'
@@ -16,10 +14,14 @@ import { WindowPosition } from './WindowPosition'
 import { WindowOrigin } from './WindowOrigin'
 import { WindowPersistent } from './WindowPersistent'
 import { WindowStatus } from './WindowStatus'
+import { WindowOpen } from './WindowOpen'
+import { WindowEvent } from './WindowEvent'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
+
+  private readonly eventItem: EventItem
 
   private readonly status: WindowStatus
   private readonly elements: WindowElements
@@ -29,12 +31,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private readonly position: WindowPosition
   private readonly origin: WindowOrigin
 
-  private readonly persistentItem: WindowPersistent
+  private readonly persistent: WindowPersistent
 
-  private readonly open: Ref<boolean>
-  private eventStatus: EventItem
+  private readonly open: WindowOpen
+  private readonly event: WindowEvent
 
-  private readonly openFirst = ref(false) as Ref<boolean>
   private readonly target = ref() as Ref<HTMLElement | undefined>
   private readonly focus = computed(() => this.getTarget().closest(this.getSelector())) as Ref<HTMLElement>
 
@@ -45,6 +46,12 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     super(props, context)
 
     const styleName = this.getStyleName()
+
+    this.eventItem = new EventItem<void>(
+      document.body,
+      async (event) => this.callbackStatus(event)
+    )
+      .setDom(this.element)
 
     this.status = new WindowStatus()
     this.elements = new WindowElements(
@@ -75,14 +82,29 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       styleName
     )
 
-    this.persistentItem = new WindowPersistent(this.refs.persistent)
+    this.persistent = new WindowPersistent(this.refs.persistent)
 
-    this.open = ref(false)
-    this.eventStatus = new EventItem<void>(document.body, async (event) => this.callbackStatus(event))
-      .setDom(this.element)
+    this.open = new WindowOpen(
+      this.element,
+      this.status,
+      this.coordinates,
+      this.position,
+      this.origin,
+      this.eventItem,
+      this.refs.inDom,
+      this.refs.beforeOpening,
+      this.refs.opening
+    )
+
+    this.event = new WindowEvent(
+      this.context.emit,
+      this.element,
+      this.elements,
+      this.open
+    )
 
     onUnmounted(() => {
-      this.eventStatus.stop()
+      this.eventItem.stop()
     })
   }
 
@@ -90,7 +112,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     const classes = this.getClasses<WindowClassesType>({
       main: {
         ...this.elements.getClass(),
-        ...this.persistentItem.getClass()
+        ...this.persistent.getClass()
       },
       control: this.elements.getClass()
     })
@@ -107,10 +129,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       classes,
       styles,
       id: this.elements.getId(),
-      open: this.open,
+      open: this.open.item,
       status: this.status.item,
-      isOpen: this.isOpen,
-      toggle: (value = true as boolean) => this.toggle(value),
+      isOpen: this.open.is,
+      toggle: (value = true as boolean) => this.open.set(value),
       on: {
         click: (event: MouseEvent & TouchEvent) => this.onClick(event),
         contextmenu: (event: MouseEvent & TouchEvent) => this.onContextmenu(event)
@@ -124,58 +146,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     return `--${this.getItem().getBasicClassName()}-`
   }
 
-  private readonly isOpen = computed(() => this.open.value || (this.openFirst.value && this.props.inDom)) as ComputedRef<boolean>
-
-  private callbackOpening () {
-    if (this.props.opening) {
-      this.props.opening(this.open.value)
-    }
-  }
-
   private async callbackStatus (event?: Event): Promise<void> {
-    if (this.open.value) {
+    if (this.open.get()) {
       await this.verification(event?.target as HTMLElement)
     } else {
-      this.eventStatus.stop()
-    }
-  }
-
-  private emitWindow (options: WindowEmitType) {
-    this.context.emit('on-window', options)
-    this.context.emit(options.open ? 'on-open' : 'on-close', options)
-  }
-
-  private async emitStatus () {
-    const toOpen = !this.open.value
-
-    if (
-      !this.props.beforeOpening ||
-      await this.props.beforeOpening(toOpen)
-    ) {
-      if (toOpen) {
-        this.status.set('preparation')
-        this.open.value = toOpen
-        this.openFirst.value = toOpen
-
-        await nextTick()
-        await this.watchPosition()
-
-        requestAnimationFrame(() => {
-          this.status.set('open')
-          this.eventStatus.go()
-          this.callbackOpening()
-        })
-      } else {
-        this.status.set('hide')
-        this.eventStatus.stop()
-      }
-
-      this.emitWindow({
-        open: toOpen,
-        element: this.element.value,
-        control: this.elements.getControl(),
-        id: this.elements.getId()
-      })
+      this.eventItem.stop()
     }
   }
 
@@ -228,79 +203,37 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       !this.findControl(this.focus.value)?.closest(this.elements.getByStatus('block'))
   }
 
-  private restart (): this {
-    this.coordinates.restart()
-    this.origin.restart()
-
-    return this
-  }
-
-  async toggle (value = true as boolean) {
-    if (this.open.value !== value) {
-      await this.emitStatus()
-    }
-  }
-
   async verification (target: HTMLElement) {
     this.target.value = target
 
-    if (this.open.value) {
+    if (this.open.get()) {
       if (this.focus.value === null) {
-        await this.emitStatus()
+        await this.open.toggle()
       } else if (!this.ifElementIsFocus()) {
         if (this.ifNotBlock()) {
           if (this.ifChildren()) {
             requestAnimationFrame(async () => {
               if (this.focus.value?.dataset.status !== 'open') {
-                await this.emitStatus()
+                await this.open.toggle()
               }
             })
           } else {
-            await this.emitStatus()
+            await this.open.toggle()
           }
         }
       } else if (this.ifElementIsTarget()) {
-        if (!this.persistentItem.on()) {
-          await this.emitStatus()
+        if (!this.persistent.on()) {
+          await this.open.toggle()
         }
       } else if (
         this.ifClose() ||
         this.ifAutoClose() ||
         !this.ifChildren()
       ) {
-        await this.emitStatus()
+        await this.open.toggle()
       }
     } else if (this.ifDisabled()) {
-      await this.emitStatus()
-    }
-  }
-
-  private watchCoordinates (): this {
-    frame(
-      () => {
-        if (
-          this.element.value &&
-          getComputedStyle(this.element.value).content === '"--MENU--"'
-        ) {
-          this.position.update()
-        }
-      },
-      () => this.open.value
-    )
-
-    return this
-  }
-
-  private async watchPosition () {
-    if (
-      this.element.value &&
-      this.open.value
-    ) {
-      this.position.update()
-      this.origin.update()
-      this.watchCoordinates()
-    } else {
-      this.restart()
+      await this.open.toggle()
     }
   }
 
@@ -320,14 +253,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   }
 
   private onAnimation (): void {
-    this.persistentItem.disabled()
+    this.persistent.disabled()
   }
 
-  private onTransition (): void {
-    if (this.status.isHide()) {
-      this.open.value = false
-      this.status.set('close')
-      this.callbackOpening()
-    }
+  private async onTransition (): Promise<void> {
+    await this.open.close()
   }
 }
