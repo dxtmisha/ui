@@ -22,6 +22,13 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
 
+  protected readonly stylesProps = [
+    'height',
+    'indent',
+    'rounded',
+    'width'
+  ] as string[]
+
   private readonly eventItem: EventItem
 
   private readonly status: WindowStatus

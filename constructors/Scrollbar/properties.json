@@ -3,12 +3,12 @@
     "scrollbar": {
       "var|sys": {
         "background": "transparent",
-        "rounded": "0px",
         "size": "",
+        "rounded": "0px",
         "border": {
           "color": "",
           "opacity": "",
-          "width": "1px"
+          "width": ""
         },
         "thumb": {
           "background": "",
@@ -29,9 +29,9 @@
           "opacity": "{??sys.thumb.opacity}"
         }
       },
-      "section|border": {},
-      "section|inverse": {},
-      "section|visible": {}
+      "~border": {},
+      "~inverse": {},
+      "~visible": {}
     }
   }
 }

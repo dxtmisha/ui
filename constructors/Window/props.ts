@@ -1,4 +1,5 @@
 import { PropType } from 'vue'
+import { WindowAlignmentType, WindowAnimationOriginType } from './props.type'
 
 export const props = {
   // Values
@@ -10,15 +11,15 @@ export const props = {
   disabled: Boolean,
 
   // Options
-  alignment: String,
-  animationOrigin: String,
+  alignment: String as PropType<WindowAlignmentType>,
+  animationOrigin: String as PropType<WindowAnimationOriginType>,
   adaptive: String,
   autoClose: Boolean,
   axis: String,
   fullscreen: Boolean,
   height: [Number, String],
   indent: Number,
-  inDom: Number,
+  inDom: Boolean,
   rounded: String,
   persistent: Boolean,
   width: [Number, String]

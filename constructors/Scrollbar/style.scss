@@ -3,15 +3,17 @@
 @mixin initScrollbar($design) {
   @include propertiesInit($design, 'scrollbar') {
     @include mixinScrollbar;
+    @include mixinScrollbarBorder;
+
     @content;
   }
 }
 
 @mixin mixinScrollbar() {
+  position: relative;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   overflow-y: auto;
-  position: relative;
 
   &:not(.is-disabled) {
     scrollbar-color: rgba(v('??sys.thumb.background'), v('??l.thumb.opacity')) v('??sys.background');
@@ -38,15 +40,13 @@
     @include linkTo('thumb.opacity', '??sys.thumb.hover.opacity');
   }
 
-  @include mixinBorder;
-
   @include modClass('visible') {
     overflow-x: visible;
     overflow-y: visible;
   }
 }
 
-@mixin mixinBorder() {
+@mixin mixinScrollbarBorder() {
   @include modClass('border') {
     border-bottom-color: rgba(v('??sys.border.color'), v('??l.border.opacity.bottom'));
     border-bottom-width: v('??sys.border.width');
