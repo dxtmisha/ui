@@ -2,7 +2,8 @@ import { ComputedRef, Ref } from 'vue'
 import {
   AssociativeType,
   BooleanOrNumberOrStringType,
-  ComponentBaseType, NumberOrUndefinedType
+  ComponentBaseType,
+  NumberOrUndefinedType
 } from '../types'
 
 export type TextareaSetupType = ComponentBaseType & {
