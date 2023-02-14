@@ -3,27 +3,30 @@
 @mixin initTextareaAutosize($design) {
   @include propertiesInit($design, 'textarea-autosize') {
     @include mixinTextareaAutosize;
+    @include mixinTextareaClone;
+
     @content;
   }
 }
 
 @mixin mixinTextareaAutosize() {
-  font: inherit;
   overflow: hidden;
-  resize: none;
 
   max-width: 100%;
   min-height: v('??sys.height');
+  resize: none;
 
-  @include mixinClone;
+  font: inherit;
 }
 
-@mixin mixinClone() {
+@mixin mixinTextareaClone() {
   @include subClass('clone') {
-    font: inherit;
     position: absolute;
-    width: inherit;
-    white-space: pre-wrap;
     visibility: hidden;
+    white-space: pre-wrap;
+
+    width: inherit;
+
+    font: inherit;
   }
 }

@@ -1,23 +1,10 @@
-import { ComputedRef, ref, Ref } from 'vue'
+import { ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { InputValue } from '../Input/InputValue'
-import { props } from './props'
-import { AssociativeType, BooleanOrNumberOrStringType, ComponentAssociativeType, ComponentBaseType } from '../types'
 import { TextareaAutosizeResize } from './TextareaAutosizeResize'
-
-export type TextareaAutosizeClassesType = {
-  main: ComponentAssociativeType
-  clone: ComponentAssociativeType
-}
-
-export type TextareaAutosizeSetupType = ComponentBaseType & {
-  classes: ComputedRef<TextareaAutosizeClassesType>
-  cloneElement: Ref<HTMLDivElement | undefined>
-  valueBind: Ref<BooleanOrNumberOrStringType>
-  onBlur: () => void
-  onChange: () => void
-  onInput: (event: Event) => void
-}
+import { props } from './props'
+import { AssociativeType } from '../types'
+import { TextareaAutosizeClassesType, TextareaAutosizeSetupType } from './types'
 
 export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstract<HTMLTextAreaElement> {
   static readonly instruction = props as AssociativeType
@@ -29,10 +16,12 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
     'update:modelValue'
   ] as string[]
 
+  protected readonly stylesProps = ['height'] as string[]
+
   protected readonly cloneElement = ref<HTMLDivElement>()
 
-  protected readonly value: InputValue
-  protected readonly resize: TextareaAutosizeResize
+  private readonly value: InputValue
+  private readonly resize: TextareaAutosizeResize
 
   constructor (
     protected readonly props: AssociativeType & object,
