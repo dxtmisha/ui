@@ -7,10 +7,10 @@ import { ProgressClassesType, ProgressSetupType } from './types'
 export abstract class ProgressComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
 
-  protected readonly move = ref<boolean>(false)
-  protected readonly visible = ref<boolean>(false)
+  private readonly move = ref<boolean>(false)
+  private readonly visible = ref<boolean>(false)
 
-  protected timeout?: number
+  private timeout?: number
 
   constructor (
     props: AssociativeType & object,
