@@ -4,14 +4,14 @@
   @include propertiesInit($design, 'window') {
     @include mixinWindow;
 
-    @include mixinBody;
-    @include mixinContext;
+    @include mixinWindowBody;
+    @include mixinWindowContext;
 
-    @include mixinPersistent;
+    @include mixinWindowPersistent;
 
-    @include mixinAlignment;
-    @include mixinAnimationOrigin;
-    @include mixinFullscreen;
+    @include mixinWindowAlignment;
+    @include mixinWindowAnimationOrigin;
+    @include mixinWindowFullscreen;
 
     @content;
   }
@@ -34,7 +34,7 @@
   will-change: background-color, left, top, contents;
 }
 
-@mixin mixinBody() {
+@mixin mixinWindowBody() {
   @include subClass('body') {
     display: flex;
     flex-flow: column;
@@ -58,14 +58,14 @@
   }
 }
 
-@mixin mixinContext() {
+@mixin mixinWindowContext() {
   @include subClass('context') {
     flex-grow: 1;
     flex-shrink: 1;
   }
 }
 
-@mixin mixinAlignment() {
+@mixin mixinWindowAlignment() {
   @include modClass('alignment') {
     @include modClass('top') {
       justify-content: flex-start;
@@ -85,7 +85,7 @@
   }
 }
 
-@mixin mixinAnimationOrigin() {
+@mixin mixinWindowAnimationOrigin() {
   @include modClass('animation-origin') {
     @include modClass('center') {
       @include link('transform-origin', center);
@@ -109,7 +109,7 @@
   }
 }
 
-@mixin mixinFullscreen() {
+@mixin mixinWindowFullscreen() {
   @include modClass('fullscreen') {
     padding: 0;
 
@@ -123,7 +123,7 @@
   }
 }
 
-@mixin mixinPersistent() {
+@mixin mixinWindowPersistent() {
   &.is-persistent {
     @include subClassByGlobal('body') {
       animation-duration: v('d.sys.transition-duration.fade.through');
