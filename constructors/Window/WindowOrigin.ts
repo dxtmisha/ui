@@ -17,8 +17,8 @@ export class WindowOrigin {
   ) {
   }
 
-  private readonly styleX = computed<string>(() => this.x.value !== null ? `${this.x.value}px` : 'center')
-  private readonly styleY = computed<string>(() => this.y.value !== null ? `${this.y.value}px` : 'center')
+  private readonly styleX = computed<string | null>(() => this.x.value !== null ? `${this.x.value}px` : null)
+  private readonly styleY = computed<string | null>(() => this.y.value !== null ? `${this.y.value}px` : null)
 
   getStyle (): object {
     return {

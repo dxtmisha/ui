@@ -1,67 +1,68 @@
 @import "../../styles/properties";
 
-@mixin initWindow(
-  $design,
-  $clientX,
-  $clientY
-) {
+@mixin initWindow($design) {
   @include propertiesInit($design, 'window') {
-    @include mixinWindow($clientX, $clientY);
+    @include mixinWindow;
+
+    @include mixinBody;
+    @include mixinContext;
+
+    @include mixinPersistent;
+
+    @include mixinAlignment;
+    @include mixinAnimationOrigin;
+    @include mixinFullscreen;
+
     @content;
   }
 }
 
-@mixin mixinWindow($clientX, $clientY) {
-  @include background(v('??sys.scrim.background'), v('??l.scrim.opacity'));
-  align-items: center;
-
+@mixin mixinWindow {
   display: v('??l.display');
   flex-flow: column;
+  align-items: center;
   justify-content: center;
-  padding: v('??sys.padding');
-
   position: fixed;
   @include inset(0);
   z-index: v('??l.index');
 
+  padding: v('??_padding');
+
+  @include background(v('??sys.scrim.background'), v('??l.scrim.opacity'));
+
   transition: v('??l.transition');
   will-change: background-color, left, top, contents;
-
-  @include mixinBody;
-  @include mixinContext;
-
-  @include mixinAlignment;
-  @include mixinAnimationOrigin;
-  @include mixinFullscreen;
-  @include mixinPersistent;
-
-  #{i('??_client-x')}: #{$clientX};
-  #{i('??_client-y')}: #{$clientY};
 }
 
 @mixin mixinBody() {
   @include subClass('body') {
-    background: v('??l.background');
-    border-radius: v('??_rounded');
-    box-shadow: v('??l.shadow');
     display: flex;
     flex-flow: column;
     flex-shrink: 1;
-    max-height: v('??_height');
-    max-width: v('??_width');
-    opacity: v('??l.body.opacity');
     overflow-y: auto;
-    transform: v('??l.body.transform');
-    transform-origin: v('??sys.transform-origin');
-    transition: v('??l.body.transition');
+
     width: 100%;
+    max-width: v('??_width');
+    max-height: v('??_height');
+
+    transform: v('??l.body.transform');
+    transform-origin: v('??l.transform-origin');
+
+    background: v('??l.background');
+    opacity: v('??l.body.opacity');
+    border-radius: v('??_rounded');
+    box-shadow: v('??l.shadow');
+
+    transition: v('??l.body.transition');
     will-change: opacity, visibility, transform, contents;
   }
 }
 
 @mixin mixinContext() {
-  flex-grow: 1;
-  flex-shrink: 1;
+  @include subClass('context') {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
 }
 
 @mixin mixinAlignment() {
@@ -87,23 +88,23 @@
 @mixin mixinAnimationOrigin() {
   @include modClass('animation-origin') {
     @include modClass('center') {
-      @include sys('transform-origin', center);
+      @include link('transform-origin', center);
     }
 
     @include modClass('top') {
-      @include sys('transform-origin', top center);
+      @include link('transform-origin', top center);
     }
 
     @include modClass('right') {
-      @include sys('transform-origin', center right);
+      @include link('transform-origin', center right);
     }
 
     @include modClass('bottom') {
-      @include sys('transform-origin', bottom center);
+      @include link('transform-origin', bottom center);
     }
 
     @include modClass('left') {
-      @include sys('transform-origin', center left);
+      @include link('transform-origin', center left);
     }
   }
 }
@@ -113,11 +114,11 @@
     padding: 0;
 
     @include subClassByGlobal('body') {
-      border-radius: 0;
-      height: 100%;
-      max-height: none;
-      max-width: none;
       width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
     }
   }
 }

@@ -18,8 +18,8 @@ export class WindowPosition {
   ) {
   }
 
-  readonly styleX = computed<string>(() => `${this.x.value}px`)
-  readonly styleY = computed<string>(() => `${this.y.value}px`)
+  readonly styleX = computed<string | null>(() => this.x.value > 0 ? `${this.x.value}px` : null)
+  readonly styleY = computed<string | null>(() => this.y.value > 0 ? `${this.y.value}px` : null)
 
   getX (): number {
     return this.x.value

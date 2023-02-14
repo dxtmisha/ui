@@ -48,9 +48,5 @@ export default {
 <style lang="scss">
 @import '../../constructors/Window/style';
 
-@include initWindow(
-    'md2',
-    v-bind(clientX),
-    v-bind(clientY)
-);
+@include initWindow('md2');
 </style>

@@ -1,14 +1,49 @@
 {
   "d": {
     "window": {
+      "var|sys": {
+        "menu": {
+          "background": "",
+          "height": "auto",
+          "index": "",
+          "shadow": "",
+          "width": ""
+        },
+        "modal": {
+          "background": "",
+          "height": "auto",
+          "index": "",
+          "shadow": "",
+          "width": ""
+        },
+        "scrim": {
+          "background": "",
+          "opacity": ""
+        }
+      },
+      "var|l": {
+        "background": "{??sys.modal.background}",
+        "height": "{??sys.modal.height}",
+        "index": "{??sys.modal.index}",
+        "shadow": "{??sys.modal.shadow}",
+        "width": "{??sys.modal.width}",
+        "display": "none",
+        "transition": "none",
+        "body": {
+          "opacity": "0",
+          "transform": "none",
+          "transition": "none"
+        },
+        "scrim": {
+          "opacity": "0"
+        },
+        "transform-origin": "{??_originX} {??_originY}"
+      },
       "mixin|m": {
         "mixin|menu": {
           "var|sys": {
             "scrim": {
               "opacity": "0"
-            },
-            "preparation": {
-              "display": "block"
             }
           },
           "var|l": {
@@ -18,113 +53,23 @@
             "shadow": "{??sys.menu.shadow}",
             "width": "{??sys.menu.width}"
           },
-          "bottom": "auto",
           "content": "'--MENU--'",
+          "top": "{??_insetY}",
+          "right": "auto",
+          "bottom": "auto",
           "left": "{??_insetX}",
           "padding": "0",
-          "right": "auto",
-          "top": "{??_insetY}",
           "& .??__body": {
-            "border-radius": "{??_rounded}",
             "max-width": "100vw",
             "width": "{??_width}"
+          },
+          "&[data-status='preparation'], &[data-status='open'], &[data-status='hide']": {
+            "var|l": {
+              "display": "block"
+            }
           }
         }
       },
-      "var|sys": {
-        "padding": "40px 16px",
-        "transformOrigin": "{??_originX} {??_originY}",
-        "menu": {
-          "background": "255,255,255",
-          "height": "auto",
-          "index": "9999",
-          "shadow": "none",
-          "width": "256px"
-        },
-        "modal": {
-          "background": "255,255,255",
-          "height": "auto",
-          "index": "9999",
-          "shadow": "none",
-          "width": "512px"
-        },
-        "scrim": {
-          "background": "0,0,0",
-          "opacity": "0.32"
-        },
-        "close": {
-          "display": "none",
-          "transition": "none",
-          "body": {
-            "opacity": "0",
-            "transform": "none",
-            "transition": "none"
-          },
-          "scrim": {
-            "opacity": "0"
-          }
-        },
-        "preparation": {
-          "display": "flex",
-          "transition": "{??sys.close.transition}",
-          "body": {
-            "opacity": "{??sys.close.body.opacity}",
-            "transform": "scale(.8)",
-            "transition": "{??sys.close.body.transition}"
-          },
-          "scrim": {
-            "opacity": "{??sys.close.scrim.opacity}"
-          }
-        },
-        "open": {
-          "display": "{??sys.preparation.display}",
-          "transition": "background {d.sys.transitionDuration.fade.enter} linear",
-          "body": {
-            "opacity": "1",
-            "transform": "none",
-            "transition": "opacity {d.sys.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}"
-          },
-          "scrim": {
-            "opacity": "{??sys.scrim.opacity}"
-          }
-        },
-        "hide": {
-          "display": "{??sys.open.display}",
-          "transition": "background {d.sys.transitionDuration.fade.exit} linear",
-          "body": {
-            "opacity": "0",
-            "transform": "{??sys.open.body.transform}",
-            "transition": "opacity {d.sys.transitionDuration.fade.exit} linear"
-          },
-          "scrim": {
-            "opacity": "0"
-          }
-        }
-      },
-      "var|l": {
-        "background": "{??sys.modal.background}",
-        "display": "{??sys.close.display}",
-        "index": "{??sys.modal.index}",
-        "height": "{??sys.modal.height}",
-        "shadow": "{??sys.modal.shadow}",
-        "transition": "{??sys.close.transition}",
-        "width": "{??sys.modal.width}",
-        "body": {
-          "opacity": "{??sys.close.body.opacity}",
-          "transform": "{??sys.close.body.transform}",
-          "transition": "{??sys.close.body.transition}"
-        },
-        "scrim": {
-          "opacity": "{??sys.close.scrim.opacity}"
-        }
-      },
-      "var|_height": "{??l.height}",
-      "var|_width": "{??l.width}",
-      "var|_insetX": "0px",
-      "var|_insetY": "0px",
-      "var|_originX": "center",
-      "var|_originY": "center",
-      "var|_rounded": "0px",
       "animate|persistent-active": {
         "0%": {
           "transform": "scale(1)"
@@ -136,14 +81,67 @@
           "transform": "scale(1)"
         }
       },
-      "section|alignment": {
+      "var|_width": "{??l.width}",
+      "var|_height": "{??l.height}",
+      "var|_padding": "0px",
+      "var|_rounded": "0px",
+      "var|_insetX": "0px",
+      "var|_insetY": "0px",
+      "var|_originX": "center",
+      "var|_originY": "center",
+      "#body": {},
+      "#context": {},
+      "#control": {},
+      "&[data-status='preparation']": {
+        "var|l": {
+          "display": "flex",
+          "body": {
+            "transform": "scale(.8)"
+          }
+        }
+      },
+      "&[data-status='open']": {
+        "var|l": {
+          "display": "flex",
+          "transition": "background {d.sys.transitionDuration.fade.enter} linear",
+          "body": {
+            "opacity": "1",
+            "transform": "none",
+            "transition": "opacity {d.sys.transitionDuration.xs} linear, transform {d.sys.transitionDuration.fade.enter} {d.sys.transitionFunction.deceleration}"
+          },
+          "scrim": {
+            "opacity": "{??sys.scrim.opacity}"
+          }
+        }
+      },
+      "&[data-status='hide']": {
+        "var|l": {
+          "display": "flex",
+          "transition": "background {d.sys.transitionDuration.fade.exit} linear",
+          "body": {
+            "opacity": "0",
+            "transform": "none",
+            "transition": "opacity {d.sys.transitionDuration.fade.exit} linear"
+          },
+          "scrim": {
+            "opacity": "0"
+          }
+        }
+      },
+      "~adaptive": {
+        "~menu": {
+          "@style": "{??m.menu}"
+        },
+        "~modal": {}
+      },
+      "~alignment": {
         "bottom": {},
         "center": {},
         "left": {},
         "right": {},
         "top": {}
       },
-      "section|animationOrigin": {
+      "~animationOrigin": {
         "auto": {},
         "bottom": {},
         "center": {},
@@ -151,8 +149,8 @@
         "right": {},
         "top": {}
       },
-      "section|fullscreen": {},
-      "section|height": {
+      "~fullscreen": {},
+      "~height": {
         "auto": {
           "var|height": "auto"
         },
@@ -160,7 +158,7 @@
           "var|height": "100%"
         }
       },
-      "section|width": {
+      "~width": {
         "auto": {
           "var|width": "auto",
           "& .??__body": {
@@ -169,57 +167,6 @@
         },
         "full": {
           "var|width": "100%"
-        }
-      },
-      "#body": {},
-      "#context": {},
-      "#control": {},
-      "section|adaptive": {
-        "section|menu": {
-          "@style": "{??m.menu}"
-        },
-        "section|modal": {}
-      },
-      "&[data-status='preparation']": {
-        "var|l": {
-          "display": "{??sys.preparation.display}",
-          "transition": "{??sys.preparation.transition}",
-          "body": {
-            "opacity": "{??sys.preparation.body.opacity}",
-            "transform": "{??sys.preparation.body.transform}",
-            "transition": "{??sys.preparation.body.transition}"
-          },
-          "scrim": {
-            "opacity": "{??sys.preparation.scrim.opacity}"
-          }
-        }
-      },
-      "&[data-status='open']": {
-        "var|l": {
-          "display": "{??sys.open.display}",
-          "transition": "{??sys.open.transition}",
-          "body": {
-            "opacity": "{??sys.open.body.opacity}",
-            "transform": "{??sys.open.body.transform}",
-            "transition": "{??sys.open.body.transition}"
-          },
-          "scrim": {
-            "opacity": "{??sys.open.scrim.opacity}"
-          }
-        }
-      },
-      "&[data-status='hide']": {
-        "var|l": {
-          "display": "{??sys.hide.display}",
-          "transition": "{??sys.hide.transition}",
-          "body": {
-            "opacity": "{??sys.hide.body.opacity}",
-            "transform": "{??sys.hide.body.transform}",
-            "transition": "{??sys.hide.body.transition}"
-          },
-          "scrim": {
-            "opacity": "{??sys.hide.scrim.opacity}"
-          }
         }
       }
     }

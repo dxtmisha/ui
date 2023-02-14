@@ -3,12 +3,6 @@
     "window": {
       "@style": "{d.window}",
       "var|sys": {
-        "padding": "{ref.spacing.10} {ref.spacing.4}",
-        "shadow": "{sys.elevation.shadow.24}",
-        "scrim": {
-          "background": "{sys.palette.onBackground}",
-          "opacity": "{sys.opacity.scrim}"
-        },
         "menu": {
           "background": "{sys.elevation.background.8}",
           "index": "{sys.elevation.index.8}",
@@ -20,9 +14,14 @@
           "index": "{sys.elevation.index.24}",
           "shadow": "{sys.elevation.shadow.24}",
           "width": "{ref.spacing.px} * 768"
+        },
+        "scrim": {
+          "background": "{sys.palette.onBackground}",
+          "opacity": "{sys.opacity.scrim}"
         }
       },
-      "section|adaptive": {
+      "var|_padding": "{ref.spacing.10} {ref.spacing.4}",
+      "~adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
             "@style": "{??m.menu}"
@@ -44,7 +43,7 @@
           }
         }
       },
-      "section|rounded": {
+      "~rounded": {
         "none": {
           "var|rounded": "{sys.rounded.none}"
         },
@@ -65,7 +64,7 @@
         },
         "default": "standard"
       },
-      "section|height": {
+      "~height": {
         "sm": {
           "var|sys": {
             "menu": {
@@ -97,7 +96,7 @@
           }
         }
       },
-      "section|width": {
+      "~width": {
         "sm": {
           "var|sys": {
             "menu": {
