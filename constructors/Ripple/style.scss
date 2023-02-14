@@ -3,9 +3,9 @@
 @mixin initRipple($design) {
   @include propertiesInit($design, 'ripple') {
     @include mixinRipple;
-    @include mixinItem;
+    @include mixinRippleItem;
 
-    @include mixinInverseMod;
+    @include mixinRippleInverseMod;
 
     @content;
   }
@@ -20,7 +20,7 @@
   overflow: hidden;
 }
 
-@mixin mixinItem() {
+@mixin mixinRippleItem() {
   @include subClass('item') {
     @include absolute;
 
@@ -45,7 +45,7 @@
   }
 }
 
-@mixin mixinInverseMod() {
+@mixin mixinRippleInverseMod() {
   @include modClass('inverse') {
     @include palette(v('??sys.inverse.background'));
   }
