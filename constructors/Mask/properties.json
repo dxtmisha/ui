@@ -18,9 +18,9 @@
         "text": "{??sys.text}",
         "textOpacity": "{??sys.textOpacity}"
       },
-      "section|visible": {},
       "#character": {},
-      "#input": {}
+      "#input": {},
+      "~visible": {}
     }
   }
 }
