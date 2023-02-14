@@ -3,6 +3,10 @@
 @mixin initMask($design) {
   @include propertiesInit($design, 'mask') {
     @include mixinMask;
+
+    @include mixinMaskInput;
+    @include mixinMaskCharacter;
+
     @content;
   }
 }
@@ -10,24 +14,21 @@
 @mixin mixinMask {
   position: relative;
 
-  @include mixinInput;
-  @include mixinCharacter;
-
   &.is-right {
     @include textAlign('right');
   }
 }
 
-@mixin mixinInput {
+@mixin mixinMaskInput {
   @include subClass('input') {
-    caret-color: rgba(v('sys.color'), v('??sys.special.text-opacity'));
-    color: transparent;
-
     position: absolute;
     @include inset(0);
     z-index: 4;
 
     padding: inherit;
+
+    caret-color: rgba(v('sys.color'), v('??sys.special.text-opacity'));
+    color: transparent;
   }
 
   &.is-right {
@@ -37,7 +38,7 @@
   }
 }
 
-@mixin mixinCharacter() {
+@mixin mixinMaskCharacter() {
   @include subClass('character') {
     @include colorOpacity(v('??l.text-opacity'));
 
