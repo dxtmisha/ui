@@ -32,4 +32,8 @@ export class MaskType {
   isDate (): boolean {
     return ['datetime', 'date', 'month', 'time', 'second'].indexOf(this.type.value) !== -1
   }
+
+  isTime (): boolean {
+    return ['datetime', 'time', 'second'].indexOf(this.type.value) !== -1
+  }
 }

@@ -15,8 +15,10 @@ export class MaskSpecial {
   protected readonly item = computed<string[]>(() => {
     if (this.type.isCurrencyOrNumber()) {
       return ['n', 'f']
-    } else if (this.type.isDate()) {
+    } else if (this.type.isTime()) {
       return ['Y', 'M', 'D', 'h', 'm', 's']
+    } else if (this.type.isDate()) {
+      return ['Y', 'M', 'D']
     } else if (typeof this.special.value === 'object') {
       return Object.keys(this.special.value)
     } else if (Array.isArray(this.special.value)) {
