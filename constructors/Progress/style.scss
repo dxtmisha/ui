@@ -3,6 +3,12 @@
 @mixin initProgress($design, $value) {
   @include propertiesInit($design, 'progress') {
     @include mixinProgress($value);
+
+    @include mixinProgressCircular;
+
+    @include mixinProgressLinear;
+    @include mixinProgressCircle;
+
     @content;
   }
 }
@@ -22,11 +28,6 @@
   animation-fill-mode: forwards;
   transition-property: background-color;
 
-  @include mixinCircular;
-
-  @include mixinLinear;
-  @include mixinCircle;
-
   &.is-move,
   &.is-value,
   &.is-visible {
@@ -34,9 +35,8 @@
   }
 }
 
-@mixin mixinCircle {
+@mixin mixinProgressCircle {
   @include subClass('circle') {
-    @include paletteStroke(v('??_background'));
     fill: transparent;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
@@ -44,6 +44,8 @@
     stroke-opacity: 1;
     stroke-width: v('??sys.height');
     transition-property: background-color, stroke-dasharray;
+
+    @include paletteStroke(v('??_background'));
 
     &.is-value {
       animation-name: none;
@@ -59,12 +61,9 @@
   }
 }
 
-@mixin mixinShort() {
+@mixin mixinProgressShort() {
   &::after,
   &::before {
-    @include paletteBackground(v('??_background'));
-    @include backgroundOpacity(1);
-
     content: ' ';
 
     position: absolute;
@@ -73,22 +72,25 @@
     left: 0;
     right: 100%;
 
+    @include paletteBackground(v('??_background'));
+    @include backgroundOpacity(1);
+
     transition-property: background-color;
   }
 }
 
-@mixin mixinLinear() {
+@mixin mixinProgressLinear() {
   @include modClass('type') {
     @include modClass('linear') {
-      @include paletteBackground(v('??_background'));
-      @include backgroundOpacity(v('??sys.opacity'));
-
-      height: v('??sys.height');
-      width: 100%;
-
       @include paddingX(0);
       top: v('??l.top');
       bottom: v('??l.bottom');
+
+      width: 100%;
+      height: v('??sys.height');
+
+      @include paletteBackground(v('??_background'));
+      @include backgroundOpacity(v('??sys.opacity'));
 
       transform-origin: v('??l.transform-origin');
 
@@ -111,7 +113,7 @@
         }
       }
 
-      @include mixinShort;
+      @include mixinProgressShort;
       @include modClassByGlobal('indeterminate') {
         @include modClass('type1') {
           &::after {
@@ -151,14 +153,16 @@
   }
 }
 
-@mixin mixinCircular() {
+@mixin mixinProgressCircular() {
   @include modClass('type') {
     @include modClass('circular') {
       @include inset(0);
       @include squared(v('??sys.circular.size'));
-      margin: auto;
       max-height: 100%;
+
       padding: v('??sys.circular.padding');
+      margin: auto;
+
       transform: rotate(-90deg);
 
       &.is-move {
