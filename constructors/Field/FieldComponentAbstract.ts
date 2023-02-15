@@ -9,6 +9,7 @@ import { FieldValue } from './FieldValue'
 import { UseEnabled } from '../Use/UseEnabled'
 import { FieldCancel } from './FieldCancel'
 import { FieldAlign } from './FieldAlign'
+import { FieldArrow } from './FieldArrow'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -23,6 +24,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   private readonly value: FieldValue
   private readonly enabled: UseEnabled
 
+  private readonly arrow: FieldArrow
   private readonly cancel: FieldCancel
   private readonly align: FieldAlign
 
@@ -44,19 +46,22 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.refs.readonly
     )
 
+    this.arrow = new FieldArrow(
+      this.refs.arrow,
+      this.refs.align
+    )
     this.cancel = new FieldCancel(
       this.value,
       this.enabled,
-      this.refs.cancel,
-      this.refs.arrow
+      this.arrow,
+      this.refs.cancel
     )
     this.align = new FieldAlign(
       this.context.slots,
+      this.arrow,
       this.cancel,
       this.refs.icon,
-      this.refs.iconTrailing,
-      this.refs.align,
-      this.refs.arrow
+      this.refs.iconTrailing
     )
 
     watch([
@@ -74,7 +79,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   setup (): FieldSetupType {
     const classes = this.getClasses<FieldClassesType>({
       main: {
-        'is-arrow': this.refs.arrow,
+        ...this.arrow.getClass(),
         'is-cancel': this.cancel.item,
         'is-suffix': this.isSuffix,
         'is-validation': this.isValidation,

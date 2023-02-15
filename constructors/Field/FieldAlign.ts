@@ -1,4 +1,5 @@
 import { computed, ref, Ref } from 'vue'
+import { FieldArrow } from './FieldArrow'
 import { FieldCancel } from './FieldCancel'
 import { isFilled } from '../../functions'
 import { FieldAlignSetupType } from './types'
@@ -13,22 +14,21 @@ export class FieldAlign {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly slots: object,
+    private readonly arrow: FieldArrow,
     private readonly cancel: FieldCancel,
     private readonly icon: Ref<string | object>,
-    private readonly iconTrailing: Ref<string | object>,
-    private readonly align: Ref<string>,
-    private readonly arrow: Ref<boolean>
+    private readonly iconTrailing: Ref<string | object>
   ) {
   }
 
   private readonly isLeft = computed<boolean>(
-    () => (isFilled(this.arrow.value) && this.align.value !== 'right') ||
+    () => this.arrow.isRight() ||
       isFilled(this.icon.value) ||
       'left' in this.slots
   )
 
   private readonly isRight = computed<boolean>(
-    () => (isFilled(this.arrow.value) && this.align.value !== 'left') ||
+    () => this.arrow.isLeft() ||
       isFilled(this.iconTrailing.value) ||
       'right' in this.slots ||
       this.cancel.is()
