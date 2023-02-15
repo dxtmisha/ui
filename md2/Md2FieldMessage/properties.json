@@ -4,18 +4,25 @@
       "@style": "{d.field-message}",
       "var|sys": {
         "paddingTop": "{ref.spacing.1}",
-        "space": "{ref.spacing.2}",
+        "space": "{ref.spacing.2}"
+      },
+      "var|l": {
         "text": "{sys.palette.onSurface}",
-        "textOpacity": "{sys.opacity.surface.medium}",
-        "disabled": {
-          "textOpacity": "{sys.opacity.surface.disabled}"
-        },
-        "validation": {
-          "text": "{sys.palette.error}"
-        }
+        "textOpacity": "{sys.opacity.surface.medium}"
       },
       "var|_padding": "0px",
-      "@font": "{font.caption}"
+      "@font": "{font.caption}",
+      "#validation": {
+        "var|l": {
+          "text": "{sys.palette.error}",
+          "textOpacity": "{sys.opacity.surface.high}"
+        }
+      },
+      "~disabled": {
+        "var|l": {
+          "textOpacity": "{sys.opacity.surface.disabled}"
+        }
+      }
     }
   }
 }

@@ -3,42 +3,40 @@
 @mixin initFieldMessage($design) {
   @include propertiesInit($design, 'field-message') {
     @include mixinFieldMessage;
+
+    @include mixinFieldInfo;
+    @include mixinFieldCounter;
+    @include mixinFieldValidation;
+
     @content;
   }
 }
 
 @mixin mixinFieldMessage() {
-  @include color(v('??l.text'), v('??l.text-opacity'));
   display: flex;
   align-items: flex-start;
 
   padding: v('??sys.padding-top') v('??_padding') 0;
 
-  @include mixinInfo;
-  @include mixinCounter;
-
-  @include subClass('validation') {
-    @include linkTo('text', '??sys.validation.text');
-    @include linkTo('text-opacity', '??sys.validation.text-opacity');
-    @include color(v('??l.text'), v('??l.text-opacity'));
-  }
-
-  @include modClass('disabled') {
-    @include linkTo('text', '??sys.disabled.text');
-    @include linkTo('text-opacity', '??sys.disabled.text-opacity');
-  }
+  @include color(v('??l.text'), v('??l.text-opacity'));
 }
 
-@mixin mixinInfo() {
+@mixin mixinFieldInfo() {
   @include subClass('info') {
     flex-grow: 1;
     flex-shrink: 1;
   }
 }
 
-@mixin mixinCounter() {
+@mixin mixinFieldCounter() {
   @include subClass('counter') {
     padding-left: v('??sys.space');
     white-space: nowrap;
+  }
+}
+
+@mixin mixinFieldValidation() {
+  @include subClass('validation') {
+    @include color(v('??l.text'), v('??l.text-opacity'));
   }
 }

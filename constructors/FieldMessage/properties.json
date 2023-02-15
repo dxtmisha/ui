@@ -3,29 +3,27 @@
     "field-message": {
       "var|sys": {
         "paddingTop": "",
-        "space": "",
-        "text": "",
-        "textOpacity": "",
-        "disabled": {
-          "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}"
-        },
-        "validation": {
-          "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}"
-        }
+        "space": ""
       },
       "var|l": {
-        "text": "{??sys.text}",
-        "textOpacity": "{??sys.textOpacity}"
+        "text": "",
+        "textOpacity": ""
       },
       "var|_padding": "",
       "padding": "{??_padding}",
-      "section|disabled": {},
+      "#info": {},
       "#counter": {},
       "#helper": {},
-      "#info": {},
-      "#validation": {}
+      "#validation": {
+        "var|l": {
+          "text": ""
+        }
+      },
+      "~disabled": {
+        "var|l": {
+          "textOpacity": ""
+        }
+      }
     }
   }
 }
