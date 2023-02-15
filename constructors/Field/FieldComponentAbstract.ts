@@ -12,6 +12,7 @@ import { FieldAlign } from './FieldAlign'
 import { FieldArrow } from './FieldArrow'
 import { FieldIcon } from './FieldIcon'
 import { FieldPrefix } from './FieldPrefix'
+import { FieldMessageProps } from '../FieldMessage/FieldMessageProps'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -24,7 +25,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   private readonly id: string
   private readonly value: FieldValue
-  private readonly iconItem: FieldIcon
+  private readonly icon: FieldIcon
   private readonly enabled: UseEnabled
 
   private readonly arrow: FieldArrow
@@ -32,6 +33,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   private readonly align: FieldAlign
   private readonly prefix: FieldPrefix
+
+  private readonly message: FieldMessageProps
 
   constructor (
     props: AssociativeType & object,
@@ -41,7 +44,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
     this.id = `field--id--${getIdElement()}`
     this.value = new FieldValue(this.refs.value)
-    this.iconItem = new FieldIcon(
+    this.icon = new FieldIcon(
       this.getBind,
       this.refs.icon,
       this.refs.iconTrailing,
@@ -82,6 +85,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.refs.suffix
     )
 
+    this.message = new FieldMessageProps(
+      this.props,
+      { validationMessage: this.validationText }
+    )
+
     watch([
       this.refs.icon,
       this.refs.iconTrailing,
@@ -114,13 +122,15 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       isRequired: this.isRequired,
       isRipple: this.isRipple,
       isCancel: this.cancel.item,
+
       isValidation: this.isValidation,
-      messageBind: this.message,
       validationText: this.validationText,
+      messageBind: this.message.get(),
+
       update: this.update,
       onClick: (event: MouseEvent) => this.onClick(event),
 
-      ...this.iconItem.getFieldSetup(),
+      ...this.icon.getFieldSetup(),
       ...this.align.getSetup(),
       ...this.prefix.getSetup()
     }
@@ -130,20 +140,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
 
   protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
-
-  readonly message = computed<AssociativeType>(() => {
-    return {
-      counter: this.props.counter,
-      disabled: this.props.disabled,
-      helperMessage: this.props.helperMessage,
-      maxlength: this.props.maxlength,
-      validationMessage: this.validationText.value
-    }
-  })
-
-  readonly validationText = computed<string>(() => {
-    return typeof this.props.validationMessage === 'string' ? this.props.validationMessage : ''
-  })
+  protected readonly validationText = computed<string>(
+    () => typeof this.props.validationMessage === 'string' ? this.props.validationMessage : ''
+  )
 
   protected update () {
     requestAnimationFrame(() => {

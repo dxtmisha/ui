@@ -1,6 +1,6 @@
-import { computed } from 'vue'
+import { computed, isRef } from 'vue'
+import { forEach, isSelected } from '../functions'
 import { AssociativeType } from '../constructors/types'
-import { isSelected } from '../functions'
 
 export abstract class ComponentPropsAbstract {
   protected abstract readonly name: string
@@ -34,10 +34,20 @@ export abstract class ComponentPropsAbstract {
     return this.name in this.props ? this.props[this.name] : {}
   })
 
+  readonly extraBind = computed<AssociativeType>(() => {
+    const data = {} as AssociativeType
+
+    forEach(this.extra, (item, index) => {
+      data[index] = isRef(item) ? item.value : item
+    })
+
+    return data
+  })
+
   readonly out = computed<AssociativeType & object>(() => {
     return {
       ...this.data.value,
-      ...this.extra,
+      ...this.extraBind.value,
       ...this.main.value
     }
   })
