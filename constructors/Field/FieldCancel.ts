@@ -24,6 +24,10 @@ export class FieldCancel {
     return this.item.value
   }
 
+  getClass (): object {
+    return { 'is-cancel': this.item }
+  }
+
   private isCancel (): boolean {
     return isFilled(this.cancel.value) && this.cancel.value !== 'hide' && !this.arrow.is()
   }

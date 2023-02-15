@@ -10,6 +10,7 @@ import { UseEnabled } from '../Use/UseEnabled'
 import { FieldCancel } from './FieldCancel'
 import { FieldAlign } from './FieldAlign'
 import { FieldArrow } from './FieldArrow'
+import { FieldIcon } from './FieldIcon'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -22,6 +23,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   private readonly id: string
   private readonly value: FieldValue
+  private readonly iconItem: FieldIcon
   private readonly enabled: UseEnabled
 
   private readonly arrow: FieldArrow
@@ -41,6 +43,18 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
     this.id = `field--id--${getIdElement()}`
     this.value = new FieldValue(this.refs.value)
+    this.iconItem = new FieldIcon(
+      this.getBind,
+      this.refs.icon,
+      this.refs.iconTrailing,
+      this.refs.iconCancel,
+      this.refs.iconPrevious,
+      this.refs.iconNext,
+      this.refs.selected,
+      this.refs.disabled,
+      this.refs.disabledPrevious,
+      this.refs.disabledNext
+    )
     this.enabled = new UseEnabled(
       this.refs.disabled,
       this.refs.readonly
@@ -80,7 +94,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     const classes = this.getClasses<FieldClassesType>({
       main: {
         ...this.arrow.getClass(),
-        'is-cancel': this.cancel.item,
+        ...this.cancel.getClass(),
         'is-suffix': this.isSuffix,
         'is-validation': this.isValidation,
         ...this.value.getClass()
@@ -101,11 +115,6 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       isSuffix: this.isSuffix,
       isCancel: this.cancel.item,
       isValidation: this.isValidation,
-      iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
-      iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
-      iconCancelBind: this.getBind(this.refs.iconCancel, this.iconCancel, 'icon'),
-      iconPreviousBind: this.getBind(this.refs.iconPrevious, this.iconPrevious, 'icon'),
-      iconNextBind: this.getBind(this.refs.iconNext, this.iconNext, 'icon'),
       messageBind: this.message,
       prefixWidth: this.prefixWidth,
       suffixWidth: this.suffixWidth,
@@ -113,6 +122,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       update: this.update,
       onClick: (event: MouseEvent) => this.onClick(event),
 
+      ...this.iconItem.getFieldSetup(),
       ...this.align.getSetup()
     }
   }
@@ -123,43 +133,6 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected readonly isPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
   protected readonly isSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
   protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
-
-  readonly icon = computed(() => {
-    return {
-      active: this.props.selected,
-      disabled: this.props.disabled
-    }
-  })
-
-  readonly iconTrailing = computed(() => {
-    return {
-      class: 'is-icon is-trailing',
-      disabled: this.props.disabled,
-      turn: this.props.turn
-    }
-  })
-
-  readonly iconCancel = computed(() => {
-    return {
-      class: 'is-icon is-cancel'
-    }
-  })
-
-  readonly iconPrevious = computed(() => {
-    return {
-      class: 'is-icon is-previous',
-      background: true,
-      disabled: this.props.disabled || this.props.disabledPrevious
-    }
-  })
-
-  readonly iconNext = computed(() => {
-    return {
-      class: 'is-icon is-next',
-      background: true,
-      disabled: this.props.disabled || this.props.disabledNext
-    }
-  })
 
   readonly message = computed<AssociativeType>(() => {
     return {
