@@ -78,7 +78,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
         'is-cancel': this.cancel.item,
         'is-suffix': this.isSuffix,
         'is-validation': this.isValidation,
-        'is-value': this.value.item
+        ...this.value.getClass()
       }
     })
     const styles = this.getStyles()
