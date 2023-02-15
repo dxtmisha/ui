@@ -1,59 +1,15 @@
-import { computed, ComputedRef, Ref, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
-import { props } from './props'
-import {
-  AssociativeType,
-  ComponentAssociativeType,
-  ComponentBaseType
-} from '../types'
 import { getIdElement, isFilled } from '../../functions'
+import { props } from './props'
 
-export type FieldClassesType = {
-  main: ComponentAssociativeType
-  body: ComponentAssociativeType
-  input: ComponentAssociativeType
-  hidden: ComponentAssociativeType
-  label: ComponentAssociativeType
-  labelTop: ComponentAssociativeType
-  title: ComponentAssociativeType
-  text: ComponentAssociativeType
-  required: ComponentAssociativeType
-  scoreboard: ComponentAssociativeType
-  scoreboardContext: ComponentAssociativeType
-  scoreboardSpace: ComponentAssociativeType
-  prefix: ComponentAssociativeType
-  suffix: ComponentAssociativeType
-  border: ComponentAssociativeType
-}
-export type FieldSetupType = ComponentBaseType & {
-  classes: ComputedRef<FieldClassesType>
-  id: string
-  leftElement: Ref<HTMLElement | undefined>
-  rightElement: Ref<HTMLElement | undefined>
-  prefixElement: Ref<HTMLElement | undefined>
-  suffixElement: Ref<HTMLElement | undefined>
-  isLeft: ComputedRef<boolean>
-  isRequired: ComputedRef<boolean>
-  isRight: ComputedRef<boolean>
-  isRipple: ComputedRef<boolean>
-  isPrefix: ComputedRef<boolean>
-  isSuffix: ComputedRef<boolean>
-  isCancel: ComputedRef<boolean>
-  isValidation: ComputedRef<boolean>
-  iconBind: ComputedRef<string | AssociativeType>
-  iconTrailingBind: ComputedRef<string | AssociativeType>
-  iconCancelBind: ComputedRef<string | AssociativeType>
-  iconPreviousBind: ComputedRef<string | AssociativeType>
-  iconNextBind: ComputedRef<string | AssociativeType>
-  messageBind: ComputedRef<AssociativeType>
-  left: Ref<string>
-  right: Ref<string>
-  prefixWidth: Ref<string>
-  suffixWidth: Ref<string>
-  validationText: ComputedRef<string>
-  update: () => void
-  onClick: (event: MouseEvent) => void
-}
+import { AssociativeType } from '../types'
+import { FieldClassesType, FieldSetupType } from './types'
+import { FieldLeft } from './FieldLeft'
+import { FieldValue } from './FieldValue'
+import { UseEnabled } from '../Use/UseEnabled'
+import { FieldCancel } from './FieldCancel'
+import { FieldRight } from './FieldRight'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -64,13 +20,17 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     'on-trailing'
   ] as string[]
 
-  protected readonly id: string
-  protected readonly leftElement = ref<HTMLElement | undefined>()
-  protected readonly rightElement = ref<HTMLElement | undefined>()
+  private readonly id: string
+  private readonly value: FieldValue
+  private readonly enabled: UseEnabled
+
+  private readonly cancel: FieldCancel
+
+  private readonly left: FieldLeft
+  private readonly right: FieldRight
+
   protected readonly prefixElement = ref<HTMLElement | undefined>()
   protected readonly suffixElement = ref<HTMLElement | undefined>()
-  protected readonly left = ref<string>('0px')
-  protected readonly right = ref<string>('0px')
   protected readonly prefixWidth = ref<string>('0px')
   protected readonly suffixWidth = ref<string>('0px')
 
@@ -81,6 +41,32 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     super(props, context)
 
     this.id = `field--id--${getIdElement()}`
+    this.value = new FieldValue(this.refs.value)
+    this.enabled = new UseEnabled(
+      this.refs.disabled,
+      this.refs.readonly
+    )
+
+    this.cancel = new FieldCancel(
+      this.value,
+      this.enabled,
+      this.refs.cancel,
+      this.refs.arrow
+    )
+
+    this.left = new FieldLeft(
+      this.context.slots,
+      this.refs.icon,
+      this.refs.align,
+      this.refs.arrow
+    )
+    this.right = new FieldRight(
+      this.context.slots,
+      this.cancel,
+      this.refs.iconTrailing,
+      this.refs.align,
+      this.refs.arrow
+    )
 
     watch([
       this.refs.icon,
@@ -88,7 +74,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.refs.arrow,
       this.refs.prefix,
       this.refs.suffix,
-      this.isCancel
+      this.cancel.item
     ], () => this.update())
 
     this.update()
@@ -98,10 +84,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     const classes = this.getClasses<FieldClassesType>({
       main: {
         'is-arrow': this.refs.arrow,
-        'is-cancel': this.isCancel,
+        'is-cancel': this.cancel.item,
         'is-suffix': this.isSuffix,
         'is-validation': this.isValidation,
-        'is-value': this.isValue
+        'is-value': this.value.item
       }
     })
     const styles = this.getStyles()
@@ -111,17 +97,17 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       classes,
       styles,
       id: this.id,
-      leftElement: this.leftElement,
-      rightElement: this.rightElement,
+      leftElement: this.left.element,
+      rightElement: this.right.element,
       prefixElement: this.prefixElement,
       suffixElement: this.suffixElement,
-      isLeft: this.isLeft,
+      isLeft: this.left.isLeft,
       isRequired: this.isRequired,
-      isRight: this.isRight,
+      isRight: this.right.isRight,
       isRipple: this.isRipple,
       isPrefix: this.isPrefix,
       isSuffix: this.isSuffix,
-      isCancel: this.isCancel,
+      isCancel: this.cancel.item,
       isValidation: this.isValidation,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
@@ -129,8 +115,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       iconPreviousBind: this.getBind(this.refs.iconPrevious, this.iconPrevious, 'icon'),
       iconNextBind: this.getBind(this.refs.iconNext, this.iconNext, 'icon'),
       messageBind: this.message,
-      left: this.left,
-      right: this.right,
+      left: this.left.value,
+      right: this.right.value,
       prefixWidth: this.prefixWidth,
       suffixWidth: this.suffixWidth,
       validationText: this.validationText,
@@ -139,38 +125,12 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   }
 
-  protected readonly isLeft = computed<boolean>(
-    () => (isFilled(this.props.arrow) && this.props.align !== 'right') ||
-      isFilled(this.props.icon) ||
-      'left' in this.context.slots
-  )
+  protected readonly isRequired = computed<boolean>(() => this.props.required && this.enabled.is())
+  protected readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
 
-  protected readonly isRight = computed<boolean>(
-    () => (isFilled(this.props.arrow) && this.props.align !== 'left') ||
-      isFilled(this.props.iconTrailing) ||
-      'right' in this.context.slots ||
-      this.isCancel.value
-  )
-
-  protected readonly isRequired = computed(() => {
-    return this.props.required &&
-      !this.props?.readonly &&
-      !this.props?.disabled
-  }) as ComputedRef<boolean>
-
-  protected readonly isRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
   protected readonly isPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
   protected readonly isSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
-  protected readonly isValue = computed<boolean>(() => isFilled(this.props.value))
   protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
-  protected readonly isCancel = computed<boolean>(() => {
-    return this.isValue.value &&
-      !this.props.disabled &&
-      !this.props.readonly &&
-      !this.props.arrow &&
-      isFilled(this.props.cancel) &&
-      this.props.cancel !== 'hide'
-  })
 
   readonly icon = computed(() => {
     return {
@@ -225,27 +185,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   protected update () {
     requestAnimationFrame(() => {
-      this.updateLeft()
-      this.updateRight()
+      this.left.update()
+      this.right.update()
       this.updatePrefix()
       this.updateSuffix()
     })
-  }
-
-  protected updateLeft () {
-    if (this.isLeft.value) {
-      this.left.value = `${this.leftElement.value?.offsetWidth}px`
-    } else {
-      this.left.value = '0px'
-    }
-  }
-
-  protected updateRight () {
-    if (this.isRight.value) {
-      this.right.value = `${this.rightElement.value?.offsetWidth}px`
-    } else {
-      this.right.value = '0px'
-    }
   }
 
   protected updatePrefix () {
@@ -267,11 +211,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected onClick<T = MouseEvent> (event: Event & T) {
     const inputElement = this.element.value?.querySelector<HTMLInputElement>(`.${this.getItem().getClassName(['input'])}`)
 
-    if (
-      inputElement &&
-      !this.props?.readonly &&
-      !this.props?.disabled
-    ) {
+    if (inputElement && this.enabled.is()) {
       if ((event.target as HTMLElement)?.closest('.is-icon.is-previous')) {
         if (!this.props.disabledPrevious) {
           this.context.emit('on-previous', this.props.detail)
