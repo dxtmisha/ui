@@ -1,4 +1,4 @@
-import { computed, ref, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { getIdElement, isFilled } from '../../functions'
 import { props } from './props'
@@ -11,6 +11,7 @@ import { FieldCancel } from './FieldCancel'
 import { FieldAlign } from './FieldAlign'
 import { FieldArrow } from './FieldArrow'
 import { FieldIcon } from './FieldIcon'
+import { FieldPrefix } from './FieldPrefix'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -28,12 +29,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   private readonly arrow: FieldArrow
   private readonly cancel: FieldCancel
-  private readonly align: FieldAlign
 
-  protected readonly prefixElement = ref<HTMLElement | undefined>()
-  protected readonly suffixElement = ref<HTMLElement | undefined>()
-  protected readonly prefixWidth = ref<string>('0px')
-  protected readonly suffixWidth = ref<string>('0px')
+  private readonly align: FieldAlign
+  private readonly prefix: FieldPrefix
 
   constructor (
     props: AssociativeType & object,
@@ -70,12 +68,18 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.arrow,
       this.refs.cancel
     )
+
     this.align = new FieldAlign(
       this.context.slots,
       this.arrow,
       this.cancel,
       this.refs.icon,
       this.refs.iconTrailing
+    )
+    this.prefix = new FieldPrefix(
+      this.context.slots,
+      this.refs.prefix,
+      this.refs.suffix
     )
 
     watch([
@@ -93,11 +97,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   setup (): FieldSetupType {
     const classes = this.getClasses<FieldClassesType>({
       main: {
+        ...this.value.getClass(),
         ...this.arrow.getClass(),
         ...this.cancel.getClass(),
-        'is-suffix': this.isSuffix,
-        'is-validation': this.isValidation,
-        ...this.value.getClass()
+        ...this.prefix.getClass(),
+        'is-validation': this.isValidation
       }
     })
     const styles = this.getStyles()
@@ -107,31 +111,24 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       classes,
       styles,
       id: this.id,
-      prefixElement: this.prefixElement,
-      suffixElement: this.suffixElement,
       isRequired: this.isRequired,
       isRipple: this.isRipple,
-      isPrefix: this.isPrefix,
-      isSuffix: this.isSuffix,
       isCancel: this.cancel.item,
       isValidation: this.isValidation,
       messageBind: this.message,
-      prefixWidth: this.prefixWidth,
-      suffixWidth: this.suffixWidth,
       validationText: this.validationText,
       update: this.update,
       onClick: (event: MouseEvent) => this.onClick(event),
 
       ...this.iconItem.getFieldSetup(),
-      ...this.align.getSetup()
+      ...this.align.getSetup(),
+      ...this.prefix.getSetup()
     }
   }
 
   protected readonly isRequired = computed<boolean>(() => this.props.required && this.enabled.is())
   protected readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
 
-  protected readonly isPrefix = computed<boolean>(() => isFilled(this.props.prefix) || 'prefix' in this.context.slots)
-  protected readonly isSuffix = computed<boolean>(() => isFilled(this.props.suffix) || 'suffix' in this.context.slots)
   protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
 
   readonly message = computed<AssociativeType>(() => {
@@ -151,25 +148,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected update () {
     requestAnimationFrame(() => {
       this.align.update()
-      this.updatePrefix()
-      this.updateSuffix()
+      this.prefix.update()
     })
-  }
-
-  protected updatePrefix () {
-    if (this.prefixElement.value) {
-      this.prefixWidth.value = `${this.prefixElement.value.offsetWidth}px`
-    } else {
-      this.prefixWidth.value = '0px'
-    }
-  }
-
-  protected updateSuffix () {
-    if (this.suffixElement.value) {
-      this.suffixWidth.value = `${this.suffixElement.value.offsetWidth}px`
-    } else {
-      this.suffixWidth.value = '0px'
-    }
   }
 
   protected onClick<T = MouseEvent> (event: Event & T) {

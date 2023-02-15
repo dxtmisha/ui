@@ -35,26 +35,31 @@ export type FieldAlignSetupType = {
   isRight: ComputedRef<boolean>
 }
 
+export type FieldPrefixSetupType = {
+  prefixElement: Ref<HTMLElement | undefined>
+  prefixWidth: Ref<string>
+  isPrefix: ComputedRef<boolean>
+
+  suffixElement: Ref<HTMLElement | undefined>
+  suffixWidth: Ref<string>
+  isSuffix: ComputedRef<boolean>
+}
+
 export type FieldSetupType =
   ComponentBaseType &
   FieldIconSetupType &
   FieldAlignSetupType &
+  FieldPrefixSetupType &
   {
     classes: ComputedRef<FieldClassesType>
     id: string
-    prefixElement: Ref<HTMLElement | undefined>
-    suffixElement: Ref<HTMLElement | undefined>
     isRequired: ComputedRef<boolean>
     isRipple: ComputedRef<boolean>
-    isPrefix: ComputedRef<boolean>
-    isSuffix: ComputedRef<boolean>
     isCancel: ComputedRef<boolean>
     isValidation: ComputedRef<boolean>
     iconBind: ComputedRef<string | AssociativeType>
     iconTrailingBind: ComputedRef<string | AssociativeType>
     messageBind: ComputedRef<AssociativeType>
-    prefixWidth: Ref<string>
-    suffixWidth: Ref<string>
     validationText: ComputedRef<string>
     update: () => void
     onClick: (event: MouseEvent) => void
