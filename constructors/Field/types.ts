@@ -1,5 +1,6 @@
 import { ComputedRef, Ref } from 'vue'
 import { AssociativeType, ComponentAssociativeType, ComponentBaseType, ComponentClassesType } from '../types'
+import { FieldAlign } from './FieldAlign'
 
 export type FieldClassesType<T = ComponentAssociativeType> = ComponentClassesType<T> & {
   body: T
@@ -18,16 +19,21 @@ export type FieldClassesType<T = ComponentAssociativeType> = ComponentClassesTyp
   border: T
 }
 
-export type FieldSetupType = ComponentBaseType & {
+export type FieldAlignSetupType = {
+  leftElement: Ref<HTMLElement | undefined>
+  left: Ref<string>
+  isLeft: ComputedRef<boolean>
+  rightElement: Ref<HTMLElement | undefined>
+  right: Ref<string>
+  isRight: ComputedRef<boolean>
+}
+
+export type FieldSetupType = ComponentBaseType & FieldAlignSetupType & {
   classes: ComputedRef<FieldClassesType>
   id: string
-  leftElement: Ref<HTMLElement | undefined>
-  rightElement: Ref<HTMLElement | undefined>
   prefixElement: Ref<HTMLElement | undefined>
   suffixElement: Ref<HTMLElement | undefined>
-  isLeft: ComputedRef<boolean>
   isRequired: ComputedRef<boolean>
-  isRight: ComputedRef<boolean>
   isRipple: ComputedRef<boolean>
   isPrefix: ComputedRef<boolean>
   isSuffix: ComputedRef<boolean>
@@ -39,8 +45,6 @@ export type FieldSetupType = ComponentBaseType & {
   iconPreviousBind: ComputedRef<string | AssociativeType>
   iconNextBind: ComputedRef<string | AssociativeType>
   messageBind: ComputedRef<AssociativeType>
-  left: Ref<string>
-  right: Ref<string>
   prefixWidth: Ref<string>
   suffixWidth: Ref<string>
   validationText: ComputedRef<string>

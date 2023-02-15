@@ -5,11 +5,10 @@ import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { FieldClassesType, FieldSetupType } from './types'
-import { FieldLeft } from './FieldLeft'
 import { FieldValue } from './FieldValue'
 import { UseEnabled } from '../Use/UseEnabled'
 import { FieldCancel } from './FieldCancel'
-import { FieldRight } from './FieldRight'
+import { FieldAlign } from './FieldAlign'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -25,9 +24,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   private readonly enabled: UseEnabled
 
   private readonly cancel: FieldCancel
-
-  private readonly left: FieldLeft
-  private readonly right: FieldRight
+  private readonly align: FieldAlign
 
   protected readonly prefixElement = ref<HTMLElement | undefined>()
   protected readonly suffixElement = ref<HTMLElement | undefined>()
@@ -35,8 +32,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   protected readonly suffixWidth = ref<string>('0px')
 
   constructor (
-    protected readonly props: AssociativeType & object,
-    protected readonly context: AssociativeType & object
+    props: AssociativeType & object,
+    context: AssociativeType & object
   ) {
     super(props, context)
 
@@ -53,16 +50,10 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.refs.cancel,
       this.refs.arrow
     )
-
-    this.left = new FieldLeft(
-      this.context.slots,
-      this.refs.icon,
-      this.refs.align,
-      this.refs.arrow
-    )
-    this.right = new FieldRight(
+    this.align = new FieldAlign(
       this.context.slots,
       this.cancel,
+      this.refs.icon,
       this.refs.iconTrailing,
       this.refs.align,
       this.refs.arrow
@@ -97,13 +88,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       classes,
       styles,
       id: this.id,
-      leftElement: this.left.element,
-      rightElement: this.right.element,
       prefixElement: this.prefixElement,
       suffixElement: this.suffixElement,
-      isLeft: this.left.isLeft,
       isRequired: this.isRequired,
-      isRight: this.right.isRight,
       isRipple: this.isRipple,
       isPrefix: this.isPrefix,
       isSuffix: this.isSuffix,
@@ -115,13 +102,13 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       iconPreviousBind: this.getBind(this.refs.iconPrevious, this.iconPrevious, 'icon'),
       iconNextBind: this.getBind(this.refs.iconNext, this.iconNext, 'icon'),
       messageBind: this.message,
-      left: this.left.value,
-      right: this.right.value,
       prefixWidth: this.prefixWidth,
       suffixWidth: this.suffixWidth,
       validationText: this.validationText,
       update: this.update,
-      onClick: (event: MouseEvent) => this.onClick(event)
+      onClick: (event: MouseEvent) => this.onClick(event),
+
+      ...this.align.getSetup()
     }
   }
 
@@ -185,8 +172,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   protected update () {
     requestAnimationFrame(() => {
-      this.left.update()
-      this.right.update()
+      this.align.update()
       this.updatePrefix()
       this.updateSuffix()
     })
