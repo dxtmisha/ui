@@ -1,18 +1,18 @@
 import { computed, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { FieldAlign } from './FieldAlign'
+import { FieldArrow } from './FieldArrow'
+import { FieldIcon } from './FieldIcon'
+import { FieldCancel } from './FieldCancel'
+import { FieldPrefix } from './FieldPrefix'
+import { FieldValue } from './FieldValue'
+import { FieldMessageProps } from '../FieldMessage/FieldMessageProps'
+import { UseEnabled } from '../Use/UseEnabled'
 import { getIdElement, isFilled } from '../../functions'
 import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { FieldClassesType, FieldSetupType } from './types'
-import { FieldValue } from './FieldValue'
-import { UseEnabled } from '../Use/UseEnabled'
-import { FieldCancel } from './FieldCancel'
-import { FieldAlign } from './FieldAlign'
-import { FieldArrow } from './FieldArrow'
-import { FieldIcon } from './FieldIcon'
-import { FieldPrefix } from './FieldPrefix'
-import { FieldMessageProps } from '../FieldMessage/FieldMessageProps'
 
 export abstract class FieldComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
@@ -136,42 +136,58 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     }
   }
 
-  protected readonly isRequired = computed<boolean>(() => this.props.required && this.enabled.is())
-  protected readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
+  private readonly isRequired = computed<boolean>(() => this.props.required && this.enabled.is())
+  private readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
 
-  protected readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
-  protected readonly validationText = computed<string>(
+  private readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
+  private readonly validationText = computed<string>(
     () => typeof this.props.validationMessage === 'string' ? this.props.validationMessage : ''
   )
 
-  protected update () {
+  private update () {
     requestAnimationFrame(() => {
       this.align.update()
       this.prefix.update()
     })
   }
 
-  protected onClick<T = MouseEvent> (event: Event & T) {
+  private onClick<T = MouseEvent> (event: Event & T) {
     const inputElement = this.element.value?.querySelector<HTMLInputElement>(`.${this.getItem().getClassName(['input'])}`)
 
     if (inputElement && this.enabled.is()) {
-      if ((event.target as HTMLElement)?.closest('.is-icon.is-previous')) {
-        if (!this.props.disabledPrevious) {
-          this.context.emit('on-previous', this.props.detail)
-        }
-      } else if ((event.target as HTMLElement)?.closest('.is-icon.is-next')) {
-        if (!this.props.disabledNext) {
-          this.context.emit('on-next', this.props.detail)
-        }
-      } else if ((event.target as HTMLElement)?.closest('.is-icon.is-trailing')) {
-        this.context.emit('on-trailing', this.props.detail)
-        inputElement.focus()
-      } else if ((event.target as HTMLElement)?.closest('.is-icon.is-cancel')) {
-        this.context.emit('on-cancel', this.props.detail)
-        inputElement.focus()
-      } else {
-        inputElement.focus()
+      const type = this.getTypeByEvent(event)
+
+      switch (type) {
+        case 'disabled':
+          return
+        case 'on-trailing':
+        case 'on-cancel':
+        case undefined:
+          inputElement.focus()
+          break
+      }
+
+      if (type) {
+        this.context.emit(type, this.props.detail)
       }
     }
+  }
+
+  private getTypeByEvent<T = MouseEvent> (event: Event & T): string | undefined {
+    const target = event.target as HTMLElement
+
+    if (target) {
+      if (target.closest('.is-icon.is-trailing')) {
+        return 'on-trailing'
+      } else if (target.closest('.is-icon.is-cancel')) {
+        return 'on-cancel'
+      } else if (target.closest('.is-icon.is-previous')) {
+        return this.props.disabledNext ? 'disabled' : 'on-previous'
+      } else if (target.closest('.is-icon.is-next')) {
+        return this.props.disabledNext ? 'disabled' : 'on-next'
+      }
+    }
+
+    return undefined
   }
 }
