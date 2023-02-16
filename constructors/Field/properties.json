@@ -392,43 +392,43 @@
       },
       "?field-message-padding": "{??sys.padding} + {??sys.space}",
       "?ripple-background": "{??l.background}",
-      "height": {
-        "rename": "var|??sys.height"
-      },
       "width": {
         "auto": "auto",
         "full": "100%",
         "rename": "var|??sys.width"
       },
-      "section|align": {
-        "center": {},
-        "left": {},
-        "right": {}
+      "height": {
+        "rename": "var|??sys.height"
       },
-      "section|cancel": {
-        "auto": {},
-        "always": {},
-        "hide": {}
-      },
-      "section|disabled": {},
-      "section|focus": {},
-      "section|readonly": {},
-      "section|selected": {},
       "#body": {},
-      "#border": {},
-      "#hidden": {},
       "#input": {},
+      "#hidden": {},
       "#label": {},
       "#labelTop": {},
-      "#prefix": {},
+      "#title": {},
+      "#text": {},
       "#required": {},
       "#scoreboard": {
         "#context": {},
         "#space": {}
       },
+      "#prefix": {},
       "#suffix": {},
-      "#text": {},
-      "#title": {}
+      "#border": {},
+      "~cancel": {
+        "auto": {},
+        "always": {},
+        "hide": {}
+      },
+      "~align": {
+        "center": {},
+        "left": {},
+        "right": {}
+      },
+      "~focus": {},
+      "~selected": {},
+      "~readonly": {},
+      "~disabled": {}
     }
   }
 }
