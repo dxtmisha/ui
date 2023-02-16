@@ -1,5 +1,7 @@
 @import "../../styles/properties";
+@import "./styles/mixinFieldBody";
 @import "./styles/mixinFieldDisabled";
+@import "./styles/mixinFieldInput";
 
 $currentStatus: (
         'palette',
@@ -92,75 +94,6 @@ $currentStatus: (
     @include mixinFieldSelected;
     @include mixinFieldFocus;
     @include mixinFieldValidation;
-  }
-}
-
-@mixin mixinFieldBody() {
-  @include subClass('body') {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-
-    max-width: 100%;
-    border-radius: inherit;
-
-    @include background(v('??l.background'), v('??l.background-opacity'));
-    @include gradient(v('??l.gradient'), v('??l.gradient-opacity'));
-  }
-}
-
-@mixin mixinFieldInput() {
-  @include subClass('input') {
-    -moz-appearance: textfield;
-    border-radius: inherit;
-
-    position: relative;
-    z-index: 3;
-
-    padding: {
-      top: calc(#{v('??_half')} - #{v('??_label-half')} + #{v('??l.shift')});
-      bottom: calc(#{v('??_half')} - #{v('??_label-half')} - #{v('??l.shift')});
-    }
-    @include paddingLeft(calc(#{v('??_left')} + #{v('??_value-prefix')}));
-    @include paddingRight(calc(#{v('??_right')} + #{v('??_value-suffix')}));
-
-    width: 100%;
-    min-height: v('??sys.height');
-
-    opacity: 0;
-
-    &::placeholder {
-      @include color(v('??sys.placeholder.text'), v('??sys.placeholder.text-opacity'));
-    }
-
-    &::-webkit-clear-button,
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button,
-    &::-webkit-search-cancel-button {
-      -webkit-appearance: none;
-    }
-
-    &:-webkit-autofill {
-      transition: background-color 5000s ease-in-out 0s;
-    }
-
-    &:read-only {
-      cursor: default;
-    }
-
-    &:placeholder-shown {
-      opacity: 1;
-    }
-  }
-
-  @include subClass('hidden') {
-    display: none;
-  }
-
-  &.is-value, &:focus-within, &#{c('??--focus')} {
-    @include subClassByGlobal('input') {
-      opacity: 1;
-    }
   }
 }
 

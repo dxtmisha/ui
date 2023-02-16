@@ -53,6 +53,12 @@
       },
       "var|sys": {
         "palette": "{sys.palette.primary}",
+        "width": "{ref.spacing.72}",
+        "height": "{ref.spacing.14}",
+        "padding": "{ref.spacing.3}",
+        "space": "{ref.spacing.1}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.high}",
         "background": "{sys.palette.overlay}",
         "backgroundOpacity": "0",
         "border": "{sys.palette.onSurface}",
@@ -60,20 +66,14 @@
         "borderWidth": "{ref.spacing.px}",
         "gradient": "{sys.palette.onSurface}",
         "gradientOpacity": "0",
-        "height": "{ref.spacing.14}",
-        "padding": "{ref.spacing.3}",
         "shadow": "none",
-        "space": "{ref.spacing.1}",
-        "text": "{sys.palette.onSurface}",
-        "textOpacity": "{sys.opacity.surface.high}",
-        "width": "{ref.spacing.72}",
-        "label": {
-          "height": "{ref.spacing.6}",
-          "required": "{sys.palette.error}",
-          "textOpacity": "{sys.opacity.surface.medium}"
-        },
         "placeholder": {
           "textOpacity": "{sys.opacity.surface.medium}"
+        },
+        "label": {
+          "height": "{ref.spacing.6}",
+          "textOpacity": "{sys.opacity.surface.medium}",
+          "required": "{sys.palette.error}"
         },
         "prefix": {
           "textOpacity": "{sys.opacity.surface.medium}"

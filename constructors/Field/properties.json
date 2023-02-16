@@ -297,35 +297,34 @@
       },
       "var|sys": {
         "palette": "",
+        "width": "",
+        "height": "",
+        "padding": "",
+        "space": "",
+        "shift": "0px",
+        "text": "",
+        "textOpacity": "",
         "background": "",
         "backgroundOpacity": "",
+        "gradient": "",
+        "gradientOpacity": "",
         "border": "",
         "borderOpacity": "",
         "borderWidth": "",
-        "gradient": "",
-        "gradientOpacity": "",
-        "height": "",
-        "padding": "",
         "shadow": "",
-        "shift": "0px",
-        "space": "",
-        "text": "",
-        "textOpacity": "",
         "transitionDuration": "{d.sys.transitionDuration.fade.enter}",
-        "width": "",
-        "label": {
-          "fontSize": "inherit",
-          "height": "",
-          "opacity": "1",
-          "required": "",
-          "scale": "1",
-          "shift": "0px",
-          "text": "{??sys.text}",
+        "placeholder": {
           "textOpacity": "{??sys.textOpacity}"
         },
-        "placeholder": {
+        "label": {
+          "height": "",
+          "scale": "1",
+          "shift": "0px",
+          "opacity": "1",
+          "fontSize": "inherit",
           "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}"
+          "textOpacity": "{??sys.textOpacity}",
+          "required": ""
         },
         "prefix": {
           "opacity": "0",
@@ -362,17 +361,20 @@
       },
       "var|l": {
         "palette": "{??sys.palette}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}",
         "background": "{??sys.background}",
         "backgroundOpacity": "{??sys.backgroundOpacity}",
+        "gradient": "{??sys.gradient}",
+        "gradientOpacity": "{??sys.gradientOpacity}",
         "border": "{??sys.border}",
         "borderOpacity": "{??sys.borderOpacity}",
         "borderWidth": "{??sys.borderWidth}",
-        "gradient": "{??sys.gradient}",
-        "gradientOpacity": "{??sys.gradientOpacity}",
         "shadow": "{??sys.shadow}",
         "shift": "{??sys.shift}",
-        "text": "",
-        "textOpacity": "",
+        "placeholder": {
+          "textOpacity": "{??sys.placeholder.textOpacity}"
+        },
         "label": {
           "opacity": "{??sys.label.opacity}",
           "scale": "{??sys.label.scale}",
