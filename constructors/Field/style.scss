@@ -1,4 +1,31 @@
 @import "../../styles/properties";
+@import "./styles/mixinFieldDisabled";
+
+$currentStatus: (
+        'palette',
+        'background',
+        'background-opacity',
+        'border',
+        'border-opacity',
+        'border-width',
+        'gradient',
+        'gradient-opacity',
+        'shadow',
+        'shift',
+        'text',
+        'text-opacity',
+        'placeholder.text',
+        'placeholder.text-opacity',
+        'label.font-size',
+        'label.opacity',
+        'label.scale',
+        'label.shift',
+        'label.text',
+        'label.text-opacity',
+        'prefix.opacity',
+        'prefix.text',
+        'prefix.text-opacity'
+);
 
 @mixin initField(
   $design,
@@ -17,6 +44,8 @@
 
     @include mixinFieldBody;
     @include mixinFieldInput;
+
+    @include mixinFieldDisabled;
 
     @content;
   }
@@ -43,6 +72,7 @@
   #{i('?ripple-background')}: v('??l.background');
 
   width: v('??sys.width');
+
   @include color(v('??l.text'), v('??l.text-opacity'));
 
   @include mixinFieldLabel;
@@ -63,8 +93,6 @@
     @include mixinFieldFocus;
     @include mixinFieldValidation;
   }
-
-  @include mixinDisabled;
 }
 
 @mixin mixinFieldBody() {
@@ -358,22 +386,6 @@
           @include textAlign('left');
         }
       }
-    }
-  }
-}
-
-@mixin mixinDisabled() {
-  @include modClass('disabled') {
-    @include linkTo('text-opacity', '??sys.disabled.text-opacity');
-    @include linkTo('label.text-opacity', '??sys.disabled.label.text-opacity');
-    @include linkTo('placeholder.text-opacity', '??sys.disabled.placeholder.text-opacity');
-
-    @include subClassByGlobal('input') {
-      @include colorOpacity(v('??l.text-opacity'));
-    }
-
-    @include subClassByGlobal('label-top') {
-      @include colorOpacity(v('??l.label.text-opacity'));
     }
   }
 }

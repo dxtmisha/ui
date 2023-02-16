@@ -1,0 +1,33 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldDisabled() {
+  @include modClass('disabled') {
+    @include linkList('disabled', (
+            'palette',
+            'background',
+            'background-opacity',
+            'border',
+            'border-opacity',
+            'border-width',
+            'gradient',
+            'gradient-opacity',
+            'shadow',
+            'text',
+            'text-opacity',
+            'placeholder.text',
+            'placeholder.text-opacity',
+            'label.text',
+            'label.text-opacity',
+            'prefix.text',
+            'prefix.text-opacity'
+    ));
+
+    @include subClassByGlobal('input') {
+      @include colorOpacity(v('??l.text-opacity'));
+    }
+
+    @include subClassByGlobal('label-top') {
+      @include colorOpacity(v('??l.label.text-opacity'));
+    }
+  }
+}

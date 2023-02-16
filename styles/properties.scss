@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:meta";
 @use "sass:string";
 
@@ -17,6 +18,7 @@ $currentClass: '--' !default;
 $currentComponent: '--' !default;
 $currentProperties: () !default;
 $designsProperties: () !default;
+$currentStatus: () !default;
 
 @function c($name) {
   @return #{'.'}#{getCode($name)};
@@ -117,6 +119,20 @@ $designsProperties: () !default;
   $important: false
 ) {
   @include link($name, v($value, $default), $important)
+}
+
+@mixin linkList(
+  $name,
+  $important: ()
+) {
+  @each $index in $currentStatus {
+    @include linkTo(
+                    $index,
+                    #{#{'??sys.'}#{$name}#{'.'}#{$index}},
+                    v(#{#{'??sys.'}#{$index}}),
+                    list.index($important, $index)
+    );
+  }
 }
 
 @mixin sys(

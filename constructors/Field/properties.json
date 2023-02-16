@@ -371,8 +371,8 @@
         "gradientOpacity": "{??sys.gradientOpacity}",
         "shadow": "{??sys.shadow}",
         "shift": "{??sys.shift}",
-        "text": "{??sys.text}",
-        "textOpacity": "{??sys.textOpacity}",
+        "text": "",
+        "textOpacity": "",
         "label": {
           "opacity": "{??sys.label.opacity}",
           "scale": "{??sys.label.scale}",
