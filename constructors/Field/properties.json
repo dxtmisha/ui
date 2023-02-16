@@ -323,8 +323,10 @@
           "opacity": "1",
           "fontSize": "inherit",
           "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}",
-          "required": ""
+          "textOpacity": "{??sys.textOpacity}"
+        },
+        "required": {
+          "text": "{??sys.label.text}"
         },
         "prefix": {
           "opacity": "0",
@@ -379,12 +381,9 @@
           "opacity": "{??sys.label.opacity}",
           "scale": "{??sys.label.scale}",
           "shift": "{??sys.label.shift}",
+          "fontSize": "{??sys.label.fontSize}",
           "text": "{??sys.label.text}",
-          "textOpacity": "{??sys.label.textOpacity}",
-          "translate": {
-            "x": "{??_valueLeft}",
-            "y": "{??sys.height} / 4"
-          }
+          "textOpacity": "{??sys.label.textOpacity}"
         },
         "prefix": {
           "opacity": "{??sys.prefix.opacity}",

@@ -1,0 +1,85 @@
+@import "../../../styles/properties";
+@import "./useFieldBorder";
+
+@mixin mixinFieldLabel() {
+  @include subClass('label') {
+    display: flex;
+    position: absolute;
+    @include top;
+    z-index: 2;
+
+    height: v('??_half');
+    border-radius: inherit;
+
+    @include paletteColor(v('??l.label.text'));
+    @include colorOpacity(v('??l.label.text-opacity'));
+
+    &::before,
+    &::after {
+      content: " ";
+
+      flex-basis: v('??sys.padding');
+      min-width: v('??sys.padding');
+      @include useFieldBorderTop;
+    }
+
+    &::before {
+      border-top-left-radius: inherit;
+    }
+
+    &::after {
+      border-top-right-radius: inherit;
+      flex-grow: 1;
+    }
+  }
+
+  @include subClass('label-top') {
+    @include paletteColor(v('??l.label.text'));
+    @include colorOpacity(v('??sys.label.text-opacity'));
+  }
+}
+
+@mixin mixinFieldTitle() {
+  @include subClass('title') {
+    @include propertiesLink('d.flex.x');
+    position: relative;
+    @include paddingX(v('??sys.space'));
+
+    max-width: calc(100% - #{v('??_left')} - #{v('??_right')});
+
+    &::after {
+      content: " ";
+      position: absolute;
+      @include top;
+      @include useFieldBorderTop;
+    }
+  }
+}
+
+@mixin mixinFieldText() {
+  @include subClass('text') {
+    opacity: v('??l.label.opacity');
+    transform: translate(#{calc(#{v('??_label-translate-x')} * var(--d-dir))}, #{calc(#{v('??_label-translate-y')} - #{v('??l.label.shift')})}) scale(#{v('??l.label.scale')});
+    transform-origin: var(--d-dir-text-left);
+
+    max-width: 100%;
+
+    font-size: v('??l.label.font-size');
+    line-height: 1;
+    @include propertiesLink('d.font.ellipsis');
+
+    transition-duration: v('??sys.transition-duration');
+    transition-property: font-size, opacity, transform;
+    transition-timing-function: v('d.sys.transition-function.standard');
+  }
+}
+
+@mixin mixinFieldRequired() {
+  @include subClass('required') {
+    @include color(v('??sys.required.text'));
+
+    &::after {
+      content: '*';
+    }
+  }
+}

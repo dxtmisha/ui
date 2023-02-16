@@ -1,0 +1,10 @@
+@import "../../../styles/properties";
+
+@mixin useFieldBorderColor() {
+  @include border(v('??l.border'), v('??l.border-opacity'));
+}
+
+@mixin useFieldBorderTop() {
+  @include useFieldBorderColor;
+  border-top-width: v('??l.border.width');
+}

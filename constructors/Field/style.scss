@@ -2,6 +2,7 @@
 @import "./styles/mixinFieldBody";
 @import "./styles/mixinFieldDisabled";
 @import "./styles/mixinFieldInput";
+@import "./styles/mixinFieldLabel";
 
 $currentStatus: (
         'palette',
@@ -45,7 +46,13 @@ $currentStatus: (
     );
 
     @include mixinFieldBody;
+
     @include mixinFieldInput;
+
+    @include mixinFieldLabel;
+    @include mixinFieldTitle;
+    @include mixinFieldText;
+    @include mixinFieldRequired;
 
     @include mixinFieldDisabled;
 
@@ -70,17 +77,15 @@ $currentStatus: (
   #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$left});
   #{i('??_right')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$right});
 
+  #{i('??_label-translate-x')}: v('??_value-left');
+  #{i('??_label-translate-y')}: calc(v('??sys.height') / 4);
+
   #{i('?field-message-padding')}: calc(v('??sys.padding') + v('??sys.space'));
   #{i('?ripple-background')}: v('??l.background');
 
   width: v('??sys.width');
 
   @include color(v('??l.text'), v('??l.text-opacity'));
-
-  @include mixinFieldLabel;
-  @include mixinFieldTitle;
-  @include mixinFieldText;
-  @include mixinFieldRequired;
 
   @include mixinFieldScoreboard;
   @include mixinFieldPrefix;
@@ -94,89 +99,6 @@ $currentStatus: (
     @include mixinFieldSelected;
     @include mixinFieldFocus;
     @include mixinFieldValidation;
-  }
-}
-
-@mixin mixinFieldLabel() {
-  @include subClass('label') {
-    display: flex;
-    position: absolute;
-    @include top;
-    z-index: 2;
-
-    height: v('??_half');
-    border-radius: inherit;
-
-    @include paletteColor(v('??l.label.text'));
-    @include colorOpacity(v('??l.label.text-opacity'));
-
-    &::before,
-    &::after {
-      content: " ";
-
-      flex-basis: v('??sys.padding');
-      min-width: v('??sys.padding');
-      @include mixinFieldBorderTop;
-    }
-
-    &::before {
-      border-top-left-radius: inherit;
-    }
-
-    &::after {
-      border-top-right-radius: inherit;
-      flex-grow: 1;
-    }
-  }
-
-  @include subClass('label-top') {
-    @include paletteColor(v('??l.label.text'));
-    @include colorOpacity(v('??sys.label.text-opacity'));
-  }
-}
-
-@mixin mixinFieldTitle() {
-  @include subClass('title') {
-    @include propertiesLink('d.flex.x');
-    position: relative;
-    @include paddingX(v('??sys.space'));
-
-    max-width: calc(100% - #{v('??_left')} - #{v('??_right')});
-
-    &::after {
-      content: " ";
-      position: absolute;
-      @include top;
-      @include mixinFieldBorderTop;
-    }
-  }
-}
-
-@mixin mixinFieldText() {
-  @include subClass('text') {
-    max-width: 100%;
-
-    transform: translate(#{calc(#{v('??l.label.translate.x')} * var(--d-dir))}, #{calc(#{v('??l.label.translate.y')} - #{v('??l.label.shift')})}) scale(#{v('??l.label.scale')});
-    transform-origin: var(--d-dir-text-left);
-    opacity: v('??l.label.opacity');
-
-    @include propertiesLink('d.font.ellipsis');
-    font-size: v('??l.label.font-size', inherit);
-    line-height: 1;
-
-    transition-duration: v('??sys.transition-duration');
-    transition-property: font-size, opacity, transform;
-    transition-timing-function: v('d.sys.transition-function.standard');
-  }
-}
-
-@mixin mixinFieldRequired() {
-  @include subClass('required') {
-    @include color(v('??sys.label.required'));
-
-    &::after {
-      content: '*';
-    }
   }
 }
 

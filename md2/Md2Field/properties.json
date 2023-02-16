@@ -72,8 +72,10 @@
         },
         "label": {
           "height": "{ref.spacing.6}",
-          "textOpacity": "{sys.opacity.surface.medium}",
-          "required": "{sys.palette.error}"
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
+        "required": {
+          "text": "{sys.palette.error}"
         },
         "prefix": {
           "textOpacity": "{sys.opacity.surface.medium}"
