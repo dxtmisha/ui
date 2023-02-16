@@ -14,6 +14,10 @@
                     $prefix,
                     $suffix
     );
+
+    @include mixinFieldBody;
+    @include mixinFieldInput;
+
     @content;
   }
 }
@@ -24,69 +28,66 @@
   $prefix,
   $suffix
 ) {
-  #{i('??_half')}: calc(#{v('??sys.height')} / 2);
-  #{i('??_label-half')}: calc(#{v('??sys.label.height')} / 2);
-
   #{i('??_value-left')}: #{$left};
   #{i('??_value-right')}: #{$right};
   #{i('??_value-prefix')}: #{$prefix};
   #{i('??_value-suffix')}: #{$suffix};
+
+  #{i('??_half')}: calc(#{v('??sys.height')} / 2);
+  #{i('??_label-half')}: calc(#{v('??sys.label.height')} / 2);
+
   #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$left});
   #{i('??_right')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$right});
 
-  @include color(v('??l.text'), v('??l.text-opacity'));
+  #{i('?field-message-padding')}: calc(v('??sys.padding') + v('??sys.space'));
+  #{i('?ripple-background')}: v('??l.background');
+
   width: v('??sys.width');
+  @include color(v('??l.text'), v('??l.text-opacity'));
 
-  @include mixinBody;
-  @include mixinInput;
+  @include mixinFieldLabel;
+  @include mixinFieldTitle;
+  @include mixinFieldText;
+  @include mixinFieldRequired;
 
-  @include mixinLabel;
-  @include mixinTitle;
-  @include mixinText;
-  @include mixinRequired;
+  @include mixinFieldScoreboard;
+  @include mixinFieldPrefix;
+  @include mixinFieldCancel;
 
-  @include mixinScoreboard;
-  @include mixinPrefix;
-  @include mixinCancel;
+  @include mixinFieldBorder;
 
-  @include mixinBorder;
-
-  @include mixinAlign;
+  @include mixinFieldAlign;
 
   &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
-    @include mixinSelected;
-    @include mixinFocus;
-    @include mixinValidation;
+    @include mixinFieldSelected;
+    @include mixinFieldFocus;
+    @include mixinFieldValidation;
   }
 
   @include mixinDisabled;
 }
 
-@mixin mixinBody() {
+@mixin mixinFieldBody() {
   @include subClass('body') {
-    @include background(v('??l.background'), v('??l.background-opacity'));
-    @include gradient(v('??l.gradient'), v('??l.gradient-opacity'));
-
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    border-radius: inherit;
 
     max-width: 100%;
+    border-radius: inherit;
+
+    @include background(v('??l.background'), v('??l.background-opacity'));
+    @include gradient(v('??l.gradient'), v('??l.gradient-opacity'));
   }
 }
 
-@mixin mixinInput() {
+@mixin mixinFieldInput() {
   @include subClass('input') {
     -moz-appearance: textfield;
     border-radius: inherit;
 
-    opacity: 0;
     position: relative;
     z-index: 3;
-
-    width: 100%;
-    min-height: v('??sys.height');
 
     padding: {
       top: calc(#{v('??_half')} - #{v('??_label-half')} + #{v('??l.shift')});
@@ -94,6 +95,11 @@
     }
     @include paddingLeft(calc(#{v('??_left')} + #{v('??_value-prefix')}));
     @include paddingRight(calc(#{v('??_right')} + #{v('??_value-suffix')}));
+
+    width: 100%;
+    min-height: v('??sys.height');
+
+    opacity: 0;
 
     &::placeholder {
       @include color(v('??sys.placeholder.text'), v('??sys.placeholder.text-opacity'));
@@ -130,11 +136,8 @@
   }
 }
 
-@mixin mixinLabel() {
+@mixin mixinFieldLabel() {
   @include subClass('label') {
-    @include paletteColor(v('??l.label.text'));
-    @include colorOpacity(v('??l.label.text-opacity'));
-
     display: flex;
     position: absolute;
     @include top;
@@ -142,6 +145,9 @@
 
     height: v('??_half');
     border-radius: inherit;
+
+    @include paletteColor(v('??l.label.text'));
+    @include colorOpacity(v('??l.label.text-opacity'));
 
     &::before,
     &::after {
@@ -168,13 +174,13 @@
   }
 }
 
-@mixin mixinTitle() {
+@mixin mixinFieldTitle() {
   @include subClass('title') {
     @include propertiesLink('d.flex.x');
-
     position: relative;
-    max-width: calc(100% - #{v('??_left')} - #{v('??_right')});
     @include paddingX(v('??sys.space'));
+
+    max-width: calc(100% - #{v('??_left')} - #{v('??_right')});
 
     &::after {
       content: " ";
@@ -185,24 +191,25 @@
   }
 }
 
-@mixin mixinText() {
+@mixin mixinFieldText() {
   @include subClass('text') {
-    @include propertiesLink('d.font.ellipsis');
-    font-size: v('??l.label.font-size', inherit);
-    line-height: 1;
-
     max-width: 100%;
 
     transform: translate(#{calc(#{v('??l.label.translate.x')} * var(--d-dir))}, #{calc(#{v('??l.label.translate.y')} - #{v('??l.label.shift')})}) scale(#{v('??l.label.scale')});
     transform-origin: var(--d-dir-text-left);
-    transition-duration: v('??sys.transition-duration');
-    transition-property: color, font-size, opacity, transform;
-    transition-timing-function: v('d.sys.transition-function.standard');
     opacity: v('??l.label.opacity');
+
+    @include propertiesLink('d.font.ellipsis');
+    font-size: v('??l.label.font-size', inherit);
+    line-height: 1;
+
+    transition-duration: v('??sys.transition-duration');
+    transition-property: font-size, opacity, transform;
+    transition-timing-function: v('d.sys.transition-function.standard');
   }
 }
 
-@mixin mixinRequired() {
+@mixin mixinFieldRequired() {
   @include subClass('required') {
     @include color(v('??sys.label.required'));
 
@@ -212,10 +219,8 @@
   }
 }
 
-@mixin mixinScoreboard() {
+@mixin mixinFieldScoreboard() {
   @include subClass('scoreboard') {
-    @include colorOpacity(v('??sys.label.text-opacity'));
-
     @include propertiesLink('d.flex.x');
     @include paddingX(v('??sys.padding'));
     position: relative;
@@ -223,6 +228,8 @@
 
     width: 100%;
     height: 0;
+
+    @include colorOpacity(v('??sys.label.text-opacity'));
 
     transform: translateY(#{calc(-1 * #{v('??_half')})});
 
@@ -260,12 +267,14 @@
   }
 }
 
-@mixin mixinPrefix() {
+@mixin mixinFieldPrefix() {
   &__prefix,
   &__suffix {
-    @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
-    opacity: v('??l.prefix.opacity');
     transform: translateY(v('??l.shift'));
+    opacity: v('??l.prefix.opacity');
+
+    @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
+
     transition-property: opacity;
   }
 
@@ -284,7 +293,7 @@
   }
 }
 
-@mixin mixinCancel() {
+@mixin mixinFieldCancel() {
   @include subClass('scoreboard') {
     @include subClass('context') {
       & > .is-cancel {
@@ -303,7 +312,7 @@
   }
 }
 
-@mixin mixinBorder() {
+@mixin mixinFieldBorder() {
   @include subClass('border') {
     position: absolute;
     @include inset;
@@ -316,7 +325,7 @@
   }
 }
 
-@mixin mixinAlign() {
+@mixin mixinFieldAlign() {
   @include modClass('align') {
     @include modClass('center') {
       @include subClassByGlobal('input') {
@@ -369,14 +378,14 @@
   }
 }
 
-@mixin mixinFocus() {
+@mixin mixinFieldFocus() {
   &:focus-within, &#{c('??--focus')} {
     @include linkTo('label.text', '??sys.focus.label.text');
     @include linkTo('label.text-opacity', '??sys.focus.label.text-opacity');
   }
 }
 
-@mixin mixinValidation() {
+@mixin mixinFieldValidation() {
   &.is-validation {
     @include linkTo('text', '??sys.validation.text', null, true);
     @include linkTo('label.text', '??sys.validation.label.text', null, true);
@@ -387,7 +396,7 @@
   }
 }
 
-@mixin mixinSelected() {
+@mixin mixinFieldSelected() {
   @include modClassByGlobal('selected') {
     @include linkTo('background', '??sys.selected.background');
     @include linkTo('border', '??sys.selected.border');

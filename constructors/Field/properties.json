@@ -390,8 +390,6 @@
           "textOpacity": "{??sys.prefix.textOpacity}"
         }
       },
-      "?field-message-padding": "{??sys.padding} + {??sys.space}",
-      "?ripple-background": "{??l.background}",
       "width": {
         "auto": "auto",
         "full": "100%",
