@@ -1,0 +1,91 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldScoreboard() {
+  @include subClass('scoreboard') {
+    @include propertiesLink('d.flex.x');
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    height: 0;
+    @include paddingX(v('??sys.padding'));
+
+    @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
+
+    transform: translateY(#{calc(-1 * #{v('??_half')})});
+
+    @include subClass('context') {
+      @include propertiesLink('d.flex.x');
+      gap: 0 v('??sys.space');
+
+      &:first-child {
+        @include paddingRight(v('??sys.space'));
+      }
+
+      &:last-child {
+        @include paddingLeft(v('??sys.space'));
+      }
+    }
+
+    @include subClass('space') {
+      flex-grow: 1;
+    }
+  }
+
+  .is-trailing,
+  .is-cancel,
+  .is-previous,
+  .is-next {
+    cursor: pointer;
+  }
+
+  &:not(.is-arrow, .is-cancel) {
+    &:focus-within, &#{c('??--focus')} {
+      @include subClassByGlobal('scoreboard') {
+        z-index: 1
+      }
+    }
+  }
+}
+
+@mixin mixinFieldPrefix() {
+  &__prefix,
+  &__suffix {
+    transform: translateY(v('??l.shift'));
+    opacity: v('??l.prefix.opacity');
+  }
+
+  @include subClass('prefix') {
+    @include paddingLeft(v('??sys.space'));
+    transition-property: opacity;
+  }
+
+  @include subClass('suffix') {
+    @include paddingRight(v('??sys.space'));
+  }
+
+  &.is-suffix {
+    @include subClassByGlobal('input') {
+      @include textAlign('right');
+    }
+  }
+}
+
+@mixin mixinFieldCancel() {
+  @include subClass('scoreboard') {
+    @include subClass('context') {
+      & > .is-cancel {
+        transition-duration: v('??sys.transition-duration');
+        transition-property: opacity;
+      }
+    }
+  }
+
+  @include modClass('cancel') {
+    @include modClass('auto') {
+      &:not(:hover, :focus-within, #{c('??--focus')}) .is-cancel {
+        opacity: 0;
+      }
+    }
+  }
+}

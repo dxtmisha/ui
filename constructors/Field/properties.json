@@ -323,7 +323,7 @@
           "opacity": "1",
           "fontSize": "inherit",
           "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}"
+          "textOpacity": "{??sys.placeholder.textOpacity}"
         },
         "required": {
           "text": "{??sys.label.text}"
@@ -331,13 +331,10 @@
         "prefix": {
           "opacity": "0",
           "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}"
+          "textOpacity": "{??sys.placeholder.textOpacity}"
         },
-        "disabled": {
-          "@style": "{??m.status}"
-        },
+        "disabled": {},
         "focus": {
-          "@style": "{??m.status}",
           "prefix": {
             "opacity": "1"
           }

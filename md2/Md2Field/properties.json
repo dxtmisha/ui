@@ -71,14 +71,10 @@
           "textOpacity": "{sys.opacity.surface.medium}"
         },
         "label": {
-          "height": "{ref.spacing.6}",
-          "textOpacity": "{sys.opacity.surface.medium}"
+          "height": "{ref.spacing.6}"
         },
         "required": {
           "text": "{sys.palette.error}"
-        },
-        "prefix": {
-          "textOpacity": "{sys.opacity.surface.medium}"
         },
         "disabled": {
           "textOpacity": "{sys.opacity.surface.disabled}",

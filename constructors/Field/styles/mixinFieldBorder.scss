@@ -1,0 +1,15 @@
+@import "../../../styles/properties";
+@import "./useFieldBorder";
+
+@mixin mixinFieldBorder() {
+  @include subClass('border') {
+    position: absolute;
+    @include inset;
+
+    @include useFieldBorderColor;
+    border-right-width: v('??l.border-width');
+    border-bottom-width: v('??l.border-width');
+    border-left-width: v('??l.border-width');
+    border-radius: inherit;
+  }
+}
