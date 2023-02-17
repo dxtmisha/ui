@@ -1,0 +1,27 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldReadonly() {
+  @include modClass('readonly') {
+    @include linkList('readonly', (
+            'palette',
+            'background',
+            'background-opacity',
+            'border',
+            'border-opacity',
+            'border-width',
+            'gradient',
+            'gradient-opacity',
+            'shadow',
+            'text',
+            'text-opacity',
+            'placeholder.text',
+            'placeholder.text-opacity',
+            'label.text',
+            'label.text-opacity',
+            'prefix.text',
+            'prefix.text-opacity'
+    ));
+
+    --sys-palette: unset;
+  }
+}

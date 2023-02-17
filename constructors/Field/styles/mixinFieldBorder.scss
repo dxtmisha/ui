@@ -1,5 +1,5 @@
 @import "../../../styles/properties";
-@import "./useFieldBorder";
+@import "useField";
 
 @mixin mixinFieldBorder() {
   @include subClass('border') {

@@ -1,14 +1,17 @@
 @import "../../../styles/properties";
+@import "./useField";
 
 @mixin mixinFieldHover {
-  &:hover {
-    @include linkList('hover', (), (
-            'shift',
-            'label.scale',
-            'label.shift',
-            'prefix.opacity',
-            'prefix.text',
-            'prefix.text-opacity'
-    ));
+  @include useFieldEnabled {
+    &:hover {
+      @include linkList('hover', (), (
+              'shift',
+              'label.scale',
+              'label.shift',
+              'prefix.opacity',
+              'prefix.text',
+              'prefix.text-opacity'
+      ));
+    }
   }
 }

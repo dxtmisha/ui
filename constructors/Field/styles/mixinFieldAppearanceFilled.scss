@@ -1,5 +1,5 @@
 @import "../../../styles/properties";
-@import "./useFieldBorder";
+@import "useField";
 
 @mixin mixinFieldAppearanceFilled {
   @include modClass('appearance') {
@@ -50,7 +50,7 @@
     }
   }
 
-  &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
+  @include useFieldEnabled {
     &:focus-within, &#{c('??-focus')} {
       #{i('??_clip-path')}: inset(0 0);
     }

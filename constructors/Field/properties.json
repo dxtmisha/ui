@@ -65,6 +65,7 @@
             "text": "{??sys.validation.text}"
           }
         },
+        "readonly": {},
         "disabled": {
           "palette": "",
           "textOpacity": "",

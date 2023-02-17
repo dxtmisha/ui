@@ -7,6 +7,7 @@
 @import "./styles/mixinFieldHover";
 @import "./styles/mixinFieldInput";
 @import "./styles/mixinFieldLabel";
+@import "./styles/mixinFieldReadonly";
 @import "./styles/mixinFieldScoreboard";
 @import "./styles/mixinFieldSelected";
 @import "./styles/mixinFieldValidation";
@@ -73,6 +74,7 @@ $currentStatus: (
 
     @include mixinFieldSelected;
     @include mixinFieldValidation;
+    @include mixinFieldReadonly;
     @include mixinFieldDisabled;
     @include mixinFieldHover;
     @include mixinFieldValue;

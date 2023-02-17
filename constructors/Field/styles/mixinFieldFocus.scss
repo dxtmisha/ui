@@ -1,7 +1,10 @@
 @import "../../../styles/properties";
+@import "./useField";
 
 @mixin mixinFieldFocus() {
-  &:focus-within, &#{c('??-focus')} {
-    @include linkList('focus');
+  @include useFieldEnabled {
+    &:focus-within, &#{c('??-focus')} {
+      @include linkList('focus');
+    }
   }
 }
