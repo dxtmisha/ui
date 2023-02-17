@@ -9,3 +9,11 @@
   @include useFieldBorderColor;
   border-top-width: v('??_border-width');
 }
+
+@mixin useFieldBorderBottom() {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+}

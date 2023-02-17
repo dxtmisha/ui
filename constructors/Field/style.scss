@@ -111,7 +111,4 @@ $currentStatus: (
   border-radius: v('??sys.rounded');
 
   @include color(v('??l.text'), v('??l.text-opacity'));
-
-  &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
-  }
 }

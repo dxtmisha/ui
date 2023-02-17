@@ -1,4 +1,5 @@
 @import "../../../styles/properties";
+@import "./useFieldBorder";
 
 @mixin mixinFieldAppearanceFilled {
   @include modClass('appearance') {
@@ -10,4 +11,48 @@
 
 @mixin mixinFieldAppearanceFilledOnly {
   #{i('??_border-width')}: 0;
+  #{i('??_clip-path')}: inset(0 50%);
+
+  @include subClassByGlobal('body') {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  @include subClassByGlobal('border') {
+    &::before {
+      content: " ";
+
+      @include useFieldBorderBottom;
+      z-index: 4;
+
+      height: v('??sys.border-width');
+
+      @include paletteBackground(v('??l.border'));
+      @include backgroundOpacity(v('??l.border-opacity'));
+    }
+
+    &::after {
+      content: " ";
+
+      @include useFieldBorderBottom;
+      z-index: 8;
+
+      clip-path: v('??_clip-path');
+
+      height: v('??sys.focus.border-width');
+
+      @include paletteBackground(v('??l.palette'));
+      @include backgroundOpacity(v('??l.border-opacity'));
+
+      transition-duration: v('??sys.transition-duration');
+      transition-property: background-color, clip-path;
+      transition-timing-function: v('d.sys.transitionFunction.standard');
+    }
+  }
+
+  &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
+    &:focus-within, &#{c('??-focus')} {
+      #{i('??_clip-path')}: inset(0 0);
+    }
+  }
 }
