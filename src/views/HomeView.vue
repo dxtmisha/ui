@@ -2,7 +2,7 @@
   <div>
     <div class="px-4 py-2"><b>input</b></div>
     <div class="flex px-4 py-2 gap-2">
-      <md2-input v-model="inputValue" text="text"/>
+      <md2-input v-model="inputValue" text="This selector could have also been written as"/>
       <md2-input v-model="inputValue" text="validation" validation-message="validation message"/>
       <md2-input v-model="inputValue" selected text="selected"/>
     </div>
@@ -50,7 +50,8 @@
     <div class="px-4 pt-4 pb-2"><b>input, prefix, icon</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" icon="face" prefix="prefix" text="text"/>
-      <md2-input v-model="inputValue" icon="face" prefix="prefix" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" icon="face" prefix="prefix" text="validation"
+                 validation-message="validation message"/>
       <md2-input v-model="inputValue" icon="face" prefix="prefix" selected text="selected"/>
     </div>
 
@@ -79,7 +80,23 @@
         text="selected"
       />
     </div>
+
+    <div class="px-4 pt-4 pb-2"><b>input, align</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" align="left" text="left"/>
+      <md2-input v-model="inputValue" align="center" text="center"/>
+      <md2-input v-model="inputValue" align="right" text="right"/>
+    </div>
+
+    <div class="px-4 pt-4 pb-2"><b>input, align, arrow</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" align="left" arrow text="left"/>
+      <md2-input v-model="inputValue" align="center" arrow text="center"/>
+      <md2-input v-model="inputValue" align="right" arrow text="right"/>
+    </div>
   </div>
+  <div class="h-96"/>
+  <div class="h-96"/>
 </template>
 
 <script lang="ts">

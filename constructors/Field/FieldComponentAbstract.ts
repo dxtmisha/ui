@@ -121,6 +121,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       id: this.id,
       isRequired: this.isRequired,
       isRipple: this.isRipple,
+      isScoreboard: this.isScoreboard,
       isCancel: this.cancel.item,
 
       isValidation: this.isValidation,
@@ -138,6 +139,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
 
   private readonly isRequired = computed<boolean>(() => this.props.required && this.enabled.is())
   private readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
+  private readonly isScoreboard = computed<boolean>(() => this.align.is() || this.prefix.is())
 
   private readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))
   private readonly validationText = computed<string>(

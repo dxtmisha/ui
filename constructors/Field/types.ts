@@ -55,6 +55,7 @@ export type FieldSetupType =
     id: string
     isRequired: ComputedRef<boolean>
     isRipple: ComputedRef<boolean>
+    isScoreboard: ComputedRef<boolean>
     isCancel: ComputedRef<boolean>
     isValidation: ComputedRef<boolean>
     iconBind: ComputedRef<string | AssociativeType>

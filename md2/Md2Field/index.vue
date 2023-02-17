@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div :class="classes.scoreboard">
+      <div v-if="isScoreboard" :class="classes.scoreboard">
         <div v-if="isLeft" ref="leftElement" :class="classes.scoreboardContext">
           <template v-if="arrow">
             <md2-icon v-if="align !== 'right'" v-bind="iconPreviousBind">
@@ -36,15 +36,19 @@
           <md2-icon v-if="icon" v-bind="iconBind"/>
           <slot :id="id" :update="update" name="left"/>
         </div>
+
         <div v-if="isPrefix" ref="prefixElement" :class="classes.prefix">
           {{ prefix }}
           <slot :id="id" :update="update" name="prefix"/>
         </div>
+
         <div :class="classes.scoreboardSpace"/>
+
         <div v-if="isSuffix" ref="suffixElement" :class="classes.suffix">
           <slot :id="id" :update="update" name="suffix"/>
           {{ suffix }}
         </div>
+
         <div v-if="isRight" ref="rightElement" :class="classes.scoreboardContext">
           <slot :id="id" :update="update" name="right"/>
           <md2-icon v-if="isCancel" v-bind="iconCancelBind">

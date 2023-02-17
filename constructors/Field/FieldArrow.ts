@@ -13,11 +13,11 @@ export class FieldArrow {
   }
 
   isLeft (): boolean {
-    return this.is() && this.align.value === 'left'
+    return this.is() && this.align.value !== 'left'
   }
 
   isRight (): boolean {
-    return this.is() && this.align.value === 'right'
+    return this.is() && this.align.value !== 'right'
   }
 
   getClass (): object {

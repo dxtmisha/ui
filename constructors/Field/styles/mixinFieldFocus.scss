@@ -1,7 +1,7 @@
 @import "../../../styles/properties";
 
 @mixin mixinFieldFocus() {
-  &:focus-within, &#{c('??--focus')} {
+  &:focus-within, &#{c('??-focus')} {
     @include linkList('focus');
   }
 }

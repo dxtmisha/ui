@@ -1,0 +1,43 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldAlign() {
+  @include modClass('align') {
+    @include modClass('center') {
+      @include subClassByGlobal('input') {
+        @include textAlign('center');
+      }
+
+      &.is-arrow {
+        #{i('??_label-translate-x')}: 0px;
+
+        @include subClassByGlobal('label') {
+          &::before {
+            flex-grow: 1;
+          }
+        }
+
+        @include subClassByGlobal('text') {
+          transform-origin: center;
+        }
+      }
+    }
+
+    @include modClass('left') {
+      @include subClassByGlobal('input') {
+        @include textAlign('left');
+      }
+    }
+
+    @include modClass('right') {
+      @include subClassByGlobal('input') {
+        @include textAlign('right');
+      }
+
+      &.is-arrow {
+        @include subClassByGlobal('input') {
+          @include textAlign('left');
+        }
+      }
+    }
+  }
+}

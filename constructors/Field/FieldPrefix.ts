@@ -20,6 +20,10 @@ export class FieldPrefix {
   protected readonly isPrefix = computed<boolean>(() => isFilled(this.prefix.value) || 'prefix' in this.slots)
   protected readonly isSuffix = computed<boolean>(() => isFilled(this.suffix.value) || 'suffix' in this.slots)
 
+  is (): boolean {
+    return this.isPrefix.value || this.isSuffix.value
+  }
+
   getSetup (): FieldPrefixSetupType {
     return {
       prefixElement: this.prefixElement,

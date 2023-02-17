@@ -1,4 +1,5 @@
 @import "../../styles/properties";
+@import "./styles/mixinFieldAlign";
 @import "./styles/mixinFieldBody";
 @import "./styles/mixinFieldBorder";
 @import "./styles/mixinFieldDisabled";
@@ -51,6 +52,7 @@ $currentStatus: (
     );
 
     @include mixinFieldBody;
+    @include mixinFieldBorder;
 
     @include mixinFieldInput;
 
@@ -63,7 +65,7 @@ $currentStatus: (
     @include mixinFieldPrefix;
     @include mixinFieldCancel;
 
-    @include mixinFieldBorder;
+    @include mixinFieldAlign;
 
     @include mixinFieldSelected;
     @include mixinFieldValidation;
@@ -101,78 +103,6 @@ $currentStatus: (
 
   @include color(v('??l.text'), v('??l.text-opacity'));
 
-  @include mixinFieldAlign;
-
   &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
-  }
-}
-
-
-@mixin mixinFieldAlign() {
-  @include modClass('align') {
-    @include modClass('center') {
-      @include subClassByGlobal('input') {
-        @include textAlign('center');
-      }
-
-      &.is-arrow {
-        @include linkTo('label.translate-x', '0px');
-        @include subClassByGlobal('label') {
-          &::before {
-            flex-grow: 1;
-          }
-        }
-      }
-    }
-
-    @include modClass('left') {
-      @include subClassByGlobal('input') {
-        @include textAlign('left');
-      }
-    }
-
-    @include modClass('right') {
-      @include subClassByGlobal('input') {
-        @include textAlign('right');
-      }
-
-      &.is-arrow {
-        @include subClassByGlobal('input') {
-          @include textAlign('left');
-        }
-      }
-    }
-  }
-}
-
-@mixin mixinFieldSelected() {
-  @include modClassByGlobal('selected') {
-    @include linkTo('background', '??sys.selected.background');
-    @include linkTo('border', '??sys.selected.border');
-    @include linkTo('gradient', '??sys.selected.gradient');
-    @include linkTo('text', '??sys.selected.text');
-
-    @include subClassByGlobal('body') {
-      @include paletteColor(v('??l.text'));
-      @include paletteBackground(v('??l.background'));
-      @include paletteGradient(v('??l.gradient'));
-    }
-
-    @include subClassByGlobal('border') {
-      @include paletteBorder(v('??l.border'));
-    }
-
-    @include subClassByGlobal('label') {
-      &::before,
-      &::after {
-        @include paletteBorder(v('??l.border'));
-      }
-    }
-
-    @include subClassByGlobal('title') {
-      &::after {
-        @include paletteBorder(v('??l.border'));
-      }
-    }
   }
 }

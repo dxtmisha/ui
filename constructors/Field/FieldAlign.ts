@@ -34,6 +34,10 @@ export class FieldAlign {
       this.cancel.is()
   )
 
+  is (): boolean {
+    return this.isLeft.value || this.isRight.value
+  }
+
   getSetup (): FieldAlignSetupType {
     return {
       leftElement: this.leftElement,

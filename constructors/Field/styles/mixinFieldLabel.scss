@@ -65,7 +65,6 @@
     max-width: 100%;
 
     font-size: v('??l.label.font-size');
-    line-height: 1;
     @include propertiesLink('d.font.ellipsis');
 
     transition-duration: v('??sys.transition-duration');
