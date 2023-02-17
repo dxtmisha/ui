@@ -333,18 +333,6 @@
           "text": "{??sys.text}",
           "textOpacity": "{??sys.placeholder.textOpacity}"
         },
-        "disabled": {
-          "textOpacity": "",
-          "placeholder": {
-            "textOpacity": "{??sys.disabled.textOpacity}"
-          },
-          "label": {
-            "textOpacity": "{??sys.disabled.textOpacity}"
-          },
-          "prefix": {
-            "textOpacity": "{??sys.disabled.textOpacity}"
-          }
-        },
         "focus": {
           "prefix": {
             "opacity": "1"
@@ -366,6 +354,18 @@
           "border": "{??sys.validation.text}",
           "label": {
             "text": "{??sys.validation.text}"
+          }
+        },
+        "disabled": {
+          "textOpacity": "",
+          "placeholder": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
+          },
+          "label": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
+          },
+          "prefix": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
           }
         }
       },

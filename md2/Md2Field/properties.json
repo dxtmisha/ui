@@ -83,6 +83,9 @@
           "borderOpacity": "{sys.opacity.surface.disabled}",
           "gradientOpacity": "{sys.opacity.hover}"
         },
+        "validation": {
+          "palette": "{sys.palette.error}"
+        },
         "focus": {
           "borderWidth": "{ref.spacing.px} * 2",
           "gradientOpacity": "{sys.opacity.focus}",
@@ -90,9 +93,6 @@
             "text": "{??sys.palette}",
             "textOpacity": "{sys.opacity.surface.high}"
           }
-        },
-        "validation": {
-          "palette": "{sys.palette.error}"
         }
       },
       "@font": "{font.subtitle1}",
