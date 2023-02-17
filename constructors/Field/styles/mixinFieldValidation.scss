@@ -1,0 +1,12 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldValidation() {
+  &.is-validation {
+    @include linkList('validation', (
+            'palette',
+            'border',
+            'text',
+            'label.text'
+    ));
+  }
+}

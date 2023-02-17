@@ -333,7 +333,18 @@
           "text": "{??sys.text}",
           "textOpacity": "{??sys.placeholder.textOpacity}"
         },
-        "disabled": {},
+        "disabled": {
+          "textOpacity": "",
+          "placeholder": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
+          },
+          "label": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
+          },
+          "prefix": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
+          }
+        },
         "focus": {
           "prefix": {
             "opacity": "1"
@@ -350,11 +361,11 @@
           "text": "{??sys.palette}"
         },
         "validation": {
-          "@style": "{??m.status}",
-          "border": "{??sys.validation.palette}",
+          "palette": "",
+          "border": "{??sys.validation.text}",
           "text": "{??sys.validation.palette}",
           "label": {
-            "text": "{??sys.validation.palette}"
+            "text": "{??sys.validation.text}"
           }
         }
       },

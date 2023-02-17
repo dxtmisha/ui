@@ -1,43 +1,63 @@
 <template>
   <div>
     <div class="px-4 py-2"><b>input</b></div>
-    <div class="flex items-center px-4 py-2">
+    <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" text="text"/>
+      <md2-input v-model="inputValue" text="validation" validation-message="validation message"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon</b></div>
-    <div class="flex items-center px-4 py-2">
+    <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" icon="face" text="text"/>
+      <md2-input v-model="inputValue" icon="face" text="validation" validation-message="validation message"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon-trailing</b></div>
-    <div class="flex items-center px-4 py-2">
+    <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" icon-trailing="home" text="text"/>
+      <md2-input v-model="inputValue" icon-trailing="home" text="validation" validation-message="validation message"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon, icon-trailing</b></div>
-    <div class="flex items-center px-4 py-2">
-      <md2-input v-model="inputValue" icon="face" icon-trailing="home" text="text"/>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" icon="face" icon-trailing="home" text="validation"/>
+      <md2-input
+        v-model="inputValue"
+        icon="face"
+        icon-trailing="home"
+        text="validation"
+        validation-message="validation message"
+      />
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, prefix</b></div>
-    <div class="flex items-center px-4 py-2">
+    <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" prefix="prefix" text="text"/>
+      <md2-input v-model="inputValue" prefix="prefix" text="validation" validation-message="validation message"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, prefix, icon</b></div>
-    <div class="flex items-center px-4 py-2">
-      <md2-input v-model="inputValue" prefix="prefix" icon="face" text="text"/>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" icon="face" prefix="prefix" text="text"/>
+      <md2-input v-model="inputValue" icon="face" prefix="prefix" text="validation" validation-message="validation message"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, suffix</b></div>
-    <div class="flex items-center px-4 py-2">
+    <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" suffix="suffix" text="text"/>
+      <md2-input v-model="inputValue" suffix="suffix" text="validation" validation-message="validation message"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, suffix, icon-trailing</b></div>
-    <div class="flex items-center px-4 py-2">
+    <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" suffix="suffix" icon-trailing="home" text="text"/>
+      <md2-input
+        v-model="inputValue"
+        icon-trailing="home"
+        suffix="suffix"
+        text="validation"
+        validation-message="validation message"
+      />
     </div>
   </div>
 </template>

@@ -77,13 +77,7 @@
           "text": "{sys.palette.error}"
         },
         "disabled": {
-          "textOpacity": "{sys.opacity.surface.disabled}",
-          "label": {
-            "textOpacity": "{sys.opacity.surface.disabled}"
-          },
-          "placeholder": {
-            "textOpacity": "{sys.opacity.surface.disabled}"
-          }
+          "textOpacity": "{sys.opacity.surface.disabled}"
         },
         "hover": {
           "borderOpacity": "{sys.opacity.surface.disabled}",

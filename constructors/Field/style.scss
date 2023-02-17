@@ -6,6 +6,7 @@
 @import "./styles/mixinFieldInput";
 @import "./styles/mixinFieldLabel";
 @import "./styles/mixinFieldScoreboard";
+@import "./styles/mixinFieldValidation";
 
 $currentStatus: (
         'palette',
@@ -63,6 +64,7 @@ $currentStatus: (
 
     @include mixinFieldBorder;
 
+    @include mixinFieldValidation;
     @include mixinFieldDisabled;
     @include mixinFieldFocus;
 
@@ -101,7 +103,6 @@ $currentStatus: (
 
   &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
     @include mixinFieldSelected;
-    @include mixinFieldValidation;
   }
 }
 
@@ -139,19 +140,6 @@ $currentStatus: (
           @include textAlign('left');
         }
       }
-    }
-  }
-}
-
-
-
-@mixin mixinFieldValidation() {
-  &.is-validation {
-    @include linkTo('text', '??sys.validation.text', null, true);
-    @include linkTo('label.text', '??sys.validation.label.text', null, true);
-
-    @include subClassByGlobal('body') {
-      @include linkTo('border', '??sys.validation.border', null, true);
     }
   }
 }
