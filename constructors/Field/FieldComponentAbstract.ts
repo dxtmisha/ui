@@ -108,7 +108,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
         ...this.arrow.getClass(),
         ...this.cancel.getClass(),
         ...this.prefix.getClass(),
-        ...this.value.getClass(),
+        [this.getItem().getClassName([], ['value'])]: this.value.item,
         [this.getItem().getClassName([], ['validation'])]: this.isValidation
       }
     })

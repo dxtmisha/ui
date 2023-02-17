@@ -49,7 +49,7 @@
     display: none;
   }
 
-  &.is-value, &:focus-within, &#{c('??--focus')} {
+  &:focus-within, &#{c('??-focus')}, &#{c('??-value')} {
     @include subClassByGlobal('input') {
       opacity: 1;
     }

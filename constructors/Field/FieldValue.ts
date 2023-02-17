@@ -13,8 +13,4 @@ export class FieldValue {
   is (): boolean {
     return this.item.value
   }
-
-  getClass (): object {
-    return { 'is-value': this.item }
-  }
 }

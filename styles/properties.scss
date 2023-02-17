@@ -123,15 +123,18 @@ $currentStatus: () !default;
 
 @mixin linkList(
   $name,
-  $important: ()
+  $important: (),
+  $ignore: ()
 ) {
   @each $index in $currentStatus {
-    @include linkTo(
-                    $index,
-                    #{#{'??sys.'}#{$name}#{'.'}#{$index}},
-                    v(#{#{'??sys.'}#{$index}}),
-                    list.index($important, $index)
-    );
+    @if (list.index($ignore, $index) == null) {
+      @include linkTo(
+                      $index,
+                      #{#{'??sys.'}#{$name}#{'.'}#{$index}},
+                      v(#{#{'??sys.'}#{$index}}),
+                      list.index($important, $index)
+      );
+    }
   }
 }
 

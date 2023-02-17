@@ -2,6 +2,10 @@
 
 @mixin mixinFieldHover() {
   &:hover {
-    @include linkList('hover');
+    @include linkList('hover', (), (
+            'shift',
+            'label.scale',
+            'label.shift',
+    ));
   }
 }

@@ -10,6 +10,7 @@
 @import "./styles/mixinFieldScoreboard";
 @import "./styles/mixinFieldSelected";
 @import "./styles/mixinFieldValidation";
+@import "./styles/mixinFieldValue";
 
 @import "./styles/mixinFieldAppearanceFilled";
 
@@ -74,6 +75,7 @@ $currentStatus: (
     @include mixinFieldValidation;
     @include mixinFieldDisabled;
     @include mixinFieldHover;
+    @include mixinFieldValue;
     @include mixinFieldFocus;
 
     @content;
@@ -90,6 +92,8 @@ $currentStatus: (
   #{i('??_value-right')}: #{$right};
   #{i('??_value-prefix')}: #{$prefix};
   #{i('??_value-suffix')}: #{$suffix};
+
+  #{i('??_border-width')}: v('??l.border.width');
 
   #{i('??_half')}: calc(#{v('??sys.height')} / 2);
   #{i('??_label-half')}: calc(#{v('??sys.label.height')} / 2);

@@ -7,5 +7,5 @@
 
 @mixin useFieldBorderTop() {
   @include useFieldBorderColor;
-  border-top-width: v('??l.border.width');
+  border-top-width: v('??_border-width');
 }

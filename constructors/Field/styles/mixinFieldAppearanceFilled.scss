@@ -9,5 +9,5 @@
 }
 
 @mixin mixinFieldAppearanceFilledOnly {
-
+  #{i('??_border-width')}: 0;
 }

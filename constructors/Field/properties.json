@@ -40,6 +40,16 @@
           "text": "{??sys.text}",
           "textOpacity": "{??sys.placeholder.textOpacity}"
         },
+        "var|value": {
+          "shift": "{??sys.shift}",
+          "label": {
+            "scale": "{??sys.label.scale}",
+            "shift": "{??sys.label.shift}"
+          },
+          "prefix": {
+            "opacity": "1"
+          }
+        },
         "selected": {
           "palette": "{??sys.palette}",
           "text": "{??sys.selected.palette}",
@@ -70,8 +80,13 @@
         },
         "hover": {},
         "focus": {
+          "shift": "{??sys.value.shift}",
+          "label": {
+            "scale": "{??sys.value.label.scale}",
+            "shift": "{??sys.value.label.shift}"
+          },
           "prefix": {
-            "opacity": "1"
+            "opacity": "{??sys.value.prefix.opacity}"
           }
         }
       },
@@ -221,14 +236,16 @@
               "disabled": {
                 "borderOpacity": ""
               },
-              "focus": {
-                "border": "",
-                "borderOpacity": "",
+              "var|value": {
                 "shift": "{??sys.label.height} / 3",
                 "label": {
                   "scale": "0.875",
                   "shift": "{??sys.label.height} / 2"
                 }
+              },
+              "focus": {
+                "border": "",
+                "borderOpacity": ""
               }
             }
           },

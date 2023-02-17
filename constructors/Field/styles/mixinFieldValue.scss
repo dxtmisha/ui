@@ -1,0 +1,7 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldValue() {
+  @include modClass('value') {
+    @include linkList('value');
+  }
+}

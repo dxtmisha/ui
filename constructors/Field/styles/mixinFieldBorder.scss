@@ -7,9 +7,9 @@
     @include inset;
 
     @include useFieldBorderColor;
-    border-right-width: v('??l.border-width');
-    border-bottom-width: v('??l.border-width');
-    border-left-width: v('??l.border-width');
+    border-right-width: v('??_border-width');
+    border-bottom-width: v('??_border-width');
+    border-left-width: v('??_border-width');
     border-radius: inherit;
   }
 }
