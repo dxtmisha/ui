@@ -300,6 +300,7 @@
         "width": "",
         "height": "",
         "padding": "",
+        "rounded": "",
         "space": "",
         "shift": "0px",
         "text": "",
@@ -333,11 +334,6 @@
           "text": "{??sys.text}",
           "textOpacity": "{??sys.placeholder.textOpacity}"
         },
-        "focus": {
-          "prefix": {
-            "opacity": "1"
-          }
-        },
         "hover": {
           "@style": "{??m.status}"
         },
@@ -366,6 +362,11 @@
           },
           "prefix": {
             "textOpacity": "{??sys.disabled.textOpacity}"
+          }
+        },
+        "focus": {
+          "prefix": {
+            "opacity": "1"
           }
         }
       },
@@ -422,20 +423,20 @@
       "#prefix": {},
       "#suffix": {},
       "#border": {},
-      "~cancel": {
-        "auto": {},
-        "always": {},
-        "hide": {}
-      },
       "~align": {
         "center": {},
         "left": {},
         "right": {}
       },
-      "~focus": {},
-      "~selected": {},
+      "~cancel": {
+        "auto": {},
+        "always": {},
+        "hide": {}
+      },
       "~readonly": {},
-      "~disabled": {}
+      "~selected": {},
+      "~disabled": {},
+      "~focus": {}
     }
   }
 }

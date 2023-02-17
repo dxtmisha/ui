@@ -4,6 +4,7 @@
 @import "./styles/mixinFieldBorder";
 @import "./styles/mixinFieldDisabled";
 @import "./styles/mixinFieldFocus";
+@import "./styles/mixinFieldHover";
 @import "./styles/mixinFieldInput";
 @import "./styles/mixinFieldLabel";
 @import "./styles/mixinFieldScoreboard";
@@ -67,6 +68,7 @@ $currentStatus: (
 
     @include mixinFieldAlign;
 
+    @include mixinFieldHover;
     @include mixinFieldSelected;
     @include mixinFieldValidation;
     @include mixinFieldDisabled;
@@ -100,6 +102,7 @@ $currentStatus: (
   #{i('?ripple-background')}: v('??l.background');
 
   width: v('??sys.width');
+  border-radius: v('??sys.rounded');
 
   @include color(v('??l.text'), v('??l.text-opacity'));
 

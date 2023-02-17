@@ -56,6 +56,7 @@
         "width": "{ref.spacing.72}",
         "height": "{ref.spacing.14}",
         "padding": "{ref.spacing.3}",
+        "rounded": "{sys.rounded.standard}",
         "space": "{ref.spacing.1}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
@@ -97,7 +98,6 @@
       },
       "@font": "{font.subtitle1}",
       "@@palette": "{?palette}",
-      "border-radius": "{sys.rounded.standard}",
       "height": {
         "xm": "{ref.spacing.10}",
         "sm": "{ref.spacing.12}",
@@ -122,7 +122,7 @@
           }
         }
       },
-      "section|appearance": {
+      "~appearance": {
         "filled": {
           "@style": "{??m.appearance.filled}"
         },
@@ -146,7 +146,7 @@
         },
         "default": "filled"
       },
-      "section|rounded": {
+      "~rounded": {
         "@style": "{?rounded}",
         "full": {
           "border-radius": "{??sys.height} / 2",

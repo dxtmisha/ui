@@ -1,0 +1,7 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldHover() {
+  &:hover {
+    @include linkList('hover');
+  }
+}
