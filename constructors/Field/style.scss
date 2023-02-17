@@ -6,6 +6,7 @@
 @import "./styles/mixinFieldInput";
 @import "./styles/mixinFieldLabel";
 @import "./styles/mixinFieldScoreboard";
+@import "./styles/mixinFieldSelected";
 @import "./styles/mixinFieldValidation";
 
 $currentStatus: (
@@ -64,6 +65,7 @@ $currentStatus: (
 
     @include mixinFieldBorder;
 
+    @include mixinFieldSelected;
     @include mixinFieldValidation;
     @include mixinFieldDisabled;
     @include mixinFieldFocus;
@@ -102,7 +104,6 @@ $currentStatus: (
   @include mixinFieldAlign;
 
   &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
-    @include mixinFieldSelected;
   }
 }
 

@@ -1,0 +1,7 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldSelected() {
+  @include modClassByGlobal('selected') {
+    @include linkList('selected');
+  }
+}

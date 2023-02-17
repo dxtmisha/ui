@@ -4,18 +4,21 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" text="text"/>
       <md2-input v-model="inputValue" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" selected text="selected"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" icon="face" text="text"/>
       <md2-input v-model="inputValue" icon="face" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" icon="face" selected text="selected"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon-trailing</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" icon-trailing="home" text="text"/>
       <md2-input v-model="inputValue" icon-trailing="home" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" icon-trailing="home" selected text="selected"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon, icon-trailing</b></div>
@@ -25,8 +28,15 @@
         v-model="inputValue"
         icon="face"
         icon-trailing="home"
-        text="validation"
+        text="selected"
         validation-message="validation message"
+      />
+      <md2-input
+        v-model="inputValue"
+        icon="face"
+        icon-trailing="home"
+        selected
+        text="selected"
       />
     </div>
 
@@ -34,18 +44,21 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" prefix="prefix" text="text"/>
       <md2-input v-model="inputValue" prefix="prefix" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" prefix="prefix" selected text="selected"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, prefix, icon</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" icon="face" prefix="prefix" text="text"/>
       <md2-input v-model="inputValue" icon="face" prefix="prefix" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" icon="face" prefix="prefix" selected text="selected"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, suffix</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" suffix="suffix" text="text"/>
       <md2-input v-model="inputValue" suffix="suffix" text="validation" validation-message="validation message"/>
+      <md2-input v-model="inputValue" selected suffix="suffix" text="selected"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, suffix, icon-trailing</b></div>
@@ -57,6 +70,13 @@
         suffix="suffix"
         text="validation"
         validation-message="validation message"
+      />
+      <md2-input
+        v-model="inputValue"
+        icon-trailing="home"
+        selected
+        suffix="suffix"
+        text="selected"
       />
     </div>
   </div>

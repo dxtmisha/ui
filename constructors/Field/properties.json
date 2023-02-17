@@ -354,16 +354,16 @@
           "@style": "{??m.status}"
         },
         "selected": {
-          "@style": "{??m.status}",
-          "background": "{??sys.palette}",
-          "border": "{??sys.palette}",
-          "gradient": "{??sys.palette}",
-          "text": "{??sys.palette}"
+          "palette": "{??sys.palette}",
+          "text": "{??sys.selected.palette}",
+          "background": "{??sys.selected.text}",
+          "gradient": "{??sys.selected.text}",
+          "border": "{??sys.selected.text}"
         },
         "validation": {
           "palette": "",
-          "border": "{??sys.validation.text}",
           "text": "{??sys.validation.palette}",
+          "border": "{??sys.validation.text}",
           "label": {
             "text": "{??sys.validation.text}"
           }
