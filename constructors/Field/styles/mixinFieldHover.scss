@@ -1,11 +1,14 @@
 @import "../../../styles/properties";
 
-@mixin mixinFieldHover() {
+@mixin mixinFieldHover {
   &:hover {
     @include linkList('hover', (), (
             'shift',
             'label.scale',
             'label.shift',
+            'prefix.opacity',
+            'prefix.text',
+            'prefix.text-opacity'
     ));
   }
 }

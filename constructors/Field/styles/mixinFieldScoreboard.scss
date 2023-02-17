@@ -51,7 +51,7 @@
 @mixin mixinFieldPrefix() {
   &__prefix,
   &__suffix {
-    transform: translateY(v('??l.shift'));
+    transform: translateY(v('??sys.value.shift', v('??l.shift')));
     opacity: v('??l.prefix.opacity');
   }
 

@@ -153,19 +153,6 @@
                 }
               }
             },
-            "var|l": {
-              "borderWidth": "0"
-            },
-            "& .??__body": {
-              "border-bottom-left-radius": "0",
-              "border-bottom-right-radius": "0"
-            },
-            "& .??__prefix, & .??__suffix": {
-              "var|l": {
-                "shift": "{??sys.focus.shift}"
-              }
-            },
-            "& .??__input": {},
             "& .??__border": {
               "after": {
                 "@style": "{??m.borderBottom}",
