@@ -22,6 +22,8 @@
             'prefix.text-opacity'
     ));
 
+    --sys-palette: #{v('??l.palette')};
+
     @include subClassByGlobal('input') {
       @include colorOpacity(v('??l.text-opacity'));
     }

@@ -1,0 +1,13 @@
+@import "../../../styles/properties";
+
+@mixin mixinFieldAppearanceFilled {
+  @include modClass('appearance') {
+    @include modClass('filled') {
+      @include mixinFieldAppearanceFilledOnly;
+    }
+  }
+}
+
+@mixin mixinFieldAppearanceFilledOnly {
+
+}

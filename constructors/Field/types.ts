@@ -53,6 +53,7 @@ export type FieldSetupType =
   {
     classes: ComputedRef<FieldClassesType>
     id: string
+    isEnabled: ComputedRef<boolean>
     isRequired: ComputedRef<boolean>
     isRipple: ComputedRef<boolean>
     isScoreboard: ComputedRef<boolean>

@@ -2,6 +2,52 @@
   "md2": {
     "field": {
       "@style": "{d.field}",
+      "var|sys": {
+        "palette": "{sys.palette.primary}",
+        "width": "{ref.spacing.72}",
+        "height": "{ref.spacing.14}",
+        "padding": "{ref.spacing.3}",
+        "rounded": "{sys.rounded.standard}",
+        "space": "{ref.spacing.1}",
+        "text": "{sys.palette.onSurface}",
+        "textOpacity": "{sys.opacity.surface.high}",
+        "background": "{sys.palette.overlay}",
+        "backgroundOpacity": "0",
+        "gradient": "{sys.palette.onSurface}",
+        "gradientOpacity": "0",
+        "border": "{sys.palette.onSurface}",
+        "borderOpacity": "{sys.opacity.border}",
+        "borderWidth": "{ref.spacing.px}",
+        "shadow": "none",
+        "placeholder": {
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
+        "label": {
+          "height": "{ref.spacing.6}"
+        },
+        "required": {
+          "text": "{sys.palette.error}"
+        },
+        "disabled": {
+          "palette": "{sys.palette.disabled}",
+          "textOpacity": "{sys.opacity.surface.disabled}"
+        },
+        "hover": {
+          "borderOpacity": "{sys.opacity.surface.disabled}",
+          "gradientOpacity": "{sys.opacity.hover}"
+        },
+        "validation": {
+          "palette": "{sys.palette.error}"
+        },
+        "focus": {
+          "borderWidth": "{ref.spacing.px} * 2",
+          "gradientOpacity": "{sys.opacity.focus}",
+          "label": {
+            "text": "{??sys.palette}",
+            "textOpacity": "{sys.opacity.surface.high}"
+          }
+        }
+      },
       "mixin|m": {
         "mixin|appearance": {
           "mixin|filled": {
@@ -48,51 +94,6 @@
             "var|sys": {
               "backgroundOpacity": "{sys.opacity.overlay}"
             }
-          }
-        }
-      },
-      "var|sys": {
-        "palette": "{sys.palette.primary}",
-        "width": "{ref.spacing.72}",
-        "height": "{ref.spacing.14}",
-        "padding": "{ref.spacing.3}",
-        "rounded": "{sys.rounded.standard}",
-        "space": "{ref.spacing.1}",
-        "text": "{sys.palette.onSurface}",
-        "textOpacity": "{sys.opacity.surface.high}",
-        "background": "{sys.palette.overlay}",
-        "backgroundOpacity": "0",
-        "border": "{sys.palette.onSurface}",
-        "borderOpacity": "{sys.opacity.border}",
-        "borderWidth": "{ref.spacing.px}",
-        "gradient": "{sys.palette.onSurface}",
-        "gradientOpacity": "0",
-        "shadow": "none",
-        "placeholder": {
-          "textOpacity": "{sys.opacity.surface.medium}"
-        },
-        "label": {
-          "height": "{ref.spacing.6}"
-        },
-        "required": {
-          "text": "{sys.palette.error}"
-        },
-        "disabled": {
-          "textOpacity": "{sys.opacity.surface.disabled}"
-        },
-        "hover": {
-          "borderOpacity": "{sys.opacity.surface.disabled}",
-          "gradientOpacity": "{sys.opacity.hover}"
-        },
-        "validation": {
-          "palette": "{sys.palette.error}"
-        },
-        "focus": {
-          "borderWidth": "{ref.spacing.px} * 2",
-          "gradientOpacity": "{sys.opacity.focus}",
-          "label": {
-            "text": "{??sys.palette}",
-            "textOpacity": "{sys.opacity.surface.high}"
           }
         }
       },

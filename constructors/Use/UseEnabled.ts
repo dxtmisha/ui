@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import { computed, Ref } from 'vue'
 
 export class UseEnabled {
   // eslint-disable-next-line no-useless-constructor
@@ -8,8 +8,10 @@ export class UseEnabled {
   ) {
   }
 
+  readonly item = computed<boolean>(() => !this.disabled.value && !this.readonly?.value)
+
   is (): boolean {
-    return !this.disabled.value && !this.readonly?.value
+    return this.item.value
   }
 
   isDisabled (): boolean {

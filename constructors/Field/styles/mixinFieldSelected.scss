@@ -1,7 +1,25 @@
 @import "../../../styles/properties";
 
 @mixin mixinFieldSelected() {
-  @include modClassByGlobal('selected') {
-    @include linkList('selected');
+  @include modClass('selected') {
+    @include linkList('selected', (
+            'text',
+            'background',
+            'gradient',
+            'border'
+    ));
+
+    @include subClassByGlobal('body') {
+      @include paletteBackground(v('??l.background'));
+      @include backgroundOpacity(v('??l.background-opacity'));
+
+      @include paletteGradient(v('??l.gradient'));
+      @include gradientOpacity(v('??l.gradient-opacity'));
+    }
+
+    @include subClassByGlobal('input') {
+      @include paletteColor(v('??l.text'));
+      @include colorOpacity(v('??l.text-opacity'));
+    }
   }
 }

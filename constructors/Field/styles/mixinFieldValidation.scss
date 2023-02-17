@@ -1,12 +1,14 @@
 @import "../../../styles/properties";
 
 @mixin mixinFieldValidation() {
-  &.is-validation {
+  @include modClass('validation') {
     @include linkList('validation', (
             'palette',
             'border',
             'text',
             'label.text'
     ));
+
+    --sys-palette: #{v('??l.palette')};
   }
 }

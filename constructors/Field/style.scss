@@ -11,6 +11,8 @@
 @import "./styles/mixinFieldSelected";
 @import "./styles/mixinFieldValidation";
 
+@import "./styles/mixinFieldAppearanceFilled";
+
 $currentStatus: (
         'palette',
         'background',
@@ -68,10 +70,10 @@ $currentStatus: (
 
     @include mixinFieldAlign;
 
-    @include mixinFieldHover;
     @include mixinFieldSelected;
     @include mixinFieldValidation;
     @include mixinFieldDisabled;
+    @include mixinFieldHover;
     @include mixinFieldFocus;
 
     @content;

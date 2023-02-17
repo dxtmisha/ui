@@ -1,7 +1,8 @@
 @import "../../../styles/properties";
 
 @mixin useFieldBorderColor() {
-  @include border(v('??l.border'), v('??l.border-opacity'));
+  @include paletteBorder(v('??l.border'));
+  @include borderOpacity(v('??l.border-opacity'));
 }
 
 @mixin useFieldBorderTop() {

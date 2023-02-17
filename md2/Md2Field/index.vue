@@ -68,7 +68,7 @@
 
       <div :class="classes.border"/>
     </div>
-    <md2-field-message v-bind="messageBind">
+    <md2-field-message v-if="isEnabled" v-bind="messageBind">
       <template v-slot:default>
         <slot name="message"/>
       </template>
@@ -107,5 +107,7 @@ export default {
     v-bind(right),
     v-bind(prefixWidth),
     v-bind(suffixWidth)
-);
+) {
+  @include mixinFieldAppearanceFilled;
+}
 </style>

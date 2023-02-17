@@ -105,11 +105,11 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   setup (): FieldSetupType {
     const classes = this.getClasses<FieldClassesType>({
       main: {
-        ...this.value.getClass(),
         ...this.arrow.getClass(),
         ...this.cancel.getClass(),
         ...this.prefix.getClass(),
-        'is-validation': this.isValidation
+        ...this.value.getClass(),
+        [this.getItem().getClassName([], ['validation'])]: this.isValidation
       }
     })
     const styles = this.getStyles()
@@ -119,6 +119,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       classes,
       styles,
       id: this.id,
+      isEnabled: this.enabled.item,
       isRequired: this.isRequired,
       isRipple: this.isRipple,
       isScoreboard: this.isScoreboard,
