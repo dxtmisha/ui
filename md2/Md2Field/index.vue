@@ -106,7 +106,8 @@ export default {
     v-bind(left),
     v-bind(right),
     v-bind(prefixWidth),
-    v-bind(suffixWidth)
+    v-bind(suffixWidth),
+    v-bind(heightContext)
 ) {
   @include mixinFieldAppearanceFilled;
 }

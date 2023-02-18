@@ -10,7 +10,7 @@
 
     width: 100%;
     height: 0;
-    @include paddingX(v('??sys.padding'));
+    @include paddingX(v('??l.padding'));
 
     @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
 

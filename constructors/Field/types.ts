@@ -33,6 +33,8 @@ export type FieldAlignSetupType = {
   rightElement: Ref<HTMLElement | undefined>
   right: Ref<string>
   isRight: ComputedRef<boolean>
+
+  heightContext: Ref<string>
 }
 
 export type FieldPrefixSetupType = {

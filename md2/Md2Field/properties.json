@@ -150,10 +150,7 @@
       "~rounded": {
         "@style": "{?rounded}",
         "full": {
-          "border-radius": "{??sys.height} / 2",
-          "var|sys": {
-            "padding": "{??sys.height} / 2"
-          }
+          "@style": "{??m.rounded.full}"
         }
       }
     }

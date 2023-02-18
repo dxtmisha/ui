@@ -17,6 +17,7 @@
         }
 
         @include subClassByGlobal('text') {
+          left: 0;
           transform-origin: center;
         }
       }

@@ -18,8 +18,8 @@
     &::after {
       content: " ";
 
-      flex-basis: v('??sys.padding');
-      min-width: v('??sys.padding');
+      flex-basis: v('??l.label.padding');
+      min-width: v('??l.label.padding');
       @include useFieldBorderTop;
     }
 

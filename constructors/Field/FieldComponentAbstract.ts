@@ -23,6 +23,12 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     'on-trailing'
   ] as string[]
 
+  protected readonly stylesProps = [
+    'height',
+    'rounded',
+    'width'
+  ] as string[]
+
   private readonly id: string
   private readonly value: FieldValue
   private readonly icon: FieldIcon
