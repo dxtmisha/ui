@@ -38,6 +38,7 @@ export class FieldIcon extends UseIcon {
     return {
       class: 'is-icon is-previous',
       background: true,
+      backgroundActive: true,
       disabled: this.disabled.value || this.disabledPrevious.value
     }
   })
@@ -46,6 +47,7 @@ export class FieldIcon extends UseIcon {
     return {
       class: 'is-icon is-next',
       background: true,
+      backgroundActive: true,
       disabled: this.disabled.value || this.disabledNext.value
     }
   })

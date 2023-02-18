@@ -42,7 +42,7 @@
   }
 
   &:not(.is-arrow, .is-cancel) {
-    &:focus-within, &#{c('??--focus')} {
+    &:focus-within, &#{c('??-focus')} {
       @include subClassByGlobal('scoreboard') {
         z-index: 1
       }
@@ -85,7 +85,7 @@
 
   @include modClass('cancel') {
     @include modClass('auto') {
-      &:not(:hover, :focus-within, #{c('??--focus')}) .is-cancel {
+      &:not(:hover, :focus-within, #{c('??-focus')}) .is-cancel {
         opacity: 0;
       }
     }

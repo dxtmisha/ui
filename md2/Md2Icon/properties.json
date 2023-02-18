@@ -2,6 +2,17 @@
   "md2": {
     "icon": {
       "@style": "{d.icon}",
+      "var|sys": {
+        "hover": {
+          "gradientOpacity": "{?sys.opacity.hover}"
+        },
+        "active": {
+          "gradientOpacity": "{?sys.opacity.dragged}"
+        },
+        "focus": {
+          "gradientOpacity": "{?sys.opacity.focus}"
+        }
+      },
       "var|_background": "{?sys.palette.onSurface}",
       "var|_disabled": "{?sys.opacity.disabled}",
       "var|_opacity": "{?sys.opacity.dragged}",

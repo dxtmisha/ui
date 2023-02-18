@@ -1,5 +1,18 @@
 {
   "d": {
+    "var|sys": {
+      "gradient": "{??__background}",
+      "gradientOpacity": "0",
+      "hover": {
+        "gradientOpacity": "{??sys.gradientOpacity}"
+      },
+      "active": {
+        "gradientOpacity": "{??sys.gradientOpacity}"
+      },
+      "focus": {
+        "gradientOpacity": "{??sys.gradientOpacity}"
+      }
+    },
     "icon": {
       "var|_background": "",
       "var|_disabled": "",
@@ -28,6 +41,7 @@
         "type2": {}
       },
       "~background": {},
+      "~backgroundActive": {},
       "~disabled": {},
       "~hide": {},
       "~inEnd": {}

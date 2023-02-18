@@ -66,6 +66,23 @@
     @include paletteBackground(v('??_background'));
     @include backgroundOpacity(v('??_opacity'));
   }
+
+  @include modClass('background-active') {
+    @include paletteGradient(v('??sys.gradient'));
+    @include gradientOpacity(v('??sys.gradient-opacity'));
+
+    &:hover {
+      @include gradientOpacity(v('??sys.hover.gradient-opacity'));
+    }
+
+    &:active {
+      @include gradientOpacity(v('??sys.active.gradient-opacity'));
+    }
+
+    &:focus {
+      @include gradientOpacity(v('??sys.focus.gradient-opacity'));
+    }
+  }
 }
 
 @mixin mixinIconInEnd {

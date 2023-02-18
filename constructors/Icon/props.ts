@@ -16,6 +16,7 @@ export const props = {
   animationShow: Boolean,
   animationType: String as PropType<IconIndeterminateType>,
   background: [Boolean, String],
+  backgroundActive: Boolean,
   inEnd: Boolean,
   size: [Number, String] as PropType<IconSizeType>
 }
