@@ -201,6 +201,38 @@
       <md2-input cancel="hide" text="hide"/>
       <md2-input cancel="always" text="always"/>
     </div>
+
+    <div class="px-4 pt-4 pb-2"><b>input, rounded</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input rounded="none" text="none"/>
+      <md2-input icon="face" rounded="none" text="none + icon"/>
+      <md2-input icon-trailing="home" rounded="none" text="none + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" rounded="none" text="none + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input rounded="standard" text="standard"/>
+      <md2-input icon="face" rounded="standard" text="standard + icon"/>
+      <md2-input icon-trailing="home" rounded="standard" text="standard + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" rounded="standard" text="standard + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input rounded="sm" text="sm"/>
+      <md2-input icon="face" rounded="sm" text="sm + icon"/>
+      <md2-input icon-trailing="home" rounded="sm" text="sm + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" rounded="sm" text="sm + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input rounded="md" text="md"/>
+      <md2-input icon="face" rounded="md" text="md + icon"/>
+      <md2-input icon-trailing="home" rounded="md" text="md + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" rounded="md" text="md + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input rounded="full" text="full"/>
+      <md2-input icon="face" rounded="full" text="full + icon"/>
+      <md2-input icon-trailing="home" rounded="full" text="full + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" rounded="full" text="full + icon + icon-trailing"/>
+    </div>
   </div>
   <div class="h-96"/>
   <div class="h-96"/>

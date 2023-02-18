@@ -104,7 +104,8 @@ $currentStatus: (
   #{i('??_left')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$left});
   #{i('??_right')}: calc(#{v('??sys.padding')} + #{v('??sys.space')} + #{$right});
 
-  #{i('??_label-translate-x')}: v('??_value-left');
+  #{i('??_label-left')}: v('??_value-left');
+  #{i('??_label-translate-x')}: 0px;
   #{i('??_label-translate-y')}: calc(v('??sys.height') / 4);
 
   #{i('?field-message-padding')}: calc(v('??sys.padding') + v('??sys.space'));

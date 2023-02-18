@@ -58,6 +58,8 @@
 
 @mixin mixinFieldText() {
   @include subClass('text') {
+    position: relative;
+    left: v('??_label-left');
     opacity: v('??l.label.opacity');
     transform: translate(#{calc(#{v('??_label-translate-x')} * var(--d-dir))}, #{calc(#{v('??_label-translate-y')} - #{v('??l.label.shift')})}) scale(#{v('??l.label.scale')});
     transform-origin: var(--d-dir-text-left);

@@ -294,6 +294,14 @@
             }
           }
         },
+        "mixin|rounded": {
+          "mixin|full": {
+            "border-radius": "{??sys.height} / 2",
+            "var|sys": {
+              "padding": "{??sys.height} / 2"
+            }
+          }
+        },
         "mixin|labelTop": {
           "var|sys": {
             "label": {
