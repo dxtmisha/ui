@@ -185,7 +185,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       } else if (target.closest('.is-icon.is-cancel')) {
         return 'on-cancel'
       } else if (target.closest('.is-icon.is-previous')) {
-        return this.props.disabledNext ? 'disabled' : 'on-previous'
+        return this.props.disabledPrevious ? 'disabled' : 'on-previous'
       } else if (target.closest('.is-icon.is-next')) {
         return this.props.disabledNext ? 'disabled' : 'on-next'
       }

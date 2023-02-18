@@ -44,6 +44,7 @@
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" required text="required"/>
+      <md2-input v-model="inputValue" helper-message="helper message" text="helper"/>
       <md2-input v-model="inputValue" counter text="counter"/>
       <md2-input v-model="inputValue" counter :maxlength="12" text="counter + maxlength"/>
     </div>
@@ -195,6 +196,11 @@
         validation-message="validation message"
       />
       <md2-input v-model="inputValue" align="right" arrow disabled text="right + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input :max="9" :min="5" arrow text="arrow"/>
+      <md2-input :max="9" :min="5" arrow value="5" text="arrow + min"/>
+      <md2-input :max="9" :min="5" arrow value="9" text="arrow + max"/>
     </div>
   </div>
   <div class="h-96"/>
