@@ -93,7 +93,13 @@
 
 @mixin mixinIconDisabled {
   @include modClass('disabled') {
-    @include backgroundOpacity(#{calc(v('??_opacity') * v('??_disabled'))});
+    @include modClassByGlobal('background') {
+      @include backgroundOpacity(#{calc(v('??_opacity') * v('??_disabled'))});
+    }
+
+    @include modClassByGlobal('background-active') {
+      background-image: none;
+    }
   }
 }
 
