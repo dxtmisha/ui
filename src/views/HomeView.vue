@@ -42,6 +42,11 @@
         validation-message="validation message"
       />
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" required text="required"/>
+      <md2-input v-model="inputValue" counter text="counter"/>
+      <md2-input v-model="inputValue" counter :maxlength="12" text="counter + maxlength"/>
+    </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon</b></div>
     <div class="flex px-4 py-2 gap-2">

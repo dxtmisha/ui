@@ -5,11 +5,5 @@ import { AssociativeType } from '../types'
 export class FieldMessageProps extends ComponentPropsAbstract {
   protected readonly name = 'message'
   protected readonly list = props as AssociativeType
-  protected readonly exception = [
-    'counter',
-    'disabled',
-    'helperMessage',
-    'maxlength',
-    'validationMessage'
-  ] as string[]
+  protected readonly exception = [] as string[]
 }
