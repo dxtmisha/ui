@@ -6,6 +6,7 @@
     &:hover {
       @include linkList('hover', (), (
               'shift',
+              'label.font-size',
               'label.scale',
               'label.shift',
               'prefix.opacity',

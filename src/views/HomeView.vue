@@ -49,12 +49,84 @@
       <md2-input counter :maxlength="12" text="counter + maxlength"/>
     </div>
 
+    <div class="px-4 py-2"><b>input, outlined</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" appearance="outlined" text="This selector could have also been written as"/>
+      <md2-input v-model="inputValue" appearance="outlined" palette="green" text="green"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="outlined"
+        palette="green"
+        text="green + validation"
+        validation-message="validation message"
+      />
+      <md2-input v-model="inputValue" appearance="outlined" palette="green" selected text="green + selected"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" text="text + value" value="value"/>
+      <md2-input appearance="outlined" text="validation" validation-message="validation message"/>
+      <md2-input appearance="outlined" selected text="selected"/>
+      <md2-input appearance="outlined" selected text="validation + selected" validation-message="validation message"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" appearance="outlined" disabled text="disabled"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="outlined"
+        disabled
+        text="disabled + validation"
+        validation-message="validation message"
+      />
+      <md2-input v-model="inputValue" appearance="outlined" disabled selected text="disabled + selected"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="outlined"
+        disabled
+        selected
+        text="disabled + validation + selected"
+        validation-message="validation message"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" appearance="outlined" readonly text="readonly"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="outlined"
+        readonly
+        text="readonly + validation"
+        validation-message="validation message"
+      />
+      <md2-input v-model="inputValue" appearance="outlined" readonly selected text="readonly + selected"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="outlined"
+        readonly
+        selected
+        text="readonly + validation + selected"
+        validation-message="validation message"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" required text="required"/>
+      <md2-input appearance="outlined" helper-message="helper message" text="helper"/>
+      <md2-input appearance="outlined" counter text="counter"/>
+      <md2-input appearance="outlined" counter :maxlength="12" text="counter + maxlength"/>
+    </div>
+
     <div class="px-4 pt-4 pb-2"><b>input, icon</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input icon="face" text="text"/>
       <md2-input icon="face" text="text + value" value="value"/>
       <md2-input icon="face" text="validation" validation-message="validation message"/>
       <md2-input disabled icon="face" text="disabled"/>
+    </div>
+
+    <div class="px-4 pt-4 pb-2"><b>input, outlined, icon</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" icon="face" text="text"/>
+      <md2-input appearance="outlined" icon="face" text="text + value" value="value"/>
+      <md2-input appearance="outlined" icon="face" text="validation" validation-message="validation message"/>
+      <md2-input appearance="outlined" disabled icon="face" text="disabled"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, icon-trailing</b></div>

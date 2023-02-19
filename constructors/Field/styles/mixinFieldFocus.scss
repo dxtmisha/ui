@@ -3,7 +3,7 @@
 
 @mixin mixinFieldFocus() {
   @include useFieldEnabled {
-    &:focus-within, &#{c('??-focus')} {
+    @include useFieldFocus {
       @include linkList('focus');
     }
   }

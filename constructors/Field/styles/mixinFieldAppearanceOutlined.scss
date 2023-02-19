@@ -1,0 +1,24 @@
+@import "../../../styles/properties";
+@import "useField";
+
+@mixin mixinFieldAppearanceOutlined {
+  @include modClass('appearance') {
+    @include modClass('outlined') {
+      @include mixinFieldAppearanceOutlinedOnly;
+    }
+  }
+}
+
+@mixin mixinFieldAppearanceOutlinedOnly {
+  @include modClassByGlobal('value') {
+    @include useFieldTitleToLeft;
+    @include useFieldBorderTitleNone;
+  }
+
+  @include useFieldEnabled {
+    @include useFieldFocus {
+      @include useFieldTitleToLeft;
+      @include useFieldBorderTitleNone;
+    }
+  }
+}

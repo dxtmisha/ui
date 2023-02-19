@@ -61,20 +61,19 @@
                 "borderOpacity": "{sys.opacity.primary.medium}"
               },
               "focus": {
-                "border": "{??sys.palette}",
                 "borderOpacity": "{sys.opacity.primary.high}"
               }
             }
           },
           "mixin|outlined": {
             "var|sys": {
-              "focus": {
-                "border": "{??sys.palette}",
-                "borderOpacity": "{sys.opacity.surface.high}",
-                "borderWidth": "{ref.spacing.px} * 2",
+              "var|value": {
                 "label": {
                   "fontSize": "14px"
                 }
+              },
+              "focus": {
+                "borderOpacity": "{sys.opacity.primary.high}"
               }
             }
           },

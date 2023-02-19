@@ -111,5 +111,6 @@ export default {
     v-bind(suffixWidth)
 ) {
   @include mixinFieldAppearanceFilled;
+  @include mixinFieldAppearanceOutlined;
 }
 </style>
