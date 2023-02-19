@@ -5,6 +5,7 @@
     @include linkList('selected', (
             'text',
             'background',
+            'background-opacity',
             'gradient',
             'border'
     ));

@@ -127,13 +127,6 @@
         }
       },
       "mixin|m": {
-        "mixin|borderBottom": {
-          "border-radius": "0",
-          "bottom": "0",
-          "left": "0",
-          "right": "0",
-          "position": "absolute"
-        },
         "mixin|appearance": {
           "mixin|classic": {
             "&.??--disabled": {
@@ -171,17 +164,20 @@
           },
           "mixin|outlined": {
             "var|sys": {
-              "hover": {
-                "gradientOpacity": "0"
-              },
               "var|value": {
                 "label": {
                   "fontSize": "",
                   "shift": "{??sys.height} / 2"
                 }
               },
+              "selected": {
+                "backgroundOpacity": ""
+              },
+              "hover": {
+                "gradientOpacity": "0"
+              },
               "focus": {
-                "gradientOpacity": "{??sys.hover.label.fontSize}",
+                "gradientOpacity": "{??sys.hover.gradientOpacity}",
                 "border": "{??l.palette}",
                 "borderOpacity": "",
                 "label": {
@@ -190,20 +186,7 @@
               }
             }
           },
-          "mixin|standard": {
-            "var|sys": {
-              "focus": {
-                "border": "",
-                "borderOpacity": "",
-                "borderWidth": "",
-                "label": {
-                  "textOpacity": "0"
-                }
-              },
-              "selected": {
-                "backgroundOpacity": ""
-              }
-            },
+          "mixin|standard--old": {
             "&:not(.??--disabled, .??--readonly)": {
               "& .??__body": {
                 "hover": {
@@ -232,6 +215,29 @@
             "&.??--selected": {
               "var|l": {
                 "backgroundOpacity": "{??sys.selected.backgroundOpacity}"
+              }
+            }
+          },
+          "mixin|standard": {
+            "var|sys": {
+              "var|value": {
+                "label": {
+                  "textOpacity": "0"
+                }
+              },
+              "selected": {
+                "backgroundOpacity": ""
+              },
+              "hover": {
+                "gradientOpacity": "0"
+              },
+              "focus": {
+                "gradientOpacity": "{??sys.hover.gradientOpacity}",
+                "border": "{??l.palette}",
+                "borderOpacity": "",
+                "label": {
+                  "textOpacity": "{??sys.value.textOpacity}"
+                }
               }
             }
           },

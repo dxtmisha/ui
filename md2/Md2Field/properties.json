@@ -72,20 +72,32 @@
                   "fontSize": "14px"
                 }
               },
+              "selected": {
+                "backgroundOpacity": "{sys.opacity.overlay}"
+              },
               "focus": {
                 "borderOpacity": "{sys.opacity.primary.high}"
               }
             }
           },
-          "mixin|standard": {
+          "mixin|standard--old": {
             "var|sys": {
               "focus": {
                 "border": "{??sys.palette}",
-                "borderOpacity": "{sys.opacity.surface.high}",
                 "borderWidth": "{ref.spacing.px} * 2"
               },
               "selected": {
-                "var|backgroundOpacity": "{sys.opacity.overlay}"
+                "backgroundOpacity": "{sys.opacity.overlay}"
+              }
+            }
+          },
+          "mixin|standard": {
+            "var|sys": {
+              "selected": {
+                "backgroundOpacity": "{sys.opacity.overlay}"
+              },
+              "focus": {
+                "borderOpacity": "{sys.opacity.surface.high}"
               }
             }
           },
