@@ -80,17 +80,6 @@
               }
             }
           },
-          "mixin|standard--old": {
-            "var|sys": {
-              "focus": {
-                "border": "{??sys.palette}",
-                "borderWidth": "{ref.spacing.px} * 2"
-              },
-              "selected": {
-                "backgroundOpacity": "{sys.opacity.overlay}"
-              }
-            }
-          },
           "mixin|standard": {
             "var|sys": {
               "selected": {

@@ -108,7 +108,7 @@ module.exports = class extends PropertiesFileService {
       const index = item.getIndex()
       const type = item.getType()
 
-      if (type !== 'mixin') {
+      if (['mixin', 'none'].indexOf(type) === -1) {
         if (
           type !== 'section' &&
           item.isValue()

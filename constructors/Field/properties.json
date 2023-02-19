@@ -186,43 +186,11 @@
               }
             }
           },
-          "mixin|standard--old": {
-            "&:not(.??--disabled, .??--readonly)": {
-              "& .??__body": {
-                "hover": {
-                  "var|l": {
-                    "borderOpacity": "{??sys.hover.borderOpacity}"
-                  }
-                }
-              },
-              "&:focus-within, &.??--focus": {
-                "& .??__body": {
-                  "var|l": {
-                    "border": "=var(--sys-palette, {??sys.focus.border})",
-                    "borderOpacity": "{??sys.focus.borderOpacity}",
-                    "borderWidth": "{??sys.focus.borderWidth}"
-                  }
-                }
-              }
-            },
-            "&.is-value, & .??__input:placeholder-shown, & .??__input:placeholder-shown ~ *": {
-              "var|l": {
-                "label": {
-                  "textOpacity": "{??sys.focus.label.textOpacity}"
-                }
-              }
-            },
-            "&.??--selected": {
-              "var|l": {
-                "backgroundOpacity": "{??sys.selected.backgroundOpacity}"
-              }
-            }
-          },
           "mixin|standard": {
             "var|sys": {
               "var|value": {
                 "label": {
-                  "textOpacity": "0"
+                  "opacity": "0"
                 }
               },
               "selected": {
@@ -236,7 +204,7 @@
                 "border": "{??l.palette}",
                 "borderOpacity": "",
                 "label": {
-                  "textOpacity": "{??sys.value.textOpacity}"
+                  "opacity": "{??sys.value.label.opacity}"
                 }
               }
             }
