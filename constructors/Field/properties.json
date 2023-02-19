@@ -299,8 +299,11 @@
         "mixin|rounded": {
           "mixin|full": {
             "border-radius": "{??sys.height} / 2",
-            "var|sys": {
-              "padding": "{??sys.height} / 2 - {??_value-height} / 2"
+            "var|l": {
+              "padding": "{??sys.height} / 2 - {??_value-height} / 2",
+              "label": {
+                "padding": "{??sys.height} / 2"
+              }
             }
           }
         },

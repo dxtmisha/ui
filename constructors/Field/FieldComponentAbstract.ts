@@ -49,7 +49,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     super(props, context)
 
     this.id = `field--id--${getIdElement()}`
-    this.value = new FieldValue(this.refs.value)
+    this.value = new FieldValue(this.getItem().getClassName, this.refs.value)
     this.icon = new FieldIcon(
       this.getBind,
       this.refs.icon,
@@ -114,7 +114,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
         ...this.arrow.getClass(),
         ...this.cancel.getClass(),
         ...this.prefix.getClass(),
-        [this.getItem().getClassName([], ['value'])]: this.value.item,
+        ...this.value.getClass(),
         [this.getItem().getClassName([], ['validation'])]: this.isValidation
       }
     })

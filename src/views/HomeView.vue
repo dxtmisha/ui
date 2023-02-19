@@ -233,6 +233,18 @@
       <md2-input icon-trailing="home" rounded="full" text="full + icon-trailing"/>
       <md2-input icon="face" icon-trailing="home" rounded="full" text="full + icon + icon-trailing"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input arrow rounded="full" text="full + arrow"/>
+      <md2-input arrow icon="face" rounded="full" text="full + arrow + icon"/>
+      <md2-input arrow icon-trailing="home" rounded="full" text="full + arrow + icon-trailing"/>
+      <md2-input arrow icon="face" icon-trailing="home" rounded="full" text="full + arrow + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input arrow rounded="full" text="full + arrow"/>
+      <md2-input align="left" arrow rounded="full" text="full + arrow + left"/>
+      <md2-input align="center" arrow rounded="full" text="full + arrow + center"/>
+      <md2-input align="right" arrow rounded="full" text="full + arrow + right"/>
+    </div>
   </div>
   <div class="h-96"/>
   <div class="h-96"/>
