@@ -28,13 +28,14 @@ export type FieldIconSetupType = UseIconSetupType & {
 export type FieldAlignSetupType = {
   leftElement: Ref<HTMLElement | undefined>
   left: Ref<string>
+  leftHeight: Ref<string>
   isLeft: ComputedRef<boolean>
 
   rightElement: Ref<HTMLElement | undefined>
   right: Ref<string>
+  rightHeight: Ref<string>
   isRight: ComputedRef<boolean>
 
-  heightContext: Ref<string>
 }
 
 export type FieldPrefixSetupType = {

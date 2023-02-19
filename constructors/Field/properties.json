@@ -93,7 +93,10 @@
       },
       "var|l": {
         "palette": "{??sys.palette}",
-        "padding": "{??sys.padding}",
+        "padding": {
+          "left": "{??sys.padding}",
+          "right": "{??sys.padding}"
+        },
         "text": "{??sys.text}",
         "textOpacity": "{??sys.textOpacity}",
         "background": "{??sys.background}",
@@ -300,7 +303,10 @@
           "mixin|full": {
             "border-radius": "{??sys.height} / 2",
             "var|l": {
-              "padding": "{??sys.height} / 2 - {??_value-height} / 2",
+              "padding": {
+                "left": "{??sys.height} / 2 - {??_value-left-height} / 2",
+                "right": "{??sys.height} / 2 - {??_value-right-height} / 2"
+              },
               "label": {
                 "padding": "{??sys.height} / 2"
               }

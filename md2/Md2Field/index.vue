@@ -104,10 +104,11 @@ export default {
 @include initField(
     'md2',
     v-bind(left),
+    v-bind(leftHeight),
     v-bind(right),
+    v-bind(rightHeight),
     v-bind(prefixWidth),
-    v-bind(suffixWidth),
-    v-bind(heightContext)
+    v-bind(suffixWidth)
 ) {
   @include mixinFieldAppearanceFilled;
 }

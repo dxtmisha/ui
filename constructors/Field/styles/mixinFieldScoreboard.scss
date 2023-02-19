@@ -10,7 +10,8 @@
 
     width: 100%;
     height: 0;
-    @include paddingX(v('??l.padding'));
+    @include paddingLeft(v('??l.padding.left'));
+    @include paddingRight(v('??l.padding.right'));
 
     @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
 

@@ -24,6 +24,11 @@
   optgroup,
   select,
   textarea {
+    --d-dir-margin-left: 0px;
+    --d-dir-margin-right: 0px;
+    --d-dir-padding-left: 0px;
+    --d-dir-padding-right: 0px;
+
     animation-name: none;
     animation-duration: var(--d-sys-transition-duration-sm);
     animation-timing-function: linear;
@@ -57,11 +62,6 @@
   }
 
   html {
-    --d-dir-margin-left: 0px;
-    --d-dir-margin-right: 0px;
-    --d-dir-padding-left: 0px;
-    --d-dir-padding-right: 0px;
-
     --d-dir: 1;
     --d-dir-left: 1;
     --d-dir-right: 0;

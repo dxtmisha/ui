@@ -1,11 +1,11 @@
 import { computed, Ref } from 'vue'
+import { ComponentItem } from '../../classes/ComponentItem'
 import { isFilled } from '../../functions'
-import { NumberOrStringType } from '../types'
 
 export class FieldValue {
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly getClassName: (name: string[], status: NumberOrStringType[]) => string,
+    private readonly component: ComponentItem,
     private readonly value: Ref<string>
   ) {
   }
@@ -17,6 +17,6 @@ export class FieldValue {
   }
 
   getClass (): object {
-    return { [this.getClassName([], ['value'])]: this.item }
+    return { [this.component?.getClassName([], ['value'])]: this.item }
   }
 }

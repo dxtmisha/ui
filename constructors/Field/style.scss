@@ -45,16 +45,18 @@ $currentStatus: (
 @mixin initField(
   $design,
   $left,
+  $leftHeight,
   $right,
+  $rightHeight,
   $prefix,
-  $suffix,
-  $heightContext
+  $suffix
 ) {
   @include propertiesInit($design, 'field') {
     @include mixinField(
                     $left,
+                    $leftHeight,
                     $right,
-                    $heightContext,
+                    $rightHeight,
                     $prefix,
                     $suffix
     );
@@ -89,14 +91,16 @@ $currentStatus: (
 
 @mixin mixinField(
   $left,
+  $leftHeight,
   $right,
-  $heightContext,
+  $rightHeight,
   $prefix,
   $suffix
 ) {
   #{i('??_value-left')}: #{$left};
+  #{i('??_value-left-height')}: #{$leftHeight};
   #{i('??_value-right')}: #{$right};
-  #{i('??_value-height')}: #{$heightContext};
+  #{i('??_value-right-height')}: #{$rightHeight};
   #{i('??_value-prefix')}: #{$prefix};
   #{i('??_value-suffix')}: #{$suffix};
 
@@ -105,14 +109,14 @@ $currentStatus: (
   #{i('??_half')}: calc(#{v('??sys.height')} / 2);
   #{i('??_label-half')}: calc(#{v('??sys.label.height')} / 2);
 
-  #{i('??_left')}: calc(#{v('??l.padding')} + #{v('??sys.space')} + #{$left});
-  #{i('??_right')}: calc(#{v('??l.padding')} + #{v('??sys.space')} + #{$right});
+  #{i('??_left')}: calc(#{v('??l.padding.left')} + #{v('??sys.space')} + #{$left});
+  #{i('??_right')}: calc(#{v('??l.padding.right')} + #{v('??sys.space')} + #{$right});
 
   #{i('??_label-left')}: v('??_value-left');
   #{i('??_label-translate-x')}: 0px;
   #{i('??_label-translate-y')}: calc(v('??sys.height') / 4);
 
-  #{i('?field-message-padding')}: calc(v('??l.padding') + v('??sys.space'));
+  #{i('?field-message-padding')}: calc(v('??sys.padding') + v('??sys.space'));
   #{i('?ripple-background')}: v('??l.background');
 
   width: v('??sys.width');

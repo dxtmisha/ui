@@ -49,7 +49,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     super(props, context)
 
     this.id = `field--id--${getIdElement()}`
-    this.value = new FieldValue(this.getItem().getClassName, this.refs.value)
+    this.value = new FieldValue(this.getItem(), this.refs.value)
     this.icon = new FieldIcon(
       this.getBind,
       this.refs.icon,

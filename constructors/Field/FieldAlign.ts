@@ -7,11 +7,11 @@ import { FieldAlignSetupType } from './types'
 export class FieldAlign {
   private readonly leftElement = ref<HTMLElement | undefined>()
   private readonly left = ref<string>('0px')
+  private readonly leftHeight = ref<string>('0px')
 
   private readonly rightElement = ref<HTMLElement | undefined>()
   private readonly right = ref<string>('0px')
-
-  private readonly height = ref<string>('0px')
+  private readonly rightHeight = ref<string>('0px')
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -44,20 +44,22 @@ export class FieldAlign {
     return {
       leftElement: this.leftElement,
       left: this.left,
+      leftHeight: this.leftHeight,
       isLeft: this.isLeft,
 
       rightElement: this.rightElement,
       right: this.right,
-      isRight: this.isRight,
-
-      heightContext: this.height
+      rightHeight: this.rightHeight,
+      isRight: this.isRight
     }
   }
 
   update (): this {
     this.updateLeft()
+    this.updateLeftHeight()
+
     this.updateRight()
-    this.updateHeight()
+    this.updateRightHeight()
 
     return this
   }
@@ -71,6 +73,12 @@ export class FieldAlign {
     return this
   }
 
+  private updateLeftHeight (): this {
+    this.leftHeight.value = `${this.leftElement.value?.offsetHeight || 0}px`
+
+    return this
+  }
+
   private updateRight (): this {
     if (this.isRight.value) {
       this.right.value = `${this.rightElement.value?.offsetWidth}px`
@@ -81,15 +89,8 @@ export class FieldAlign {
     return this
   }
 
-  private updateHeight (): this {
-    const left = this.leftElement.value?.offsetHeight || 0
-    const right = this.rightElement.value?.offsetHeight || 0
-
-    if (left >= right) {
-      this.height.value = `${left}px`
-    } else {
-      this.height.value = `${right}px`
-    }
+  private updateRightHeight (): this {
+    this.rightHeight.value = `${this.rightElement.value?.offsetHeight || 0}px`
 
     return this
   }
