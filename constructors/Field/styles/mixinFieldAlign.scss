@@ -8,7 +8,7 @@
       }
 
       &.is-arrow {
-        #{i('??_label-translate-x')}: 0px;
+        #{i('??_label-translate-x')}: 0px !important;
 
         @include subClassByGlobal('label') {
           &::before {

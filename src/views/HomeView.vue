@@ -318,6 +318,75 @@
       <md2-input align="right" arrow rounded="full" text="full + arrow + right"/>
     </div>
 
+    <div class="px-4 pt-4 pb-2"><b>input, outlined, rounded</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" rounded="none" text="none"/>
+      <md2-input appearance="outlined" icon="face" rounded="none" text="none + icon"/>
+      <md2-input appearance="outlined" icon-trailing="home" rounded="none" text="none + icon-trailing"/>
+      <md2-input
+        appearance="outlined"
+        icon="face"
+        icon-trailing="home"
+        rounded="none"
+        text="none + icon + icon-trailing"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" rounded="standard" text="standard"/>
+      <md2-input appearance="outlined" icon="face" rounded="standard" text="standard + icon"/>
+      <md2-input appearance="outlined" icon-trailing="home" rounded="standard" text="standard + icon-trailing"/>
+      <md2-input
+        appearance="outlined"
+        icon="face"
+        icon-trailing="home"
+        rounded="standard"
+        text="standard + icon + icon-trailing"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" rounded="sm" text="sm"/>
+      <md2-input appearance="outlined" icon="face" rounded="sm" text="sm + icon"/>
+      <md2-input appearance="outlined" icon-trailing="home" rounded="sm" text="sm + icon-trailing"/>
+      <md2-input appearance="outlined" icon="face" icon-trailing="home" rounded="sm" text="sm + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" rounded="md" text="md"/>
+      <md2-input appearance="outlined" icon="face" rounded="md" text="md + icon"/>
+      <md2-input appearance="outlined" icon-trailing="home" rounded="md" text="md + icon-trailing"/>
+      <md2-input appearance="outlined" icon="face" icon-trailing="home" rounded="md" text="md + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" rounded="full" text="full"/>
+      <md2-input appearance="outlined" icon="face" rounded="full" text="full + icon"/>
+      <md2-input appearance="outlined" icon-trailing="home" rounded="full" text="full + icon-trailing"/>
+      <md2-input
+        appearance="outlined"
+        icon="face"
+        icon-trailing="home"
+        rounded="full"
+        text="full + icon + icon-trailing"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" arrow rounded="full" text="full + arrow"/>
+      <md2-input appearance="outlined" arrow icon="face" rounded="full" text="full + arrow + icon"/>
+      <md2-input appearance="outlined" arrow icon-trailing="home" rounded="full" text="full + arrow + icon-trailing"/>
+      <md2-input
+        appearance="outlined"
+        arrow
+        icon="face"
+        icon-trailing="home"
+        rounded="full"
+        text="full + arrow + icon + icon-trailing"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="outlined" arrow rounded="full" text="full + arrow"/>
+      <md2-input appearance="outlined" align="left" arrow rounded="full" text="full + arrow + left"/>
+      <md2-input appearance="outlined" align="center" arrow rounded="full" text="full + arrow + center"/>
+      <md2-input appearance="outlined" align="right" arrow rounded="full" text="full + arrow + right"/>
+    </div>
+
     <div class="px-4 pt-4 pb-2"><b>input, height</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input height="xm" text="xm"/>
