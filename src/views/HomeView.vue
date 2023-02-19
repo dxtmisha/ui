@@ -245,6 +245,61 @@
       <md2-input align="center" arrow rounded="full" text="full + arrow + center"/>
       <md2-input align="right" arrow rounded="full" text="full + arrow + right"/>
     </div>
+
+    <div class="px-4 pt-4 pb-2"><b>input, height</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="xm" text="xm"/>
+      <md2-input icon="face" height="xm" text="xm + icon"/>
+      <md2-input icon-trailing="home" height="xm" text="xm + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="xm" text="xm + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="sm" text="sm"/>
+      <md2-input icon="face" height="sm" text="sm + icon"/>
+      <md2-input icon-trailing="home" height="sm" text="sm + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="sm" text="sm + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="md" text="md"/>
+      <md2-input icon="face" height="md" text="md + icon"/>
+      <md2-input icon-trailing="home" height="md" text="md + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="md" text="md + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="lg" text="lg"/>
+      <md2-input icon="face" height="lg" text="lg + icon"/>
+      <md2-input icon-trailing="home" height="lg" text="lg + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="lg" text="lg + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="xl" text="xl"/>
+      <md2-input icon="face" height="xl" text="xl + icon"/>
+      <md2-input icon-trailing="home" height="xl" text="xl + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="xl" text="xl + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="2xl" text="2xl"/>
+      <md2-input icon="face" height="2xl" text="2xl + icon"/>
+      <md2-input icon-trailing="home" height="2xl" text="2xl + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="2xl" text="2xl + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input height="2xl" rounded="full" text="2xl"/>
+      <md2-input icon="face" height="2xl" rounded="full" text="2xl + icon"/>
+      <md2-input icon-trailing="home" height="2xl" rounded="full" text="2xl + icon-trailing"/>
+      <md2-input icon="face" icon-trailing="home" height="2xl" rounded="full" text="2xl + icon + icon-trailing"/>
+    </div>
+
+    <div class="px-4 pt-4 pb-2"><b>input, width</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input width="auto" text="auto"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input width="full" text="full"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input width="500px" text="500px"/>
+    </div>
   </div>
   <div class="h-96"/>
   <div class="h-96"/>

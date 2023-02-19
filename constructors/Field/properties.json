@@ -299,6 +299,23 @@
             }
           }
         },
+        "mixin|height": {
+          "interactiveDisplay": {
+            "var|sys": {
+              "height": "{ref.spacing.27}",
+              "label": {
+                "height": "{ref.lineHeight.interactiveDisplay}"
+              }
+            },
+            "& .??__input": {
+              "padding-y": "0px",
+              "text-align": "center"
+            },
+            "& .??__text": {
+              "display": "none"
+            }
+          }
+        },
         "mixin|rounded": {
           "mixin|full": {
             "border-radius": "{??sys.height} / 2",

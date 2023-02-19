@@ -107,20 +107,7 @@
         "xl": "{ref.spacing.20}",
         "2xl": {
           "@font": "{font.interactiveDisplay}",
-          "var|sys": {
-            "height": "{ref.spacing.27}",
-            "padding": "0px !important",
-            "label": {
-              "height": "{ref.lineHeight.interactiveDisplay}"
-            }
-          },
-          "& .??__input": {
-            "padding-y": "0px",
-            "text-align": "center"
-          },
-          "& .??__text": {
-            "display": "none"
-          }
+          "@style": "{??m.height.interactiveDisplay}"
         }
       },
       "~appearance": {
