@@ -60,7 +60,8 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       this.refs.selected,
       this.refs.disabled,
       this.refs.disabledPrevious,
-      this.refs.disabledNext
+      this.refs.disabledNext,
+      this.refs.turn
     )
     this.enabled = new UseEnabled(
       this.refs.disabled,

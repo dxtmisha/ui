@@ -16,8 +16,7 @@ export class FieldIcon extends UseIcon {
     disabled: Ref<boolean>,
     private readonly disabledPrevious: Ref<boolean>,
     private readonly disabledNext: Ref<boolean>,
-    turn?: Ref<boolean>,
-    inEnd?: boolean
+    turn?: Ref<boolean>
   ) {
     super(
       getBind,
@@ -26,7 +25,7 @@ export class FieldIcon extends UseIcon {
       selected,
       disabled,
       turn,
-      inEnd
+      false
     )
   }
 

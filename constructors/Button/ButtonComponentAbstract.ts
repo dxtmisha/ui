@@ -7,6 +7,8 @@ import {
   ComponentBaseType,
   EventCallbackRequiredType
 } from '../types'
+import { UseEnabled } from '../Use/UseEnabled'
+import { UseIcon } from '../Use/UseIcon'
 
 export type ButtonClassesType = {
   main: ComponentAssociativeType
@@ -31,7 +33,32 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
 
   protected readonly stylesProps = ['height', 'width'] as string[]
 
+  private readonly icon: UseIcon
+  private readonly enabled: UseEnabled
+
   protected abstract appearanceInverse: string[]
+
+  constructor (
+    props: AssociativeType & object,
+    context: AssociativeType & object
+  ) {
+    super(props, context)
+
+    this.icon = new UseIcon(
+      this.getBind,
+      this.refs?.icon,
+      this.refs?.iconTrailing,
+      this.refs?.selected,
+      this.refs?.disabled,
+      this.refs?.turn
+    )
+    this.enabled = new UseEnabled(
+      this.refs?.disabled,
+      this.refs?.readonly,
+      this.refs?.progress,
+      this.refs?.ripple
+    )
+  }
 
   setup (): ButtonSetupType {
     const classes = this.getClasses<ButtonClassesType>({
@@ -47,8 +74,10 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
       classes,
       styles,
       isInverse: this.isInverse,
-      isRipple: this.isRipple,
+      isRipple: this.enabled.itemRipple,
       isText: this.isText,
+
+      // DELETE
       disabledBind: this.disabled,
       iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
       iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),

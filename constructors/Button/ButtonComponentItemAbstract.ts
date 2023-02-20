@@ -3,7 +3,10 @@ import { useRouter } from 'vue-router'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 
 export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
+  // DELETE
   readonly isRipple = computed(() => this.props.ripple && !this.isStatic.value) as ComputedRef<boolean>
+
+  // DELETE
   readonly isStatic = computed(() => {
     return this.props?.readonly ||
       this.props?.disabled ||
