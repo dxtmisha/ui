@@ -13,6 +13,7 @@ export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
       this.props?.progress
   }) as ComputedRef<boolean>
 
+  // DELETE
   readonly icon = computed(() => {
     return {
       active: this.props.selected,
@@ -20,6 +21,7 @@ export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
     }
   })
 
+  // DELETE
   readonly iconTrailing = computed(() => {
     return {
       class: 'is-trailing',
@@ -29,6 +31,7 @@ export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
     }
   })
 
+  // DELETE
   readonly value = computed(() => this.props.value || this.props.detail?.value)
 
   onClick (event: MouseEvent): void {

@@ -15,7 +15,7 @@ export class UseIcon {
     protected readonly selected: Ref<boolean>,
     protected readonly disabled: Ref<boolean>,
     protected readonly turn?: Ref<boolean>,
-    protected readonly inEnd?: boolean
+    protected readonly inEnd = true as boolean
   ) {
   }
 

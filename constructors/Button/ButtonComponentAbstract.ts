@@ -1,31 +1,12 @@
 import { computed, ComputedRef } from 'vue'
 import { ButtonComponentItemAbstract } from './ButtonComponentItemAbstract'
-import { props } from './props'
-import {
-  AssociativeType,
-  ComponentAssociativeType,
-  ComponentBaseType,
-  EventCallbackRequiredType
-} from '../types'
 import { UseEnabled } from '../Use/UseEnabled'
 import { UseIcon } from '../Use/UseIcon'
+import { props } from './props'
 
-export type ButtonClassesType = {
-  main: ComponentAssociativeType
-  text: ComponentAssociativeType
-}
-export type ButtonSetupType = ComponentBaseType & {
-  classes: ComputedRef<ButtonClassesType>
-  isInverse: ComputedRef<boolean>
-  isRipple: ComputedRef<boolean>
-  isText: ComputedRef<boolean>
-  disabledBind: ComputedRef<boolean | undefined>
-  iconBind: ComputedRef<string | AssociativeType>
-  iconTrailingBind: ComputedRef<string | AssociativeType>
-  progressBind: ComputedRef<AssociativeType>
-  valueBind: ComputedRef
-  onClick: EventCallbackRequiredType<void, MouseEvent>
-}
+import { AssociativeType } from '../types'
+import { ButtonClassesType, ButtonSetupType } from './types'
+import { ButtonValue } from './ButtonValue'
 
 export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstract {
   static readonly instruction = props as AssociativeType
@@ -33,7 +14,8 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
 
   protected readonly stylesProps = ['height', 'width'] as string[]
 
-  private readonly icon: UseIcon
+  private readonly valueItem: ButtonValue
+  private readonly iconItem: UseIcon
   private readonly enabled: UseEnabled
 
   protected abstract appearanceInverse: string[]
@@ -44,7 +26,11 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
   ) {
     super(props, context)
 
-    this.icon = new UseIcon(
+    this.valueItem = new ButtonValue(
+      this.refs?.value,
+      this.refs?.detail
+    )
+    this.iconItem = new UseIcon(
       this.getBind,
       this.refs?.icon,
       this.refs?.iconTrailing,
@@ -77,13 +63,15 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
       isRipple: this.enabled.itemRipple,
       isText: this.isText,
 
+      valueBind: this.valueItem.item,
+
       // DELETE
       disabledBind: this.disabled,
-      iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
-      iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
+
       progressBind: this.progress,
-      valueBind: this.value,
-      onClick: (event: MouseEvent) => this.onClick(event)
+      onClick: (event: MouseEvent) => this.onClick(event),
+
+      ...this.iconItem.getSetup()
     }
   }
 
