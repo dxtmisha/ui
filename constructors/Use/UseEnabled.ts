@@ -4,11 +4,17 @@ export class UseEnabled {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly disabled: Ref<boolean>,
-    private readonly readonly?: Ref<boolean>
+    private readonly readonly?: Ref<boolean>,
+    private readonly progress?: Ref<boolean>,
+    private readonly ripple?: Ref<boolean>
   ) {
   }
 
-  readonly item = computed<boolean>(() => !this.disabled.value && !this.readonly?.value)
+  readonly item = computed<boolean>(
+    () => !this.disabled.value && !this.readonly?.value && !this.progress?.value
+  )
+
+  readonly itemRipple = computed<boolean>(() => !!this.ripple?.value && this.is())
 
   is (): boolean {
     return this.item.value
@@ -20,5 +26,13 @@ export class UseEnabled {
 
   isReadonly (): boolean {
     return !!this.readonly?.value
+  }
+
+  isProgress (): boolean {
+    return !!this.readonly?.value
+  }
+
+  isRipple (): boolean {
+    return this.itemRipple.value
   }
 }

@@ -64,7 +64,9 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     )
     this.enabled = new UseEnabled(
       this.refs.disabled,
-      this.refs.readonly
+      this.refs.readonly,
+      undefined,
+      this.refs.ripple
     )
 
     this.arrow = new FieldArrow(
@@ -127,7 +129,7 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
       id: this.id,
       isEnabled: this.enabled.item,
       isRequired: this.isRequired,
-      isRipple: this.isRipple,
+      isRipple: this.enabled.itemRipple,
       isScoreboard: this.isScoreboard,
       isCancel: this.cancel.item,
 
@@ -145,7 +147,6 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
   }
 
   private readonly isRequired = computed<boolean>(() => this.props.required && this.enabled.is())
-  private readonly isRipple = computed<boolean>(() => this.props.ripple && this.enabled.is())
   private readonly isScoreboard = computed<boolean>(() => this.align.is() || this.prefix.is())
 
   private readonly isValidation = computed<boolean>(() => isFilled(this.props.validationMessage))

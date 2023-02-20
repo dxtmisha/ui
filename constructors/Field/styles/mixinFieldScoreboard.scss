@@ -39,7 +39,9 @@
   .is-cancel,
   .is-previous,
   .is-next {
-    cursor: pointer;
+    &:not(#{c('?icon--disabled')}) {
+      cursor: pointer;
+    }
   }
 
   &:not(.is-arrow, .is-cancel) {
