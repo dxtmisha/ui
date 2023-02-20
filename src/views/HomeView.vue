@@ -177,6 +177,70 @@
       <md2-input appearance="standard" counter :maxlength="12" text="counter + maxlength"/>
     </div>
 
+    <div class="px-4 py-2"><b>input, tonal</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" appearance="tonal" text="This selector could have also been written as"/>
+      <md2-input v-model="inputValue" appearance="tonal" palette="green" text="green"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="tonal"
+        palette="green"
+        text="green + validation"
+        validation-message="validation message"
+      />
+      <md2-input v-model="inputValue" appearance="tonal" palette="green" selected text="green + selected"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="tonal" text="text + value" value="value"/>
+      <md2-input appearance="tonal" text="validation" validation-message="validation message"/>
+      <md2-input appearance="tonal" selected text="selected"/>
+      <md2-input appearance="tonal" selected text="validation + selected" validation-message="validation message"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" appearance="tonal" disabled text="disabled"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="tonal"
+        disabled
+        text="disabled + validation"
+        validation-message="validation message"
+      />
+      <md2-input v-model="inputValue" appearance="tonal" disabled selected text="disabled + selected"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="tonal"
+        disabled
+        selected
+        text="disabled + validation + selected"
+        validation-message="validation message"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input v-model="inputValue" appearance="tonal" readonly text="readonly"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="tonal"
+        readonly
+        text="readonly + validation"
+        validation-message="validation message"
+      />
+      <md2-input v-model="inputValue" appearance="tonal" readonly selected text="readonly + selected"/>
+      <md2-input
+        v-model="inputValue"
+        appearance="tonal"
+        readonly
+        selected
+        text="readonly + validation + selected"
+        validation-message="validation message"
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input appearance="tonal" required text="required"/>
+      <md2-input appearance="tonal" helper-message="helper message" text="helper"/>
+      <md2-input appearance="tonal" counter text="counter"/>
+      <md2-input appearance="tonal" counter :maxlength="12" text="counter + maxlength"/>
+    </div>
+
     <div class="px-4 pt-4 pb-2"><b>input, icon</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input icon="face" text="text"/>
