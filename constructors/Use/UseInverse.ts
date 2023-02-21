@@ -10,4 +10,8 @@ export class UseInverse {
   }
 
   readonly item = computed<boolean>(() => isSelectedByList([this.appearance.value, 'all'], this.appearanceInverse))
+
+  get (): boolean {
+    return this.item.value
+  }
 }

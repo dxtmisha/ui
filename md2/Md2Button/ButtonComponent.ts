@@ -6,5 +6,10 @@ export class ButtonComponent extends ButtonComponentAbstract {
   static readonly code = 'md2.button' as string
   static readonly instruction = props as AssociativeType
 
-  protected readonly appearanceInverse = ['contained'] as string[]
+  constructor (
+    props: AssociativeType & object,
+    context: AssociativeType & object
+  ) {
+    super(props, context, ['contained'])
+  }
 }

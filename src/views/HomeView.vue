@@ -2,22 +2,30 @@
   <div>
     <div class="px-4 py-2"><b>button</b></div>
     <div class="flex px-4 py-2 gap-2">
-      <md2-button text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button @on-click="onEmit"/>
+      <md2-button text="text" @on-click="onEmit"/>
+      <md2-button progress text="text" @on-click="onEmit"/>
     </div>
 
     <div class="px-4 py-2"><b>button, icon</b></div>
     <div class="flex px-4 py-2 gap-2">
-      <md2-button icon="face" text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button icon="face"/>
+      <md2-button icon="face" text="text"/>
+      <md2-button icon="face" progress text="text"/>
     </div>
 
     <div class="px-4 py-2"><b>button, icon-trailing</b></div>
     <div class="flex px-4 py-2 gap-2">
+      <md2-button icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
       <md2-button icon-trailing="home" text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button icon-trailing="home" progress text="text" @on-click="onEmit" @on-trailing="onEmit"/>
     </div>
 
     <div class="px-4 py-2"><b>button, icon, icon-trailing</b></div>
     <div class="flex px-4 py-2 gap-2">
-      <md2-button icon="face" icon-trailing="home" text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button icon="face" icon-trailing="home"/>
+      <md2-button icon="face" icon-trailing="home" text="text"/>
+      <md2-button icon="face" icon-trailing="home" progress text="text"/>
     </div>
 
     <div class="px-4 py-2"><b>input</b></div>

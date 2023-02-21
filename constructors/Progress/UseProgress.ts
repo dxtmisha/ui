@@ -14,10 +14,10 @@ export class UseProgress {
 
   readonly item = computed<AssociativeType>(() => {
     return {
-      inverse: this.inverse.item,
       type: this.type,
       value: this.value?.value || undefined,
-      visible: this.visible?.value || true
+      visible: this.visible?.value || true,
+      inverse: this.inverse.get()
     }
   })
 

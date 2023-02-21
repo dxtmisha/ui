@@ -16,9 +16,10 @@ export type ButtonSetupType = ComponentBaseType &
   UseIconSetupType &
   {
     classes: ComputedRef<ButtonClassesType>
-    isInverse: ComputedRef<boolean>
-    isRipple: ComputedRef<boolean>
+
     isText: ComputedRef<boolean>
+    isRipple: ComputedRef<boolean>
+    isInverse: ComputedRef<boolean>
 
     valueBind: ComputedRef
     progressBind: ComputedRef<AssociativeType>

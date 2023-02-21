@@ -1,5 +1,5 @@
-import { AssociativeType, CallbackBindType } from '../types'
 import { computed, ComputedRef, Ref } from 'vue'
+import { AssociativeType, CallbackBindType, RefType } from '../types'
 
 export type UseIconSetupType = {
   iconBind: ComputedRef<string | AssociativeType>
@@ -15,9 +15,14 @@ export class UseIcon {
     protected readonly selected: Ref<boolean>,
     protected readonly disabled: Ref<boolean>,
     protected readonly turn?: Ref<boolean>,
-    protected readonly inEnd = true as boolean
+    protected readonly inEnd = true as boolean,
+    protected readonly conditions?: RefType
   ) {
   }
+
+  readonly isIcon = computed<boolean>(
+    () => (!!this.icon.value || !!this.iconTrailing.value) && !this.conditions?.value
+  )
 
   readonly iconBind = computed<AssociativeType>(() => {
     return {
@@ -34,6 +39,10 @@ export class UseIcon {
       turn: this.turn?.value
     }
   })
+
+  getClass (): object {
+    return { 'is-icon': this.isIcon }
+  }
 
   getSetup (): UseIconSetupType {
     return {
