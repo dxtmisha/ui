@@ -85,6 +85,14 @@ export function isSelected (value: any, selected: any | any[]): boolean {
   }
 }
 
+export function isSelectedByList (values: any | any[], selected: any | any[]): boolean {
+  if (Array.isArray(values)) {
+    return values.reduce((value, currentValue) => currentValue && isSelected(value, selected))
+  } else {
+    return isSelected(values, selected)
+  }
+}
+
 export function maxListLength (data: AssociativeOrArrayType<string>): number {
   return forEach<string, number, number>(data, item => item.length)
     ?.sort()
@@ -185,6 +193,7 @@ export default {
   getExp,
   isFilled,
   isSelected,
+  isSelectedByList,
   maxListLength,
   minListLength,
   random,

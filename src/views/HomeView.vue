@@ -1,5 +1,25 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>button</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, icon</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon="face" text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, icon-trailing</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon-trailing="home" text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, icon, icon-trailing</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon="face" icon-trailing="home" text="text" @on-click="onEmit" @on-trailing="onEmit"/>
+    </div>
+
     <div class="px-4 py-2"><b>input</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" text="This selector could have also been written as"/>
@@ -587,6 +607,7 @@ import { defineComponent, Ref, ref } from 'vue'
 import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2Input from '../../md2/Md2Input/index.vue'
+import Md2Button from '../../md2/Md2Button/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -596,6 +617,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Button,
     Md2Input
   },
   setup () {

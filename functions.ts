@@ -10,6 +10,7 @@ export const {
   getExp,
   isFilled,
   isSelected,
+  isSelectedByList,
   maxListLength,
   minListLength,
   random,

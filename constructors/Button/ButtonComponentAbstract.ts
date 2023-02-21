@@ -8,20 +8,24 @@ import { ButtonClassesType, ButtonSetupType } from './types'
 import { ButtonValue } from './ButtonValue'
 import { ButtonEvent } from './ButtonEvent'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { UseInverse } from '../Use/UseInverse'
+import { UseProgress } from '../Progress/UseProgress'
 
 export abstract class ButtonComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
   protected readonly stylesProps = ['height', 'width'] as string[]
+  protected readonly appearanceInverse = [] as string[]
 
   private readonly value: ButtonValue
   private readonly icon: UseIcon
   private readonly enabled: UseEnabled
 
-  private readonly event: ButtonEvent
+  private readonly inverse: UseInverse
+  private readonly progress: UseProgress
 
-  protected abstract appearanceInverse: string[]
+  private readonly event: ButtonEvent
 
   constructor (
     props: AssociativeType & object,
@@ -48,6 +52,12 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       this.refs?.ripple
     )
 
+    this.inverse = new UseInverse(
+      this.appearanceInverse,
+      this.refs?.appearance
+    )
+    this.progress = new UseProgress('circular', this.inverse)
+
     this.event = new ButtonEvent(
       this.context.emit,
       this.value,
@@ -71,10 +81,12 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       styles,
       isInverse: this.isInverse,
       isRipple: this.enabled.itemRipple,
+
+      // DELETE
       isText: this.isText,
 
       valueBind: this.value.item,
-      progressBind: this.progress,
+      progressBind: this.progress.item,
       disabledBind: this.enabled.itemDisabled,
 
       onClick: (event: MouseEvent) => this.event.onClick(event),
@@ -93,12 +105,4 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   readonly isText = computed(() => this.props.text || 'default' in this.context.slots) as ComputedRef<boolean>
 
   readonly disabled = computed(() => this.props.disabled || undefined) as ComputedRef<boolean | undefined>
-
-  readonly progress = computed(() => {
-    return {
-      inverse: this.isInverse.value,
-      type: 'circular',
-      visible: true
-    }
-  })
 }
