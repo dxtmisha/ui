@@ -34,6 +34,7 @@ export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
   // DELETE
   readonly value = computed(() => this.props.value || this.props.detail?.value)
 
+  // DELETE
   onClick (event: MouseEvent): void {
     let type = 'on-click'
 
@@ -60,6 +61,7 @@ export abstract class ButtonComponentItemAbstract extends ComponentAbstract {
     }
   }
 
+  // DELETE
   protected toRouter () {
     const router = useRouter()
     return router.push(this.props.to)

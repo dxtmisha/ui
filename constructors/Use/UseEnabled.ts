@@ -14,6 +14,7 @@ export class UseEnabled {
     () => !this.disabled.value && !this.readonly?.value && !this.progress?.value
   )
 
+  readonly itemDisabled = computed<boolean | undefined>(() => this.isDisabled() || undefined)
   readonly itemRipple = computed<boolean>(() => !!this.ripple?.value && this.is())
 
   is (): boolean {

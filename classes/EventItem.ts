@@ -146,6 +146,11 @@ export class EventItem<R = any, E = Event> {
     return (typeof element === 'string' ? document.querySelector(element) : element) || document.body
   }
 
+  static stopPropagation (event: Event): void {
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
   static clientX (event: MouseEvent & TouchEvent): number {
     return event?.clientX || event?.targetTouches?.[0].clientX || event?.touches?.[0].clientX || 0
   }

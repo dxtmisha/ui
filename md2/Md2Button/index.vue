@@ -2,7 +2,7 @@
   <component
     :is="tag"
     :class="classes.main"
-    :disabled="disabledBind"
+    :disabled="disabled"
     :style="styles.main"
     @click="onClick"
   >

@@ -1,5 +1,4 @@
 import { computed, ComputedRef } from 'vue'
-import { ButtonComponentItemAbstract } from './ButtonComponentItemAbstract'
 import { UseEnabled } from '../Use/UseEnabled'
 import { UseIcon } from '../Use/UseIcon'
 import { props } from './props'
@@ -7,16 +6,20 @@ import { props } from './props'
 import { AssociativeType } from '../types'
 import { ButtonClassesType, ButtonSetupType } from './types'
 import { ButtonValue } from './ButtonValue'
+import { ButtonEvent } from './ButtonEvent'
+import { ComponentAbstract } from '../../classes/ComponentAbstract'
 
-export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstract {
+export abstract class ButtonComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
   protected readonly stylesProps = ['height', 'width'] as string[]
 
-  private readonly valueItem: ButtonValue
-  private readonly iconItem: UseIcon
+  private readonly value: ButtonValue
+  private readonly icon: UseIcon
   private readonly enabled: UseEnabled
+
+  private readonly event: ButtonEvent
 
   protected abstract appearanceInverse: string[]
 
@@ -26,11 +29,11 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
   ) {
     super(props, context)
 
-    this.valueItem = new ButtonValue(
+    this.value = new ButtonValue(
       this.refs?.value,
       this.refs?.detail
     )
-    this.iconItem = new UseIcon(
+    this.icon = new UseIcon(
       this.getBind,
       this.refs?.icon,
       this.refs?.iconTrailing,
@@ -43,6 +46,13 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
       this.refs?.readonly,
       this.refs?.progress,
       this.refs?.ripple
+    )
+
+    this.event = new ButtonEvent(
+      this.context.emit,
+      this.value,
+      this.enabled,
+      this.refs?.to
     )
   }
 
@@ -63,15 +73,13 @@ export abstract class ButtonComponentAbstract extends ButtonComponentItemAbstrac
       isRipple: this.enabled.itemRipple,
       isText: this.isText,
 
-      valueBind: this.valueItem.item,
-
-      // DELETE
-      disabledBind: this.disabled,
-
+      valueBind: this.value.item,
       progressBind: this.progress,
-      onClick: (event: MouseEvent) => this.onClick(event),
+      disabledBind: this.enabled.itemDisabled,
 
-      ...this.iconItem.getSetup()
+      onClick: (event: MouseEvent) => this.event.onClick(event),
+
+      ...this.icon.getSetup()
     }
   }
 

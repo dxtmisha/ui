@@ -19,10 +19,10 @@ export type ButtonSetupType = ComponentBaseType &
     isInverse: ComputedRef<boolean>
     isRipple: ComputedRef<boolean>
     isText: ComputedRef<boolean>
-    disabledBind: ComputedRef<boolean | undefined>
-    iconBind: ComputedRef<string | AssociativeType>
-    iconTrailingBind: ComputedRef<string | AssociativeType>
-    progressBind: ComputedRef<AssociativeType>
+
     valueBind: ComputedRef
+    progressBind: ComputedRef<AssociativeType>
+    disabledBind: ComputedRef<boolean | undefined>
+
     onClick: EventCallbackRequiredType<void, MouseEvent>
   }

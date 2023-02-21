@@ -23,6 +23,7 @@ export type RefOrCallbackType<T = any> = RefType<T> | CallbackNullType<T>
 export type RefOrNormalType<T = any> = ComputedRef<T> | Ref<T> | T
 export type RefOrElementType<T = ElementType> = RefOrNormalType<T>
 
+export type CallbackEmitType = (type: string, options: AssociativeType | any) => void
 export type CallbackBindType<T = any, R = AssociativeType> =
   ((value: Ref<T | R>) => ComputedRef<R>) &
   ((value: Ref<T | R>, name: string) => ComputedRef<R>) &
