@@ -214,21 +214,6 @@
       "section|progress": {
         "@style": "{??m.readonly}"
       },
-      ":hover": {
-        "var|l": {
-          "palette": "{??sys.hover.palette}",
-          "background": "{??sys.hover.background}",
-          "backgroundOpacity": "{??sys.hover.backgroundOpacity}",
-          "border": "{??sys.hover.border}",
-          "borderOpacity": "{??sys.hover.borderOpacity}",
-          "gradient": "{??sys.hover.gradient}",
-          "gradientOpacity": "{??sys.hover.gradientOpacity}",
-          "shadow": "{??sys.hover.shadow}",
-          "text": "{??sys.hover.text}",
-          "textOpacity": "{??sys.hover.textOpacity}",
-          "zIndex": "{??sys.hover.zIndex}"
-        }
-      },
       ":focus": {
         "var|l": {
           "palette": "{??sys.focus.palette}",
