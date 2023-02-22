@@ -1,0 +1,9 @@
+@import "../../../styles/use";
+
+@mixin mixinButtonDragged {
+  @include useEnabled {
+    @include modClassByGlobal('dragged') {
+      @include linkList('dragged');
+    }
+  }
+}

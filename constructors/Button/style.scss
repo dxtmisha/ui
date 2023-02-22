@@ -2,6 +2,7 @@
 
 @import "./styles/mixinButtonActive";
 @import "./styles/mixinButtonDisabled";
+@import "./styles/mixinButtonDragged";
 @import "./styles/mixinButtonFocus";
 @import "./styles/mixinButtonHover";
 @import "./styles/mixinButtonIcon";
@@ -22,6 +23,7 @@
     @include mixinButtonHover;
     @include mixinButtonFocus;
     @include mixinButtonActive;
+    @include mixinButtonDragged;
 
     @content;
   }
