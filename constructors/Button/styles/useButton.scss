@@ -1,0 +1,21 @@
+@import "../../../styles/properties";
+
+@mixin useButtonDisabled($name) {
+  @include linkList($name, (
+          'palette',
+          'z-index',
+          'text',
+          'text-opacity',
+          'background',
+          'background-opacity',
+          'gradient',
+          'gradient-opacity',
+          'border',
+          'border-opacity',
+          'border-width',
+          'shadow'
+  ));
+
+  --sys-palette: #{v('??l.palette')};
+  cursor: default;
+}

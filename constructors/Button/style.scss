@@ -1,15 +1,10 @@
 @import "../../styles/properties";
 
-@import "./styles/mixinButtonActive";
-@import "./styles/mixinButtonDisabled";
-@import "./styles/mixinButtonDragged";
-@import "./styles/mixinButtonFocus";
-@import "./styles/mixinButtonHover";
 @import "./styles/mixinButtonIcon";
-@import "./styles/mixinButtonProgress";
 @import "./styles/mixinButtonText";
 
-@import "styles/currentStatus";
+@import "./styles/currentStatus";
+@import "./styles/mixinButtonStatus";
 
 @mixin initButton($design) {
   @include propertiesInit($design, 'button') {
@@ -17,9 +12,12 @@
 
     @include mixinButtonIcon;
     @include mixinButtonText;
-    @include mixinButtonProgress;
 
+    @include mixinButtonSelected;
+    @include mixinButtonReadonly;
+    @include mixinButtonProgress;
     @include mixinButtonDisabled;
+
     @include mixinButtonHover;
     @include mixinButtonFocus;
     @include mixinButtonActive;

@@ -1,9 +1,0 @@
-@import "../../../styles/use";
-
-@mixin mixinButtonFocus {
-  @include useEnabled {
-    @include useFocus {
-      @include linkList('focus');
-    }
-  }
-}

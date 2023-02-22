@@ -17,3 +17,9 @@
     @content;
   }
 }
+
+@mixin useReadonly {
+  &:read-only, &#{c('??-readonly')} {
+    @content;
+  }
+}

@@ -1,0 +1,74 @@
+@import "../../../styles/use";
+@import "./useButton";
+
+@mixin mixinButtonActive {
+  @include useEnabled {
+    &:active {
+      @include linkList('active');
+    }
+  }
+}
+
+@mixin mixinButtonDisabled {
+  @include useDisabled {
+    @include useButtonDisabled('disabled');
+  }
+}
+
+@mixin mixinButtonDragged {
+  @include useEnabled {
+    @include modClassByGlobal('dragged') {
+      @include linkList('dragged');
+    }
+  }
+}
+
+@mixin mixinButtonFocus {
+  @include useEnabled {
+    @include useFocus {
+      @include linkList('focus');
+    }
+  }
+}
+
+@mixin mixinButtonHover {
+  @include useEnabled {
+    &:hover {
+      @include linkList('hover');
+    }
+  }
+}
+
+@mixin mixinButtonProgress {
+  @include modClass('progress') {
+    @include useButtonDisabled('readonly');
+  }
+
+  & #{c('?progress')}.is-visible ~ #{c('?icon')} {
+    opacity: 0;
+  }
+
+  & #{c('?progress')}.is-visible ~ &__text {
+    color: transparent;
+  }
+}
+
+@mixin mixinButtonReadonly {
+  @include modClass('readonly') {
+    @include useButtonDisabled('readonly');
+  }
+}
+
+@mixin mixinButtonSelected {
+  @include useEnabled {
+    @include modClassByGlobal('selected') {
+      @include linkList('selected', (
+              'palette',
+              'text',
+              'background',
+              'gradient',
+              'border'
+      ));
+    }
+  }
+}
