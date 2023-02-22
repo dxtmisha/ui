@@ -228,21 +228,6 @@
           "textOpacity": "{??sys.focus.textOpacity}",
           "zIndex": "{??sys.focus.zIndex}"
         }
-      },
-      ":active": {
-        "var|l": {
-          "palette": "{??sys.active.palette}",
-          "background": "{??sys.active.background}",
-          "backgroundOpacity": "{??sys.active.backgroundOpacity}",
-          "border": "{??sys.active.border}",
-          "borderOpacity": "{??sys.active.borderOpacity}",
-          "gradient": "{??sys.active.gradient}",
-          "gradientOpacity": "{??sys.active.gradientOpacity}",
-          "shadow": "{??sys.active.shadow}",
-          "text": "{??sys.active.text}",
-          "textOpacity": "{??sys.active.textOpacity}",
-          "zIndex": "{??sys.active.zIndex}"
-        }
       }
     }
   }

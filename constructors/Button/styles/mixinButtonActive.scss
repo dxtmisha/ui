@@ -1,0 +1,7 @@
+@import "../../../styles/properties";
+
+@mixin mixinButtonActive {
+  &:active {
+    @include linkList('active');
+  }
+}

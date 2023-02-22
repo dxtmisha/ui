@@ -1,5 +1,6 @@
 @import "../../styles/properties";
 
+@import "./styles/mixinButtonActive";
 @import "./styles/mixinButtonDisabled";
 @import "./styles/mixinButtonHover";
 @import "./styles/mixinButtonIcon";
@@ -18,6 +19,7 @@
 
     @include mixinButtonDisabled;
     @include mixinButtonHover;
+    @include mixinButtonActive;
 
     @content;
   }
