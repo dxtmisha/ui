@@ -1,8 +1,17 @@
 @import "../../styles/properties";
 
+@import "./styles/mixinButtonIcon";
+@import "./styles/mixinButtonProgress";
+@import "./styles/mixinButtonText";
+
 @mixin initButton($design) {
   @include propertiesInit($design, 'button') {
     @include mixinButton;
+
+    @include mixinButtonIcon;
+    @include mixinButtonText;
+    @include mixinButtonProgress;
+
     @content;
   }
 }
@@ -27,10 +36,6 @@
 
   transition-property: color, background, box-shadow;
 
-  @include mixinItemIcon;
-  @include mixinItemProgress;
-  @include mixinItemText;
-
   @include modClass(('disabled', 'readonly')) {
     cursor: default;
   }
@@ -38,48 +43,5 @@
   @include modClass(('disabled')) {
     @include background(v('??l.background'));
     @include gradient(v('??l.gradient'));
-  }
-}
-
-@mixin mixinItemIcon() {
-  & #{c('?icon')} {
-    @include marginLeft(v('??l.icon.margin'));
-    @include marginRight(v('??l.icon.space'));
-
-    @include propertyCustomTo('?image.font.size', '??sys.icon.font-size');
-
-    &.is-trailing {
-      @include marginLeft(v('??l.icon.space'));
-      @include marginRight(v('??l.icon.margin'));
-
-      @include propertyCustomTo('?image.font.size', '??sys.icon-trailing.font-size');
-
-      position: relative;
-      z-index: 16;
-    }
-  }
-}
-
-@mixin mixinItemProgress() {
-  & #{c('?progress')}.is-visible ~ #{c('?icon')} {
-    opacity: 0;
-  }
-
-  & #{c('?progress')}.is-visible ~ &__text {
-    color: transparent;
-  }
-}
-
-@mixin mixinItemText() {
-  @include subClass(text) {
-    @include propertiesLink('d.flex.dynamic');
-
-    align-items: center;
-    display: v('??l.text-display');
-    max-width: inherit;
-    overflow: inherit;
-    text-overflow: inherit;
-    transition-property: color;
-    white-space: inherit;
   }
 }

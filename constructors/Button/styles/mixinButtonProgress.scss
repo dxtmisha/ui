@@ -1,0 +1,13 @@
+@import "../../../styles/properties";
+
+@mixin mixinButtonProgress() {
+  & #{c('?progress')}.is-visible {
+    ~ #{c('?icon')} {
+      opacity: 0;
+    }
+
+    ~ &__text {
+      color: transparent;
+    }
+  }
+}

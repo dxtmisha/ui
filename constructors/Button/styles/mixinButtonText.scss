@@ -1,0 +1,17 @@
+@import "../../../styles/properties";
+
+@mixin mixinButtonText {
+  @include subClass('text') {
+    display: v('??l.document.display');
+    align-items: center;
+    @include propertiesLink('d.flex.dynamic');
+    overflow: inherit;
+
+    max-width: inherit;
+
+    text-overflow: inherit;
+
+    transition-property: color;
+    white-space: inherit;
+  }
+}
