@@ -71,6 +71,30 @@
         }
       },
       "mixin|m": {
+        "appearance": {
+          "contained": {
+            "var|sys": {
+              "text": "",
+              "textOpacity": "",
+              "backgroundOpacity": "",
+              "gradient": "",
+              "shadow": "",
+              "selected": {
+                "gradient": "{??sys.gradient}"
+              },
+              "disabled": {
+                "text": "{??sys.text}",
+                "textOpacity": "{??sys.textOpacity}",
+                "backgroundOpacity": "{??sys.backgroundOpacity}",
+                "shadow": "{??sys.shadow}"
+              },
+              "active": {
+                "shadow": "{??sys.shadow}"
+              }
+            },
+            "gradient": "{??l.gradient}"
+          }
+        },
         "mixin|border": {
           "@position": "{d.position.absolute}",
           "border-opacity": "{??l.borderOpacity}",

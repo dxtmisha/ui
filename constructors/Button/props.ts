@@ -1,33 +1,33 @@
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
-  text: [Number, String],
   to: String,
   value: [Number, Object, String],
+  detail: [Object],
 
   // Status
+  turn: Boolean,
+  selected: Boolean,
+  readonly: Boolean,
+  progress: Boolean,
   disabled: Boolean,
   dragged: Boolean,
-  progress: Boolean,
-  readonly: Boolean,
-  selected: Boolean,
-  turn: Boolean,
 
   // Options
-  adaptive: String,
-  align: String,
-  appearance: String,
-  dense: Boolean,
-  ellipsis: Boolean,
-  height: [Number, String],
-  lowercase: Boolean,
-  palette: String,
-  rounded: String,
   tag: String,
-  ripple: Boolean,
-  width: [Number, String]
+  palette: String,
+  appearance: String,
+  align: String,
+  adaptive: String,
+  rounded: String,
+  width: [Number, String],
+  height: [Number, String],
+  dense: Boolean,
+  lowercase: Boolean,
+  ellipsis: Boolean,
+  ripple: Boolean
 }
 
 export default {

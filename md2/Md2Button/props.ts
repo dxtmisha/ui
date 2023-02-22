@@ -13,64 +13,65 @@ import { Md2PaletteType } from '../props.type'
 export const defaultItem = ComponentDesign.getDefault('md2.button')
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
-  text: [Number, String],
   to: String,
   value: [Number, Object, String],
+  detail: [Object],
 
   // Status
+  turn: Boolean,
+  selected: Boolean,
+  readonly: Boolean,
+  progress: Boolean,
   disabled: Boolean,
   dragged: Boolean,
-  progress: Boolean,
-  selected: Boolean,
-  turn: Boolean,
 
   // Options
-  adaptive: {
-    type: String as PropType<Md2ButtonAdaptiveType>,
-    default: defaultItem.defaultValue('adaptive'),
-    validator: defaultItem.validator('adaptive')
+  tag: {
+    type: String,
+    default: 'button'
   },
-  align: {
-    type: String as PropType<Md2ButtonAlignType>,
-    validator: defaultItem.validator('align')
-  },
+  palette: String as PropType<Md2PaletteType>,
   appearance: {
     type: String as PropType<Md2ButtonAppearanceType>,
     default: defaultItem.defaultValue('appearance'),
     validator: defaultItem.validator('appearance')
   },
-  dense: Boolean,
-  ellipsis: {
-    type: Boolean,
-    default: defaultItem.defaultValue('ellipsis')
+  align: {
+    type: String as PropType<Md2ButtonAlignType>,
+    validator: defaultItem.validator('align')
   },
-  height: {
-    type: String as PropType<Md2ButtonHeightType>,
-    default: defaultItem.defaultValue('height')
+  adaptive: {
+    type: String as PropType<Md2ButtonAdaptiveType>,
+    default: defaultItem.defaultValue('adaptive'),
+    validator: defaultItem.validator('adaptive')
   },
-  lowercase: {
-    type: Boolean,
-    default: defaultItem.defaultValue('lowercase')
-  },
-  palette: String as PropType<Md2PaletteType>,
   rounded: {
     type: String as PropType<Md2ButtonRoundedType>,
     default: defaultItem.defaultValue('rounded'),
     validator: defaultItem.validator('rounded')
   },
-  tag: {
-    type: String,
-    default: 'button'
+  width: {
+    type: String as PropType<Md2ButtonWidthType>,
+    default: defaultItem.defaultValue('width')
+  },
+  height: {
+    type: String as PropType<Md2ButtonHeightType>,
+    default: defaultItem.defaultValue('height')
+  },
+  dense: Boolean,
+  lowercase: {
+    type: Boolean,
+    default: defaultItem.defaultValue('lowercase')
+  },
+  ellipsis: {
+    type: Boolean,
+    default: defaultItem.defaultValue('ellipsis')
   },
   ripple: {
     type: Boolean,
     default: defaultItem.defaultValue('ripple', true)
-  },
-  width: {
-    type: String as PropType<Md2ButtonWidthType>,
-    default: defaultItem.defaultValue('width')
   }
 }

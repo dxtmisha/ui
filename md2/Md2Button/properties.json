@@ -43,6 +43,24 @@
       },
       "mixin|m": {
         "appearance": {
+          "contained": {
+            "var|sys": {
+              "text": "{sys.palette.onPrimary}",
+              "textOpacity": "{sys.opacity.primary.high}",
+              "backgroundOpacity": "{sys.opacity.primary.high}",
+              "gradient": "{sys.palette.onPrimary}",
+              "shadow": "{sys.elevation.shadow.2}",
+              "disabled": {
+                "backgroundOpacity": "{sys.opacity.disabled}",
+                "shadow": "none",
+                "text": "{sys.palette.onSurface}",
+                "textOpacity": "{sys.opacity.surface.disabled}"
+              },
+              "active": {
+                "shadow": "{sys.elevation.shadow.8}"
+              }
+            }
+          },
           "text": {
             "var|??sys": {
               "text": "{??sys.palette}",
@@ -96,23 +114,7 @@
       },
       "section|appearance": {
         "contained": {
-          "var|??sys": {
-            "backgroundOpacity": "{sys.opacity.primary.high}",
-            "gradient": "{sys.palette.onPrimary}",
-            "shadow": "{sys.elevation.shadow.2}",
-            "text": "{sys.palette.onPrimary}",
-            "textOpacity": "{sys.opacity.primary.high}",
-            "active": {
-              "shadow": "{sys.elevation.shadow.8}"
-            },
-            "disabled": {
-              "backgroundOpacity": "{sys.opacity.disabled}",
-              "shadow": "none",
-              "text": "{sys.palette.onSurface}",
-              "textOpacity": "{sys.opacity.surface.disabled}"
-            }
-          },
-          "gradient": "{??l.gradient}"
+          "@style": "{??m.appearance.contained}"
         },
         "text": {
           "@style": "{??m.appearance.text}",

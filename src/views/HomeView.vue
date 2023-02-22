@@ -12,7 +12,19 @@
       <md2-button icon="face" icon-trailing="home" text="text + icon + trailing"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
+      <md2-button icon-trailing="home" text="turn" turn/>
+      <md2-button icon="face" selected text="selected"/>
+      <md2-button icon="face" readonly text="readonly"/>
       <md2-button icon="face" progress text="progress"/>
+      <md2-button disabled icon="face" text="disabled"/>
+      <md2-button disabled icon="face" selected text="disabled + selected"/>
+      <md2-button dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon="face" palette="green" text="palette"/>
+      <md2-button icon="face" palette="green" selected text="palette + selected"/>
+      <md2-button icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-button disabled icon="face" palette="green" text="palette + disabled"/>
     </div>
 
     <div class="px-4 py-2"><b>input</b></div>
