@@ -1,8 +1,7 @@
-@import "../../../styles/properties";
-@import "./useField";
+@import "../../../styles/use";
 
 @mixin mixinFieldHover {
-  @include useFieldEnabled {
+  @include useEnabled {
     &:hover {
       @include linkList('hover', (), (
               'shift',

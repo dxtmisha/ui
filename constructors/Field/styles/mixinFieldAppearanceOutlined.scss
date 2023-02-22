@@ -1,4 +1,4 @@
-@import "../../../styles/properties";
+@import "../../../styles/use";
 @import "useField";
 
 @mixin mixinFieldAppearanceOutlined {
@@ -15,8 +15,8 @@
     @include useFieldBorderTitleNone;
   }
 
-  @include useFieldEnabled {
-    @include useFieldFocus {
+  @include useEnabled {
+    @include useFocus {
       @include useFieldTitleToLeft;
       @include useFieldBorderTitleNone;
     }

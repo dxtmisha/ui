@@ -1,9 +1,8 @@
-@import "../../../styles/properties";
-@import "./useField";
+@import "../../../styles/use";
 
 @mixin mixinFieldFocus() {
-  @include useFieldEnabled {
-    @include useFieldFocus {
+  @include useEnabled {
+    @include useFocus {
       @include linkList('focus');
     }
   }

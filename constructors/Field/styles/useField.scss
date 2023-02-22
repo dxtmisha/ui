@@ -26,18 +26,6 @@
   }
 }
 
-@mixin useFieldEnabled {
-  &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
-    @content;
-  }
-}
-
-@mixin useFieldFocus {
-  &:focus-within, &#{c('??-focus')} {
-    @content;
-  }
-}
-
 @mixin useFieldTitleToLeft {
   #{i('??_label-translate-x')}: calc((#{v('??_label-left')} - #{v('??l.label.padding')} + #{v('??l.padding.left')}) * -1);
 }
