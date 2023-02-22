@@ -34,6 +34,15 @@
       <md2-button align="right" icon="face" text="right" width="lg"/>
     </div>
 
+    <div class="px-4 py-2"><b>button, adaptive</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button adaptive="sm" icon="face" text="sm"/>
+      <md2-button adaptive="md" icon="face" text="md"/>
+      <md2-button adaptive="lg" icon="face" text="lg"/>
+      <md2-button adaptive="icon" icon="face" text="icon"/>
+      <md2-button adaptive="full" icon="face" text="full"/>
+    </div>
+
     <div class="px-4 py-2"><b>button, width</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button icon="face" text="auto" width="auto"/>
