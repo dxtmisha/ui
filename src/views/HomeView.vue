@@ -27,6 +27,24 @@
       <md2-button disabled icon="face" palette="green" text="palette + disabled"/>
     </div>
 
+    <div class="px-4 py-2"><b>button, align</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button align="left" icon="face" text="left" width="lg"/>
+      <md2-button align="center" icon="face" text="center" width="lg"/>
+      <md2-button align="right" icon="face" text="right" width="lg"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, width</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon="face" text="auto" width="auto"/>
+      <md2-button icon="face" text="sm" width="sm"/>
+      <md2-button icon="face" text="md" width="md"/>
+      <md2-button icon="face" text="lg" width="lg"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon="face" text="full" width="full"/>
+    </div>
+
     <div class="px-4 py-2"><b>input</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input v-model="inputValue" text="This selector could have also been written as"/>

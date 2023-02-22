@@ -67,7 +67,8 @@
           "space": "{??sys.icon.space}"
         },
         "document": {
-          "display": "none"
+          "display": "none",
+          "width": "{??sys.width}"
         }
       },
       "mixin|m": {
@@ -104,7 +105,7 @@
         "mixin|icon": {
           "var|l": {
             "padding": "{??sys.icon.padding}",
-            "width": "var(--sys-height)",
+            "width": "var(--sys-height, auto)",
             "icon": {
               "margin": "0",
               "space": "0"
@@ -114,7 +115,7 @@
         "mixin|text": {
           "var|l": {
             "padding": "{??sys.padding}",
-            "width": "{??sys.width}",
+            "width": "{??l.document.width}",
             "icon": {
               "margin": "{??sys.icon.margin} - {??l.padding}",
               "space": "{??sys.space}"
@@ -152,7 +153,7 @@
       "width": {
         "auto": "auto",
         "full": "100%",
-        "rename": "var|??l.width"
+        "rename": "var|??l.document.width"
       },
       "height": {
         "auto": "auto",
