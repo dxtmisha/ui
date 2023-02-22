@@ -1,6 +1,75 @@
 {
   "d": {
     "button": {
+      "var|sys": {
+        "palette": "",
+        "padding": "",
+        "space": "",
+        "height": "",
+        "width": "auto",
+        "zIndex": "",
+        "text": "",
+        "textOpacity": "",
+        "background": "{??sys.palette}",
+        "backgroundOpacity": "0",
+        "gradient": "{??sys.palette}",
+        "gradientOpacity": "0",
+        "border": "{??sys.palette}",
+        "borderOpacity": "0",
+        "borderWidth": "",
+        "shadow": "none",
+        "icon": {
+          "padding": "",
+          "margin": "",
+          "fontSize": ""
+        },
+        "iconTrailing": {
+          "fontSize": ""
+        },
+        "dense": {
+          "padding": ""
+        },
+        "selected": {
+          "palette": "{??sys.palette}",
+          "background": "{??sys.selected.palette}",
+          "gradient": "{??sys.selected.palette}",
+          "border": "{??sys.selected.palette}"
+        },
+        "disabled": {
+          "palette": "",
+          "background": "{??sys.disabled.palette}",
+          "gradient": "{??sys.disabled.palette}",
+          "border": "{??sys.disabled.palette}"
+        },
+        "hover": {},
+        "active": {},
+        "focus": {},
+        "dragged": {}
+      },
+      "var|l": {
+        "palette": "{??sys.palette}",
+        "padding": "{??sys.padding}",
+        "height": "{??sys.height}",
+        "width": "{??sys.width}",
+        "zIndex": "{??sys.zIndex}",
+        "text": "{??sys.text}",
+        "textOpacity": "{??sys.textOpacity}",
+        "background": "{??sys.background}",
+        "backgroundOpacity": "{??sys.backgroundOpacity}",
+        "gradient": "{??sys.gradient}",
+        "gradientOpacity": "{??sys.gradientOpacity}",
+        "border": "{??sys.border}",
+        "borderOpacity": "{??sys.borderOpacity}",
+        "borderWidth": "{??sys.borderWidth}",
+        "shadow": "{??sys.shadow}",
+        "icon": {
+          "margin": "{??sys.icon.margin}",
+          "space": "{??sys.icon.space}"
+        },
+        "document": {
+          "display": "none"
+        }
+      },
       "mixin|m": {
         "mixin|status": {
           "var|palette": "{??sys.palette}",
@@ -26,19 +95,21 @@
             "padding": "{??sys.icon.padding}",
             "width": "var(--sys-height)",
             "icon": {
-              "margin": "0px",
-              "space": "0px"
+              "margin": "0",
+              "space": "0"
             }
           }
         },
         "mixin|text": {
           "var|l": {
             "padding": "{??sys.padding}",
-            "textDisplay": "block",
             "width": "{??sys.width}",
             "icon": {
-              "margin": "{??sys.icon.margin} - {??sys.padding}",
+              "margin": "{??sys.icon.margin} - {??l.padding}",
               "space": "{??sys.space}"
+            },
+            "document": {
+              "display": "block"
             }
           }
         },
@@ -80,102 +151,35 @@
           }
         }
       },
-      "var|sys": {
-        "palette": "",
-        "background": "{??sys.palette}",
-        "backgroundOpacity": "0",
-        "border": "{??sys.palette}",
-        "borderOpacity": "0",
-        "borderWidth": "",
-        "gradient": "{??sys.palette}",
-        "gradientOpacity": "0",
-        "padding": "",
-        "shadow": "none",
-        "space": "",
-        "text": "unset",
-        "textOpacity": "unset",
-        "width": "auto",
-        "zIndex": "",
-        "dense": {
-          "padding": ""
-        },
-        "icon": {
-          "margin": "",
-          "padding": "",
-          "text": "",
-          "textTrailing": ""
-        },
-        "active": {
-          "@style": "{??m.status}"
-        },
-        "disabled": {
-          "@style": "{??m.status}",
-          "background": "{??sys.disabled.palette}",
-          "border": "{??sys.disabled.palette}",
-          "gradient": "{??sys.disabled.palette}"
-        },
-        "dragged": {
-          "@style": "{??m.status}"
-        },
-        "focus": {
-          "@style": "{??m.status}"
-        },
-        "hover": {
-          "@style": "{??m.status}"
-        },
-        "selected": {
-          "@style": "{??m.status}",
-          "background": "{??sys.selected.palette}",
-          "border": "{??sys.selected.palette}",
-          "gradient": "{??sys.selected.palette}"
-        }
-      },
-      "var|l": {
-        "background": "{??sys.background}",
-        "backgroundOpacity": "{??sys.backgroundOpacity}",
-        "border": "{??sys.border}",
-        "borderOpacity": "{??sys.borderOpacity}",
-        "borderWidth": "{??sys.borderWidth}",
-        "gradient": "{??sys.gradient}",
-        "gradientOpacity": "{??sys.gradientOpacity}",
-        "padding": "{??sys.padding}",
-        "palette": "{??sys.palette}",
-        "shadow": "{??sys.shadow}",
-        "text": "{??sys.text}",
-        "textDisplay": "none",
-        "textOpacity": "{??sys.textOpacity}",
-        "width": "{??sys.width}",
-        "zIndex": "{??sys.zIndex}"
-      },
-      "#text": {
-        "--": "none"
-      },
       "@style": "{??m.icon}",
       "@@ellipsis": "{d.font.ellipsis}",
       "width": {
         "auto": "auto",
         "full": "100%",
-        "rename": "var|??sys.width"
+        "rename": "var|??l.width"
       },
+      "height": {
+        "auto": "auto",
+        "rename": "var|??l.height"
+      },
+      "#text": {},
       "&.is-icon": {
         "@style": "{??m.icon}"
       },
-      "section|adaptive": {
+      "~adaptive": {
         "full": {
           "@style": "{??m.text}"
         },
-        "icon": {
-          "--": "none"
-        },
+        "icon": {},
         "default": "full"
       },
-      "section|align": {
-        "@style": "{d.font.align}"
-      },
-      "section|dense": {
-        "var|sys": {
+      "~dense": {
+        "var|l": {
           "padding": "{??sys.dense.padding}"
         }
+      },
+      "~align": {
+        "@style": "{d.font.align}"
       },
       "section|dragged": {
         "var|l": {

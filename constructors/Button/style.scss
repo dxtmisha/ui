@@ -8,23 +8,23 @@
 }
 
 @mixin mixinButton() {
+  position: relative;
+  @include paddingX(v('??l.padding'));
+  min-width: v('??l.width');
+  max-width: 100%;
+
   @include propertiesLink('d.flex.inline.center');
   @include propertiesLink('d.font.readonly');
+  @include textAlign('center');
+  cursor: pointer;
 
   @include color(v('??l.text'), v('??l.text-opacity'));
   @include paletteBackground(v('??l.background'));
   @include backgroundOpacity(v('??l.background-opacity'));
   @include paletteGradient(v('??l.gradient'));
   @include gradientOpacity(v('??l.gradient-opacity'));
-
   box-shadow: v('??l.shadow');
-  min-width: v('??l.width');
-  @include paddingX(v('??l.padding'));
 
-  cursor: pointer;
-  position: relative;
-  max-width: 100%;
-  @include textAlign('center');
   transition-property: color, background, box-shadow;
 
   @include mixinItemIcon;
@@ -43,18 +43,19 @@
 
 @mixin mixinItemIcon() {
   & #{c('?icon')} {
-    @include propertyCustomTo('?image.font.size', '??sys.icon.text');
-
     @include marginLeft(v('??l.icon.margin'));
     @include marginRight(v('??l.icon.space'));
 
-    &--in-end {
-      @include propertyCustomTo('?image.font.size', '??sys.icon.text-trailing');
+    @include propertyCustomTo('?image.font.size', '??sys.icon.font-size');
 
+    &.is-trailing {
       @include marginLeft(v('??l.icon.space'));
       @include marginRight(v('??l.icon.margin'));
+
+      @include propertyCustomTo('?image.font.size', '??sys.icon-trailing.font-size');
+
       position: relative;
-      z-index: 1;
+      z-index: 16;
     }
   }
 }

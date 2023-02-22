@@ -41,6 +41,10 @@
       <md2-input v-model="inputValue" palette="green" selected text="green + selected"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
+      <md2-input disabled palette="green" text="green + disabled"/>
+      <md2-input palette="green" readonly text="green + readonly"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
       <md2-input text="text + value" value="value"/>
       <md2-input text="validation" validation-message="validation message"/>
       <md2-input selected text="selected"/>

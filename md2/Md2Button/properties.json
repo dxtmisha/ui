@@ -2,6 +2,45 @@
   "md2": {
     "button": {
       "@style": "{d.button}",
+      "var|sys": {
+        "palette": "{sys.palette.primary}",
+        "padding": "{ref.spacing.4}",
+        "space": "{ref.spacing.1}",
+        "height": "{ref.spacing.9}",
+        "zIndex": "{sys.elevation.index.2}",
+        "borderWidth": "{ref.spacing.px}",
+        "icon": {
+          "padding": "{ref.spacing.1}",
+          "margin": "{ref.spacing.2}",
+          "fontSize": "{ref.font.size.2xl}"
+        },
+        "iconTrailing": {
+          "fontSize": "{ref.font.size.xl}"
+        },
+        "dense": {
+          "padding": "{ref.spacing.2}"
+        },
+        "selected": {
+          "palette": "{sys.palette.primaryVariant}"
+        },
+        "disabled": {
+          "palette": "{sys.palette.disabled}"
+        },
+        "hover": {
+          "gradientOpacity": "{sys.opacity.hover}"
+        },
+        "active": {
+          "gradientOpacity": "{sys.opacity.dragged}",
+          "zIndex": "{sys.elevation.index.8}"
+        },
+        "focus": {
+          "gradientOpacity": "{sys.opacity.focus}"
+        },
+        "dragged": {
+          "shadow": "{sys.elevation.shadow.8}",
+          "zIndex": "{sys.elevation.index.8}"
+        }
+      },
       "mixin|m": {
         "appearance": {
           "text": {
@@ -25,50 +64,13 @@
           }
         }
       },
-      "var|sys": {
-        "palette": "{sys.palette.primary}",
-        "borderWidth": "{ref.spacing.px}",
-        "padding": "{ref.spacing.4}",
-        "space": "{ref.spacing.1}",
-        "zIndex": "{sys.elevation.index.2}",
-        "dense": {
-          "padding": "{ref.spacing.2}"
-        },
-        "icon": {
-          "margin": "{ref.spacing.2}",
-          "padding": "{ref.spacing.1}",
-          "text": "{ref.font.size.2xl}",
-          "textTrailing": "{ref.font.size.xl}"
-        },
-        "active": {
-          "gradientOpacity": "{sys.opacity.dragged}",
-          "zIndex": "{sys.elevation.index.8}"
-        },
-        "disabled": {
-          "palette": "{sys.palette.disabled}"
-        },
-        "dragged": {
-          "shadow": "{sys.elevation.shadow.8}",
-          "zIndex": "{sys.elevation.index.8}"
-        },
-        "focus": {
-          "gradientOpacity": "{sys.opacity.focus}"
-        },
-        "hover": {
-          "gradientOpacity": "{sys.opacity.hover}"
-        },
-        "selected": {
-          "palette": "{sys.palette.primaryVariant}"
-        }
-      },
       "@font": "{font.button}",
       "@@palette": "{?palette}",
       "border-radius": "{sys.rounded.standard}",
       "height": {
         "sm": "{ref.spacing.8}",
         "md": "{ref.spacing.9}",
-        "lg": "{ref.spacing.11}",
-        "default": "md"
+        "lg": "{ref.spacing.11}"
       },
       "width": {
         "sm": "{ref.spacing.20}",
