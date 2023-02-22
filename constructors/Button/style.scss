@@ -1,8 +1,11 @@
 @import "../../styles/properties";
 
+@import "./styles/mixinButtonDisabled";
 @import "./styles/mixinButtonIcon";
 @import "./styles/mixinButtonProgress";
 @import "./styles/mixinButtonText";
+
+@import "styles/currentStatus";
 
 @mixin initButton($design) {
   @include propertiesInit($design, 'button') {
@@ -12,6 +15,8 @@
     @include mixinButtonText;
     @include mixinButtonProgress;
 
+    @include mixinButtonDisabled;
+
     @content;
   }
 }
@@ -19,6 +24,7 @@
 @mixin mixinButton() {
   position: relative;
   @include paddingX(v('??l.padding'));
+  height: v('??l.height');
   min-width: v('??l.width');
   max-width: 100%;
 
@@ -38,10 +44,5 @@
 
   @include modClass(('disabled', 'readonly')) {
     cursor: default;
-  }
-
-  @include modClass(('disabled')) {
-    @include background(v('??l.background'));
-    @include gradient(v('??l.gradient'));
   }
 }

@@ -214,21 +214,6 @@
       "section|progress": {
         "@style": "{??m.readonly}"
       },
-      "section|disabled": {
-        "var|l": {
-          "palette": "{??sys.disabled.palette} !important",
-          "background": "{??sys.disabled.background} !important",
-          "backgroundOpacity": "{??sys.disabled.backgroundOpacity} !important",
-          "border": "{??sys.disabled.border} !important",
-          "borderOpacity": "{??sys.disabled.borderOpacity} !important",
-          "gradient": "{??sys.disabled.gradient} !important",
-          "gradientOpacity": "{??sys.disabled.gradientOpacity} !important",
-          "shadow": "{??sys.disabled.shadow} !important",
-          "text": "{??sys.disabled.text} !important",
-          "textOpacity": "{??sys.disabled.textOpacity} !important",
-          "zIndex": "{??sys.disabled.zIndex} !important"
-        }
-      },
       ":hover": {
         "var|l": {
           "palette": "{??sys.hover.palette}",
