@@ -1,13 +1,19 @@
 @import "./properties";
 
 @mixin useEnabled {
-  &:not(#{c('??-disabled')}, #{c('??-readonly')}) {
+  &:not(:disabled, #{c('??-disabled')}, #{c('??-readonly')}) {
     @content;
   }
 }
 
 @mixin useFocus {
-  &:focus-within, &#{c('??-focus')} {
+  &:focus, &:focus-within, &#{c('??-focus')} {
+    @content;
+  }
+}
+
+@mixin useDisabled {
+  &:disabled, &#{c('??-disabled')} {
     @content;
   }
 }

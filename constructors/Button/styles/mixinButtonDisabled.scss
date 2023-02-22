@@ -1,7 +1,7 @@
-@import "../../../styles/properties";
+@import "../../../styles/use";
 
 @mixin mixinButtonDisabled {
-  @include modClass(('disabled')) {
+  @include useDisabled {
     @include linkList('disabled', (
             'palette',
             'z-index',

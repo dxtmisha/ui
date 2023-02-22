@@ -2,6 +2,7 @@
 
 @import "./styles/mixinButtonActive";
 @import "./styles/mixinButtonDisabled";
+@import "./styles/mixinButtonFocus";
 @import "./styles/mixinButtonHover";
 @import "./styles/mixinButtonIcon";
 @import "./styles/mixinButtonProgress";
@@ -19,6 +20,7 @@
 
     @include mixinButtonDisabled;
     @include mixinButtonHover;
+    @include mixinButtonFocus;
     @include mixinButtonActive;
 
     @content;
@@ -45,8 +47,4 @@
   box-shadow: v('??l.shadow');
 
   transition-property: color, background, box-shadow;
-
-  @include modClass(('disabled', 'readonly')) {
-    cursor: default;
-  }
 }

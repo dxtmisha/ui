@@ -1,7 +1,9 @@
-@import "../../../styles/properties";
+@import "../../../styles/use";
 
 @mixin mixinButtonHover {
-  &:hover {
-    @include linkList('hover');
+  @include useEnabled {
+    &:hover {
+      @include linkList('hover');
+    }
   }
 }

@@ -42,8 +42,8 @@
           "border": "{??sys.disabled.palette}"
         },
         "hover": {},
-        "active": {},
         "focus": {},
+        "active": {},
         "dragged": {}
       },
       "var|l": {
@@ -181,6 +181,7 @@
       "~align": {
         "@style": "{d.font.align}"
       },
+      "~focus": {},
       "section|dragged": {
         "var|l": {
           "palette": "{??sys.dragged.palette}",
@@ -213,21 +214,6 @@
       },
       "section|progress": {
         "@style": "{??m.readonly}"
-      },
-      ":focus": {
-        "var|l": {
-          "palette": "{??sys.focus.palette}",
-          "background": "{??sys.focus.background}",
-          "backgroundOpacity": "{??sys.focus.backgroundOpacity}",
-          "border": "{??sys.focus.border}",
-          "borderOpacity": "{??sys.focus.borderOpacity}",
-          "gradient": "{??sys.focus.gradient}",
-          "gradientOpacity": "{??sys.focus.gradientOpacity}",
-          "shadow": "{??sys.focus.shadow}",
-          "text": "{??sys.focus.text}",
-          "textOpacity": "{??sys.focus.textOpacity}",
-          "zIndex": "{??sys.focus.zIndex}"
-        }
       }
     }
   }

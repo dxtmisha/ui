@@ -29,12 +29,12 @@
         "hover": {
           "gradientOpacity": "{sys.opacity.hover}"
         },
+        "focus": {
+          "gradientOpacity": "{sys.opacity.focus}"
+        },
         "active": {
           "gradientOpacity": "{sys.opacity.dragged}",
           "zIndex": "{sys.elevation.index.8}"
-        },
-        "focus": {
-          "gradientOpacity": "{sys.opacity.focus}"
         },
         "dragged": {
           "shadow": "{sys.elevation.shadow.8}",

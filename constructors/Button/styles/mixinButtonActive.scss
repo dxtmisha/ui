@@ -1,7 +1,9 @@
-@import "../../../styles/properties";
+@import "../../../styles/use";
 
 @mixin mixinButtonActive {
-  &:active {
-    @include linkList('active');
+  @include useEnabled {
+    &:active {
+      @include linkList('active');
+    }
   }
 }
