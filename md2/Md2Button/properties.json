@@ -9,6 +9,7 @@
         "height": "{ref.spacing.9}",
         "zIndex": "{sys.elevation.index.2}",
         "borderWidth": "{ref.spacing.px}",
+        "rounded": "{sys.rounded.standard}",
         "icon": {
           "padding": "{ref.spacing.1}",
           "margin": "{ref.spacing.2}",
@@ -84,7 +85,6 @@
       },
       "@font": "{font.button}",
       "@@palette": "{?palette}",
-      "border-radius": "{sys.rounded.standard}",
       "height": {
         "sm": "{ref.spacing.8}",
         "md": "{ref.spacing.9}",
@@ -95,7 +95,7 @@
         "md": "{ref.spacing.28}",
         "lg": "{ref.spacing.36}"
       },
-      "section|adaptive": {
+      "~adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
             "@style": "{??m.text}"
@@ -110,6 +110,12 @@
           "media|{ref.screen.lg}": {
             "@style": "{??m.text}"
           }
+        }
+      },
+      "~rounded": {
+        "@style": "{?rounded}",
+        "full": {
+          "@style": "{??m.rounded.full}"
         }
       },
       "section|appearance": {
@@ -137,12 +143,6 @@
       },
       "section|lowercase": {
         "@style": "{font.body1}"
-      },
-      "section|rounded": {
-        "@style": "{?rounded}"
-      },
-      "&.??--rounded--full": {
-        "@style": "{??m.round}"
       }
     }
   }

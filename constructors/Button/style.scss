@@ -30,7 +30,7 @@
 @mixin mixinButton() {
   position: relative;
   @include paddingX(v('??l.padding'));
-  @include height(v('??l.height'));
+  @include height(v('??sys.height'));
   min-width: v('??l.width');
   max-width: 100%;
 
@@ -44,6 +44,7 @@
   @include backgroundOpacity(v('??l.background-opacity'));
   @include paletteGradient(v('??l.gradient'));
   @include gradientOpacity(v('??l.gradient-opacity'));
+  border-radius: v('??sys.rounded');
   box-shadow: v('??l.shadow');
 
   transition-property: color, background, box-shadow;

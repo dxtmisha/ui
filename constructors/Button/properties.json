@@ -17,6 +17,7 @@
         "border": "{??sys.palette}",
         "borderOpacity": "0",
         "borderWidth": "",
+        "rounded": "",
         "shadow": "none",
         "icon": {
           "padding": "",
@@ -49,7 +50,6 @@
       "var|l": {
         "palette": "{??sys.palette}",
         "padding": "{??sys.padding}",
-        "height": "{??sys.height}",
         "width": "{??sys.width}",
         "zIndex": "{??sys.zIndex}",
         "text": "{??sys.text}",
@@ -67,8 +67,7 @@
           "space": "{??sys.icon.space}"
         },
         "document": {
-          "display": "none",
-          "width": "{??sys.width}"
+          "display": "none"
         }
       },
       "mixin|m": {
@@ -115,7 +114,7 @@
         "mixin|text": {
           "var|l": {
             "padding": "{??sys.padding}",
-            "width": "{??l.document.width}",
+            "width": "{??sys.width}",
             "icon": {
               "margin": "{??sys.icon.margin} - {??l.padding}",
               "space": "{??sys.space}"
@@ -137,13 +136,13 @@
             }
           }
         },
-        "mixin|round": {
-          "var|sys": {
-            "icon": {
-              "margin": "{??sys.icon.padding}"
-            }
-          },
-          "& .?icon": {
+        "mixin|rounded": {
+          "mixin|full": {
+            "var|sys": {
+              "icon": {
+                "margin": "{??sys.icon.padding}"
+              }
+            },
             "var|?icon-size": "var(--sys-height) - ({??sys.icon.padding} * 2)"
           }
         }
@@ -153,11 +152,11 @@
       "width": {
         "auto": "auto",
         "full": "100%",
-        "rename": "var|??l.document.width"
+        "rename": "var|??sys.width"
       },
       "height": {
         "auto": "auto",
-        "rename": "var|??l.height"
+        "rename": "var|??sys.height"
       },
       "#text": {},
       "&.is-icon": {
@@ -169,6 +168,9 @@
         },
         "icon": {},
         "default": "full"
+      },
+      "~rounded": {
+        "rename": "var|??sys.rounded"
       },
       "~dense": {
         "var|l": {

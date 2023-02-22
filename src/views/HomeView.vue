@@ -43,6 +43,15 @@
       <md2-button adaptive="full" icon="face" text="full"/>
     </div>
 
+    <div class="px-4 py-2"><b>button, rounded</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button icon="face" rounded="none" text="none"/>
+      <md2-button icon="face" rounded="standard" text="standard"/>
+      <md2-button icon="face" rounded="sm" text="sm"/>
+      <md2-button icon="face" rounded="md" text="md"/>
+      <md2-button icon="face" rounded="full" text="full"/>
+    </div>
+
     <div class="px-4 py-2"><b>button, width</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button icon="face" text="auto" width="auto"/>
