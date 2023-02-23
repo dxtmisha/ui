@@ -3,14 +3,14 @@
 
 @mixin initChip($design) {
   @include propertiesInit($design, 'chip') {
-    @include mixinChip();
+    @include mixinButtonFull;
+    @include mixinChip;
+
     @content;
   }
 }
 
 @mixin mixinChip() {
-  @include mixinButton;
-
   @include propertyCustomTo('?progress.background', '??l.gradient');
   @include propertyCustomTo('?ripple.background', '??l.gradient');
 }

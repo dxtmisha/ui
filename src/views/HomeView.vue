@@ -1,5 +1,40 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>chip</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip @on-click="onEmit"/>
+      <md2-chip icon="face"/>
+      <md2-chip icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-chip icon="face" icon-trailing="home"/>
+      <md2-chip text="text"/>
+      <md2-chip icon="face" text="text + icon"/>
+      <md2-chip icon-trailing="home" text="text + trailing"/>
+      <md2-chip icon="face" icon-trailing="home" text="text + icon + trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip icon-trailing="home" text="turn" turn/>
+      <md2-chip icon="face" selected text="selected"/>
+      <md2-chip icon="face" readonly text="readonly"/>
+      <md2-chip icon="face" progress text="progress"/>
+      <md2-chip disabled icon="face" text="disabled"/>
+      <md2-chip disabled icon="face" selected text="disabled + selected"/>
+      <md2-chip dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip icon="face" palette="green" text="palette"/>
+      <md2-chip icon="face" palette="green" selected text="palette + selected"/>
+      <md2-chip icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-chip disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip dense icon="face" text="dense"/>
+      <md2-chip icon="face" lowercase text="lowercase"/>
+      <md2-chip :ellipsis="true" icon="face" text="ellipsis/true"/>
+      <md2-chip :ellipsis="false" icon="face" text="ellipsis/false"/>
+      <md2-chip :ripple="true" icon="face" text="ripple/true"/>
+      <md2-chip :ripple="false" icon="face" text="ripple/false"/>
+    </div>
+
     <div class="px-4 py-2"><b>button</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button @on-click="onEmit"/>
@@ -826,6 +861,7 @@ import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2Input from '../../md2/Md2Input/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
+import Md2Chip from '../../md2/Md2Chip/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -835,6 +871,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Chip,
     Md2Button,
     Md2Input
   },

@@ -6,15 +6,8 @@
     :style="styles.main"
     @click="onClick"
   >
-    <md2-icon
-      v-if="icon"
-      :hide="hide"
-      animation-type="type2"
-      v-bind="iconBind"
-    >
-      <md2-progress v-if="progress" dense v-bind="progressBind"/>
-    </md2-icon>
-    <md2-progress v-else-if="progress" v-bind="progressBind"/>
+    <md2-progress v-if="progress" v-bind="progressBind"/>
+    <md2-icon v-if="icon" v-bind="iconBind"/>
     <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
     <span v-if="text" :class="classes.text">{{ text }}</span>
     <slot/>
