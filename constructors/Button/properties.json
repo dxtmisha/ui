@@ -100,7 +100,7 @@
                 "text": "{??sys.text}",
                 "textOpacity": "{??sys.textOpacity}",
                 "backgroundOpacity": "{??sys.backgroundOpacity}",
-                "shadow": "{??sys.shadow}"
+                "shadow": "none"
               },
               "active": {
                 "shadow": "{??sys.shadow}"
@@ -109,10 +109,48 @@
             "color": "{??l.text}",
             "gradient": "{??l.gradient}"
           },
-          "outlined": {
+          "elevated": {
+            "var|sys": {
+              "backgroundOpacity": "",
+              "shadow": "",
+              "disabled": {
+                "text": "{??sys.text}",
+                "textOpacity": "{??sys.textOpacity}",
+                "backgroundOpacity": "{??sys.backgroundOpacity}",
+                "shadow": "none"
+              },
+              "active": {
+                "shadow": "{??sys.shadow}"
+              }
+            }
+          },
+          "tonal": {
             "var|sys": {
               "text": "",
-              "textOpacity": "",
+              "backgroundOpacity": "",
+              "frame": {
+                "border": "{??sys.border}"
+              },
+              "disabled": {
+                "text": "{??sys.text}",
+                "textOpacity": "{??sys.textOpacity}",
+                "backgroundOpacity": "{??sys.backgroundOpacity}"
+              },
+              "active": {
+                "frame": {
+                  "borderOpacity": "{??sys.borderOpacity}"
+                }
+              }
+            },
+            "&.??--readonly": {
+              "color": "{??l.text}"
+            },
+            "::after": {
+              "content": ""
+            }
+          },
+          "outlined": {
+            "var|sys": {
               "border": "{??sys.palette}",
               "borderOpacity": "",
               "frame": {
@@ -136,8 +174,6 @@
           },
           "text": {
             "var|sys": {
-              "text": "",
-              "textOpacity": "",
               "frame": {
                 "border": "{??sys.border}"
               },

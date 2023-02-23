@@ -8,6 +8,8 @@
         "space": "{ref.spacing.1}",
         "height": "{ref.spacing.9}",
         "zIndex": "{sys.elevation.index.2}",
+        "text": "{??sys.palette}",
+        "textOpacity": "{sys.opacity.surface.high}",
         "borderWidth": "{ref.spacing.px}",
         "rounded": "{sys.rounded.standard}",
         "icon": {
@@ -55,20 +57,50 @@
               "gradient": "{sys.palette.onPrimary}",
               "shadow": "{sys.elevation.shadow.2}",
               "disabled": {
-                "backgroundOpacity": "{sys.opacity.disabled}",
-                "shadow": "none",
                 "text": "{sys.palette.onSurface}",
-                "textOpacity": "{sys.opacity.surface.disabled}"
+                "textOpacity": "{sys.opacity.surface.disabled}",
+                "backgroundOpacity": "{sys.opacity.disabled}"
               },
               "active": {
                 "shadow": "{sys.elevation.shadow.8}"
               }
             }
           },
+          "elevated": {
+            "var|sys": {
+              "backgroundOpacity": "{sys.opacity.overlay}",
+              "shadow": "{sys.elevation.shadow.2}",
+              "disabled": {
+                "text": "{sys.palette.onSurface}",
+                "textOpacity": "{sys.opacity.surface.disabled}",
+                "backgroundOpacity": "{sys.opacity.disabled}"
+              },
+              "active": {
+                "shadow": "{sys.elevation.shadow.8}"
+              }
+            }
+          },
+          "tonal": {
+            "var|sys": {
+              "text": "{sys.palette.onSurface}",
+              "backgroundOpacity": "{sys.opacity.overlay}",
+              "frame": {
+                "border": "{??sys.palette}"
+              },
+              "disabled": {
+                "text": "{sys.palette.onSurface}",
+                "textOpacity": "{sys.opacity.surface.disabled}",
+                "backgroundOpacity": "{sys.opacity.disabled}"
+              },
+              "active": {
+                "frame": {
+                  "borderOpacity": "{sys.opacity.surface.medium}"
+                }
+              }
+            }
+          },
           "outlined": {
             "var|sys": {
-              "text": "{??sys.palette}",
-              "textOpacity": "{sys.opacity.surface.high}",
               "border": "{sys.palette.onSurface}",
               "borderOpacity": "{sys.opacity.border}",
               "frame": {
@@ -87,8 +119,6 @@
           "text": {
             "var|sys": {
               "padding": "{ref.spacing.2}",
-              "text": "{??sys.palette}",
-              "textOpacity": "{sys.opacity.surface.high}",
               "icon": {
                 "margin": "{ref.spacing.1}"
               },
@@ -125,6 +155,24 @@
         "md": "{ref.spacing.28}",
         "lg": "{ref.spacing.36}"
       },
+      "~appearance": {
+        "contained": {
+          "@style": "{??m.appearance.contained}"
+        },
+        "elevated": {
+          "@style": "{??m.appearance.elevated}"
+        },
+        "tonal": {
+          "@style": "{??m.appearance.tonal}"
+        },
+        "outlined": {
+          "@style": "{??m.appearance.outlined}"
+        },
+        "text": {
+          "@style": "{??m.appearance.text}"
+        },
+        "default": "contained"
+      },
       "~adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
@@ -148,19 +196,7 @@
           "@style": "{??m.rounded.full}"
         }
       },
-      "section|appearance": {
-        "contained": {
-          "@style": "{??m.appearance.contained}"
-        },
-        "outlined": {
-          "@style": "{??m.appearance.outlined}"
-        },
-        "text": {
-          "@style": "{??m.appearance.text}"
-        },
-        "default": "contained"
-      },
-      "section|lowercase": {
+      "~lowercase": {
         "@style": "{font.body1}"
       }
     }

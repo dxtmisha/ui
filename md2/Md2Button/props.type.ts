@@ -13,7 +13,9 @@ export type Md2ButtonAlignType =
 export type Md2ButtonAppearanceType =
   'text' |
   'outlined' |
-  'contained'
+  'contained' |
+  'elevated' |
+  'tonal'
 
 export type Md2ButtonHeightType =
   'sm' |

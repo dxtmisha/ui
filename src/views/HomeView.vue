@@ -35,6 +35,76 @@
       <md2-button :ripple="false" icon="face" text="ripple/false"/>
     </div>
 
+    <div class="px-4 py-2"><b>button, elevated</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="elevated" @on-click="onEmit"/>
+      <md2-button appearance="elevated" icon="face"/>
+      <md2-button appearance="elevated" icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button appearance="elevated" icon="face" icon-trailing="home"/>
+      <md2-button appearance="elevated" text="text"/>
+      <md2-button appearance="elevated" icon="face" text="text + icon"/>
+      <md2-button appearance="elevated" icon-trailing="home" text="text + trailing"/>
+      <md2-button appearance="elevated" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="elevated" icon-trailing="home" text="turn" turn/>
+      <md2-button appearance="elevated" icon="face" selected text="selected"/>
+      <md2-button appearance="elevated" icon="face" readonly text="readonly"/>
+      <md2-button appearance="elevated" icon="face" progress text="progress"/>
+      <md2-button appearance="elevated" disabled icon="face" text="disabled"/>
+      <md2-button appearance="elevated" disabled icon="face" selected text="disabled + selected"/>
+      <md2-button appearance="elevated" dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="elevated" icon="face" palette="green" text="palette"/>
+      <md2-button appearance="elevated" icon="face" palette="green" selected text="palette + selected"/>
+      <md2-button appearance="elevated" icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-button appearance="elevated" disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="elevated" dense icon="face" text="dense"/>
+      <md2-button appearance="elevated" icon="face" lowercase text="lowercase"/>
+      <md2-button :ellipsis="true" appearance="elevated" icon="face" text="ellipsis/true"/>
+      <md2-button :ellipsis="false" appearance="elevated" icon="face" text="ellipsis/false"/>
+      <md2-button :ripple="true" appearance="elevated" icon="face" text="ripple/true"/>
+      <md2-button :ripple="false" appearance="elevated" icon="face" text="ripple/false"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, tonal</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="tonal" @on-click="onEmit"/>
+      <md2-button appearance="tonal" icon="face"/>
+      <md2-button appearance="tonal" icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button appearance="tonal" icon="face" icon-trailing="home"/>
+      <md2-button appearance="tonal" text="text"/>
+      <md2-button appearance="tonal" icon="face" text="text + icon"/>
+      <md2-button appearance="tonal" icon-trailing="home" text="text + trailing"/>
+      <md2-button appearance="tonal" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="tonal" icon-trailing="home" text="turn" turn/>
+      <md2-button appearance="tonal" icon="face" selected text="selected"/>
+      <md2-button appearance="tonal" icon="face" readonly text="readonly"/>
+      <md2-button appearance="tonal" icon="face" progress text="progress"/>
+      <md2-button appearance="tonal" disabled icon="face" text="disabled"/>
+      <md2-button appearance="tonal" disabled icon="face" selected text="disabled + selected"/>
+      <md2-button appearance="tonal" dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="tonal" icon="face" palette="green" text="palette"/>
+      <md2-button appearance="tonal" icon="face" palette="green" selected text="palette + selected"/>
+      <md2-button appearance="tonal" icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-button appearance="tonal" disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="tonal" dense icon="face" text="dense"/>
+      <md2-button appearance="tonal" icon="face" lowercase text="lowercase"/>
+      <md2-button :ellipsis="true" appearance="tonal" icon="face" text="ellipsis/true"/>
+      <md2-button :ellipsis="false" appearance="tonal" icon="face" text="ellipsis/false"/>
+      <md2-button :ripple="true" appearance="tonal" icon="face" text="ripple/true"/>
+      <md2-button :ripple="false" appearance="tonal" icon="face" text="ripple/false"/>
+    </div>
+
     <div class="px-4 py-2"><b>button, outlined</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button appearance="outlined" @on-click="onEmit"/>

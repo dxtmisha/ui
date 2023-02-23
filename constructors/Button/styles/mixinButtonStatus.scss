@@ -42,6 +42,7 @@
 @mixin mixinButtonProgress {
   @include modClass('progress') {
     @include useButtonDisabled('readonly');
+    --sys-palette: unset;
 
     &::after {
       content: none;

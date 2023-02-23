@@ -51,4 +51,6 @@
   box-shadow: v('??l.shadow');
 
   transition-property: color, background, box-shadow;
+
+  @include propertyCustomTo('?progress.background', '??l.text');
 }
