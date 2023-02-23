@@ -2,14 +2,14 @@
 
 @mixin mixinButtonIcon {
   & #{c('?icon')} {
-    @include marginLeft(v('??l.icon.margin'));
+    @include marginLeft(v('??l.icon.learning'));
     @include marginRight(v('??l.icon.space'));
 
     @include propertyCustomTo('?image.font.size', '??sys.icon.font-size');
 
     &.is-trailing {
       @include marginLeft(v('??l.icon.space'));
-      @include marginRight(v('??l.icon.margin'));
+      @include marginRight(v('??l.icon.learning'));
 
       @include propertyCustomTo('?image.font.size', '??sys.icon-trailing.font-size');
 

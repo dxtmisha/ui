@@ -19,7 +19,10 @@
           "fontSize": "{ref.font.size.xl}"
         },
         "dense": {
-          "padding": "{ref.spacing.2}"
+          "padding": "{ref.spacing.2}",
+          "icon": {
+            "margin": "{ref.spacing.1}"
+          }
         },
         "selected": {
           "palette": "{sys.palette.primaryVariant}"
@@ -91,6 +94,12 @@
               },
               "frame": {
                 "border": "{??sys.palette}"
+              },
+              "dense": {
+                "padding": "{ref.spacing.1}",
+                "icon": {
+                  "margin": "{ref.spacing.px} * 2"
+                }
               },
               "disabled": {
                 "textOpacity": "{sys.opacity.surface.disabled}"

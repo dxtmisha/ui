@@ -33,7 +33,10 @@
           "borderWidth": "{??sys.borderWidth}"
         },
         "dense": {
-          "padding": ""
+          "padding": "",
+          "icon": {
+            "margin": ""
+          }
         },
         "selected": {
           "palette": "{??sys.palette}",
@@ -69,6 +72,7 @@
         "shadow": "{??sys.shadow}",
         "icon": {
           "margin": "{??sys.icon.margin}",
+          "learning": "0",
           "space": "{??sys.icon.space}"
         },
         "document": {
@@ -156,7 +160,7 @@
             "padding": "{??sys.icon.padding}",
             "width": "var(--sys-height, auto)",
             "icon": {
-              "margin": "0",
+              "learning": "0",
               "space": "0"
             }
           }
@@ -166,7 +170,7 @@
             "padding": "{??sys.padding}",
             "width": "{??sys.width}",
             "icon": {
-              "margin": "{??sys.icon.margin} - {??l.padding}",
+              "learning": "{??l.icon.margin} - {??l.padding}",
               "space": "{??sys.space}"
             },
             "document": {
@@ -178,7 +182,8 @@
           "mixin|full": {
             "var|sys": {
               "icon": {
-                "margin": "{??sys.icon.padding}"
+                "margin": "{??sys.icon.padding}",
+                "fontSize": "{?icon.size} - ({??sys.space} * 2)"
               }
             },
             "var|?icon-size": "var(--sys-height) - ({??sys.icon.padding} * 2)"
@@ -212,7 +217,10 @@
       },
       "~dense": {
         "var|l": {
-          "padding": "{??sys.dense.padding}"
+          "padding": "{??sys.dense.padding}",
+          "icon": {
+            "margin": "{??sys.dense.icon.margin}"
+          }
         }
       },
       "~align": {

@@ -26,6 +26,14 @@
       <md2-button icon="face" palette="green" readonly text="palette + readonly"/>
       <md2-button disabled icon="face" palette="green" text="palette + disabled"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button dense icon="face" text="dense"/>
+      <md2-button icon="face" lowercase text="lowercase"/>
+      <md2-button :ellipsis="true" icon="face" text="ellipsis/true"/>
+      <md2-button :ellipsis="false" icon="face" text="ellipsis/false"/>
+      <md2-button :ripple="true" icon="face" text="ripple/true"/>
+      <md2-button :ripple="false" icon="face" text="ripple/false"/>
+    </div>
 
     <div class="px-4 py-2"><b>button, outlined</b></div>
     <div class="flex px-4 py-2 gap-2">
@@ -53,6 +61,14 @@
       <md2-button appearance="outlined" icon="face" palette="green" readonly text="palette + readonly"/>
       <md2-button appearance="outlined" disabled icon="face" palette="green" text="palette + disabled"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="outlined" dense icon="face" text="dense"/>
+      <md2-button appearance="outlined" icon="face" lowercase text="lowercase"/>
+      <md2-button :ellipsis="true" appearance="outlined" icon="face" text="ellipsis/true"/>
+      <md2-button :ellipsis="false" appearance="outlined" icon="face" text="ellipsis/false"/>
+      <md2-button :ripple="true" appearance="outlined" icon="face" text="ripple/true"/>
+      <md2-button :ripple="false" appearance="outlined" icon="face" text="ripple/false"/>
+    </div>
 
     <div class="px-4 py-2"><b>button, text</b></div>
     <div class="flex px-4 py-2 gap-2">
@@ -64,6 +80,7 @@
       <md2-button appearance="text" icon="face" text="text + icon"/>
       <md2-button appearance="text" icon-trailing="home" text="text + trailing"/>
       <md2-button appearance="text" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+      <md2-button appearance="text" dense icon="face" text="text + icon + dense"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button appearance="text" icon-trailing="home" text="turn" turn/>
@@ -79,6 +96,14 @@
       <md2-button appearance="text" icon="face" palette="green" selected text="palette + selected"/>
       <md2-button appearance="text" icon="face" palette="green" readonly text="palette + readonly"/>
       <md2-button appearance="text" disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="text" dense icon="face" text="dense"/>
+      <md2-button appearance="text" icon="face" lowercase text="lowercase"/>
+      <md2-button :ellipsis="true" appearance="text" icon="face" text="ellipsis/true"/>
+      <md2-button :ellipsis="false" appearance="text" icon="face" text="ellipsis/false"/>
+      <md2-button :ripple="true" appearance="text" icon="face" text="ripple/true"/>
+      <md2-button :ripple="false" appearance="text" icon="face" text="ripple/false"/>
     </div>
 
     <div class="px-4 py-2"><b>button, align</b></div>
@@ -115,6 +140,18 @@
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button icon="face" text="full" width="full"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, height</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button height="sm" icon="face" text="sm"/>
+      <md2-button height="md" icon="face" text="md"/>
+      <md2-button height="lg" icon="face" text="lg"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button height="sm" icon="face" rounded="full" text="sm + rounded full"/>
+      <md2-button height="md" icon="face" rounded="full" text="md + rounded full"/>
+      <md2-button height="lg" icon="face" rounded="full" text="lg + rounded full"/>
     </div>
 
     <div class="px-4 py-2"><b>input</b></div>
