@@ -22,6 +22,7 @@ export const props = {
 
   // Status
   turn: Boolean,
+  hide: Boolean,
   selected: Boolean,
   readonly: Boolean,
   progress: Boolean,

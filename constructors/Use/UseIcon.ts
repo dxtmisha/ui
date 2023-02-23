@@ -15,8 +15,10 @@ export class UseIcon {
     protected readonly selected: Ref<boolean>,
     protected readonly disabled: Ref<boolean>,
     protected readonly turn?: Ref<boolean>,
+    protected readonly hide?: Ref<boolean>,
     protected readonly inEnd = true as boolean,
-    protected readonly conditions?: RefType
+    protected readonly conditions?: RefType,
+    protected readonly animationType = 'type2' as string
   ) {
   }
 
@@ -27,7 +29,9 @@ export class UseIcon {
   readonly iconBind = computed<AssociativeType>(() => {
     return {
       active: this.selected.value,
-      disabled: this.disabled.value
+      disabled: this.disabled.value,
+      hide: this.hide?.value,
+      animationType: this.animationType
     }
   })
 

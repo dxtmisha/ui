@@ -13,21 +13,21 @@ import { Md2PaletteType } from '../props.type'
 export const defaultItem = ComponentDesign.getDefault('md2.chip')
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
-  text: [Number, String],
   to: String,
   value: [Number, Object, String],
+  detail: [Object],
 
   // Status
-  disabled: Boolean,
-  dragged: Boolean,
-  progress: Boolean,
-  readonly: Boolean,
-  selected: Boolean,
   turn: Boolean,
   hide: Boolean,
+  selected: Boolean,
+  readonly: Boolean,
+  progress: Boolean,
+  disabled: Boolean,
+  dragged: Boolean,
 
   // Options
   adaptive: {

@@ -106,6 +106,15 @@
       <md2-button :ripple="false" appearance="text" icon="face" text="ripple/false"/>
     </div>
 
+    <div class="px-4 py-2"><b>button, hide</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button :hide="true" icon="face" text="true"/>
+      <md2-button :hide="false" icon="face" text="false"/>
+      <md2-button :hide="hide" icon="face" text="click" @click="hide = !hide"/>
+      <md2-button :hide="hide" dense icon="face" text="click + dense" @click="hide = !hide"/>
+      <md2-button :hide="hide" icon="face" rounded="full" text="click + rounded" @click="hide = !hide"/>
+    </div>
+
     <div class="px-4 py-2"><b>button, align</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button align="left" icon="face" text="left" width="lg"/>
@@ -129,6 +138,7 @@
       <md2-button icon="face" rounded="sm" text="sm"/>
       <md2-button icon="face" rounded="md" text="md"/>
       <md2-button icon="face" rounded="full" text="full"/>
+      <md2-button dense icon="face" rounded="full" text="full + dense"/>
     </div>
 
     <div class="px-4 py-2"><b>button, width</b></div>

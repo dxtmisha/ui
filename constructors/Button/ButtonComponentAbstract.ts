@@ -52,6 +52,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       this.refs?.selected,
       this.refs?.disabled,
       this.refs?.turn,
+      this.refs?.hide,
       true,
       this.isText
     )
