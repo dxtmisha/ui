@@ -27,6 +27,60 @@
       <md2-button disabled icon="face" palette="green" text="palette + disabled"/>
     </div>
 
+    <div class="px-4 py-2"><b>button, outlined</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="outlined" @on-click="onEmit"/>
+      <md2-button appearance="outlined" icon="face"/>
+      <md2-button appearance="outlined" icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button appearance="outlined" icon="face" icon-trailing="home"/>
+      <md2-button appearance="outlined" text="text"/>
+      <md2-button appearance="outlined" icon="face" text="text + icon"/>
+      <md2-button appearance="outlined" icon-trailing="home" text="text + trailing"/>
+      <md2-button appearance="outlined" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="outlined" icon-trailing="home" text="turn" turn/>
+      <md2-button appearance="outlined" icon="face" selected text="selected"/>
+      <md2-button appearance="outlined" icon="face" readonly text="readonly"/>
+      <md2-button appearance="outlined" icon="face" progress text="progress"/>
+      <md2-button appearance="outlined" disabled icon="face" text="disabled"/>
+      <md2-button appearance="outlined" disabled icon="face" selected text="disabled + selected"/>
+      <md2-button appearance="outlined" dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="outlined" icon="face" palette="green" text="palette"/>
+      <md2-button appearance="outlined" icon="face" palette="green" selected text="palette + selected"/>
+      <md2-button appearance="outlined" icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-button appearance="outlined" disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+
+    <div class="px-4 py-2"><b>button, text</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="text" @on-click="onEmit"/>
+      <md2-button appearance="text" icon="face"/>
+      <md2-button appearance="text" icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-button appearance="text" icon="face" icon-trailing="home"/>
+      <md2-button appearance="text" text="text"/>
+      <md2-button appearance="text" icon="face" text="text + icon"/>
+      <md2-button appearance="text" icon-trailing="home" text="text + trailing"/>
+      <md2-button appearance="text" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="text" icon-trailing="home" text="turn" turn/>
+      <md2-button appearance="text" icon="face" selected text="selected"/>
+      <md2-button appearance="text" icon="face" readonly text="readonly"/>
+      <md2-button appearance="text" icon="face" progress text="progress"/>
+      <md2-button appearance="text" disabled icon="face" text="disabled"/>
+      <md2-button appearance="text" disabled icon="face" selected text="disabled + selected"/>
+      <md2-button appearance="text" dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-button appearance="text" icon="face" palette="green" text="palette"/>
+      <md2-button appearance="text" icon="face" palette="green" selected text="palette + selected"/>
+      <md2-button appearance="text" icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-button appearance="text" disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+
     <div class="px-4 py-2"><b>button, align</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-button align="left" icon="face" text="left" width="lg"/>

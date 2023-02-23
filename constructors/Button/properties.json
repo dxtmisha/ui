@@ -27,6 +27,11 @@
         "iconTrailing": {
           "fontSize": ""
         },
+        "frame": {
+          "border": "{??sys.border}",
+          "borderOpacity": "0",
+          "borderWidth": "{??sys.borderWidth}"
+        },
         "dense": {
           "padding": ""
         },
@@ -68,6 +73,11 @@
         },
         "document": {
           "display": "none"
+        },
+        "frame": {
+          "border": "{??sys.frame.border}",
+          "borderOpacity": "{??sys.frame.borderOpacity}",
+          "borderWidth": "{??sys.frame.borderWidth}"
         }
       },
       "mixin|m": {
@@ -92,14 +102,54 @@
                 "shadow": "{??sys.shadow}"
               }
             },
+            "color": "{??l.text}",
             "gradient": "{??l.gradient}"
+          },
+          "outlined": {
+            "var|sys": {
+              "text": "",
+              "textOpacity": "",
+              "border": "{??sys.palette}",
+              "borderOpacity": "",
+              "frame": {
+                "border": "{??sys.border}"
+              },
+              "disabled": {
+                "textOpacity": ""
+              },
+              "active": {
+                "frame": {
+                  "borderOpacity": "{??sys.borderOpacity}"
+                }
+              }
+            },
+            "::before": {
+              "content": ""
+            },
+            "::after": {
+              "content": ""
+            }
+          },
+          "text": {
+            "var|sys": {
+              "text": "",
+              "textOpacity": "",
+              "frame": {
+                "border": "{??sys.border}"
+              },
+              "disabled": {
+                "textOpacity": ""
+              },
+              "active": {
+                "frame": {
+                  "borderOpacity": "{??sys.borderOpacity}"
+                }
+              }
+            },
+            "::after": {
+              "content": ""
+            }
           }
-        },
-        "mixin|border": {
-          "@position": "{d.position.absolute}",
-          "border-opacity": "{??l.borderOpacity}",
-          "border-width": "{??l.borderWidth}",
-          "palette-border": "{??l.border}"
         },
         "mixin|icon": {
           "var|l": {
@@ -121,18 +171,6 @@
             },
             "document": {
               "display": "block"
-            }
-          }
-        },
-        "mixin|before": {
-          "::before": {
-            "@style": "{??m.border}",
-            "transition-duration": "{d.sys.transitionDuration.fade.through}",
-            "transition-property": "border-color"
-          },
-          ":active": {
-            "::before": {
-              "transition-duration": "{d.sys.transitionDuration.sm}"
             }
           }
         },

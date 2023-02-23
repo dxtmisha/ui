@@ -6,6 +6,7 @@
     align-items: center;
     @include propertiesLink('d.flex.dynamic');
     overflow: inherit;
+    z-index: 4;
 
     max-width: inherit;
 

@@ -62,24 +62,45 @@
               }
             }
           },
-          "text": {
-            "var|??sys": {
+          "outlined": {
+            "var|sys": {
               "text": "{??sys.palette}",
               "textOpacity": "{sys.opacity.surface.high}",
-              "active": {
-                "borderOpacity": "{sys.opacity.surface.medium}"
+              "border": "{sys.palette.onSurface}",
+              "borderOpacity": "{sys.opacity.border}",
+              "frame": {
+                "border": "{??sys.palette}"
               },
               "disabled": {
-                "text": "{sys.palette.onSurface}",
                 "textOpacity": "{sys.opacity.surface.disabled}"
               },
-              "selected": {
-                "gradient": "{??sys.selected.palette}",
-                "text": "{??sys.selected.palette}"
+              "active": {
+                "frame": {
+                  "borderOpacity": "{sys.opacity.surface.medium}"
+                }
               }
-            },
-            "palette-color": "{??l.text}",
-            "@before": "{??m.before}"
+            }
+          },
+          "text": {
+            "var|sys": {
+              "padding": "{ref.spacing.2}",
+              "text": "{??sys.palette}",
+              "textOpacity": "{sys.opacity.surface.high}",
+              "icon": {
+                "margin": "{ref.spacing.1}"
+              },
+              "frame": {
+                "border": "{??sys.palette}"
+              },
+              "disabled": {
+                "textOpacity": "{sys.opacity.surface.disabled}"
+              },
+              "active": {
+                "frame": {
+                  "borderOpacity": "{sys.opacity.surface.medium}"
+                }
+              }
+            }
           }
         }
       },
@@ -122,22 +143,11 @@
         "contained": {
           "@style": "{??m.appearance.contained}"
         },
-        "text": {
-          "@style": "{??m.appearance.text}",
-          "var|??sys": {
-            "padding": "{ref.spacing.2}",
-            "icon": {
-              "padding": "{ref.spacing.1}"
-            }
-          }
-        },
         "outlined": {
-          "@style": "{??m.appearance.text}",
-          "::after": {
-            "@style": "{??m.border}",
-            "border-color": "{sys.palette.onSurface}",
-            "border-opacity": "{sys.opacity.border}"
-          }
+          "@style": "{??m.appearance.outlined}"
+        },
+        "text": {
+          "@style": "{??m.appearance.text}"
         },
         "default": "contained"
       },

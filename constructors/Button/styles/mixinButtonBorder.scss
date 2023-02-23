@@ -1,0 +1,33 @@
+@import "../../../styles/use";
+
+@mixin mixinButtonBorder {
+  &::before,
+  &::after {
+    position: absolute;
+    @include inset();
+    z-index: 2;
+
+    border-radius: inherit;
+  }
+
+  @include useEnabled {
+    &::before {
+      @include paletteBorder(v('??l.border'));
+      @include borderOpacity(v('??l.border-opacity'));
+      border-width: v('??l.border-width');
+    }
+
+    &::after {
+      @include paletteBorder(v('??l.frame.border'));
+      @include borderOpacity(v('??l.frame.border-opacity'));
+      border-width: v('??l.frame.border-width');
+
+      transition-property: border-color;
+      transition-duration: v('d.sys.transition-duration.fade.through');
+    }
+
+    &:active::after {
+      transition-duration: v('d.sys.transition-duration.sm');
+    }
+  }
+}
