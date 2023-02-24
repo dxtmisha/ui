@@ -1,0 +1,8 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxInput() {
+  @include subClass('input') {
+    position: absolute;
+    visibility: hidden;
+  }
+}

@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>checkbox</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-checkbox/>
+      <md2-checkbox text="text"/>
+    </div>
+
     <div class="px-4 py-2"><b>fab</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-fab @on-click="onEmit"/>
@@ -1024,6 +1030,7 @@ import Md2Input from '../../md2/Md2Input/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import Md2Chip from '../../md2/Md2Chip/index.vue'
 import Md2Fab from '../../md2/Md2Fab/index.vue'
+import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1033,6 +1040,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Checkbox,
     Md2Fab,
     Md2Chip,
     Md2Button,

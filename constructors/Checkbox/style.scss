@@ -1,30 +1,36 @@
 @import "../../styles/properties";
 
+@import "./styles/mixinCheckboxInput";
+@import "./styles/mixinCheckboxIcon";
+
+@import "./styles/currentStatus";
+@import "./styles/mixinCheckboxChecked";
+
 @mixin initCheckbox($design) {
   @include propertiesInit($design, 'checkbox') {
     @include mixinCheckbox;
+
+    @include mixinCheckboxInput;
+    @include mixinCheckboxIcon;
+
+    @include mixinCheckboxChecked;
+
     @content;
   }
 }
 
 @mixin mixinCheckbox() {
-  @include color(v('??l.text'), v('??l.text-opacity'));
-
   display: inline-flex;
   align-items: flex-start;
 
-  @include mixinInput;
+  @include color(v('??l.text'), v('??l.text-opacity'));
+
   @include mixinText;
   @include mixinRequired;
 
   @include mixinItem;
-  @include mixinIcon;
 
   @include mixinRight;
-
-  input:checked ~ * {
-    @include linkTo('palette', '??sys.checked.palette');
-  }
 
   &.is-error,
   &.is-error input:checked ~ * {
@@ -33,13 +39,6 @@
   }
 
   @include mixinDisabled;
-}
-
-@mixin mixinInput() {
-  @include subClass('input') {
-    position: absolute;
-    visibility: hidden;
-  }
 }
 
 @mixin mixinText() {
@@ -55,7 +54,7 @@
 
 @mixin mixinRequired() {
   @include subClass('required') {
-    @include color(v('??sys.label.required'));
+    @include color(v('??sys.required.text'));
 
     &::after {
       content: '*';
@@ -119,46 +118,6 @@
   &:hover {
     @include linkTo('item.background-opacity', '??sys.hover.item.background-opacity');
     @include linkTo('item.border-opacity', '??sys.hover.item.border-opacity');
-  }
-}
-
-@mixin mixinIcon() {
-  @include subClass('icon') {
-    @include color(v('??l.icon.text'), v('??l.icon.text-opacity'));
-    @include paletteBackground(v('??l.palette'));
-    @include backgroundOpacity(v('??l.icon.background-opacity'));
-
-    position: relative;
-    @include squared(v('??sys.icon.size'));
-
-    @include paletteBorder(v('??l.palette'));
-    @include borderOpacity(v('??l.icon.border-opacity'));
-    border-width: v('??sys.icon.border-width');
-    border-radius: v('??sys.icon.rounded');
-
-    transition-property: background-color, border-color;
-
-    > * {
-      clip-path: inset(0 100% 0 0);
-    }
-  }
-
-  input:checked + {
-    * {
-      @include linkTo('icon.background-opacity', '??sys.checked.icon.background-opacity');
-      @include linkTo('icon.border-opacity', '??sys.checked.icon.border-opacity');
-      @include linkTo('icon.text', '??sys.checked.icon.text');
-      @include linkTo('icon.text-opacity', '??sys.checked.icon.text-opacity');
-    }
-
-    @include subClassByGlobal('item') {
-      @include subClassByGlobal('icon') {
-        > * {
-          clip-path: inset(0 0 0 0);
-          transition-property: clip-path, opacity, transform;
-        }
-      }
-    }
   }
 }
 

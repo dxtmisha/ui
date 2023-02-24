@@ -1,0 +1,7 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxChecked() {
+  input:checked ~ * {
+    @include linkList('checked');
+  }
+}

@@ -1,0 +1,23 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxIcon() {
+  @include subClass('icon') {
+    position: relative;
+    @include squared(v('??sys.icon.size'));
+
+    @include color(v('??l.icon.text'), v('??l.icon.text-opacity'));
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??l.icon.background-opacity'));
+    @include paletteBorder(v('??l.palette'));
+    @include borderOpacity(v('??l.icon.border-opacity'));
+    border-width: v('??sys.icon.border-width');
+    border-radius: v('??sys.icon.rounded');
+
+    transition-property: background-color, border-color;
+
+    > * {
+      clip-path: v('??l.icon.clip-path');
+      transition-property: v('??l.icon.transition-property');
+    }
+  }
+}

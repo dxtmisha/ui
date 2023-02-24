@@ -6,36 +6,28 @@
         "gap": "",
         "text": "",
         "textOpacity": "",
+        "item": {
+          "size": "",
+          "backgroundOpacity": "0",
+          "borderOpacity": "0",
+          "borderWidth": ""
+        },
         "icon": {
+          "size": "",
+          "rounded": "",
+          "text": "",
+          "textOpacity": "",
           "backgroundOpacity": "0",
           "borderOpacity": "",
           "borderWidth": "",
-          "rounded": "",
-          "size": "",
-          "text": "",
-          "textOpacity": ""
-        },
-        "item": {
-          "backgroundOpacity": "0",
-          "borderOpacity": "0",
-          "borderWidth": "",
-          "size": ""
+          "clipPath": "inset(0 100% 0 0)",
+          "transitionProperty": "none"
         },
         "label": {
-          "lineHeight": "",
-          "required": ""
+          "lineHeight": ""
         },
-        "active": {
-          "item": {
-            "backgroundOpacity": "0",
-            "borderOpacity": "0"
-          }
-        },
-        "hover": {
-          "item": {
-            "backgroundOpacity": "0",
-            "borderOpacity": "0"
-          }
+        "required": {
+          "text": ""
         },
         "checked": {
           "palette": "",
@@ -43,7 +35,9 @@
             "backgroundOpacity": "{??sys.icon.textOpacity}",
             "borderOpacity": "0",
             "text": "{??sys.icon.text}",
-            "textOpacity": "{??sys.icon.textOpacity}"
+            "textOpacity": "{??sys.icon.textOpacity}",
+            "clipPath": "inset(0 0 0 0)",
+            "transitionProperty": "clip-path, opacity, transform"
           }
         },
         "error": {
@@ -53,12 +47,12 @@
         "disabled": {
           "palette": "",
           "textOpacity": "",
-          "icon": {
-            "borderOpacity": "{??sys.disabled.textOpacity}"
-          },
           "item": {
             "backgroundOpacity": "0",
             "borderOpacity": "0"
+          },
+          "icon": {
+            "borderOpacity": "{??sys.disabled.textOpacity}"
           },
           "checked": {
             "icon": {
@@ -66,21 +60,35 @@
               "borderOpacity": "0"
             }
           }
+        },
+        "hover": {
+          "item": {
+            "backgroundOpacity": "0",
+            "borderOpacity": "0"
+          }
+        },
+        "active": {
+          "item": {
+            "backgroundOpacity": "0",
+            "borderOpacity": "0"
+          }
         }
       },
       "var|l": {
         "palette": "{??sys.palette}",
         "text": "{??sys.text}",
         "textOpacity": "{??sys.textOpacity}",
-        "icon": {
-          "backgroundOpacity": "{??sys.icon.backgroundOpacity}",
-          "borderOpacity": "{??sys.icon.borderOpacity}",
-          "text": "{??sys.icon.text}",
-          "textOpacity": "{??sys.icon.textOpacity}"
-        },
         "item": {
           "backgroundOpacity": "{??sys.item.backgroundOpacity}",
           "borderOpacity": "{??sys.item.borderOpacity}"
+        },
+        "icon": {
+          "text": "{??sys.icon.text}",
+          "textOpacity": "{??sys.icon.textOpacity}",
+          "backgroundOpacity": "{??sys.icon.backgroundOpacity}",
+          "borderOpacity": "{??sys.icon.borderOpacity}",
+          "clipPath": "{??sys.icon.clipPath}",
+          "transitionProperty": "{??sys.icon.transitionProperty}"
         }
       },
       "#circle": {},
