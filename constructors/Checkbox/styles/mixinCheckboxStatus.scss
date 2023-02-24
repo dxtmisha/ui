@@ -1,7 +1,52 @@
-@import "../../../styles/properties";
+@import "../../../styles/use";
 
-@mixin mixinCheckboxChecked() {
+@mixin mixinCheckboxStatus($type) {
+  @include linkList($type, (), (
+          'palette',
+          'icon.text',
+          'icon.text-opacity',
+          'icon.background-opacity',
+          'icon.border-opacity',
+          'icon.clip-path',
+          'icon.transition-property'
+  ));
+}
+
+@mixin mixinCheckboxChecked {
   input:checked ~ * {
-    @include linkList('checked');
+    @include linkList('checked', (
+            'icon.clip-path',
+            'icon.transition-property'
+    ));
+  }
+}
+
+@mixin mixinCheckboxHover {
+  @include useEnabled {
+    @include subClassByGlobal('item') {
+      &:hover {
+        @include mixinCheckboxStatus('hover');
+      }
+    }
+  }
+}
+
+@mixin mixinCheckboxActive {
+  @include useEnabled {
+    input:active ~ {
+      & * {
+        @include mixinCheckboxStatus('active');
+      }
+
+      @include subClassByGlobal('item') {
+        &::after {
+          transition-duration: v('d.sys.transitionDuration.sm');
+        }
+
+        &:hover {
+          @include mixinCheckboxStatus('active');
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,22 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxText() {
+  @include subClass('text') {
+    @include marginLeft(v('??sys.gap'));
+    padding-top: calc((#{v('??sys.item.size')} - #{v('??sys.label.line-height')}) / 2);
+
+    > * {
+      display: block;
+    }
+  }
+}
+
+@mixin mixinCheckboxRequired() {
+  @include subClass('required') {
+    @include color(v('??sys.required.text'));
+
+    &::after {
+      content: '*';
+    }
+  }
+}

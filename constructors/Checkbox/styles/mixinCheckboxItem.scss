@@ -1,0 +1,53 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxItem() {
+  @include subClass('item') {
+    @include propertiesLink('d.flex.center');
+    position: relative;
+
+    @include circle(v('??sys.item.size'));
+    min-width: v('??sys.item.size');
+
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??l.item.background-opacity'));
+
+    transition-property: background-color, transform;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      @include inset();
+
+      @include paletteBorder(v('??l.palette'));
+      @include borderOpacity(v('??l.item.border-opacity'));
+      border-style: solid;
+      border-width: v('??sys.item.border-width');
+      border-radius: inherit;
+
+      transition-property: border-color;
+      transition-duration: v('d.sys.transition-duration.fade.through');
+    }
+  }
+}
+
+@mixin mixinCheckboxIcon() {
+  @include subClass('icon') {
+    position: relative;
+    @include squared(v('??sys.icon.size'));
+
+    @include color(v('??l.icon.text'), v('??l.icon.text-opacity'));
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??l.icon.background-opacity'));
+    @include paletteBorder(v('??l.palette'));
+    @include borderOpacity(v('??l.icon.border-opacity'));
+    border-width: v('??sys.icon.border-width');
+    border-radius: v('??sys.icon.rounded');
+
+    transition-property: background-color, border-color;
+
+    > * {
+      clip-path: v('??l.icon.clip-path');
+      transition-property: v('??l.icon.transition-property');
+    }
+  }
+}
