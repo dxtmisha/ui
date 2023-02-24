@@ -1,0 +1,15 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxRight() {
+  @include modClass('right') {
+    & > * {
+      order: 2;
+    }
+
+    @include subClassByGlobal('text') {
+      @include marginLeft(0px);
+      @include marginRight(v('??sys.gap'));
+      order: 1;
+    }
+  }
+}

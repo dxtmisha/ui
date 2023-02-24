@@ -3,6 +3,7 @@
 @import "./styles/mixinCheckboxInput";
 @import "./styles/mixinCheckboxItem";
 @import "./styles/mixinCheckboxText";
+@import "./styles/mixinCheckboxRight";
 
 @import "./styles/currentStatus";
 @import "./styles/mixinCheckboxChecked";
@@ -18,6 +19,8 @@
     @include mixinCheckboxText;
     @include mixinCheckboxRequired;
 
+    @include mixinCheckboxRight;
+
     @include mixinCheckboxChecked;
 
     @include mixinCheckboxHover;
@@ -32,8 +35,6 @@
   align-items: flex-start;
 
   @include color(v('??l.text'), v('??l.text-opacity'));
-
-  @include mixinRight;
 
   &.is-error,
   &.is-error input:checked ~ * {
@@ -62,20 +63,6 @@
       @include linkTo('palette', '??sys.disabled.palette');
       @include linkTo('icon.background-opacity', '??sys.disabled.checked.icon.background-opacity');
       @include linkTo('icon.border-opacity', '??sys.disabled.checked.icon.border-opacity');
-    }
-  }
-}
-
-@mixin mixinRight() {
-  @include modClass('right') {
-    & > * {
-      order: 2;
-    }
-
-    @include subClassByGlobal('text') {
-      @include marginLeft(0px);
-      @include marginRight(v('??sys.gap'));
-      order: 1;
     }
   }
 }

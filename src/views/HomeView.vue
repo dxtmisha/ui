@@ -4,6 +4,11 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-checkbox/>
       <md2-checkbox text="text"/>
+      <md2-checkbox required text="required"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-checkbox right text="right"/>
+      <md2-checkbox text="left"/>
     </div>
 
     <div class="px-4 py-2"><b>fab</b></div>
