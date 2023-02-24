@@ -34,6 +34,7 @@
         },
         "dense": {
           "padding": "",
+          "space": "{??sys.space}",
           "icon": {
             "margin": ""
           }
@@ -58,6 +59,7 @@
       "var|l": {
         "palette": "{??sys.palette}",
         "padding": "{??sys.padding}",
+        "space": "{??sys.space}",
         "width": "{??sys.width}",
         "zIndex": "{??sys.zIndex}",
         "text": "{??sys.text}",
@@ -207,7 +209,7 @@
             "width": "{??sys.width}",
             "icon": {
               "learning": "{??l.icon.margin} - {??l.padding}",
-              "space": "{??sys.space}"
+              "space": "{??l.space}"
             },
             "document": {
               "display": "block"
@@ -219,7 +221,7 @@
             "var|sys": {
               "icon": {
                 "margin": "{??sys.icon.padding}",
-                "fontSize": "{?icon.size} - ({??sys.space} * 2)"
+                "fontSize": "{?icon.size} - ({??l.padding} / 2)"
               }
             },
             "var|?icon-size": "var(--sys-height) - ({??sys.icon.padding} * 2)"
@@ -254,6 +256,7 @@
       "~dense": {
         "var|l": {
           "padding": "{??sys.dense.padding}",
+          "space": "{??sys.dense.space}",
           "icon": {
             "margin": "{??sys.dense.icon.margin}"
           }

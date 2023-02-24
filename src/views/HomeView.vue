@@ -28,11 +28,98 @@
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-chip dense icon="face" text="dense"/>
-      <md2-chip icon="face" lowercase text="lowercase"/>
-      <md2-chip :ellipsis="true" icon="face" text="ellipsis/true"/>
-      <md2-chip :ellipsis="false" icon="face" text="ellipsis/false"/>
       <md2-chip :ripple="true" icon="face" text="ripple/true"/>
       <md2-chip :ripple="false" icon="face" text="ripple/false"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, outlined</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip appearance="outlined" @on-click="onEmit"/>
+      <md2-chip appearance="outlined" icon="face"/>
+      <md2-chip appearance="outlined" icon-trailing="home" @on-click="onEmit" @on-trailing="onEmit"/>
+      <md2-chip appearance="outlined" icon="face" icon-trailing="home"/>
+      <md2-chip appearance="outlined" text="text"/>
+      <md2-chip appearance="outlined" icon="face" text="text + icon"/>
+      <md2-chip appearance="outlined" icon-trailing="home" text="text + trailing"/>
+      <md2-chip appearance="outlined" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip appearance="outlined" icon-trailing="home" text="turn" turn/>
+      <md2-chip appearance="outlined" icon="face" selected text="selected"/>
+      <md2-chip appearance="outlined" icon="face" readonly text="readonly"/>
+      <md2-chip appearance="outlined" icon="face" progress text="progress"/>
+      <md2-chip appearance="outlined" disabled icon="face" text="disabled"/>
+      <md2-chip appearance="outlined" disabled icon="face" selected text="disabled + selected"/>
+      <md2-chip appearance="outlined" dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip appearance="outlined" icon="face" palette="green" text="palette"/>
+      <md2-chip appearance="outlined" icon="face" palette="green" selected text="palette + selected"/>
+      <md2-chip appearance="outlined" icon="face" palette="green" readonly text="palette + readonly"/>
+      <md2-chip appearance="outlined" disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip appearance="outlined" dense icon="face" text="dense"/>
+      <md2-chip appearance="outlined" :ripple="true" icon="face" text="ripple/true"/>
+      <md2-chip appearance="outlined" :ripple="false" icon="face" text="ripple/false"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, hide</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip :hide="true" icon="face" text="true"/>
+      <md2-chip :hide="false" icon="face" text="false"/>
+      <md2-chip :hide="hide" icon="face" text="click" @click="hide = !hide"/>
+      <md2-chip :hide="hide" dense icon="face" text="click + dense" @click="hide = !hide"/>
+      <md2-chip :hide="hide" icon="face" rounded="full" text="click + rounded" @click="hide = !hide"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, align</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip align="left" icon="face" text="left" width="lg"/>
+      <md2-chip align="center" icon="face" text="center" width="lg"/>
+      <md2-chip align="right" icon="face" text="right" width="lg"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, adaptive</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip adaptive="sm" icon="face" text="sm"/>
+      <md2-chip adaptive="md" icon="face" text="md"/>
+      <md2-chip adaptive="lg" icon="face" text="lg"/>
+      <md2-chip adaptive="icon" icon="face" text="icon"/>
+      <md2-chip adaptive="full" icon="face" text="full"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, rounded</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip icon="face" rounded="none" text="none"/>
+      <md2-chip icon="face" rounded="standard" text="standard"/>
+      <md2-chip icon="face" rounded="sm" text="sm"/>
+      <md2-chip icon="face" rounded="md" text="md"/>
+      <md2-chip icon="face" rounded="full" text="full"/>
+      <md2-chip dense icon="face" rounded="full" text="full + dense"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, width</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip icon="face" text="auto" width="auto"/>
+      <md2-chip icon="face" text="sm" width="sm"/>
+      <md2-chip icon="face" text="md" width="md"/>
+      <md2-chip icon="face" text="lg" width="lg"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip icon="face" text="full" width="full"/>
+    </div>
+
+    <div class="px-4 py-2"><b>chip, height</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip height="sm" icon="face" text="sm"/>
+      <md2-chip height="md" icon="face" text="md"/>
+      <md2-chip height="lg" icon="face" text="lg"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-chip height="sm" icon="face" rounded="full" text="sm + rounded full"/>
+      <md2-chip height="md" icon="face" rounded="full" text="md + rounded full"/>
+      <md2-chip height="lg" icon="face" rounded="full" text="lg + rounded full"/>
     </div>
 
     <div class="px-4 py-2"><b>button</b></div>

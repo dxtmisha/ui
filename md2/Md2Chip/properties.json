@@ -13,6 +13,8 @@
         "textOpacity": "{sys.opacity.surface.high}",
         "backgroundOpacity": "{sys.opacity.overlay}",
         "gradient": "{sys.palette.onSurface}",
+        "border": "{sys.palette.onSurface}",
+        "borderOpacity": "{sys.opacity.border}",
         "borderWidth": "{ref.spacing.px}",
         "rounded": "{sys.rounded.full}",
         "icon": {
@@ -23,10 +25,14 @@
         "iconTrailing": {
           "fontSize": "{ref.font.size.xl}"
         },
+        "frame": {
+          "border": "{??sys.palette}"
+        },
         "dense": {
           "padding": "{ref.spacing.1}",
+          "space": "{ref.spacing.px} * 2",
           "icon": {
-            "margin": "{ref.spacing.1}"
+            "margin": "{??sys.dense.space}"
           }
         },
         "selected": {
@@ -47,7 +53,10 @@
         "active": {
           "zIndex": "{sys.elevation.index.2}",
           "gradientOpacity": "{sys.opacity.dragged}",
-          "shadow": "{sys.elevation.shadow.2}"
+          "shadow": "{sys.elevation.shadow.2}",
+          "frame": {
+            "borderOpacity": "{sys.opacity.surface.medium}"
+          }
         },
         "dragged": {
           "zIndex": "{sys.elevation.index.8}",
@@ -67,24 +76,14 @@
         "md": "{ref.spacing.24}",
         "lg": "{ref.spacing.32}"
       },
-      "section|appearance": {
+      "~appearance": {
         "outlined": {
-        },
-        "outlined-old": {
-          "var|??sys": {
-            "selected": {
-              "border": "{??sys.palette.primary}",
-              "borderOpacity": "{sys.opacity.surface.high}"
-            }
-          },
-          "::after": {
-            "@style": "{??m.border}",
-            "border-color": "{sys.palette.onSurface}",
-            "border-opacity": "{sys.opacity.border}"
+          "::before": {
+            "content": ""
           }
         }
       },
-      "section|adaptive": {
+      "~adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
             "@style": "{??m.text}"
@@ -99,23 +98,17 @@
           "media|{ref.screen.lg}": {
             "@style": "{??m.text}"
           }
-        },
+        }
+      },
+      "~rounded": {
+        "@style": "{?rounded}",
         "full": {
-          "@style": "{??m.text}"
-        },
-        "icon": {
-          "--": "none"
+          "@style": "{??m.rounded.full}"
         },
         "default": "full"
       },
-      "section|rounded": {
-        "@style": "{?rounded}"
-      },
-      "section|readonly": {
-        "@style": "{??m.readonly}"
-      },
-      "section|selected": {
-        "palette-color": "{??l.text}"
+      "::after": {
+        "content": ""
       }
     }
   }
