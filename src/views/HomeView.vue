@@ -14,11 +14,64 @@
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-fab icon="face" palette="green" text="palette"/>
+      <md2-fab icon="face" palette="red" text="palette"/>
       <md2-fab disabled icon="face" palette="green" text="palette + disabled"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-fab :ripple="true" icon="face" text="ripple/true"/>
       <md2-fab :ripple="false" icon="face" text="ripple/false"/>
+    </div>
+
+    <div class="px-4 py-2"><b>fab, adaptive</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab adaptive="sm" icon="face" text="sm"/>
+      <md2-fab adaptive="md" icon="face" text="md"/>
+      <md2-fab adaptive="lg" icon="face" text="lg"/>
+      <md2-fab adaptive="icon" icon="face" text="icon"/>
+      <md2-fab adaptive="full" icon="face" text="full"/>
+    </div>
+
+    <div class="px-4 py-2"><b>fab, rounded</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab icon="face" rounded="none" text="none"/>
+      <md2-fab icon="face" rounded="standard" text="standard"/>
+      <md2-fab icon="face" rounded="sm" text="sm"/>
+      <md2-fab icon="face" rounded="md" text="md"/>
+      <md2-fab icon="face" rounded="full" text="full"/>
+    </div>
+
+    <div class="px-4 py-2"><b>fab, width</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab icon="face" text="auto" width="auto"/>
+      <md2-fab icon="face" text="sm" width="sm"/>
+      <md2-fab icon="face" text="md" width="md"/>
+      <md2-fab icon="face" text="lg" width="lg"/>
+      <md2-fab icon="face" text="320px" width="320px"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab icon="face" text="full" width="full"/>
+    </div>
+
+    <div class="px-4 py-2"><b>fab, height</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab height="sm" icon="face" text="sm"/>
+      <md2-fab height="md" icon="face" text="md"/>
+      <md2-fab height="lg" icon="face" text="lg"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab height="sm" text="sm"/>
+      <md2-fab height="md" text="md"/>
+      <md2-fab height="lg" text="lg"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab height="sm" icon="face"/>
+      <md2-fab height="md" icon="face"/>
+      <md2-fab height="lg" icon="face"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab height="sm" icon="face" rounded="full" text="sm + rounded full"/>
+      <md2-fab height="md" icon="face" rounded="full" text="md + rounded full"/>
+      <md2-fab height="lg" icon="face" rounded="full" text="lg + rounded full"/>
     </div>
 
     <div class="px-4 py-2"><b>chip</b></div>

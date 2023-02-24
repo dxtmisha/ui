@@ -5,11 +5,11 @@
       "var|sys": {
         "palette": "{sys.palette.primary}",
         "padding": "{ref.spacing.5}",
-        "space": "{ref.spacing.1}",
-        "width": "auto",
+        "space": "{ref.spacing.3}",
         "height": "{ref.spacing.12}",
         "zIndex": "{sys.elevation.index.6}",
         "borderWidth": "{ref.spacing.px}",
+        "rounded": "{sys.rounded.full}",
         "icon": {
           "padding": "{ref.spacing.1}",
           "margin": "{ref.spacing.3}",
@@ -65,7 +65,7 @@
       "@font": "{font.button}",
       "@ellipsis": "{d.font.ellipsis}",
       "@@palette": "{?palette}",
-      "@@appearance": "{??m.appearance.contained}",
+      "@appearance": "{??m.appearance.contained}",
       "width": {
         "sm": "{ref.spacing.24}",
         "md": "{ref.spacing.32}",

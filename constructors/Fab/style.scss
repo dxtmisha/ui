@@ -11,4 +11,6 @@
 }
 
 @mixin mixinFab() {
+  @include color(v('??l.text'));
+  @include gradient(v('??l.gradient'));
 }

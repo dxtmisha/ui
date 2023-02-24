@@ -1,7 +1,10 @@
 {
   "d": {
     "fab": {
-      "@style": "{d.button}"
+      "@style": "{d.button}",
+      "var|sys": {
+        "width": "var(--sys-height)"
+      }
     }
   }
 }
