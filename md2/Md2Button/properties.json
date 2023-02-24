@@ -145,15 +145,15 @@
       },
       "@font": "{font.button}",
       "@@palette": "{?palette}",
-      "height": {
-        "sm": "{ref.spacing.8}",
-        "md": "{ref.spacing.9}",
-        "lg": "{ref.spacing.11}"
-      },
       "width": {
         "sm": "{ref.spacing.20}",
         "md": "{ref.spacing.28}",
         "lg": "{ref.spacing.36}"
+      },
+      "height": {
+        "sm": "{ref.spacing.8}",
+        "md": "{ref.spacing.9}",
+        "lg": "{ref.spacing.11}"
       },
       "~appearance": {
         "contained": {

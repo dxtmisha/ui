@@ -62,8 +62,6 @@ export type FieldSetupType =
     isScoreboard: ComputedRef<boolean>
     isCancel: ComputedRef<boolean>
     isValidation: ComputedRef<boolean>
-    iconBind: ComputedRef<string | AssociativeType>
-    iconTrailingBind: ComputedRef<string | AssociativeType>
     messageBind: ComputedRef<AssociativeType>
     validationText: ComputedRef<string>
     update: () => void

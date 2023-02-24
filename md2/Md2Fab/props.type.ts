@@ -16,3 +16,10 @@ export type Md2FabRoundedType =
   'sm' |
   'md' |
   'full'
+
+export type Md2FabWidthType =
+  'auto' |
+  'sm' |
+  'md' |
+  'lg' |
+  'full'

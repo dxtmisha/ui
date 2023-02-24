@@ -66,15 +66,15 @@
       "@font": "{font.body2}",
       "@ellipsis": "{d.font.ellipsis}",
       "@@palette": "{?palette}",
-      "height": {
-        "sm": "{ref.spacing.6}",
-        "md": "{ref.spacing.8}",
-        "lg": "{ref.spacing.10}"
-      },
       "width": {
         "sm": "{ref.spacing.16}",
         "md": "{ref.spacing.24}",
         "lg": "{ref.spacing.32}"
+      },
+      "height": {
+        "sm": "{ref.spacing.6}",
+        "md": "{ref.spacing.8}",
+        "lg": "{ref.spacing.10}"
       },
       "~appearance": {
         "outlined": {

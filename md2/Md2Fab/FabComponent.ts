@@ -6,5 +6,10 @@ export class FabComponent extends FabComponentAbstract {
   static readonly code = 'md2.fab' as string
   static readonly instruction = props as AssociativeType
 
-  protected readonly appearanceInverse = ['all'] as string[]
+  constructor (
+    props: AssociativeType & object,
+    context: AssociativeType & object
+  ) {
+    super(props, context, ['all'])
+  }
 }

@@ -3,7 +3,7 @@ import { AssociativeType, CallbackBindType, RefType } from '../types'
 
 export type UseIconSetupType = {
   iconBind: ComputedRef<string | AssociativeType>
-  iconTrailingBind: ComputedRef<string | AssociativeType>
+  iconTrailingBind?: ComputedRef<string | AssociativeType>
 }
 
 export class UseIcon {
@@ -11,9 +11,9 @@ export class UseIcon {
   constructor (
     protected readonly getBind: CallbackBindType<string>,
     protected readonly icon: Ref<string | AssociativeType>,
-    protected readonly iconTrailing: Ref<string | AssociativeType>,
-    protected readonly selected: Ref<boolean>,
-    protected readonly disabled: Ref<boolean>,
+    protected readonly iconTrailing?: Ref<string | AssociativeType>,
+    protected readonly selected?: Ref<boolean>,
+    protected readonly disabled?: Ref<boolean>,
     protected readonly turn?: Ref<boolean>,
     protected readonly hide?: Ref<boolean>,
     protected readonly inEnd = true as boolean,
@@ -23,13 +23,13 @@ export class UseIcon {
   }
 
   readonly isIcon = computed<boolean>(
-    () => (!!this.icon.value || !!this.iconTrailing.value) && !this.conditions?.value
+    () => (!!this.icon.value || !!this.iconTrailing?.value) && !this.conditions?.value
   )
 
   readonly iconBind = computed<AssociativeType>(() => {
     return {
-      active: this.selected.value,
-      disabled: this.disabled.value,
+      active: this.selected?.value,
+      disabled: this.disabled?.value,
       hide: this.hide?.value,
       animationType: this.animationType
     }
@@ -38,7 +38,7 @@ export class UseIcon {
   readonly iconTrailingBind = computed<AssociativeType>(() => {
     return {
       class: 'is-icon is-trailing',
-      disabled: this.disabled.value,
+      disabled: this.disabled?.value,
       inEnd: this.inEnd,
       turn: this.turn?.value
     }
@@ -51,7 +51,7 @@ export class UseIcon {
   getSetup (): UseIconSetupType {
     return {
       iconBind: this.getBind(this.icon, this.iconBind, 'icon'),
-      iconTrailingBind: this.getBind(this.iconTrailing, this.iconTrailingBind, 'icon')
+      iconTrailingBind: this.iconTrailing ? this.getBind(this.iconTrailing, this.iconTrailingBind, 'icon') : undefined
     }
   }
 }

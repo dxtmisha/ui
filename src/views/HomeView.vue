@@ -1,5 +1,26 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>fab</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab @on-click="onEmit"/>
+      <md2-fab icon="face"/>
+      <md2-fab text="text"/>
+      <md2-fab icon="face" text="text + icon"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab icon="face" progress text="progress"/>
+      <md2-fab disabled icon="face" text="disabled"/>
+      <md2-fab dragged icon="face" text="dragged"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab icon="face" palette="green" text="palette"/>
+      <md2-fab disabled icon="face" palette="green" text="palette + disabled"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-fab :ripple="true" icon="face" text="ripple/true"/>
+      <md2-fab :ripple="false" icon="face" text="ripple/false"/>
+    </div>
+
     <div class="px-4 py-2"><b>chip</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-chip @on-click="onEmit"/>
@@ -949,6 +970,7 @@ import { AssociativeType } from '../../constructors/types'
 import Md2Input from '../../md2/Md2Input/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import Md2Chip from '../../md2/Md2Chip/index.vue'
+import Md2Fab from '../../md2/Md2Fab/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -958,6 +980,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Fab,
     Md2Chip,
     Md2Button,
     Md2Input

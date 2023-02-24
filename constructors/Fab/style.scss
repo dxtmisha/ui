@@ -3,11 +3,12 @@
 
 @mixin initFab($design) {
   @include propertiesInit($design, 'fab') {
+    @include mixinButtonFull;
     @include mixinFab();
+
     @content;
   }
 }
 
 @mixin mixinFab() {
-  @include mixinButton;
 }

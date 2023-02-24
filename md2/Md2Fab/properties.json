@@ -3,63 +3,80 @@
     "fab": {
       "@style": "{d.fab}",
       "var|sys": {
-        "backgroundOpacity": "{sys.opacity.primary.high}",
-        "borderWidth": "{ref.spacing.px}",
-        "gradient": "{sys.palette.onPrimary}",
-        "padding": "{ref.spacing.5}",
         "palette": "{sys.palette.primary}",
-        "shadow": "{sys.elevation.shadow.6}",
+        "padding": "{ref.spacing.5}",
         "space": "{ref.spacing.1}",
-        "text": "{sys.palette.onPrimary}",
-        "textOpacity": "{sys.opacity.primary.high}",
         "width": "auto",
+        "height": "{ref.spacing.12}",
         "zIndex": "{sys.elevation.index.6}",
+        "borderWidth": "{ref.spacing.px}",
+        "icon": {
+          "padding": "{ref.spacing.1}",
+          "margin": "{ref.spacing.3}",
+          "fontSize": "{ref.font.size.2xl}"
+        },
+        "iconTrailing": {
+          "fontSize": "{ref.font.size.xl}"
+        },
         "dense": {
           "padding": "{ref.spacing.2}"
         },
-        "icon": {
-          "margin": "{ref.spacing.3}",
-          "padding": "{ref.spacing.1}",
-          "text": "{ref.font.size.2xl}",
-          "textTrailing": "{ref.font.size.xl}"
-        },
-        "active": {
-          "gradientOpacity": "{sys.opacity.dragged}",
-          "shadow": "{sys.elevation.shadow.12}"
+        "selected": {
+          "palette": "{sys.palette.primaryVariant}"
         },
         "disabled": {
           "palette": "{sys.palette.disabled}",
-          "backgroundOpacity": "{sys.opacity.disabled}",
-          "shadow": "none",
-          "text": "{sys.palette.onSurface}",
-          "textOpacity": "{sys.opacity.surface.disabled}"
-        },
-        "dragged": {
-          "shadow": "{sys.elevation.shadow.8}"
-        },
-        "focus": {
-          "gradientOpacity": "{sys.opacity.focus}"
+          "shadow": "none"
         },
         "hover": {
           "gradientOpacity": "{sys.opacity.hover}"
         },
-        "selected": {
-          "palette": "{sys.palette.primaryVariant}"
+        "focus": {
+          "gradientOpacity": "{sys.opacity.focus}"
+        },
+        "active": {
+          "gradientOpacity": "{sys.opacity.dragged}"
+        },
+        "dragged": {
+          "shadow": "{sys.elevation.shadow.8}"
         }
       },
-      "@ellipsis": "{d.font.ellipsis}",
+      "mixin|m": {
+        "appearance": {
+          "contained": {
+            "var|sys": {
+              "text": "{sys.palette.onPrimary}",
+              "textOpacity": "{sys.opacity.primary.high}",
+              "backgroundOpacity": "{sys.opacity.primary.high}",
+              "gradient": "{sys.palette.onPrimary}",
+              "shadow": "{sys.elevation.shadow.6}",
+              "disabled": {
+                "text": "{sys.palette.onSurface}",
+                "textOpacity": "{sys.opacity.surface.disabled}",
+                "backgroundOpacity": "{sys.opacity.disabled}"
+              },
+              "active": {
+                "shadow": "{sys.elevation.shadow.12}"
+              }
+            }
+          }
+        }
+      },
       "@font": "{font.button}",
-      "@round": "{??m.round}",
+      "@ellipsis": "{d.font.ellipsis}",
       "@@palette": "{?palette}",
-      "border-radius": "{sys.rounded.full}",
+      "@@appearance": "{??m.appearance.contained}",
+      "width": {
+        "sm": "{ref.spacing.24}",
+        "md": "{ref.spacing.32}",
+        "lg": "{ref.spacing.40}"
+      },
       "height": {
         "sm": "{ref.spacing.10}",
         "md": "{ref.spacing.12}",
-        "lg": "{ref.spacing.14}",
-        "default": "md"
+        "lg": "{ref.spacing.14}"
       },
-      "gradient": "{??l.gradient}",
-      "section|adaptive": {
+      "~adaptive": {
         "sm": {
           "media|{ref.screen.sm}": {
             "@style": "{??m.text}"
@@ -74,17 +91,13 @@
           "media|{ref.screen.lg}": {
             "@style": "{??m.text}"
           }
-        },
-        "full": {
-          "@style": "{??m.text}"
-        },
-        "icon": {
-          "--": "none"
-        },
-        "default": "full"
+        }
       },
-      "section|rounded": {
-        "@style": "{?rounded}"
+      "~rounded": {
+        "@style": "{?rounded}",
+        "full": {
+          "@style": "{??m.rounded.full}"
+        }
       }
     }
   }
