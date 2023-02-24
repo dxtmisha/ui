@@ -6,6 +6,7 @@ import { InputValue } from '../Input/InputValue'
 import { InputValidation } from '../Input/InputValidation'
 import { isFilled } from '../../functions'
 import { props } from './props'
+
 import { AssociativeType } from '../types'
 import { CheckboxClassesType, CheckboxSetupType } from './types'
 
@@ -18,12 +19,12 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
     'update:modelValue'
   ] as string[]
 
-  protected readonly type = 'checkbox' as string
-  protected readonly value: InputValue
-  protected readonly change: InputChange
+  private readonly type = 'checkbox' as string
+  private readonly value: InputValue
+  private readonly change: InputChange
 
-  protected readonly validation: InputValidation
-  protected readonly event: InputEvent
+  private readonly validation: InputValidation
+  private readonly event: InputEvent
 
   constructor (
     protected readonly props: AssociativeType & object,
@@ -67,25 +68,29 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       classes,
       styles,
       type: this.type,
-      isRipple: this.isRipple,
       isText: this.isText,
       isValue: this.value.valueForCheckbox,
+      isRipple: this.isRipple,
+
       iconBind: this.getBind(this.refs.icon, 'value'),
+
       inputBind: this.input,
-      validationMessageBind: this.validation.message,
       valueBind: this.value.value,
       valueOriginalBind: this.value.valueForOriginal,
+
       messageBind: this.message,
+      validationMessageBind: this.validation.message,
+
       checkValidity: () => this.validation.checkValidity(),
       onChecked: (event: Event) => this.event.onChecked(event),
       onRadio: (event: Event) => this.event.onRadio(event)
     }
   }
 
-  readonly isRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
-  readonly isText = computed<boolean>(() => isFilled(this.props.text) || 'default' in this.context.slots)
+  private readonly isText = computed<boolean>(() => isFilled(this.props.text) || 'default' in this.context.slots)
+  private readonly isRipple = computed<boolean>(() => this.props.ripple && !this.props.disabled)
 
-  readonly input = computed<AssociativeType>(() => {
+  private readonly input = computed<AssociativeType>(() => {
     return {
       name: this.refs.name.value,
       value: this.refs.valueDefault.value,
@@ -97,7 +102,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
     }
   })
 
-  readonly message = computed<AssociativeType>(() => {
+  private readonly message = computed<AssociativeType>(() => {
     return {
       disabled: this.props.disabled,
       helperMessage: this.props.helperMessage,

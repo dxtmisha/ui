@@ -1,31 +1,33 @@
 import { PropType } from 'vue'
 import { ComponentDesign } from '../../classes/ComponentDesign'
+
+import { InputValidityType } from '../../constructors/Input/types'
 import { Md2PaletteType } from '../props.type'
 
 export const defaultItem = ComponentDesign.getDefault('md2.checkbox')
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: {
     type: [Object, String],
     default: 'check'
   },
   name: String,
-  required: Boolean,
-  text: [Number, String],
   value: [Boolean, Number, String],
   valueDefault: {
     type: String,
     default: '1'
   },
+  detail: [Object],
 
   // Input
+  required: Boolean,
   input: Object,
 
   // Message
   helperMessage: String,
-  validationCode: [Object],
   validationMessage: String,
+  validationCode: [Object, String] as PropType<string | InputValidityType>,
 
   // On
   modelValue: undefined,
@@ -35,8 +37,8 @@ export const props = {
   },
 
   // Status
-  disabled: Boolean,
   readonly: Boolean,
+  disabled: Boolean,
 
   // Options
   palette: String as PropType<Md2PaletteType>,
