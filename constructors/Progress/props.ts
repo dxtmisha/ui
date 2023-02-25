@@ -24,7 +24,7 @@ export const props = {
   dense: Boolean,
   indeterminate: {
     type: String as PropType<ProgressIndeterminateType>,
-    default: 'type1'
+    default: 'type2'
   },
   inverse: Boolean,
   type: {

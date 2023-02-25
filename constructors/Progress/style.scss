@@ -14,8 +14,8 @@
 }
 
 @mixin mixinProgress($value) {
-  @include propertyCustom('??circular.length', #{calc(2 * 3.1415926535 * ((v('??sys.circular.size') - (2 * v('??sys.circular.padding')) / 2)))});
-  @include propertyCustom('??circular.dasharray', #{calc(v('??sys.circular.length') / 100)});
+  @include propertyCustom('??circular.length', #{calc(2 * 3.1415926535 * ((v('??_size') - (2 * v('??_padding')) / 2)))});
+  @include propertyCustom('??circular.dasharray', #{calc(v('??circular.length') / 100)});
 
   #{i('??value')}: #{$value};
 
@@ -157,10 +157,10 @@
   @include modClass('type') {
     @include modClass('circular') {
       @include inset(0);
-      @include squared(v('??sys.circular.size'));
+      @include squared(v('??_size'));
       max-height: 100%;
 
-      padding: v('??sys.circular.padding');
+      padding: v('??_padding');
       margin: auto;
 
       transform: rotate(-90deg);

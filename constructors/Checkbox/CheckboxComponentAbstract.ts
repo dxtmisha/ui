@@ -6,11 +6,13 @@ import { InputEvent } from '../Input/InputEvent'
 import { InputValue } from '../Input/InputValue'
 import { InputValidation } from '../Input/InputValidation'
 import { UseEnabled } from '../Use/UseEnabled'
+import { UseProgress } from '../Progress/UseProgress'
 import { isFilled } from '../../functions'
 import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { CheckboxClassesType, CheckboxSetupType } from './types'
+import { UseInverse } from '../Use/UseInverse'
 
 export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -28,6 +30,9 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
 
   private readonly validation: InputValidation
   private readonly event: InputEvent
+
+  private readonly inverse: UseInverse
+  private readonly progress: UseProgress
 
   private readonly message: FieldMessageProps
 
@@ -65,6 +70,9 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       this.refs?.validationMessage
     )
 
+    this.inverse = new UseInverse([true], this.value.value)
+    this.progress = new UseProgress('circular', this.inverse)
+
     this.message = new FieldMessageProps(
       this.props,
       { validationMessage: this.validation.message }
@@ -90,6 +98,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
 
       iconBind: this.getBind(this.refs?.icon, 'value'),
       inputBind: this.input,
+      progressBind: this.progress.item,
 
       valueBind: this.value.value,
       valueOriginalBind: this.value.valueForOriginal,

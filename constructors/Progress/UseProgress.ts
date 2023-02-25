@@ -6,8 +6,9 @@ export class UseProgress {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly type: string,
-    private readonly inverse: UseInverse,
-    private readonly visible?: Ref<string>,
+    private readonly inverse?: UseInverse,
+    private readonly visible?: Ref<boolean>,
+    private readonly indeterminate?: Ref<string>,
     private readonly value?: Ref<number>
   ) {
   }
@@ -15,9 +16,10 @@ export class UseProgress {
   readonly item = computed<AssociativeType>(() => {
     return {
       type: this.type,
-      value: this.value?.value || undefined,
+      value: this.value?.value,
       visible: this.visible?.value || true,
-      inverse: this.inverse.get()
+      indeterminate: this.indeterminate?.value,
+      inverse: this.inverse?.get()
     }
   })
 

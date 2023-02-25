@@ -29,6 +29,7 @@ export type CheckboxSetupType = ComponentBaseType & {
 
   iconBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
+  progressBind: ComputedRef<AssociativeType>
 
   valueBind: Ref<BooleanOrNumberOrStringType>
   valueOriginalBind: ComputedRef<string>

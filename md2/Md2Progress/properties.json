@@ -3,13 +3,13 @@
     "progress": {
       "@style": "{d.progress}",
       "var|sys": {
+        "height": "{ref.spacing.1}",
+        "opacity": "{sys.opacity.pressed}",
+        "inverse": "{sys.palette.onPrimary}",
         "circular": {
           "padding": "{ref.spacing.1}",
           "size": "{ref.spacing.12}"
-        },
-        "height": "{ref.spacing.1}",
-        "inverse": "{sys.palette.onPrimary}",
-        "opacity": "{sys.opacity.pressed}"
+        }
       },
       "var|_background": "{sys.palette.primary}"
     }

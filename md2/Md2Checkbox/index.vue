@@ -13,6 +13,7 @@
     <span :class="classes.item">
       <span :class="classes.icon">
         <md2-image v-bind="iconBind"/>
+        <md2-progress v-bind="progressBind"/>
       </span>
       <md2-ripple v-if="isRipple"/>
     </span>
@@ -21,7 +22,7 @@
         {{ text }}<slot/>
         <span v-if="required" :class="classes.required"/>
       </span>
-      <md2-field-message v-bind="messageBind">
+      <md2-field-message v-if="isEnabled" v-bind="messageBind">
         <template v-slot:default>
           <slot name="message"/>
         </template>
@@ -36,10 +37,12 @@ import { props } from './props'
 import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 import Md2Image from '../Md2Image/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
+import Md2Progress from '../Md2Progress/index.vue'
 
 export default {
   name: 'Md2Checkbox',
   components: {
+    Md2Progress,
     Md2Ripple,
     Md2FieldMessage,
     Md2Image

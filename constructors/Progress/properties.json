@@ -2,73 +2,23 @@
   "d": {
     "progress": {
       "var|sys": {
-        "circular": {
-          "padding": "",
-          "size": ""
-        },
-        "duration": "20s",
         "height": "",
+        "opacity": "",
         "inverse": "",
-        "opacity": ""
+        "duration": "20s",
+        "circular": {
+          "padding": "{??_padding}",
+          "size": "{??_size}"
+        }
       },
       "var|l": {
-        "bottom": "auto",
         "top": "0",
+        "bottom": "auto",
         "transformOrigin": "top"
       },
+      "var|_padding": "{??sys.circular.padding}",
+      "var|_size": "{??sys.circular.size}",
       "var|_background": "",
-      "animate|circle-visible": {
-        "0%": {
-          "opacity": "0"
-        },
-        "100%": {
-          "opacity": "1"
-        }
-      },
-      "animate|circle-hidden": {
-        "0%": {
-          "opacity": "1"
-        },
-        "100%": {
-          "opacity": "0"
-        }
-      },
-      "animate|circle-type1": {
-        "0%": {
-          "stroke-dasharray": "1.256637061435917 125.66370614359173"
-        },
-        "5%": {
-          "stroke-dasharray": "50.265482457436692 125.66370614359173"
-        },
-        "50%": {
-          "stroke-dasharray": "113.09733552923253 125.66370614359173"
-        },
-        "100%": {
-          "stroke-dasharray": "125.66370614359173 125.66370614359173"
-        }
-      },
-      "animate|circle-type2": {
-        "0%": {
-          "transform": "rotate(0deg)"
-        },
-        "100%": {
-          "transform": "rotate(360deg)"
-        }
-      },
-      "animate|circle-type3": {
-        "0%": {
-          "stroke-dasharray": "1, 200",
-          "stroke-dashoffset": "0"
-        },
-        "50%": {
-          "stroke-dasharray": "89, 200",
-          "stroke-dashoffset": "-35"
-        },
-        "100%": {
-          "stroke-dasharray": "89, 200",
-          "stroke-dashoffset": "-124"
-        }
-      },
       "animate|linear-visible": {
         "0%": {
           "transform": "scaleY(0)"
@@ -127,6 +77,58 @@
           "right": "-8%"
         }
       },
+      "animate|circle-visible": {
+        "0%": {
+          "opacity": "0"
+        },
+        "100%": {
+          "opacity": "1"
+        }
+      },
+      "animate|circle-hidden": {
+        "0%": {
+          "opacity": "1"
+        },
+        "100%": {
+          "opacity": "0"
+        }
+      },
+      "animate|circle-type1": {
+        "0%": {
+          "stroke-dasharray": "1.256637061435917 125.66370614359173"
+        },
+        "5%": {
+          "stroke-dasharray": "50.265482457436692 125.66370614359173"
+        },
+        "50%": {
+          "stroke-dasharray": "113.09733552923253 125.66370614359173"
+        },
+        "100%": {
+          "stroke-dasharray": "119.38052083641211 125.66370614359173"
+        }
+      },
+      "animate|circle-type2": {
+        "0%": {
+          "transform": "rotate(0deg)"
+        },
+        "100%": {
+          "transform": "rotate(360deg)"
+        }
+      },
+      "animate|circle-type3": {
+        "0%": {
+          "stroke-dasharray": "1, 200",
+          "stroke-dashoffset": "0"
+        },
+        "50%": {
+          "stroke-dasharray": "89, 200",
+          "stroke-dashoffset": "-35"
+        },
+        "100%": {
+          "stroke-dasharray": "89, 200",
+          "stroke-dashoffset": "-124"
+        }
+      },
       "#circle": {},
       "~type": {
         "circular": {},
@@ -135,6 +137,9 @@
       "~indeterminate": {
         "type1": {},
         "type2": {}
+      },
+      "~inverse": {
+        "var|_background": "{??sys.inverse}"
       },
       "~bottom": {
         "var|l": {
@@ -149,9 +154,6 @@
             "padding": "0px"
           }
         }
-      },
-      "~inverse": {
-        "var|_background": "{??sys.inverse}"
       }
     }
   }
