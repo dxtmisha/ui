@@ -1,0 +1,11 @@
+@import "../../../styles/properties";
+
+@mixin mixinCheckboxProgress() {
+  @include propertyCustom('?progress.padding', '0px');
+
+  @include subClass('icon') {
+    > #{c('?progress')} ~ * {
+      opacity: 0;
+    }
+  }
+}

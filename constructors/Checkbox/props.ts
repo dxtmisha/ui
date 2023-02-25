@@ -30,6 +30,7 @@ export const props = {
   },
 
   // Status
+  progress: Boolean,
   readonly: Boolean,
   disabled: Boolean,
 

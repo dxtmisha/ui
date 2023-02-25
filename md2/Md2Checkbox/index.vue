@@ -12,8 +12,8 @@
     >
     <span :class="classes.item">
       <span :class="classes.icon">
+        <md2-progress v-if="progress" v-bind="progressBind"/>
         <md2-image v-bind="iconBind"/>
-        <md2-progress v-bind="progressBind"/>
       </span>
       <md2-ripple v-if="isRipple"/>
     </span>

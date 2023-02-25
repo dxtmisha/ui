@@ -55,7 +55,7 @@
 
     transition-property: background-color, border-color;
 
-    > * {
+    > #{c('?image')} {
       clip-path: v('??l.icon.clip-path');
       transition-property: v('??l.icon.transition-property');
     }
