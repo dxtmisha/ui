@@ -82,8 +82,10 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       ...this.getBasic(),
       classes,
       type: this.type,
+
       isText: this.isText,
       isValue: this.value.valueForCheckbox,
+      isEnabled: this.enabled.item,
       isRipple: this.enabled.itemRipple,
 
       iconBind: this.getBind(this.refs?.icon, 'value'),
