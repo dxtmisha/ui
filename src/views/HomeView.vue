@@ -5,19 +5,47 @@
       <md2-checkbox/>
       <md2-checkbox text="text"/>
       <md2-checkbox required text="required"/>
-      <md2-checkbox text="validation" validation-message="validation message"/>
       <md2-checkbox readonly text="readonly"/>
       <md2-checkbox disabled text="disabled"/>
-      <md2-checkbox disabled text="disabled + validation" validation-message="validation message"/>
+      <md2-checkbox ripple text="ripple"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-checkbox value/>
       <md2-checkbox text="text" value/>
       <md2-checkbox required text="required" value/>
-      <md2-checkbox text="validation" validation-message="validation message" value/>
       <md2-checkbox readonly text="readonly" value/>
       <md2-checkbox disabled text="disabled" value/>
-      <md2-checkbox disabled text="disabled + validation" validation-message="validation message" value/>
+      <md2-checkbox :ripple="false" text="ripple" value/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-checkbox palette="green" text="text"/>
+      <md2-checkbox palette="green" text="text + validation" validation-message="validation message"/>
+      <md2-checkbox disabled palette="green" text="text + disabled"/>
+      <md2-checkbox
+        disabled
+        palette="green"
+        text="text + disabled + validation"
+        validation-message="validation message"
+      />
+      <md2-checkbox
+        disabled
+        palette="green"
+        text="text + disabled + validation + value"
+        validation-message="validation message"
+        value
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-checkbox text="helper" helper-message="helper message"/>
+      <md2-checkbox text="validation" validation-message="validation message"/>
+      <md2-checkbox text="validation + value" validation-message="validation message" value/>
+      <md2-checkbox required text="code" validation-code="validation code"/>
+      <md2-checkbox required text="code" :validation-code="{valueMissing: 'value missing'}"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-checkbox disabled text="disabled + helper" helper-message="helper message"/>
+      <md2-checkbox disabled text="disabled + validation" validation-message="validation message"/>
+      <md2-checkbox disabled text="disabled + validation + value" validation-message="validation" value/>
     </div>
 
     <div class="px-4 py-2"><b>checkbox, align</b></div>
