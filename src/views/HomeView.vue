@@ -5,7 +5,20 @@
       <md2-checkbox/>
       <md2-checkbox text="text"/>
       <md2-checkbox required text="required"/>
+      <md2-checkbox text="validation" validation-message="validation message"/>
+      <md2-checkbox disabled text="disabled"/>
+      <md2-checkbox disabled text="disabled + validation" validation-message="validation message"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-checkbox value/>
+      <md2-checkbox text="text" value/>
+      <md2-checkbox required text="required" value/>
+      <md2-checkbox text="validation" validation-message="validation message" value/>
+      <md2-checkbox disabled text="disabled" value/>
+      <md2-checkbox disabled text="disabled + validation" validation-message="validation message" value/>
+    </div>
+
+    <div class="px-4 py-2"><b>checkbox, align</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-checkbox right text="right"/>
       <md2-checkbox text="left"/>

@@ -32,17 +32,17 @@
         "checked": {
           "palette": "",
           "icon": {
-            "backgroundOpacity": "{??sys.icon.textOpacity}",
-            "borderOpacity": "0",
             "text": "{??sys.icon.text}",
             "textOpacity": "{??sys.icon.textOpacity}",
+            "backgroundOpacity": "{??sys.icon.textOpacity}",
+            "borderOpacity": "0",
             "clipPath": "inset(0 0 0 0)",
             "transitionProperty": "clip-path, opacity, transform"
           }
         },
         "error": {
           "palette": "",
-          "text": "{??sys.error.palette}"
+          "text": "{??sys.text}"
         },
         "disabled": {
           "palette": "",
@@ -89,6 +89,12 @@
           "borderOpacity": "{??sys.icon.borderOpacity}",
           "clipPath": "{??sys.icon.clipPath}",
           "transitionProperty": "{??sys.icon.transitionProperty}"
+        },
+        "checked": {
+          "icon": {
+            "backgroundOpacity": "{??sys.checked.icon.backgroundOpacity}",
+            "borderOpacity": "{??sys.checked.icon.borderOpacity}"
+          }
         }
       },
       "#circle": {},

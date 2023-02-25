@@ -28,6 +28,14 @@
       transition-duration: v('d.sys.transition-duration.fade.through');
     }
   }
+
+  input:active ~ {
+    @include subClassByGlobal('item') {
+      &::after {
+        transition-duration: v('d.sys.transitionDuration.sm');
+      }
+    }
+  }
 }
 
 @mixin mixinCheckboxIcon() {

@@ -22,6 +22,8 @@
     @include mixinCheckboxRight;
 
     @include mixinCheckboxChecked;
+    @include mixinCheckboxError;
+    @include mixinCheckboxDisabled;
 
     @include mixinCheckboxHover;
     @include mixinCheckboxActive;
@@ -35,34 +37,4 @@
   align-items: flex-start;
 
   @include color(v('??l.text'), v('??l.text-opacity'));
-
-  &.is-error,
-  &.is-error input:checked ~ * {
-    @include linkTo('palette', '??sys.error.palette');
-    @include linkTo('text', '??sys.error.text');
-  }
-
-  @include mixinDisabled;
-}
-
-@mixin mixinDisabled() {
-  @include modClass('disabled') {
-    @include linkTo('palette', '??sys.disabled.palette');
-    @include linkTo('text-opacity', '??sys.disabled.text-opacity');
-    @include linkTo('icon.border-opacity', '??sys.disabled.icon.border-opacity');
-
-    input:active +,
-    input:hover + {
-      * {
-        @include linkTo('item.background-opacity', '??sys.disabled.item.background-opacity');
-        @include linkTo('item.border-opacity', '??sys.disabled.item.border-opacity');
-      }
-    }
-
-    input:checked ~ * {
-      @include linkTo('palette', '??sys.disabled.palette');
-      @include linkTo('icon.background-opacity', '??sys.disabled.checked.icon.background-opacity');
-      @include linkTo('icon.border-opacity', '??sys.disabled.checked.icon.border-opacity');
-    }
-  }
 }

@@ -121,6 +121,19 @@ $currentStatus: () !default;
   @include link($name, v($value, $default), $important)
 }
 
+@mixin linkItem(
+  $index,
+  $name,
+  $important: false
+) {
+  @include linkTo(
+                  $index,
+                  #{#{'??sys.'}#{$name}#{'.'}#{$index}},
+                  v(#{#{'??sys.'}#{$index}}),
+                  $important
+  );
+}
+
 @mixin linkList(
   $name,
   $important: (),
@@ -128,10 +141,9 @@ $currentStatus: () !default;
 ) {
   @each $index in $currentStatus {
     @if (list.index($ignore, $index) == null) {
-      @include linkTo(
+      @include linkItem(
                       $index,
-                      #{#{'??sys.'}#{$name}#{'.'}#{$index}},
-                      v(#{#{'??sys.'}#{$index}}),
+                      $name,
                       list.index($important, $index)
       );
     }

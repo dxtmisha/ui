@@ -5,6 +5,8 @@
     @include marginLeft(v('??sys.gap'));
     padding-top: calc((#{v('??sys.item.size')} - #{v('??sys.label.line-height')}) / 2);
 
+    @include color(v('??l.text'), v('??l.text-opacity'));
+
     > * {
       display: block;
     }

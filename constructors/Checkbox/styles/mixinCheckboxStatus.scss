@@ -1,31 +1,53 @@
 @import "../../../styles/use";
 
-@mixin mixinCheckboxStatus($type) {
-  @include linkList($type, (), (
-          'palette',
-          'icon.text',
-          'icon.text-opacity',
-          'icon.background-opacity',
-          'icon.border-opacity',
-          'icon.clip-path',
-          'icon.transition-property'
-  ));
-}
-
 @mixin mixinCheckboxChecked {
   input:checked ~ * {
-    @include linkList('checked', (
-            'icon.clip-path',
-            'icon.transition-property'
-    ));
+    @include linkItem('palette', 'checked');
+    @include linkItem('icon.text', 'checked');
+    @include linkItem('icon.text-opacity', 'checked');
+    @include linkItem('icon.clip-path', 'checked');
+    @include linkItem('icon.transition-property', 'checked');
+
+    @include linkTo('icon.background-opacity', '??l.checked.icon.background-opacity');
+    @include linkTo('icon.border-opacity', '??l.checked.icon.border-opacity');
+  }
+}
+
+@mixin mixinCheckboxError {
+  @include useEnabled {
+    &.is-error input ~ * {
+      @include linkItem('palette', 'error');
+      @include linkItem('text', 'error');
+
+      --sys-palette: #{v('??l.palette')};
+    }
+  }
+}
+
+@mixin mixinCheckboxDisabled() {
+  @include modClass('disabled') {
+    input ~ * {
+      @include linkItem('palette', 'disabled', true);
+      @include linkItem('text-opacity', 'disabled', true);
+      @include linkItem('item.background-opacity', 'disabled', true);
+      @include linkItem('item.border-opacity', 'disabled', true);
+      @include linkItem('icon.border-opacity', 'disabled');
+      @include linkItem('checked.icon.background-opacity', 'disabled', true);
+      @include linkItem('checked.icon.border-opacity', 'disabled', true);
+
+      --sys-palette: #{v('??l.palette')};
+    }
   }
 }
 
 @mixin mixinCheckboxHover {
   @include useEnabled {
-    @include subClassByGlobal('item') {
-      &:hover {
-        @include mixinCheckboxStatus('hover');
+    input:not(:active) + {
+      @include subClassByGlobal('item') {
+        &:hover {
+          @include linkItem('item.background-opacity', 'hover');
+          @include linkItem('item.border-opacity', 'hover');
+        }
       }
     }
   }
@@ -33,20 +55,9 @@
 
 @mixin mixinCheckboxActive {
   @include useEnabled {
-    input:active ~ {
-      & * {
-        @include mixinCheckboxStatus('active');
-      }
-
-      @include subClassByGlobal('item') {
-        &::after {
-          transition-duration: v('d.sys.transitionDuration.sm');
-        }
-
-        &:hover {
-          @include mixinCheckboxStatus('active');
-        }
-      }
+    input:active ~ * {
+      @include linkItem('item.background-opacity', 'active');
+      @include linkItem('item.border-opacity', 'active');
     }
   }
 }
