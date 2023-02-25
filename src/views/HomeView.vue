@@ -20,6 +20,8 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-checkbox palette="green" text="text"/>
       <md2-checkbox palette="green" text="text + validation" validation-message="validation message"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
       <md2-checkbox disabled palette="green" text="text + disabled"/>
       <md2-checkbox
         disabled

@@ -7,10 +7,9 @@ export class InputValue {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    protected readonly emit: (type: string, options: AssociativeType | any) => void,
-    protected readonly valueIn: Ref<BooleanOrNumberOrStringType>,
-    protected readonly modelValue = valueIn as Ref<BooleanOrNumberOrStringType>,
-    protected readonly readonly?: Ref<boolean>
+    private readonly emit: (type: string, options: AssociativeType | any) => void,
+    private readonly valueIn: Ref<BooleanOrNumberOrStringType>,
+    private readonly modelValue = valueIn as Ref<BooleanOrNumberOrStringType>
   ) {
     watch([this.valueIn, this.modelValue], () => this.update())
     watch(this.value, value => {
@@ -54,9 +53,7 @@ export class InputValue {
   }
 
   set (value: BooleanOrNumberOrStringType): this {
-    if (this.readonly?.value !== true) {
-      this.value.value = value
-    }
+    this.value.value = value
 
     return this
   }
@@ -117,8 +114,7 @@ export class InputValue {
     return new InputValue(
       context.emit,
       refs?.value,
-      refs?.modelValue,
-      refs?.readonly
+      refs?.modelValue
     )
   }
 }

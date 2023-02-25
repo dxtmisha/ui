@@ -3,7 +3,7 @@ import { computed, Ref } from 'vue'
 export class UseEnabled {
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly disabled: Ref<boolean>,
+    private readonly disabled?: Ref<boolean>,
     private readonly readonly?: Ref<boolean>,
     private readonly progress?: Ref<boolean>,
     private readonly ripple?: Ref<boolean>
@@ -11,7 +11,7 @@ export class UseEnabled {
   }
 
   readonly item = computed<boolean>(
-    () => !this.disabled.value && !this.readonly?.value && !this.progress?.value
+    () => !this.disabled?.value && !this.readonly?.value && !this.progress?.value
   )
 
   readonly itemDisabled = computed<boolean | undefined>(() => this.isDisabled() || undefined)
