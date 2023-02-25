@@ -6,6 +6,7 @@
       <md2-checkbox text="text"/>
       <md2-checkbox required text="required"/>
       <md2-checkbox text="validation" validation-message="validation message"/>
+      <md2-checkbox readonly text="readonly"/>
       <md2-checkbox disabled text="disabled"/>
       <md2-checkbox disabled text="disabled + validation" validation-message="validation message"/>
     </div>
@@ -14,6 +15,7 @@
       <md2-checkbox text="text" value/>
       <md2-checkbox required text="required" value/>
       <md2-checkbox text="validation" validation-message="validation message" value/>
+      <md2-checkbox readonly text="readonly" value/>
       <md2-checkbox disabled text="disabled" value/>
       <md2-checkbox disabled text="disabled + validation" validation-message="validation message" value/>
     </div>

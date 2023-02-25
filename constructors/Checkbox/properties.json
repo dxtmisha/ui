@@ -97,22 +97,18 @@
           }
         }
       },
-      "#circle": {},
-      "#disabled": {},
-      "#icon": {},
       "#input": {},
-      "#item": {
-        "?ripple-background": "{??l.palette}"
-      },
-      "#required": {},
-      "#right": {},
+      "#item": {},
+      "#icon": {},
       "#switch": {
         "?ripple-background": "{??l.palette}"
       },
+      "#circle": {},
       "#text": {},
-      "& .?field-message": {
-        "padding-top": "0"
-      }
+      "#required": {},
+      "#right": {},
+      "#readonly": {},
+      "#disabled": {}
     }
   }
 }

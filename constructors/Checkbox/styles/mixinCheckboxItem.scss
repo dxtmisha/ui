@@ -13,6 +13,8 @@
 
     transition-property: background-color, transform;
 
+    @include propertyCustomTo('?ripple.background', '??l.palette');
+
     &::after {
       content: " ";
       position: absolute;

@@ -92,20 +92,20 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
 
   private readonly input = computed<AssociativeType>(() => {
     return {
-      name: this.refs.name.value,
-      value: this.refs.valueDefault.value,
-      required: this.refs.required.value,
-      readonly: this.refs.readonly.value,
-      disabled: this.refs.disabled.value,
+      name: this.props?.name,
+      value: this.props?.valueDefault,
+      required: this.props?.required,
+      readonly: this.props?.readonly,
+      disabled: this.props?.disabled,
       type: this.type,
-      ...this.refs.input.value
+      ...this.refs.input?.value
     }
   })
 
   private readonly message = computed<AssociativeType>(() => {
     return {
-      disabled: this.props.disabled,
-      helperMessage: this.props.helperMessage,
+      disabled: this.props?.disabled,
+      helperMessage: this.props?.helperMessage,
       validationMessage: this.validation.message.value
     }
   })

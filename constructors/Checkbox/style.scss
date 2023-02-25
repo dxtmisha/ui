@@ -37,4 +37,8 @@
   align-items: flex-start;
 
   @include color(v('??l.text'), v('??l.text-opacity'));
+
+  #{c('?field-message')} {
+    padding-top: 0;
+  }
 }
