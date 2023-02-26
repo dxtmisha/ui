@@ -3,46 +3,25 @@
 
 @mixin initRadio($design) {
   @include propertiesInit($design, 'radio') {
+    @include mixinCheckboxFull;
     @include mixinRadio;
+
     @content;
   }
 }
 
 @mixin mixinRadio() {
-  @include mixinCheckbox;
-  @include mixinRadioIcon;
-  @include mixinRadioCircle;
-}
-
-@mixin mixinRadioIcon() {
   @include subClass('icon') {
     @include propertiesLink('d.flex.center');
-    border-radius: 100%;
-
-    > * {
-      clip-path: inset(0 0 0 0);
-      opacity: 0;
-      transform: scale(.5);
-    }
   }
 
-  input:checked + {
-    @include subClassByGlobal('item') {
-      @include subClassByGlobal('icon') {
-        > * {
-          opacity: 1;
-          transform: none;
-        }
-      }
-    }
-  }
-}
-
-@mixin mixinRadioCircle() {
   @include subClass('circle') {
-    @include background(v('??sys.icon.text'), v('??sys.icon.text-opacity'));
+    position: relative;
     @include circle(v('??sys.circle.size'));
 
-    position: relative;
+    @include background(v('??l.palette'), v('??l.icon.text-opacity'));
+
+    clip-path: v('??l.icon.clip-path');
+    transition-property: v('??l.icon.transition-property');
   }
 }

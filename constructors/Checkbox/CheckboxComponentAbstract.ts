@@ -23,7 +23,8 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
     'update:modelValue'
   ] as string[]
 
-  private readonly type = 'checkbox' as string
+  protected readonly type = 'checkbox' as string
+
   private readonly value: InputValue
   private readonly change: InputChange
   private readonly enabled: UseEnabled
@@ -37,8 +38,9 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
   private readonly message: FieldMessageProps
 
   constructor (
-    protected readonly props: AssociativeType & object,
-    protected readonly context: AssociativeType & object
+    props: AssociativeType & object,
+    context: AssociativeType & object,
+    inverse = true as boolean
   ) {
     super(props, context)
 
@@ -70,7 +72,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       this.refs?.validationMessage
     )
 
-    this.inverse = new UseInverse([true], this.value.value)
+    this.inverse = new UseInverse([true], inverse ? this.value.value : undefined)
     this.progress = new UseProgress('circular', this.inverse)
 
     this.message = new FieldMessageProps(

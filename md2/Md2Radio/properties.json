@@ -7,36 +7,29 @@
         "gap": "{ref.spacing.2}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
-        "circle": {
-          "font": "{ref.spacing.4}",
-          "size": "{ref.spacing.3}"
-        },
-        "icon": {
-          "borderWidth": "{ref.spacing.px} * 2",
-          "borderOpacity": "{sys.opacity.surface.medium}",
-          "rounded": "{ref.spacing.1}",
-          "size": "{ref.spacing.5}",
-          "text": "{sys.palette.onPrimary}",
-          "textOpacity": "{sys.opacity.primary.high}"
-        },
         "item": {
           "borderWidth": "{ref.spacing.px}",
           "size": "{ref.spacing.10}"
         },
+        "icon": {
+          "borderWidth": "{ref.spacing.px} * 2",
+          "borderOpacity": "{sys.opacity.surface.medium}",
+          "size": "{ref.spacing.5}",
+          "text": "{sys.palette.onPrimary}",
+          "textOpacity": "{sys.opacity.primary.high}"
+        },
+        "circle": {
+          "font": "{ref.spacing.4}",
+          "size": "{ref.spacing.px} * 10"
+        },
+        "progress": {
+          "padding": "{ref.spacing.px} * 2"
+        },
         "label": {
-          "lineHeight": "{ref.spacing.6}",
-          "required": "{sys.palette.error}"
+          "lineHeight": "{ref.spacing.6}"
         },
-        "active": {
-          "item": {
-            "borderOpacity": "{sys.opacity.border}",
-            "backgroundOpacity": "{sys.opacity.disabled}"
-          }
-        },
-        "hover": {
-          "item": {
-            "backgroundOpacity": "{sys.opacity.hover}"
-          }
+        "required": {
+          "text": "{sys.palette.error}"
         },
         "checked": {
           "palette": "{sys.palette.primary}"
@@ -47,6 +40,17 @@
         "disabled": {
           "palette": "{sys.palette.disabled}",
           "textOpacity": "{sys.opacity.surface.disabled}"
+        },
+        "hover": {
+          "item": {
+            "backgroundOpacity": "{sys.opacity.hover}"
+          }
+        },
+        "active": {
+          "item": {
+            "borderOpacity": "{sys.opacity.border}",
+            "backgroundOpacity": "{sys.opacity.disabled}"
+          }
         }
       },
       "@@palette": "{?palette}"

@@ -3,12 +3,34 @@
     "radio": {
       "@style": "{d.checkbox}",
       "var|sys": {
+        "icon": {
+          "rounded": "100%",
+          "clipPath": "circle(0% at 50% 50%)"
+        },
         "circle": {
-          "font": "",
-          "size": ""
+          "size": "",
+          "font": ""
+        },
+        "checked": {
+          "icon": {
+            "backgroundOpacity": "0",
+            "borderOpacity": "{??sys.icon.textOpacity}",
+            "clipPath": "circle(100% at 50% 50%)",
+            "transitionProperty": "clip-path, opacity, transform"
+          }
+        },
+        "disabled": {
+          "icon": {
+            "textOpacity": "{??sys.disabled.textOpacity}"
+          },
+          "checked": {
+            "icon": {
+              "backgroundOpacity": "0",
+              "borderOpacity": "{??sys.disabled.textOpacity}"
+            }
+          }
         }
       },
-      "#circle": {},
       "?image-font-size": "{??sys.circle.font}"
     }
   }

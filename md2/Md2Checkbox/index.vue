@@ -36,16 +36,16 @@ import { CheckboxComponent } from './CheckboxComponent'
 import { props } from './props'
 import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 import Md2Image from '../Md2Image/index.vue'
-import Md2Ripple from '../Md2Ripple/index.vue'
 import Md2Progress from '../Md2Progress/index.vue'
+import Md2Ripple from '../Md2Ripple/index.vue'
 
 export default {
   name: 'Md2Checkbox',
   components: {
-    Md2Progress,
-    Md2Ripple,
     Md2FieldMessage,
-    Md2Image
+    Md2Image,
+    Md2Progress,
+    Md2Ripple
   },
   props,
   emits: CheckboxComponent.emits,

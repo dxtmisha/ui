@@ -1,5 +1,25 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>radio</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio name="name1" value-default="1"/>
+      <md2-radio name="name2" value-default="1" text="text"/>
+      <md2-radio name="name3" value-default="1" required text="required"/>
+      <md2-radio name="name4" value-default="1" progress text="progress"/>
+      <md2-radio name="name5" value-default="1" readonly text="readonly"/>
+      <md2-radio name="name6" value-default="1" disabled text="disabled"/>
+      <md2-radio name="name7" value-default="1" ripple text="ripple"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio name="name1" value-default="2" value/>
+      <md2-radio name="name2" value-default="2" text="text" value/>
+      <md2-radio name="name3" value-default="2" required text="required" value/>
+      <md2-radio name="name4" value-default="2" progress text="progress" value/>
+      <md2-radio name="name5" value-default="2" readonly text="readonly" value/>
+      <md2-radio name="name6" value-default="2" disabled text="disabled" value/>
+      <md2-radio name="name7" value-default="2" :ripple="false" text="ripple" value/>
+    </div>
+
     <div class="px-4 py-2"><b>checkbox</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-checkbox/>
@@ -1084,6 +1104,7 @@ import Md2Button from '../../md2/Md2Button/index.vue'
 import Md2Chip from '../../md2/Md2Chip/index.vue'
 import Md2Fab from '../../md2/Md2Fab/index.vue'
 import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
+import Md2Radio from '../../md2/Md2Radio/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1093,6 +1114,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Radio,
     Md2Checkbox,
     Md2Fab,
     Md2Chip,

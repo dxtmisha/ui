@@ -11,6 +11,7 @@
     >
     <span :class="classes.item">
       <span :class="classes.icon">
+        <md2-progress v-if="progress" v-bind="progressBind"/>
         <md2-image v-if="icon" v-bind="iconBind"/>
         <span v-else :class="classes.circle"/>
       </span>
@@ -35,14 +36,16 @@ import { RadioComponent } from './RadioComponent'
 import { props } from './props'
 import Md2FieldMessage from '../Md2FieldMessage/index.vue'
 import Md2Image from '../Md2Image/index.vue'
+import Md2Progress from '../Md2Progress/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
 
 export default {
   name: 'Md2Radio',
   components: {
-    Md2Ripple,
     Md2FieldMessage,
-    Md2Image
+    Md2Image,
+    Md2Progress,
+    Md2Ripple
   },
   props,
   emits: RadioComponent.emits,

@@ -12,29 +12,12 @@
 
 @mixin initCheckbox($design) {
   @include propertiesInit($design, 'checkbox') {
-    @include mixinCheckbox;
-
-    @include mixinCheckboxInput;
-    @include mixinCheckboxItem;
-    @include mixinCheckboxIcon;
-    @include mixinCheckboxText;
-    @include mixinCheckboxRequired;
-    @include mixinCheckboxProgress;
-
-    @include mixinCheckboxRight;
-
-    @include mixinCheckboxChecked;
-    @include mixinCheckboxError;
-    @include mixinCheckboxDisabled;
-
-    @include mixinCheckboxHover;
-    @include mixinCheckboxActive;
-
+    @include mixinCheckboxFull;
     @content;
   }
 }
 
-@mixin mixinCheckbox() {
+@mixin mixinCheckbox {
   display: inline-flex;
   align-items: flex-start;
 
@@ -43,4 +26,24 @@
   #{c('?field-message')} {
     padding-top: 0;
   }
+}
+
+@mixin mixinCheckboxFull {
+  @include mixinCheckbox;
+
+  @include mixinCheckboxInput;
+  @include mixinCheckboxItem;
+  @include mixinCheckboxIcon;
+  @include mixinCheckboxText;
+  @include mixinCheckboxRequired;
+  @include mixinCheckboxProgress;
+
+  @include mixinCheckboxRight;
+
+  @include mixinCheckboxChecked;
+  @include mixinCheckboxError;
+  @include mixinCheckboxDisabled;
+
+  @include mixinCheckboxHover;
+  @include mixinCheckboxActive;
 }

@@ -1,7 +1,7 @@
 @import "../../../styles/properties";
 
 @mixin mixinCheckboxProgress() {
-  @include propertyCustom('?progress.padding', '0px');
+  @include propertyCustomTo('?progress.padding', '??sys.progress.padding');
 
   @include subClass('icon') {
     > #{c('?progress')} ~ * {

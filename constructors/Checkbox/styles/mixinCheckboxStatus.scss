@@ -31,6 +31,7 @@
       @include linkItem('text-opacity', 'disabled', true);
       @include linkItem('item.background-opacity', 'disabled', true);
       @include linkItem('item.border-opacity', 'disabled', true);
+      @include linkItem('icon.text-opacity', 'disabled', true);
       @include linkItem('icon.border-opacity', 'disabled');
       @include linkItem('checked.icon.background-opacity', 'disabled', true);
       @include linkItem('checked.icon.border-opacity', 'disabled', true);
