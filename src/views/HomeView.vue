@@ -19,6 +19,43 @@
       <md2-radio name="name6" value-default="2" disabled text="disabled" value/>
       <md2-radio name="name7" value-default="2" :ripple="false" text="ripple" value/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio palette="green" text="text"/>
+      <md2-radio palette="green" progress text="text + progress"/>
+      <md2-radio palette="green" text="text + validation" validation-message="validation message"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio disabled palette="green" text="text + disabled"/>
+      <md2-radio
+        disabled
+        palette="green"
+        text="text + disabled + validation"
+        validation-message="validation message"
+      />
+      <md2-radio
+        disabled
+        palette="green"
+        text="text + disabled + validation + value"
+        validation-message="validation message"
+        value
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio text="helper" helper-message="helper message"/>
+      <md2-radio text="validation" validation-message="validation message"/>
+      <md2-radio text="validation + value" validation-message="validation message" value/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio disabled text="disabled + helper" helper-message="helper message"/>
+      <md2-radio disabled text="disabled + validation" validation-message="validation message"/>
+      <md2-radio disabled text="disabled + validation + value" validation-message="validation" value/>
+    </div>
+
+    <div class="px-4 py-2"><b>radio, align</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-radio name="align" right text="right" value-default="align1"/>
+      <md2-radio name="align" text="left" value-default="align2"/>
+    </div>
 
     <div class="px-4 py-2"><b>checkbox</b></div>
     <div class="flex px-4 py-2 gap-2">

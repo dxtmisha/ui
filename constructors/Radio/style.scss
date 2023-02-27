@@ -19,7 +19,8 @@
     position: relative;
     @include circle(v('??sys.circle.size'));
 
-    @include background(v('??l.palette'), v('??l.icon.text-opacity'));
+    @include paletteBackground(v('??l.palette'));
+    @include backgroundOpacity(v('??l.icon.text-opacity'));
 
     clip-path: v('??l.icon.clip-path');
     transition-property: v('??l.icon.transition-property');
