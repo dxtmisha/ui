@@ -25,17 +25,17 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
 
   protected readonly type = 'checkbox' as string
 
-  private readonly value: InputValue
-  private readonly change: InputChange
-  private readonly enabled: UseEnabled
+  protected readonly value: InputValue
+  protected readonly change: InputChange
+  protected readonly enabled: UseEnabled
 
-  private readonly validation: InputValidation
-  private readonly event: InputEvent
+  protected readonly validation: InputValidation
+  protected readonly event: InputEvent
 
-  private readonly inverse: UseInverse
-  private readonly progress: UseProgress
+  protected readonly inverse: UseInverse
+  protected readonly progress: UseProgress
 
-  private readonly message: FieldMessageProps
+  protected readonly message: FieldMessageProps
 
   constructor (
     props: AssociativeType & object,
@@ -62,7 +62,8 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       this.change,
       undefined,
       this.refs?.validationCode,
-      this.refs?.validationMessage
+      this.refs?.validationMessage,
+      this.element
     )
     this.event = new InputEvent(
       this.context.emit,

@@ -4,7 +4,7 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-radio name="name1" value-default="1"/>
       <md2-radio name="name2" value-default="1" text="text"/>
-      <md2-radio name="name3" value-default="1" required text="required"/>
+      <md2-radio name="name3" value-default="1" required text="required" @on-input="onEmit"/>
       <md2-radio name="name4" value-default="1" progress text="progress"/>
       <md2-radio name="name5" value-default="1" readonly text="readonly"/>
       <md2-radio name="name6" value-default="1" disabled text="disabled"/>
@@ -13,7 +13,7 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-radio name="name1" value-default="2" value/>
       <md2-radio name="name2" value-default="2" text="text" value/>
-      <md2-radio name="name3" value-default="2" required text="required" value/>
+      <md2-radio name="name3" value-default="2" required text="required" value @on-input="onEmit"/>
       <md2-radio name="name4" value-default="2" progress text="progress" value/>
       <md2-radio name="name5" value-default="2" readonly text="readonly" value/>
       <md2-radio name="name6" value-default="2" disabled text="disabled" value/>

@@ -2,7 +2,6 @@
   <label :class="classes.main">
     <input :name="name" type="hidden" value="0">
     <input
-      ref="input"
       v-model="valueBind"
       :checked="isValue"
       :class="classes.input"

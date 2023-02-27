@@ -3,6 +3,7 @@ import { InputChange } from './InputChange'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
 import { createElement } from '../../functions'
+
 import { AssociativeType } from '../types'
 import { InputValidationType, InputValidityType } from './types'
 
@@ -16,13 +17,14 @@ export class InputValidation {
     protected readonly change?: InputChange,
     protected readonly match?: InputMatch,
     protected readonly validationCode?: Ref<string | InputValidityType>,
-    protected readonly validationMessage?: Ref<string>
+    protected readonly validationMessage?: Ref<string>,
+    protected readonly elementMain?: Ref<HTMLInputElement | undefined>
   ) {
   }
 
-  protected readonly element = computed<HTMLInputElement>(() => {
-    return createElement(undefined, 'input', this.input.value)
-  })
+  protected readonly element = computed<HTMLInputElement>(
+    () => createElement<HTMLInputElement>(undefined, 'input', this.input.value)
+  )
 
   readonly error = computed<boolean>(() => !this.checkValidity())
 
@@ -39,15 +41,12 @@ export class InputValidation {
   readonly message = computed<string>(() => this.item.value?.validationMessage || '')
 
   protected check (): InputValidationType | undefined {
-    const input = this.element.value
+    const input = this.getInput()
+    const check = input.checkValidity()
 
-    if (this.isCheckbox.value) {
-      input.checked = this.value.is()
-    } else {
-      input.value = this.value.get().toString().trim()
-    }
+    this.removeChild()
 
-    if (input.checkValidity()) {
+    if (check) {
       return undefined
     } else {
       return {
@@ -96,6 +95,24 @@ export class InputValidation {
     return undefined
   }
 
+  set (validation: InputValidationType | AssociativeType): this {
+    if (
+      'checkValidity' in validation &&
+      'validationMessage' in validation
+    ) {
+      this.validation.value = {
+        checkValidity: validation.checkValidity,
+        input: validation.input,
+        validity: validation.validity,
+        validationMessage: validation.validationMessage
+      }
+    } else {
+      this.validation.value = undefined
+    }
+
+    return this
+  }
+
   protected getIndexCode (state: ValidityState): string {
     if (state.badInput) {
       return 'badInput'
@@ -122,21 +139,23 @@ export class InputValidation {
     }
   }
 
-  set (validation: InputValidationType | AssociativeType): this {
-    if (
-      'checkValidity' in validation &&
-      'validationMessage' in validation
-    ) {
-      this.validation.value = {
-        checkValidity: validation.checkValidity,
-        input: validation.input,
-        validity: validation.validity,
-        validationMessage: validation.validationMessage
-      }
+  protected getInput (): HTMLInputElement {
+    const input = this.element.value
+
+    if (this.isCheckbox.value) {
+      input.checked = this.value.is()
     } else {
-      this.validation.value = undefined
+      input.value = this.value.get().toString().trim()
     }
 
-    return this
+    if (this.elementMain?.value && input && !input.parentElement) {
+      this.elementMain.value?.parentElement?.append(input)
+    }
+
+    return input
+  }
+
+  protected removeChild (): void {
+    this.element.value?.parentElement?.removeChild(this.element.value)
   }
 }

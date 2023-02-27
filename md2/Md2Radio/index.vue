@@ -1,7 +1,7 @@
 <template>
   <label :class="classes.main">
     <input
-      ref="input"
+      ref="element"
       v-model="valueBind"
       :checked="isValue"
       :class="classes.input"
