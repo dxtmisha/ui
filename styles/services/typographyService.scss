@@ -103,10 +103,6 @@
   input,
   textarea,
   select {
-    background-color: transparent;
-    -webkit-appearance: none;
-    appearance: none;
-
     &:-webkit-autofill {
       -webkit-text-fill-color: rgba(var(--sys-color), var(--sys-color-opacity));
     }

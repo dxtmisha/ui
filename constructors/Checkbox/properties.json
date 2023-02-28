@@ -23,6 +23,9 @@
           "clipPath": "inset(0 100% 0 0)",
           "transitionProperty": "none"
         },
+        "progress": {
+          "padding": "1px"
+        },
         "label": {
           "lineHeight": ""
         },

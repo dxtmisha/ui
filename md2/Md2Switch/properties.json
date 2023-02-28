@@ -26,6 +26,9 @@
           "borderWidth": "{ref.spacing.px} * 2",
           "rounded": "{ref.spacing.1}"
         },
+        "progress": {
+          "padding": "{ref.spacing.3}"
+        },
         "label": {
           "lineHeight": "{ref.spacing.6}"
         },

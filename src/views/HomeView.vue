@@ -19,6 +19,40 @@
       <md2-switch disabled text="disabled" value/>
       <md2-switch :ripple="false" text="ripple" value/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-switch palette="green" text="text"/>
+      <md2-switch palette="green" progress text="text + progress"/>
+      <md2-switch palette="green" text="text + validation" validation-message="validation message"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-switch disabled palette="green" text="text + disabled"/>
+      <md2-switch
+        disabled
+        palette="green"
+        text="text + disabled + validation"
+        validation-message="validation message"
+      />
+      <md2-switch
+        disabled
+        palette="green"
+        text="text + disabled + validation + value"
+        validation-message="validation message"
+        value
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-switch text="helper" helper-message="helper message"/>
+      <md2-switch text="validation" validation-message="validation message"/>
+      <md2-switch text="validation + value" validation-message="validation message" value/>
+      <md2-switch required/>
+      <md2-switch required text="code" validation-code="validation code"/>
+      <md2-switch required text="code" :validation-code="{valueMissing: 'value missing'}"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-switch disabled text="disabled + helper" helper-message="helper message"/>
+      <md2-switch disabled text="disabled + validation" validation-message="validation message"/>
+      <md2-switch disabled text="disabled + validation + value" validation-message="validation" value/>
+    </div>
 
     <div class="px-4 py-2"><b>radio</b></div>
     <div class="flex px-4 py-2 gap-2">

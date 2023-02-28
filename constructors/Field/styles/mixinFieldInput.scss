@@ -3,6 +3,7 @@
 @mixin mixinFieldInput() {
   @include subClass('input') {
     -moz-appearance: textfield;
+    -webkit-appearance: textfield;
     appearance: textfield;
 
     position: relative;

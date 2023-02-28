@@ -19,9 +19,6 @@
           "borderOpacity": "{sys.opacity.surface.medium}",
           "borderWidth": "{ref.spacing.px} * 2"
         },
-        "progress": {
-          "padding": "1px"
-        },
         "label": {
           "lineHeight": "{ref.spacing.6}"
         },
