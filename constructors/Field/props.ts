@@ -1,39 +1,39 @@
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
   prefix: [Number, String],
-  required: Boolean,
   suffix: [Number, String],
-  text: [Number, String],
   value: undefined,
+  detail: [Object],
 
   // Message
   counter: Number,
-  helperMessage: String,
   maxlength: Number,
+  helperMessage: String,
   validationMessage: String,
 
   // Status
+  turn: Boolean,
+  focus: Boolean,
+  selected: Boolean,
+  readonly: Boolean,
   disabled: Boolean,
   disabledPrevious: Boolean,
   disabledNext: Boolean,
-  focus: Boolean,
-  readonly: Boolean,
-  selected: Boolean,
-  turn: Boolean,
 
   // Options
-  align: String,
+  palette: String,
   appearance: String,
   arrow: Boolean,
-  cancel: [Boolean, String],
-  height: [Number, String],
-  palette: String,
-  ripple: Boolean,
+  align: String,
   rounded: String,
   width: [Number, String],
+  height: [Number, String],
+  required: Boolean,
+  cancel: [Boolean, String],
+  ripple: Boolean,
 
   // Icon
   iconCancel: String,

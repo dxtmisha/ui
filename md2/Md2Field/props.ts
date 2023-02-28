@@ -13,63 +13,63 @@ import { Md2PaletteType } from '../props.type'
 export const defaultItem = ComponentDesign.getDefault('md2.field')
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
   prefix: [Number, String],
-  required: Boolean,
   suffix: [Number, String],
-  text: [Number, String],
   value: undefined,
+  detail: [Object],
 
   // Message
   counter: Number,
-  helperMessage: String,
   maxlength: Number,
+  helperMessage: String,
   validationMessage: String,
 
   // Status
+  turn: Boolean,
+  focus: Boolean,
+  selected: Boolean,
+  readonly: Boolean,
   disabled: Boolean,
   disabledPrevious: Boolean,
   disabledNext: Boolean,
-  focus: Boolean,
-  readonly: Boolean,
-  selected: Boolean,
-  turn: Boolean,
 
   // Options
-  align: {
-    type: String as PropType<Md2FieldAlignType>,
-    validator: defaultItem.validator('align')
-  },
+  palette: String as PropType<Md2PaletteType>,
   appearance: {
     type: String as PropType<Md2FieldAppearanceType>,
     default: defaultItem.defaultValue('appearance'),
     validator: defaultItem.validator('appearance')
   },
   arrow: Boolean,
-  cancel: {
-    type: String as PropType<Md2FieldCancelType>,
-    default: defaultItem.defaultValue('cancel'),
-    validator: defaultItem.validator('cancel')
-  },
-  height: {
-    type: String as PropType<Md2FieldHeightType>,
-    default: defaultItem.defaultValue('height')
-  },
-  palette: String as PropType<Md2PaletteType>,
-  ripple: {
-    type: Boolean,
-    default: defaultItem.defaultValue('ripple', true)
+  align: {
+    type: String as PropType<Md2FieldAlignType>,
+    validator: defaultItem.validator('align')
   },
   rounded: {
     type: String as PropType<Md2FieldRoundedType>,
     default: defaultItem.defaultValue('rounded'),
     validator: defaultItem.validator('rounded')
   },
+  height: {
+    type: String as PropType<Md2FieldHeightType>,
+    default: defaultItem.defaultValue('height')
+  },
   width: {
     type: [Number, String] as PropType<Md2FieldWidthType>,
     default: defaultItem.defaultValue('width')
+  },
+  required: Boolean,
+  cancel: {
+    type: String as PropType<Md2FieldCancelType>,
+    default: defaultItem.defaultValue('cancel'),
+    validator: defaultItem.validator('cancel')
+  },
+  ripple: {
+    type: Boolean,
+    default: defaultItem.defaultValue('ripple', true)
   },
 
   // Icon
