@@ -1,8 +1,8 @@
 export const props = {
   // Values
   counter: Number,
-  helperMessage: String,
   maxlength: Number,
+  helperMessage: String,
   validationMessage: String,
 
   // Status

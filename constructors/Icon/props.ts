@@ -8,15 +8,15 @@ export const props = {
 
   // Status
   active: Boolean,
-  disabled: Boolean,
-  hide: Boolean,
   turn: Boolean,
+  hide: Boolean,
+  disabled: Boolean,
 
   // Options
-  animationShow: Boolean,
-  animationType: String as PropType<IconIndeterminateType>,
+  size: [Number, String] as PropType<IconSizeType>,
   background: [Boolean, String],
   backgroundActive: Boolean,
-  inEnd: Boolean,
-  size: [Number, String] as PropType<IconSizeType>
+  animationType: String as PropType<IconIndeterminateType>,
+  animationShow: Boolean,
+  inEnd: Boolean
 }
