@@ -11,6 +11,7 @@ import { InputValue } from './InputValue'
 import { InputValidation } from './InputValidation'
 import { getClipboardData } from '../../functions'
 import { props } from './props'
+
 import { AssociativeType } from '../types'
 import { InputSetupType } from './types'
 

@@ -95,8 +95,7 @@ export function isSelectedByList (values: any | any[], selected: any | any[]): b
 
 export function maxListLength (data: AssociativeOrArrayType<string>): number {
   return forEach<string, number, number>(data, item => item.length)
-    ?.sort()
-    ?.reverse()
+    ?.sort((a: number, b: number) => a > b ? -1 : 1)
     ?.[0]
 }
 

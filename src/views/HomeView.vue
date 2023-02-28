@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>mask</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      mask
+      <md2-mask mask="*** **** **"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      mask[]
+      <md2-mask :mask="['*** **', '*** - ** ***', '3) *** - ** *** *']"/>
+    </div>
+
     <div class="px-4 py-2"><b>switch</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-switch/>
@@ -1197,6 +1207,7 @@ import Md2Fab from '../../md2/Md2Fab/index.vue'
 import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
 import Md2Radio from '../../md2/Md2Radio/index.vue'
 import Md2Switch from '../../md2/Md2Switch/index.vue'
+import Md2Mask from '../../md2/Md2Mask/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1206,6 +1217,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Mask,
     Md2Switch,
     Md2Radio,
     Md2Checkbox,

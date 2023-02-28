@@ -14,9 +14,9 @@ export const props = {
   objectHeight: Number,
 
   // Status
-  disabled: Boolean,
-  hide: Boolean,
   turn: Boolean,
+  hide: Boolean,
+  disabled: Boolean,
 
   // Options
   url: {
