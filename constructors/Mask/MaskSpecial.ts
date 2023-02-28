@@ -19,10 +19,10 @@ export class MaskSpecial {
       return ['Y', 'M', 'D', 'h', 'm', 's']
     } else if (this.type.isDate()) {
       return ['Y', 'M', 'D']
-    } else if (typeof this.special.value === 'object') {
-      return Object.keys(this.special.value)
     } else if (Array.isArray(this.special.value)) {
       return this.special.value
+    } else if (typeof this.special.value === 'object') {
+      return Object.keys(this.special.value)
     } else {
       return [this.special.value]
     }

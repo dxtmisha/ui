@@ -9,6 +9,18 @@
       mask[]
       <md2-mask :mask="['*** **', '*** - ** ***', '3) *** - ** *** *']"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      special
+      <md2-mask mask="*** #### **" special="#"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      pattern 7[0-9 ]+
+      <md2-mask mask="*** **** **" pattern="7[0-9 ]+"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      pattern [Object]
+      <md2-mask :pattern="{'*':'7[0-9 ]+','#':'12'}" :special="['*', '#']" mask="*** **** ##"/>
+    </div>
 
     <div class="px-4 py-2"><b>switch</b></div>
     <div class="flex px-4 py-2 gap-2">
