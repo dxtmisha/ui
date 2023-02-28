@@ -43,12 +43,10 @@
 
 @mixin mixinCheckboxHover {
   @include useEnabled {
-    input:not(:active) + {
-      @include subClassByGlobal('item') {
-        &:hover {
-          @include linkItem('item.background-opacity', 'hover');
-          @include linkItem('item.border-opacity', 'hover');
-        }
+    input:not(:active) + * {
+      &:hover {
+        @include linkItem('item.background-opacity', 'hover');
+        @include linkItem('item.border-opacity', 'hover');
       }
     }
   }

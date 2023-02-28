@@ -7,41 +7,30 @@
         "gap": "{ref.spacing.4}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
-        "circle": {
+        "switch": {
+          "width": "{ref.spacing.9}",
+          "height": "{ref.spacing.px} * 14",
+          "backgroundOpacity": "{sys.opacity.scrim}"
+        },
+        "item": {
+          "size": "{ref.spacing.10}",
           "background": "{sys.palette.onPrimary}",
+          "borderWidth": "{ref.spacing.px}",
           "shadow": "{ref.elevation.shadow.1}"
         },
         "icon": {
-          "borderWidth": "{ref.spacing.px} * 2",
-          "borderOpacity": "{sys.opacity.surface.medium}",
-          "rounded": "{ref.spacing.1}",
           "size": "{ref.spacing.5}",
           "text": "{sys.palette.onPrimary}",
-          "textOpacity": "{sys.opacity.primary.high}"
-        },
-        "item": {
-          "borderWidth": "{ref.spacing.px}",
-          "size": "{ref.spacing.10}"
+          "textOpacity": "{sys.opacity.primary.high}",
+          "borderOpacity": "{sys.opacity.surface.medium}",
+          "borderWidth": "{ref.spacing.px} * 2",
+          "rounded": "{ref.spacing.1}"
         },
         "label": {
-          "lineHeight": "{ref.spacing.6}",
-          "required": "{sys.palette.error}"
+          "lineHeight": "{ref.spacing.6}"
         },
-        "switch": {
-          "backgroundOpacity": "{sys.opacity.scrim}",
-          "height": "{ref.spacing.px} * 14",
-          "width": "{ref.spacing.9}"
-        },
-        "active": {
-          "item": {
-            "borderOpacity": "{sys.opacity.border}",
-            "backgroundOpacity": "{sys.opacity.disabled}"
-          }
-        },
-        "hover": {
-          "item": {
-            "backgroundOpacity": "{sys.opacity.hover}"
-          }
+        "required": {
+          "text": "{sys.palette.error}"
         },
         "checked": {
           "palette": "{sys.palette.primary}"
@@ -51,7 +40,21 @@
         },
         "disabled": {
           "palette": "{sys.palette.disabled}",
-          "textOpacity": "{sys.opacity.surface.disabled}"
+          "textOpacity": "{sys.opacity.surface.disabled}",
+          "switch": {
+            "backgroundOpacity": "{sys.opacity.disabled}"
+          }
+        },
+        "hover": {
+          "item": {
+            "backgroundOpacity": "{sys.opacity.hover}"
+          }
+        },
+        "active": {
+          "item": {
+            "borderOpacity": "{sys.opacity.border}",
+            "backgroundOpacity": "{sys.opacity.disabled}"
+          }
         }
       },
       "@@palette": "{?palette}"

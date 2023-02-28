@@ -2,7 +2,6 @@
   <label :class="classes.main">
     <input :name="name" type="hidden" value="0">
     <input
-      ref="input"
       v-model="valueBind"
       :checked="isValue"
       :class="classes.input"
@@ -11,7 +10,7 @@
       @input.prevent="onChecked"
     >
     <span :class="classes.switch">
-      <span :class="classes.circle">
+      <span :class="classes.item">
         <md2-image v-if="icon" v-bind="iconBind"/>
         <md2-ripple v-if="isRipple"/>
       </span>
@@ -21,7 +20,7 @@
         {{ text }}<slot/>
         <span v-if="required" :class="classes.required"/>
       </span>
-      <md2-field-message v-bind="messageBind">
+      <md2-field-message v-if="isEnabled" v-bind="messageBind">
         <template v-slot:default>
           <slot name="message"/>
         </template>

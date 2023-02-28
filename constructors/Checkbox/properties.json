@@ -100,9 +100,7 @@
       "#input": {},
       "#item": {},
       "#icon": {},
-      "#switch": {
-        "?ripple-background": "{??l.palette}"
-      },
+      "#switch": {},
       "#circle": {},
       "#text": {},
       "#required": {},

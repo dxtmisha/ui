@@ -18,6 +18,8 @@
 }
 
 @mixin mixinCheckbox {
+  --_transition-duration: #{v('d.sys.transition-duration.fade.through')};
+
   display: inline-flex;
   align-items: flex-start;
 

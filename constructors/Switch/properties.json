@@ -3,27 +3,24 @@
     "switch": {
       "@style": "{d.checkbox}",
       "var|sys": {
-        "circle": {
+        "switch": {
+          "width": "",
+          "height": "",
+          "backgroundOpacity": ""
+        },
+        "item": {
           "background": "",
-          "backgroundOpacity": "1",
           "shadow": ""
         },
-        "switch": {
-          "backgroundOpacity": "",
-          "height": "",
-          "width": ""
-        },
-        "checked": {
-          "circle": {
-            "background": "{??sys.checked.palette}",
-            "backgroundOpacity": "1"
+        "disabled": {
+          "switch": {
+            "backgroundOpacity": ""
           }
         }
       },
       "var|l": {
-        "circle": {
-          "background": "{??sys.circle.background}",
-          "backgroundOpacity": "{??sys.circle.backgroundOpacity}"
+        "switch": {
+          "backgroundOpacity": "{??sys.switch.backgroundOpacity}"
         }
       }
     }

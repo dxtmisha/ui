@@ -1,6 +1,6 @@
 @import "../../../styles/properties";
 
-@mixin mixinCheckboxItem() {
+@mixin mixinCheckboxItem {
   @include subClass('item') {
     @include propertiesLink('d.flex.center');
     position: relative;
@@ -27,20 +27,16 @@
       border-radius: inherit;
 
       transition-property: border-color;
-      transition-duration: v('d.sys.transition-duration.fade.through');
+      transition-duration: var(--_transition-duration);
     }
   }
 
-  input:active ~ {
-    @include subClassByGlobal('item') {
-      &::after {
-        transition-duration: v('d.sys.transitionDuration.sm');
-      }
-    }
+  input:active + * {
+    --_transition-duration: #{v('d.sys.transition-duration.sm')};
   }
 }
 
-@mixin mixinCheckboxIcon() {
+@mixin mixinCheckboxIcon {
   @include subClass('icon') {
     position: relative;
     @include squared(v('??sys.icon.size'));
