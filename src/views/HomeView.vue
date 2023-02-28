@@ -4,6 +4,22 @@
     <div class="flex px-4 py-2 gap-2">
       mask
       <md2-mask mask="*** **** **"/>
+      <md2-mask mask="*** **** **" value="12345"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      visible off
+      <md2-mask :visible="false" mask="*** **** **"/>
+      <md2-mask :visible="false" mask="*** **** **" value="12345"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      view 0
+      <md2-mask mask="*** **** **" view="0"/>
+      <md2-mask mask="*** **** **" value="12345" view="0"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      right
+      <md2-mask class="w-32" mask="*** **** **" right/>
+      <md2-mask class="w-32" mask="*** **** **" right value="12345"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       mask[]
@@ -18,8 +34,42 @@
       <md2-mask mask="*** **** **" pattern="7[0-9 ]+"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
-      pattern [Object]
+      pattern 7[0-9 ]+ 12
       <md2-mask :pattern="{'*':'7[0-9 ]+','#':'12'}" :special="['*', '#']" mask="*** **** ##"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: datetime
+      <md2-mask type="datetime"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: date
+      <md2-mask :type="'date'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: month
+      <md2-mask :type="'month'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: time
+      <md2-mask :type="'time'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: second
+      <md2-mask :type="'second'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: number
+      <md2-mask :type="'number'"/>
+      fraction: 4
+      <md2-mask :fraction="4" :type="'number'"/>
+      fraction: true
+      <md2-mask :fraction="true" :type="'number'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      type: currency
+      <md2-mask :type="'currency'" currency="VND"/>
+      RUB
+      <md2-mask :type="'currency'" currency="RUB"/>
     </div>
 
     <div class="px-4 py-2"><b>switch</b></div>

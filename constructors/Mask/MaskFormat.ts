@@ -53,7 +53,7 @@ export class MaskFormat {
   getMaskByNumber (): string[] {
     return (this.type.isCurrency() ? this.getCurrency() : this.getNumber())
       .replace(/9/ig, 'n')
-      .replace(/0/ig, 'f')
+      .replace(/3/ig, 'f')
       .split('')
   }
 
@@ -90,7 +90,7 @@ export class MaskFormat {
 
   protected toFraction (): string {
     const data = this.getFraction()
-    return data ? `.${strFill('0', data)}` : ''
+    return data ? `.${strFill('3', data)}` : ''
   }
 
   protected toNumber (): string {
