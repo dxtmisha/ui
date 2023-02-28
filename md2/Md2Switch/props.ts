@@ -21,7 +21,7 @@ export const props = {
 
   // Message
   helperMessage: String,
-  validationCode: [Object],
+  validationCode: [String, Object],
   validationMessage: String,
 
   // On
