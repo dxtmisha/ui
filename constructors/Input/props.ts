@@ -3,40 +3,48 @@ import { InputMatchType, InputTypeType, InputValidityType } from './types'
 
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
-  mask: [Object, String],
-  name: String,
   prefix: [Number, String],
-  required: Boolean,
   suffix: [Number, String],
-  text: [Number, String],
+  placeholder: String,
+  name: String,
   value: [Number, String],
+  detail: [Object],
 
   // Input
+  type: {
+    type: String as PropType<InputTypeType>,
+    default: 'text'
+  },
+  required: Boolean,
+  mask: [Object, String],
+  pattern: String,
+
+  autofocus: Boolean,
   autocomplete: {
     type: String,
     default: 'off'
   },
-  autofocus: Boolean,
   inputmode: String,
+  spellcheck: Boolean,
+
+  minlength: Number,
+  maxlength: Number,
+
   step: Number,
   min: [Number, String],
   max: [Number, String],
-  minlength: Number,
-  maxlength: Number,
-  pattern: String,
-  placeholder: String,
-  spellcheck: Boolean,
+
   input: Object,
   inputMatch: [Object, String] as PropType<InputMatchType>,
 
   // Message
   counter: Boolean,
   helperMessage: String,
-  validationCode: [Object, String] as PropType<string | InputValidityType>,
   validationMessage: String,
+  validationCode: [Object, String] as PropType<string | InputValidityType>,
 
   // On
   modelValue: undefined,
@@ -46,24 +54,20 @@ export const props = {
   },
 
   // Status
-  disabled: Boolean,
-  readonly: Boolean,
   selected: Boolean,
+  readonly: Boolean,
+  disabled: Boolean,
 
   // Options
-  align: String,
+  palette: String,
   appearance: String,
   arrow: Boolean,
-  cancel: [Boolean, String],
-  height: [Number, String],
-  palette: String,
-  ripple: Boolean,
+  align: String,
   rounded: String,
-  type: {
-    type: String as PropType<InputTypeType>,
-    default: 'text'
-  },
   width: [Number, String],
+  height: [Number, String],
+  cancel: [Boolean, String],
+  ripple: Boolean,
   field: Object,
 
   // Icon

@@ -1018,6 +1018,14 @@
       />
     </div>
 
+    <div class="px-4 pt-4 pb-2"><b>input, type</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="text" :type="'text'"/>
+      <md2-input text="number" :type="'number'"/>
+      <md2-input text="number + mask" :mask="{mask:undefined, type:'number', fraction:2}"/>
+      <md2-input text="number + currency" :mask="{mask:undefined, type:'currency', currency:'USD'}"/>
+    </div>
+
     <div class="px-4 pt-4 pb-2"><b>input, align</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input align="left" text="left"/>

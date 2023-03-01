@@ -46,6 +46,8 @@ export class MaskView {
         m: 'm',
         s: 's'
       }
+    } else if (this.type.isCurrencyOrNumber()) {
+      return '0'
     } else {
       return this.viewChar.value
     }
