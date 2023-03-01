@@ -375,11 +375,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.transition.reset()
 
     To.array(chars).forEach(char => {
+      const immediate = this.characters.getImmediate()
+
       this.selection.setShift(
-        this.rubbers.set(this.characters.getImmediate(), char)
+        this.rubbers.set(immediate, char)
       )
 
-      if (this.match.isMatch(char)) {
+      if (this.match.isMatch(char, immediate)) {
         this.characters.shift()
 
         if (

@@ -1,9 +1,10 @@
 import { Ref } from 'vue'
+import { AssociativeType } from '../types'
 
 export class MaskMatch {
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    protected readonly match: Ref<RegExp>
+    protected readonly match: Ref<AssociativeType<RegExp> | RegExp>
   ) {
   }
 
@@ -13,7 +14,15 @@ export class MaskMatch {
       .filter(char => this.isMatch(char))
   }
 
-  isMatch (char: string): boolean {
-    return !!char.match(this.match.value)
+  isMatch (char: string, index?: string): boolean {
+    const match = this.match.value
+
+    if (match instanceof RegExp) {
+      return !!char.match(match)
+    } else if (index && index in match) {
+      return !!char.match(match[index])
+    } else {
+      return !!char.match(/[0-9]/)
+    }
   }
 }

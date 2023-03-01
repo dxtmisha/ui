@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { ArrayOrStringType, AssociativeOrStringType } from '../types'
+import { ArrayOrStringType, AssociativeOrStringType, AssociativeType } from '../types'
 import { MaskPatternType, MaskSpecialType, MaskTypeType } from './types'
 
 export const props = {
@@ -16,7 +16,7 @@ export const props = {
     default: 'USD'
   },
   match: {
-    type: RegExp,
+    type: [Object, RegExp] as PropType<AssociativeType<RegExp> | RegExp>,
     default: /[0-9]/
   },
   name: String,

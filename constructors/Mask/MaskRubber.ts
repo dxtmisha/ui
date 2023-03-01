@@ -71,7 +71,7 @@ export class MaskRubber {
         return false
       } else if (
         value.full &&
-        this.match.isMatch(char) &&
+        this.match.isMatch(char, index) &&
         this.transition.disabled(index)
       ) {
         this.rubber.add(index)
