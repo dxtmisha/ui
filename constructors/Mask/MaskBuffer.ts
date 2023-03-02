@@ -1,17 +1,13 @@
-import { MaskData } from './MaskData'
-
 export class MaskBuffer {
   protected item = [] as string[]
   protected start = false as boolean
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor (
-    protected data: MaskData
-  ) {
+  is () {
+    return this.item.length > 0
   }
 
-  is () {
-    return this.start
+  get (): string[] {
+    return this.item
   }
 
   add (key: string): this {
@@ -21,14 +17,18 @@ export class MaskBuffer {
 
   reset (): this {
     this.item = []
+    this.start = false
+
     return this
   }
 
-  init (key: string) {
+  init (key: string): boolean {
     if (this.start) {
       this.add(key)
+      return false
     } else {
       this.start = true
+      return true
     }
   }
 }

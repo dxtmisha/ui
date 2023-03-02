@@ -1,7 +1,13 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { getClipboardData } from '../../functions'
+import { props } from './props'
+
+import { MaskBuffer } from './MaskBuffer'
 import { MaskCharacter } from './MaskCharacter'
+import { MaskData } from './MaskData'
 import { MaskDate } from './MaskDate'
+import { MaskFocus } from './MaskFocus'
 import { MaskFormat } from './MaskFormat'
 import { MaskItem } from './MaskItem'
 import { MaskMatch } from './MaskMatch'
@@ -15,13 +21,9 @@ import { MaskType } from './MaskType'
 import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
-import { getClipboardData } from '../../functions'
-import { props } from './props'
 
 import { AssociativeType, ValidationType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType, MaskUnidentifiedType } from './types'
-import { MaskFocus } from './MaskFocus'
-import { MaskData } from './MaskData'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -58,8 +60,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly validation: MaskValidation
   protected readonly view: MaskView
 
-  protected focus: MaskFocus
-  protected data: MaskData
+  protected readonly focus: MaskFocus
+  protected readonly buffer: MaskBuffer
+  protected readonly data: MaskData
 
   protected change?: boolean
 
@@ -148,6 +151,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.rubbers.setValue(this.values.value)
 
     this.focus = new MaskFocus()
+    this.buffer = new MaskBuffer()
     this.data = new MaskData(
       this.element,
       this.type,
@@ -159,7 +163,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.selection,
       this.characters,
       this.values,
-      this.focus
+      this.focus,
+      this.buffer
     )
 
     this.data.reset(this.props.value)
@@ -223,7 +228,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
-  on (type = 'on-input') {
+  protected on (type = 'on-input') {
     const validation = this.validation.get()
 
     this.context.emit(type, {
@@ -237,7 +242,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     } as ValidationType)
   }
 
-  onBlur (event: FocusEvent): void {
+  protected onFocus (event: FocusEvent): void {
+    this.focus.in()
+    this.change = false
+    this.context.emit('on-focus', event)
+  }
+
+  protected onBlur (event: FocusEvent): void {
     if (this.change) {
       this.on('on-change')
     }
@@ -246,42 +257,26 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     this.context.emit('on-blur', event)
   }
 
-  onChange (event: Event): void {
-    this.data.reset((event.target as HTMLInputElement).value)
-  }
-
-  onClick (event: MouseEvent): void {
+  protected onClick (event: MouseEvent): void {
     this.toEnd(event.target as HTMLInputElement)
   }
 
-  onFocus (event: FocusEvent): void {
-    this.focus.in()
-    this.change = false
-    this.context.emit('on-focus', event)
-  }
+  protected onKeypress (event: KeyboardEvent): void {
+    const target = event.target as HTMLInputElement
+    const start = target.selectionStart || 0
+    const end = target.selectionEnd || 0
 
-  onInput (event: InputEvent) {
-    if (this.unidentified) {
-      const target = event.target as HTMLInputElement
-
-      if (
-        this.unidentified.length > target.value.length ||
-        this.unidentified.start !== this.unidentified.end
-      ) {
-        this.data.pop(this.unidentified.start, this.unidentified.end)
+    if (start === end) {
+      if (this.buffer.init(event.key)) {
+        this.data.set(start, event.key)
       }
-
-      if (event.data) {
-        this.data.set(this.unidentified.start, event.data)
-        target.value = this.standard.value
-        requestAnimationFrame(() => this.data.goSelection())
-      }
-
-      this.unidentified = undefined
+    } else {
+      this.data.pop(start, end)
+        .set(this.selection.getShift(), event.key)
     }
   }
 
-  onKeydown (event: KeyboardEvent): void {
+  protected onKeydown (event: KeyboardEvent): void {
     const target = event.target as HTMLInputElement
     const start = target.selectionStart || 0
     const end = target.selectionEnd || 0
@@ -298,24 +293,28 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
-  onKeypress (event: KeyboardEvent): void {
-    const target = event.target as HTMLInputElement
-    const start = target.selectionStart || 0
-    const end = target.selectionEnd || 0
+  protected onInput (event: InputEvent) {
+    if (this.unidentified) {
+      const target = event.target as HTMLInputElement
 
-    console.log('s', event.key)
+      if (
+        this.unidentified.length > target.value.length ||
+        this.unidentified.start !== this.unidentified.end
+      ) {
+        this.data.pop(this.unidentified.start, this.unidentified.end)
+      }
 
-    if (start === end) {
-      this.data.set(start, event.key)
-    } else {
-      this.data.pop(start, end)
-        .set(this.selection.getShift(), event.key)
+      if (event.data && this.buffer.init(event.data)) {
+        this.data.set(this.unidentified.start, event.data)
+        target.value = this.standard.value
+        requestAnimationFrame(() => this.data.goSelection())
+      }
+
+      this.unidentified = undefined
     }
-
-    console.log('e', event.key)
   }
 
-  async onPaste (event: ClipboardEvent): Promise<void> {
+  protected async onPaste (event: ClipboardEvent): Promise<void> {
     const target = event.target as HTMLInputElement
     const start = target.selectionStart || 0
     const end = target.selectionEnd || 0
@@ -327,6 +326,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.data.pop(start, end)
         .set(this.selection.getShift(), text)
     }
+  }
+
+  onChange (event: Event): void {
+    this.data.reset((event.target as HTMLInputElement).value)
   }
 
   protected toEnd (target = this.element.value as HTMLInputElement | undefined): void {

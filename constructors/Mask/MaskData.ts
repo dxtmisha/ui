@@ -14,6 +14,7 @@ import { MaskType } from './MaskType'
 import { MaskValue } from './MaskValue'
 
 import { ArrayOrStringType } from '../types'
+import { MaskBuffer } from './MaskBuffer'
 
 export class MaskData {
   // eslint-disable-next-line no-useless-constructor
@@ -28,7 +29,8 @@ export class MaskData {
     protected readonly selection: MaskSelection,
     protected readonly characters: MaskCharacter,
     protected readonly values: MaskValue,
-    protected readonly focus: MaskFocus
+    protected readonly focus: MaskFocus,
+    protected readonly buffer: MaskBuffer
   ) {
   }
 
@@ -119,9 +121,20 @@ export class MaskData {
           this.element.value.selectionEnd = this.selection.getShift()
           this.element.value.selectionStart = this.selection.getShift()
         }
+
+        this.goBuffer()
       })
     }
 
+    return this
+  }
+
+  goBuffer (): this {
+    if (this.buffer.is()) {
+      this.set(this.selection.getShift(), this.buffer.get())
+    }
+
+    this.buffer.reset()
     return this
   }
 }
