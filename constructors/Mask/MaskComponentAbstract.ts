@@ -266,7 +266,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const start = target.selectionStart || 0
     const end = target.selectionEnd || 0
 
-    if (start === end) {
+    if (this.isMeta(event)) {
+      return undefined
+    } else if (start === end) {
       if (this.buffer.init(event.key)) {
         this.data.set(start, event.key)
       }
@@ -274,6 +276,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.data.pop(start, end)
         .set(this.selection.getShift(), event.key)
     }
+
+    event.preventDefault()
+    event.stopPropagation()
   }
 
   protected onKeydown (event: KeyboardEvent): void {
@@ -281,7 +286,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const start = target.selectionStart || 0
     const end = target.selectionEnd || 0
 
-    if (event.key === 'Unidentified' || event.keyCode === 229) {
+    if (this.isMeta(event)) {
+      return undefined
+    } else if (event.key === 'Unidentified' || event.keyCode === 229) {
       this.unidentified = {
         start,
         end,
@@ -328,7 +335,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   }
 
-  onChange (event: Event): void {
+  protected onChange (event: Event): void {
     this.data.reset((event.target as HTMLInputElement).value)
   }
 
@@ -346,5 +353,9 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         target.selectionEnd = length
       }
     }
+  }
+
+  protected isMeta (event: KeyboardEvent): boolean {
+    return event.metaKey || event.altKey || event.ctrlKey
   }
 }

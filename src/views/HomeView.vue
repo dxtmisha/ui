@@ -24,6 +24,7 @@
     <div class="flex px-4 py-2 gap-2">
       mask[]
       <md2-mask :mask="['*** **', '*** - ** ***', '3) *** - ** *** *']"/>
+      <md2-mask :mask="['*** **', '*** - ** ***', '3) *** - ** *** *']" :value="'123 - 45 678 9'"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       special
@@ -1044,6 +1045,30 @@
       <md2-input text="date" :type="'date'"/>
       <md2-input text="month" :type="'month'"/>
       <md2-input text="time" :type="'time'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="datetime" :type="'datetime'" value="2005-06-21T13:55:43"/>
+      <md2-input text="date" :type="'date'" value="2005-06-21T13:55:43"/>
+      <md2-input text="month" :type="'month'" value="2005-06-21T13:55:43"/>
+      <md2-input text="time" :type="'time'" value="2005-06-21T13:55:43"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="datetime" :type="'datetime'" value="2005-06-21"/>
+      <md2-input text="date" :type="'date'" value="2005-06-21"/>
+      <md2-input text="month" :type="'month'" value="2005-06-21"/>
+      <md2-input text="time" :type="'time'" value="2005-06-21"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="datetime" :type="'datetime'" value="13:55:43"/>
+      <md2-input text="date" :type="'date'" value="13:55:43"/>
+      <md2-input text="month" :type="'month'" value="13:55:43"/>
+      <md2-input text="time" :type="'time'" value="13:55:43"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="datetime" :type="'datetime'" value="13:55"/>
+      <md2-input text="date" :type="'date'" value="13:55"/>
+      <md2-input text="month" :type="'month'" value="13:55"/>
+      <md2-input text="time" :type="'time'" value="13:55"/>
     </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, align</b></div>

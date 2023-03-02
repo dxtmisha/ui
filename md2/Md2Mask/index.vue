@@ -17,8 +17,8 @@
       @focus="onFocus"
       @input="onInput"
       @keydown="onKeydown"
+      @keypress="onKeypress"
       v-on="on"
-      @keypress.prevent="onKeypress"
       @paste.prevent="onPaste"
     />
     <span ref="charsElement">
