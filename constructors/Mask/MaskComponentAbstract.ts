@@ -15,12 +15,13 @@ import { MaskType } from './MaskType'
 import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
-import { To } from '../../classes/To'
-import { getClipboardData, isFilled } from '../../functions'
+import { getClipboardData } from '../../functions'
 import { props } from './props'
 
-import { ArrayOrStringType, AssociativeType, ValidationType } from '../types'
+import { AssociativeType, ValidationType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType, MaskUnidentifiedType } from './types'
+import { MaskFocus } from './MaskFocus'
+import { MaskData } from './MaskData'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType
@@ -57,9 +58,10 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   protected readonly validation: MaskValidation
   protected readonly view: MaskView
 
+  protected focus: MaskFocus
+  protected data: MaskData
+
   protected change?: boolean
-  protected focus = false as boolean
-  protected isReset?: boolean
 
   protected unidentified?: MaskUnidentifiedType
 
@@ -145,21 +147,32 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.rubbers.setValue(this.values.value)
 
-    watch(this.refs.value, value => this.reset(value))
+    this.focus = new MaskFocus()
+    this.data = new MaskData(
+      this.element,
+      this.type,
+      this.transition,
+      this.date,
+      this.match,
+      this.rubbers,
+      this.item,
+      this.selection,
+      this.characters,
+      this.values,
+      this.focus
+    )
+
+    this.data.reset(this.props.value)
+    watch(this.refs.value, value => this.data.reset(value))
+
     watch([
       this.validation.item,
       this.values.full,
       this.values.value
     ], () => {
-      if (this.isReset) {
-        this.isReset = false
-      } else {
-        this.change = true
-        this.on()
-      }
+      this.change = true
+      this.on()
     })
-
-    this.reset(this.props.value)
   }
 
   setup (): MaskSetupType {
@@ -180,7 +193,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       validation: this.validation.item,
       validationMessage: this.validation.message,
 
-      reset: (value = '' as string) => this.reset(value),
+      reset: (value = '' as string) => this.data.reset(value),
       toEnd: (target: HTMLInputElement) => this.toEnd(target),
 
       onBlur: (event: FocusEvent) => this.onBlur(event),
@@ -210,19 +223,6 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     }
   })
 
-  protected goSelection (): this {
-    if (this.focus) {
-      requestAnimationFrame(() => {
-        if (this.element.value) {
-          this.element.value.selectionEnd = this.selection.getShift()
-          this.element.value.selectionStart = this.selection.getShift()
-        }
-      })
-    }
-
-    return this
-  }
-
   on (type = 'on-input') {
     const validation = this.validation.get()
 
@@ -242,12 +242,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       this.on('on-change')
     }
 
-    this.focus = false
+    this.focus.out()
     this.context.emit('on-blur', event)
   }
 
   onChange (event: Event): void {
-    this.reset((event.target as HTMLInputElement).value)
+    this.data.reset((event.target as HTMLInputElement).value)
   }
 
   onClick (event: MouseEvent): void {
@@ -255,7 +255,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
   }
 
   onFocus (event: FocusEvent): void {
-    this.focus = true
+    this.focus.in()
     this.change = false
     this.context.emit('on-focus', event)
   }
@@ -268,13 +268,13 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
         this.unidentified.length > target.value.length ||
         this.unidentified.start !== this.unidentified.end
       ) {
-        this.pop(this.unidentified.start, this.unidentified.end)
+        this.data.pop(this.unidentified.start, this.unidentified.end)
       }
 
       if (event.data) {
-        this.set(this.unidentified.start, event.data)
+        this.data.set(this.unidentified.start, event.data)
         target.value = this.standard.value
-        requestAnimationFrame(() => this.goSelection())
+        requestAnimationFrame(() => this.data.goSelection())
       }
 
       this.unidentified = undefined
@@ -294,7 +294,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       }
     } else if (event.key === 'Backspace' || event.keyCode === 8) {
       event.preventDefault()
-      this.pop(start, end)
+      this.data.pop(start, end)
     }
   }
 
@@ -303,12 +303,16 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const start = target.selectionStart || 0
     const end = target.selectionEnd || 0
 
+    console.log('s', event.key)
+
     if (start === end) {
-      this.set(start, event.key)
+      this.data.set(start, event.key)
     } else {
-      this.pop(start, end)
+      this.data.pop(start, end)
         .set(this.selection.getShift(), event.key)
     }
+
+    console.log('e', event.key)
   }
 
   async onPaste (event: ClipboardEvent): Promise<void> {
@@ -318,93 +322,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const text = (await getClipboardData(event)).split('')
 
     if (start === end) {
-      this.set(start, text)
+      this.data.set(start, text)
     } else {
-      this.pop(start, end)
+      this.data.pop(start, end)
         .set(this.selection.getShift(), text)
     }
-  }
-
-  pop (
-    start: number,
-    end = start as number,
-    focus = true as boolean
-  ): this {
-    if (
-      start >= 0 &&
-      end <= this.item.getMaxLength()
-    ) {
-      let quantity = this.item.getSpecialQuantity(start, end)
-
-      if (focus) {
-        this.selection.setByMask(end)
-      }
-
-      while (quantity--) {
-        this.transition.reset()
-
-        this.characters.pop()
-        this.characters.shift(0)
-
-        this.selection.setShift(
-          this.rubbers.pop(this.characters.getFocus())
-        )
-      }
-
-      this.goSelection()
-    }
-
-    return this
-  }
-
-  reset (value = '' as string): this {
-    this.isReset = true
-
-    this.characters.reset()
-    this.rubbers.reset()
-
-    if (isFilled(value)) {
-      const chars = this.type.isDate() ? this.date.getLocale(value) : value
-      this.set(0, chars.split(''))
-    }
-
-    return this
-  }
-
-  set (
-    selection: number,
-    chars: ArrayOrStringType,
-    focus = true as boolean
-  ): boolean {
-    let update = false as boolean
-
-    this.selection.setByMask(selection, focus)
-    this.transition.reset()
-
-    To.array(chars).forEach(char => {
-      const immediate = this.characters.getImmediate()
-
-      this.selection.setShift(
-        this.rubbers.set(immediate, char)
-      )
-
-      if (this.match.isMatch(char, immediate)) {
-        this.characters.shift()
-
-        if (
-          this.characters.getFocus() &&
-          this.item.getMaxLength() > this.values.getStandardLength()
-        ) {
-          this.characters.set(char)
-          update = true
-        }
-      } else if (this.transition.is()) {
-        this.selection.setByMask(this.item.getByChar(this.transition.get(), this.selection.getImmediate()) + 1, focus)
-      }
-    })
-
-    this.goSelection()
-    return update
   }
 
   protected toEnd (target = this.element.value as HTMLInputElement | undefined): void {

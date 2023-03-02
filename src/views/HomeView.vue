@@ -1030,6 +1030,7 @@
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input :type="'text'" mask="*** *** ***" text="mask"/>
+      <md2-input :type="'text'" mask="*** *** ***" text="mask" value="123456"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       <md2-input text="password" :type="'password'"/>
