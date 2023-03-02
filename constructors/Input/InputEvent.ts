@@ -12,7 +12,8 @@ export class InputEvent {
     protected readonly change?: InputChange,
     protected readonly validation?: InputValidation,
     protected readonly validationMessage?: Ref<string>,
-    protected readonly detail?: Ref<AssociativeType>
+    protected readonly detail?: Ref<AssociativeType>,
+    protected readonly input?: Ref<HTMLInputElement | undefined>
   ) {
   }
 
@@ -38,6 +39,7 @@ export class InputEvent {
   onCancel (): void {
     this.value.reset()
     this.on().onChange()
+    this.toEnd()
   }
 
   onChange (): void {
@@ -64,5 +66,13 @@ export class InputEvent {
   onSelect (event: Event): void {
     this.value.setByEvent(event)
     this.on().onChange()
+  }
+
+  private toEnd (): void {
+    const ob = this.input?.value as AssociativeType
+
+    if ('toEnd' in ob) {
+      requestAnimationFrame(() => (this.input?.value as AssociativeType)?.toEnd())
+    }
   }
 }

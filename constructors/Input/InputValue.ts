@@ -59,7 +59,13 @@ export class InputValue {
   }
 
   reset (): this {
-    this.element?.value?.reset()
+    if (
+      this.element &&
+      typeof this.element?.value?.reset === 'function'
+    ) {
+      this.element.value.reset()
+    }
+
     this.value.value = ''
     this.prefill.value = false
 

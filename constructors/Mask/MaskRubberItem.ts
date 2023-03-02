@@ -5,8 +5,37 @@ import { AssociativeType } from '../types'
 export class MaskRubberItem {
   protected readonly item = ref<AssociativeType<number>>({})
 
+  is (index: string): boolean {
+    return index in this.item.value
+  }
+
+  get (): AssociativeType<number> {
+    return this.item.value
+  }
+
+  getItem (index: string): number {
+    return this.item.value?.[index] || 0
+  }
+
   add (index: string): this {
     this.item.value[index] = this.getItem(index) + 1
+    return this
+  }
+
+  pop (index: string): boolean {
+    if (this.is(index)) {
+      if (--this.item.value[index] <= 0) {
+        delete this.item.value[index]
+      }
+
+      return true
+    }
+
+    return false
+  }
+
+  reset (): this {
+    this.item.value = {}
     return this
   }
 
@@ -21,29 +50,5 @@ export class MaskRubberItem {
     })
 
     return value
-  }
-
-  get (): AssociativeType<number> {
-    return this.item.value
-  }
-
-  getItem (index: string): number {
-    return this.item.value?.[index] || 0
-  }
-
-  is (index: string): boolean {
-    return index in this.item.value
-  }
-
-  pop (index: string): boolean {
-    if (this.is(index)) {
-      if (--this.item.value[index] <= 0) {
-        delete this.item.value[index]
-      }
-
-      return true
-    }
-
-    return false
   }
 }

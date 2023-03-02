@@ -3,6 +3,10 @@ import { ref } from 'vue'
 export class MaskRubberTransition {
   readonly item = ref<string>('')
 
+  is (): boolean {
+    return this.item.value !== ''
+  }
+
   disabled (char: string): boolean {
     return this.item.value !== char
   }
@@ -11,16 +15,12 @@ export class MaskRubberTransition {
     return this.item.value
   }
 
-  is (): boolean {
-    return this.item.value !== ''
+  set (char: string): this {
+    this.item.value = char
+    return this
   }
 
   reset (): this {
     return this.set('')
-  }
-
-  set (char: string): this {
-    this.item.value = char
-    return this
   }
 }

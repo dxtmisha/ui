@@ -45,9 +45,9 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
     this.field = new FieldProps(props)
 
     this.type = new InputType(
-      this.refs.type,
-      this.refs.iconVisibility,
-      this.refs.iconVisibilityOff
+      this.refs?.type,
+      this.refs?.iconVisibility,
+      this.refs?.iconVisibilityOff
     )
     this.value = InputValue.init(
       this.refs,
@@ -56,22 +56,22 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
     )
     this.change = new InputChange(
       this.value,
-      this.refs.validationMessage
+      this.refs?.validationMessage
     )
     this.counter = new InputCounter(
       this.value,
-      this.refs.counter
+      this.refs?.counter
     )
     this.arrow = new InputArrow(
       this.value,
-      this.refs.arrow,
-      this.refs.min,
-      this.refs.max
+      this.refs?.arrow,
+      this.refs?.min,
+      this.refs?.max
     )
 
     this.match = new InputMatch(
       this.element,
-      this.refs.inputMatch,
+      this.refs?.inputMatch,
       this.value
     )
     this.validation = new InputValidation(
@@ -79,15 +79,17 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       this.value,
       this.change,
       this.match,
-      this.refs.validationCode,
-      this.refs.validationMessage
+      this.refs?.validationCode,
+      this.refs?.validationMessage
     )
     this.event = new InputEvent(
       this.context.emit,
       this.value,
       this.change,
       this.validation,
-      this.refs.validationMessage
+      this.refs?.validationMessage,
+      this.refs?.detail,
+      this.element
     )
   }
 
@@ -140,23 +142,23 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
 
   protected readonly input = computed<AssociativeType>(() => {
     return {
-      name: this.refs.name.value,
-      required: this.refs.required.value,
-      autocomplete: this.refs.autocomplete.value,
-      autofocus: this.refs.autofocus.value,
-      inputmode: this.refs.inputmode.value,
-      step: this.refs.step.value,
-      min: this.refs.min.value,
-      max: this.refs.max.value,
-      minlength: this.refs.minlength.value,
-      maxlength: this.refs.maxlength.value,
+      name: this.props.name,
+      required: this.props.required,
+      autocomplete: this.props.autocomplete,
+      autofocus: this.props.autofocus,
+      inputmode: this.props.inputmode,
+      step: this.props.step,
+      min: this.props.min,
+      max: this.props.max,
+      minlength: this.props.minlength,
+      maxlength: this.props.maxlength,
       pattern: this.pattern.value,
-      placeholder: this.refs.placeholder.value,
-      spellcheck: this.refs.spellcheck.value,
-      readonly: this.refs.readonly.value,
-      disabled: this.refs.disabled.value,
+      placeholder: this.props.placeholder,
+      spellcheck: this.props.spellcheck,
+      readonly: this.props.readonly,
+      disabled: this.props.disabled,
       type: this.type.get(),
-      ...this.refs.input.value
+      ...this.props.input
     }
   })
 

@@ -70,7 +70,8 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       this.value,
       this.change,
       this.validation,
-      this.refs?.validationMessage
+      this.refs?.validationMessage,
+      this.refs?.detail
     )
 
     this.inverse = new UseInverse([true], inverse ? this.value.value : undefined)

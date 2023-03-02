@@ -16,7 +16,7 @@ import { MaskValidation } from './MaskValidation'
 import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
 import { To } from '../../classes/To'
-import { getClipboardData } from '../../functions'
+import { getClipboardData, isFilled } from '../../functions'
 import { props } from './props'
 
 import { ArrayOrStringType, AssociativeType, ValidationType } from '../types'
@@ -181,6 +181,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
       validationMessage: this.validation.message,
 
       reset: (value = '' as string) => this.reset(value),
+      toEnd: (target: HTMLInputElement) => this.toEnd(target),
+
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
       onClick: (event: MouseEvent) => this.onClick(event),
@@ -357,9 +359,11 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
   reset (value = '' as string): this {
     this.isReset = true
-    this.characters.reset()
 
-    if (value) {
+    this.characters.reset()
+    this.rubbers.reset()
+
+    if (isFilled(value)) {
       const chars = this.type.isDate() ? this.date.getLocale(value) : value
       this.set(0, chars.split(''))
     }
@@ -403,8 +407,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return update
   }
 
-  protected toEnd (target: HTMLInputElement): void {
-    if (this.isRight.value) {
+  protected toEnd (target = this.element.value as HTMLInputElement | undefined): void {
+    if (target && this.isRight.value) {
       const length = this.values.getStandardLength()
       const start = target.selectionStart || 0
       const end = target.selectionEnd || 0

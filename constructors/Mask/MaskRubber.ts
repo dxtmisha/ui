@@ -6,6 +6,7 @@ import { MaskRubberTransition } from './MaskRubberTransition'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
 import { isSelected } from '../../functions'
+
 import { AssociativeType } from '../types'
 import { MaskItemsType, MaskSpecialItemType } from './types'
 
@@ -32,14 +33,6 @@ export class MaskRubber {
       .flat() as string[]
   })
 
-  get (): AssociativeType<MaskSpecialItemType> {
-    return this.item.value
-  }
-
-  getItem (index: string): MaskSpecialItemType | undefined {
-    return this.get()?.[index]
-  }
-
   is (index: string): boolean {
     return index in this.get()
   }
@@ -52,8 +45,12 @@ export class MaskRubber {
     return this.transitionChars.value.indexOf(index) !== -1
   }
 
-  pop (index: string): boolean {
-    return this.rubber.pop(index)
+  get (): AssociativeType<MaskSpecialItemType> {
+    return this.item.value
+  }
+
+  getItem (index: string): MaskSpecialItemType | undefined {
+    return this.get()?.[index]
   }
 
   set (index: string, char: string): boolean {
@@ -86,6 +83,17 @@ export class MaskRubber {
 
   setValue (value: Ref<MaskItemsType>): this {
     this.value = value
+    return this
+  }
+
+  pop (index: string): boolean {
+    return this.rubber.pop(index)
+  }
+
+  reset (): this {
+    this.rubber.reset()
+    this.transition.reset()
+
     return this
   }
 }

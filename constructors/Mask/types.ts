@@ -68,6 +68,8 @@ export type MaskSetupType = ComponentBaseType & {
   validationMessage: ComputedRef<string>
 
   reset: (value: string) => void
+  toEnd: (target: HTMLInputElement) => void
+
   onBlur: (event: FocusEvent) => void
   onChange: (event: Event) => void
   onClick: (event: MouseEvent) => void

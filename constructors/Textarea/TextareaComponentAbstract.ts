@@ -59,7 +59,8 @@ export abstract class TextareaComponentAbstract extends ComponentAbstract<HTMLTe
       this.value,
       this.change,
       this.validation,
-      this.refs.validationMessage
+      this.refs.validationMessage,
+      this.refs?.detail
     )
   }
 
