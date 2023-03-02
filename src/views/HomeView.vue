@@ -728,6 +728,9 @@
       <md2-input counter text="counter"/>
       <md2-input counter :maxlength="12" text="counter + maxlength"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input placeholder="placeholder" text="placeholder"/>
+    </div>
 
     <div class="px-4 py-2"><b>input, outlined</b></div>
     <div class="flex px-4 py-2 gap-2">

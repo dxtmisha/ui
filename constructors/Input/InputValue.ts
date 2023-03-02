@@ -10,7 +10,8 @@ export class InputValue {
   constructor (
     private readonly emit: (type: string, options: AssociativeType | any) => void,
     private readonly valueIn: Ref<BooleanOrNumberOrStringType>,
-    private readonly modelValue = valueIn as Ref<BooleanOrNumberOrStringType>
+    private readonly modelValue = valueIn as Ref<BooleanOrNumberOrStringType>,
+    private readonly placeholder?: Ref<string>
   ) {
     watch([this.valueIn, this.modelValue], () => this.update())
     watch(this.value, value => {
@@ -25,7 +26,9 @@ export class InputValue {
   readonly valueForCheckbox = computed<boolean>(() => isFilled(this.value.value))
   readonly valueForOriginal = computed<string>(() => this.toString(this.valueIn.value || this.modelValue.value))
 
-  readonly isValue = computed<boolean>(() => this.prefill.value || !!this.value.value)
+  readonly isValue = computed<boolean>(
+    () => this.prefill.value || !!this.value.value || !!this.placeholder?.value
+  )
 
   get (): BooleanOrNumberOrStringType {
     return this.value.value
@@ -125,7 +128,8 @@ export class InputValue {
     return new InputValue(
       context.emit,
       refs?.value,
-      refs?.modelValue
+      refs?.modelValue,
+      refs?.placeholder
     )
   }
 }
