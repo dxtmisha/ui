@@ -150,8 +150,8 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.rubbers.setValue(this.values.value)
 
-    this.focus = new MaskFocus()
     this.buffer = new MaskBuffer()
+    this.focus = new MaskFocus(this.buffer)
     this.data = new MaskData(
       this.element,
       this.type,

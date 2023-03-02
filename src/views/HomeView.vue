@@ -32,6 +32,7 @@
     <div class="flex px-4 py-2 gap-2">
       match
       <md2-mask mask="*** #### **" :special="['*','#']" :match="{'*':/[0-9]/,'#':/[a-z]/}"/>
+      <md2-mask mask="*** ####" :special="['*','#']" :match="{'*':/[0-9]/,'#':/[a-z]/}"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
       pattern 7[0-9 ]+

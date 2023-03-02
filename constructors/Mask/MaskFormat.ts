@@ -1,8 +1,10 @@
 import { computed, Ref } from 'vue'
 import { GeoIntl } from '../../classes/GeoIntl'
+import { strFill } from '../../functions'
+
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskType } from './MaskType'
-import { strFill } from '../../functions'
+
 import { AssociativeType } from '../types'
 import { MaskItemsType, MaskSpecialItemType } from './types'
 
@@ -39,10 +41,10 @@ export class MaskFormat {
   getFraction (): number {
     if (this.type.isCurrency()) {
       return 2
-    } else if (this.rubber.is('f')) {
-      return this.rubber.getItem('f') + 1
     } else if (typeof this.fraction.value === 'number') {
       return this.fraction.value
+    } else if (this.rubber.is('f')) {
+      return this.rubber.getItem('f') + 1
     } else if (this.fraction.value === true) {
       return 1
     } else {
