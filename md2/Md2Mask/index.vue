@@ -10,7 +10,7 @@
       ref="element"
       :class="classes.input"
       :type="input"
-      :value="standardByRight"
+      :value="standard"
       @blur="onBlur"
       @change="onChange"
       @click="onClick"

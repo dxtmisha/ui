@@ -11,7 +11,8 @@ export class InputValue {
     private readonly emit: (type: string, options: AssociativeType | any) => void,
     private readonly valueIn: Ref<BooleanOrNumberOrStringType>,
     private readonly modelValue = valueIn as Ref<BooleanOrNumberOrStringType>,
-    private readonly placeholder?: Ref<string>
+    private readonly placeholder?: Ref<string>,
+    private readonly element?: Ref
   ) {
     watch([this.valueIn, this.modelValue], () => this.update())
     watch(this.value, value => {
@@ -58,7 +59,10 @@ export class InputValue {
   }
 
   reset (): this {
+    this.element?.value?.reset()
     this.value.value = ''
+    this.prefill.value = false
+
     return this
   }
 
@@ -124,12 +128,17 @@ export class InputValue {
     return this
   }
 
-  static init (refs: ToRefs<AssociativeType>, context: AssociativeType) {
+  static init (
+    refs: ToRefs<AssociativeType>,
+    context: AssociativeType,
+    element?: Ref
+  ) {
     return new InputValue(
       context.emit,
       refs?.value,
       refs?.modelValue,
-      refs?.placeholder
+      refs?.placeholder,
+      element
     )
   }
 }

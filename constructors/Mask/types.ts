@@ -58,13 +58,16 @@ export type MaskClassesType = {
 export type MaskSetupType = ComponentBaseType & {
   classes: ComputedRef<MaskClassesType>
   charsElement: Ref<HTMLSpanElement | undefined>
+
+  maskBind: ComputedRef<string[]>
+  viewBind: ComputedRef<MaskViewType[]>
+  valueBind: ComputedRef<string>
+
   standard: ComputedRef<string>
-  standardByRight: ComputedRef<string>
   validation: ComputedRef<MaskValidationType | undefined>
   validationMessage: ComputedRef<string>
-  maskBind: ComputedRef<string[]>
-  valueBind: ComputedRef<string>
-  viewBind: ComputedRef<MaskViewType[]>
+
+  reset: (value: string) => void
   onBlur: (event: FocusEvent) => void
   onChange: (event: Event) => void
   onClick: (event: MouseEvent) => void

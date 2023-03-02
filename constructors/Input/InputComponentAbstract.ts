@@ -49,7 +49,11 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       this.refs.iconVisibility,
       this.refs.iconVisibilityOff
     )
-    this.value = InputValue.init(this.refs, this.context)
+    this.value = InputValue.init(
+      this.refs,
+      this.context,
+      this.element
+    )
     this.change = new InputChange(
       this.value,
       this.refs.validationMessage

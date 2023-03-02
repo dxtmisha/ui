@@ -18,6 +18,7 @@ import { MaskView } from './MaskView'
 import { To } from '../../classes/To'
 import { getClipboardData } from '../../functions'
 import { props } from './props'
+
 import { ArrayOrStringType, AssociativeType, ValidationType } from '../types'
 import { MaskClassesType, MaskItemsType, MaskSetupType, MaskUnidentifiedType } from './types'
 
@@ -165,20 +166,21 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     const classes = this.getClasses<MaskClassesType>({
       main: { 'is-right': this.isRight }
     })
-    const styles = this.getStyles()
 
     return {
       ...this.getBasic(),
       classes,
-      styles,
       charsElement: this.charsElement,
+
+      maskBind: this.item.activeMask,
+      viewBind: this.view.item,
+      valueBind: this.values.item,
+
       standard: this.standard,
-      standardByRight: this.standard,
       validation: this.validation.item,
       validationMessage: this.validation.message,
-      maskBind: this.item.activeMask,
-      valueBind: this.values.item,
-      viewBind: this.view.item,
+
+      reset: (value = '' as string) => this.reset(value),
       onBlur: (event: FocusEvent) => this.onBlur(event),
       onChange: (event: Event) => this.onChange(event),
       onClick: (event: MouseEvent) => this.onClick(event),
@@ -353,7 +355,7 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
     return this
   }
 
-  reset (value: string): this {
+  reset (value = '' as string): this {
     this.isReset = true
     this.characters.reset()
 

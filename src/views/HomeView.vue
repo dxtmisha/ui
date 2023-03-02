@@ -1029,6 +1029,9 @@
       <md2-input text="number + currency" :mask="{mask:undefined, type:'currency', currency:'USD'}"/>
     </div>
     <div class="flex px-4 py-2 gap-2">
+      <md2-input :type="'text'" mask="*** *** ***" text="mask"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
       <md2-input text="password" :type="'password'"/>
       <md2-input text="email" :type="'email'"/>
       <md2-input text="tel" :type="'tel'"/>
