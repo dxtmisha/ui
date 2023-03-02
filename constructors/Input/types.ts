@@ -53,19 +53,26 @@ export type InputSetupType = ComponentBaseType & {
   inputBind: ComputedRef<AssociativeType>
   maskBind: ComputedRef<AssociativeType | undefined>
   counterBind: ComputedRef<NumberOrUndefinedType>
-  validationMessageBind: ComputedRef<string>
+
+  isValue: Ref<boolean>
   valueBind: Ref<BooleanOrNumberOrStringType>
   valueOriginalBind: ComputedRef<string>
-  disabledPrevious: ComputedRef<boolean>
+
+  validationMessageBind: ComputedRef<string>
+
   disabledNext: ComputedRef<boolean>
+  disabledPrevious: ComputedRef<boolean>
+
   checkValidity: () => boolean
   onBlur: () => void
   onKeypress: (event: KeyboardEvent) => void
   onPaste: (event: ClipboardEvent) => void
-  onChange: () => void
+
   onInput: (event: Event) => void
-  onPrevious: () => void
+  onChange: () => void
   onNext: () => void
+  onPrevious: () => void
+
   onCancel: () => void
   onTrailing: () => void
 }

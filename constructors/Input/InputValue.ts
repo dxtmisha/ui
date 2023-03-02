@@ -4,6 +4,7 @@ import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
 
 export class InputValue {
   readonly value = ref<BooleanOrNumberOrStringType>('')
+  readonly prefill = ref<boolean>(false)
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -23,6 +24,8 @@ export class InputValue {
   readonly valueForInput = computed<string>(() => this.toString(this.value.value))
   readonly valueForCheckbox = computed<boolean>(() => isFilled(this.value.value))
   readonly valueForOriginal = computed<string>(() => this.toString(this.valueIn.value || this.modelValue.value))
+
+  readonly isValue = computed<boolean>(() => this.prefill.value || !!this.value.value)
 
   get (): BooleanOrNumberOrStringType {
     return this.value.value
@@ -45,6 +48,10 @@ export class InputValue {
 
   is (): boolean {
     return this.valueForCheckbox.value
+  }
+
+  isPrefill (): boolean {
+    return this.isValue.value
   }
 
   reset (): this {
@@ -82,6 +89,10 @@ export class InputValue {
           this.set(eventValue.valueBind)
         } else if ('target' in eventValue) {
           this.getValueByTarget(eventValue.target as HTMLInputElement)
+        }
+
+        if ('isValue' in eventValue) {
+          this.prefill.value = eventValue.isValue
         }
 
         break

@@ -100,19 +100,25 @@ export abstract class InputComponentAbstract extends ComponentAbstract<HTMLInput
       inputBind: this.input,
       maskBind: this.maskBind,
       counterBind: this.counter.item,
-      validationMessageBind: this.validation.message,
+
+      isValue: this.value.isValue,
       valueBind: this.value.value,
       valueOriginalBind: this.value.valueForOriginal,
-      disabledPrevious: this.arrow.isPrevious,
+
+      validationMessageBind: this.validation.message,
+
       disabledNext: this.arrow.isNext,
+      disabledPrevious: this.arrow.isPrevious,
+
       checkValidity: () => this.validation.checkValidity(),
       onBlur: () => this.event.onBlur(),
       onKeypress: (event: KeyboardEvent) => this.onKeypress(event),
       onPaste: (event: ClipboardEvent) => this.onPaste(event),
-      onChange: () => this.event.onChange(),
+
       onInput: (event: Event) => this.event.onInput(event),
-      onPrevious: () => this.onPrevious(),
+      onChange: () => this.event.onChange(),
       onNext: () => this.onNext(),
+      onPrevious: () => this.onPrevious(),
       onCancel: () => this.event.onCancel(),
       onTrailing: () => this.onTrailing()
     }

@@ -6,7 +6,7 @@
     :disabled-previous="disabledPrevious"
     :icon-trailing="iconTrailingBind"
     :validation-message="validationMessageBind"
-    :value="valueBind"
+    :value="isValue"
     v-bind="fieldBind"
     @on-previous="onPrevious"
     @on-next="onNext"

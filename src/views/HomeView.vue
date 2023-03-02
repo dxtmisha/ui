@@ -1025,6 +1025,18 @@
       <md2-input text="number + mask" :mask="{mask:undefined, type:'number', fraction:2}"/>
       <md2-input text="number + currency" :mask="{mask:undefined, type:'currency', currency:'USD'}"/>
     </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="password" :type="'password'"/>
+      <md2-input text="email" :type="'email'"/>
+      <md2-input text="tel" :type="'tel'"/>
+      <md2-input text="url" :type="'url'"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-input text="datetime" :type="'datetime'"/>
+      <md2-input text="date" :type="'date'"/>
+      <md2-input text="month" :type="'month'"/>
+      <md2-input text="time" :type="'time'"/>
+    </div>
 
     <div class="px-4 pt-4 pb-2"><b>input, align</b></div>
     <div class="flex px-4 py-2 gap-2">

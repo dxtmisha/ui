@@ -59,7 +59,7 @@
         },
         "validation": {
           "palette": "",
-          "text": "{??sys.validation.palette}",
+          "text": "{??sys.text}",
           "border": "{??sys.validation.text}",
           "label": {
             "text": "{??sys.validation.text}"

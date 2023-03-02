@@ -13,6 +13,7 @@
 
 @mixin mixinMask {
   position: relative;
+  @include color(v('??l.text'), v('??l.text-opacity'));
 
   &.is-right {
     @include textAlign('right');

@@ -151,10 +151,11 @@ export type UserType = {
 
 export type ValidationType = {
   checkValidity: boolean
-  input?: HTMLInputElement
+  isValue?: boolean
+  value?: NumberOrStringType
+  detail?: AssociativeType
   required?: boolean
   validation?: AssociativeType
   validationMessage?: string
-  value?: NumberOrStringType
-  detail?: AssociativeType
+  input?: HTMLInputElement
 }

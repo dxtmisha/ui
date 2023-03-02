@@ -224,11 +224,12 @@ export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputE
 
     this.context.emit(type, {
       checkValidity: this.validation.checkValidity(),
-      input: validation?.input,
+      isValue: this.character?.value?.length > 0,
+      value: this.values.getValue(),
       required: this.values.isFull(),
       validation,
       validationMessage: this.validation.getMessage(),
-      value: this.values.getValue()
+      input: validation?.input
     } as ValidationType)
   }
 

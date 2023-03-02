@@ -3,6 +3,7 @@
     "mask": {
       "@style": "{d.mask}",
       "var|sys": {
+        "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.disabled}",
         "error": {
           "text": "{sys.palette.error}",
