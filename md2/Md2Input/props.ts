@@ -14,40 +14,48 @@ import {
 export const defaultItem = ComponentDesign.getDefault('md2.input')
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
-  mask: [Object, String],
-  name: String,
   prefix: [Number, String],
-  required: Boolean,
   suffix: [Number, String],
-  text: [Number, String],
+  placeholder: String,
+  name: String,
   value: [Number, String],
+  detail: [Object],
 
   // Input
+  type: {
+    type: String as PropType<InputTypeType>,
+    default: 'text'
+  },
+  required: Boolean,
+  mask: [Object, String],
+  pattern: String,
+
+  autofocus: Boolean,
   autocomplete: {
     type: String,
     default: 'off'
   },
-  autofocus: Boolean,
   inputmode: String,
+  spellcheck: Boolean,
+
+  minlength: Number,
+  maxlength: Number,
+
   step: Number,
   min: [Number, String],
   max: [Number, String],
-  minlength: Number,
-  maxlength: Number,
-  pattern: String,
-  placeholder: String,
-  spellcheck: Boolean,
+
   input: Object,
   inputMatch: [Object, String] as PropType<InputMatchType>,
 
   // Message
   counter: Boolean,
   helperMessage: String,
-  validationCode: [Object],
   validationMessage: String,
+  validationCode: [Object],
 
   // On
   modelValue: undefined,
@@ -57,41 +65,37 @@ export const props = {
   },
 
   // Status
-  disabled: Boolean,
-  readonly: Boolean,
   selected: Boolean,
+  readonly: Boolean,
+  disabled: Boolean,
 
   // Options
-  align: String as PropType<Md2FieldAlignType>,
+  palette: String as PropType<Md2PaletteType>,
   appearance: {
     type: String as PropType<Md2FieldAppearanceType>,
     default: defaultItem.defaultValue('appearance')
   },
   arrow: Boolean,
-  cancel: {
-    type: String as PropType<Md2FieldCancelType>,
-    default: defaultItem.defaultValue('cancel', 'auto')
+  align: String as PropType<Md2FieldAlignType>,
+  rounded: {
+    type: String as PropType<Md2FieldRoundedType>,
+    default: defaultItem.defaultValue('rounded')
+  },
+  width: {
+    type: [Number, String] as PropType<Md2FieldWidthType>,
+    default: defaultItem.defaultValue('width')
   },
   height: {
     type: [Number, String] as PropType<Md2FieldHeightType>,
     default: defaultItem.defaultValue('height')
   },
-  palette: String as PropType<Md2PaletteType>,
+  cancel: {
+    type: String as PropType<Md2FieldCancelType>,
+    default: defaultItem.defaultValue('cancel', 'auto')
+  },
   ripple: {
     type: Boolean,
     default: defaultItem.defaultValue('ripple', true)
-  },
-  rounded: {
-    type: String as PropType<Md2FieldRoundedType>,
-    default: defaultItem.defaultValue('rounded')
-  },
-  type: {
-    type: String as PropType<InputTypeType>,
-    default: 'text'
-  },
-  width: {
-    type: [Number, String] as PropType<Md2FieldWidthType>,
-    default: defaultItem.defaultValue('width')
   },
   field: {
     type: Object,

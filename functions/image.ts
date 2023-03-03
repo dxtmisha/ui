@@ -13,7 +13,7 @@ export function createImage (src: string | File): Promise<ImageItemType | undefi
           image,
           height: image.naturalHeight,
           width: image.naturalWidth,
-          src: getSRC(src, image)
+          src: getSRC(image, src)
         })
       }
 
@@ -39,22 +39,23 @@ export function getFileResult (file: File): Promise<string> {
 }
 
 export function getSRC (
-  src: string | File,
-  image: HTMLImageElement
+  image: HTMLImageElement,
+  src?: string | File,
+  maxSize = MAX_SIZE as number
 ): string {
   if (
-    src instanceof File &&
+    (src instanceof File || src === undefined) &&
     (
-      image.naturalHeight > MAX_SIZE ||
-      image.naturalWidth > MAX_SIZE
+      image.naturalHeight > maxSize ||
+      image.naturalWidth > maxSize
     )
   ) {
     const is = image.naturalWidth >= image.naturalHeight
     const canvas = document.createElement('canvas').getContext('2d')
 
     if (canvas) {
-      canvas.canvas.width = is ? MAX_SIZE : (image.naturalWidth / image.naturalHeight * MAX_SIZE)
-      canvas.canvas.height = is ? (image.naturalHeight / image.naturalWidth * MAX_SIZE) : MAX_SIZE
+      canvas.canvas.width = is ? maxSize : (image.naturalWidth / image.naturalHeight * maxSize)
+      canvas.canvas.height = is ? (image.naturalHeight / image.naturalWidth * maxSize) : maxSize
       canvas.drawImage(image, 0, 0, canvas.canvas.width, canvas.canvas.height)
 
       return canvas.canvas.toDataURL()

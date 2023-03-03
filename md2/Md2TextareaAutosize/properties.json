@@ -11,7 +11,7 @@
         "md": "{ref.spacing.20}",
         "lg": "{ref.spacing.24}",
         "xl": "{ref.spacing.32}",
-        "2xl": "{ref.spacing.27}"
+        "2xl": "{ref.spacing.48}"
       }
     }
   }

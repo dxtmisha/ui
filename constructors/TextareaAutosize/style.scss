@@ -3,7 +3,7 @@
 @mixin initTextareaAutosize($design) {
   @include propertiesInit($design, 'textarea-autosize') {
     @include mixinTextareaAutosize;
-    @include mixinTextareaClone;
+    @include mixinTextareaAutosizeClone;
 
     @content;
   }
@@ -19,7 +19,7 @@
   font: inherit;
 }
 
-@mixin mixinTextareaClone() {
+@mixin mixinTextareaAutosizeClone() {
   @include subClass('clone') {
     position: absolute;
     visibility: hidden;

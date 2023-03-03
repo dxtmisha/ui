@@ -3,32 +3,32 @@ import { ProgressIndeterminateType, ProgressTypeType } from './props.type'
 
 export const props = {
   // Values
-  max: {
-    type: Number,
-    default: 100
-  },
   value: {
     type: Number,
     default: null
+  },
+  max: {
+    type: Number,
+    default: 100
   },
 
   // Status
   visible: Boolean,
 
   // Options
-  bottom: Boolean,
-  delay: {
-    type: Number,
-    default: 480
+  type: {
+    type: String as PropType<ProgressTypeType>,
+    default: 'linear'
   },
-  dense: Boolean,
   indeterminate: {
     type: String as PropType<ProgressIndeterminateType>,
     default: 'type2'
   },
   inverse: Boolean,
-  type: {
-    type: String as PropType<ProgressTypeType>,
-    default: 'linear'
-  }
+  bottom: Boolean,
+  delay: {
+    type: Number,
+    default: 480
+  },
+  dense: Boolean
 }

@@ -1,5 +1,23 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>textarea-autosize</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea-autosize class="border"/>
+      <md2-textarea-autosize class="border" value="value"/>
+    </div>
+
+    <div class="px-4 py-2"><b>textarea-autosize, height</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea-autosize :height="'xm'" class="border" value="xm"/>
+      <md2-textarea-autosize :height="'sm'" class="border" value="sm"/>
+      <md2-textarea-autosize :height="'md'" class="border" value="md"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea-autosize :height="'lg'" class="border" value="lg"/>
+      <md2-textarea-autosize :height="'xl'" class="border" value="xl"/>
+      <md2-textarea-autosize :height="'2xl'" class="border" value="2xl"/>
+    </div>
+
     <div class="px-4 py-2"><b>mask</b></div>
     <div class="flex px-4 py-2 gap-2">
       mask
@@ -1327,6 +1345,7 @@ import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
 import Md2Radio from '../../md2/Md2Radio/index.vue'
 import Md2Switch from '../../md2/Md2Switch/index.vue'
 import Md2Mask from '../../md2/Md2Mask/index.vue'
+import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1336,6 +1355,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2TextareaAutosize,
     Md2Mask,
     Md2Switch,
     Md2Radio,
