@@ -9,12 +9,16 @@ import {
 export type TextareaSetupType = ComponentBaseType & {
   fieldBind: ComputedRef<AssociativeType>
   inputBind: ComputedRef<AssociativeType>
-  counterBind: ComputedRef<NumberOrUndefinedType>
-  validationMessageBind: ComputedRef<string>
+
+  isValue: ComputedRef<boolean>,
   valueBind: Ref<BooleanOrNumberOrStringType>
   valueOriginalBind: ComputedRef<string>
+  counterBind: ComputedRef<NumberOrUndefinedType>
+
+  validationMessageBind: ComputedRef<string>
   checkValidity: () => boolean
+
   onBlur: () => void
-  onChange: () => void
   onInput: (event: Event) => void
+  onChange: () => void
 }

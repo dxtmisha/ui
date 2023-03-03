@@ -4,14 +4,14 @@
     :counter="counterBind"
     :icon-trailing="iconTrailing"
     :validation-message="validationMessageBind"
-    :value="valueBind"
+    :value="isValue"
     v-bind="fieldBind"
   >
     <md2-textarea-autosize
       :id="slotDefault.id"
       ref="element"
-      v-model="valueBind"
       :class="slotDefault.classes"
+      :value="valueOriginalBind"
       v-bind="inputBind"
       @blur="onBlur"
       @change="onChange"

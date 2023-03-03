@@ -50,10 +50,12 @@ export abstract class TextareaAutosizeComponentAbstract extends ComponentAbstrac
       classes,
       styles,
       cloneElement: this.cloneElement,
+
       valueBind: this.value.value,
+
       onBlur: () => this.onBlur(),
-      onChange: () => this.onChange(),
-      onInput: (event: Event) => this.onInput(event)
+      onInput: (event: Event) => this.onInput(event),
+      onChange: () => this.onChange()
     }
   }
 

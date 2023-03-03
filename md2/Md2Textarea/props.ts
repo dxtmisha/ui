@@ -11,28 +11,31 @@ import {
 export const defaultItem = ComponentDesign.getDefault('md2.textarea')
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
+  placeholder: String,
   name: String,
-  required: Boolean,
-  text: [Number, String],
   value: [Number, String],
+  detail: [Object],
 
   // Input
+  required: Boolean,
+
   autofocus: Boolean,
   inputmode: String,
+  spellcheck: Boolean,
+
   minlength: Number,
   maxlength: Number,
-  placeholder: String,
-  spellcheck: Boolean,
+
   input: Object,
 
   // Message
   counter: Boolean,
   helperMessage: String,
-  validationCode: [Object],
   validationMessage: String,
+  validationCode: [Object],
 
   // On
   modelValue: undefined,
@@ -42,20 +45,16 @@ export const props = {
   },
 
   // Status
-  disabled: Boolean,
-  readonly: Boolean,
   selected: Boolean,
+  readonly: Boolean,
+  disabled: Boolean,
 
   // Options
+  palette: String as PropType<Md2PaletteType>,
   appearance: {
     type: String as PropType<Md2FieldAppearanceType>,
     default: defaultItem.defaultValue('appearance')
   },
-  height: {
-    type: [Number, String] as PropType<Md2FieldHeightType>,
-    default: defaultItem.defaultValue('height')
-  },
-  palette: String as PropType<Md2PaletteType>,
   rounded: {
     type: String as PropType<Md2FieldRoundedType>,
     default: defaultItem.defaultValue('rounded')
@@ -63,6 +62,10 @@ export const props = {
   width: {
     type: [Number, String] as PropType<Md2FieldWidthType>,
     default: defaultItem.defaultValue('width')
+  },
+  height: {
+    type: [Number, String] as PropType<Md2FieldHeightType>,
+    default: defaultItem.defaultValue('height')
   },
   field: {
     type: Object,

@@ -6,6 +6,7 @@
 
     @include propertiesLink('d.flex.x');
     position: relative;
+    order: 4;
     z-index: 5;
 
     width: 100%;
@@ -15,7 +16,7 @@
 
     @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
 
-    transform: translateY(#{calc(-1 * #{v('??_half')})});
+    transform: translateY(#{v('??_half')});
 
     @include subClass('context') {
       @include propertiesLink('d.flex.x');

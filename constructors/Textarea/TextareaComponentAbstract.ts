@@ -74,14 +74,18 @@ export abstract class TextareaComponentAbstract extends ComponentAbstract<HTMLTe
       styles,
       fieldBind: this.field.get(),
       inputBind: this.input,
-      counterBind: this.counter.item,
-      validationMessageBind: this.validation.message,
+
+      isValue: this.value.isValue,
       valueBind: this.value.value,
       valueOriginalBind: this.value.valueForOriginal,
+      counterBind: this.counter.item,
+
+      validationMessageBind: this.validation.message,
       checkValidity: () => this.validation.checkValidity(),
+
       onBlur: () => this.event.onBlur(),
-      onChange: () => this.event.onChange(),
-      onInput: (event: Event) => this.event.onInput(event)
+      onInput: (event: Event) => this.event.onInput(event),
+      onChange: () => this.event.onChange()
     }
   }
 

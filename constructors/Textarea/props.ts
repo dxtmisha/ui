@@ -3,28 +3,30 @@ import { InputValidityType } from '../Input/types'
 
 export const props = {
   // Values
-  detail: [Object],
+  text: [Number, String],
   icon: [Object, String],
   iconTrailing: [Object, String],
+  placeholder: String,
   name: String,
-  required: Boolean,
-  text: [Number, String],
   value: [Number, String],
+  detail: [Object],
 
   // Input
+  required: Boolean,
   autofocus: Boolean,
   inputmode: String,
+  spellcheck: Boolean,
+
   minlength: Number,
   maxlength: Number,
-  placeholder: String,
-  spellcheck: Boolean,
+
   input: Object,
 
   // Message
   counter: Boolean,
   helperMessage: String,
-  validationCode: [Object, String] as PropType<string | InputValidityType>,
   validationMessage: String,
+  validationCode: [Object, String] as PropType<string | InputValidityType>,
 
   // On
   modelValue: undefined,
@@ -34,16 +36,16 @@ export const props = {
   },
 
   // Status
-  disabled: Boolean,
-  readonly: Boolean,
   selected: Boolean,
+  readonly: Boolean,
+  disabled: Boolean,
 
   // Options
-  appearance: String,
-  height: [Number, String],
   palette: String,
+  appearance: String,
   rounded: String,
   width: [Number, String],
+  height: [Number, String],
   field: Object
 }
 

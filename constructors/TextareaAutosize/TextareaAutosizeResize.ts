@@ -1,9 +1,10 @@
-import { onUnmounted, Ref, watchEffect } from 'vue'
+import { onUnmounted, onUpdated, Ref, watchEffect } from 'vue'
 import { EventResize } from '../../classes/EventResize'
 import { BooleanOrNumberOrStringType } from '../types'
 
 export class TextareaAutosizeResize {
   protected readonly event: EventResize<HTMLTextAreaElement>
+  protected readonly cloneEvent: EventResize<HTMLDivElement>
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -12,10 +13,15 @@ export class TextareaAutosizeResize {
     protected readonly value: Ref<BooleanOrNumberOrStringType>
   ) {
     this.event = new EventResize(element, () => this.update()).go()
+    this.cloneEvent = new EventResize(cloneElement, () => this.resize()).go()
     this.update()
 
     watchEffect(() => this.resize())
-    onUnmounted(() => this.event.stop())
+    onUpdated(() => this.resize())
+    onUnmounted(() => {
+      this.event.stop()
+      this.cloneEvent.stop()
+    })
   }
 
   protected resize (): void {
@@ -43,6 +49,8 @@ export class TextareaAutosizeResize {
       this.cloneElement.value.style.paddingBottom = style.paddingBottom
       this.cloneElement.value.style.paddingLeft = style.paddingLeft
       this.cloneElement.value.style.width = `${this.element.value.offsetWidth}px`
+
+      this.resize()
     }
   }
 }

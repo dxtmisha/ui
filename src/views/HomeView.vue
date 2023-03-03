@@ -1,9 +1,87 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>textarea</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea text="text" @on-input="onEmit"/>
+      <md2-textarea text="text" value="value"/>
+      <md2-textarea placeholder="placeholder" text="placeholder"/>
+      <md2-textarea
+        text="text"
+        value="В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]."
+      />
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea required text="required"/>
+      <md2-textarea validation-message="validation message" text="validation"/>
+      <md2-textarea counter text="counter"/>
+      <md2-textarea counter :maxlength="16" text="counter + maxlength"/>
+    </div>
+
+    <div class="px-4 py-2"><b>textarea, icon</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea
+        icon="face"
+        text="icon"
+        value="В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]."
+      />
+      <md2-textarea
+        icon-trailing="home"
+        text="trailing"
+        value="В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]."
+      />
+      <md2-textarea
+        icon="face"
+        icon-trailing="home"
+        text="icon + trailing"
+        value="В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]."
+      />
+    </div>
+
+    <div class="px-4 pt-4 pb-2"><b>textarea, rounded</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea rounded="none" text="none"/>
+      <md2-textarea icon="face" rounded="none" text="none + icon"/>
+      <md2-textarea icon-trailing="home" rounded="none" text="none + icon-trailing"/>
+      <md2-textarea icon="face" icon-trailing="home" rounded="none" text="none + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea rounded="standard" text="standard"/>
+      <md2-textarea icon="face" rounded="standard" text="standard + icon"/>
+      <md2-textarea icon-trailing="home" rounded="standard" text="standard + icon-trailing"/>
+      <md2-textarea icon="face" icon-trailing="home" rounded="standard" text="standard + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea rounded="sm" text="sm"/>
+      <md2-textarea icon="face" rounded="sm" text="sm + icon"/>
+      <md2-textarea icon-trailing="home" rounded="sm" text="sm + icon-trailing"/>
+      <md2-textarea icon="face" icon-trailing="home" rounded="sm" text="sm + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea rounded="md" text="md"/>
+      <md2-textarea icon="face" rounded="md" text="md + icon"/>
+      <md2-textarea icon-trailing="home" rounded="md" text="md + icon-trailing"/>
+      <md2-textarea icon="face" icon-trailing="home" rounded="md" text="md + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea rounded="full" text="full"/>
+      <md2-textarea icon="face" rounded="full" text="full + icon"/>
+      <md2-textarea icon-trailing="home" rounded="full" text="full + icon-trailing"/>
+      <md2-textarea icon="face" icon-trailing="home" rounded="full" text="full + icon + icon-trailing"/>
+    </div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-textarea appearance="outlined" rounded="full" text="outlined + full"/>
+      <md2-textarea appearance="outlined" icon="face" rounded="full" text="outlined + full + icon"/>
+      <md2-textarea appearance="outlined" icon-trailing="home" rounded="full" text="outlined + full + icon-trailing"/>
+      <md2-textarea appearance="outlined" icon="face" icon-trailing="home" rounded="full" text="outlined + full + icon + icon-trailing"/>
+    </div>
+
     <div class="px-4 py-2"><b>textarea-autosize</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-textarea-autosize class="border"/>
-      <md2-textarea-autosize class="border" value="value"/>
+      <md2-textarea-autosize
+        class="border"
+        value="В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]."
+      />
     </div>
 
     <div class="px-4 py-2"><b>textarea-autosize, height</b></div>
@@ -1346,6 +1424,7 @@ import Md2Radio from '../../md2/Md2Radio/index.vue'
 import Md2Switch from '../../md2/Md2Switch/index.vue'
 import Md2Mask from '../../md2/Md2Mask/index.vue'
 import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
+import Md2Textarea from '../../md2/Md2Textarea/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1355,6 +1434,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Textarea,
     Md2TextareaAutosize,
     Md2Mask,
     Md2Switch,

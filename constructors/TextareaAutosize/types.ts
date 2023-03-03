@@ -13,8 +13,10 @@ export type TextareaAutosizeClassesType = ComponentClassesType & {
 export type TextareaAutosizeSetupType = ComponentBaseType & {
   classes: ComputedRef<TextareaAutosizeClassesType>
   cloneElement: Ref<HTMLDivElement | undefined>
+
   valueBind: Ref<BooleanOrNumberOrStringType>
+
   onBlur: () => void
-  onChange: () => void
   onInput: (event: Event) => void
+  onChange: () => void
 }
