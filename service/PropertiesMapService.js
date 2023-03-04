@@ -17,16 +17,12 @@ module.exports = class {
   static getItems (code) {
     this.init()
 
-    const item = this.list.find(item => item.code === code)
+    const items = this.list.filter(item => item.code === code)
 
-    if (item) {
+    if (items) {
       const property = {}
 
-      this.list.forEach(item => {
-        if (item.code === code) {
-          replaceRecursive(property, item.property.getProperty())
-        }
-      })
+      items.forEach(item => replaceRecursive(property, item.property.getProperty()))
 
       return property
     } else {

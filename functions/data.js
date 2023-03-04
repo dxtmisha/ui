@@ -1,6 +1,6 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
-exports.toReplaceTemplate = exports.toKebabCase = exports.toCamelCase = exports.strFill = exports.replaceRecursive = exports.random = exports.minListLength = exports.maxListLength = exports.isSelected = exports.isFilled = exports.getExp = exports.getClipboardData = exports.forEach = exports.executeFunction = exports.arrFill = void 0
+exports.toReplaceTemplate = exports.toKebabCase = exports.toCamelCase = exports.strFill = exports.replaceRecursive = exports.random = exports.minListLength = exports.maxListLength = exports.isSelectedByList = exports.isSelected = exports.isFilled = exports.getExp = exports.getClipboardData = exports.forEach = exports.executeFunction = exports.arrFill = void 0
 function arrFill (value, count) {
   return Array(count).fill(value)
 }
@@ -74,10 +74,17 @@ function isSelected (value, selected) {
   }
 }
 exports.isSelected = isSelected
+function isSelectedByList (values, selected) {
+  if (Array.isArray(values)) {
+    return values.reduce((value, currentValue) => currentValue && isSelected(value, selected))
+  } else {
+    return isSelected(values, selected)
+  }
+}
+exports.isSelectedByList = isSelectedByList
 function maxListLength (data) {
   return forEach(data, item => item.length)
-    ?.sort()
-    ?.reverse()?.[0]
+    ?.sort((a, b) => a > b ? -1 : 1)?.[0]
 }
 exports.maxListLength = maxListLength
 function minListLength (data) {
@@ -111,7 +118,7 @@ function replaceRecursive (array, replacement, isMerge = true) {
         if (Array.isArray(item)) {
           array[index] = [...item]
         } else {
-          array[index] = typeof item === 'object' ? { ...item } : item
+          array[index] = typeof item === 'object' ? JSON.parse(JSON.stringify(item)) : item
         }
       }
     })
@@ -152,6 +159,7 @@ exports.default = {
   getExp,
   isFilled,
   isSelected,
+  isSelectedByList,
   maxListLength,
   minListLength,
   random,

@@ -6,23 +6,24 @@ export const props = {
   beforeOpening: Function as PropType<(status: boolean) => boolean>,
   opening: Function,
   contextmenu: Boolean,
+  persistent: Boolean,
+  inDom: Boolean,
 
   // Status
   disabled: Boolean,
 
   // Options
+  adaptive: String,
+  rounded: String,
+  autoClose: Boolean,
   alignment: String as PropType<WindowAlignmentType>,
   animationOrigin: String as PropType<WindowAnimationOriginType>,
-  adaptive: String,
-  autoClose: Boolean,
-  axis: String,
   fullscreen: Boolean,
-  height: [Number, String],
+
+  axis: String,
   indent: Number,
-  inDom: Boolean,
-  rounded: String,
-  persistent: Boolean,
-  width: [Number, String]
+  width: [Number, String],
+  height: [Number, String]
 }
 
 export default {

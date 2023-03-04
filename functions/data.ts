@@ -148,7 +148,7 @@ export function replaceRecursive<T = any> (
         if (Array.isArray(item)) {
           array[index] = [...item] as T
         } else {
-          array[index] = typeof item === 'object' ? { ...item } : item
+          array[index] = typeof item === 'object' ? JSON.parse(JSON.stringify(item)) : item
         }
       }
     })

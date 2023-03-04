@@ -1,5 +1,17 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>window</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-window>
+        <template v-slot:control="binds">
+          <md2-button text="window" :class="binds.classes" @click="binds.toggle"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
+    </div>
+
     <div class="px-4 py-2"><b>textarea</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-textarea text="text" @on-input="onEmit"/>
@@ -72,7 +84,8 @@
       <md2-textarea appearance="outlined" rounded="full" text="outlined + full"/>
       <md2-textarea appearance="outlined" icon="face" rounded="full" text="outlined + full + icon"/>
       <md2-textarea appearance="outlined" icon-trailing="home" rounded="full" text="outlined + full + icon-trailing"/>
-      <md2-textarea appearance="outlined" icon="face" icon-trailing="home" rounded="full" text="outlined + full + icon + icon-trailing"/>
+      <md2-textarea appearance="outlined" icon="face" icon-trailing="home" rounded="full"
+                    text="outlined + full + icon + icon-trailing"/>
     </div>
 
     <div class="px-4 py-2"><b>textarea-autosize</b></div>
@@ -1425,6 +1438,7 @@ import Md2Switch from '../../md2/Md2Switch/index.vue'
 import Md2Mask from '../../md2/Md2Mask/index.vue'
 import Md2TextareaAutosize from '../../md2/Md2TextareaAutosize/index.vue'
 import Md2Textarea from '../../md2/Md2Textarea/index.vue'
+import Md2Window from '../../md2/Md2Window/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1434,6 +1448,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Window,
     Md2Textarea,
     Md2TextareaAutosize,
     Md2Mask,
