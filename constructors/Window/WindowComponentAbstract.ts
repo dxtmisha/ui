@@ -17,6 +17,7 @@ import {
   WindowClassesType,
   WindowSetupType
 } from './types'
+import { WindowFlash } from './WindowFlash'
 
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -41,6 +42,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
   private readonly persistent: WindowPersistent
 
+  private readonly flash: WindowFlash
   private readonly open: WindowOpen
   private readonly verification: WindowVerification
   private readonly event: WindowEvent
@@ -91,12 +93,18 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
     this.persistent = new WindowPersistent(this.refs?.persistent)
 
+    this.flash = new WindowFlash(
+      this.elements,
+      this.client,
+      this.refs?.flash
+    )
     this.open = new WindowOpen(
       this.element,
       this.status,
       this.coordinates,
       this.position,
       this.origin,
+      this.flash,
       this.eventItem,
       this.refs?.inDom,
       this.refs?.beforeOpening,
@@ -166,6 +174,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
   private async eventCallback (event?: Event): Promise<void> {
     if (this.open.get()) {
+      this.flash.setControl(event?.target as HTMLElement)
       await this.verification.is(event?.target as HTMLElement)
     } else {
       this.eventItem.stop()

@@ -35,7 +35,9 @@ export class WindowVerification {
         if (this.isNotBlock()) {
           if (this.isChildren()) {
             requestAnimationFrame(async () => {
-              if (this.focus.value?.dataset.status !== 'open') {
+              if (
+                ['open', 'flash'].indexOf(this.focus.value?.dataset.status || '') === -1
+              ) {
                 await this.open.toggle()
               }
             })

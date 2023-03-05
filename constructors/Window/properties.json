@@ -101,6 +101,20 @@
           }
         }
       },
+      "&[data-status='flash']": {
+        "var|l": {
+          "display": "flex",
+          "transition": "none",
+          "body": {
+            "opacity": "1",
+            "transform": "none",
+            "transition": "none"
+          },
+          "scrim": {
+            "opacity": "{??sys.scrim.opacity}"
+          }
+        }
+      },
       "&[data-status='open']": {
         "var|l": {
           "display": "flex",

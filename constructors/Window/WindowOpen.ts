@@ -1,10 +1,12 @@
 import { computed, nextTick, Ref, ref } from 'vue'
 import { EventItem } from '../../classes/EventItem'
+import { frame } from '../../functions'
+
 import { WindowCoordinates } from './WindowCoordinates'
+import { WindowFlash } from './WindowFlash'
 import { WindowOrigin } from './WindowOrigin'
 import { WindowPosition } from './WindowPosition'
 import { WindowStatus } from './WindowStatus'
-import { frame } from '../../functions'
 
 export class WindowOpen {
   readonly item = ref<boolean>(false)
@@ -17,6 +19,7 @@ export class WindowOpen {
     private readonly coordinates: WindowCoordinates,
     private readonly position: WindowPosition,
     private readonly origin: WindowOrigin,
+    private readonly flash: WindowFlash,
     private readonly eventItem: EventItem,
     private readonly inDom?: Ref<boolean>,
     private readonly beforeOpening?: Ref<(status: boolean) => boolean>,
@@ -41,9 +44,7 @@ export class WindowOpen {
 
   async close (): Promise<boolean> {
     if (this.status.isHide()) {
-      this.item.value = false
-      this.status.set('close')
-      return await this.callbackOpening()
+      return this.toClose()
     } else {
       return false
     }
@@ -67,11 +68,16 @@ export class WindowOpen {
           await this.callbackOpening()
 
           this.eventItem.go()
-          this.status.set('open')
+          this.status.set(this.flash.isHide() ? 'flash' : 'open')
         })
       } else {
-        this.status.set('hide')
         this.eventItem.stop()
+
+        if (this.flash.isOpen()) {
+          await this.toClose()
+        } else {
+          this.status.set('hide')
+        }
       }
     }
 
@@ -108,10 +114,19 @@ export class WindowOpen {
           this.position.update()
         }
       },
-      () => this.item.value
+      () => this.item.value && !this.status.isHide()
     )
 
     return this
+  }
+
+  private async toClose (): Promise<boolean> {
+    setTimeout(() => {
+      this.item.value = false
+    }, 50)
+
+    this.status.set('close')
+    return await this.callbackOpening()
   }
 
   private async callbackBeforeOpening (): Promise<boolean> {

@@ -16,6 +16,10 @@ export class WindowElements {
     this.classBody = item.getClassName(['body'])
   }
 
+  getName (): string {
+    return this.item.getBasicClassName()
+  }
+
   getId (): string {
     return this.id
   }
@@ -41,7 +45,7 @@ export class WindowElements {
   }
 
   getBody (): HTMLDivElement | undefined {
-    return document.querySelector<HTMLDivElement>(`.${this.item.getBasicClassName()}.${this.id} .${this.classBody}`) || undefined
+    return document.querySelector<HTMLDivElement>(`.${this.getName()}.${this.id} .${this.classBody}`) || undefined
   }
 
   getByStatus (name: keyof WindowClassesControlType): string {

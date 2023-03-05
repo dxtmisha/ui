@@ -6,7 +6,7 @@ import {
   ComponentClassesType
 } from '../types'
 
-export type WindowStatusType = 'preparation' | 'open' | 'hide' | 'close'
+export type WindowStatusType = 'preparation' | 'flash' | 'open' | 'hide' | 'close'
 
 export type WindowEmitType = {
   open: boolean,

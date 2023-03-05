@@ -8,6 +8,7 @@ export const props = {
   opening: Function,
   persistent: Boolean,
   inDom: Boolean,
+  flash: Boolean,
 
   // Status
   disabled: Boolean,
