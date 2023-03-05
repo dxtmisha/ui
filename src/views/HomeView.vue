@@ -4,10 +4,69 @@
     <div class="flex px-4 py-2 gap-2">
       <md2-window>
         <template v-slot:control="binds">
-          <md2-button text="window" :class="binds.classes" @click="binds.toggle"/>
+          <md2-button text="short" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window>
+        <template v-slot:control="binds">
+          <md2-button text="long" :class="binds.classes" v-on="binds.on"/>
         </template>
         <template v-slot:default>
           <div v-html="text"/>
+        </template>
+      </md2-window>
+      <md2-window persistent>
+        <template v-slot:control="binds">
+          <md2-button text="persistent" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window in-dom>
+        <template v-slot:control="binds">
+          <md2-button text="in-dom" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+    </div>
+
+    <div class="px-4 py-2"><b>window, menu</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-window adaptive="menu">
+        <template v-slot:control="binds">
+          <md2-button text="menu" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window adaptive="menu" :contextmenu="true">
+        <template v-slot:control="binds">
+          <md2-button text="contextmenu" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
         </template>
       </md2-window>
     </div>

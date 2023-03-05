@@ -14,8 +14,8 @@ export class WindowVerification {
     private readonly selector: string,
     private readonly open: WindowOpen,
     private readonly persistent: WindowPersistent,
-    private readonly autoClose: Ref<boolean>,
-    private readonly disabled: Ref<boolean>
+    private readonly autoClose?: Ref<boolean>,
+    private readonly disabled?: Ref<boolean>
   ) {
   }
 
@@ -68,11 +68,11 @@ export class WindowVerification {
   }
 
   private isEnabled (): boolean {
-    return !this.disabled.value && !this.getTarget().closest(this.elements.getByStatus('controlStatic'))
+    return !this.disabled?.value && !this.getTarget().closest(this.elements.getByStatus('controlStatic'))
   }
 
   private isAutoClose (): boolean {
-    return this.autoClose.value &&
+    return !!this.autoClose?.value &&
       !this.getTarget().closest(`${this.elements.getByStatus('static')}, .${this.elements.getId()} .${this.elements.getClassControl()}`)
   }
 

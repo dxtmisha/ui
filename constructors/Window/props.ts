@@ -4,8 +4,8 @@ import { WindowAlignmentType, WindowAnimationOriginType } from './props.type'
 export const props = {
   // Values
   beforeOpening: Function as PropType<(status: boolean) => boolean>,
+  preparation: Function,
   opening: Function,
-  contextmenu: Boolean,
   persistent: Boolean,
   inDom: Boolean,
 
@@ -20,6 +20,7 @@ export const props = {
   animationOrigin: String as PropType<WindowAnimationOriginType>,
   fullscreen: Boolean,
 
+  contextmenu: Boolean,
   axis: String,
   indent: Number,
   width: [Number, String],

@@ -5,7 +5,7 @@ export class WindowPersistent {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly persistent: Ref<boolean>
+    private readonly persistent?: Ref<boolean>
   ) {
   }
 
@@ -14,7 +14,7 @@ export class WindowPersistent {
   }
 
   on (): boolean {
-    if (this.persistent.value) {
+    if (this.persistent?.value) {
       this.item.value = true
       return true
     } else {

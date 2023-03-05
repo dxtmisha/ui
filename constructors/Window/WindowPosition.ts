@@ -12,9 +12,9 @@ export class WindowPosition {
     private readonly coordinates: WindowCoordinates,
     private readonly client: WindowClient,
     private readonly className: string,
-    private readonly axis: Ref<string>,
-    private readonly indent: Ref<number>,
-    private readonly contextmenu: Ref<boolean>
+    private readonly axis?: Ref<string>,
+    private readonly indent?: Ref<number>,
+    private readonly contextmenu?: Ref<boolean>
   ) {
   }
 
@@ -48,11 +48,11 @@ export class WindowPosition {
   private setX (): this {
     if (this.element.value) {
       const indent = this.getIndent('x')
-      const rectRight = this.contextmenu.value ? this.client.getX() : this.coordinates.getRight() + indent
-      const rectLeft = this.contextmenu.value ? this.client.getX() : this.coordinates.getLeft() - indent
+      const rectRight = this.contextmenu?.value ? this.client.getX() : this.coordinates.getRight() + indent
+      const rectLeft = this.contextmenu?.value ? this.client.getX() : this.coordinates.getLeft() - indent
       const argumentValues = [] as number[]
 
-      if (this.axis.value === 'x') {
+      if (this.axis?.value === 'x') {
         argumentValues.push(rectRight, rectLeft)
       } else {
         argumentValues.push(rectLeft, rectRight)
@@ -72,11 +72,11 @@ export class WindowPosition {
   private setY (): this {
     if (this.element.value) {
       const indent = this.getIndent('y')
-      const rectTop = this.contextmenu.value ? this.client.getY() : this.coordinates.getTop() - indent
-      const rectBottom = this.contextmenu.value ? this.client.getY() : this.coordinates.getBottom() + indent
+      const rectTop = this.contextmenu?.value ? this.client.getY() : this.coordinates.getTop() - indent
+      const rectBottom = this.contextmenu?.value ? this.client.getY() : this.coordinates.getBottom() + indent
       const argumentValues = [] as number[]
 
-      if (this.axis.value === 'y') {
+      if (this.axis?.value !== 'x') {
         argumentValues.push(rectBottom, rectTop)
       } else {
         argumentValues.push(rectTop, rectBottom)
@@ -94,7 +94,7 @@ export class WindowPosition {
   }
 
   private getIndent (type: string): number {
-    return this.axis.value === type ? this.indent.value : 0
+    return this.axis?.value === type ? (this.indent?.value || 4) : 0
   }
 
   private getInnerPosition (

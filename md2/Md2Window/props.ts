@@ -12,13 +12,28 @@ export const defaultItem = ComponentDesign.getDefault('md2.window')
 export const props = {
   // Values
   beforeOpening: Function,
+  preparation: Function,
   opening: Function,
-  contextmenu: Boolean,
+  persistent: Boolean,
+  inDom: Boolean,
 
   // Status
   disabled: Boolean,
 
   // Options
+  adaptive: {
+    type: String as PropType<Md2WindowAdaptiveType>,
+    default: defaultItem.defaultValue('adaptive'),
+    validator: defaultItem.validator('adaptive')
+  },
+  rounded: {
+    type: String as PropType<Md2WindowRoundedType>,
+    default: defaultItem.defaultValue('rounded')
+  },
+  autoClose: {
+    type: Boolean,
+    default: true
+  },
   alignment: {
     type: String as PropType<WindowAlignmentType>,
     default: defaultItem.defaultValue('alignment'),
@@ -29,36 +44,23 @@ export const props = {
     default: defaultItem.defaultValue('animationOrigin'),
     validator: defaultItem.validator('animationOrigin')
   },
-  adaptive: {
-    type: String as PropType<Md2WindowAdaptiveType>,
-    default: defaultItem.defaultValue('adaptive'),
-    validator: defaultItem.validator('adaptive')
-  },
-  autoClose: {
-    type: Boolean,
-    default: true
-  },
+  fullscreen: Boolean,
+
+  contextmenu: Boolean,
   axis: {
     type: String as PropType<Md2WindowAxisType>,
     default: 'y'
-  },
-  fullscreen: Boolean,
-  height: {
-    type: [Number, String] as PropType<Md2WindowWidthType>,
-    default: defaultItem.defaultValue('height')
   },
   indent: {
     type: Number,
     default: defaultItem.defaultValue('indent', 4)
   },
-  inDom: Boolean,
-  rounded: {
-    type: String as PropType<Md2WindowRoundedType>,
-    default: defaultItem.defaultValue('rounded')
-  },
-  persistent: Boolean,
   width: {
     type: [Number, String] as PropType<Md2WindowWidthType>,
     default: defaultItem.defaultValue('width')
+  },
+  height: {
+    type: [Number, String] as PropType<Md2WindowWidthType>,
+    default: defaultItem.defaultValue('height')
   }
 }

@@ -75,9 +75,9 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.coordinates,
       this.client,
       styleName,
-      this.refs.axis,
-      this.refs.indent,
-      this.refs.contextmenu
+      this.refs?.axis,
+      this.refs?.indent,
+      this.refs?.contextmenu
     )
 
     this.origin = new WindowOrigin(
@@ -88,7 +88,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       styleName
     )
 
-    this.persistent = new WindowPersistent(this.refs.persistent)
+    this.persistent = new WindowPersistent(this.refs?.persistent)
 
     this.open = new WindowOpen(
       this.element,
@@ -97,9 +97,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.position,
       this.origin,
       this.eventItem,
-      this.refs.inDom,
-      this.refs.beforeOpening,
-      this.refs.opening
+      this.refs?.inDom,
+      this.refs?.beforeOpening,
+      this.refs?.preparation,
+      this.refs?.opening
     )
 
     this.verification = new WindowVerification(
@@ -109,8 +110,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.getSelector(),
       this.open,
       this.persistent,
-      this.refs.autoClose,
-      this.refs.disabled
+      this.refs?.autoClose,
+      this.refs?.disabled
     )
 
     this.event = new WindowEvent(
@@ -179,13 +180,13 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   }
 
   private async onClick (event: MouseEvent & TouchEvent) {
-    if (!this.props.contextmenu) {
+    if (!this.props?.contextmenu) {
       await this.on(event)
     }
   }
 
   private async onContextmenu (event: MouseEvent & TouchEvent) {
-    if (this.props.contextmenu) {
+    if (this.props?.contextmenu) {
       event.preventDefault()
       event.stopPropagation()
 

@@ -4,20 +4,20 @@
       "@style": "{d.window}",
       "var|sys": {
         "menu": {
-          "background": "{sys.elevation.background.8}",
           "index": "{sys.elevation.index.8}",
-          "shadow": "{sys.elevation.shadow.8}",
-          "width": "{ref.spacing.px} * 256"
+          "width": "{ref.spacing.px} * 256",
+          "background": "{sys.elevation.background.8}",
+          "shadow": "{sys.elevation.shadow.8}"
         },
         "modal": {
-          "background": "{sys.elevation.background.24}",
           "index": "{sys.elevation.index.24}",
-          "shadow": "{sys.elevation.shadow.24}",
-          "width": "{ref.spacing.px} * 768"
+          "width": "{ref.spacing.px} * 768",
+          "background": "{sys.elevation.background.24}",
+          "shadow": "{sys.elevation.shadow.24}"
         },
         "scrim": {
-          "background": "{sys.palette.onBackground}",
-          "opacity": "{sys.opacity.scrim}"
+          "opacity": "{sys.opacity.scrim}",
+          "background": "{sys.palette.onBackground}"
         }
       },
       "var|_padding": "{ref.spacing.10} {ref.spacing.4}",

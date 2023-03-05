@@ -3,32 +3,33 @@
     "window": {
       "var|sys": {
         "menu": {
-          "background": "",
-          "height": "auto",
           "index": "",
-          "shadow": "",
-          "width": ""
+          "width": "",
+          "height": "auto",
+          "background": "",
+          "shadow": ""
         },
         "modal": {
-          "background": "",
-          "height": "auto",
           "index": "",
-          "shadow": "",
-          "width": ""
+          "width": "",
+          "height": "auto",
+          "background": "",
+          "shadow": ""
         },
         "scrim": {
-          "background": "",
-          "opacity": ""
+          "opacity": "",
+          "background": ""
         }
       },
       "var|l": {
-        "background": "{??sys.modal.background}",
-        "height": "{??sys.modal.height}",
-        "index": "{??sys.modal.index}",
-        "shadow": "{??sys.modal.shadow}",
-        "width": "{??sys.modal.width}",
         "display": "none",
+        "index": "{??sys.modal.index}",
+        "width": "{??sys.modal.width}",
+        "height": "{??sys.modal.height}",
+        "background": "{??sys.modal.background}",
+        "shadow": "{??sys.modal.shadow}",
         "transition": "none",
+        "transform-origin": "center",
         "body": {
           "opacity": "0",
           "transform": "none",
@@ -36,8 +37,7 @@
         },
         "scrim": {
           "opacity": "0"
-        },
-        "transform-origin": "{??_originX} {??_originY}"
+        }
       },
       "mixin|m": {
         "mixin|menu": {
@@ -47,11 +47,12 @@
             }
           },
           "var|l": {
-            "background": "{??sys.menu.background}",
             "index": "{??sys.menu.index}",
+            "width": "{??sys.menu.width}",
             "height": "{??sys.menu.height}",
+            "background": "{??sys.menu.background}",
             "shadow": "{??sys.menu.shadow}",
-            "width": "{??sys.menu.width}"
+            "transform-origin": "{??_originX} {??_originY}"
           },
           "content": "'--MENU--'",
           "top": "{??_insetY}",
