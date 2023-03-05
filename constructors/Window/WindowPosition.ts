@@ -62,7 +62,8 @@ export class WindowPosition {
         argumentValues[0],
         argumentValues[1],
         this.element.value.offsetWidth,
-        window.innerWidth
+        window.innerWidth,
+        this.coordinates.getWidth()
       )
     }
 
@@ -86,7 +87,8 @@ export class WindowPosition {
         argumentValues[0],
         argumentValues[1],
         this.element.value.offsetHeight,
-        window.innerHeight
+        window.innerHeight,
+        this.coordinates.getHeight()
       )
     }
 
@@ -101,14 +103,15 @@ export class WindowPosition {
     inValue: number,
     outValue: number,
     length: number,
-    innerLength: number
+    innerLength: number,
+    maxSize: number
   ): number {
     if (inValue + length <= innerLength) {
       return inValue
     } else if (outValue - length > 0) {
       return outValue - length
     } else {
-      return 0
+      return (innerLength / 2) - (maxSize / 2)
     }
   }
 }

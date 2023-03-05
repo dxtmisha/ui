@@ -6,6 +6,7 @@
         "menu": {
           "index": "{sys.elevation.index.8}",
           "width": "{ref.spacing.px} * 256",
+          "height": "100vh - {ref.spacing.4}",
           "background": "{sys.elevation.background.8}",
           "shadow": "{sys.elevation.shadow.8}"
         },

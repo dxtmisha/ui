@@ -63,10 +63,11 @@ export class WindowOpen {
         await this.callbackPreparation()
         await this.watchPosition()
 
-        requestAnimationFrame(() => {
-          this.status.set('open')
+        requestAnimationFrame(async () => {
+          await this.callbackOpening()
+
           this.eventItem.go()
-          this.callbackOpening()
+          this.status.set('open')
         })
       } else {
         this.status.set('hide')

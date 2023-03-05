@@ -58,6 +58,14 @@
           архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
         </template>
       </md2-window>
+      <md2-window adaptive="menu" :auto-close="false">
+        <template v-slot:control="binds">
+          <md2-button text="long" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
       <md2-window adaptive="menu" :contextmenu="true">
         <template v-slot:control="binds">
           <md2-button text="contextmenu" :class="binds.classes" v-on="binds.on"/>
