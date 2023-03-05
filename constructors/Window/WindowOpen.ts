@@ -39,6 +39,16 @@ export class WindowOpen {
     return this
   }
 
+  async close (): Promise<boolean> {
+    if (this.status.isHide()) {
+      this.item.value = false
+      this.status.set('close')
+      return await this.callbackOpening()
+    } else {
+      return false
+    }
+  }
+
   async toggle (): Promise<this> {
     if (await this.callbackBeforeOpening()) {
       const toOpen = !this.item.value
@@ -67,17 +77,7 @@ export class WindowOpen {
     return this
   }
 
-  async close (): Promise<boolean> {
-    if (this.status.isHide()) {
-      this.item.value = false
-      this.status.set('close')
-      return await this.callbackOpening()
-    } else {
-      return false
-    }
-  }
-
-  private async watchPosition () {
+  async watchPosition () {
     if (
       this.element.value &&
       this.item.value
@@ -88,6 +88,13 @@ export class WindowOpen {
     } else {
       this.restart()
     }
+  }
+
+  restart (): this {
+    this.coordinates.restart()
+    this.origin.restart()
+
+    return this
   }
 
   private watchCoordinates (): this {
@@ -102,13 +109,6 @@ export class WindowOpen {
       },
       () => this.item.value
     )
-
-    return this
-  }
-
-  private restart (): this {
-    this.coordinates.restart()
-    this.origin.restart()
 
     return this
   }

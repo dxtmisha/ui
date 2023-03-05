@@ -14,6 +14,7 @@ export class WindowVerification {
     private readonly selector: string,
     private readonly open: WindowOpen,
     private readonly persistent: WindowPersistent,
+    private readonly contextmenu?: Ref<boolean>,
     private readonly autoClose?: Ref<boolean>,
     private readonly disabled?: Ref<boolean>
   ) {
@@ -25,7 +26,10 @@ export class WindowVerification {
     this.target.value = target
 
     if (this.open.get()) {
-      if (this.focus.value === null) {
+      if (this.isContextmenu()) {
+        await this.open.restart()
+          .watchPosition()
+      } else if (this.focus.value === null) {
         await this.open.toggle()
       } else if (!this.isFocus()) {
         if (this.isNotBlock()) {
@@ -74,6 +78,11 @@ export class WindowVerification {
   private isAutoClose (): boolean {
     return !!this.autoClose?.value &&
       !this.getTarget().closest(`${this.elements.getByStatus('static')}, .${this.elements.getId()} .${this.elements.getClassControl()}`)
+  }
+
+  private isContextmenu (): boolean {
+    return !!this.contextmenu?.value &&
+      !!this.getTarget().closest(`.${this.elements.getId()}.${this.elements.getClassControl()}`)
   }
 
   private isClose (): boolean {

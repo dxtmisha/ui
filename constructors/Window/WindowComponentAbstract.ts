@@ -57,6 +57,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       document.body,
       async (event) => this.eventCallback(event)
     )
+      .setType(['click', 'contextmenu'])
       .setDom(this.element)
 
     this.status = new WindowStatus()
@@ -110,6 +111,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.getSelector(),
       this.open,
       this.persistent,
+      this.refs?.contextmenu,
       this.refs?.autoClose,
       this.refs?.disabled
     )
@@ -188,7 +190,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
   private async onContextmenu (event: MouseEvent & TouchEvent) {
     if (this.props?.contextmenu) {
       event.preventDefault()
-      event.stopPropagation()
 
       await this.on(event)
     }
