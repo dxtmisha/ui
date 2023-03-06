@@ -5,8 +5,8 @@ import { BooleanOrNumberOrStringType } from '../types'
 export class UseInverse {
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly appearanceInverse: BooleanOrNumberOrStringType[],
-    private readonly appearance?: Ref<BooleanOrNumberOrStringType>
+    protected readonly appearanceInverse: BooleanOrNumberOrStringType[],
+    protected readonly appearance?: Ref<BooleanOrNumberOrStringType>
   ) {
   }
 

@@ -1,45 +1,93 @@
-import { computed, ComputedRef } from 'vue'
-import { ButtonComponentItemAbstract } from '../Button/ButtonComponentItemAbstract'
+import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
-import {
-  AssociativeType,
-  ComponentAssociativeType,
-  ComponentBaseType,
-  EventCallbackRequiredType
-} from '../types'
-import { getExp } from '../../functions'
 
-export type ListItemClassesType = {
-  main: ComponentAssociativeType
-  description: ComponentAssociativeType
-  context: ComponentAssociativeType
-  prefix: ComponentAssociativeType
-  suffix: ComponentAssociativeType
-  text: ComponentAssociativeType
-  title: ComponentAssociativeType
-}
-export type ListItemSetupType = ComponentBaseType & {
-  classes: ComputedRef<ListItemClassesType>
-  isFullText: ComputedRef<boolean>
-  textBind: ComputedRef<string>
-  iconBind: ComputedRef<string | AssociativeType>
-  iconTrailingBind: ComputedRef<string | AssociativeType>
-  progressIconBind: ComputedRef<AssociativeType>
-  progressTextBind: ComputedRef<AssociativeType>
-  onClick: EventCallbackRequiredType<void, MouseEvent>
-}
+import { ButtonEvent } from '../Button/ButtonEvent'
+import { ListItemIcon } from './ListItemIcon'
+import { ListItemText } from './ListItemText'
+import { UseEnabled } from '../Use/UseEnabled'
+import { UseInverseBySelected } from '../Use/UseInverseBySelected'
+import { UseProgress } from '../Progress/UseProgress'
+import { UseValue } from '../Use/UseValue'
 
-export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstract {
+import { AssociativeType } from '../types'
+import { ListItemClassesType, ListItemSetupType } from './types'
+
+export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSpanElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
-  protected abstract appearanceInverse: string[]
   protected readonly stylesProps = [
-    'height',
-    'overlay',
     'palette',
-    'rounded'
+    'overlay',
+    'rounded',
+    'height'
   ] as string[]
+
+  private readonly value: UseValue
+  private readonly enabled: UseEnabled
+
+  private readonly text: ListItemText
+  private readonly icon: ListItemIcon
+
+  private readonly inverse: UseInverseBySelected
+  private readonly progress: UseProgress
+
+  private readonly event: ButtonEvent
+
+  constructor (
+    props: AssociativeType & object,
+    context: AssociativeType & object,
+    appearanceInverse = [] as string[],
+    selectedInverse = [] as string[]
+  ) {
+    super(props, context)
+
+    this.value = new UseValue(
+      this.refs?.value,
+      this.refs?.detail
+    )
+    this.enabled = new UseEnabled(
+      this.refs?.disabled,
+      this.refs?.readonly,
+      this.refs?.progress,
+      this.refs?.ripple
+    )
+
+    this.text = new ListItemText(
+      this.context.slots,
+      this.refs?.text,
+      this.refs?.textHighlight,
+      this.refs?.prefix,
+      this.refs?.suffix,
+      this.refs?.description
+    )
+
+    this.icon = new ListItemIcon(
+      this.getBind,
+      this.refs?.icon,
+      this.refs?.iconTrailing,
+      this.refs?.thumbnail,
+      this.refs?.selected,
+      this.refs?.disabled,
+      this.refs?.turn,
+      this.text.isItem
+    )
+
+    this.inverse = new UseInverseBySelected(
+      appearanceInverse,
+      this.refs?.appearance,
+      selectedInverse,
+      this.refs?.selected
+    )
+    this.progress = new UseProgress('circular', this.inverse)
+
+    this.event = new ButtonEvent(
+      this.context.emit,
+      this.value,
+      this.enabled,
+      this.refs?.to
+    )
+  }
 
   setup (): ListItemSetupType {
     const classes = this.getClasses<ListItemClassesType>()
@@ -49,52 +97,15 @@ export abstract class ListItemComponentAbstract extends ButtonComponentItemAbstr
       ...this.getBasic(),
       classes,
       styles,
-      isFullText: this.isFullText,
-      textBind: this.text,
-      iconBind: this.getBind(this.refs.icon, this.icon, 'icon'),
-      iconTrailingBind: this.getBind(this.refs.iconTrailing, this.iconTrailing, 'icon'),
-      progressIconBind: this.progressIcon,
-      progressTextBind: this.progressText,
-      onClick: (event: MouseEvent) => this.onClick(event)
+
+      isRipple: this.enabled.itemRipple,
+
+      onClick: (event: MouseEvent) => this.event.onClick(event),
+
+      ...this.value.getSetup(),
+      ...this.text.getSetup(),
+      ...this.icon.getSetupByThumbnail(),
+      ...this.progress.getSetup()
     }
   }
-
-  readonly isFullText = computed(() => {
-    return !!(
-      this.props.description ||
-      this.props.prefix ||
-      this.props.suffix ||
-      this.props.textHighlight
-    )
-  })
-
-  readonly isInverse = computed(() => {
-    return this.props.selected && (
-      this.appearanceInverse.indexOf(this.props.appearance) !== -1 ||
-      this.appearanceInverse.indexOf('all') !== -1
-    )
-  }) as ComputedRef<boolean>
-
-  readonly progressIcon = computed(() => {
-    return {
-      inverse: this.isInverse.value,
-      type: 'circular',
-      visible: true
-    }
-  })
-
-  readonly progressText = computed(() => {
-    return {
-      inverse: this.isInverse.value,
-      visible: true
-    }
-  })
-
-  readonly text = computed(() => this.props.text && this.props.textHighlight
-    ? this.props.text.replace(
-      getExp(this.props.textHighlight, 'ig', '(:value)'),
-      (subtext: string) => `<span class="is-highlight">${subtext}</span>`
-    )
-    : this.props.text
-  ) as ComputedRef<string>
 }

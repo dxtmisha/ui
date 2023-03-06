@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { ButtonEvent } from './ButtonEvent'
-import { ButtonValue } from './ButtonValue'
+import { UseValue } from '../Use/UseValue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { UseEnabled } from '../Use/UseEnabled'
 import { UseIcon } from '../Use/UseIcon'
@@ -17,7 +17,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
 
   protected readonly stylesProps = ['height', 'width'] as string[]
 
-  private readonly value: ButtonValue
+  private readonly value: UseValue
   private readonly enabled: UseEnabled
 
   private readonly icon: UseIcon
@@ -34,7 +34,7 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
   ) {
     super(props, context)
 
-    this.value = new ButtonValue(
+    this.value = new UseValue(
       this.refs?.value,
       this.refs?.detail
     )
@@ -87,13 +87,13 @@ export abstract class ButtonComponentAbstract extends ComponentAbstract {
       isRipple: this.enabled.itemRipple,
       isInverse: this.inverse.item,
 
-      valueBind: this.value.item,
-      progressBind: this.progress.item,
       disabledBind: this.enabled.itemDisabled,
 
       onClick: (event: MouseEvent) => this.event.onClick(event),
 
-      ...this.icon.getSetup()
+      ...this.value.getSetup(),
+      ...this.icon.getSetup(),
+      ...this.progress.getSetup()
     }
   }
 

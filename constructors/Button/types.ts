@@ -1,5 +1,9 @@
 import { ComputedRef } from 'vue'
+
 import { UseIconSetupType } from '../Use/UseIcon'
+import { UseProgressSetupType } from '../Progress/UseProgress'
+import { UseValueSetupType } from '../Use/UseValue'
+
 import {
   AssociativeType,
   ComponentAssociativeType,
@@ -14,6 +18,8 @@ export type ButtonClassesType = ComponentClassesType & {
 
 export type ButtonSetupType = ComponentBaseType &
   UseIconSetupType &
+  UseProgressSetupType &
+  UseValueSetupType &
   {
     classes: ComputedRef<ButtonClassesType>
 
@@ -21,7 +27,6 @@ export type ButtonSetupType = ComponentBaseType &
     isRipple: ComputedRef<boolean>
     isInverse: ComputedRef<boolean>
 
-    valueBind: ComputedRef
     progressBind: ComputedRef<AssociativeType>
     disabledBind: ComputedRef<boolean | undefined>
 

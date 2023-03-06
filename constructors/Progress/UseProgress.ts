@@ -1,6 +1,10 @@
-import { computed, Ref } from 'vue'
+import { computed, ComputedRef, Ref } from 'vue'
 import { UseInverse } from '../Use/UseInverse'
 import { AssociativeType } from '../types'
+
+export type UseProgressSetupType = {
+  progressBind: ComputedRef<AssociativeType>
+}
 
 export class UseProgress {
   // eslint-disable-next-line no-useless-constructor
@@ -25,5 +29,11 @@ export class UseProgress {
 
   get (): AssociativeType {
     return this.item.value
+  }
+
+  getSetup (): UseProgressSetupType {
+    return {
+      progressBind: this.item
+    }
   }
 }

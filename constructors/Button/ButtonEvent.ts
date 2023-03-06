@@ -2,7 +2,7 @@ import { Ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { EventItem } from '../../classes/EventItem'
-import { ButtonValue } from './ButtonValue'
+import { UseValue } from '../Use/UseValue'
 import { UseEnabled } from '../Use/UseEnabled'
 import { CallbackEmitType } from '../types'
 
@@ -10,7 +10,7 @@ export class ButtonEvent {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly emit: CallbackEmitType,
-    private readonly value: ButtonValue,
+    private readonly value: UseValue,
     private readonly enabled: UseEnabled,
     private readonly to?: Ref<string | undefined>
   ) {

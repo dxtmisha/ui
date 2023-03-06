@@ -30,7 +30,7 @@ export class UseEnabled {
   }
 
   isProgress (): boolean {
-    return !!this.readonly?.value
+    return !!this.progress?.value
   }
 
   isRipple (): boolean {
