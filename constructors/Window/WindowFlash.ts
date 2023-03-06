@@ -1,5 +1,4 @@
 import { Ref } from 'vue'
-import { WindowClient } from './WindowClient'
 import { WindowElements } from './WindowElements'
 
 export class WindowFlash {
@@ -8,7 +7,6 @@ export class WindowFlash {
   // eslint-disable-next-line no-useless-constructor
   constructor (
     private readonly elements: WindowElements,
-    private readonly client: WindowClient,
     private readonly flash?: Ref<boolean>
   ) {
   }

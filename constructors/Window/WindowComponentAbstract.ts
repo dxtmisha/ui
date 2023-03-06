@@ -95,7 +95,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
     this.flash = new WindowFlash(
       this.elements,
-      this.client,
       this.refs?.flash
     )
     this.open = new WindowOpen(
