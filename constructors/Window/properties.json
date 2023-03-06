@@ -5,6 +5,7 @@
         "menu": {
           "index": "",
           "width": "",
+          "shift": "16px",
           "height": "100vh",
           "background": "",
           "shadow": ""
@@ -12,6 +13,7 @@
         "modal": {
           "index": "",
           "width": "",
+          "shift": "48px",
           "height": "auto",
           "background": "",
           "shadow": ""
@@ -24,6 +26,7 @@
       "var|l": {
         "display": "none",
         "index": "{??sys.modal.index}",
+        "shift": "{??sys.modal.shift}",
         "width": "{??sys.modal.width}",
         "height": "{??sys.modal.height}",
         "background": "{??sys.modal.background}",
@@ -48,6 +51,7 @@
           },
           "var|l": {
             "index": "{??sys.menu.index}",
+            "shift": "{??sys.menu.shift}",
             "width": "{??sys.menu.width}",
             "height": "{??sys.menu.height}",
             "background": "{??sys.menu.background}",
@@ -61,13 +65,20 @@
           "left": "{??_insetX}",
           "padding": "0",
           "& .??__body": {
+            "width": "{??_width}",
+            "height": "auto",
             "max-width": "100vw",
-            "width": "{??_width}"
+            "max-height": "{??l.height}"
           },
           "&[data-status='preparation'], &[data-status='open'], &[data-status='hide']": {
             "var|l": {
               "display": "block"
             }
+          }
+        },
+        "mixin|toWall": {
+          "&.??--alignment--left, &.??--alignment--right": {
+            "var|_padding": "0"
           }
         }
       },
@@ -150,11 +161,43 @@
         "~modal": {}
       },
       "~alignment": {
-        "bottom": {},
+        "bottom": {
+          "&[data-status='preparation']": {
+            "var|l": {
+              "body": {
+                "transform": "translateY({??l.shift})"
+              }
+            }
+          }
+        },
         "center": {},
-        "left": {},
-        "right": {},
-        "top": {}
+        "left": {
+          "&[data-status='preparation']": {
+            "var|l": {
+              "body": {
+                "transform": "translateX(calc({??l.shift} * -1))"
+              }
+            }
+          }
+        },
+        "right": {
+          "&[data-status='preparation']": {
+            "var|l": {
+              "body": {
+                "transform": "translateX({??l.shift})"
+              }
+            }
+          }
+        },
+        "top": {
+          "&[data-status='preparation']": {
+            "var|l": {
+              "body": {
+                "transform": "translateY(calc({??l.shift} * -1))"
+              }
+            }
+          }
+        }
       },
       "~animationOrigin": {
         "auto": {},
@@ -165,14 +208,6 @@
         "top": {}
       },
       "~fullscreen": {},
-      "~height": {
-        "auto": {
-          "var|height": "auto"
-        },
-        "full": {
-          "var|height": "100%"
-        }
-      },
       "~width": {
         "auto": {
           "var|width": "auto",
@@ -182,6 +217,14 @@
         },
         "full": {
           "var|width": "100%"
+        }
+      },
+      "~height": {
+        "auto": {
+          "var|height": "auto"
+        },
+        "full": {
+          "var|height": "100%"
         }
       }
     }

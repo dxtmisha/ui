@@ -42,8 +42,9 @@
     overflow-y: auto;
 
     width: 100%;
+    height: v('??_height');
     max-width: v('??_width');
-    max-height: v('??_height');
+    max-height: 100%;
 
     transform: v('??l.body.transform');
     transform-origin: v('??l.transform-origin');

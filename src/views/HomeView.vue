@@ -240,6 +240,28 @@
           архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
         </template>
       </md2-window>
+      <md2-window adaptive="modal" alignment="left" rounded="none">
+        <template v-slot:control="binds">
+          <md2-button text="none + left" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window adaptive="modal" alignment="right" height="full" rounded="none" animation-origin="right">
+        <template v-slot:control="binds">
+          <md2-button text="none + right + height" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
       <md2-window adaptive="modal" rounded="standard">
         <template v-slot:control="binds">
           <md2-button text="standard" :class="binds.classes" v-on="binds.on"/>
@@ -424,9 +446,57 @@
           архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
         </template>
       </md2-window>
+    </div>
+
+    <div class="px-4 py-2"><b>window, menu, alignment</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-window adaptive="menu" alignment="center">
+        <template v-slot:control="binds">
+          <md2-button text="center" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window adaptive="menu" alignment="top">
+        <template v-slot:control="binds">
+          <md2-button text="top" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window adaptive="menu" alignment="right">
+        <template v-slot:control="binds">
+          <md2-button text="right" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window adaptive="menu" alignment="bottom">
+        <template v-slot:control="binds">
+          <md2-button text="bottom" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
       <md2-window adaptive="menu" alignment="left">
         <template v-slot:control="binds">
-          <md2-button text="left + menu" :class="binds.classes" v-on="binds.on"/>
+          <md2-button text="left" :class="binds.classes" v-on="binds.on"/>
         </template>
         <template v-slot:default>
           В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
@@ -551,6 +621,125 @@
           помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
           демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
           архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+    </div>
+
+    <div class="px-4 py-2"><b>window, width</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-window width="auto">
+        <template v-slot:control="binds">
+          <md2-button text="auto" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в ...
+        </template>
+      </md2-window>
+      <md2-window width="sm">
+        <template v-slot:control="binds">
+          <md2-button text="sm" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window width="md">
+        <template v-slot:control="binds">
+          <md2-button text="md" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window width="lg">
+        <template v-slot:control="binds">
+          <md2-button text="lg" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window width="full">
+        <template v-slot:control="binds">
+          <md2-button text="full" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+      <md2-window width="560px">
+        <template v-slot:control="binds">
+          <md2-button text="560px" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          В течение командировки по выслуге лет Путин повышен в звании до подполковника и в должности до старшего
+          помощника начальника отдела. Вскоре после падения Берлинской стены, 5 декабря 1989 года толпа немецких
+          демонстрантов пыталась взять штурмом особняк советской резидентуры по улице Angelikastrasse 4 с целью захвата
+          архивов КГБ, однако Путину без применения табельного оружия удалось уговорить собравшихся разойтись.
+        </template>
+      </md2-window>
+    </div>
+
+    <div class="px-4 py-2"><b>window, height</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <md2-window height="auto">
+        <template v-slot:control="binds">
+          <md2-button text="auto" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
+      <md2-window height="sm">
+        <template v-slot:control="binds">
+          <md2-button text="sm" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
+      <md2-window height="md">
+        <template v-slot:control="binds">
+          <md2-button text="md" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
+      <md2-window height="lg">
+        <template v-slot:control="binds">
+          <md2-button text="lg" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
+      <md2-window height="full">
+        <template v-slot:control="binds">
+          <md2-button text="full" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
+        </template>
+      </md2-window>
+      <md2-window height="560px">
+        <template v-slot:control="binds">
+          <md2-button text="560px" :class="binds.classes" v-on="binds.on"/>
+        </template>
+        <template v-slot:default>
+          <div v-html="text"/>
         </template>
       </md2-window>
     </div>

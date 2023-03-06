@@ -6,7 +6,7 @@
     :toggle="toggle"
     :on="on"
   />
-  <teleport to="body">
+  <teleport :disabled="!isOpen" to="body">
     <div
       v-if="isOpen"
       ref="element"
