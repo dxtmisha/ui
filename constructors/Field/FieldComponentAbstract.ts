@@ -188,13 +188,13 @@ export abstract class FieldComponentAbstract extends ComponentAbstract {
     const target = event.target as HTMLElement
 
     if (target) {
-      if (target.closest('.is-icon.is-trailing')) {
+      if (target.closest('.is-icon-item.is-trailing')) {
         return 'on-trailing'
-      } else if (target.closest('.is-icon.is-cancel')) {
+      } else if (target.closest('.is-icon-item.is-cancel')) {
         return 'on-cancel'
-      } else if (target.closest('.is-icon.is-previous')) {
+      } else if (target.closest('.is-icon-item.is-previous')) {
         return this.props.disabledPrevious ? 'disabled' : 'on-previous'
-      } else if (target.closest('.is-icon.is-next')) {
+      } else if (target.closest('.is-icon-item.is-next')) {
         return this.props.disabledNext ? 'disabled' : 'on-next'
       }
     }

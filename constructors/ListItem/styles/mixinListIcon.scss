@@ -1,7 +1,7 @@
 @import "../../../styles/properties";
 
 @mixin mixinListItemIcon {
-  .is-icon {
+  .is-icon-item {
     &.is-main {
       @include marginRight(v('??sys.icon.margin'))
     }

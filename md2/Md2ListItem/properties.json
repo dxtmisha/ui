@@ -48,7 +48,6 @@
         },
         "rounded": {
           "marginX": "{ref.spacing.2}",
-          "marginA": "{ref.spacing.2}",
           "marginY": "{ref.spacing.1}"
         }
       },

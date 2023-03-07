@@ -90,7 +90,12 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
   }
 
   setup (): ListItemSetupType {
-    const classes = this.getClasses<ListItemClassesType>()
+    const classes = this.getClasses<ListItemClassesType>({
+      main: {
+        'a-readonly': true,
+        ...this.icon.getClass()
+      }
+    })
     const styles = this.getStyles()
 
     return {

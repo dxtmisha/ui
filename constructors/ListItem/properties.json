@@ -115,32 +115,27 @@
         }
       },
       "mixin|m": {
-        "mixin|status": {
-          "var|palette": "{??sys.palette}",
-          "var|background": "{??sys.background}",
-          "var|backgroundOpacity": "{??sys.backgroundOpacity}",
-          "var|gradient": "{??sys.gradient}",
-          "var|gradientOpacity": "{??sys.gradientOpacity}",
-          "var|text": "{??sys.text}",
-          "var|textOpacity": "{??sys.textOpacity}",
-          "var|description": {
-            "text": "{??sys.description.text}",
-            "textOpacity": "{??sys.description.textOpacity}"
-          },
-          "var|prefix": {
-            "text": "{??sys.prefix.text}",
-            "textOpacity": "{??sys.prefix.textOpacity}"
-          },
-          "var|suffix": {
-            "text": "{??sys.suffix.text}",
-            "textOpacity": "{??sys.suffix.textOpacity}"
-          }
-        },
         "mixin|rounded": {
           "var|l": {
             "marginX": "{??sys.rounded.marginX}",
             "marginY": "{??sys.rounded.marginY}"
           }
+        },
+        "mixin|icon": {
+          "var|sys": {
+            "icon": {
+              "margin": "0px"
+            },
+            "trailing": {
+              "margin": "0px"
+            }
+          },
+          "var|l": {
+            "body": {
+              "display": "none"
+            }
+          },
+          "justify-content": "center"
         }
       },
       "var|_overlay": "{??l.background}",
@@ -160,7 +155,10 @@
       },
       "~highlight": {},
       "~selected": {},
-      "~disabled": {}
+      "~disabled": {},
+      "&.is-icon": {
+        "@style": "{??m.icon}"
+      }
     }
   }
 }

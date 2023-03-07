@@ -28,7 +28,7 @@ export class UseIcon {
 
   readonly iconBind = computed<AssociativeType>(() => {
     return {
-      class: 'is-icon is-main',
+      class: 'is-icon-item is-main',
       active: this.selected?.value,
       disabled: this.disabled?.value,
       hide: this.hide?.value,
@@ -38,7 +38,7 @@ export class UseIcon {
 
   readonly iconTrailingBind = computed<AssociativeType>(() => {
     return {
-      class: 'is-icon is-trailing',
+      class: 'is-icon-item is-trailing',
       disabled: this.disabled?.value,
       inEnd: this.inEnd,
       turn: this.turn?.value

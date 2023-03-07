@@ -6,6 +6,8 @@
         <div class="px-4 py-2">&nbsp;</div>
         <md2-list-item/>
         <md2-list-item icon="face"/>
+        <md2-list-item thumbnail="face"/>
+        <md2-list-item :thumbnail="image"/>
         <md2-list-item icon-trailing="home"/>
         <md2-list-item icon="face" icon-trailing="home"/>
         <md2-list-item text="text"/>
@@ -41,6 +43,8 @@
         <div class="px-4 py-2">highlight</div>
         <md2-list-item highlight/>
         <md2-list-item highlight icon="face"/>
+        <md2-list-item highlight thumbnail="face"/>
+        <md2-list-item :thumbnail="image" highlight/>
         <md2-list-item highlight icon-trailing="home"/>
         <md2-list-item highlight icon="face" icon-trailing="home"/>
         <md2-list-item highlight text="text"/>
@@ -79,6 +83,8 @@
         <div class="px-4 py-2">disabled</div>
         <md2-list-item disabled/>
         <md2-list-item disabled icon="face"/>
+        <md2-list-item disabled thumbnail="face"/>
+        <md2-list-item :thumbnail="image" disabled/>
         <md2-list-item disabled icon-trailing="home"/>
         <md2-list-item disabled icon="face" icon-trailing="home"/>
         <md2-list-item disabled text="text"/>
@@ -117,19 +123,7 @@
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
         <div class="px-4 py-2">selected</div>
-        <md2-list-item selected/>
-        <md2-list-item icon="face" selected/>
-        <md2-list-item icon-trailing="home" selected/>
-        <md2-list-item icon="face" icon-trailing="home" selected/>
-        <md2-list-item text="text" selected/>
-        <md2-list-item icon="face" selected text="text + icon"/>
-        <md2-list-item icon="face" icon-trailing="home" selected text="text + icon + trailing"/>
-        <md2-list-item prefix="prefix" selected text="text"/>
-        <md2-list-item icon="face" prefix="prefix" selected text="text + icon"/>
-        <md2-list-item icon-trailing="home" prefix="prefix" selected text="text + trailing"/>
-        <md2-list-item selected suffix="suffix" text="text"/>
-        <md2-list-item icon="face" selected suffix="suffix" text="text + icon"/>
-        <md2-list-item icon-trailing="home" selected suffix="suffix" text="text + trailing"/>
+        <md2-list-item icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           selected
@@ -155,19 +149,7 @@
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">selected + highlight</div>
-        <md2-list-item highlight selected/>
-        <md2-list-item highlight icon="face" selected/>
-        <md2-list-item highlight icon-trailing="home" selected/>
-        <md2-list-item highlight icon="face" icon-trailing="home" selected/>
-        <md2-list-item highlight text="text" selected/>
-        <md2-list-item highlight icon="face" selected text="text + icon"/>
-        <md2-list-item highlight icon="face" icon-trailing="home" selected text="text + icon + trailing"/>
-        <md2-list-item highlight prefix="prefix" selected text="text"/>
-        <md2-list-item highlight icon="face" prefix="prefix" selected text="text + icon"/>
-        <md2-list-item highlight icon-trailing="home" prefix="prefix" selected text="text + trailing"/>
-        <md2-list-item highlight selected suffix="suffix" text="text"/>
-        <md2-list-item highlight icon="face" selected suffix="suffix" text="text + icon"/>
-        <md2-list-item highlight icon-trailing="home" selected suffix="suffix" text="text + trailing"/>
+        <md2-list-item highlight icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
@@ -196,19 +178,7 @@
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">selected + disabled</div>
-        <md2-list-item disabled selected/>
-        <md2-list-item disabled icon="face" selected/>
-        <md2-list-item disabled icon-trailing="home" selected/>
-        <md2-list-item disabled icon="face" icon-trailing="home" selected/>
-        <md2-list-item disabled text="text" selected/>
-        <md2-list-item disabled icon="face" selected text="text + icon"/>
-        <md2-list-item disabled icon="face" icon-trailing="home" selected text="text + icon + trailing"/>
-        <md2-list-item disabled prefix="prefix" selected text="text"/>
-        <md2-list-item disabled icon="face" prefix="prefix" selected text="text + icon"/>
-        <md2-list-item disabled icon-trailing="home" prefix="prefix" selected text="text + trailing"/>
-        <md2-list-item disabled selected suffix="suffix" text="text"/>
-        <md2-list-item disabled icon="face" selected suffix="suffix" text="text + icon"/>
-        <md2-list-item disabled icon-trailing="home" selected suffix="suffix" text="text + trailing"/>
+        <md2-list-item disabled icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           disabled

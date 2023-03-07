@@ -32,7 +32,7 @@ export class ListItemIcon extends UseIcon {
 
   readonly thumbnailBind = computed<AssociativeType>(() => {
     return {
-      class: 'is-icon is-thumbnail',
+      class: 'is-icon-item is-thumbnail',
       active: this.selected?.value,
       disabled: this.disabled?.value
     }

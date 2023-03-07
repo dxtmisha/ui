@@ -31,12 +31,12 @@ export class FieldIcon extends UseIcon {
   }
 
   readonly iconCancelBind = computed<AssociativeType>(() => {
-    return { class: 'is-icon is-cancel' }
+    return { class: 'is-icon-item is-cancel' }
   })
 
   readonly iconPreviousBind = computed<AssociativeType>(() => {
     return {
-      class: 'is-icon is-previous',
+      class: 'is-icon-item is-previous',
       background: true,
       backgroundActive: true,
       disabled: this.disabled?.value || this.disabledPrevious.value
@@ -45,7 +45,7 @@ export class FieldIcon extends UseIcon {
 
   readonly iconNextBind = computed<AssociativeType>(() => {
     return {
-      class: 'is-icon is-next',
+      class: 'is-icon-item is-next',
       background: true,
       backgroundActive: true,
       disabled: this.disabled?.value || this.disabledNext.value

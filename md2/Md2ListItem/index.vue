@@ -11,7 +11,7 @@
     <md2-icon v-else-if="icon" v-bind="iconBind"/>
     <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
 
-    <div :class="classes.text">
+    <div v-if="isText" :class="classes.text">
       <template v-if="isFullText">
         <div :class="classes.title">
           <span v-if="prefix" :class="classes.prefix">{{ prefix }}</span>
