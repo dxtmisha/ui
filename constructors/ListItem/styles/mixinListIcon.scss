@@ -7,7 +7,7 @@
     }
 
     &.is-trailing {
-      @include marginRight(v('??sys.trailing.margin'))
+      @include marginLeft(v('??sys.trailing.margin'))
     }
   }
 }

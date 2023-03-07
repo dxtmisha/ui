@@ -15,7 +15,8 @@ export type Md2ListItemAppearanceType =
 export type Md2ListItemHeightType =
   'sm' |
   'md' |
-  'lg'
+  'lg' |
+  'xl'
 
 export type Md2ListItemRoundedType =
   'none' |

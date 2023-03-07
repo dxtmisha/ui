@@ -25,6 +25,18 @@
         "description": {
           "textOpacity": "{sys.opacity.surface.medium}"
         },
+        "highlight": {
+          "palette": "{sys.palette.warning}",
+          "backgroundOpacity": "{sys.opacity.selected}"
+        },
+        "selected": {
+          "palette": "{sys.palette.primaryVariant}",
+          "backgroundOpacity": "{sys.opacity.selected}"
+        },
+        "disabled": {
+          "palette": "{sys.palette.disabled}",
+          "textOpacity": "{sys.opacity.surface.disabled}"
+        },
         "hover": {
           "gradientOpacity": "{sys.opacity.hover}"
         },
@@ -38,45 +50,21 @@
           "marginX": "{ref.spacing.2}",
           "marginA": "{ref.spacing.2}",
           "marginY": "{ref.spacing.1}"
-        },
-        "disabled": {
-          "palette": "{sys.palette.disabled}",
-          "textOpacity": "{sys.opacity.surface.disabled}"
-        },
-        "highlight": {
-          "palette": "{sys.palette.warning}",
-          "backgroundOpacity": "{sys.opacity.selected}",
-          "text": "{sys.palette.warning}"
-        },
-        "selected": {
-          "palette": "{sys.palette.primaryVariant}",
-          "backgroundOpacity": "{sys.opacity.selected}"
         }
       },
       "@font": "{font.subtitle1}",
       "@@palette": "{?palette}",
+      "height": {
+        "sm": "{ref.spacing.9}",
+        "md": "{ref.spacing.12}",
+        "lg": "{ref.spacing.14}",
+        "xl": "{ref.spacing.18}"
+      },
       "#suffix": {
         "@font": "{font.subtitle2}"
       },
       "#description": {
         "@font": "{font.caption}"
-      },
-      "section|height": {
-        "sm": {
-          "var|l": {
-            "height": "{ref.spacing.12}"
-          }
-        },
-        "md": {
-          "var|l": {
-            "height": "{ref.spacing.14}"
-          }
-        },
-        "lg": {
-          "var|l": {
-            "height": "{ref.spacing.18}"
-          }
-        }
       },
       "media|{ref.screen.md}": {
         "var|sys": {

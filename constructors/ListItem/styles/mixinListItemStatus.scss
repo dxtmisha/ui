@@ -1,9 +1,72 @@
 @import "../../../styles/use";
 
+@mixin mixinListItemHighlight {
+  @include useEnabled {
+    @include modClassByGlobal('highlight') {
+      @include linkList('highlight', (
+              'palette',
+              'text',
+              'background',
+              'gradient'
+      ));
+
+      --sys-palette: #{v('??l.palette')};
+    }
+  }
+}
+
+@mixin mixinListItemSelected {
+  @include useEnabled {
+    @include modClassByGlobal('selected') {
+      @include linkList('selected', (
+              'palette',
+              'text',
+              'background',
+              'background-opacity',
+              'gradient',
+              'border',
+              'prefix.text',
+              'suffix.text',
+              'description.text'
+      ));
+
+      --sys-palette: #{v('??l.palette')};
+    }
+  }
+}
+
+@mixin mixinListItemDisabled {
+  @include useDisabled {
+    @include linkList('disabled', (
+            'palette',
+            'text',
+            'text-opacity',
+            'background',
+            'background-opacity',
+            'gradient',
+            'gradient-opacity',
+            'border',
+            'border-opacity',
+            'prefix.text',
+            'prefix.text-opacity',
+            'suffix.text',
+            'suffix.text-opacity',
+            'description.text',
+            'description.text-opacity'
+    ));
+
+    --sys-palette: #{v('??l.palette')};
+    cursor: default;
+  }
+}
+
 @mixin mixinListItemHover {
   @include useEnabled {
     &:hover {
-      @include linkList('hover');
+      @include linkList('hover', (), (
+              'background',
+              'background-opacity'
+      ));
     }
   }
 }
@@ -11,7 +74,10 @@
 @mixin mixinListItemFocus {
   @include useEnabled {
     @include useFocus {
-      @include linkList('focus');
+      @include linkList('focus', (), (
+              'background',
+              'background-opacity'
+      ));
     }
   }
 }
@@ -19,7 +85,10 @@
 @mixin mixinListItemActive {
   @include useEnabled {
     &:active {
-      @include linkList('active');
+      @include linkList('active', (), (
+              'background',
+              'background-opacity'
+      ));
     }
   }
 }

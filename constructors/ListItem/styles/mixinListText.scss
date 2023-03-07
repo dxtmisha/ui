@@ -35,7 +35,7 @@
 @mixin mixinListItemPrefix() {
   @include subClass('prefix') {
     @include paddingRight(v('??sys.prefix.padding'));
-    @include color(v('??l.prefix.text'), v('??sys.prefix.text-opacity'));
+    @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
     white-space: nowrap;
   }
 }
@@ -43,7 +43,7 @@
 @mixin mixinListItemSuffix() {
   @include subClass('suffix') {
     @include paddingLeft(v('??sys.suffix.padding'));
-    @include color(v('??l.suffix.text'), v('??sys.suffix.text-opacity'));
+    @include color(v('??l.suffix.text'), v('??l.suffix.text-opacity'));
     white-space: nowrap;
   }
 }
@@ -52,7 +52,7 @@
   @include subClass('description') {
     padding-top: v('??l.description.padding');
 
-    @include color(v('??l.description.text'), v('??sys.description.text-opacity'));
+    @include color(v('??l.description.text'), v('??l.description.text-opacity'));
     @include clamp(v('??sys.description.clamp'));
   }
 }
