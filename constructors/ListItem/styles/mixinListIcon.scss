@@ -1,0 +1,13 @@
+@import "../../../styles/properties";
+
+@mixin mixinListItemIcon {
+  .is-icon {
+    &.is-main {
+      @include marginRight(v('??sys.icon.margin'))
+    }
+
+    &.is-trailing {
+      @include marginRight(v('??sys.trailing.margin'))
+    }
+  }
+}

@@ -1,5 +1,33 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>list item</b></div>
+    <div class="flex px-4 py-2 gap-2">
+      <div class="border w-96">
+        <md2-list-item/>
+        <md2-list-item icon="face"/>
+        <md2-list-item icon-trailing="home"/>
+        <md2-list-item icon="face" icon-trailing="home"/>
+        <md2-list-item text="text"/>
+        <md2-list-item icon="face" text="text + icon"/>
+        <md2-list-item icon="face" icon-trailing="home" text="text + icon + trailing"/>
+      </div>
+      <div class="border w-96">
+        <md2-list-item prefix="prefix" text="prefix"/>
+        <md2-list-item suffix="suffix" text="suffix"/>
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          text="description"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          prefix="prefix"
+          suffix="suffix"
+          text="description + prefix + suffix"
+        />
+        <md2-list-item :ripple="false" text="ripple"/>
+      </div>
+    </div>
+
     <div class="px-4 py-2"><b>window</b></div>
     <div class="flex px-4 py-2 gap-2">
       <md2-window>
@@ -754,6 +782,7 @@ import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import Md2Window from '../../md2/Md2Window/index.vue'
+import Md2ListItem from '../../md2/Md2ListItem/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -763,6 +792,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2ListItem,
     Md2Window,
     Md2Button
   },

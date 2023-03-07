@@ -5,9 +5,10 @@
     :style="styles.main"
     @click="onClick"
   >
-    <md2-icon v-if="icon" v-bind="iconBind">
-      <md2-progress v-if="progress" dense v-bind="progressIconBind"/>
-    </md2-icon>
+    <md2-progress v-if="progress" v-bind="progressBind"/>
+
+    <md2-icon v-if="thumbnail" v-bind="thumbnailBind"/>
+    <md2-icon v-else-if="icon" v-bind="iconBind"/>
     <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
 
     <div :class="classes.text">
@@ -20,8 +21,10 @@
         <div v-if="description" :class="classes.description" v-html="description"/>
       </template>
       <template v-else-if="text">{{ text }}</template>
+      <slot/>
     </div>
-    <slot/>
+
+    <md2-ripple v-if="isRipple" :inverse="isInverse"/>
   </component>
 </template>
 

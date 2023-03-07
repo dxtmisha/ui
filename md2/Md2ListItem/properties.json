@@ -2,43 +2,46 @@
   "md2": {
     "list-item": {
       "@style": "{d.list-item}",
-      "mixin|m": {
-      },
       "var|sys": {
         "palette": "{sys.palette.primary}",
-        "gradient": "{sys.palette.onSurface}",
-        "height": "{ref.spacing.12}",
         "paddingX": "{ref.spacing.4}",
         "paddingY": "{ref.spacing.1}",
+        "height": "{ref.spacing.12}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
+        "gradient": "{sys.palette.onSurface}",
         "icon": {
-          "margin": "{ref.spacing.8}",
-          "trailing": {
-            "margin": "{ref.spacing.4}"
-          }
+          "margin": "{ref.spacing.8}"
+        },
+        "trailing": {
+          "margin": "{ref.spacing.4}"
         },
         "prefix": {
-          "textOpacity": "{sys.opacity.surface.medium}",
           "padding": "{ref.spacing.4}"
         },
         "suffix": {
           "padding": "{ref.spacing.6}"
+        },
+        "description": {
+          "textOpacity": "{sys.opacity.surface.medium}"
+        },
+        "hover": {
+          "gradientOpacity": "{sys.opacity.hover}"
+        },
+        "focus": {
+          "gradientOpacity": "{sys.opacity.focus}"
+        },
+        "active": {
+          "gradientOpacity": "{sys.opacity.dragged}"
         },
         "rounded": {
           "marginX": "{ref.spacing.2}",
           "marginA": "{ref.spacing.2}",
           "marginY": "{ref.spacing.1}"
         },
-        "active": {
-          "gradientOpacity": "{sys.opacity.dragged}"
-        },
         "disabled": {
           "palette": "{sys.palette.disabled}",
           "textOpacity": "{sys.opacity.surface.disabled}"
-        },
-        "focus": {
-          "gradientOpacity": "{sys.opacity.focus}"
         },
         "highlight": {
           "palette": "{sys.palette.warning}",
@@ -54,6 +57,9 @@
       "@@palette": "{?palette}",
       "#suffix": {
         "@font": "{font.subtitle2}"
+      },
+      "#description": {
+        "@font": "{font.caption}"
       },
       "section|height": {
         "sm": {
@@ -75,11 +81,6 @@
       "media|{ref.screen.md}": {
         "var|sys": {
           "paddingX": "{ref.spacing.6}"
-        }
-      },
-      ":hover": {
-        "var|l": {
-          "gradientOpacity": "{sys.opacity.hover}"
         }
       }
     }

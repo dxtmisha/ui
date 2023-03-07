@@ -1,0 +1,58 @@
+@import "../../../styles/properties";
+
+@mixin mixinListItemText {
+  @include subClass('text') {
+    display: v('??l.body.display');
+    flex-direction: inherit;
+    flex-wrap: wrap;
+    @include propertiesLink('d.flex.dynamic');
+
+    align-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    position: relative;
+    padding: v('??l.padding-y') 0;
+
+
+    .is-highlight {
+      @include color(v('??sys.highlight.palette'));
+    }
+  }
+}
+
+@mixin mixinListItemTitle {
+  @include subClass('title') {
+    @include propertiesLink('d.flex.x');
+    flex-basis: 100%;
+  }
+
+  @include subClass('context') {
+    @include propertiesLink('d.flex.dynamic');
+  }
+}
+
+@mixin mixinListItemPrefix() {
+  @include subClass('prefix') {
+    @include paddingRight(v('??sys.prefix.padding'));
+    @include color(v('??l.prefix.text'), v('??sys.prefix.text-opacity'));
+    white-space: nowrap;
+  }
+}
+
+@mixin mixinListItemSuffix() {
+  @include subClass('suffix') {
+    @include paddingLeft(v('??sys.suffix.padding'));
+    @include color(v('??l.suffix.text'), v('??sys.suffix.text-opacity'));
+    white-space: nowrap;
+  }
+}
+
+@mixin mixinListItemDescription() {
+  @include subClass('description') {
+    padding-top: v('??l.description.padding');
+
+    @include color(v('??l.description.text'), v('??sys.description.text-opacity'));
+    @include clamp(v('??sys.description.clamp'));
+  }
+}

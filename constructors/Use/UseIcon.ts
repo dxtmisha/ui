@@ -28,6 +28,7 @@ export class UseIcon {
 
   readonly iconBind = computed<AssociativeType>(() => {
     return {
+      class: 'is-icon is-main',
       active: this.selected?.value,
       disabled: this.disabled?.value,
       hide: this.hide?.value,

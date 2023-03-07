@@ -31,6 +31,7 @@ export type ListItemSetupType = ComponentBaseType &
     classes: ComputedRef<ListItemClassesType>
 
     isRipple: ComputedRef<boolean>
+    isInverse: ComputedRef<boolean>
 
     onClick: EventCallbackRequiredType<void, MouseEvent>
   }

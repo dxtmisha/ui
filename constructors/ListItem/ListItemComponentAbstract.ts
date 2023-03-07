@@ -99,6 +99,7 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
       styles,
 
       isRipple: this.enabled.itemRipple,
+      isInverse: this.inverse.item,
 
       onClick: (event: MouseEvent) => this.event.onClick(event),
 

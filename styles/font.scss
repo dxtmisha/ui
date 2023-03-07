@@ -1,3 +1,11 @@
+@mixin clamp($clamp) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $clamp;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
 @mixin textAlign($value) {
   @if ($value == 'left') {
     text-align: var(--d-dir-text-left);

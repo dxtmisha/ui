@@ -1,0 +1,25 @@
+@import "../../../styles/use";
+
+@mixin mixinListItemHover {
+  @include useEnabled {
+    &:hover {
+      @include linkList('hover');
+    }
+  }
+}
+
+@mixin mixinListItemFocus {
+  @include useEnabled {
+    @include useFocus {
+      @include linkList('focus');
+    }
+  }
+}
+
+@mixin mixinListItemActive {
+  @include useEnabled {
+    &:active {
+      @include linkList('active');
+    }
+  }
+}
