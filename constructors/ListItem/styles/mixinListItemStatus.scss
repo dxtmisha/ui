@@ -1,4 +1,5 @@
 @import "../../../styles/use";
+@import "./useListItem";
 
 @mixin mixinListItemHighlight {
   @include useEnabled {
@@ -35,28 +36,21 @@
   }
 }
 
+@mixin mixinListItemReadonly {
+  @include modClass('readonly') {
+    @include useListItemDisabled('readonly');
+  }
+}
+
+@mixin mixinListItemProgress {
+  & #{c('?progress')}.is-visible ~ * {
+    opacity: v('??sys.progress.opacity');
+  }
+}
+
 @mixin mixinListItemDisabled {
   @include useDisabled {
-    @include linkList('disabled', (
-            'palette',
-            'text',
-            'text-opacity',
-            'background',
-            'background-opacity',
-            'gradient',
-            'gradient-opacity',
-            'border',
-            'border-opacity',
-            'prefix.text',
-            'prefix.text-opacity',
-            'suffix.text',
-            'suffix.text-opacity',
-            'description.text',
-            'description.text-opacity'
-    ));
-
-    --sys-palette: #{v('??l.palette')};
-    cursor: default;
+    @include useListItemDisabled('disabled');
   }
 }
 

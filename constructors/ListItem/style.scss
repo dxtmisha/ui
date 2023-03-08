@@ -15,11 +15,14 @@
     @include mixinListItemPrefix;
     @include mixinListItemSuffix;
     @include mixinListItemDescription;
+    @include mixinListItemShort;
 
     @include mixinListItemIcon;
 
     @include mixinListItemHighlight;
     @include mixinListItemSelected;
+    @include mixinListItemReadonly;
+    @include mixinListItemProgress;
     @include mixinListItemDisabled;
 
     @include mixinListItemHover;
@@ -48,5 +51,6 @@
 
   cursor: pointer;
 
+  @include propertyCustomTo('?progress.size', '??sys.progress.size');
   @include propertyCustomTo('?ripple.background', '??l.gradient');
 }

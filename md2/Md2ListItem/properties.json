@@ -30,6 +30,10 @@
         "description": {
           "textOpacity": "{sys.opacity.surface.medium}"
         },
+        "progress": {
+          "size": "{ref.spacing.8}",
+          "opacity": "{sys.opacity.surface.disabled}"
+        },
         "highlight": {
           "palette": "{sys.palette.warning}",
           "backgroundOpacity": "{sys.opacity.selected}"
@@ -78,13 +82,23 @@
           }
         },
         "md": "{ref.spacing.14}",
-        "lg": "{ref.spacing.18}",
+        "lg": {
+          "var|sys": {
+            "height": "{ref.spacing.18}"
+          },
+          "& .??__short": {
+            "@font": "{font.body1}"
+          }
+        },
         "xl": {
           "var|sys": {
             "height": "{ref.spacing.18}",
             "thumbnail": {
               "marginLeft": "{??sys.paddingX} * -1"
             }
+          },
+          "& .??__short": {
+            "@font": "{font.body1}"
           }
         },
         "default": "sm"
@@ -93,6 +107,9 @@
         "@font": "{font.subtitle2}"
       },
       "#description": {
+        "@font": "{font.caption}"
+      },
+      "#short": {
         "@font": "{font.caption}"
       },
       "media|{ref.screen.md}": {

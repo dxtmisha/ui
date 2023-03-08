@@ -14,12 +14,14 @@
         <md2-list-item icon="face" icon-trailing="home" text="text + icon + trailing"/>
         <md2-list-item thumbnail="face" text="thumbnail"/>
         <md2-list-item :thumbnail="image" text="thumbnail"/>
+        <md2-list-item icon="face" text-short="short"/>
         <md2-list-item prefix="prefix" text="text"/>
         <md2-list-item icon="face" prefix="prefix" text="text + icon"/>
         <md2-list-item icon-trailing="home" prefix="prefix" text="text + trailing"/>
         <md2-list-item suffix="suffix" text="text"/>
         <md2-list-item icon="face" suffix="suffix" text="text + icon"/>
         <md2-list-item icon-trailing="home" suffix="suffix" text="text + trailing"/>
+        <md2-list-item text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           text="text"
@@ -52,12 +54,14 @@
         <md2-list-item highlight icon="face" icon-trailing="home" text="text + icon + trailing"/>
         <md2-list-item highlight thumbnail="face" text="thumbnail"/>
         <md2-list-item highlight :thumbnail="image" text="thumbnail"/>
+        <md2-list-item highlight icon="face" text-short="short"/>
         <md2-list-item highlight prefix="prefix" text="text"/>
         <md2-list-item highlight icon="face" prefix="prefix" text="text + icon"/>
         <md2-list-item highlight icon-trailing="home" prefix="prefix" text="text + trailing"/>
         <md2-list-item highlight suffix="suffix" text="text"/>
         <md2-list-item highlight icon="face" suffix="suffix" text="text + icon"/>
         <md2-list-item highlight icon-trailing="home" suffix="suffix" text="text + trailing"/>
+        <md2-list-item highlight text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
@@ -93,12 +97,14 @@
         <md2-list-item disabled icon="face" icon-trailing="home" text="text + icon + trailing"/>
         <md2-list-item disabled thumbnail="face" text="thumbnail"/>
         <md2-list-item disabled :thumbnail="image" text="thumbnail"/>
+        <md2-list-item disabled icon="face" text-short="short"/>
         <md2-list-item disabled prefix="prefix" text="text"/>
         <md2-list-item disabled icon="face" prefix="prefix" text="text + icon"/>
         <md2-list-item disabled icon-trailing="home" prefix="prefix" text="text + trailing"/>
         <md2-list-item disabled suffix="suffix" text="text"/>
         <md2-list-item disabled icon="face" suffix="suffix" text="text + icon"/>
         <md2-list-item disabled icon-trailing="home" suffix="suffix" text="text + trailing"/>
+        <md2-list-item disabled text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           disabled
@@ -122,12 +128,29 @@
         />
         <md2-list-item :ripple="false" disabled text="ripple"/>
       </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">&nbsp;</div>
+        <md2-list-item icon="face" icon-trailing="home" text="turn" turn/>
+        <md2-list-item icon="face" icon-trailing="home" readonly text="readonly"/>
+        <div class="px-4 py-2">&nbsp;</div>
+        <md2-list-item icon="face" icon-trailing="home" progress text="progress"/>
+        <md2-list-item icon="face" icon-trailing="home" progress selected text="progress + selected"/>
+        <md2-list-item disabled icon="face" icon-trailing="home" progress text="progress + disabled"/>
+        <div class="px-4 py-2">palette, overlay</div>
+        <md2-list-item icon="face" icon-trailing="home" overlay text="overlay"/>
+        <md2-list-item icon="face" icon-trailing="home" overlay="16,255,255" text="overlay / 16,255,255"/>
+        <md2-list-item icon="face" icon-trailing="home" palette="green" text="green"/>
+        <md2-list-item icon="face" icon-trailing="home" overlay palette="green" text="green + overlay"/>
+        <md2-list-item icon="face" icon-trailing="home" palette="red" text="red"/>
+        <md2-list-item icon="face" icon-trailing="home" overlay palette="red" text="red + overlay"/>
+      </div>
     </div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
         <div class="px-4 py-2">selected</div>
         <md2-list-item icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="thumbnail"/>
+        <md2-list-item selected text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           selected
@@ -156,6 +179,7 @@
         <md2-list-item highlight icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item highlight thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
                        text="thumbnail"/>
+        <md2-list-item highlight selected text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
@@ -187,6 +211,7 @@
         <md2-list-item disabled icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item disabled thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
                        text="thumbnail"/>
+        <md2-list-item disabled selected text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           disabled
@@ -221,31 +246,41 @@
         <div class="px-4 py-2">xs</div>
         <md2-list-item height="xs" icon="face" text="text"/>
         <md2-list-item height="xs" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="xs" icon="face" text-short="short"/>
         <md2-list-item height="xs" thumbnail="face" text="thumbnail"/>
+        <md2-list-item height="xs" thumbnail="face" text-short="short"/>
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">sm</div>
         <md2-list-item height="sm" icon="face" text="text"/>
         <md2-list-item height="sm" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="sm" icon="face" text-short="short"/>
         <md2-list-item height="sm" thumbnail="face" text="thumbnail"/>
+        <md2-list-item height="sm" thumbnail="face" text-short="short"/>
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">md</div>
         <md2-list-item height="md" icon="face" text="text"/>
         <md2-list-item height="md" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="md" icon="face" text-short="short"/>
         <md2-list-item height="md" thumbnail="face" text="thumbnail"/>
+        <md2-list-item height="md" thumbnail="face" text-short="short"/>
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">lg</div>
         <md2-list-item height="lg" icon="face" text="text"/>
         <md2-list-item height="lg" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="lg" icon="face" text-short="short"/>
         <md2-list-item height="lg" thumbnail="face" text="thumbnail"/>
+        <md2-list-item height="lg" thumbnail="face" text-short="short"/>
       </div>
       <div class="border w-96">
-        <div class="px-4 py-2">lg</div>
+        <div class="px-4 py-2">xl</div>
         <md2-list-item height="xl" icon="face" text="text"/>
         <md2-list-item height="xl" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="xl" icon="face" text-short="short"/>
         <md2-list-item height="xl" thumbnail="face" text="thumbnail"/>
+        <md2-list-item height="xl" thumbnail="face" text-short="short"/>
       </div>
     </div>
 

@@ -1,0 +1,24 @@
+@import "../../../styles/properties";
+
+@mixin useListItemDisabled($name) {
+  @include linkList($name, (
+          'palette',
+          'text',
+          'text-opacity',
+          'background',
+          'background-opacity',
+          'gradient',
+          'gradient-opacity',
+          'border',
+          'border-opacity',
+          'prefix.text',
+          'prefix.text-opacity',
+          'suffix.text',
+          'suffix.text-opacity',
+          'description.text',
+          'description.text-opacity'
+  ));
+
+  --sys-palette: #{v('??l.palette')};
+  cursor: default;
+}

@@ -56,3 +56,11 @@
     @include clamp(v('??sys.description.clamp'));
   }
 }
+
+@mixin mixinListItemShort() {
+  @include subClass('short') {
+    display: v('??l.short.display');
+    flex-basis: 100%;
+    text-align: center;
+  }
+}

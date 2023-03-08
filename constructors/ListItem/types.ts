@@ -19,6 +19,7 @@ export type ListItemClassesType<T = ComponentAssociativeType> = ComponentClasses
   prefix: T
   suffix: T
   description: T
+  short: T
   context: T
 }
 

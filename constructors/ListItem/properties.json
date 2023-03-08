@@ -41,6 +41,10 @@
           "clamp": "2",
           "padding": "0"
         },
+        "progress": {
+          "size": "",
+          "opacity": ""
+        },
         "highlight": {
           "background": "{??sys.highlight.palette}",
           "gradient": "{??sys.highlight.palette}"
@@ -106,6 +110,9 @@
         "body": {
           "display": "flex"
         },
+        "short": {
+          "display": "none"
+        },
         "prefix": {
           "text": "{??sys.prefix.text}",
           "textOpacity": "{??sys.prefix.textOpacity}"
@@ -141,9 +148,15 @@
           "var|l": {
             "body": {
               "display": "none"
+            },
+            "short": {
+              "display": "block"
             }
           },
-          "justify-content": "center"
+          "flex-wrap": "wrap",
+          "align-content": "center",
+          "justify-content": "center",
+          "padding": "{??sys.paddingY}"
         }
       },
       "var|_overlay": "{??l.background}",
@@ -156,6 +169,7 @@
       "#prefix": {},
       "#suffix": {},
       "#description": {},
+      "#short": {},
       "~overlay": {
         "var|l": {
           "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important"
@@ -163,6 +177,8 @@
       },
       "~highlight": {},
       "~selected": {},
+      "~readonly": {},
+      "~progress": {},
       "~disabled": {},
       "&.is-icon": {
         "@style": "{??m.icon}"

@@ -23,6 +23,7 @@
       <template v-else-if="text">{{ text }}</template>
       <slot/>
     </div>
+    <div v-if="textShort" :class="classes.short">{{ textShort }}</div>
 
     <md2-ripple v-if="isRipple" :inverse="isInverse"/>
   </component>
