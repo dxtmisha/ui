@@ -45,6 +45,9 @@
           "size": "",
           "opacity": ""
         },
+        "overlay": {
+          "backgroundOpacity": ""
+        },
         "highlight": {
           "gradient": "{??l.palette}"
         },
@@ -111,26 +114,6 @@
               "selected": {
                 "text": "",
                 "backgroundOpacity": ""
-              },
-              "hover": {
-                "text": "{??sys.selected.text}",
-                "backgroundOpacity": "{??sys.selected.backgroundOpacity}"
-              },
-              "focus": {
-                "text": "{??sys.selected.text}",
-                "backgroundOpacity": "{??sys.selected.backgroundOpacity}"
-              },
-              "active": {
-                "text": "{??sys.selected.text}",
-                "backgroundOpacity": "{??sys.selected.backgroundOpacity}"
-              }
-            }
-          },
-          "contained-selected": {
-            "var|sys": {
-              "selected": {
-                "text": "",
-                "backgroundOpacity": ""
               }
             }
           }
@@ -180,7 +163,7 @@
       "#short": {},
       "~overlay": {
         "var|l": {
-          "backgroundOpacity": "{??sys.selected.backgroundOpacity} !important"
+          "backgroundOpacity": "{??sys.overlay.backgroundOpacity} !important"
         }
       },
       "~highlight": {},

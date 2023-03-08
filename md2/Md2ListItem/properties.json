@@ -29,6 +29,9 @@
         "description": {
           "textOpacity": "{sys.opacity.surface.medium}"
         },
+        "overlay": {
+          "backgroundOpacity": "{sys.opacity.selected}"
+        },
         "progress": {
           "size": "{ref.spacing.8}",
           "opacity": "{sys.opacity.surface.disabled}"

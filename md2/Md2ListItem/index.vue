@@ -54,5 +54,7 @@ export default {
 <style lang="scss">
 @import '../../constructors/ListItem/style';
 
-@include initListItem('md2');
+@include initListItem('md2') {
+  @include mixinListItemAppearanceContained;
+}
 </style>

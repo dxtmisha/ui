@@ -6,6 +6,8 @@
 @import "./styles/currentStatus";
 @import "./styles/mixinListItemStatus";
 
+@import "./styles/mixinListItemAppearanceContained";
+
 @mixin initListItem($design) {
   @include propertiesInit($design, 'list-item') {
     @include mixinListItem;
