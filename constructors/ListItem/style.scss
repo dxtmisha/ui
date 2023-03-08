@@ -52,5 +52,6 @@
   cursor: pointer;
 
   @include propertyCustomTo('?progress.size', '??sys.progress.size');
+  @include propertyCustomTo('?icon.background', '??l.text');
   @include propertyCustomTo('?ripple.background', '??l.gradient');
 }

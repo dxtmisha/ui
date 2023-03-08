@@ -28,7 +28,7 @@
 
   transform: none;
   transition-duration: v('d.sys.transition-duration.standard');
-  transition-property: background-color, background-size, color, filter, opacity, transform;
+  transition-property: background-color, background-size, filter, opacity, transform;
 }
 
 @mixin mixinType {

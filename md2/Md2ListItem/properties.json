@@ -9,7 +9,6 @@
         "height": "{ref.spacing.12}",
         "text": "{sys.palette.onSurface}",
         "textOpacity": "{sys.opacity.surface.high}",
-        "gradient": "{sys.palette.onSurface}",
         "icon": {
           "margin": "{ref.spacing.6}"
         },
@@ -58,6 +57,18 @@
         "rounded": {
           "marginX": "{ref.spacing.2}",
           "marginY": "{ref.spacing.1}"
+        }
+      },
+      "mixin|m": {
+        "mixin|appearance": {
+          "contained": {
+            "var|sys": {
+              "selected": {
+                "text": "{sys.palette.onPrimary}",
+                "backgroundOpacity": "{sys.opacity.primary.high}"
+              }
+            }
+          }
         }
       },
       "@font": "{font.subtitle1}",
@@ -111,6 +122,11 @@
       },
       "#short": {
         "@font": "{font.caption}"
+      },
+      "~appearance": {
+        "contained": {
+          "@style": "{??m.appearance.contained}"
+        }
       },
       "media|{ref.screen.md}": {
         "var|sys": {

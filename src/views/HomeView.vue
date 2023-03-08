@@ -128,6 +128,53 @@
         />
         <md2-list-item :ripple="false" disabled text="ripple"/>
       </div>
+    </div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <div class="border w-96">
+        <div class="px-4 py-2">contained</div>
+        <md2-list-item appearance="contained"/>
+        <md2-list-item appearance="contained" icon="face"/>
+        <md2-list-item appearance="contained" :thumbnail="image"/>
+        <md2-list-item appearance="contained" icon-trailing="home"/>
+        <md2-list-item appearance="contained" icon="face" icon-trailing="home"/>
+        <md2-list-item appearance="contained" text="text"/>
+        <md2-list-item appearance="contained" icon="face" text="text + icon"/>
+        <md2-list-item appearance="contained" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+        <md2-list-item appearance="contained" thumbnail="face" text="thumbnail"/>
+        <md2-list-item appearance="contained" :thumbnail="image" text="thumbnail"/>
+        <md2-list-item appearance="contained" icon="face" text-short="short"/>
+        <md2-list-item appearance="contained" prefix="prefix" text="text"/>
+        <md2-list-item appearance="contained" icon="face" prefix="prefix" text="text + icon"/>
+        <md2-list-item appearance="contained" icon-trailing="home" prefix="prefix" text="text + trailing"/>
+        <md2-list-item appearance="contained" suffix="suffix" text="text"/>
+        <md2-list-item appearance="contained" icon="face" suffix="suffix" text="text + icon"/>
+        <md2-list-item appearance="contained" icon-trailing="home" suffix="suffix" text="text + trailing"/>
+        <md2-list-item appearance="contained" text="text + highlight" text-highlight="high"/>
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item :ripple="false" appearance="contained" text="ripple"/>
+      </div>
+    </div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
         <div class="px-4 py-2">&nbsp;</div>
         <md2-list-item icon="face" icon-trailing="home" text="turn" turn/>
@@ -145,9 +192,11 @@
         <md2-list-item icon="face" icon-trailing="home" overlay palette="red" text="red + overlay"/>
       </div>
     </div>
+
+    <div class="px-4 py-2"><b>list item, selected</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
-        <div class="px-4 py-2">selected</div>
+        <div class="px-4 py-2">&nbsp;</div>
         <md2-list-item icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="thumbnail"/>
         <md2-list-item selected text="text + highlight" text-highlight="high"/>
@@ -175,7 +224,7 @@
         <md2-list-item :ripple="false" selected text="ripple"/>
       </div>
       <div class="border w-96">
-        <div class="px-4 py-2">selected + highlight</div>
+        <div class="px-4 py-2">highlight</div>
         <md2-list-item highlight icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item highlight thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
                        text="thumbnail"/>
@@ -207,7 +256,7 @@
         <md2-list-item :ripple="false" highlight selected text="ripple"/>
       </div>
       <div class="border w-96">
-        <div class="px-4 py-2">selected + disabled</div>
+        <div class="px-4 py-2">disabled</div>
         <md2-list-item disabled icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
         <md2-list-item disabled thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
                        text="thumbnail"/>
@@ -237,6 +286,41 @@
           text="text"
         />
         <md2-list-item :ripple="false" disabled selected text="ripple"/>
+      </div>
+    </div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <div class="border w-96">
+        <div class="px-4 py-2">contained</div>
+        <md2-list-item appearance="contained" icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
+                       text="text"/>
+        <md2-list-item appearance="contained" thumbnail="face" icon-trailing="home" prefix="prefix" selected
+                       suffix="suffix" text="thumbnail"/>
+        <md2-list-item appearance="contained" selected text="text + highlight" text-highlight="high"/>
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          selected
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          prefix="prefix"
+          selected
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item :ripple="false" appearance="contained" selected text="ripple"/>
       </div>
     </div>
 

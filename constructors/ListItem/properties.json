@@ -10,9 +10,9 @@
         "height": "",
         "text": "",
         "textOpacity": "",
-        "background": "{??sys.palette}",
+        "background": "{??l.palette}",
         "backgroundOpacity": "0",
-        "gradient": "{??sys.palette}",
+        "gradient": "{??l.text}",
         "gradientOpacity": "0",
         "icon": {
           "margin": ""
@@ -26,18 +26,18 @@
           "margin": ""
         },
         "prefix": {
-          "text": "{??sys.description.text}",
-          "textOpacity": "{??sys.description.textOpacity}",
+          "text": "{??l.text}",
+          "textOpacity": "{??l.description.textOpacity}",
           "padding": ""
         },
         "suffix": {
-          "text": "{??sys.description.text}",
-          "textOpacity": "{??sys.description.textOpacity}",
+          "text": "{??l.text}",
+          "textOpacity": "{??l.description.textOpacity}",
           "padding": ""
         },
         "description": {
-          "text": "{??sys.text}",
-          "textOpacity": "{??sys.textOpacity}",
+          "text": "{??l.text}",
+          "textOpacity": "{??l.textOpacity}",
           "clamp": "2",
           "padding": "0"
         },
@@ -46,39 +46,16 @@
           "opacity": ""
         },
         "highlight": {
-          "background": "{??sys.highlight.palette}",
-          "gradient": "{??sys.highlight.palette}"
+          "gradient": "{??l.palette}"
         },
         "selected": {
-          "text": "{??sys.selected.palette}",
-          "background": "{??sys.selected.palette}",
-          "gradient": "{??sys.selected.palette}",
-          "prefix": {
-            "text": "{??sys.selected.palette}"
-          },
-          "suffix": {
-            "text": "{??sys.selected.palette}"
-          },
-          "description": {
-            "text": "{??sys.selected.palette}"
-          }
+          "text": "{??l.palette}"
         },
         "disabled": {
-          "text": "{??sys.disabled.palette}",
+          "text": "{??l.palette}",
           "textOpacity": "",
-          "background": "{??sys.disabled.palette}",
-          "gradient": "{??sys.disabled.palette}",
-          "prefix": {
-            "text": "{??sys.disabled.text}",
-            "textOpacity": "{??sys.disabled.textOpacity}"
-          },
-          "suffix": {
-            "text": "{??sys.disabled.text}",
-            "textOpacity": "{??sys.disabled.textOpacity}"
-          },
           "description": {
-            "text": "{??sys.disabled.text}",
-            "textOpacity": "{??sys.disabled.textOpacity}"
+            "textOpacity": "{??l.textOpacity}"
           }
         },
         "hover": {
@@ -96,6 +73,7 @@
         }
       },
       "var|l": {
+        "palette": "{??sys.palette}",
         "marginX": "{??sys.marginX}",
         "marginY": "{??sys.marginY}",
         "paddingX": "{??sys.paddingX}",
@@ -127,6 +105,16 @@
         }
       },
       "mixin|m": {
+        "mixin|appearance": {
+          "contained": {
+            "var|sys": {
+              "selected": {
+                "text": "",
+                "backgroundOpacity": ""
+              }
+            }
+          }
+        },
         "mixin|rounded": {
           "var|l": {
             "marginX": "{??sys.rounded.marginX}",

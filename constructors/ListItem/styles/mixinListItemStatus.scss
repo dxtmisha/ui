@@ -8,6 +8,7 @@
               'palette',
               'text',
               'background',
+              'background-opacity',
               'gradient'
       ));
 
@@ -31,7 +32,6 @@
               'description.text'
       ));
 
-      --sys-palette: #{v('??l.palette')};
     }
   }
 }
@@ -57,10 +57,7 @@
 @mixin mixinListItemHover {
   @include useEnabled {
     &:hover {
-      @include linkList('hover', (), (
-              'background',
-              'background-opacity'
-      ));
+      @include linkList('hover');
     }
   }
 }
