@@ -10,7 +10,8 @@ export type Md2ListItemAdaptiveType =
 
 export type Md2ListItemAppearanceType =
   'text' |
-  'contained'
+  'contained' |
+  'contained-selected'
 
 export type Md2ListItemHeightType =
   'xs' |

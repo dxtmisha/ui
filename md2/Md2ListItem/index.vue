@@ -56,5 +56,6 @@ export default {
 
 @include initListItem('md2') {
   @include mixinListItemAppearanceContained;
+  @include mixinListItemAppearanceContainedSelected;
 }
 </style>

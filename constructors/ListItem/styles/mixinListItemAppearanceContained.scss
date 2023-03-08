@@ -8,6 +8,14 @@
   }
 }
 
+@mixin mixinListItemAppearanceContainedSelected {
+  @include modClass('appearance') {
+    @include modClass('contained-selected') {
+      @include mixinListItemAppearanceContainedSelectedOnly;
+    }
+  }
+}
+
 @mixin mixinListItemAppearanceContainedOnly {
   @include sysTo('hover.text', '??sys.selected.text');
   @include sysTo('hover.background-opacity', '??sys.selected.background-opacity');
@@ -18,9 +26,8 @@
   @include sysTo('active.text', '??sys.selected.text');
   @include sysTo('active.background-opacity', '??sys.selected.background-opacity');
 
+  @include mixinListItemAppearanceContainedSelectedOnly;
   @include useEnabled {
-    @include mixinListItemAppearanceContainedSelected;
-
     &:hover {
       @include linkItem('background-opacity', 'hover', true);
     }
@@ -35,20 +42,22 @@
   }
 }
 
-@mixin mixinListItemAppearanceContainedSelected {
-  @include modClassByGlobal('selected') {
-    @include color(v('??l.text'), v('??l.text-opacity'));
+@mixin mixinListItemAppearanceContainedSelectedOnly {
+  @include useEnabled {
+    @include modClassByGlobal('selected') {
+      @include color(v('??l.text'), v('??l.text-opacity'));
 
-    @include subClassByGlobal('prefix') {
-      @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
-    }
+      @include subClassByGlobal('prefix') {
+        @include color(v('??l.prefix.text'), v('??l.prefix.text-opacity'));
+      }
 
-    @include subClassByGlobal('suffix') {
-      @include color(v('??l.suffix.text'), v('??l.suffix.text-opacity'));
-    }
+      @include subClassByGlobal('suffix') {
+        @include color(v('??l.suffix.text'), v('??l.suffix.text-opacity'));
+      }
 
-    @include subClassByGlobal('description') {
-      @include color(v('??l.description.text'), v('??l.description.text-opacity'));
+      @include subClassByGlobal('description') {
+        @include color(v('??l.description.text'), v('??l.description.text-opacity'));
+      }
     }
   }
 }

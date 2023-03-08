@@ -129,6 +129,9 @@
       "~appearance": {
         "contained": {
           "@style": "{??m.appearance.contained}"
+        },
+        "contained-selected": {
+          "@style": "{??m.appearance.contained}"
         }
       },
       "media|{ref.screen.md}": {

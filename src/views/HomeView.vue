@@ -238,6 +238,129 @@
         <md2-list-item :ripple="false" appearance="contained" text="ripple"/>
       </div>
       <div class="border w-96">
+        <div class="px-4 py-2">contained-selected</div>
+        <md2-list-item appearance="contained-selected"/>
+        <md2-list-item appearance="contained-selected" icon="face"/>
+        <md2-list-item appearance="contained-selected" :thumbnail="image"/>
+        <md2-list-item appearance="contained-selected" icon-trailing="home"/>
+        <md2-list-item appearance="contained-selected" icon="face" icon-trailing="home"/>
+        <md2-list-item appearance="contained-selected" text="text"/>
+        <md2-list-item appearance="contained-selected" icon="face" text="text + icon"/>
+        <md2-list-item appearance="contained-selected" icon="face" icon-trailing="home" text="text + icon + trailing"/>
+        <md2-list-item appearance="contained-selected" thumbnail="face" text="thumbnail"/>
+        <md2-list-item appearance="contained-selected" :thumbnail="image" text="thumbnail"/>
+        <md2-list-item appearance="contained-selected" icon="face" text-short="short"/>
+        <md2-list-item appearance="contained-selected" prefix="prefix" text="text"/>
+        <md2-list-item appearance="contained-selected" icon="face" prefix="prefix" text="text + icon"/>
+        <md2-list-item appearance="contained-selected" icon-trailing="home" prefix="prefix" text="text + trailing"/>
+        <md2-list-item appearance="contained-selected" suffix="suffix" text="text"/>
+        <md2-list-item appearance="contained-selected" icon="face" suffix="suffix" text="text + icon"/>
+        <md2-list-item appearance="contained-selected" icon-trailing="home" suffix="suffix" text="text + trailing"/>
+        <md2-list-item appearance="contained-selected" text="text + highlight" text-highlight="high"/>
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon-trailing="home"
+          overlay
+          prefix="prefix"
+          suffix="suffix"
+          text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon-trailing="home"
+          overlay="12,34,56"
+          prefix="prefix"
+          suffix="suffix"
+          text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          highlight
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="highlight"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          suffix="suffix"
+          text="selected"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          highlight
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          text="selected + highlight"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          palette="green"
+          prefix="prefix"
+          suffix="suffix"
+          text="palette"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          overlay
+          palette="green"
+          prefix="prefix"
+          text="palette + overlay"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          selected
+          palette="green"
+          prefix="prefix"
+          text="palette + selected"
+        />
+        <md2-list-item :ripple="false" appearance="contained-selected" text="ripple"/>
+      </div>
+      <div class="border w-96">
         <div class="px-4 py-2">disabled</div>
         <md2-list-item disabled/>
         <md2-list-item disabled icon="face"/>
