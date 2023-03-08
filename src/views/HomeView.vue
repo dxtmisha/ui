@@ -40,50 +40,79 @@
           suffix="suffix"
           text="text"
         />
-        <md2-list-item :ripple="false" text="ripple"/>
-      </div>
-      <div class="border w-96">
-        <div class="px-4 py-2">highlight</div>
-        <md2-list-item highlight/>
-        <md2-list-item highlight icon="face"/>
-        <md2-list-item :thumbnail="image" highlight/>
-        <md2-list-item highlight icon-trailing="home"/>
-        <md2-list-item highlight icon="face" icon-trailing="home"/>
-        <md2-list-item highlight text="text"/>
-        <md2-list-item highlight icon="face" text="text + icon"/>
-        <md2-list-item highlight icon="face" icon-trailing="home" text="text + icon + trailing"/>
-        <md2-list-item highlight thumbnail="face" text="thumbnail"/>
-        <md2-list-item highlight :thumbnail="image" text="thumbnail"/>
-        <md2-list-item highlight icon="face" text-short="short"/>
-        <md2-list-item highlight prefix="prefix" text="text"/>
-        <md2-list-item highlight icon="face" prefix="prefix" text="text + icon"/>
-        <md2-list-item highlight icon-trailing="home" prefix="prefix" text="text + trailing"/>
-        <md2-list-item highlight suffix="suffix" text="text"/>
-        <md2-list-item highlight icon="face" suffix="suffix" text="text + icon"/>
-        <md2-list-item highlight icon-trailing="home" suffix="suffix" text="text + trailing"/>
-        <md2-list-item highlight text="text + highlight" text-highlight="high"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
-          highlight
-          text="text"
-        />
-        <md2-list-item
-          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
-          highlight
+          icon-trailing="home"
+          overlay
           prefix="prefix"
           suffix="suffix"
-          text="text"
+          text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon-trailing="home"
+          overlay="12,34,56"
+          prefix="prefix"
+          suffix="suffix"
+          text="overlay"
+          thumbnail="face"
         />
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
-          icon="face"
           icon-trailing="home"
           prefix="prefix"
           suffix="suffix"
-          text="text"
+          text="highlight"
+          thumbnail="face"
         />
-        <md2-list-item :ripple="false" highlight text="ripple"/>
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          suffix="suffix"
+          text="selected"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          highlight
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          text="selected + highlight"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          palette="green"
+          prefix="prefix"
+          suffix="suffix"
+          text="palette"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          overlay
+          palette="green"
+          prefix="prefix"
+          text="palette + overlay"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          selected
+          palette="green"
+          prefix="prefix"
+          text="palette + selected"
+        />
+        <md2-list-item :ripple="false" text="ripple"/>
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">disabled</div>
@@ -125,6 +154,86 @@
           prefix="prefix"
           suffix="suffix"
           text="text"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          icon-trailing="home"
+          overlay
+          prefix="prefix"
+          suffix="suffix"
+          text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          icon-trailing="home"
+          overlay="12,34,56"
+          prefix="prefix"
+          suffix="suffix"
+          text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          highlight
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="highlight"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          suffix="suffix"
+          text="selected"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          highlight
+          icon-trailing="home"
+          prefix="prefix"
+          selected
+          text="selected + highlight"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          icon="face"
+          icon-trailing="home"
+          palette="green"
+          prefix="prefix"
+          suffix="suffix"
+          text="palette"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          icon="face"
+          icon-trailing="home"
+          overlay
+          palette="green"
+          prefix="prefix"
+          text="palette + overlay"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          icon="face"
+          icon-trailing="home"
+          selected
+          palette="green"
+          prefix="prefix"
+          text="palette + selected"
         />
         <md2-list-item :ripple="false" disabled text="ripple"/>
       </div>
@@ -173,6 +282,52 @@
         />
         <md2-list-item :ripple="false" appearance="contained" text="ripple"/>
       </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">contained, highlight</div>
+        <md2-list-item appearance="contained" highlight/>
+        <md2-list-item appearance="contained" highlight icon="face"/>
+        <md2-list-item appearance="contained" highlight :thumbnail="image"/>
+        <md2-list-item appearance="contained" highlight icon-trailing="home"/>
+        <md2-list-item appearance="contained" highlight icon="face" icon-trailing="home"/>
+        <md2-list-item appearance="contained" highlight text="text"/>
+        <md2-list-item appearance="contained" highlight icon="face" text="text + icon"/>
+        <md2-list-item appearance="contained" highlight icon="face" icon-trailing="home" text="text + icon + trailing"/>
+        <md2-list-item appearance="contained" highlight thumbnail="face" text="thumbnail"/>
+        <md2-list-item appearance="contained" highlight :thumbnail="image" text="thumbnail"/>
+        <md2-list-item appearance="contained" highlight icon="face" text-short="short"/>
+        <md2-list-item appearance="contained" highlight prefix="prefix" text="text"/>
+        <md2-list-item appearance="contained" highlight icon="face" prefix="prefix" text="text + icon"/>
+        <md2-list-item appearance="contained" highlight icon-trailing="home" prefix="prefix" text="text + trailing"/>
+        <md2-list-item appearance="contained" highlight suffix="suffix" text="text"/>
+        <md2-list-item appearance="contained" highlight icon="face" suffix="suffix" text="text + icon"/>
+        <md2-list-item appearance="contained" highlight icon-trailing="home" suffix="suffix" text="text + trailing"/>
+        <md2-list-item appearance="contained" highlight text="text + highlight" text-highlight="high"/>
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          highlight
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          highlight
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          highlight
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <md2-list-item :ripple="false" appearance="contained" highlight text="ripple"/>
+      </div>
     </div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
@@ -190,6 +345,8 @@
         <md2-list-item icon="face" icon-trailing="home" overlay palette="green" text="green + overlay"/>
         <md2-list-item icon="face" icon-trailing="home" palette="red" text="red"/>
         <md2-list-item icon="face" icon-trailing="home" overlay palette="red" text="red + overlay"/>
+        <md2-list-item highlight icon="face" icon-trailing="home" palette="red" text="red + highlight"/>
+        <md2-list-item selected icon="face" icon-trailing="home" palette="red" text="red + selected"/>
       </div>
     </div>
 

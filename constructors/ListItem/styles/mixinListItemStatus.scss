@@ -6,13 +6,10 @@
     @include modClassByGlobal('highlight') {
       @include linkList('highlight', (
               'palette',
-              'text',
               'background',
               'background-opacity',
               'gradient'
       ));
-
-      --sys-palette: #{v('??l.palette')};
     }
   }
 }
@@ -32,6 +29,23 @@
               'description.text'
       ));
 
+      @include paletteColor(v('??l.text'));
+      @include colorOpacity(v('??l.text-opacity'));
+
+      @include subClassByGlobal('prefix') {
+        @include paletteColor(v('??l.prefix.text'));
+        @include colorOpacity(v('??l.prefix.text-opacity'));
+      }
+
+      @include subClassByGlobal('suffix') {
+        @include paletteColor(v('??l.suffix.text'));
+        @include colorOpacity(v('??l.suffix.text-opacity'));
+      }
+
+      @include subClassByGlobal('description') {
+        @include paletteColor(v('??l.description.text'));
+        @include colorOpacity(v('??l.description.text-opacity'));
+      }
     }
   }
 }
@@ -65,10 +79,7 @@
 @mixin mixinListItemFocus {
   @include useEnabled {
     @include useFocus {
-      @include linkList('focus', (), (
-              'background',
-              'background-opacity'
-      ));
+      @include linkList('focus');
     }
   }
 }
@@ -76,10 +87,7 @@
 @mixin mixinListItemActive {
   @include useEnabled {
     &:active {
-      @include linkList('active', (), (
-              'background',
-              'background-opacity'
-      ));
+      @include linkList('active');
     }
   }
 }

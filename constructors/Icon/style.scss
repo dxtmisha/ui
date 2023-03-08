@@ -28,7 +28,7 @@
   @include propertiesLink('d.font.readonly');
 
   transition-duration: v('d.sys.transition-duration.standard');
-  transition-property: background, clip-path, margin, opacity, transform;
+  transition-property: clip-path, margin, opacity, transform;
 }
 
 @mixin mixinIconAnimation {
