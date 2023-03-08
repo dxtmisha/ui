@@ -12,6 +12,7 @@ export class ListItemIcon extends UseIcon {
     icon: Ref<string | AssociativeType>,
     iconTrailing?: Ref<string | AssociativeType>,
     protected readonly thumbnail?: Ref<string | AssociativeType>,
+    protected readonly height?: Ref<string>,
     selected?: Ref<boolean>,
     disabled?: Ref<boolean>,
     turn?: Ref<boolean>,
@@ -30,13 +31,23 @@ export class ListItemIcon extends UseIcon {
     )
   }
 
+  readonly isIconByThumbnail = computed<boolean>(
+    () => this.isIcon.value || (!!this.thumbnail?.value && !this.conditions?.value)
+  )
+
   readonly thumbnailBind = computed<AssociativeType>(() => {
     return {
       class: 'is-icon-item is-thumbnail',
+      size: this.height?.value,
+      background: true,
       active: this.selected?.value,
       disabled: this.disabled?.value
     }
   })
+
+  getClass (): object {
+    return { 'is-icon': this.isIconByThumbnail }
+  }
 
   getSetupByThumbnail (): ListItemIconSetupType {
     return {

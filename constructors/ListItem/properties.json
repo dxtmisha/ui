@@ -17,6 +17,11 @@
         "icon": {
           "margin": ""
         },
+        "thumbnail": {
+          "marginLeft": "0px",
+          "marginRight": "{??sys.icon.margin}",
+          "size": ""
+        },
         "trailing": {
           "margin": ""
         },
@@ -125,6 +130,9 @@
           "var|sys": {
             "icon": {
               "margin": "0px"
+            },
+            "thumbnail": {
+              "marginRight": "{??sys.thumbnail.marginLeft}"
             },
             "trailing": {
               "margin": "0px"

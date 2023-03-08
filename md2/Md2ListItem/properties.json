@@ -11,7 +11,12 @@
         "textOpacity": "{sys.opacity.surface.high}",
         "gradient": "{sys.palette.onSurface}",
         "icon": {
-          "margin": "{ref.spacing.8}"
+          "margin": "{ref.spacing.6}"
+        },
+        "thumbnail": {
+          "marginLeft": "{ref.spacing.2} * -1",
+          "marginRight": "{ref.spacing.4}",
+          "size": "{ref.spacing.8}"
         },
         "trailing": {
           "margin": "{ref.spacing.4}"
@@ -54,10 +59,35 @@
       "@font": "{font.subtitle1}",
       "@@palette": "{?palette}",
       "height": {
-        "sm": "{ref.spacing.9}",
-        "md": "{ref.spacing.12}",
-        "lg": "{ref.spacing.14}",
-        "xl": "{ref.spacing.18}"
+        "xs": {
+          "var|sys": {
+            "height": "{ref.spacing.10}",
+            "thumbnail": {
+              "marginLeft": "0px",
+              "marginRight": "{??sys.icon.margin}"
+            }
+          }
+        },
+        "sm": {
+          "var|sys": {
+            "height": "{ref.spacing.12}",
+            "thumbnail": {
+              "marginLeft": "{ref.spacing.1} * -1",
+              "marginRight": "{ref.spacing.5}"
+            }
+          }
+        },
+        "md": "{ref.spacing.14}",
+        "lg": "{ref.spacing.18}",
+        "xl": {
+          "var|sys": {
+            "height": "{ref.spacing.18}",
+            "thumbnail": {
+              "marginLeft": "{??sys.paddingX} * -1"
+            }
+          }
+        },
+        "default": "sm"
       },
       "#suffix": {
         "@font": "{font.subtitle2}"

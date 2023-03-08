@@ -67,6 +67,7 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
       this.refs?.icon,
       this.refs?.iconTrailing,
       this.refs?.thumbnail,
+      this.refs?.height,
       this.refs?.selected,
       this.refs?.disabled,
       this.refs?.turn,

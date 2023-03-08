@@ -19,6 +19,9 @@
       "var|_rounded": "{?.sys.rounded.full}",
       "var|_size": "{?.ref.spacing.6}",
       "size": {
+        "xs": {
+          "var|_size": "{?.ref.spacing.6}"
+        },
         "sm": {
           "var|_size": "{?.ref.spacing.8}"
         },

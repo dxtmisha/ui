@@ -6,13 +6,14 @@
         <div class="px-4 py-2">&nbsp;</div>
         <md2-list-item/>
         <md2-list-item icon="face"/>
-        <md2-list-item thumbnail="face"/>
         <md2-list-item :thumbnail="image"/>
         <md2-list-item icon-trailing="home"/>
         <md2-list-item icon="face" icon-trailing="home"/>
         <md2-list-item text="text"/>
         <md2-list-item icon="face" text="text + icon"/>
         <md2-list-item icon="face" icon-trailing="home" text="text + icon + trailing"/>
+        <md2-list-item thumbnail="face" text="thumbnail"/>
+        <md2-list-item :thumbnail="image" text="thumbnail"/>
         <md2-list-item prefix="prefix" text="text"/>
         <md2-list-item icon="face" prefix="prefix" text="text + icon"/>
         <md2-list-item icon-trailing="home" prefix="prefix" text="text + trailing"/>
@@ -43,13 +44,14 @@
         <div class="px-4 py-2">highlight</div>
         <md2-list-item highlight/>
         <md2-list-item highlight icon="face"/>
-        <md2-list-item highlight thumbnail="face"/>
         <md2-list-item :thumbnail="image" highlight/>
         <md2-list-item highlight icon-trailing="home"/>
         <md2-list-item highlight icon="face" icon-trailing="home"/>
         <md2-list-item highlight text="text"/>
         <md2-list-item highlight icon="face" text="text + icon"/>
         <md2-list-item highlight icon="face" icon-trailing="home" text="text + icon + trailing"/>
+        <md2-list-item highlight thumbnail="face" text="thumbnail"/>
+        <md2-list-item highlight :thumbnail="image" text="thumbnail"/>
         <md2-list-item highlight prefix="prefix" text="text"/>
         <md2-list-item highlight icon="face" prefix="prefix" text="text + icon"/>
         <md2-list-item highlight icon-trailing="home" prefix="prefix" text="text + trailing"/>
@@ -83,13 +85,14 @@
         <div class="px-4 py-2">disabled</div>
         <md2-list-item disabled/>
         <md2-list-item disabled icon="face"/>
-        <md2-list-item disabled thumbnail="face"/>
         <md2-list-item :thumbnail="image" disabled/>
         <md2-list-item disabled icon-trailing="home"/>
         <md2-list-item disabled icon="face" icon-trailing="home"/>
         <md2-list-item disabled text="text"/>
         <md2-list-item disabled icon="face" text="text + icon"/>
         <md2-list-item disabled icon="face" icon-trailing="home" text="text + icon + trailing"/>
+        <md2-list-item disabled thumbnail="face" text="thumbnail"/>
+        <md2-list-item disabled :thumbnail="image" text="thumbnail"/>
         <md2-list-item disabled prefix="prefix" text="text"/>
         <md2-list-item disabled icon="face" prefix="prefix" text="text + icon"/>
         <md2-list-item disabled icon-trailing="home" prefix="prefix" text="text + trailing"/>
@@ -124,6 +127,7 @@
       <div class="border w-96">
         <div class="px-4 py-2">selected</div>
         <md2-list-item icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
+        <md2-list-item thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="thumbnail"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           selected
@@ -150,6 +154,8 @@
       <div class="border w-96">
         <div class="px-4 py-2">selected + highlight</div>
         <md2-list-item highlight icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
+        <md2-list-item highlight thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
+                       text="thumbnail"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
@@ -179,6 +185,8 @@
       <div class="border w-96">
         <div class="px-4 py-2">selected + disabled</div>
         <md2-list-item disabled icon="face" icon-trailing="home" prefix="prefix" selected suffix="suffix" text="text"/>
+        <md2-list-item disabled thumbnail="face" icon-trailing="home" prefix="prefix" selected suffix="suffix"
+                       text="thumbnail"/>
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           disabled
@@ -207,28 +215,47 @@
       </div>
     </div>
 
-    <div class="px-4 py-2"><b>list item</b></div>
+    <div class="px-4 py-2"><b>list item, height</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
+        <div class="px-4 py-2">xs</div>
+        <md2-list-item height="xs" icon="face" text="text"/>
+        <md2-list-item height="xs" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="xs" thumbnail="face" text="thumbnail"/>
+      </div>
+      <div class="border w-96">
         <div class="px-4 py-2">sm</div>
-        <md2-list-item height="sm" icon="face" text="text + icon"/>
+        <md2-list-item height="sm" icon="face" text="text"/>
         <md2-list-item height="sm" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="sm" thumbnail="face" text="thumbnail"/>
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">md</div>
         <md2-list-item height="md" icon="face" text="text"/>
         <md2-list-item height="md" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="md" thumbnail="face" text="thumbnail"/>
       </div>
       <div class="border w-96">
         <div class="px-4 py-2">lg</div>
         <md2-list-item height="lg" icon="face" text="text"/>
         <md2-list-item height="lg" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="lg" thumbnail="face" text="thumbnail"/>
       </div>
       <div class="border w-96">
-        <div class="px-4 py-2">xl</div>
+        <div class="px-4 py-2">lg</div>
         <md2-list-item height="xl" icon="face" text="text"/>
         <md2-list-item height="xl" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item height="xl" thumbnail="face" text="thumbnail"/>
       </div>
+    </div>
+
+    <div class="px-4 py-2"><b>icon</b></div>
+    <div class="flex flex-wrap items-start px-4 py-2 gap-2">
+      <md2-icon background size="xs" icon="face"/>
+      <md2-icon background size="sm" icon="face"/>
+      <md2-icon background size="md" icon="face"/>
+      <md2-icon background size="lg" icon="face"/>
+      <md2-icon background size="xl" icon="face"/>
     </div>
 
     <div class="px-4 py-2"><b>window</b></div>
@@ -986,6 +1013,7 @@ import { AssociativeType } from '../../constructors/types'
 import Md2Button from '../../md2/Md2Button/index.vue'
 import Md2Window from '../../md2/Md2Window/index.vue'
 import Md2ListItem from '../../md2/Md2ListItem/index.vue'
+import Md2Icon from '../../md2/Md2Icon/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -995,6 +1023,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Icon,
     Md2ListItem,
     Md2Window,
     Md2Button

@@ -13,6 +13,7 @@ export type Md2ListItemAppearanceType =
   'contained'
 
 export type Md2ListItemHeightType =
+  'xs' |
   'sm' |
   'md' |
   'lg' |
