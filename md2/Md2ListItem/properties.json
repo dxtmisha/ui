@@ -134,6 +134,13 @@
           "@style": "{??m.appearance.contained}"
         }
       },
+      "~adaptive": {
+        "sm-md": {
+          "media-min-max|{ref.screen.sm} {ref.screen.md}": {
+            "@style": "{??m.icon}"
+          }
+        }
+      },
       "media|{ref.screen.md}": {
         "var|sys": {
           "paddingX": "{ref.spacing.6}"

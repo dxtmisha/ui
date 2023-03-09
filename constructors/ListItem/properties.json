@@ -166,6 +166,8 @@
           "backgroundOpacity": "{??sys.overlay.backgroundOpacity} !important"
         }
       },
+      "~appearance": {},
+      "~adaptive": {},
       "~highlight": {},
       "~selected": {},
       "~readonly": {},

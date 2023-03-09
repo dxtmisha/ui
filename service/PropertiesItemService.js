@@ -107,7 +107,9 @@ class PropertiesItemService {
 
       switch (type) {
         case 'media':
-          this.option = `'${this.toValueByMain(mark)}'`
+        case 'media-max':
+        case 'media-min-max':
+          this.option = `${this.toValueByMain(mark)}`
           break
         case 'section':
         case 'var':

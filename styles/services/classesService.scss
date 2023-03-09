@@ -1,4 +1,6 @@
+@use "sass:list";
 @use "sass:meta";
+@use "sass:string";
 
 @import "../rules";
 @import "./propertyService";
@@ -37,6 +39,14 @@ $designsProperties: () !default;
 
   @if (isInitByType($init, 'media')) {
     @include mixinMediaList($class, $properties);
+  }
+
+  @if (isInitByType($init, 'media-max')) {
+    @include mixinMediaMaxList($class, $properties);
+  }
+
+  @if (isInitByType($init, 'media-min-max')) {
+    @include mixinMediaMinMaxList($class, $properties);
   }
 }
 
@@ -87,6 +97,58 @@ $designsProperties: () !default;
 ) {
   @include mixinPropertiesByType('media', $properties, $keys) using($index, $property) {
     @include mixinMedia($class, $index, $property) using($index, $value) {
+      @content($index, $value);
+    }
+  }
+}
+
+@mixin mixinMediaMax(
+  $class,
+  $index,
+  $properties
+) {
+  $value: getValue($properties);
+  $options: getOptions($properties);
+
+  @media screen and (max-width: calc(#{$options} - 1px)) {
+    @content($index, $value);
+    @include mixinInit($class, $value);
+  }
+}
+
+@mixin mixinMediaMaxList(
+  $class,
+  $properties,
+  $keys: ()
+) {
+  @include mixinPropertiesByType('media-max', $properties, $keys) using($index, $property) {
+    @include mixinMediaMax($class, $index, $property) using($index, $value) {
+      @content($index, $value);
+    }
+  }
+}
+
+@mixin mixinMediaMinMax(
+  $class,
+  $index,
+  $properties
+) {
+  $value: getValue($properties);
+  $options: strToList(getOptions($properties), " ");
+
+  @media screen and (min-width: #{list.nth($options, 1)}) and (max-width: calc(#{list.nth($options, 2)} - 1px)) {
+    @content($index, $value);
+    @include mixinInit($class, $value);
+  }
+}
+
+@mixin mixinMediaMinMaxList(
+  $class,
+  $properties,
+  $keys: ()
+) {
+  @include mixinPropertiesByType('media-min-max', $properties, $keys) using($index, $property) {
+    @include mixinMediaMinMax($class, $index, $property) using($index, $value) {
       @content($index, $value);
     }
   }
