@@ -485,6 +485,219 @@
       </div>
     </div>
 
+    <div class="px-4 py-2"><b>list item, adaptive</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <div class="border w-96">
+        <div class="px-4 py-2">xs</div>
+        <md2-list-item adaptive="xs" icon="face" text="text"/>
+        <md2-list-item adaptive="xs" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="xs" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="xs"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">xs-sm</div>
+        <md2-list-item adaptive="xs-sm" icon="face" text="text"/>
+        <md2-list-item adaptive="xs-sm" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="xs-sm" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="xs-sm"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">xs-md</div>
+        <md2-list-item adaptive="xs-md" icon="face" text="text"/>
+        <md2-list-item adaptive="xs-md" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="xs-md" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="xs-md"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">xs-lg</div>
+        <md2-list-item adaptive="xs-lg" icon="face" text="text"/>
+        <md2-list-item adaptive="xs-lg" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="xs-lg" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="xs-lg"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">sm</div>
+        <md2-list-item adaptive="sm" icon="face" text="text"/>
+        <md2-list-item adaptive="sm" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="sm" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="sm"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">sm-md</div>
+        <md2-list-item adaptive="sm-md" icon="face" text="text"/>
+        <md2-list-item adaptive="sm-md" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="sm-md" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="sm-md"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">sm-lg</div>
+        <md2-list-item adaptive="sm-lg" icon="face" text="text"/>
+        <md2-list-item adaptive="sm-lg" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="sm-lg" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="sm-lg"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">md</div>
+        <md2-list-item adaptive="md" icon="face" text="text"/>
+        <md2-list-item adaptive="md" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="md" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="md"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">md-lg</div>
+        <md2-list-item adaptive="md-lg" icon="face" text="text"/>
+        <md2-list-item adaptive="md-lg" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="md-lg" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="md-lg"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">lg</div>
+        <md2-list-item adaptive="lg" icon="face" text="text"/>
+        <md2-list-item adaptive="lg" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="lg" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="lg"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">full</div>
+        <md2-list-item adaptive="full" icon="face" text="text"/>
+        <md2-list-item adaptive="full" icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item adaptive="full" icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          adaptive="full"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+    </div>
+
+    <div class="px-4 py-2"><b>list item, rounded</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <div class="border w-96">
+        <div class="px-4 py-2">none</div>
+        <md2-list-item icon="face" rounded="none" text="text"/>
+        <md2-list-item icon="face" icon-trailing="home" rounded="none" text="text"/>
+        <md2-list-item icon="face" rounded="none" text="text" text-short="short"/>
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          rounded="none"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">standard</div>
+        <md2-list-item icon="face" rounded="standard" text="text"/>
+        <md2-list-item icon="face" icon-trailing="home" rounded="standard" text="text"/>
+        <md2-list-item icon="face" rounded="standard" text="text" text-short="short"/>
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          rounded="standard"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">sm</div>
+        <md2-list-item icon="face" rounded="sm" text="text"/>
+        <md2-list-item icon="face" icon-trailing="home" rounded="sm" text="text"/>
+        <md2-list-item icon="face" rounded="sm" text="text" text-short="short"/>
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          rounded="sm"
+          suffix="suffix"
+          text="text"
+        />
+        <div class="px-4 py-2">md</div>
+        <md2-list-item icon="face" rounded="md" text="text"/>
+        <md2-list-item icon="face" icon-trailing="home" rounded="md" text="text"/>
+        <md2-list-item icon="face" rounded="md" text="text" text-short="short"/>
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          rounded="md"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+    </div>
+
     <div class="px-4 py-2"><b>list item, height</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
@@ -526,6 +739,41 @@
         <md2-list-item height="xl" icon="face" text-short="short"/>
         <md2-list-item height="xl" thumbnail="face" text="thumbnail"/>
         <md2-list-item height="xl" thumbnail="face" text-short="short"/>
+      </div>
+    </div>
+
+    <div class="px-4 py-2"><b>list item, border</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <div class="border w-96">
+        <div class="px-4 py-2">&nbsp;</div>
+        <md2-list-item border icon="face" text="text"/>
+        <md2-list-item border icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item border icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          border
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">&nbsp;</div>
+        <md2-list-item border height="xs" text="text" thumbnail="face"/>
+        <md2-list-item border height="sm" text="text" thumbnail="face"/>
+        <md2-list-item border height="md" text="text" thumbnail="face"/>
+        <md2-list-item border height="lg" text="text" thumbnail="face"/>
+        <md2-list-item border height="xl" text="text" thumbnail="face"/>
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">contained</div>
+        <md2-list-item appearance="contained" border height="xs" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" border height="sm" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" border height="md" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" border height="lg" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" border height="xl" text="text" thumbnail="face"/>
       </div>
     </div>
 

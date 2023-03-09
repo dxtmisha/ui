@@ -14,6 +14,9 @@
         "backgroundOpacity": "0",
         "gradient": "{??l.text}",
         "gradientOpacity": "0",
+        "border": "",
+        "borderOpacity": "",
+        "borderWidth": "",
         "icon": {
           "margin": ""
         },
@@ -41,10 +44,6 @@
           "clamp": "2",
           "padding": "0"
         },
-        "progress": {
-          "size": "",
-          "opacity": ""
-        },
         "overlay": {
           "backgroundOpacity": ""
         },
@@ -53,6 +52,10 @@
         },
         "selected": {
           "text": "{??l.palette}"
+        },
+        "progress": {
+          "size": "",
+          "opacity": ""
         },
         "disabled": {
           "text": "{??l.palette}",
@@ -71,6 +74,7 @@
           "gradientOpacity": ""
         },
         "rounded": {
+          "size": "none",
           "marginX": "0px",
           "marginY": "0px"
         }
@@ -88,6 +92,7 @@
         "backgroundOpacity": "{??sys.backgroundOpacity}",
         "gradient": "{??sys.gradient}",
         "gradientOpacity": "{??sys.gradientOpacity}",
+        "rounded": "{??sys.rounded.size}",
         "body": {
           "display": "flex"
         },
@@ -131,9 +136,6 @@
             },
             "thumbnail": {
               "marginRight": "{??sys.thumbnail.marginLeft}"
-            },
-            "trailing": {
-              "margin": "0px"
             }
           },
           "var|l": {
@@ -154,6 +156,7 @@
       "height": {
         "rename": "var|l.height"
       },
+      "#body": {},
       "#text": {},
       "#title": {},
       "#context": {},
@@ -168,7 +171,16 @@
       },
       "~appearance": {},
       "~adaptive": {},
+      "~rounded": {
+        "none": {
+          "var|l": {
+            "rounded": "none"
+          }
+        },
+        "rename": "var|l.rounded"
+      },
       "~highlight": {},
+      "~border": {},
       "~selected": {},
       "~readonly": {},
       "~progress": {},

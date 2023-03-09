@@ -2,7 +2,7 @@
 
 @mixin mixinListItemText {
   @include subClass('text') {
-    display: v('??l.body.display');
+    display: flex;
     flex-direction: inherit;
     flex-wrap: wrap;
     @include propertiesLink('d.flex.dynamic');
@@ -11,9 +11,7 @@
     align-items: center;
     align-self: stretch;
 
-    position: relative;
     padding: v('??l.padding-y') 0;
-
 
     .is-highlight {
       @include color(v('??sys.highlight.palette'));

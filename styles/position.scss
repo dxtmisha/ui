@@ -14,14 +14,29 @@
   }
 }
 
+@mixin top($value: 0) {
+  top: $value;
+  right: $value;
+  left: $value;
+}
+
 @mixin bottom($value: 0) {
   bottom: $value;
   right: $value;
   left: $value;
 }
 
-@mixin top($value: 0) {
-  top: $value;
-  right: $value;
-  left: $value;
+@mixin left($value: 0px) {
+  --d-dir-position-left: #{$value};
+  @include _positionDirectionX;
+}
+
+@mixin right($value: 0px) {
+  --d-dir-position-right: #{$value};
+  @include _positionDirectionX;
+}
+
+@mixin _positionDirectionX() {
+  left: calc((var(--d-dir-left) * var(--d-dir-position-left)) + (var(--d-dir-right) * var(--d-dir-position-right)));
+  right: calc((var(--d-dir-left) * var(--d-dir-position-right)) + (var(--d-dir-right) * var(--d-dir-position-left)));
 }

@@ -1,7 +1,9 @@
 @import "../../styles/properties";
 
-@import "./styles/mixinListText";
-@import "./styles/mixinListIcon";
+@import "./styles/mixinListItemBody";
+@import "./styles/mixinListItemText";
+@import "./styles/mixinListItemIcon";
+@import "./styles/mixinListItemBorder";
 
 @import "./styles/currentStatus";
 @import "./styles/mixinListItemStatus";
@@ -12,6 +14,8 @@
   @include propertiesInit($design, 'list-item') {
     @include mixinListItem;
 
+    @include mixinListItemBody;
+
     @include mixinListItemText;
     @include mixinListItemTitle;
     @include mixinListItemPrefix;
@@ -20,6 +24,7 @@
     @include mixinListItemShort;
 
     @include mixinListItemIcon;
+    @include mixinListItemBorder;
 
     @include mixinListItemHighlight;
     @include mixinListItemSelected;
@@ -40,7 +45,7 @@
   padding: 0 v('??l.padding-x');
   margin: calc(#{v('??l.margin-y')} / 2) v('??l.margin-x');
 
-  width: 100%;
+  width: auto;
   min-height: calc(#{v('??l.height')} - #{v('??l.margin-y')});
 
   @include propertiesLink('d.flex.x');
@@ -51,6 +56,7 @@
   @include backgroundOpacity(v('??l.background-opacity'));
   @include paletteGradient(v('??l.gradient'));
   @include gradientOpacity(v('??l.gradient-opacity'));
+  border-radius: v('??l.rounded');
 
   cursor: pointer;
 

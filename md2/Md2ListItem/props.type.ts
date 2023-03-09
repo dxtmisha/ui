@@ -1,4 +1,8 @@
 export type Md2ListItemAdaptiveType =
+  'xs' |
+  'xs-sm' |
+  'xs-md' |
+  'xs-lg' |
   'sm' |
   'sm-md' |
   'sm-lg' |

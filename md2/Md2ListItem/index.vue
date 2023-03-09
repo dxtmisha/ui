@@ -9,19 +9,21 @@
 
     <md2-icon v-if="thumbnail" v-bind="thumbnailBind"/>
     <md2-icon v-else-if="icon" v-bind="iconBind"/>
-    <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
 
-    <div v-if="isText" :class="classes.text">
-      <template v-if="isFullText">
-        <div :class="classes.title">
-          <span v-if="prefix" :class="classes.prefix">{{ prefix }}</span>
-          <span :class="classes.context" v-html="textBind"/>
-          <span v-if="suffix" :class="classes.suffix">{{ suffix }}</span>
-        </div>
-        <div v-if="description" :class="classes.description" v-html="description"/>
-      </template>
-      <template v-else-if="text">{{ text }}</template>
-      <slot/>
+    <div v-if="isText" :class="classes.body">
+      <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
+      <div :class="classes.text">
+        <template v-if="isFullText">
+          <div :class="classes.title">
+            <span v-if="prefix" :class="classes.prefix">{{ prefix }}</span>
+            <span :class="classes.context" v-html="textBind"/>
+            <span v-if="suffix" :class="classes.suffix">{{ suffix }}</span>
+          </div>
+          <div v-if="description" :class="classes.description" v-html="description"/>
+        </template>
+        <template v-else-if="text">{{ text }}</template>
+        <slot/>
+      </div>
     </div>
     <div v-if="textShort" :class="classes.short">{{ textShort }}</div>
 

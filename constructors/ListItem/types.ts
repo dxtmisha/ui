@@ -14,6 +14,7 @@ import {
 
 export type ListItemClassesType<T = ComponentAssociativeType> = ComponentClassesType<T> & {
   main: T
+  body: T
   text: T
   title: T
   prefix: T

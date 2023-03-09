@@ -1,0 +1,23 @@
+@import "../../../styles/properties";
+
+@mixin mixinListItemBorder {
+  @include modClass('border') {
+    &:not(:first-child) {
+      @include subClassByGlobal('body') {
+        position: relative;
+        align-self: stretch;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          @include left();
+          @include right(calc(#{v('??l.padding-x')} * -1));
+
+          @include border(v('??sys.border'), v('??sys.border-opacity'));
+          border-top-width: v('??sys.border-width');
+        }
+      }
+    }
+  }
+}

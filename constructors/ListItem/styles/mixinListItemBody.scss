@@ -1,0 +1,10 @@
+@import "../../../styles/properties";
+
+@mixin mixinListItemBody {
+  @include subClass('body') {
+    display: v('??l.body.display');
+    @include propertiesLink('d.flex.dynamic');
+
+    align-items: center;
+  }
+}
