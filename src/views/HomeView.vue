@@ -777,6 +777,41 @@
       </div>
     </div>
 
+    <div class="px-4 py-2"><b>list item, dense</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <div class="border w-96">
+        <div class="px-4 py-2">&nbsp;</div>
+        <md2-list-item dense icon="face" text="text"/>
+        <md2-list-item dense icon="face" icon-trailing="home" text="text"/>
+        <md2-list-item dense icon="face" text="text" text-short="short"/>
+        <md2-list-item
+          dense
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          icon="face"
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="text"
+        />
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">&nbsp;</div>
+        <md2-list-item dense height="xs" text="text" thumbnail="face"/>
+        <md2-list-item dense height="sm" text="text" thumbnail="face"/>
+        <md2-list-item dense height="md" text="text" thumbnail="face"/>
+        <md2-list-item dense height="lg" text="text" thumbnail="face"/>
+        <md2-list-item dense height="xl" text="text" thumbnail="face"/>
+      </div>
+      <div class="border w-96">
+        <div class="px-4 py-2">contained</div>
+        <md2-list-item appearance="contained" dense height="xs" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" dense height="sm" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" dense height="md" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" dense height="lg" text="text" thumbnail="face"/>
+        <md2-list-item appearance="contained" dense height="xl" text="text" thumbnail="face"/>
+      </div>
+    </div>
+
     <div class="px-4 py-2"><b>icon</b></div>
     <div class="flex flex-wrap items-start px-4 py-2 gap-2">
       <md2-icon background size="xs" icon="face"/>

@@ -63,6 +63,12 @@
         "rounded": {
           "marginX": "{ref.spacing.2}",
           "marginY": "{ref.spacing.1}"
+        },
+        "dense": {
+          "paddingX": "{ref.spacing.2}",
+          "icon": {
+            "margin": "{ref.spacing.3}"
+          }
         }
       },
       "mixin|m": {
@@ -85,7 +91,10 @@
             "height": "{ref.spacing.10}",
             "thumbnail": {
               "marginLeft": "0px",
-              "marginRight": "{??sys.icon.margin}"
+              "marginRight": "{ref.spacing.6}"
+            },
+            "dense": {
+              "paddingX": "{ref.spacing.3}"
             }
           }
         },
@@ -95,13 +104,26 @@
             "thumbnail": {
               "marginLeft": "{ref.spacing.1} * -1",
               "marginRight": "{ref.spacing.5}"
+            },
+            "dense": {
+              "paddingX": "{ref.spacing.3}"
             }
           }
         },
-        "md": "{ref.spacing.14}",
+        "md": {
+          "var|sys": {
+            "height": "{ref.spacing.14}",
+            "dense": {
+              "paddingX": "{ref.spacing.3}"
+            }
+          }
+        },
         "lg": {
           "var|sys": {
-            "height": "{ref.spacing.18}"
+            "height": "{ref.spacing.18}",
+            "dense": {
+              "paddingX": "{ref.spacing.3}"
+            }
           },
           "& .??__short": {
             "@font": "{font.body1}"
@@ -111,7 +133,7 @@
           "var|sys": {
             "height": "{ref.spacing.18}",
             "thumbnail": {
-              "marginLeft": "{??sys.paddingX} * -1"
+              "marginLeft": "{??l.paddingX} * -1"
             }
           },
           "& .??__short": {

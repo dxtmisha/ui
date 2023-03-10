@@ -77,6 +77,12 @@
           "size": "none",
           "marginX": "0px",
           "marginY": "0px"
+        },
+        "dense": {
+          "paddingX": "0",
+          "icon": {
+            "margin": ""
+          }
         }
       },
       "var|l": {
@@ -181,6 +187,16 @@
       },
       "~highlight": {},
       "~border": {},
+      "~dense": {
+        "var|sys": {
+          "icon": {
+            "margin": "{??sys.dense.icon.margin}"
+          }
+        },
+        "var|l": {
+          "paddingX": "{??sys.dense.paddingX}"
+        }
+      },
       "~selected": {},
       "~readonly": {},
       "~progress": {},
