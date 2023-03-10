@@ -34,7 +34,7 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
 
   private readonly event: ButtonEvent
 
-  constructor (
+  protected constructor (
     props: AssociativeType & object,
     context: AssociativeType & object,
     appearanceInverse = [] as string[],
