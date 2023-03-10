@@ -24,6 +24,9 @@ export const props = {
   detail: [Object],
   to: String,
 
+  checkbox: Boolean,
+  checkboxRight: Boolean,
+
   // Status
   highlight: Boolean,
   turn: Boolean,

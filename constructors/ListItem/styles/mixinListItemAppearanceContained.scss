@@ -44,6 +44,12 @@
 
 @mixin mixinListItemAppearanceContainedSelectedOnly {
   @include useEnabled {
+    #{c('?checkbox')} {
+      @include propertyCustomTo('?checkbox.sys.palette', '??l.text');
+      @include propertyCustomTo('?checkbox.sys.checked.palette', '??l.text');
+      @include propertyCustomTo('?checkbox.sys.checked.icon.text', '??sys.palette');
+    }
+
     @include modClassByGlobal('selected') {
       @include color(v('??l.text'), v('??l.text-opacity'));
 

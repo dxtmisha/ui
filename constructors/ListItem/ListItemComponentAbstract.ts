@@ -2,6 +2,7 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 
 import { ButtonEvent } from '../Button/ButtonEvent'
+import { ListItemCheckbox } from './ListItemCheckbox'
 import { ListItemIcon } from './ListItemIcon'
 import { ListItemText } from './ListItemText'
 import { UseEnabled } from '../Use/UseEnabled'
@@ -28,6 +29,7 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
 
   private readonly text: ListItemText
   private readonly icon: ListItemIcon
+  private readonly checkbox: ListItemCheckbox
 
   private readonly inverse: UseInverseBySelected
   private readonly progress: UseProgress
@@ -74,6 +76,14 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
       this.text.isItem
     )
 
+    this.checkbox = new ListItemCheckbox(
+      this.getBind,
+      this.refs?.checkbox,
+      this.refs?.checkboxRight,
+      this.refs?.selected,
+      this.refs?.disabled
+    )
+
     this.inverse = new UseInverseBySelected(
       appearanceInverse,
       this.refs?.appearance,
@@ -112,6 +122,7 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
       ...this.value.getSetup(),
       ...this.text.getSetup(),
       ...this.icon.getSetupByThumbnail(),
+      ...this.checkbox.getSetup(),
       ...this.progress.getSetup()
     }
   }

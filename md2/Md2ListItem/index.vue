@@ -9,6 +9,7 @@
 
     <md2-icon v-if="thumbnail" v-bind="thumbnailBind"/>
     <md2-icon v-else-if="icon" v-bind="iconBind"/>
+    <md2-checkbox v-else-if="isCheckbox" :class="classes.checkbox" v-bind="checkboxBind"/>
 
     <div v-if="isText" :class="classes.body">
       <md2-icon v-if="iconTrailing" v-bind="iconTrailingBind"/>
@@ -37,10 +38,12 @@ import { props } from './props'
 import Md2Icon from '../Md2Icon/index.vue'
 import Md2Progress from '../Md2Progress/index.vue'
 import Md2Ripple from '../Md2Ripple/index.vue'
+import Md2Checkbox from '../Md2Checkbox/index.vue'
 
 export default {
   name: 'Md2ListItem',
   components: {
+    Md2Checkbox,
     Md2Icon,
     Md2Progress,
     Md2Ripple

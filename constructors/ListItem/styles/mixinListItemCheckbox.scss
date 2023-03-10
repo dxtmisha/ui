@@ -1,0 +1,21 @@
+@import "../../../styles/properties";
+
+@mixin mixinListItemCheckbox {
+  @include subClass('checkbox') {
+    @include propertyCustom(
+                    '??checkbox.compensation',
+                    calc((#{v('?checkbox.sys.item.size')} - #{v('??sys.checkbox.compensation')}) / 2 * -1)
+    );
+
+    &.is-left {
+      @include marginLeft(v('??checkbox.compensation'));
+      @include marginRight(calc(#{v('??checkbox.compensation')} + #{v('??sys.icon.margin')}));
+    }
+
+    &.is-right {
+      @include marginLeft(calc(#{v('??checkbox.compensation')} + #{v('??sys.trailing.margin')}));
+      @include marginRight(v('??checkbox.compensation'));
+      order: 9999;
+    }
+  }
+}

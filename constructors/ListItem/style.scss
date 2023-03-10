@@ -3,6 +3,7 @@
 @import "./styles/mixinListItemBody";
 @import "./styles/mixinListItemText";
 @import "./styles/mixinListItemIcon";
+@import "./styles/mixinListItemCheckbox";
 @import "./styles/mixinListItemBorder";
 
 @import "./styles/currentStatus";
@@ -24,6 +25,7 @@
     @include mixinListItemShort;
 
     @include mixinListItemIcon;
+    @include mixinListItemCheckbox;
     @include mixinListItemBorder;
 
     @include mixinListItemHighlight;

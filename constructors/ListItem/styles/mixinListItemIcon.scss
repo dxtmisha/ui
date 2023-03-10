@@ -13,7 +13,8 @@
     }
 
     &.is-trailing {
-      @include marginLeft(v('??sys.trailing.margin'))
+      @include marginLeft(v('??sys.trailing.margin'));
+      order: 1024;
     }
   }
 }

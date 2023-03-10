@@ -28,6 +28,9 @@
         "trailing": {
           "margin": ""
         },
+        "checkbox": {
+          "compensation": "0"
+        },
         "prefix": {
           "text": "{??l.text}",
           "textOpacity": "{??l.description.textOpacity}",
@@ -162,6 +165,7 @@
       "height": {
         "rename": "var|l.height"
       },
+      "#checkbox": {},
       "#body": {},
       "#text": {},
       "#title": {},

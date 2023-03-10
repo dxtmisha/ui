@@ -23,6 +23,9 @@
         "trailing": {
           "margin": "{ref.spacing.4}"
         },
+        "checkbox": {
+          "compensation": "{ref.spacing.6}"
+        },
         "prefix": {
           "padding": "{ref.spacing.4}"
         },

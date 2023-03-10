@@ -11,9 +11,11 @@ import {
   ComponentClassesType,
   EventCallbackRequiredType
 } from '../types'
+import { ListItemCheckboxSetupType } from './ListItemCheckbox'
 
 export type ListItemClassesType<T = ComponentAssociativeType> = ComponentClassesType<T> & {
   main: T
+  checkbox: T
   body: T
   text: T
   title: T
@@ -29,6 +31,7 @@ export type ListItemSetupType = ComponentBaseType &
   UseProgressSetupType &
   ListItemTextSetupType &
   ListItemIconSetupType &
+  ListItemCheckboxSetupType &
   {
     classes: ComputedRef<ListItemClassesType>
 

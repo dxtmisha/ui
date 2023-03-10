@@ -124,7 +124,7 @@ export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLIn
       value: this.props?.valueDefault,
       required: this.props?.required,
       readonly: this.props?.readonly,
-      disabled: this.props?.disabled,
+      disabled: this.props?.disabled || this.props?.readonly,
       type: this.type,
       ...this.props?.input
     }
