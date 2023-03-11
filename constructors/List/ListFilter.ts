@@ -14,7 +14,7 @@ export class ListFilter {
   ) {
   }
 
-  readonly item = computed(() => {
+  readonly item = computed<ListDataType>(() => {
     if (isFilled(this.filter?.value)) {
       return this.values.value.filter(item => this.isFind(item))
     } else {

@@ -16,6 +16,8 @@ export class List {
     private readonly rename?: Ref<AssociativeType>,
     private readonly filter?: Ref<string>,
     private readonly filterIndex?: Ref<ArrayOrStringType>,
+    private readonly sort?: Ref<string>,
+    private readonly desc?: Ref<boolean>,
     private readonly addText = true
   ) {
     this.filterItem = new ListFilter(
@@ -86,6 +88,8 @@ export class List {
         this.rename,
         this.filter,
         this.filterIndex,
+        this.sort,
+        this.desc,
         this.addText
       )
     }
@@ -96,6 +100,8 @@ export class List {
     rename?: Ref<AssociativeType>,
     filter?: Ref<string>,
     filterIndex?: Ref<string[]>,
+    sort?: Ref<string>,
+    desc?: Ref<boolean>,
     addText = true
   ): List {
     if (values instanceof List) {
@@ -106,6 +112,8 @@ export class List {
         rename,
         filter,
         filterIndex,
+        sort,
+        desc,
         addText
       )
     }
