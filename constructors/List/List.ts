@@ -1,21 +1,29 @@
 import { computed, isRef, Ref } from 'vue'
 import { forEach } from '../../functions'
 
+import { ListFilter } from './ListFilter'
 import { ListGroup } from './ListGroup'
 
-import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
+import { ArrayOrStringType, AssociativeType } from '../types'
 import { ListDataType, ListItemType, ListValuesType, ListValueType } from './types'
 
 export class List {
-  private group: ListGroup
+  private readonly filterItem: ListFilter
+  private readonly group: ListGroup
 
   constructor (
     private readonly values: ListValuesType,
     private readonly rename?: Ref<AssociativeType>,
-    private readonly find?: Ref<BooleanOrNumberOrStringType>,
-    private readonly findIndex?: Ref<string[]>,
+    private readonly filter?: Ref<string>,
+    private readonly filterIndex?: Ref<ArrayOrStringType>,
     private readonly addText = true
   ) {
+    this.filterItem = new ListFilter(
+      this.item,
+      filter,
+      filterIndex
+    )
+
     this.group = new ListGroup()
   }
 
@@ -76,8 +84,8 @@ export class List {
       data[index] = new List(
         data[index],
         this.rename,
-        this.find,
-        this.findIndex,
+        this.filter,
+        this.filterIndex,
         this.addText
       )
     }
@@ -86,8 +94,8 @@ export class List {
   static init (
     values: List | ListValuesType,
     rename?: Ref<AssociativeType>,
-    find?: Ref<BooleanOrNumberOrStringType>,
-    findIndex?: Ref<string[]>,
+    filter?: Ref<string>,
+    filterIndex?: Ref<string[]>,
     addText = true
   ): List {
     if (values instanceof List) {
@@ -96,8 +104,8 @@ export class List {
       return new List(
         values,
         rename,
-        find,
-        findIndex,
+        filter,
+        filterIndex,
         addText
       )
     }
