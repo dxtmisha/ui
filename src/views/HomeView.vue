@@ -1,6 +1,10 @@
 <template>
   <div>
     <md2-checkbox/>
+    <div class="px-4 py-2"><b>list</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <md2-list class="border"/>
+    </div>
     <div class="px-4 py-2"><b>list item</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <div class="border w-96">
@@ -1001,6 +1005,7 @@ import { AssociativeType } from '../../constructors/types'
 import Md2ListItem from '../../md2/Md2ListItem/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
 import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
+import Md2List from '../../md2/Md2List/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -1010,6 +1015,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2List,
     Md2Checkbox,
     Md2Icon,
     Md2ListItem

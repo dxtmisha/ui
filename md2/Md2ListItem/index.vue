@@ -27,6 +27,7 @@
       </div>
     </div>
     <div v-if="textShort" :class="classes.short">{{ textShort }}</div>
+    <slot/>
 
     <md2-ripple v-if="isRipple" :inverse="isInverse"/>
   </component>

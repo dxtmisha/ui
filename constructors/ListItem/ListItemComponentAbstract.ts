@@ -17,6 +17,7 @@ export abstract class ListItemComponentAbstract extends ComponentAbstract<HTMLSp
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-click', 'on-trailing'] as string[]
 
+  protected readonly classesExtra = ['overlay'] as string[]
   protected readonly stylesProps = [
     'palette',
     'overlay',

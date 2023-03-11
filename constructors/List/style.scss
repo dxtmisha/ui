@@ -1,0 +1,13 @@
+@import "../../styles/properties";
+
+@mixin initList($design) {
+  @include propertiesInit($design, 'list') {
+    @include mixinList;
+
+    @content;
+  }
+}
+
+@mixin mixinList {
+
+}
