@@ -3,17 +3,25 @@ import { forEach } from '../../functions'
 
 import { ListFilter } from './ListFilter'
 import { ListGroup } from './ListGroup'
+import { ListSelected } from './ListSelected'
+import { ListSort } from '../ListItem/ListSort'
 
 import { ArrayOrStringType, AssociativeType } from '../types'
 import { ListDataType, ListItemType, ListValuesType, ListValueType } from './types'
 
 export class List {
   private readonly filterItem: ListFilter
+  private readonly sortItem: ListSort
+
+  private readonly selectedItem: ListSelected
+  private readonly selectedFilterItem: ListSelected
+
   private readonly group: ListGroup
 
   constructor (
     private readonly values: ListValuesType,
     private readonly rename?: Ref<AssociativeType>,
+    private readonly selected?: Ref<ArrayOrStringType>,
     private readonly filter?: Ref<string>,
     private readonly filterIndex?: Ref<ArrayOrStringType>,
     private readonly sort?: Ref<string>,
@@ -22,8 +30,23 @@ export class List {
   ) {
     this.filterItem = new ListFilter(
       this.item,
-      filter,
-      filterIndex
+      this.filter,
+      this.filterIndex
+    )
+    this.sortItem = new ListSort(
+      this.filterItem.item,
+      this.sort,
+      this.desc
+    )
+
+    this.selectedItem = new ListSelected(
+      this.item,
+      this.selected
+    )
+    this.selectedFilterItem = new ListSelected(
+      this.filterItem.item,
+      this.selected,
+      true
     )
 
     this.group = new ListGroup()
@@ -38,6 +61,14 @@ export class List {
 
   get (): ListDataType {
     return this.item.value
+  }
+
+  getSelected (): ListDataType {
+    return this.selectedItem.get()
+  }
+
+  getSelectedFilter (): ListDataType {
+    return this.selectedFilterItem.get()
   }
 
   private getList (): ListValueType {
@@ -86,6 +117,7 @@ export class List {
       data[index] = new List(
         data[index],
         this.rename,
+        this.selected,
         this.filter,
         this.filterIndex,
         this.sort,
@@ -98,8 +130,9 @@ export class List {
   static init (
     values: List | ListValuesType,
     rename?: Ref<AssociativeType>,
+    selected?: Ref<ArrayOrStringType>,
     filter?: Ref<string>,
-    filterIndex?: Ref<string[]>,
+    filterIndex?: Ref<ArrayOrStringType>,
     sort?: Ref<string>,
     desc?: Ref<boolean>,
     addText = true
@@ -110,6 +143,7 @@ export class List {
       return new List(
         values,
         rename,
+        selected,
         filter,
         filterIndex,
         sort,
