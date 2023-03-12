@@ -16,13 +16,17 @@ export class ListSort {
     if (this.sort?.value) {
       return this.values.value.sort((a, b) => {
         if (this.desc?.value) {
-          return a?.[this.sort?.value || 'value'] < b?.[this.sort?.value || 'value'] ? -1 : 1
-        } else {
           return a?.[this.sort?.value || 'value'] < b?.[this.sort?.value || 'value'] ? 1 : -1
+        } else {
+          return a?.[this.sort?.value || 'value'] < b?.[this.sort?.value || 'value'] ? -1 : 1
         }
       })
     } else {
       return this.values.value
     }
   })
+
+  get (): ListDataType {
+    return this.item.value
+  }
 }

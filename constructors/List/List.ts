@@ -10,8 +10,8 @@ import { ArrayOrStringType, AssociativeType } from '../types'
 import { ListDataType, ListItemType, ListValuesType, ListValueType } from './types'
 
 export class List {
-  private readonly filterItem: ListFilter
-  private readonly sortItem: ListSort
+  readonly filterItem: ListFilter
+  readonly sortItem: ListSort
 
   private readonly selectedItem: ListSelected
   private readonly selectedFilterItem: ListSelected
@@ -54,13 +54,17 @@ export class List {
 
   readonly item = computed<ListDataType>(() => {
     return forEach<ListValueType, string, ListItemType>(
-      this.getList(),
+      this.getListByType(),
       (item, index) => this.toObject(item, index)
     )
   })
 
   get (): ListDataType {
     return this.item.value
+  }
+
+  getList (): ListDataType {
+    return this.sortItem.get()
   }
 
   getSelected (): ListDataType {
@@ -79,7 +83,7 @@ export class List {
     return getColumn(this.getSelected(), 'value')
   }
 
-  private getList (): ListValueType {
+  private getListByType (): ListValueType {
     return (isRef(this.values) ? this.values.value : this.values) || []
   }
 

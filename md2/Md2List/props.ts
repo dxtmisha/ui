@@ -12,6 +12,15 @@ export const defaultItem = ComponentDesign.getDefault('md2.list')
 export const props = {
   // Values
   icon: [Object, String],
+  list: [Array, Object],
+  rename: Object,
+  value: [Array, Boolean, Number, String],
+
+  filter: String,
+  filterIndex: [Array, String],
+
+  sort: String,
+  desc: Boolean,
 
   checkbox: Boolean,
   checkboxRight: Boolean,

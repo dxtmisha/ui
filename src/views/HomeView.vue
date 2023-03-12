@@ -3,7 +3,9 @@
     <md2-checkbox/>
     <div class="px-4 py-2"><b>list</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-list class="border"/>
+      <md2-list :list="list" class="border"/>
+      <md2-list :list="list" class="border" filter="Amy"/>
+      <md2-list :list="list" class="border" sort="text"/>
     </div>
     <div class="px-4 py-2"><b>list item</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
@@ -1051,6 +1053,48 @@ export default defineComponent({
         file.value = (e.target as HTMLInputElement).files?.[0]
       },
       icon,
+      list: [
+        {
+          text: 'James Pearson',
+          value: 'james-pearson'
+        },
+        {
+          text: 'Amanda Morgan',
+          value: 'amanda-morgan'
+        },
+        {
+          text: 'Ian Lawson',
+          value: 'ian-lawson'
+        },
+        {
+          text: 'Wanda Stevens',
+          value: 'wanda-stevens'
+        },
+        {
+          text: 'Brian Flores',
+          value: 'brian-flores'
+        },
+        {
+          text: 'Amy Frank',
+          value: 'amy-frank'
+        },
+        {
+          text: 'Natalie Morris',
+          value: 'natalie-morris'
+        },
+        {
+          text: 'Alice Collins',
+          value: 'alice-collins'
+        },
+        {
+          text: 'Thomas Brown',
+          value: 'thomas-brown'
+        },
+        {
+          text: 'Kim Miller',
+          value: 'kim-miller'
+        }
+      ],
       hide: ref(),
       disabled: ref(),
       visible: ref(false),

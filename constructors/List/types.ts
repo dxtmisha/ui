@@ -25,4 +25,5 @@ export type ListClassesType<T = ComponentAssociativeType> = ComponentClassesType
 export type ListSetupType = ComponentBaseType &
   {
     classes: ComputedRef<ListClassesType>
+    listBind: ComputedRef<ListDataType>
   }
