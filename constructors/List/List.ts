@@ -49,7 +49,7 @@ export class List {
       true
     )
 
-    this.group = new ListGroup()
+    this.group = new ListGroup(this.selectedFilterItem)
   }
 
   readonly item = computed<ListDataType>(() => {
