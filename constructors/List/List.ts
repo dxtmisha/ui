@@ -1,5 +1,5 @@
 import { computed, isRef, Ref } from 'vue'
-import { forEach } from '../../functions'
+import { forEach, getColumn } from '../../functions'
 
 import { ListFilter } from './ListFilter'
 import { ListGroup } from './ListGroup'
@@ -69,6 +69,14 @@ export class List {
 
   getSelectedFilter (): ListDataType {
     return this.selectedFilterItem.get()
+  }
+
+  getTexts (): string[] {
+    return getColumn(this.getSelected(), 'text')
+  }
+
+  getValues (): string[] {
+    return getColumn(this.getSelected(), 'value')
   }
 
   private getList (): ListValueType {

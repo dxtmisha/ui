@@ -36,6 +36,10 @@ export async function getClipboardData (event: ClipboardEvent): Promise<string> 
   return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
 }
 
+export function getColumn<T = any> (array: AssociativeOrArrayType, column: string): T[] {
+  return forEach(array, item => item?.[column])
+}
+
 export function getExp (
   value: string,
   flags = 'ig' as string,
@@ -189,6 +193,7 @@ export default {
   executeFunction,
   forEach,
   getClipboardData,
+  getColumn,
   getExp,
   isFilled,
   isSelected,

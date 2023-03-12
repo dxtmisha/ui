@@ -7,6 +7,7 @@ export const {
   executeFunction,
   forEach,
   getClipboardData,
+  getColumn,
   getExp,
   isFilled,
   isSelected,
