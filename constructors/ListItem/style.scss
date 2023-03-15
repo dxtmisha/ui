@@ -62,6 +62,10 @@
 
   cursor: pointer;
 
+  & + & {
+    margin-top: v('??l.margin-y');
+  }
+
   @include propertyCustomTo('?progress.size', '??sys.progress.size');
   @include propertyCustomTo('?icon.background', '??l.text');
   @include propertyCustomTo('?ripple.background', '??l.gradient');
