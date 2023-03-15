@@ -1,14 +1,22 @@
 <template>
-  <div>ok</div>
+  <div :class="classes.main">
+    <template
+      v-for="item in listBind"
+      :key="item.value"
+    >
+      <md2-list-item v-bind="item"/>
+    </template>
+  </div>
 </template>
 
 <script lang="ts">
 import { ListComponent } from './ListComponent'
 import { props } from './props'
+import Md2ListItem from '../Md2ListItem/index.vue'
 
 export default {
   name: 'Md2List',
-  components: {},
+  components: { Md2ListItem },
   props,
   emits: ListComponent.emits,
   setup (props: object, context: object) {

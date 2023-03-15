@@ -14,7 +14,7 @@ export const props = {
   icon: [Object, String],
   list: [Array, Object],
   rename: Object,
-  value: [Array, Boolean, Number, String],
+  value: undefined,
 
   filter: String,
   filterIndex: [Array, String],

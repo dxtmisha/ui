@@ -4,6 +4,7 @@ import { props } from './props'
 import { AssociativeType } from '../types'
 import { ListClassesType, ListSetupType } from './types'
 import { List } from './List'
+import { ListType } from './ListType'
 
 export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -11,7 +12,20 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
 
   protected readonly stylesProps = [] as string[]
 
+  protected readonly exclusionForItem = [
+    'list',
+    'rename',
+    'value',
+    'filter',
+    'filterIndex',
+    'sort',
+    'desc'
+  ] as string[]
+
+  protected readonly exclusionForList = ['icon', 'list'] as string[]
+
   protected readonly list: List
+  protected readonly listByType: ListType
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -29,8 +43,15 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
       this.refs.sort,
       this.refs.desc
     )
+    this.listByType = new ListType(
+      this.list,
+      this.props,
+      this.refs.value,
+      this.exclusionForItem,
+      this.exclusionForList
+    )
 
-    console.log('this.list', this.list.getList())
+    console.log('this.list', this.listByType.get())
   }
 
   setup (): ListSetupType {
@@ -42,7 +63,7 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
       classes,
       styles,
 
-      listBind: this.list.sortItem.item
+      listBind: this.listByType.item
     }
   }
 }

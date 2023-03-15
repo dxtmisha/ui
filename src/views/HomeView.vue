@@ -3,9 +3,9 @@
     <md2-checkbox/>
     <div class="px-4 py-2"><b>list</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-list :list="list" class="border"/>
-      <md2-list :list="list" class="border" filter="Amy"/>
-      <md2-list :list="list" class="border" sort="text"/>
+      <md2-list :list="list" class="border w-96" palette="red" appearance="contained"/>
+      <md2-list :list="list" class="border w-96" rounded="md" value="wanda-stevens"/>
+      <md2-list :list="list" class="border w-96" :value="['ian-lawson', 'wanda-stevens']"/>
     </div>
     <div class="px-4 py-2"><b>list item</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">

@@ -11,11 +11,20 @@ import {
   RefOrNormalType
 } from '../types'
 
+export type ListTypeType =
+  'item' |
+  'list' |
+  'menu' |
+  'subtitle' |
+  'line' |
+  'space' |
+  'html'
+
 export type ListValueType = AssociativeOrArrayType<AssociativeType | BooleanOrNumberOrStringType>
 export type ListValuesType = RefOrNormalType<ListValueType>
 
 export type ListItemType = {
-  value: any
+  value?: any
   text?: NumberOrStringType
   [key: NumberOrStringType]: any
 }
