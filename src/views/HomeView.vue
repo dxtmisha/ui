@@ -67,6 +67,15 @@
         />
         <md2-list-item
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          focus
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="focus"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
           icon-trailing="home"
           prefix="prefix"
@@ -185,6 +194,16 @@
           prefix="prefix"
           suffix="suffix"
           text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          focus
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="focus"
           thumbnail="face"
         />
         <md2-list-item
@@ -325,6 +344,16 @@
         <md2-list-item
           appearance="contained-selected"
           description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          focus
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="focus"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained-selected"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
           highlight
           icon-trailing="home"
           prefix="prefix"
@@ -449,6 +478,16 @@
           prefix="prefix"
           suffix="suffix"
           text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          focus
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="focus"
           thumbnail="face"
         />
         <md2-list-item
@@ -582,6 +621,17 @@
           prefix="prefix"
           suffix="suffix"
           text="overlay"
+          thumbnail="face"
+        />
+        <md2-list-item
+          appearance="contained"
+          description="Впоследствии многие из тех, кто вместе с Путиным работал в мэрии Санкт-Петербурга"
+          disabled
+          focus
+          icon-trailing="home"
+          prefix="prefix"
+          suffix="suffix"
+          text="focus"
           thumbnail="face"
         />
         <md2-list-item

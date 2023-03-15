@@ -17,8 +17,9 @@ export const props = {
   checkboxRight: Boolean,
 
   // Status
-  highlight: Boolean,
   turn: Boolean,
+  focus: Boolean,
+  highlight: Boolean,
   selected: Boolean,
   readonly: Boolean,
   progress: Boolean,

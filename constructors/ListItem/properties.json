@@ -201,6 +201,7 @@
           "paddingX": "{??sys.dense.paddingX}"
         }
       },
+      "~focus": {},
       "~selected": {},
       "~readonly": {},
       "~progress": {},
