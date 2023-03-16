@@ -3,9 +3,16 @@
     <md2-checkbox/>
     <div class="px-4 py-2"><b>list</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-list :list="list" class="border w-96" palette="red" appearance="contained"/>
-      <md2-list :list="list" class="border w-96" rounded="md" value="wanda-stevens"/>
-      <md2-list :list="list" class="border w-96" :value="['ian-lawson', 'wanda-stevens']"/>
+      <md2-list :list="list" appearance="contained" class="border w-96" palette="red"/>
+      <md2-list
+        :list="list"
+        class="border w-96"
+        focus="ian-lawson"
+        highlight="james-pearson"
+        rounded="md"
+        selected="wanda-stevens"
+      />
+      <md2-list :list="list" :selected="['ian-lawson', 'wanda-stevens']" class="border w-96"/>
     </div>
     <div class="px-4 py-2"><b>list item</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">

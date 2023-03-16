@@ -14,7 +14,6 @@ export const props = {
   icon: [Object, String],
   list: [Array, Object],
   rename: Object,
-  value: undefined,
 
   filter: String,
   filterIndex: [Array, String],
@@ -26,6 +25,9 @@ export const props = {
   checkboxRight: Boolean,
 
   // Status
+  focus: [Array, String],
+  highlight: [Array, String],
+  selected: [Array, String],
   readonly: Boolean,
   disabled: Boolean,
 

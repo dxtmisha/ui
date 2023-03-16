@@ -1,10 +1,12 @@
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 
+import { List } from './List'
+import { ListStatus } from './ListStatus'
+import { ListType } from './ListType'
+
 import { AssociativeType } from '../types'
 import { ListClassesType, ListSetupType } from './types'
-import { List } from './List'
-import { ListType } from './ListType'
 
 export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -15,17 +17,20 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
   protected readonly exclusionForItem = [
     'list',
     'rename',
-    'value',
     'filter',
     'filterIndex',
     'sort',
-    'desc'
+    'desc',
+    'focus',
+    'highlight',
+    'selected'
   ] as string[]
 
   protected readonly exclusionForList = ['icon', 'list'] as string[]
 
   protected readonly list: List
   protected readonly listByType: ListType
+  protected readonly listByStatus: ListStatus
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -37,7 +42,7 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
     this.list = new List(
       this.refs.list,
       this.refs.rename,
-      this.refs.value,
+      this.refs.selected,
       this.refs.filter,
       this.refs.filterIndex,
       this.refs.sort,
@@ -46,9 +51,14 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
     this.listByType = new ListType(
       this.list,
       this.props,
-      this.refs.value,
       this.exclusionForItem,
       this.exclusionForList
+    )
+    this.listByStatus = new ListStatus(
+      this.listByType,
+      this.refs.focus,
+      this.refs.highlight,
+      this.refs.selected
     )
 
     console.log('this.list', this.listByType.get())
@@ -63,7 +73,7 @@ export abstract class ListComponentAbstract extends ComponentAbstract<HTMLDivEle
       classes,
       styles,
 
-      listBind: this.listByType.item
+      listBind: this.listByStatus.item
     }
   }
 }

@@ -1,9 +1,9 @@
-import { computed, Ref, UnwrapNestedRefs } from 'vue'
-import { forEach, isSelected } from '../../functions'
+import { computed, UnwrapNestedRefs } from 'vue'
+import { forEach } from '../../functions'
 
 import { List } from './List'
 
-import { ArrayOrStringType, AssociativeType } from '../types'
+import { AssociativeType } from '../types'
 import { ListDataType, ListItemType, ListTypeType } from './types'
 
 export class ListType {
@@ -11,30 +11,12 @@ export class ListType {
   constructor (
     private readonly listIn: List,
     private readonly props: UnwrapNestedRefs<any>,
-    private readonly selected: Ref<ArrayOrStringType>,
-    private readonly exclusionForItem: string[],
-    private readonly exclusionForList: string[]
+    private readonly exclusionForItem = [] as string[],
+    private readonly exclusionForList = [] as string[]
   ) {
   }
 
   readonly item = computed<ListDataType>(() => {
-    const data = [] as ListDataType
-
-    this.list.value.forEach(item => {
-      if (isSelected(item.value, this.selected.value)) {
-        data.push({
-          ...item,
-          selected: true
-        })
-      } else {
-        data.push(item)
-      }
-    })
-
-    return data
-  })
-
-  readonly list = computed<ListDataType>(() => {
     const data = [] as ListDataType
 
     this.listIn.getList().forEach(item => {
