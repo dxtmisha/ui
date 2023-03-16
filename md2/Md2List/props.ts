@@ -12,6 +12,7 @@ export const defaultItem = ComponentDesign.getDefault('md2.list')
 export const props = {
   // Values
   icon: [Object, String],
+  textHighlight: [Number, String],
   list: [Array, Object],
   rename: Object,
 

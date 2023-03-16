@@ -3,7 +3,7 @@
     <md2-checkbox/>
     <div class="px-4 py-2"><b>list</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-list :list="list" appearance="contained" class="border w-96" palette="red"/>
+      <md2-list :list="list" appearance="contained" class="border w-96" palette="red" text-highlight="lawson"/>
       <md2-list
         :list="list"
         class="border w-96"

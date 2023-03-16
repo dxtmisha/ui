@@ -1,6 +1,7 @@
 export const props = {
   // Values
   icon: [Object, String],
+  textHighlight: [Number, String],
   list: [Array, Object],
   rename: Object,
 
