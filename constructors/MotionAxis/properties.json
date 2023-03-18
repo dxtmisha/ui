@@ -3,8 +3,18 @@
     "motion-axis": {
       "var|sys": {},
       "mixin|l": {},
-      "mixin|m": {}
-    },
-    "#slide": {}
+      "mixin|m": {},
+      "#slide": {},
+      "~axis": {
+        "x": {},
+        "y": {},
+        "z": {}
+      },
+      "~transition": {
+        "auto": {},
+        "next": {},
+        "back": {}
+      }
+    }
   }
 }

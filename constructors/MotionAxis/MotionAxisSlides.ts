@@ -1,9 +1,9 @@
-import { NumberOrStringType } from '../types'
 import { ref } from 'vue'
 
 export type MotionAxisSlide = {
-  name: NumberOrStringType
+  name: string
   element: HTMLDivElement
+  status?: 'hide' | 'preparation' | 'selected'
 }
 
 export class MotionAxisSlides {
@@ -13,15 +13,19 @@ export class MotionAxisSlides {
     return this.elements.value
   }
 
-  getByName (name: NumberOrStringType): MotionAxisSlide | undefined {
+  getByName (name: string): MotionAxisSlide | undefined {
     return this.elements.value.find(item => item.name === name)
   }
 
-  getIndex (name: NumberOrStringType): number {
+  getFirst (): MotionAxisSlide | undefined {
+    return this.get()?.[0]
+  }
+
+  getIndex (name: string): number {
     return this.elements.value.findIndex(item => item.name === name)
   }
 
-  add (name: NumberOrStringType, element: HTMLDivElement): this {
+  add (name: string, element: HTMLDivElement): this {
     this.elements.value.push({
       name,
       element

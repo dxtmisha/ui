@@ -1,13 +1,44 @@
 <template>
   <div>
     <div class="px-4 py-2"><b>motion axis</b></div>
-    <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-motion-axis class="border">
+    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
+      <md2-motion-axis
+        class="border"
+      >
         <template v-slot:s1>
-          <md2-icon rounded="none" size="400px" icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"/>
+          <md2-icon
+            rounded="none"
+            size="350px"
+            icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
+          />
         </template>
         <template v-slot:s2>
-          <md2-icon></md2-icon>
+          <md2-icon
+            rounded="none"
+            size="400px"
+            icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+          />
+        </template>
+        <template v-slot:s3>
+          <md2-icon
+            rounded="none"
+            size="450px"
+            icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
+          />
+        </template>
+        <template v-slot:s4>
+          <md2-icon
+            rounded="none"
+            size="350px"
+            icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
+          />
+        </template>
+        <template v-slot:s5>
+          <md2-icon
+            rounded="none"
+            size="400px"
+            icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
+          />
         </template>
       </md2-motion-axis>
     </div>
