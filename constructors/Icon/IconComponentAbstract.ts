@@ -16,7 +16,11 @@ export abstract class IconComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
 
   protected readonly classesExtra = ['background'] as string[]
-  protected readonly stylesProps = ['background'] as string[]
+  protected readonly stylesProps = [
+    'background',
+    'rounded',
+    'size'
+  ] as string[]
 
   setup (): IconSetupType {
     const classes = this.getClasses()

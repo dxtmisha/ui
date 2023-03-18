@@ -8,7 +8,8 @@
 
 <script lang="ts">
 import { IconComponent } from './IconComponent'
-import { props } from '../../constructors/Icon/props'
+import { props } from './props'
+
 import Md2Image from '../Md2Image/index.vue'
 
 export default {

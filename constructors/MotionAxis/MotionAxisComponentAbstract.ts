@@ -4,7 +4,7 @@ import { props } from './props'
 import { MotionAxisSlides } from './MotionAxisSlides'
 
 import { AssociativeType, NumberOrStringType } from '../types'
-import { MotionAxisSetupType } from './types'
+import { MotionAxisClassesType, MotionAxisSetupType } from './types'
 
 export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -22,7 +22,7 @@ export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTML
   }
 
   setup (): MotionAxisSetupType {
-    const classes = this.getClasses()
+    const classes = this.getClasses<MotionAxisClassesType>()
     const styles = this.getStyles()
 
     return {

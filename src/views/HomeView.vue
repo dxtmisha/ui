@@ -1,9 +1,15 @@
 <template>
   <div>
-    <md2-checkbox/>
     <div class="px-4 py-2"><b>motion axis</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-motion-axis/>
+      <md2-motion-axis class="border">
+        <template v-slot:s1>
+          <md2-icon rounded="none" size="400px" icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"/>
+        </template>
+        <template v-slot:s2>
+          <md2-icon></md2-icon>
+        </template>
+      </md2-motion-axis>
     </div>
 
     <div class="px-4 py-2"><b>list</b></div>
@@ -28,9 +34,9 @@
 import { defineComponent, Ref, ref } from 'vue'
 import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
-import Md2Checkbox from '../../md2/Md2Checkbox/index.vue'
 import Md2List from '../../md2/Md2List/index.vue'
 import Md2MotionAxis from '../../md2/Md2MotionAxis/index.vue'
+import Md2Icon from '../../md2/Md2Icon/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -40,9 +46,9 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Icon,
     Md2MotionAxis,
-    Md2List,
-    Md2Checkbox
+    Md2List
   },
   setup () {
     const data = ref('close')

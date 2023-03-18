@@ -40,6 +40,10 @@
           "var|_size": "{?.ref.spacing.25}",
           "width-aspect-ratio": "25/14"
         }
+      },
+      "~rounded": {
+        "@style": "{?rounded}",
+        "rename": "var|??sys.rounded"
       }
     }
   }

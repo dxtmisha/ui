@@ -1,19 +1,19 @@
 {
   "d": {
-    "var|sys": {
-      "gradient": "{??__background}",
-      "gradientOpacity": "0",
-      "hover": {
-        "gradientOpacity": "{??sys.gradientOpacity}"
-      },
-      "active": {
-        "gradientOpacity": "{??sys.gradientOpacity}"
-      },
-      "focus": {
-        "gradientOpacity": "{??sys.gradientOpacity}"
-      }
-    },
     "icon": {
+      "var|sys": {
+        "gradient": "{??__background}",
+        "gradientOpacity": "0",
+        "hover": {
+          "gradientOpacity": "{??sys.gradientOpacity}"
+        },
+        "active": {
+          "gradientOpacity": "{??sys.gradientOpacity}"
+        },
+        "focus": {
+          "gradientOpacity": "{??sys.gradientOpacity}"
+        }
+      },
       "var|_background": "",
       "var|_disabled": "",
       "var|_opacity": "",
@@ -34,6 +34,9 @@
           "opacity": "1",
           "transform": "none"
         }
+      },
+      "~rounded": {
+        "rename": "var|??_rounded"
       },
       "~animationShow": {},
       "~animationType": {
