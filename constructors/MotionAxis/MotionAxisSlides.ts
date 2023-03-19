@@ -1,23 +1,23 @@
 import { ref } from 'vue'
 
-export type MotionAxisSlide = {
+export type MotionAxisSlideType = {
   name: string
   element: HTMLDivElement
   status?: 'hide' | 'preparation' | 'selected'
 }
 
 export class MotionAxisSlides {
-  private elements = ref<MotionAxisSlide[]>([])
+  private elements = ref<MotionAxisSlideType[]>([])
 
-  get (): MotionAxisSlide[] {
+  get (): MotionAxisSlideType[] {
     return this.elements.value
   }
 
-  getByName (name: string): MotionAxisSlide | undefined {
+  getByName (name: string): MotionAxisSlideType | undefined {
     return this.elements.value.find(item => item.name === name)
   }
 
-  getFirst (): MotionAxisSlide | undefined {
+  getFirst (): MotionAxisSlideType | undefined {
     return this.get()?.[0]
   }
 
