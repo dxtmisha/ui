@@ -97,7 +97,9 @@ export default defineComponent({
     return {
       slideSelected: computed(() => `s${slide.value}`),
       onSlide () {
-        slide.value++
+        if (slide.value++ > 4) {
+          slide.value = 1
+        }
       },
 
       image: 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e',

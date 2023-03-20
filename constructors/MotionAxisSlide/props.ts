@@ -1,6 +1,9 @@
+import { PropType } from 'vue'
+import { NumberOrStringType } from '../types'
+
 export const props = {
   // Values
-  name: String,
+  name: [Number, String] as PropType<NumberOrStringType>,
 
   // Status
   selected: String,

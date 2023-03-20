@@ -6,14 +6,13 @@ import { MotionAxisSlideStatus } from './MotionAxisSlideStatus'
 
 import { AssociativeType } from '../types'
 import { MotionAxisSlideSetupType } from './types'
-import { watch } from 'vue'
 
 export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-end']
 
-  protected status: MotionAxisSlideStatus
   protected coordinates: MotionAxisSlideCoordinates
+  protected status: MotionAxisSlideStatus
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -22,23 +21,16 @@ export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract
   ) {
     super(props, context)
 
-    this.status = new MotionAxisSlideStatus(
-      this.refs.name,
-      this.refs.selected,
-      this.refs.preparation
-    )
     this.coordinates = new MotionAxisSlideCoordinates(
       this.element,
       this.getStyleName()
     )
-
-    watch(this.status.item, status => {
-      if (status === 'preparation') {
-        requestAnimationFrame(() => this.coordinates.update())
-      } else {
-        this.coordinates.resize()
-      }
-    })
+    this.status = new MotionAxisSlideStatus(
+      this.coordinates,
+      this.refs.name,
+      this.refs.selected,
+      this.refs.preparation
+    )
   }
 
   setup (): MotionAxisSlideSetupType {

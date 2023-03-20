@@ -8,4 +8,26 @@
 }
 
 @mixin mixinMotionAxisSlide {
+  display: none;
+  opacity: 0;
+  transition-duration: v('d.sys.transition.duration.fade-through');
+
+  &[data-status="preparation"],
+  &[data-status="selected"] {
+    display: flex;
+    opacity: 1;
+  }
+
+  &[data-status="preparation"] {
+    position: fixed;
+    top: v('??top');
+    left: v('??left');
+    z-index: v('??sys.preparation.z-index');
+
+    width: v('??width');
+    height: v('??height');
+  }
+
+  &[data-status="selected"] {
+  }
 }

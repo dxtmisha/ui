@@ -1,18 +1,15 @@
 <template>
   <div :class="classes.main">
-    <div
+    <md2-motion-axis-slide
       v-for="(html, name) in this.$slots"
       :key="name"
-      :ref="(el) => { if (el) slides.add(name, el) }"
-      :class="classes.slide"
-      :data-name="name"
-      :data-status="list[name]?.status"
-      @transitionend="onTransitionend(name, $event)"
+      :name="name"
+      :preparation="preparation"
+      :selected="selected"
+      @on-end="onEnd"
     >
-      {{ name }}
       <slot :name="name"/>
-    </div>
-    {{ list }}
+    </md2-motion-axis-slide>
   </div>
 </template>
 
@@ -20,9 +17,11 @@
 import { MotionAxisComponent } from './MotionAxisComponent'
 import { props } from '../../constructors/MotionAxis/props'
 
+import Md2MotionAxisSlide from '../Md2MotionAxisSlide/index.vue'
+
 export default {
   name: 'Md2MotionAxis',
-  components: {},
+  components: { Md2MotionAxisSlide },
   props,
   emits: MotionAxisComponent.emits,
   setup (props: object, context: object) {

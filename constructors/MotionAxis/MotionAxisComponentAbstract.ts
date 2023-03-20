@@ -1,6 +1,8 @@
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 
+import { MotionAxisPreparation } from './MotionAxisPreparation'
+
 import { MotionAxisCoordinates } from './MotionAxisCoordinates'
 import { MotionAxisSelected } from './MotionAxisSelected'
 import { MotionAxisSlides } from './MotionAxisSlides'
@@ -11,6 +13,8 @@ import { MotionAxisClassesType, MotionAxisSetupType } from './types'
 
 export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
+
+  protected readonly preparation: MotionAxisPreparation
 
   protected readonly slides: MotionAxisSlides
   protected readonly selected: MotionAxisSelected
@@ -24,6 +28,8 @@ export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTML
     context: AssociativeType & object
   ) {
     super(props, context)
+
+    this.preparation = new MotionAxisPreparation(this.refs.selected)
 
     this.slides = new MotionAxisSlides()
     this.selected = new MotionAxisSelected(
@@ -54,10 +60,12 @@ export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTML
       classes,
       styles,
 
+      preparation: this.preparation.item,
+
       list: this.status.item,
       slides: this.slides,
 
-      onTransitionend: (name: NumberOrStringType, event: TransitionEvent) => undefined
+      onEnd: (name: NumberOrStringType, event: TransitionEvent) => undefined
     }
   }
 }

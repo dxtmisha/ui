@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { MotionAxisSlideComponent } from './MotionAxisComponent'
-import { props } from '../../constructors/MotionAxis/props'
+import { props } from '../../constructors/MotionAxisSlide/props'
 
 export default {
   name: 'Md2MotionAxisSlide',

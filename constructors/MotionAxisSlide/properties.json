@@ -1,7 +1,11 @@
 {
   "d": {
     "motion-axis-slide": {
-      "var|sys": {},
+      "var|sys": {
+        "preparation": {
+          "zIndex": "9999"
+        }
+      },
       "mixin|l": {},
       "mixin|m": {}
     }
