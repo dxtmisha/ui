@@ -1,7 +1,8 @@
+import { computed, ref, watch } from 'vue'
+
+import { AssociativeType } from '../types'
 import { MotionAxisSlideType, MotionAxisSlides } from './MotionAxisSlides'
 import { MotionAxisSelected } from './MotionAxisSelected'
-import { computed, ref, watch } from 'vue'
-import { AssociativeType } from '../types'
 
 export type MotionAxisStatusType = {
   element: MotionAxisSlideType
@@ -40,6 +41,14 @@ export class MotionAxisStatus {
 
   get (): AssociativeType<MotionAxisStatusType> {
     return this.item.value
+  }
+
+  getPreparation (): string {
+    return this.preparation.value
+  }
+
+  getElementPreparation (): MotionAxisStatusType | undefined {
+    return this.item.value?.[this.preparation.value]
   }
 
   reset (): this {

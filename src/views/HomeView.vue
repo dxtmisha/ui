@@ -4,6 +4,8 @@
     <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
       <md2-motion-axis
         class="border"
+        :selected="slideSelected"
+        @click="onSlide"
       >
         <template v-slot:s1>
           <md2-icon
@@ -62,7 +64,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue'
+import { computed, defineComponent, Ref, ref } from 'vue'
 import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2List from '../../md2/Md2List/index.vue'
@@ -86,12 +88,18 @@ export default defineComponent({
     const icon = ref('close') as Ref<string | AssociativeType>
     const file = ref() as Ref<File | undefined>
     const toggle = ref(false)
+    const slide = ref(1)
 
     setInterval(() => {
       // toggle.value = !toggle.value
     }, 1600)
 
     return {
+      slideSelected: computed(() => `s${slide.value}`),
+      onSlide () {
+        slide.value++
+      },
+
       image: 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e',
       data,
       file,

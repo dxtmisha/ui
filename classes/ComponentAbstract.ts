@@ -74,6 +74,10 @@ export abstract class ComponentAbstract<E = HTMLElement> {
     return `.${this.getName()}`
   }
 
+  protected getStyleName (): string {
+    return `--${this.getItem().getBasicClassName()}-`
+  }
+
   protected readonly classesMain = computed(() => {
     const main = {
       [this.getItem().getBasicClassName()]: true

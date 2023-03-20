@@ -167,10 +167,6 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     }
   }
 
-  private getStyleName (): string {
-    return `--${this.getItem().getBasicClassName()}-`
-  }
-
   private async eventCallback (event?: Event): Promise<void> {
     if (this.open.get()) {
       this.flash.setControl(event?.target as HTMLElement)

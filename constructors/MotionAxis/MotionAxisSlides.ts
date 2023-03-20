@@ -3,7 +3,6 @@ import { ref } from 'vue'
 export type MotionAxisSlideType = {
   name: string
   element: HTMLDivElement
-  status?: 'hide' | 'preparation' | 'selected'
 }
 
 export class MotionAxisSlides {

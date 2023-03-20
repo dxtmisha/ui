@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initMotionAxisSlide($design) {
+  @include propertiesInit($design, 'motion-axis-slide') {
+    @include mixinMotionAxisSlide;
+    @content;
+  }
+}
+
+@mixin mixinMotionAxisSlide {
+}

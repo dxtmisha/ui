@@ -6,11 +6,13 @@
       :ref="(el) => { if (el) slides.add(name, el) }"
       :class="classes.slide"
       :data-name="name"
+      :data-status="list[name]?.status"
       @transitionend="onTransitionend(name, $event)"
     >
+      {{ name }}
       <slot :name="name"/>
     </div>
-    MotionAxis
+    {{ list }}
   </div>
 </template>
 

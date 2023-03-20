@@ -1,6 +1,7 @@
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 
+import { MotionAxisCoordinates } from './MotionAxisCoordinates'
 import { MotionAxisSelected } from './MotionAxisSelected'
 import { MotionAxisSlides } from './MotionAxisSlides'
 import { MotionAxisStatus } from './MotionAxisStatus'
@@ -14,6 +15,8 @@ export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTML
   protected readonly slides: MotionAxisSlides
   protected readonly selected: MotionAxisSelected
   protected readonly status: MotionAxisStatus
+
+  protected readonly coordinates: MotionAxisCoordinates
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
@@ -31,17 +34,27 @@ export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTML
       this.slides,
       this.selected
     )
+
+    this.coordinates = new MotionAxisCoordinates(
+      this.status,
+      this.getStyleName()
+    )
   }
 
   setup (): MotionAxisSetupType {
     const classes = this.getClasses<MotionAxisClassesType>()
-    const styles = this.getStyles()
+    const styles = this.getStyles({
+      main: {
+        ...this.coordinates.getStyle()
+      }
+    })
 
     return {
       ...this.getBasic(),
       classes,
       styles,
 
+      list: this.status.item,
       slides: this.slides,
 
       onTransitionend: (name: NumberOrStringType, event: TransitionEvent) => undefined
