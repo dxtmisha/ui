@@ -2,7 +2,8 @@
   "d": {
     "motion-axis-slide": {
       "var|sys": {
-        "preparation": {
+        "shift": "",
+        "close": {
           "zIndex": "9999"
         }
       },

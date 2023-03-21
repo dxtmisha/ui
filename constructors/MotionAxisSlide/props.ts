@@ -6,8 +6,7 @@ export const props = {
   name: [Number, String] as PropType<NumberOrStringType>,
 
   // Status
-  selected: String,
-  preparation: String
+  selected: String
 }
 
 export default {

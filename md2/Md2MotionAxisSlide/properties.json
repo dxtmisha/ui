@@ -1,7 +1,10 @@
 {
   "md2": {
     "motion-axis-slide": {
-      "@style": "{d.motion-axis-slide}"
+      "@style": "{d.motion-axis-slide}",
+      "var|sys": {
+        "shift": "{ref.spacing.32}"
+      }
     }
   }
 }

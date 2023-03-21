@@ -4,9 +4,8 @@
       v-for="(html, name) in this.$slots"
       :key="name"
       :name="name"
-      :preparation="preparation"
       :selected="selected"
-      @on-end="onEnd"
+      @on-status="onStatus"
     >
       <slot :name="name"/>
     </md2-motion-axis-slide>

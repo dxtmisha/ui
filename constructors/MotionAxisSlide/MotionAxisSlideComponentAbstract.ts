@@ -9,7 +9,7 @@ import { MotionAxisSlideSetupType } from './types'
 
 export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
-  static readonly emits = ['on-end']
+  static readonly emits = ['on-status']
 
   protected coordinates: MotionAxisSlideCoordinates
   protected status: MotionAxisSlideStatus
@@ -25,11 +25,11 @@ export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract
       this.element,
       this.getStyleName()
     )
+
     this.status = new MotionAxisSlideStatus(
       this.coordinates,
       this.refs.name,
-      this.refs.selected,
-      this.refs.preparation
+      this.refs.selected
     )
   }
 
@@ -52,9 +52,14 @@ export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract
   }
 
   protected onTransitionend (event: TransitionEvent): void {
-    this.context.emit('on-end', {
-      name: this.props.name,
-      event
-    })
+    if (event.propertyName === 'transform') {
+      this.context.emit('on-status', {
+        name: this.props.name,
+        status: this.status.get(),
+        event
+      })
+    }
+
+    this.status.reset()
   }
 }

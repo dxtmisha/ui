@@ -3,19 +3,9 @@
 @mixin initMotionAxis($design) {
   @include propertiesInit($design, 'motion-axis') {
     @include mixinMotionAxis;
-    @include mixinMotionAxisSlide;
     @content;
   }
 }
 
 @mixin mixinMotionAxis {
-}
-
-@mixin mixinMotionAxisSlide {
-  @include subClass('slide') {
-    display: none;
-    position: fixed;
-    opacity: 0;
-    transition-duration: v('d.sys.transition.duration.fade-through');
-  }
 }

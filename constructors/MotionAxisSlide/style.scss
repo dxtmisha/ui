@@ -3,31 +3,48 @@
 @mixin initMotionAxisSlide($design) {
   @include propertiesInit($design, 'motion-axis-slide') {
     @include mixinMotionAxisSlide;
+
+    @include mixinMotionAxisSlideStatus;
     @content;
   }
 }
 
 @mixin mixinMotionAxisSlide {
+  @include propertyCustom('??_type', 1);
+  @include propertyCustom('??_transition', 1);
+  @include propertyCustom('??_transform', calc(#{v('??sys.shift')} * #{v('??_type')} * #{v('??_transition')}));
+
   display: none;
   opacity: 0;
-  transition-duration: v('d.sys.transition.duration.fade-through');
+}
+
+@mixin mixinMotionAxisSlideStatus {
+  &[data-status="preparation"],
+  &[data-status="selected"],
+  &[data-status="close"] {
+    display: flex;
+  }
 
   &[data-status="preparation"],
   &[data-status="selected"] {
-    display: flex;
-    opacity: 1;
-  }
-
-  &[data-status="preparation"] {
-    position: fixed;
-    top: v('??top');
-    left: v('??left');
-    z-index: v('??sys.preparation.z-index');
-
-    width: v('??width');
-    height: v('??height');
+    transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.standard'), opacity 210ms v('d.sys.transition-function.deceleration') 90ms;
   }
 
   &[data-status="selected"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  &[data-status="close"] {
+    position: fixed;
+    top: v('??top');
+    left: v('??left');
+    z-index: v('??sys.close.z-index');
+
+    width: v('??width');
+    height: v('??height');
+
+    opacity: 0;
+    transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.standard'), opacity 90ms v('d.sys.transition-function.acceleration');
   }
 }
