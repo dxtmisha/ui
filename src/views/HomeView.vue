@@ -1,5 +1,64 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>motion axis to</b></div>
+    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
+      <div>
+        <div class="font-bold">&nbsp;</div>
+        <md2-motion-axis-to ref="slideTo" class="border w-96 h-96">
+          <template v-slot:s1>
+            <md2-icon
+              rounded="none"
+              size="100%"
+              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
+            />
+          </template>
+          <template v-slot:s2>
+            <md2-icon
+              rounded="none"
+              size="100%"
+              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
+            />
+          </template>
+          <template v-slot:s3>
+            <md2-icon
+              rounded="none"
+              size="100%"
+              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
+            />
+          </template>
+          <template v-slot:s4>
+            <md2-icon
+              rounded="none"
+              size="100%"
+              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
+            />
+          </template>
+          <template v-slot:s5>
+            <md2-icon
+              rounded="none"
+              size="100%"
+              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
+            />
+          </template>
+        </md2-motion-axis-to>
+      </div>
+      <div>
+        <div class="font-bold">tool</div>
+        <div class="flex gap-2">
+          <md2-button text="Top" width="md" @click="onSlideTo('toTop')"/>
+          <md2-button text="Bottom" width="md" @click="onSlideTo('toBottom')"/>
+        </div>
+        <div class="flex gap-2 pt-4">
+          <md2-button text="Left" width="md" @click="onSlideTo('toLeft')"/>
+          <md2-button text="Right" width="md" @click="onSlideTo('toRight')"/>
+        </div>
+        <div class="flex gap-2 pt-4">
+          <md2-button text="Down" width="md" @click="onSlideTo('toDown')"/>
+          <md2-button text="Up" width="md" @click="onSlideTo('toUp')"/>
+        </div>
+      </div>
+    </div>
+
     <div class="px-4 py-2"><b>motion axis</b></div>
     <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
       <div>
@@ -730,6 +789,9 @@ import { AssociativeType } from '../../constructors/types'
 import Md2List from '../../md2/Md2List/index.vue'
 import Md2MotionAxis from '../../md2/Md2MotionAxis/index.vue'
 import Md2Icon from '../../md2/Md2Icon/index.vue'
+import Md2MotionAxisTo from '../../md2/Md2MotionAxisTo/index.vue'
+import { random } from '../../functions'
+import Md2Button from '../../md2/Md2Button/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -739,6 +801,8 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Button,
+    Md2MotionAxisTo,
     Md2Icon,
     Md2MotionAxis,
     Md2List
@@ -749,17 +813,23 @@ export default defineComponent({
     const file = ref() as Ref<File | undefined>
     const toggle = ref(false)
     const slide = ref(1)
+    const slideTo = ref()
 
     setInterval(() => {
       // toggle.value = !toggle.value
     }, 1600)
 
     return {
+      slideTo,
       slideSelected: computed(() => `s${slide.value}`),
       onSlide () {
         if (slide.value++ > 4) {
           slide.value = 1
         }
+      },
+      onSlideTo (name: string) {
+        const s = `s${random(1, 5)}`
+        slideTo.value[name](s)
       },
 
       image: 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e',

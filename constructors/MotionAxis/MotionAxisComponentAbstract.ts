@@ -1,21 +1,13 @@
+import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { MotionAxisSetupType } from './types'
-import { computed } from 'vue'
 
 export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-status']
-
-  // eslint-disable-next-line no-useless-constructor
-  constructor (
-    props: AssociativeType & object,
-    context: AssociativeType & object
-  ) {
-    super(props, context)
-  }
 
   setup (): MotionAxisSetupType {
     const classes = this.getClasses()
@@ -30,9 +22,13 @@ export abstract class MotionAxisComponentAbstract extends ComponentAbstract<HTML
     }
   }
 
+  protected readonly selected = computed<string>(() => {
+    return this.props.selected || Object.keys(this.context.slots)[0]
+  })
+
   protected readonly slideBind = computed<AssociativeType>(() => {
     return {
-      selected: this.props.selected,
+      selected: this.selected.value,
       animationType: this.props.animationType
     }
   })
