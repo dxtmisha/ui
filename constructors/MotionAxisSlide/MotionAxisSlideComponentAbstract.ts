@@ -6,6 +6,7 @@ import { MotionAxisSlideStatus } from './MotionAxisSlideStatus'
 
 import { AssociativeType } from '../types'
 import { MotionAxisSlideSetupType } from './types'
+import { computed } from 'vue'
 
 export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
@@ -47,9 +48,18 @@ export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract
       isShow: this.status.show,
       status: this.status.item,
 
+      binds: this.binds,
+
       onTransitionend: (event: TransitionEvent) => this.onTransitionend(event)
     }
   }
+
+  protected readonly binds = computed<AssociativeType>(() => {
+    return {
+      'data-name': this.props.name,
+      'data-status': this.status.get()
+    }
+  })
 
   protected onTransitionend (event: TransitionEvent): void {
     if (event.propertyName === 'transform') {
@@ -58,8 +68,8 @@ export abstract class MotionAxisSlideComponentAbstract extends ComponentAbstract
         status: this.status.get(),
         event
       })
-    }
 
-    this.status.reset()
+      this.status.reset()
+    }
   }
 }

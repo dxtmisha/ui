@@ -8,7 +8,16 @@
         }
       },
       "mixin|l": {},
-      "mixin|m": {}
+      "mixin|m": {},
+      "var|_x": "0",
+      "var|_y": "0",
+      "var|_transition": "-1",
+      "var|_transitionClose": "{??_transition}",
+      "var|_scale": "1",
+      "var|_scaleClose": "{??_scale}",
+      "~animationType": {
+        "fade": {}
+      }
     }
   }
 }

@@ -69,6 +69,6 @@ export class MotionAxisSlideStatus {
     this.coordinates.update()
 
     this.item.value = 'close'
-    this.timeout = setTimeout(() => this.reset(), 1024)
+    this.timeout = setTimeout(() => this.reset(), 512)
   }
 }

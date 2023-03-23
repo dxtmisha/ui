@@ -5,17 +5,23 @@
     @include mixinMotionAxisSlide;
 
     @include mixinMotionAxisSlideStatus;
+    @include mixinMotionAxisSlideAnimationType;
+
     @content;
   }
 }
 
 @mixin mixinMotionAxisSlide {
-  @include propertyCustom('??_type', 1);
-  @include propertyCustom('??_transition', 1);
-  @include propertyCustom('??_transform', calc(#{v('??sys.shift')} * #{v('??_type')} * #{v('??_transition')}));
 
   display: none;
   opacity: 0;
+
+  @include propertyCustom('??_transform', calc(#{v('??sys.shift')} * #{v('??_transition')}));
+  transform: translate(calc(#{v('??_transform')} * #{v('??_x')}), calc(#{v('??_transform')} * #{v('??_y')})) scale(#{v('??_scale')});
+
+  & + & {
+    @include propertyCustomTo('??_transition', '??transition', +1);
+  }
 }
 
 @mixin mixinMotionAxisSlideStatus {
@@ -25,14 +31,11 @@
     display: flex;
   }
 
-  &[data-status="preparation"],
-  &[data-status="selected"] {
-    transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.standard'), opacity 210ms v('d.sys.transition-function.deceleration') 90ms;
-  }
-
   &[data-status="selected"] {
     opacity: 1;
     transform: none;
+
+    transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.standard'), opacity 210ms v('d.sys.transition-function.deceleration') 90ms;
   }
 
   &[data-status="close"] {
@@ -45,6 +48,23 @@
     height: v('??height');
 
     opacity: 0;
+    @include propertyCustom('??_transform', calc(#{v('??sys.shift')} * #{v('??_transition-close')}));
+    transform: translate(calc(#{v('??_transform')} * #{v('??_x')}), calc(#{v('??_transform')} * #{v('??_y')})) scale(#{v('??_scale-close')});
+
     transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.standard'), opacity 90ms v('d.sys.transition-function.acceleration');
+  }
+}
+
+@mixin mixinMotionAxisSlideAnimationType {
+  @include modClass('animation-type') {
+    @include modClass('fade') {
+      &[data-status="selected"] {
+        transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.acceleration'), opacity 60ms v('d.sys.transition-function.linear') 60ms;
+      }
+
+      &[data-status="close"] {
+        transition: transform v('d.sys.transition-duration.axis') v('d.sys.transition-function.acceleration'), opacity 180ms v('d.sys.transition-function.linear') 120ms;
+      }
+    }
   }
 }

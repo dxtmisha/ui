@@ -1,7 +1,12 @@
 {
   "d": {
     "motion-axis": {
-      "var|sys": {},
+      "var|sys": {
+        "scale": {
+          "next": "1.1",
+          "back": "0.8"
+        }
+      },
       "mixin|l": {},
       "mixin|m": {},
       "#slide": {},

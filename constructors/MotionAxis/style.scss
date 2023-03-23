@@ -3,9 +3,68 @@
 @mixin initMotionAxis($design) {
   @include propertiesInit($design, 'motion-axis') {
     @include mixinMotionAxis;
+
+    @include mixinMotionAxisAxis;
+    @include mixinMotionAxisTransition;
+    @include mixinMotionAxisZ;
+
     @content;
   }
 }
 
 @mixin mixinMotionAxis {
+}
+
+@mixin mixinMotionAxisAxis {
+  @include modClass('axis') {
+    @include modClass('x') {
+      @include propertyCustom('??slide.x', 1);
+    }
+
+    @include modClass('y') {
+      @include propertyCustom('??slide.y', 1);
+    }
+  }
+}
+
+@mixin mixinMotionAxisTransition {
+  @include modClass('transition') {
+    @include modClass('next') {
+      @include propertyCustom('??slide.transition', +1);
+      @include propertyCustom('??slide.transition-close', -1);
+    }
+
+    @include modClass('back') {
+      @include propertyCustom('??slide.transition', -1);
+      @include propertyCustom('??slide.transition-close', +1);
+    }
+  }
+}
+
+@mixin mixinMotionAxisZ {
+  @include modClass('axis') {
+    @include modClass('z') {
+      @include propertyCustom('??slide.transition', 0);
+
+      @include modClassByGlobal('transition') {
+        @include modClass('auto') {
+          @include propertyCustom('??slide.scale', v('??sys.scale.back'));
+
+          > * ~ * {
+            @include propertyCustom('??slide.scale', v('??sys.scale.next'));
+          }
+        }
+
+        @include modClass('next') {
+          @include propertyCustom('??slide.scale', v('??sys.scale.next'));
+          @include propertyCustom('??slide.scale-close', v('??sys.scale.back'));
+        }
+
+        @include modClass('back') {
+          @include propertyCustom('??slide.scale', v('??sys.scale.back'));
+          @include propertyCustom('??slide.scale-close', v('??sys.scale.next'));
+        }
+      }
+    }
+  }
 }

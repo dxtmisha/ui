@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { MotionAxisAxisType, MotionAxisTransitionType } from './props.type'
+import { MotionAxisAnimationTypeType, MotionAxisAxisType, MotionAxisTransitionType } from './props.type'
 
 export const props = {
   // Values
@@ -15,7 +15,8 @@ export const props = {
   transition: {
     type: String as PropType<MotionAxisTransitionType>,
     default: 'auto'
-  }
+  },
+  animationType: String as PropType<MotionAxisAnimationTypeType>
 }
 
 export default {

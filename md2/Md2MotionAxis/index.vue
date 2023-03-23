@@ -4,7 +4,7 @@
       v-for="(html, name) in this.$slots"
       :key="name"
       :name="name"
-      :selected="selected"
+      v-bind="slideBind"
       @on-status="onStatus"
     >
       <slot :name="name"/>

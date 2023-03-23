@@ -3,9 +3,8 @@
     v-if="isShow"
     ref="element"
     :class="classes.main"
-    :data-name="name"
-    :data-status="status"
     :style="styles.main"
+    v-bind="binds"
     @transitionend="onTransitionend"
   >
     <slot/>
