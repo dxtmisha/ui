@@ -1,0 +1,62 @@
+@import "../../styles/properties";
+
+@mixin initMotionCell($design) {
+  @include propertiesInit($design, 'motion-cell') {
+    @include mixinMotionCell;
+
+    @include mixinMotionCellItem;
+    @include mixinMotionCellNotItem;
+
+    @content;
+  }
+}
+
+@mixin mixinMotionCell() {
+  &.is-start > * {
+    transition-duration: v('d.sys.transition-duration.axis');
+    transition-timing-function: v('d.sys.transition-function.standard');
+  }
+}
+
+@mixin mixinMotionCellItem() {
+  &.is-preparation > &__item {
+    z-index: 4;
+
+    width: v('??width-to');
+    min-width: v('??width-to');
+    max-width: v('??width-to');
+
+    height: v('??height-to');
+    min-height: v('??height-to');
+    max-height: v('??height-to');
+
+    > * {
+      position: absolute;
+
+      width: v('??width');
+      height: v('??height');
+      transform: translate(v('??left', 0), v('??top', 0));
+    }
+  }
+
+  &.is-start > &__item {
+    > * {
+      width: v('??width-to');
+      height: v('??height-to');
+
+      transform: translate(0, 0);
+      transition-property: height, transform, width;
+    }
+  }
+}
+
+@mixin mixinMotionCellNotItem() {
+  &.is-preparation > *:not(&__item) {
+    opacity: 0;
+  }
+
+  &.is-start > *:not(&__item) {
+    opacity: 1;
+    transition-property: opacity;
+  }
+}

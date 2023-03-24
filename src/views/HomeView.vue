@@ -1,5 +1,35 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>motion cell</b></div>
+    <div class="px-4 py-2">
+      <div>
+        <div class="font-bold">&nbsp;</div>
+        <md2-motion-cell ref="cell" class="flex items-start gap-4" @click="onCell">
+          <div class="basis-1 flex-grow">
+            <div class="p-2 border">Директор Федеральной службы безопасности РФ Владимир Путин. 1998 год</div>
+          </div>
+          <div class="basis-1 flex-grow">
+            <div class="p-2 border">
+              Вскоре Путин был приглашён на работу в Москву на должность заместителя Павла Бородина, управляющего делами
+              президента
+            </div>
+          </div>
+          <div class="basis-1 flex-grow">
+            <div class="p-2 border">
+              Летом 1996 года Собчак покинул пост мэра, проиграв выборы, после чего работа Путина в мэрии
+              Санкт-Петербурга закончилась
+            </div>
+          </div>
+          <div class="basis-1 flex-grow hidden is-hidden">
+            <div class="p-2 border">
+              В 1984 году в звании майора юстиции был откомандирован на обучение на одногодичный факультет
+              Краснознамённого института КГБ
+            </div>
+          </div>
+        </md2-motion-cell>
+      </div>
+    </div>
+
     <div class="px-4 py-2"><b>motion axis to</b></div>
     <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
       <div>
@@ -792,6 +822,7 @@ import Md2Icon from '../../md2/Md2Icon/index.vue'
 import Md2MotionAxisTo from '../../md2/Md2MotionAxisTo/index.vue'
 import { random } from '../../functions'
 import Md2Button from '../../md2/Md2Button/index.vue'
+import Md2MotionCell from '../../md2/MotionCell/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -801,6 +832,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2MotionCell,
     Md2Button,
     Md2MotionAxisTo,
     Md2Icon,
@@ -814,12 +846,19 @@ export default defineComponent({
     const toggle = ref(false)
     const slide = ref(1)
     const slideTo = ref()
+    const cell = ref()
 
     setInterval(() => {
       // toggle.value = !toggle.value
     }, 1600)
 
     return {
+      cell,
+      onCell () {
+        cell.value?.to(() => {
+          cell.value?.element.querySelector('.is-hidden')?.classList.toggle('hidden')
+        })
+      },
       slideTo,
       slideSelected: computed(() => `s${slide.value}`),
       onSlide () {
