@@ -25,6 +25,7 @@ export const {
 export const {
   createElement,
   frame,
+  getElement,
   getIdElement
 } = element
 

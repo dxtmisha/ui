@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initMotionScroll($design) {
+  @include propertiesInit($design, 'motion-scroll') {
+    @include mixinMotionScroll;
+    @content;
+  }
+}
+
+@mixin mixinMotionScroll() {
+}

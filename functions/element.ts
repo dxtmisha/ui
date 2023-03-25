@@ -1,5 +1,6 @@
 import { executeFunction, forEach, isFilled } from './data'
-import { ElementOptionsItemType, ElementOptionsType } from '../constructors/types'
+import { ElementOptionsItemType, ElementOptionsType, ElementType, RefOrNormalType } from '../constructors/types'
+import { isRef } from 'vue'
 
 export function createElement<T = HTMLElement> (
   parentElement?: HTMLElement | undefined,
@@ -42,6 +43,12 @@ export function frame (
   })
 }
 
+export function getElement (element: RefOrNormalType<ElementType | string>): ElementType | undefined | null {
+  const item = isRef(element) ? element.value : element
+
+  return typeof item === 'string' ? document.querySelector(item) : item
+}
+
 let ids = 1
 
 export function getIdElement (element?: HTMLElement, selector?: string): string {
@@ -59,5 +66,6 @@ export function getIdElement (element?: HTMLElement, selector?: string): string 
 export default {
   createElement,
   frame,
+  getElement,
   getIdElement
 }
