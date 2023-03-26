@@ -1,797 +1,16 @@
 <template>
   <div>
-    <div class="px-4 py-2"><b>motion cell</b></div>
-    <div class="px-4 py-2">
-      <div>
-        <div class="font-bold">&nbsp;</div>
-        <md2-motion-cell ref="cell" class="flex items-start gap-4" @click="onCell">
-          <div class="basis-1 flex-grow">
-            <div class="p-2 border">Директор Федеральной службы безопасности РФ Владимир Путин. 1998 год</div>
-          </div>
-          <div class="basis-1 flex-grow">
-            <div class="p-2 border">
-              Вскоре Путин был приглашён на работу в Москву на должность заместителя Павла Бородина, управляющего делами
-              президента
-            </div>
-          </div>
-          <div class="basis-1 flex-grow">
-            <div class="p-2 border">
-              Летом 1996 года Собчак покинул пост мэра, проиграв выборы, после чего работа Путина в мэрии
-              Санкт-Петербурга закончилась
-            </div>
-          </div>
-          <div class="basis-1 flex-grow hidden is-hidden">
-            <div class="p-2 border">
-              В 1984 году в звании майора юстиции был откомандирован на обучение на одногодичный факультет
-              Краснознамённого института КГБ
-            </div>
-          </div>
-        </md2-motion-cell>
-      </div>
-    </div>
-
-    <div class="px-4 py-2"><b>motion axis to</b></div>
-    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
-      <div>
-        <div class="font-bold">&nbsp;</div>
-        <md2-motion-axis-to ref="slideTo" class="border w-96 h-96">
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis-to>
-      </div>
-      <div>
-        <div class="font-bold">tool</div>
-        <div class="flex gap-2">
-          <md2-button text="Top" width="md" @click="onSlideTo('toTop')"/>
-          <md2-button text="Bottom" width="md" @click="onSlideTo('toBottom')"/>
+    <div class="px-4 py-2"><b>scroll</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <md2-motion-scroll
+        style="max-height: 1024px; overflow: auto"
+        @on-focus="onPage"
+      >
+        <div v-for="item in page" :key="item.page" :data-page="item.page" class="p-4 mb-4 border-4">
+          <h4 class="font-bold">Page: {{ item.page }}</h4>
+          <p v-html="item.text"></p>
         </div>
-        <div class="flex gap-2 pt-4">
-          <md2-button text="Left" width="md" @click="onSlideTo('toLeft')"/>
-          <md2-button text="Right" width="md" @click="onSlideTo('toRight')"/>
-        </div>
-        <div class="flex gap-2 pt-4">
-          <md2-button text="Down" width="md" @click="onSlideTo('toDown')"/>
-          <md2-button text="Up" width="md" @click="onSlideTo('toUp')"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="px-4 py-2"><b>motion axis</b></div>
-    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
-      <div>
-        <div class="font-bold">auto</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          class="border w-96 h-96"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">next</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          class="border w-96 h-96"
-          transition="next"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">back</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          class="border w-96 h-96"
-          transition="back"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-    </div>
-
-    <div class="px-4 py-2"><b>motion axis, y</b></div>
-    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
-      <div>
-        <div class="font-bold">auto</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="y"
-          class="border w-96 h-96"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">next</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="y"
-          class="border w-96 h-96"
-          transition="next"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">back</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="y"
-          class="border w-96 h-96"
-          transition="back"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-    </div>
-
-    <div class="px-4 py-2"><b>motion axis, z</b></div>
-    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
-      <div>
-        <div class="font-bold">auto</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="z"
-          class="border w-96 h-96"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">next</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="z"
-          class="border w-96 h-96"
-          transition="next"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">back</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="z"
-          class="border w-96 h-96"
-          transition="back"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-    </div>
-
-    <div class="px-4 py-2"><b>motion axis, fade</b></div>
-    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
-      <div>
-        <div class="font-bold">auto</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          animation-type="fade"
-          class="border w-96 h-96"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">next</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          animation-type="fade"
-          class="border w-96 h-96"
-          transition="next"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">back</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          animation-type="fade"
-          class="border w-96 h-96"
-          transition="back"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-    </div>
-
-    <div class="px-4 py-2"><b>motion axis, fade, z</b></div>
-    <div class="flex flex-wrap items-center justify-center px-4 py-2 gap-2">
-      <div>
-        <div class="font-bold">auto</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="z"
-          animation-type="fade"
-          class="border w-96 h-96"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">next</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="z"
-          animation-type="fade"
-          class="border w-96 h-96"
-          transition="next"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
-      <div>
-        <div class="font-bold">back</div>
-        <md2-motion-axis
-          :selected="slideSelected"
-          axis="z"
-          animation-type="fade"
-          class="border w-96 h-96"
-          transition="back"
-          @click="onSlide"
-        >
-          <template v-slot:s1>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/299414551/q%3D80_m%3D2000_k%3D1/v2?sig=f7393ed4f956805242876b326c3ed4868c78ce6047cec3695c8ff04f5166db04"
-            />
-          </template>
-          <template v-slot:s2>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e"
-            />
-          </template>
-          <template v-slot:s3>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/295077399/q%3D80_m%3D2000_k%3D1/v2?sig=3eb0a083d889e1d48e7d84a373a09fea37f17547a3146ba605b01c539fb385cb"
-            />
-          </template>
-          <template v-slot:s4>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294687611/q%3D80_m%3D2000_k%3D1/v2?sig=d50fe05bac754acbccf62fc2db89996817bd47df84535df9a58aeabcd3aeed03"
-            />
-          </template>
-          <template v-slot:s5>
-            <md2-icon
-              rounded="none"
-              size="100%"
-              icon="https://drscdn.500px.org/photo/294819931/q%3D80_m%3D2000_k%3D1/v2?sig=a0f74123645897f14a967dad7956e29681f8dce4c67087bddcab5115e5469cf3"
-            />
-          </template>
-        </md2-motion-axis>
-      </div>
+      </md2-motion-scroll>
     </div>
 
     <div class="px-4 py-2"><b>list</b></div>
@@ -817,12 +36,8 @@ import { computed, defineComponent, Ref, ref } from 'vue'
 import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2List from '../../md2/Md2List/index.vue'
-import Md2MotionAxis from '../../md2/Md2MotionAxis/index.vue'
-import Md2Icon from '../../md2/Md2Icon/index.vue'
-import Md2MotionAxisTo from '../../md2/Md2MotionAxisTo/index.vue'
 import { random } from '../../functions'
-import Md2Button from '../../md2/Md2Button/index.vue'
-import Md2MotionCell from '../../md2/MotionCell/index.vue'
+import Md2MotionScroll from '../../md2/Md2MotionScroll/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -832,11 +47,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Md2MotionCell,
-    Md2Button,
-    Md2MotionAxisTo,
-    Md2Icon,
-    Md2MotionAxis,
+    Md2MotionScroll,
     Md2List
   },
   setup () {
@@ -847,12 +58,62 @@ export default defineComponent({
     const slide = ref(1)
     const slideTo = ref()
     const cell = ref()
+    const page = ref<AssociativeType>([])
+    const next = ref(124)
+
+    const text2 = `
+Карьера до прихода в правительство
+Служба в КГБ СССР (1975—1991)
+
+Фото из личного дела сотрудника КГБ
+В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]. Тогда же прошёл курсы подготовки оперативного состава на Охте («401-я школа») и был аттестован младшим офицером (старший лейтенант юстиции) в системе территориальных органов КГБ СССР[30]. В 1976 году Путин участвовал в расследовании дела, возбуждённого из-за надписи «Вы распинаете свободу, но душа человека не знает оков!», которую Олег Волков и Юлий Рыбаков нанесли на Государев бастион Петропавловской крепости[31]. После 1977 года работал по линии контрразведки в следственном отделе Управления КГБ СССР по Ленинграду и Ленинградской области[11]. Рабочее место Путина находилось в так называемом «Большом доме»[22], в 1979 году прошёл обучение на шестимесячных курсах переподготовки в Высшей школе КГБ.
+
+`
+    const text3 = `
+Карьера до прихода в правительство
+Служба в КГБ СССР (1975—1991)
+
+Фото из личного дела сотрудника КГБ
+В 1975 году окончил юридический факультет ЛГУ[29], был направлен по распределению на работу в Комитет государственной безопасности[2]. Тогда же прошёл курсы подготовки оперативного состава на Охте («401-я школа») и был аттестован младшим офицером (старший лейтенант юстиции) в системе территориальных органов КГБ СССР[30]. В 1976 году Путин участвовал в расследовании дела, возбуждённого из-за надписи «Вы распинаете свободу, но душа человека не знает оков!», которую Олег Волков и Юлий Рыбаков нанесли на Государев бастион Петропавловской крепости[31]. После 1977 года работал по линии контрразведки в следственном отделе Управления КГБ СССР по Ленинграду и Ленинградской области[11]. Рабочее место Путина находилось в так называемом «Большом доме»[22], в 1979 году прошёл обучение на шестимесячных курсах переподготовки в Высшей школе КГБ.
+Вскоре Путин был приглашён на работу в Москву на должность заместителя Павла Бородина, управляющего делами президента. Здесь он курировал юридическое управление и управление российской заграничной собственностью[47]. По мнению писателя Роя Медведева, привлекая к работе Путина, Бородин учёл его опыт в международных деловых связях[48].
+Директор Федеральной службы безопасности РФ Владимир Путин. 1998 год
+
+`
+
+    const updatePage = (newPage: string) => {
+      let p = parseInt(newPage) - 10
+      const a = []
+
+      if (p < 1) {
+        p = 1
+      }
+
+      console.log('p', p)
+
+      for (let i = 0; i < 25; i++) {
+        a.push({
+          page: p + i,
+          text: random(1, 9) > 4 ? text2 : text3
+        })
+      }
+
+      page.value = a
+    }
+
+    updatePage('1')
 
     setInterval(() => {
       // toggle.value = !toggle.value
     }, 1600)
 
     return {
+      page,
+      onPage (event: AssociativeType) {
+        console.log('next', event.page)
+        if (next.value-- > 0) {
+          updatePage(event.page)
+        }
+      },
       cell,
       onCell () {
         cell.value?.to(() => {

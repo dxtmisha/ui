@@ -1,7 +1,7 @@
 <template>
   <component
-    ref="element"
     :is="tag"
+    ref="element"
     :class="classes.main"
   >
     <slot/>
@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { ScrollbarComponent } from './ScrollbarComponent'
-import { props } from '../../constructors/Scrollbar/props'
+import { props } from './props'
 
 export default {
   name: 'Md2Scrollbar',

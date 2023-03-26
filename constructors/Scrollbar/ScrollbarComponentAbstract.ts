@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import { onBeforeUpdate, onUpdated, Ref } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { ScrollbarBorder } from './ScrollbarBorder'
 import { ScrollbarWidth } from './ScrollbarWidth'
@@ -12,6 +12,10 @@ export type ScrollbarSetupType = ComponentBaseType
 
 export abstract class ScrollbarComponentAbstract extends ComponentAbstract {
   static readonly instruction = props as AssociativeType
+  static readonly emits = [
+    'on-before-update',
+    'on-updated'
+  ] as string[]
 
   private readonly border: ScrollbarBorder
 
@@ -27,6 +31,9 @@ export abstract class ScrollbarComponentAbstract extends ComponentAbstract {
       this.element as Ref<HTMLElement>,
       this.refs.border
     )
+
+    onBeforeUpdate(() => this.context.emit('on-before-update'))
+    onUpdated(() => this.context.emit('on-updated'))
   }
 
   setup (): ScrollbarSetupType {

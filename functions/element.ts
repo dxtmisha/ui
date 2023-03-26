@@ -43,7 +43,9 @@ export function frame (
   })
 }
 
-export function getElement (element: RefOrNormalType<ElementType | string>): ElementType | undefined | null {
+export function getElement (
+  element: RefOrNormalType<ElementType | string | undefined>
+): ElementType | undefined | null {
   const item = isRef(element) ? element.value : element
 
   return typeof item === 'string' ? document.querySelector(item) : item

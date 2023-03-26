@@ -1,14 +1,24 @@
 <template>
-  <div :class="classes.main">Example</div>
+  <md2-scrollbar
+    ref="element"
+    :class="classes.main"
+    v-bind="scrollBind"
+    @on-before-update="onBeforeUpdate"
+    @on-updated="onUpdated"
+  >
+    <slot/>
+  </md2-scrollbar>
 </template>
 
 <script lang="ts">
 import { MotionScrollComponent } from './MotionScrollComponent'
-import { props } from '../../constructors/MotionScroll/props'
+import { props } from './props'
+
+import Md2Scrollbar from '../Md2Scrollbar/index.vue'
 
 export default {
   name: 'Md2MotionScroll',
-  components: {},
+  components: { Md2Scrollbar },
   props,
   emits: MotionScrollComponent.emits,
   setup (props: object, context: object) {
@@ -18,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../constructors/MotionScroll/style';
+@import '../../constructors/MotionScroll/style';
 
 @include initMotionScroll('md2');
 </style>
