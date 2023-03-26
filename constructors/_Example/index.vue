@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
+// @import '../../constructors/Example/style';
 @import './constructors/style';
 
 @include initExample('design');

@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initMotionSticky($design) {
+  @include propertiesInit($design, 'motion-sticky') {
+    @include mixinMotionSticky;
+    @content;
+  }
+}
+
+@mixin mixinMotionSticky() {
+}

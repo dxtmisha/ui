@@ -2,9 +2,9 @@ import { onMounted, onUnmounted } from 'vue'
 import { EventItem } from '../../classes/EventItem'
 import { frame } from '../../functions'
 
-import { MotionScrollElement } from './MotionScrollElement'
 import { MotionScrollFocus } from './MotionScrollFocus'
 import { MotionScrollPage } from './MotionScrollPage'
+import { UseElementFocus } from '../Use/UseElementFocus'
 
 import { CallbackEmitType } from '../types'
 
@@ -19,7 +19,7 @@ export class MotionScrollEvent {
   constructor (
     private readonly emit: CallbackEmitType,
     private readonly page: MotionScrollPage,
-    private readonly element: MotionScrollElement,
+    private readonly element: UseElementFocus,
     private readonly focus: MotionScrollFocus
   ) {
     onMounted(() => {

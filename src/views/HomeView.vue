@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="px-4 py-2"><b>sticky</b></div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <md2-motion-sticky>
+        <div v-html="text"/>
+      </md2-motion-sticky>
+    </div>
+
     <div class="px-4 py-2"><b>scroll</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
       <md2-motion-scroll
@@ -38,6 +45,7 @@ import { AssociativeType } from '../../constructors/types'
 import Md2List from '../../md2/Md2List/index.vue'
 import { random } from '../../functions'
 import Md2MotionScroll from '../../md2/Md2MotionScroll/index.vue'
+import Md2MotionSticky from '../../md2/Md2MotionSticky/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -47,6 +55,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2MotionSticky,
     Md2MotionScroll,
     Md2List
   },

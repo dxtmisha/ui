@@ -1,4 +1,4 @@
-import { MotionScrollElement } from './MotionScrollElement'
+import { UseElementFocus } from '../Use/UseElementFocus'
 import { forEach, getIdElement } from '../../functions'
 
 export type MotionScrollFocusItemType = {
@@ -17,7 +17,7 @@ export class MotionScrollFocus {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly element: MotionScrollElement
+    private readonly element: UseElementFocus
   ) {
   }
 

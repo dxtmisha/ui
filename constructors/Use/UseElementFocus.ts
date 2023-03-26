@@ -3,23 +3,23 @@ import { getElement } from '../../functions'
 
 import { AssociativeType, ElementType } from '../types'
 
-export class MotionScrollElement {
+export class UseElementFocus {
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly element: Ref<(HTMLDivElement & AssociativeType) | undefined>,
-    private readonly elementScroll: Ref<ElementType | string | undefined>
+    protected readonly element: Ref<(HTMLDivElement & AssociativeType) | undefined>,
+    protected readonly elementFocus: Ref<ElementType | string | undefined>
   ) {
   }
 
   readonly item = computed<HTMLElement>(() => {
     if (
-      this.elementScroll.value === window ||
-      this.elementScroll.value === 'body'
+      this.elementFocus.value === window ||
+      this.elementFocus.value === 'body'
     ) {
       return document.documentElement
     } else {
       return (
-        getElement(this.elementScroll) ||
+        getElement(this.elementFocus) ||
         this.getElement() ||
         document.documentElement
       ) as HTMLElement

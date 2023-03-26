@@ -1,12 +1,12 @@
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 
-import { MotionScrollElement } from './MotionScrollElement'
 import { MotionScrollEvent } from './MotionScrollEvent'
 import { MotionScrollFocus } from './MotionScrollFocus'
 import { MotionScrollPage } from './MotionScrollPage'
 import { MotionScrollUpdate } from './MotionScrollUpdate'
 import { ScrollProps } from '../Scrollbar/ScrollProps'
+import { UseElementFocus } from '../Use/UseElementFocus'
 
 import { AssociativeType } from '../types'
 import { MotionScrollSetupType } from './types'
@@ -22,7 +22,7 @@ export abstract class MotionScrollComponentAbstract extends ComponentAbstract<HT
   protected readonly scroll: ScrollProps
 
   protected readonly selected: MotionScrollPage
-  protected readonly item: MotionScrollElement
+  protected readonly item: UseElementFocus
   protected readonly focus: MotionScrollFocus
 
   protected readonly update: MotionScrollUpdate
@@ -38,7 +38,7 @@ export abstract class MotionScrollComponentAbstract extends ComponentAbstract<HT
     this.scroll = new ScrollProps(props)
 
     this.selected = new MotionScrollPage(this.refs.page)
-    this.item = new MotionScrollElement(
+    this.item = new UseElementFocus(
       this.element,
       this.refs.elementScroll
     )

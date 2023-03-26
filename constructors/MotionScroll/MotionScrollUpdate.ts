@@ -1,12 +1,12 @@
 import { MotionScrollFocus } from './MotionScrollFocus'
-import { MotionScrollElement } from './MotionScrollElement'
+import { UseElementFocus } from '../Use/UseElementFocus'
 
 export class MotionScrollUpdate {
   private top = 0 as number
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly element: MotionScrollElement,
+    private readonly element: UseElementFocus,
     private readonly focus: MotionScrollFocus
   ) {
   }
