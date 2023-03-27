@@ -1,61 +1,25 @@
-import { onMounted, onUnmounted } from 'vue'
-import { EventItem } from '../../classes/EventItem'
-import { frame } from '../../functions'
-
 import { MotionScrollFocus } from './MotionScrollFocus'
 import { MotionScrollPage } from './MotionScrollPage'
 import { UseElementFocus } from '../Use/UseElementFocus'
+import { UseScrollEvent } from '../Use/UseScrollEvent'
 
 import { CallbackEmitType } from '../types'
 
-export const MAX_COUNTER = 4
-
-export class MotionScrollEvent {
-  private event?: EventItem
-  private counter = 0 as number
-  private go = false as boolean
-
-  // eslint-disable-next-line no-useless-constructor
+export class MotionScrollEvent extends UseScrollEvent {
   constructor (
-    private readonly emit: CallbackEmitType,
-    private readonly page: MotionScrollPage,
-    private readonly element: UseElementFocus,
-    private readonly focus: MotionScrollFocus
+    protected readonly emit: CallbackEmitType,
+    protected readonly page: MotionScrollPage,
+    protected readonly element: UseElementFocus,
+    protected readonly focus: MotionScrollFocus
   ) {
-    onMounted(() => {
-      this.event = new EventItem(this.element.itemByEvent, () => {
-        this.init()
-      })
-        .setType(['scroll'])
-        .go()
-    })
-
-    onUnmounted(() => this.event?.stop())
+    super(element)
   }
 
-  private init () {
-    this.counter = MAX_COUNTER
+  protected resize (): void {
+    this.focus.update()
 
-    if (!this.go) {
-      this.go = true
-
-      frame(
-        () => this.update(),
-        () => this.isNext(),
-        () => this.end()
-      )
-    }
-  }
-
-  private update (): void {
-    if (this.counter > 0) {
-      this.counter--
-
-      this.focus.update()
-
-      if (this.focus.isNew(this.page.get())) {
-        this.edit()
-      }
+    if (this.focus.isNew(this.page.get())) {
+      this.edit()
     }
   }
 
@@ -79,13 +43,5 @@ export class MotionScrollEvent {
     }
 
     return this
-  }
-
-  private isNext (): boolean {
-    return this.counter > 0
-  }
-
-  private end (): void {
-    this.go = false
   }
 }
