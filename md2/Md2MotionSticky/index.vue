@@ -1,7 +1,11 @@
 <template>
-  <div :class="classes.main">
-    <slot/>
-  </div>
+  <component
+    :is="tag || 'div'"
+    ref="element"
+    :class="classes.main"
+  >
+    <slot :class="id"/>
+  </component>
 </template>
 
 <script lang="ts">

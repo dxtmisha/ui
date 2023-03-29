@@ -41,4 +41,8 @@ export class UseElementFocus {
   getChildren (): HTMLCollection | undefined {
     return this.getElement()?.children
   }
+
+  getRect (): DOMRect | undefined {
+    return this.item.value?.getBoundingClientRect()
+  }
 }

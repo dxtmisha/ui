@@ -79,6 +79,10 @@ export function isFilled<T = any> (value: T): boolean {
   return false
 }
 
+export function isIntegerBetween (value: number, between: number): boolean {
+  return value === Math.ceil(between) || value === Math.floor(between)
+}
+
 export function isSelected (value: any, selected: any | any[]): boolean {
   if (Array.isArray(selected)) {
     return selected.indexOf(value) !== -1
@@ -196,6 +200,7 @@ export default {
   getColumn,
   getExp,
   isFilled,
+  isIntegerBetween,
   isSelected,
   isSelectedByList,
   maxListLength,

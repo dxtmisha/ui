@@ -3,9 +3,9 @@ import { EventItem } from '../../classes/EventItem'
 import { UseElementFocus } from './UseElementFocus'
 import { frame } from '../../functions'
 
-export const MAX_COUNTER = 8
-
 export class UseScrollEvent {
+  protected readonly MAX_COUNTER = 8 as number
+
   private event?: EventItem
   private counter = 0 as number
   private go = false as boolean
@@ -29,7 +29,7 @@ export class UseScrollEvent {
   }
 
   private init () {
-    this.counter = MAX_COUNTER
+    this.counter = this.MAX_COUNTER
 
     if (!this.go) {
       this.go = true

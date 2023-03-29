@@ -2,8 +2,10 @@
   <div>
     <div class="px-4 py-2"><b>sticky</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-motion-sticky>
+      <md2-motion-sticky v-slot="binds">
+        <div class="sticky top-0" v-bind="binds">top</div>
         <div v-html="text"/>
+        <div class="sticky bottom-0" v-bind="binds">bottom</div>
       </md2-motion-sticky>
     </div>
 

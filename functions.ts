@@ -10,6 +10,7 @@ export const {
   getColumn,
   getExp,
   isFilled,
+  isIntegerBetween,
   isSelected,
   isSelectedByList,
   maxListLength,
