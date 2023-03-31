@@ -4,36 +4,72 @@ import { frame } from '../../functions'
 
 import { WindowCoordinates } from './WindowCoordinates'
 import { WindowFlash } from './WindowFlash'
+import { WindowHook } from './WindowHook'
 import { WindowOrigin } from './WindowOrigin'
 import { WindowPosition } from './WindowPosition'
 import { WindowStatus } from './WindowStatus'
 
+/**
+ * A class for managing the state of the window. And also the actions that need
+ * to be performed when changing the state of the window
+ *
+ * Класс управления состоянием окна. А также действия, необходимые выполнить при
+ * изменении состояния окна
+ */
 export class WindowOpen {
+  /**
+   * Window state values
+   *
+   * Значения состояния окна
+   */
   readonly item = ref<boolean>(false)
-  private readonly first = ref<boolean>(false)
+
+  /**
+   * Values store information about the first opening of the window. This is needed
+   * for the window to be saved in the DOM if the inDom property is true
+   *
+   * Значения хранят информацию о первом открытии окна. Это нужно, чтобы окно
+   * сохранилось в DOM, если свойство inDom = true
+   * @protected
+   */
+  protected readonly first = ref<boolean>(false)
 
   // eslint-disable-next-line no-useless-constructor
   constructor (
-    private readonly element: Ref<HTMLDivElement | undefined>,
-    private readonly status: WindowStatus,
-    private readonly coordinates: WindowCoordinates,
-    private readonly position: WindowPosition,
-    private readonly origin: WindowOrigin,
-    private readonly flash: WindowFlash,
-    private readonly eventItem: EventItem,
-    private readonly inDom?: Ref<boolean>,
-    private readonly beforeOpening?: Ref<(status: boolean) => boolean>,
-    private readonly preparation?: Ref<(status: boolean) => void>,
-    private readonly opening?: Ref<(status: boolean) => boolean>
+    protected readonly element: Ref<HTMLDivElement | undefined>,
+    protected readonly status: WindowStatus,
+    protected readonly coordinates: WindowCoordinates,
+    protected readonly position: WindowPosition,
+    protected readonly origin: WindowOrigin,
+    protected readonly flash: WindowFlash,
+    protected readonly eventItem: EventItem,
+    protected readonly hook: WindowHook,
+    protected readonly inDom?: Ref<boolean>
   ) {
   }
 
+  /**
+   * A value that indicates that the window should be kept in the DOM
+   *
+   * Значение, указывающее, что окно надо оставить в DOM
+   */
   readonly is = computed<boolean>(() => this.item.value || (this.first.value && !!this.inDom?.value))
 
+  /**
+   * Returns the current state
+   *
+   * Возвращает текущее состояние
+   */
   get () {
     return this.item.value
   }
 
+  /**
+   * Changes the current state
+   *
+   * Изменяет текущее состояние
+   * @param value the value of the current state / значение текущего состояния
+   */
   async set (value = true as boolean): Promise<this> {
     if (this.item.value !== value) {
       await this.toggle()
@@ -42,16 +78,13 @@ export class WindowOpen {
     return this
   }
 
-  async close (): Promise<boolean> {
-    if (this.status.isHide()) {
-      return this.toClose()
-    } else {
-      return false
-    }
-  }
-
+  /**
+   * Switches the state, that is, opens or closes the window, depending on the value of item
+   *
+   * Переключает состояние, то есть открывает или закрывает окно, в зависимости от значения item
+   */
   async toggle (): Promise<this> {
-    if (await this.callbackBeforeOpening()) {
+    if (await this.hook.callbackBeforeOpening(this.item.value)) {
       const toOpen = !this.item.value
 
       if (toOpen) {
@@ -61,11 +94,11 @@ export class WindowOpen {
         this.first.value = toOpen
 
         await nextTick()
-        await this.callbackPreparation()
+        await this.hook.callbackPreparation(this.item.value)
         await this.watchPosition()
 
         requestAnimationFrame(async () => {
-          await this.callbackOpening()
+          await this.hook.callbackOpening(this.item.value)
 
           this.eventItem.go()
           this.status.set(this.flash.isHide() ? 'flash' : 'open')
@@ -84,6 +117,24 @@ export class WindowOpen {
     return this
   }
 
+  /**
+   * The method closes the window
+   *
+   * Метод закрывает окно
+   */
+  async close (): Promise<boolean> {
+    if (this.status.isHide()) {
+      return this.toClose()
+    } else {
+      return false
+    }
+  }
+
+  /**
+   * The method updates the current position
+   *
+   * Метод обновляет текущее положение
+   */
   async watchPosition () {
     if (
       this.element.value &&
@@ -97,6 +148,11 @@ export class WindowOpen {
     }
   }
 
+  /**
+   * The method resets all knowledge
+   *
+   * Метод сбрасывает все знания
+   */
   restart (): this {
     this.coordinates.restart()
     this.origin.restart()
@@ -104,6 +160,12 @@ export class WindowOpen {
     return this
   }
 
+  /**
+   * Changing the location of the menu window
+   *
+   * Изменение расположения окна меню
+   * @private
+   */
   private watchCoordinates (): this {
     frame(
       () => {
@@ -120,35 +182,18 @@ export class WindowOpen {
     return this
   }
 
+  /**
+   * Transition to the closing state
+   *
+   * Переход в состояние закрытия
+   * @private
+   */
   private async toClose (): Promise<boolean> {
     setTimeout(() => {
       this.item.value = false
     }, 50)
 
     this.status.set('close')
-    return await this.callbackOpening()
-  }
-
-  private async callbackBeforeOpening (): Promise<boolean> {
-    if (this.beforeOpening?.value) {
-      return await this.beforeOpening.value(!this.item.value)
-    } else {
-      return true
-    }
-  }
-
-  private async callbackPreparation (): Promise<void> {
-    if (this.preparation?.value) {
-      await this.preparation.value(this.item.value)
-      await nextTick()
-    }
-  }
-
-  private async callbackOpening (): Promise<boolean> {
-    if (this.opening?.value) {
-      return await this.opening.value(this.item.value)
-    } else {
-      return false
-    }
+    return await this.hook.callbackOpening(this.item.value) || false
   }
 }
