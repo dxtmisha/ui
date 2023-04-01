@@ -1,14 +1,30 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
-exports.toReplaceTemplate = exports.toKebabCase = exports.toCamelCase = exports.strFill = exports.replaceRecursive = exports.random = exports.minListLength = exports.maxListLength = exports.isSelectedByList = exports.isSelected = exports.isFilled = exports.getExp = exports.getClipboardData = exports.forEach = exports.executeFunction = exports.arrFill = void 0
-function arrFill (value, count) {
-  return Array(count).fill(value)
-}
-exports.arrFill = arrFill
+exports.toReplaceTemplate = exports.toKebabCase = exports.replaceRecursive = exports.random = exports.minListLength = exports.maxListLength = exports.isSelectedByList = exports.isSelected = exports.isIntegerBetween = exports.isFilled = exports.getExp = exports.getColumn = exports.getClipboardData = exports.strFill = exports.arrFill = exports.forEach = exports.executeFunction = void 0
+/**
+ * The function is executed and returns its result. Or returns the
+ * input data, if it is not a function
+ *
+ * Выполняется функция и возвращает ее результат. Или возвращает входные
+ * данные, если это не функция
+ * @param callback function or any value / функция или любое значение
+ */
 function executeFunction (callback) {
   return callback instanceof Function ? callback() : callback
 }
 exports.executeFunction = executeFunction
+/**
+ * The function performs the specified function once for each element in the object. And returns
+ * an array with the results of executing the function
+ *
+ * Функция выполняет указанную функцию один раз для каждого элемента в объекте. И возвращает
+ * массив с результатами выполнения функции
+ * @param data object for iteration / объект для перебора
+ * @param callback a function to execute for each element in the array / функция,
+ * которая будет вызвана для каждого элемента
+ * @param filterUndefined removal of all records with the value undefined / удаление
+ * всех записей со значением undefined
+ */
 function forEach (data, callback, filterUndefined) {
   if (data && typeof data === 'object') {
     const returnData = []
@@ -27,10 +43,36 @@ function forEach (data, callback, filterUndefined) {
   }
 }
 exports.forEach = forEach
+/**
+ * The method creates an array of "count" elements with values equal to "value"
+ *
+ * Метод создает массив из "count" элементов со значениями равными "value"
+ * @param value value to fill the array with / значение, заполняющее массив
+ * @param count the number of elements in that array / число элементов этого массива
+ */
+function arrFill (value, count) {
+  return Array(count).fill(value)
+}
+exports.arrFill = arrFill
+/**
+ * The method creates a string of length equal to "count" with characters "value"
+ *
+ * Метод создает строку длиной равной count с символами "value"
+ * @param value character for filling / символ для заполнения
+ * @param count length of the string / длина строки
+ */
+function strFill (value, count) {
+  return arrFill(value, count).join('')
+}
+exports.strFill = strFill
 async function getClipboardData (event) {
   return event?.clipboardData?.getData('text') || await navigator.clipboard.readText() || ''
 }
 exports.getClipboardData = getClipboardData
+function getColumn (array, column) {
+  return forEach(array, item => item?.[column])
+}
+exports.getColumn = getColumn
 function getExp (value, flags = 'ig', pattern = ':value') {
   const data = value.replace(/([[\]\\^$.?*+()])/ig, '\\$1')
   return new RegExp(pattern.replace(':value', data), flags)
@@ -64,6 +106,10 @@ function isFilled (value) {
   return false
 }
 exports.isFilled = isFilled
+function isIntegerBetween (value, between) {
+  return value === Math.ceil(between) || value === Math.floor(between)
+}
+exports.isIntegerBetween = isIntegerBetween
 function isSelected (value, selected) {
   if (Array.isArray(selected)) {
     return selected.indexOf(value) !== -1
@@ -126,16 +172,6 @@ function replaceRecursive (array, replacement, isMerge = true) {
   return array
 }
 exports.replaceRecursive = replaceRecursive
-function strFill (value, count) {
-  return arrFill(value, count).join('')
-}
-exports.strFill = strFill
-function toCamelCase (value) {
-  return value
-    .toString()
-    .replace(/[-.]([a-z])/g, (all, char) => `${char.toUpperCase()}`)
-}
-exports.toCamelCase = toCamelCase
 function toKebabCase (value) {
   return value
     .toString()
@@ -152,20 +188,26 @@ function toReplaceTemplate (value, replaces) {
 }
 exports.toReplaceTemplate = toReplaceTemplate
 exports.default = {
-  arrFill,
+  // Function
   executeFunction,
+  // Array
+  arrFill,
+  // String
+  strFill,
+  // Other
   forEach,
   getClipboardData,
+  getColumn,
   getExp,
   isFilled,
+  isIntegerBetween,
   isSelected,
   isSelectedByList,
   maxListLength,
   minListLength,
   random,
   replaceRecursive,
-  strFill,
-  toCamelCase,
+  // toCamelCase,
   toKebabCase,
   toReplaceTemplate
 }

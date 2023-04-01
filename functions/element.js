@@ -1,7 +1,8 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
-exports.getIdElement = exports.frame = exports.createElement = void 0
+exports.getIdElement = exports.getElement = exports.frame = exports.createElement = void 0
 const data_1 = require('./data')
+const vue_1 = require('vue')
 function createElement (parentElement, tagName = 'div', options = undefined, referenceElement = null) {
   const element = document.createElement(tagName)
   if (typeof options === 'function') {
@@ -30,6 +31,11 @@ function frame (callback, next = () => false, end) {
   })
 }
 exports.frame = frame
+function getElement (element) {
+  const item = (0, vue_1.isRef)(element) ? element.value : element
+  return typeof item === 'string' ? document.querySelector(item) : item
+}
+exports.getElement = getElement
 let ids = 1
 function getIdElement (element, selector) {
   if (element) {
@@ -45,6 +51,7 @@ exports.getIdElement = getIdElement
 exports.default = {
   createElement,
   frame,
+  getElement,
   getIdElement
 }
 // # sourceMappingURL=element.js.map
