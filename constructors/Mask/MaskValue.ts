@@ -6,7 +6,7 @@ import { MaskItem } from './MaskItem'
 import { MaskRubberTransition } from './MaskRubberTransition'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
-import { forEach } from '../../functions'
+import { forEach } from '../../functions/data'
 
 export class MaskValue {
   protected old?: string

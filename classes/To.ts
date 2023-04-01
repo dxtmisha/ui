@@ -1,10 +1,27 @@
 import { NumberOrStringOrDateType } from '../constructors/types'
 
+/**
+ * Class for type conversion
+ *
+ * Класс для преобразования типов
+ */
 export class To {
+  /**
+   * Conversion to array
+   *
+   * Преобразование в массив
+   * @param value input value / входное значение
+   */
   static array<T = any> (value: T | T[]): T[] {
     return Array.isArray(value) ? value : [value]
   }
 
+  /**
+   * Conversion to Date object
+   *
+   * Преобразование в объект Date
+   * @param value input value / входное значение
+   */
   static date<Type = Date> (value?: NumberOrStringOrDateType): Type | Date {
     if (value instanceof Date) {
       return value
@@ -37,14 +54,26 @@ export class To {
     }
   }
 
+  /**
+   * The method parses a string argument and returns a floating point number
+   *
+   * Метод принимает строку в качестве аргумента и возвращает десятичное число
+   * @param value the value to parse / текстовая строка
+   */
   static number<Type = number> (value: number | string): Type | number {
     if (typeof value === 'number') {
       return value
     } else {
       const number = parseFloat(
-        value
-          .replace(',', '.')
-          .replace(/[^\d.]+/ig, '')
+        value.replace(/[^\d., ]+/ig, '')
+          .replace(/(,)([0-9]{1,2}|[0-9]{4,})$/, '.$2')
+          .replace(/^([0-9]{4,})(,)([0-9]{3})$/, '$1.$3')
+          .replace(/(?<= [0-9]{3})( )(?=[0-9]{3}$)/, '!')
+          .replace(/(?<=,[0-9]{3})(,)(?=[0-9]{3}$)/, '!')
+          .replace(/([ ,])(?![0-9]+$)/ig, '')
+          .replace(/(?<=^[0-9]{1,3})([ ,])(?=[0-9]{3}$)/, '')
+          .replace(/(!)/, '')
+          .replace(/([ ,])(?=[0-9]{3}$)/, '.')
       )
 
       return Number.isNaN(number) ? 0 : number

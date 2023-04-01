@@ -1,5 +1,7 @@
 import { ref } from 'vue'
-import { forEach, getExp, strFill } from '../../functions'
+import { getExp } from '../../functions'
+import { forEach, strFill } from '../../functions/data'
+
 import { AssociativeType } from '../types'
 
 export class MaskRubberItem {

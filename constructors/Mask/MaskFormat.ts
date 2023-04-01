@@ -1,6 +1,6 @@
 import { computed, Ref } from 'vue'
 import { GeoIntl } from '../../classes/GeoIntl'
-import { strFill } from '../../functions'
+import { strFill } from '../../functions/data'
 
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskType } from './MaskType'

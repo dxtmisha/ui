@@ -1,5 +1,6 @@
 import { computed, isRef } from 'vue'
-import { forEach, isSelected } from '../functions'
+import { isSelected } from '../functions'
+import { forEach } from '../functions/data'
 import { AssociativeType } from '../constructors/types'
 
 export abstract class ComponentPropsAbstract {

@@ -1,0 +1,11 @@
+@import "../../styles/properties";
+
+@mixin initMotionTransform($design) {
+  @include propertiesInit($design, 'motion-transform') {
+    @include mixinMotionTransform;
+    @content;
+  }
+}
+
+@mixin mixinMotionTransform() {
+}

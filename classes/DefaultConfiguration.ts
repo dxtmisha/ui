@@ -1,6 +1,6 @@
 import { ComponentProperty } from './ComponentProperty'
 import { DefaultGlobalConfiguration } from './DefaultGlobalConfiguration'
-import { executeFunction } from '../functions'
+import { executeFunction } from '../functions/data'
 import { AssociativeType } from '../constructors/types'
 
 export class DefaultConfiguration {

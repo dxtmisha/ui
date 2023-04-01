@@ -13,7 +13,7 @@ import { ComponentItem } from './ComponentItem'
 import {
   forEach,
   replaceRecursive
-} from '../functions'
+} from '../functions/data'
 
 import {
   AssociativeType,

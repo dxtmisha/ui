@@ -2,25 +2,15 @@
   <div>
     <div class="px-4 py-2"><b>sticky</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-motion-sticky v-slot="binds">
-        <div class="sticky top-0" v-bind="binds">top</div>
-        <div v-html="text"/>
-        <div class="sticky bottom-0" v-bind="binds">bottom</div>
-      </md2-motion-sticky>
+      <md2-button text="toggle" @click="toggle = !toggle"/>
+    </div>
+    <div class="flex flex-wrap px-4 py-2 gap-2">
+      <md2-motion-transform :open="toggle">
+        <div v-html="text3"/>
+      </md2-motion-transform>
     </div>
 
     <div class="px-4 py-2"><b>scroll</b></div>
-    <div class="flex flex-wrap px-4 py-2 gap-2">
-      <md2-motion-scroll
-        style="max-height: 1024px; overflow: auto"
-        @on-focus="onPage"
-      >
-        <div v-for="item in page" :key="item.page" :data-page="item.page" class="p-4 mb-4 border-4">
-          <h4 class="font-bold">Page: {{ item.page }}</h4>
-          <p v-html="item.text"></p>
-        </div>
-      </md2-motion-scroll>
-    </div>
 
     <div class="px-4 py-2"><b>list</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
@@ -46,8 +36,8 @@ import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2List from '../../md2/Md2List/index.vue'
 import { random } from '../../functions'
-import Md2MotionScroll from '../../md2/Md2MotionScroll/index.vue'
-import Md2MotionSticky from '../../md2/Md2MotionSticky/index.vue'
+import Md2MotionTransform from '../../md2/Md2MotionTransform/index.vue'
+import Md2Button from '../../md2/Md2Button/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -57,8 +47,8 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Md2MotionSticky,
-    Md2MotionScroll,
+    Md2Button,
+    Md2MotionTransform,
     Md2List
   },
   setup () {
@@ -147,6 +137,7 @@ export default defineComponent({
       data,
       file,
       toggle,
+      text3,
       onClick () {
         data.value = 'https://drscdn.500px.org/photo/295251975/q%3D80_m%3D2000_k%3D1/v2?sig=50ca910f43eb0bdee52189ec8aedc2e20819eefa1fdbd088f2b36b0e7e9aa13e'
       },

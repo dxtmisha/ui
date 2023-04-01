@@ -1,5 +1,6 @@
 import { computed, isRef, Ref } from 'vue'
-import { forEach, getColumn } from '../../functions'
+import { getColumn } from '../../functions'
+import { forEach } from '../../functions/data'
 
 import { ListFilter } from './ListFilter'
 import { ListGroup } from './ListGroup'

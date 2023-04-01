@@ -1,5 +1,6 @@
 import { UseElementFocus } from '../Use/UseElementFocus'
-import { forEach, getIdElement } from '../../functions'
+import { forEach } from '../../functions/data'
+import { getIdElement } from '../../functions/element'
 
 export type MotionScrollFocusItemType = {
   element: HTMLElement | undefined

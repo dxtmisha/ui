@@ -1,8 +1,10 @@
-import { forEach, toKebabCase } from '../functions'
+import { toKebabCase } from '../functions'
+import { forEach } from '../functions/data'
+
 import { AssociativeType, ComponentPropOptionsType } from '../constructors/types'
 
-export const CLASS_SUB = '__'
-export const CLASS_VAL = '--'
+export const CLASS_SUB = '__' as string
+export const CLASS_VAL = '--' as string
 
 export class ComponentProperty {
   static designMain: AssociativeType

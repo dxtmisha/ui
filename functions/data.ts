@@ -1,13 +1,29 @@
 import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
 
-export function arrFill<T = any> (value: T, count: number): T[] {
-  return Array(count).fill(value)
-}
-
+/**
+ * The function is executed and returns its result. Or returns the
+ * input data, if it is not a function
+ *
+ * Выполняется функция и возвращает ее результат. Или возвращает входные
+ * данные, если это не функция
+ * @param callback function or any value / функция или любое значение
+ */
 export function executeFunction<T = any> (callback: T | (() => T)): T {
   return callback instanceof Function ? callback() : callback
 }
 
+/**
+ * The function performs the specified function once for each element in the object. And returns
+ * an array with the results of executing the function
+ *
+ * Функция выполняет указанную функцию один раз для каждого элемента в объекте. И возвращает
+ * массив с результатами выполнения функции
+ * @param data object for iteration / объект для перебора
+ * @param callback a function to execute for each element in the array / функция,
+ * которая будет вызвана для каждого элемента
+ * @param filterUndefined removal of all records with the value undefined / удаление
+ * всех записей со значением undefined
+ */
 export function forEach<T, K = NumberOrStringType, R = undefined> (
   data: AssociativeOrArrayType<T>,
   callback: (item: T, key: K, data: AssociativeOrArrayType<T>) => R,
@@ -30,6 +46,28 @@ export function forEach<T, K = NumberOrStringType, R = undefined> (
   } else {
     return []
   }
+}
+
+/**
+ * The method creates an array of "count" elements with values equal to "value"
+ *
+ * Метод создает массив из "count" элементов со значениями равными "value"
+ * @param value value to fill the array with / значение, заполняющее массив
+ * @param count the number of elements in that array / число элементов этого массива
+ */
+export function arrFill<T = any> (value: T, count: number): T[] {
+  return Array(count).fill(value)
+}
+
+/**
+ * The method creates a string of length equal to "count" with characters "value"
+ *
+ * Метод создает строку длиной равной count с символами "value"
+ * @param value character for filling / символ для заполнения
+ * @param count length of the string / длина строки
+ */
+export function strFill (value: string, count: number): string {
+  return arrFill<string>(value, count).join('')
 }
 
 export async function getClipboardData (event: ClipboardEvent): Promise<string> {
@@ -165,10 +203,6 @@ export function replaceRecursive<T = any> (
   return array
 }
 
-export function strFill (value: string, count: number): string {
-  return arrFill<string>(value, count).join('')
-}
-
 export function toCamelCase (value: NumberOrStringType): string {
   return value
     .toString()
@@ -193,8 +227,16 @@ export function toReplaceTemplate (value: string, replaces: AssociativeType<stri
 }
 
 export default {
-  arrFill,
+  // Function
   executeFunction,
+
+  // Array
+  arrFill,
+
+  // String
+  strFill,
+
+  // Other
   forEach,
   getClipboardData,
   getColumn,
@@ -207,7 +249,6 @@ export default {
   minListLength,
   random,
   replaceRecursive,
-  strFill,
   toCamelCase,
   toKebabCase,
   toReplaceTemplate

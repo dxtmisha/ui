@@ -1,5 +1,5 @@
 import { CLASS_SUB, CLASS_VAL, ComponentProperty } from './ComponentProperty'
-import { forEach, toCamelCase, toKebabCase } from '../functions'
+import { forEach, toCamelCase, toKebabCase } from '../functions/data'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,

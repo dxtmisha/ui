@@ -3,7 +3,7 @@ import { GeoAbstract } from './GeoAbstract'
 import { GeoIntl } from './GeoIntl'
 import { AssociativeStringType, GeoCodeType, GeoType } from '../constructors/types'
 import { Geo } from './Geo'
-import { forEach } from '../functions'
+import { forEach } from '../functions/data'
 
 export type FlagItemType = {
   icon: string

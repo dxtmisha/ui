@@ -1,24 +1,34 @@
 import { onUnmounted } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { EventItem } from '../../classes/EventItem'
+import { props } from './props'
+
 import { WindowClient } from './WindowClient'
 import { WindowCoordinates } from './WindowCoordinates'
 import { WindowElements } from './WindowElements'
 import { WindowEvent } from './WindowEvent'
+import { WindowFlash } from './WindowFlash'
+import { WindowHook } from './WindowHook'
 import { WindowOpen } from './WindowOpen'
 import { WindowOrigin } from './WindowOrigin'
 import { WindowPersistent } from './WindowPersistent'
 import { WindowPosition } from './WindowPosition'
 import { WindowStatus } from './WindowStatus'
 import { WindowVerification } from './WindowVerification'
-import { props } from './props'
+
 import { AssociativeType } from '../types'
 import {
   WindowClassesType,
   WindowSetupType
 } from './types'
-import { WindowFlash } from './WindowFlash'
 
+/**
+ * The window component is a basic component for working with various elements
+ * related to pop-up windows. For example, windows, modal windows or menus.
+ *
+ * Компонент window - это базовый компонент для работы с различными элементами,
+ * связанными с всплывающими окнами. Например, окна, модальные окна или меню.
+ */
 export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivElement> {
   static readonly instruction = props as AssociativeType
   static readonly emits = ['on-window', 'on-open', 'on-close'] as string[]
@@ -30,6 +40,10 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     'width'
   ] as string[]
 
+  /**
+   * События для контрол состояния окно
+   * @private
+   */
   private readonly eventItem: EventItem
 
   private readonly status: WindowStatus
@@ -42,6 +56,7 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
   private readonly persistent: WindowPersistent
 
+  private readonly hook: WindowHook
   private readonly flash: WindowFlash
   private readonly open: WindowOpen
   private readonly verification: WindowVerification
@@ -93,6 +108,11 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
 
     this.persistent = new WindowPersistent(this.refs?.persistent)
 
+    this.hook = new WindowHook(
+      this.refs?.beforeOpening,
+      this.refs?.preparation,
+      this.refs?.opening
+    )
     this.flash = new WindowFlash(
       this.elements,
       this.refs?.flash
@@ -105,10 +125,8 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
       this.origin,
       this.flash,
       this.eventItem,
-      this.refs?.inDom,
-      this.refs?.beforeOpening,
-      this.refs?.preparation,
-      this.refs?.opening
+      this.hook,
+      this.refs?.inDom
     )
 
     this.verification = new WindowVerification(
@@ -167,6 +185,12 @@ export abstract class WindowComponentAbstract extends ComponentAbstract<HTMLDivE
     }
   }
 
+  /**
+   * Callback события при нажатия на любой обоасти для провепка и
+   * изменения состояния открытия
+   * @param event экземпляр события
+   * @private
+   */
   private async eventCallback (event?: Event): Promise<void> {
     if (this.open.get()) {
       this.flash.setControl(event?.target as HTMLElement)

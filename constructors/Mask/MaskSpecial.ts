@@ -1,6 +1,6 @@
 import { computed, Ref } from 'vue'
 import { MaskType } from './MaskType'
-import { forEach } from '../../functions'
+import { forEach } from '../../functions/data'
 import { MaskSpecialItemType, MaskSpecialType } from './types'
 import { AssociativeType } from '../types'
 

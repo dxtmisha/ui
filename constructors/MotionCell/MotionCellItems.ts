@@ -1,5 +1,5 @@
 import { Ref } from 'vue'
-import { forEach } from '../../functions'
+import { forEach } from '../../functions/data'
 
 export type MotionCellSizeChildrenType = {
   element: Element

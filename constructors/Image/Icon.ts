@@ -1,4 +1,4 @@
-import { forEach } from '../../functions'
+import { forEach } from '../../functions/data'
 import { AssociativeType } from '../types'
 
 export class Icon {

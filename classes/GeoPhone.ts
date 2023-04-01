@@ -1,8 +1,8 @@
 import { GeoAbstract } from './GeoAbstract'
 import { AssociativeType, GeoCodeType, GeoType } from '../constructors/types'
-import { computed, ComputedRef, ref, Ref } from 'vue'
+import { computed, ComputedRef, ref } from 'vue'
 import { Geo } from './Geo'
-import { forEach } from '../functions'
+import { forEach } from '../functions/data'
 import { GeoFlag } from './GeoFlag'
 
 export type GeoPhoneInfoType = {

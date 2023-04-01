@@ -3,12 +3,14 @@ import { WindowAlignmentType, WindowAnimationOriginType } from './props.type'
 
 export const props = {
   // Values
-  beforeOpening: Function as PropType<(status: boolean) => boolean>,
-  preparation: Function,
-  opening: Function,
   persistent: Boolean,
   inDom: Boolean,
   flash: Boolean,
+
+  // Event
+  beforeOpening: Function as PropType<(status: boolean) => boolean>,
+  preparation: Function,
+  opening: Function,
 
   // Status
   disabled: Boolean,

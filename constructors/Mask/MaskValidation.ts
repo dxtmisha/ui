@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { MaskPattern } from './MaskPattern'
 import { MaskValue } from './MaskValue'
-import { forEach, isFilled } from '../../functions'
+import { forEach, isFilled } from '../../functions/data'
 import { MaskItemsType, MaskItemType, MaskPatternType, MaskPatternTypeType, MaskValidationType } from './types'
 import { AssociativeType } from '../types'
 

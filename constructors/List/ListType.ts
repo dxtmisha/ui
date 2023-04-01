@@ -1,5 +1,5 @@
 import { computed, UnwrapNestedRefs } from 'vue'
-import { forEach } from '../../functions'
+import { forEach } from '../../functions/data'
 
 import { List } from './List'
 

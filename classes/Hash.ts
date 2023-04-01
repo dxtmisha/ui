@@ -1,6 +1,6 @@
 import { Ref, ref, watch } from 'vue'
 import { StorageAbstract } from './StorageAbstract'
-import { forEach } from '../functions'
+import { forEach } from '../functions/data'
 import { RefAssociativeType } from '../constructors/types'
 
 export type HashType = Ref<string>
