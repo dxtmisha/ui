@@ -203,12 +203,6 @@ export function replaceRecursive<T = any> (
   return array
 }
 
-export function toCamelCase (value: NumberOrStringType): string {
-  return value
-    .toString()
-    .replace(/[-.]([a-z])/g, (all, char) => `${char.toUpperCase()}`)
-}
-
 export function toKebabCase (value: NumberOrStringType): string {
   return value
     .toString()
@@ -249,7 +243,7 @@ export default {
   minListLength,
   random,
   replaceRecursive,
-  toCamelCase,
+  // toCamelCase,
   toKebabCase,
   toReplaceTemplate
 }

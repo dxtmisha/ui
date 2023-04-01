@@ -1,4 +1,4 @@
-import { NumberOrStringOrDateType } from '../constructors/types'
+import { NumberOrStringOrDateType, NumberOrStringType } from '../constructors/types'
 
 /**
  * Class for type conversion
@@ -78,5 +78,30 @@ export class To {
 
       return Number.isNaN(number) ? 0 : number
     }
+  }
+
+  /**
+   * Convert a String to Camel Case
+   *
+   * Преобразование строки в Camel Case
+   * @param value value / значения
+   */
+  static toCamelCase (value: NumberOrStringType): string {
+    return value
+      .toString()
+      .replace(/[-.]([a-z])/g, (all, char) => `${char.toUpperCase()}`)
+  }
+
+  /**
+   * Convert a string to kebab case
+   *
+   * Преобразование строки в kebab case
+   * @param value value / значения
+   */
+  static toKebabCase (value: NumberOrStringType): string {
+    return value
+      .toString()
+      .replace(/^[A-Z]/g, all => all.toLowerCase())
+      .replace(/[A-Z]/g, all => `-${all.toLowerCase()}`)
   }
 }

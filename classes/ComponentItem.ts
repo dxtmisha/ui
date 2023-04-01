@@ -1,11 +1,12 @@
 import { CLASS_SUB, CLASS_VAL, ComponentProperty } from './ComponentProperty'
-import { forEach, toCamelCase, toKebabCase } from '../functions/data'
+import { forEach, toKebabCase } from '../functions/data'
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
   ComponentPropertiesType,
   NumberOrStringType
 } from '../constructors/types'
+import { To } from './To'
 
 export class ComponentItem {
   // eslint-disable-next-line no-useless-constructor
@@ -123,7 +124,7 @@ export class ComponentItem {
         const index = name.replace(`${this.code}.`, '')
         const className = this.getClassName(index.split('.'))
 
-        data[toCamelCase(index)] = {
+        data[To.toCamelCase(index)] = {
           [className]: true
         }
       })

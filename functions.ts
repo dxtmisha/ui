@@ -18,7 +18,7 @@ export const {
   random,
   replaceRecursive,
   strFill,
-  toCamelCase,
+  // toCamelCase,
   toKebabCase,
   toReplaceTemplate
 } = data
