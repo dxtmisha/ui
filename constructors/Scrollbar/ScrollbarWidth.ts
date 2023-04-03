@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import { createElement } from '../../functions'
+import { createElement } from '../../functions/element'
 
 export class ScrollbarWidth {
   static readonly INDEX = `${process.env.VUE_APP_PREFIX}-scroll`

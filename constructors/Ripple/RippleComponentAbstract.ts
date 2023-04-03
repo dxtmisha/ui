@@ -1,6 +1,7 @@
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
-import { createElement } from '../../functions'
+import { createElement } from '../../functions/element'
 import { props } from './props'
+
 import {
   AssociativeType, ComponentBaseType,
   EventCallbackRequiredType

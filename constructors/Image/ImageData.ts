@@ -1,7 +1,13 @@
 import { computed, ref, Ref, watchEffect } from 'vue'
+import { FileImage } from '../../classes/FileImage'
 import { Icon } from './Icon'
-import { createImage } from '../../functions'
-import { ImageItemType, ImageTypeType, ImageValueType, NumberOrStringType } from '../types'
+
+import {
+  ImageItemType,
+  ImageTypeType,
+  ImageValueType,
+  NumberOrStringType
+} from '../types'
 
 export class ImageData {
   private readonly item = ref<ImageItemType | string | undefined>()
@@ -57,7 +63,7 @@ export class ImageData {
     switch (this.type.value) {
       case 'image':
       case 'file':
-        this.item.value = await createImage(this.image.value)
+        this.item.value = await FileImage.createImage(this.image.value)
         break
       case 'public':
         this.item.value = Icon.get(

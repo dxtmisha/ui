@@ -1,5 +1,5 @@
 import { ComponentItem } from '../../classes/ComponentItem'
-import { getIdElement } from '../../functions'
+import { getIdElement } from '../../functions/element'
 
 import { WindowStatus } from './WindowStatus'
 

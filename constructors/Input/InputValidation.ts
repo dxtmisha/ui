@@ -1,8 +1,9 @@
 import { computed, ComputedRef, ref, Ref } from 'vue'
+import { createElement } from '../../functions/element'
+
 import { InputChange } from './InputChange'
 import { InputMatch } from './InputMatch'
 import { InputValue } from './InputValue'
-import { createElement } from '../../functions'
 
 import { AssociativeType } from '../types'
 import { InputValidationType, InputValidityType } from './types'

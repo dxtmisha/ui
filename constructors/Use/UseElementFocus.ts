@@ -1,5 +1,5 @@
 import { computed, Ref } from 'vue'
-import { getElement } from '../../functions'
+import { getElement } from '../../functions/element'
 
 import { AssociativeType, ElementType } from '../types'
 
@@ -19,7 +19,7 @@ export class UseElementFocus {
       return document.documentElement
     } else {
       return (
-        getElement(this.elementFocus) ||
+        getElement(this.elementFocus.value) ||
         this.getElement() ||
         document.documentElement
       ) as HTMLElement

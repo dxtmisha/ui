@@ -1,6 +1,6 @@
 import { computed, nextTick, Ref, ref } from 'vue'
 import { EventItem } from '../../classes/EventItem'
-import { frame } from '../../functions'
+import { frame } from '../../functions/element'
 
 import { WindowCoordinates } from './WindowCoordinates'
 import { WindowFlash } from './WindowFlash'

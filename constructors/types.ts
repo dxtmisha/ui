@@ -31,7 +31,7 @@ export type CallbackBindType<T = any, R = AssociativeType> =
   ((value: Ref<T | R>, extra: RefOrNormalType<AssociativeType>) => ComputedRef<R>) &
   ((value: Ref<T | R>, extra: RefOrNormalType<AssociativeType>, name: string) => ComputedRef<R>)
 
-export type InstallOptionsType = {
+export interface InstallOptionsType {
   designs?: AssociativeType[]
 }
 
@@ -67,12 +67,14 @@ export interface ComponentPropertyType {
 
 export type ComponentPropertiesType = AssociativeType<ComponentPropertyType>
 export type ComponentStyleItemType = AssociativeType<ComponentValueType>
-export type ComponentStylesType = {
+
+export interface ComponentStylesType {
   main: ComponentStyleItemType
+
   [key: NumberOrStringType]: ComponentStyleItemType
 }
 
-export type ComponentBaseType<E = RefOrElementType> = {
+export interface ComponentBaseType<E = RefOrElementType> {
   element: Ref<E | undefined>
   name: string
   design: string
@@ -80,6 +82,7 @@ export type ComponentBaseType<E = RefOrElementType> = {
   classes?: ComputedRef<ComponentClassesType>
   styles?: ComputedRef<ComponentStylesType>
 }
+
 export type ComponentItemType =
   ComputedRef<ComponentValueType>
   | ComputedRef<ComponentValueType[]>
@@ -98,16 +101,19 @@ export type ElementOptionsType =
   | undefined
 
 export type ImageCoordinatorType = Ref<[number, number, number, number] | undefined>
-export type ImageItemType = {
+
+export interface ImageItemType {
   image: HTMLImageElement
   src: string
   width: number
   height: number
 }
-export type ImageItemSizeType<T = number> = {
+
+export interface ImageItemSizeType<T = number> {
   width: T
   height: T
 }
+
 export type ImageOptionType = Ref<NumberOrStringType | undefined>
 export type ImageTypeValueType =
   'file'
@@ -125,12 +131,12 @@ export type ImageTypeValueType =
 export type ImageTypeType = ComputedRef<ImageTypeValueType>
 export type ImageValueType = Ref<string | File>
 
-export type ItemType<T = any> = {
-  text: string,
+export interface ItemType<T = any> {
+  text: string
   value: T
 }
 
-export type GeoType = {
+export interface GeoType {
   country: string
   countryAlternative?: string[]
   firstDay?: string | null
@@ -140,21 +146,23 @@ export type GeoType = {
   phoneMask?: string | string[]
   zone: string | null
 }
+
 export type GeoCodeType = RefOrNormalType<string>
 export type GeoDateType = 'datetime' | 'date' | 'month' | 'time' | 'second'
 export type GeoFirstDayType = 1 | 6 | 0
 export type GeoHoursType = '12' | '24'
 export type GeoTimeZoneStyleType = 'minute' | 'hour' | 'ISO8601' | 'RFC'
 
-export type UserType = {
+export interface UserType {
   id: number | string
   login: string
   name?: string
   avatar?: string
+
   [key: number | string]: any
 }
 
-export type ValidationType = {
+export interface ValidationType {
   checkValidity: boolean
   isValue?: boolean
   value?: NumberOrStringType

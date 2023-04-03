@@ -1,6 +1,46 @@
 import { executeFunction, forEach, isFilled } from './data'
-import { ElementOptionsItemType, ElementOptionsType, ElementType, RefOrNormalType } from '../constructors/types'
-import { isRef } from 'vue'
+
+import {
+  ElementOptionsItemType,
+  ElementOptionsType,
+  ElementType
+} from '../constructors/types'
+
+/**
+ * Returns the first Element in the document that matches the specified selector or the element
+ *
+ * Возвращает первый Element документа, который соответствует указанному селектору или саму element
+ * @param element selectors for matching or an Element / селекторов для сопоставления или Element
+ */
+export function getElement (element?: ElementType | string): ElementType | undefined | null {
+  return typeof element === 'string' ? document.querySelector(element) : element
+}
+
+/**
+ * Counter generator of ID number of element
+ *
+ * Счетчик генератор номера ID элемента
+ */
+let ids = 1 as number
+
+/**
+ * Returns the identifier (ID) of the element or creates it if the element has no ID
+ *
+ * Возвращает идентификатор (ID) элемента или создает его, если у элемента нет ID
+ * @param element Element
+ * @param selector selectors for matching / селекторов для сопоставления
+ */
+export function getIdElement (element?: HTMLElement, selector?: string): string {
+  if (element) {
+    if (!element.id) {
+      element.setAttribute('id', `id-${ids++}`)
+    }
+
+    return selector ? `#${element.id}${selector}`.trim() : element.id.toString()
+  } else {
+    return `${ids++}`
+  }
+}
 
 /**
  * In an HTML document
@@ -39,6 +79,22 @@ export function createElement<T = HTMLElement> (
   return element as T
 }
 
+/**
+ * Cyclically calls requestAnimationFrame until next returns true
+ * The window.requestAnimationFrame() method tells the browser that you wish to perform
+ * an animation and requests that the browser calls a specified function to update an
+ * animation right before the next repaint
+ *
+ * Циклически вызывает requestAnimationFrame, пока next возвращает true
+ * window.requestAnimationFrame указывает браузеру на то, что вы хотите произвести
+ * анимацию, и просит его запланировать перерисовку на следующем кадре анимации
+ * @param callback the function to call when it's time to update your animation for
+ * the next repaint / функция, которая будет вызвана, когда придёт время обновить
+ * вашу анимацию на следующей перерисовке
+ * @param next function that determines repetition / функция, которая определяет повторность
+ * @param end function that is executed if the animation stops / функция, которая
+ * выполняется, если останавливается анимация
+ */
 export function frame (
   callback: () => void,
   next = (() => false) as () => boolean,
@@ -53,33 +109,4 @@ export function frame (
       end()
     }
   })
-}
-
-export function getElement (
-  element: RefOrNormalType<ElementType | string | undefined>
-): ElementType | undefined | null {
-  const item = isRef(element) ? element.value : element
-
-  return typeof item === 'string' ? document.querySelector(item) : item
-}
-
-let ids = 1
-
-export function getIdElement (element?: HTMLElement, selector?: string): string {
-  if (element) {
-    if (!element.id) {
-      element.setAttribute('id', `id-${ids++}`)
-    }
-
-    return selector ? `#${element.id}${selector}`.trim() : element.id.toString()
-  } else {
-    return `${ids++}`
-  }
-}
-
-export default {
-  createElement,
-  frame,
-  getElement,
-  getIdElement
 }

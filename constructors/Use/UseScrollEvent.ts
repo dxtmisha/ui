@@ -1,7 +1,8 @@
 import { onMounted, onUnmounted } from 'vue'
 import { EventItem } from '../../classes/EventItem'
+import { frame } from '../../functions/element'
+
 import { UseElementFocus } from './UseElementFocus'
-import { frame } from '../../functions'
 
 export class UseScrollEvent {
   protected readonly MAX_COUNTER = 8 as number
