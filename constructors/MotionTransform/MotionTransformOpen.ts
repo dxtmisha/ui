@@ -18,6 +18,7 @@ export class MotionTransformOpen {
       open !== this.item.value &&
       await this.hook.callbackBeforeOpening(this.item.value)
     ) {
+      /*
       if (open) {
         this.restart()
         this.status.set('preparation')
@@ -43,6 +44,7 @@ export class MotionTransformOpen {
           this.status.set('hide')
         }
       }
+      */
     }
 
     return this

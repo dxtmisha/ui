@@ -8,9 +8,10 @@ export type NumberOrUndefinedType = number | undefined
 export type CallbackType<T = any, R = any> = (value: T) => R
 export type CallbackNullType<R = void> = () => R
 
-export type AssociativeType<T = any> = {
+export interface AssociativeType<T = any> {
   [key: NumberOrStringType]: T
 }
+
 export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 export type AssociativeOrStringType = AssociativeType<string> | string
 export type AssociativeStringType = AssociativeType<string>
@@ -47,19 +48,23 @@ export type ComponentClassesType<T = ComponentAssociativeType> = {
   main: T
   [key: NumberOrStringType]: T
 }
-export type ComponentPropOptionsType<T = any, D = T> = {
+
+export interface ComponentPropOptionsType<T = any, D = T> {
   type?: PropType<T> | true | null
   required?: boolean
   default?: D | null | undefined | object
+
   validator? (value: unknown): boolean
 }
-export type ComponentPropertyType = {
+
+export interface ComponentPropertyType {
   index: string
   className: string
   classStyle: string
   classValue: string
   values?: string[]
 }
+
 export type ComponentPropertiesType = AssociativeType<ComponentPropertyType>
 export type ComponentStyleItemType = AssociativeType<ComponentValueType>
 export type ComponentStylesType = {

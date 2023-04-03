@@ -1,6 +1,11 @@
 import { computed, ComputedRef, Ref, ref } from 'vue'
-import { ArrayOrStringType, AssociativeOrStringType, AssociativeStringType } from '../constructors/types'
-import { toReplaceTemplate } from '../functions'
+import { To } from './To'
+
+import {
+  ArrayOrStringType,
+  AssociativeOrStringType,
+  AssociativeStringType
+} from '../constructors/types'
 
 export class Translation {
   protected static url = process.env.VUE_APP_TRANSLATION || 'translation'
@@ -41,7 +46,7 @@ export class Translation {
 
         return data
       } else if (replaces && indexList in this.translations.value) {
-        return toReplaceTemplate(this.translations.value[indexList], replaces.value)
+        return To.replaceTemplate(this.translations.value[indexList], replaces.value)
       } else {
         return this.translations.value?.[indexList] || indexList
       }

@@ -1,6 +1,6 @@
 import { computed, Ref } from 'vue'
 import { ComponentItem } from '../../classes/ComponentItem'
-import { isFilled } from '../../functions'
+import { isFilled } from '../../functions/data'
 
 export class FieldValue {
   // eslint-disable-next-line no-useless-constructor

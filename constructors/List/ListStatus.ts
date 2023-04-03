@@ -1,6 +1,5 @@
 import { computed, Ref } from 'vue'
-import { isFilled, isSelected } from '../../functions'
-import { forEach } from '../../functions/data'
+import { forEach, isFilled, isSelected } from '../../functions/data'
 
 import { ListType } from './ListType'
 

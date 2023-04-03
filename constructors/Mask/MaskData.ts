@@ -1,7 +1,8 @@
 import { Ref } from 'vue'
 import { To } from '../../classes/To'
-import { isFilled } from '../../functions'
+import { isFilled } from '../../functions/data'
 
+import { MaskBuffer } from './MaskBuffer'
 import { MaskCharacter } from './MaskCharacter'
 import { MaskDate } from './MaskDate'
 import { MaskFocus } from './MaskFocus'
@@ -14,7 +15,6 @@ import { MaskType } from './MaskType'
 import { MaskValue } from './MaskValue'
 
 import { ArrayOrStringType } from '../types'
-import { MaskBuffer } from './MaskBuffer'
 
 export class MaskData {
   // eslint-disable-next-line no-useless-constructor

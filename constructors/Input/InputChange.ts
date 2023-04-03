@@ -1,6 +1,7 @@
 import { Ref, ref, watch } from 'vue'
+import { isFilled } from '../../functions/data'
+
 import { InputValue } from './InputValue'
-import { isFilled } from '../../functions'
 
 export class InputChange {
   protected readonly item = ref<boolean>(false)

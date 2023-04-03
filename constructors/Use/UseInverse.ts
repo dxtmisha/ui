@@ -1,5 +1,6 @@
 import { computed, Ref } from 'vue'
-import { isSelectedByList } from '../../functions'
+import { isSelectedByList } from '../../functions/data'
+
 import { BooleanOrNumberOrStringType } from '../types'
 
 export class UseInverse {

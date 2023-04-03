@@ -1,4 +1,10 @@
-import { NumberOrStringOrDateType, NumberOrStringType } from '../constructors/types'
+import { forEach } from '../functions/data'
+
+import {
+  AssociativeType,
+  NumberOrStringOrDateType,
+  NumberOrStringType
+} from '../constructors/types'
 
 /**
  * Class for type conversion
@@ -86,7 +92,7 @@ export class To {
    * Преобразование строки в Camel Case
    * @param value value / значения
    */
-  static toCamelCase (value: NumberOrStringType): string {
+  static camelCase (value: NumberOrStringType): string {
     return value
       .toString()
       .replace(/[-.]([a-z])/g, (all, char) => `${char.toUpperCase()}`)
@@ -98,10 +104,27 @@ export class To {
    * Преобразование строки в kebab case
    * @param value value / значения
    */
-  static toKebabCase (value: NumberOrStringType): string {
+  static kebabCase (value: NumberOrStringType): string {
     return value
       .toString()
       .replace(/^[A-Z]/g, all => all.toLowerCase())
       .replace(/[A-Z]/g, all => `-${all.toLowerCase()}`)
+  }
+
+  /**
+   * Replacing the value from replaces in value
+   *
+   * Замена значения из replaces в value
+   * @param value template string / строка шаблона
+   * @param replaces object with values for replacement / объект с значениями для замены
+   */
+  static replaceTemplate (value: string, replaces: AssociativeType<string>): string {
+    let data = value
+
+    forEach<string, string, void>(replaces, (replacement, pattern) => {
+      data = data.replace(`[${pattern}]`, replacement)
+    })
+
+    return data
   }
 }

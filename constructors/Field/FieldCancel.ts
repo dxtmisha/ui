@@ -1,8 +1,9 @@
 import { computed, Ref } from 'vue'
+import { isFilled } from '../../functions/data'
+
 import { FieldArrow } from './FieldArrow'
 import { FieldValue } from './FieldValue'
 import { UseEnabled } from '../Use/UseEnabled'
-import { isFilled } from '../../functions'
 
 export class FieldCancel {
   // eslint-disable-next-line no-useless-constructor

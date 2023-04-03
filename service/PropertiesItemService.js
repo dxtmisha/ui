@@ -1,4 +1,4 @@
-const { toKebabCase } = require('../functions')
+const { To } = require('../classes/To')
 
 const PropertiesMapService = require('./PropertiesMapService')
 
@@ -45,7 +45,7 @@ class PropertiesItemService {
   }
 
   getIndexByName (selector) {
-    return toKebabCase(
+    return To.kebabCase(
       selector
         .replace(REG_SEARCH, '')
         .replace(REG_MARK, '')
@@ -76,7 +76,7 @@ class PropertiesItemService {
   }
 
   getMarkBySelector (selector) {
-    return toKebabCase(
+    return To.kebabCase(
       selector
         .replace(REG_SEARCH, '')
         .trim()
@@ -264,9 +264,7 @@ class PropertiesItemService {
    * @returns {string}
    */
   toValue (value) {
-    const code = toKebabCase(
-      this.toFullName(value, '.')
-    )
+    const code = To.kebabCase(this.toFullName(value, '.'))
     const design = this.toDesign(code)
 
     return `${PropertiesMapService.isDesign(design) ? '' : `${this.getDesign()}.`}${code}`

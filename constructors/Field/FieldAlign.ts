@@ -1,7 +1,9 @@
 import { computed, ref, Ref } from 'vue'
+import { isFilled } from '../../functions/data'
+
 import { FieldArrow } from './FieldArrow'
 import { FieldCancel } from './FieldCancel'
-import { isFilled } from '../../functions'
+
 import { FieldAlignSetupType } from './types'
 
 export class FieldAlign {

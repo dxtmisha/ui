@@ -2,12 +2,12 @@ const FILE_NAME = 'properties.json'
 const requirePath = require('path')
 const requireFs = require('fs')
 
+const { To } = require('../classes/To')
 const {
   forEach,
   isFilled,
-  replaceRecursive,
-  toKebabCase
-} = require('../functions')
+  replaceRecursive
+} = require('../functions/data')
 
 module.exports = class {
   constructor (designs) {
@@ -75,7 +75,7 @@ module.exports = class {
     const data = {}
 
     forEach(properties, (value, key) => {
-      const index = toKebabCase(key)
+      const index = To.kebabCase(key)
 
       if (typeof value !== 'object') {
         data[index] = { value }

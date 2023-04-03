@@ -1,5 +1,6 @@
 import { computed, ref, Ref, ToRefs, watch } from 'vue'
-import { isFilled } from '../../functions'
+import { isFilled } from '../../functions/data'
+
 import { AssociativeType, BooleanOrNumberOrStringType } from '../types'
 
 export class InputValue {

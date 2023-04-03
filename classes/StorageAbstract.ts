@@ -1,5 +1,6 @@
 import { computed, ComputedRef, isRef, Ref } from 'vue'
-import { isFilled } from '../functions'
+import { isFilled } from '../functions/data'
+
 import { CallbackNullType, RefOrCallbackType, RefType } from '../constructors/types'
 
 export abstract class StorageAbstract<T = any> {

@@ -1,7 +1,9 @@
-import { UseInverse } from './UseInverse'
-import { BooleanOrNumberOrStringType } from '../types'
 import { computed, Ref } from 'vue'
-import { isSelectedByList } from '../../functions'
+import { isSelectedByList } from '../../functions/data'
+
+import { UseInverse } from './UseInverse'
+
+import { BooleanOrNumberOrStringType } from '../types'
 
 export class UseInverseBySelected extends UseInverse {
   constructor (

@@ -35,7 +35,7 @@ import { computed, defineComponent, Ref, ref } from 'vue'
 import { Icon } from '../../constructors/Image/Icon'
 import { AssociativeType } from '../../constructors/types'
 import Md2List from '../../md2/Md2List/index.vue'
-import { random } from '../../functions'
+import { random } from '../../functions/data'
 import Md2MotionTransform from '../../md2/Md2MotionTransform/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
 

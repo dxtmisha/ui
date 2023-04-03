@@ -1,7 +1,8 @@
 import { ComputedRef } from 'vue'
 import { Cookie } from './Cookie'
 import { StorageItem } from './StorageItem'
-import { random } from '../functions'
+import { random } from '../functions/data'
+
 import { UserType } from '../constructors/types'
 
 export class User {

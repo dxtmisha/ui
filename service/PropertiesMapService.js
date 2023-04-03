@@ -1,4 +1,4 @@
-const { replaceRecursive } = require('../functions')
+const { replaceRecursive } = require('../functions/data')
 
 module.exports = class {
   static getItem (code) {

@@ -1,12 +1,14 @@
+import { To } from './To'
+import { forEach } from '../functions/data'
+
 import { CLASS_SUB, CLASS_VAL, ComponentProperty } from './ComponentProperty'
-import { forEach, toKebabCase } from '../functions/data'
+
 import {
   AssociativeType,
   ComponentAssociativeItemsType,
   ComponentPropertiesType,
   NumberOrStringType
 } from '../constructors/types'
-import { To } from './To'
 
 export class ComponentItem {
   // eslint-disable-next-line no-useless-constructor
@@ -45,12 +47,12 @@ export class ComponentItem {
       value += `${CLASS_VAL}${status.join(CLASS_VAL)}`
     }
 
-    return toKebabCase(value)
+    return To.kebabCase(value)
   }
 
   public getDesign (): string {
     if (!(this.design)) {
-      this.design = toKebabCase(this.code.split('.', 1)[0])
+      this.design = To.kebabCase(this.code.split('.', 1)[0])
     }
 
     return this.design
@@ -58,7 +60,7 @@ export class ComponentItem {
 
   public getName (): string {
     if (!(this.name)) {
-      this.name = toKebabCase(
+      this.name = To.kebabCase(
         this.code
           ?.replace(/^([^.]+.)/ig, '')
           ?.replace('.', '-')
@@ -124,7 +126,7 @@ export class ComponentItem {
         const index = name.replace(`${this.code}.`, '')
         const className = this.getClassName(index.split('.'))
 
-        data[To.toCamelCase(index)] = {
+        data[To.camelCase(index)] = {
           [className]: true
         }
       })

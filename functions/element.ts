@@ -2,6 +2,18 @@ import { executeFunction, forEach, isFilled } from './data'
 import { ElementOptionsItemType, ElementOptionsType, ElementType, RefOrNormalType } from '../constructors/types'
 import { isRef } from 'vue'
 
+/**
+ * In an HTML document
+ *
+ * В HTML-документах создаёт элемент c тем тегом, что указан в аргументе
+ * @param parentElement the DOM node's parent Element / родитель для нового элемента
+ * @param tagName A string that specifies the type of element to be created / строка,
+ * указывающая элемент какого типа должен быть создан
+ * @param options an object with attributes or a function for processing an element / объект
+ * с атрибутами или функция для обработки элемента
+ * @param referenceElement the node before which newNode is inserted / элемент, перед
+ * которым будет вставлен newElement
+ */
 export function createElement<T = HTMLElement> (
   parentElement?: HTMLElement | undefined,
   tagName = 'div' as string,

@@ -80,7 +80,7 @@ class To {
      * Преобразование строки в Camel Case
      * @param value value / значения
      */
-  static toCamelCase (value) {
+  static camelCase (value) {
     return value
       .toString()
       .replace(/[-.]([a-z])/g, (all, char) => `${char.toUpperCase()}`)
@@ -92,7 +92,7 @@ class To {
      * Преобразование строки в kebab case
      * @param value value / значения
      */
-  static toKebabCase (value) {
+  static kebabCase (value) {
     return value
       .toString()
       .replace(/^[A-Z]/g, all => all.toLowerCase())

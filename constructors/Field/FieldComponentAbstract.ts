@@ -1,5 +1,9 @@
 import { computed, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { isFilled } from '../../functions/data'
+import { getIdElement } from '../../functions/element'
+import { props } from './props'
+
 import { FieldAlign } from './FieldAlign'
 import { FieldArrow } from './FieldArrow'
 import { FieldIcon } from './FieldIcon'
@@ -8,8 +12,6 @@ import { FieldPrefix } from './FieldPrefix'
 import { FieldValue } from './FieldValue'
 import { FieldMessageProps } from '../FieldMessage/FieldMessageProps'
 import { UseEnabled } from '../Use/UseEnabled'
-import { getIdElement, isFilled } from '../../functions'
-import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { FieldClassesType, FieldSetupType } from './types'

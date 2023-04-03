@@ -1,7 +1,10 @@
-import { toKebabCase } from '../functions'
+import { To } from './To'
 import { forEach } from '../functions/data'
 
-import { AssociativeType, ComponentPropOptionsType } from '../constructors/types'
+import {
+  AssociativeType,
+  ComponentPropOptionsType
+} from '../constructors/types'
 
 export const CLASS_SUB = '__' as string
 export const CLASS_VAL = '--' as string
@@ -10,7 +13,7 @@ export class ComponentProperty {
   static designMain: AssociativeType
 
   static codeToKebabCase (code: string, name?: string): string {
-    return toKebabCase(`${code}${name ? `.${name}` : ''}`)
+    return To.kebabCase(`${code}${name ? `.${name}` : ''}`)
   }
 
   static getByType (index: string, type: string): AssociativeType<string> | undefined {
@@ -97,7 +100,7 @@ export class ComponentProperty {
   }
 
   static toClass (index: string): string {
-    return toKebabCase(
+    return To.kebabCase(
       index
         .replace(/\./, '-')
         .replace(/\./g, CLASS_VAL)

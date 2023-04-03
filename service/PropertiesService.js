@@ -2,7 +2,7 @@ const PropertiesFileService = require('./PropertiesFileService')
 const PropertiesItemService = require('./PropertiesItemService')
 const PropertiesMapService = require('./PropertiesMapService')
 
-const { forEach } = require('../functions')
+const { forEach } = require('../functions/data')
 
 module.exports = class extends PropertiesFileService {
   constructor (designs) {

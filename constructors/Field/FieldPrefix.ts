@@ -1,5 +1,5 @@
 import { computed, Ref, ref } from 'vue'
-import { isFilled } from '../../functions'
+import { isFilled } from '../../functions/data'
 import { FieldPrefixSetupType } from './types'
 
 export class FieldPrefix {

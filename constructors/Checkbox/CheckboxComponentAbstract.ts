@@ -1,18 +1,19 @@
 import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { isFilled } from '../../functions/data'
+import { props } from './props'
+
 import { FieldMessageProps } from '../FieldMessage/FieldMessageProps'
 import { InputChange } from '../Input/InputChange'
 import { InputEvent } from '../Input/InputEvent'
 import { InputValue } from '../Input/InputValue'
 import { InputValidation } from '../Input/InputValidation'
 import { UseEnabled } from '../Use/UseEnabled'
+import { UseInverse } from '../Use/UseInverse'
 import { UseProgress } from '../Progress/UseProgress'
-import { isFilled } from '../../functions'
-import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { CheckboxClassesType, CheckboxSetupType } from './types'
-import { UseInverse } from '../Use/UseInverse'
 
 export abstract class CheckboxComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType

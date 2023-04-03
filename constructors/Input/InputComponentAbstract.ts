@@ -1,5 +1,8 @@
 import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { getClipboardData } from '../../functions/data'
+import { props } from './props'
+
 import { FieldProps } from '../Field/FieldProps'
 import { InputArrow } from './InputArrow'
 import { InputChange } from './InputChange'
@@ -9,8 +12,6 @@ import { InputMatch } from './InputMatch'
 import { InputType } from './InputType'
 import { InputValue } from './InputValue'
 import { InputValidation } from './InputValidation'
-import { getClipboardData } from '../../functions'
-import { props } from './props'
 
 import { AssociativeType } from '../types'
 import { InputSetupType } from './types'

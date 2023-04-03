@@ -1,11 +1,12 @@
 import { computed, Ref } from 'vue'
+import { isSelected } from '../../functions/data'
+
 import { MaskFormat } from './MaskFormat'
 import { MaskMatch } from './MaskMatch'
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskRubberTransition } from './MaskRubberTransition'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
-import { isSelected } from '../../functions'
 
 import { AssociativeType } from '../types'
 import { MaskItemsType, MaskSpecialItemType } from './types'

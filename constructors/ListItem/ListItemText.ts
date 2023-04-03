@@ -1,5 +1,5 @@
 import { computed, ComputedRef, Ref } from 'vue'
-import { getExp } from '../../functions'
+import { getExp } from '../../functions/data'
 
 export type ListItemTextSetupType = {
   isText: ComputedRef<boolean>

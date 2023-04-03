@@ -1,6 +1,5 @@
 import { ref } from 'vue'
-import { getExp } from '../../functions'
-import { forEach, strFill } from '../../functions/data'
+import { forEach, getExp, strFill } from '../../functions/data'
 
 import { AssociativeType } from '../types'
 

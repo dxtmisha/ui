@@ -1,10 +1,12 @@
 import { computed, Ref } from 'vue'
+import { maxListLength } from '../../functions/data'
+
 import { MaskDate } from './MaskDate'
 import { MaskFormat } from './MaskFormat'
 import { MaskRubberItem } from './MaskRubberItem'
 import { MaskSpecial } from './MaskSpecial'
 import { MaskType } from './MaskType'
-import { maxListLength } from '../../functions'
+
 import { ArrayOrStringType } from '../types'
 import { MaskItemSpecialType } from './types'
 

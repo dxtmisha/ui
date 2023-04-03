@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
+import { isFilled } from '../../functions/data'
 import { props } from './props'
-import { isFilled } from '../../functions'
 
 import { AssociativeType } from '../types'
 import { FieldClassesType, FieldSetupType } from './types'

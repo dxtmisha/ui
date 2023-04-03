@@ -1,6 +1,6 @@
 import { computed, ref, watch } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
-import { getClipboardData } from '../../functions'
+import { getClipboardData } from '../../functions/data'
 import { props } from './props'
 
 import { MaskBuffer } from './MaskBuffer'
@@ -23,7 +23,12 @@ import { MaskValue } from './MaskValue'
 import { MaskView } from './MaskView'
 
 import { AssociativeType, ValidationType } from '../types'
-import { MaskClassesType, MaskItemsType, MaskSetupType, MaskUnidentifiedType } from './types'
+import {
+  MaskClassesType,
+  MaskItemsType,
+  MaskSetupType,
+  MaskUnidentifiedType
+} from './types'
 
 export abstract class MaskComponentAbstract extends ComponentAbstract<HTMLInputElement> {
   static readonly instruction = props as AssociativeType

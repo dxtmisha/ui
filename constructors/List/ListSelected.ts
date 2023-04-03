@@ -1,5 +1,5 @@
 import { computed, Ref } from 'vue'
-import { isSelected } from '../../functions'
+import { isSelected } from '../../functions/data'
 
 import { ArrayOrStringType, RefType } from '../types'
 import { ListDataType, ListItemType } from './types'

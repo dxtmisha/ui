@@ -1,6 +1,6 @@
 import { computed, Ref } from 'vue'
 import { To } from '../../classes/To'
-import { getExp, isFilled } from '../../functions'
+import { getExp, isFilled } from '../../functions/data'
 
 import { ArrayOrStringType, RefType } from '../types'
 import { ListDataType, ListItemType } from './types'

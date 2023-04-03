@@ -1,8 +1,9 @@
 import { computed, Ref } from 'vue'
+import { isFilled } from '../../functions/data'
+
 import { ImageAdaptiveObject } from './ImageAdaptiveObject'
 import { ImageCoordinator } from './ImageCoordinator'
 import { ImageData } from './ImageData'
-import { isFilled } from '../../functions'
 
 import {
   ImageCoordinatorType,
