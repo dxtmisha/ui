@@ -1,14 +1,14 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
 exports.ComponentProperty = exports.CLASS_VAL = exports.CLASS_SUB = void 0
-const functions_1 = require('../functions')
+const To_1 = require('./To')
 const data_1 = require('../functions/data')
 exports.CLASS_SUB = '__'
 exports.CLASS_VAL = '--'
 class ComponentProperty {
   static designMain
   static codeToKebabCase (code, name) {
-    return (0, functions_1.toKebabCase)(`${code}${name ? `.${name}` : ''}`)
+    return To_1.To.kebabCase(`${code}${name ? `.${name}` : ''}`)
   }
 
   static getByType (index, type) {
@@ -80,7 +80,7 @@ class ComponentProperty {
   }
 
   static toClass (index) {
-    return (0, functions_1.toKebabCase)(index
+    return To_1.To.kebabCase(index
       .replace(/\./, '-')
       .replace(/\./g, exports.CLASS_VAL))
   }

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, '__esModule', { value: true })
 exports.Translation = void 0
 const vue_1 = require('vue')
-const functions_1 = require('../functions')
+const To_1 = require('./To')
 class Translation {
   static url = process.env.VUE_APP_TRANSLATION || 'translation'
   static translations = (0, vue_1.ref)({})
@@ -34,7 +34,7 @@ class Translation {
         })
         return data
       } else if (replaces && indexList in this.translations.value) {
-        return (0, functions_1.toReplaceTemplate)(this.translations.value[indexList], replaces.value)
+        return To_1.To.replaceTemplate(this.translations.value[indexList], replaces.value)
       } else {
         return this.translations.value?.[indexList] || indexList
       }

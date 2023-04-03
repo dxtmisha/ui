@@ -2,7 +2,6 @@
 Object.defineProperty(exports, '__esModule', { value: true })
 exports.ComponentPropsAbstract = void 0
 const vue_1 = require('vue')
-const functions_1 = require('../functions')
 const data_1 = require('../functions/data')
 class ComponentPropsAbstract {
   props
@@ -18,7 +17,7 @@ class ComponentPropsAbstract {
     Object.keys(this.list).forEach(name => {
       if (name !== this.name &&
                 name in this.props &&
-                !(0, functions_1.isSelected)(name, this.exception)) {
+                !(0, data_1.isSelected)(name, this.exception)) {
         data[name] = this.props[name]
       }
     })

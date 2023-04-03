@@ -1,9 +1,9 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
 exports.ComponentItem = void 0
-const ComponentProperty_1 = require('./ComponentProperty')
-const data_1 = require('../functions/data')
 const To_1 = require('./To')
+const data_1 = require('../functions/data')
+const ComponentProperty_1 = require('./ComponentProperty')
 class ComponentItem {
   code
   instruction
@@ -34,19 +34,19 @@ class ComponentItem {
     if (status.length > 0) {
       value += `${ComponentProperty_1.CLASS_VAL}${status.join(ComponentProperty_1.CLASS_VAL)}`
     }
-    return (0, data_1.toKebabCase)(value)
+    return To_1.To.kebabCase(value)
   }
 
   getDesign () {
     if (!(this.design)) {
-      this.design = (0, data_1.toKebabCase)(this.code.split('.', 1)[0])
+      this.design = To_1.To.kebabCase(this.code.split('.', 1)[0])
     }
     return this.design
   }
 
   getName () {
     if (!(this.name)) {
-      this.name = (0, data_1.toKebabCase)(this.code
+      this.name = To_1.To.kebabCase(this.code
         ?.replace(/^([^.]+.)/ig, '')
         ?.replace('.', '-'))
     }
@@ -98,7 +98,7 @@ class ComponentItem {
       ComponentProperty_1.ComponentProperty.getSubClasses(this.code).forEach(name => {
         const index = name.replace(`${this.code}.`, '')
         const className = this.getClassName(index.split('.'))
-        data[To_1.To.toCamelCase(index)] = {
+        data[To_1.To.camelCase(index)] = {
           [className]: true
         }
       })

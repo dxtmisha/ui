@@ -1,6 +1,7 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
 exports.To = void 0
+const data_1 = require('../functions/data')
 /**
  * Class for type conversion
  *
@@ -97,6 +98,21 @@ class To {
       .toString()
       .replace(/^[A-Z]/g, all => all.toLowerCase())
       .replace(/[A-Z]/g, all => `-${all.toLowerCase()}`)
+  }
+
+  /**
+     * Replacing the value from replaces in value
+     *
+     * Замена значения из replaces в value
+     * @param value template string / строка шаблона
+     * @param replaces object with values for replacement / объект с значениями для замены
+     */
+  static replaceTemplate (value, replaces) {
+    let data = value;
+    (0, data_1.forEach)(replaces, (replacement, pattern) => {
+      data = data.replace(`[${pattern}]`, replacement)
+    })
+    return data
   }
 }
 exports.To = To
