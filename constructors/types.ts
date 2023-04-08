@@ -44,15 +44,24 @@ export type AssociativeOrAnyType<T = any> = AssociativeType<T> | T
 export type AssociativeOrArrayType<T = any> = T[] | AssociativeType<T> | object
 export type AssociativeOrStringType = AssociativeOrAnyType<string>
 
+export interface ItemType<T = any> {
+  text: string
+  value: T
+}
+
 /**
- * Event
+ * Types for working with events
+ *
+ * Типы для работы с событиями
  */
 export type EventOptionsType = AddEventListenerOptions | boolean | undefined
 export type EventCallbackType<R = any, E = Event> = (event?: E) => R
 export type EventCallbackRequiredType<R = any, E = Event> = (event: E) => R
 
 /**
- * Element
+ * Types for working with home elements
+ *
+ * Типы для работы с элементами дома
  */
 export type ElementType = Window | HTMLElement | Element
 export type ElementOptionsItemType = CallbackOrStringType
@@ -61,18 +70,11 @@ export type ElementOptionsType =
   | AssociativeType<ElementOptionsItemType>
   | undefined
 
-export interface ImageItemType {
-  image: HTMLImageElement
-  src: string
-  width: number
-  height: number
-}
-
-export interface ImageItemSizeType<T = number> {
-  width: T
-  height: T
-}
-
+/**
+ * Types for working with images
+ *
+ * Типы для работы с картинами
+ */
 export type ImageTypeValueType =
   'file'
   | 'image'
@@ -87,10 +89,25 @@ export type ImageTypeValueType =
   | 'two-tone'
   | 'material'
 
-export interface ItemType<T = any> {
-  text: string
-  value: T
+export interface ImageItemSizeType<T = number> {
+  width: T
+  height: T
 }
+
+export interface ImageItemType extends ImageItemSizeType {
+  image: HTMLImageElement
+  src: string
+}
+
+/**
+ * Types for working with location
+ *
+ * Типы для работы с локацией
+ */
+export type GeoDateType = 'datetime' | 'date' | 'month' | 'time' | 'second'
+export type GeoFirstDayType = 1 | 6 | 0
+export type GeoHoursType = '12' | '24'
+export type GeoTimeZoneStyleType = 'minute' | 'hour' | 'ISO8601' | 'RFC'
 
 export interface GeoType {
   country: string
@@ -103,20 +120,11 @@ export interface GeoType {
   zone: string | null
 }
 
-export type GeoDateType = 'datetime' | 'date' | 'month' | 'time' | 'second'
-export type GeoFirstDayType = 1 | 6 | 0
-export type GeoHoursType = '12' | '24'
-export type GeoTimeZoneStyleType = 'minute' | 'hour' | 'ISO8601' | 'RFC'
-
-export interface UserType {
-  id: number | string
-  login: string
-  name?: string
-  avatar?: string
-
-  [key: number | string]: any
-}
-
+/**
+ * Types for working with input validity
+ *
+ * Типы для работы с валидностью input
+ */
 export interface ValidationType {
   checkValidity: boolean
   isValue?: boolean
@@ -129,7 +137,23 @@ export interface ValidationType {
 }
 
 /**
- * Установочный интерфесь
+ * Types for working with users
+ *
+ * Типы для работы с пользователями
+ */
+export interface UserType {
+  id: number | string
+  login: string
+  name?: string
+  avatar?: string
+
+  [key: number | string]: any
+}
+
+/**
+ * Installation interface
+ *
+ * Установочный интерфейс
  */
 export interface InstallOptionsType {
   designs?: AssociativeType[]

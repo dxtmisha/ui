@@ -5,6 +5,7 @@ import {
   CallbackOrBooleanType,
   ElementType,
   ImageTypeValueType,
+  NumberOrStringOrDateType,
   NumberOrStringType
 } from './types'
 
@@ -21,7 +22,9 @@ export type RefOrStringType = RefOrNormalType<string>
 export type RefOrElementType<T = ElementType> = RefOrNormalType<T>
 
 /**
- * Callback
+ * Reactive callable functions
+ *
+ * Реактивные вызываемые функции
  */
 export type CallbackEmitType = (type: string, options?: AssociativeType | any) => void
 export type CallbackBindType<T = any, R = AssociativeType> =
@@ -31,7 +34,9 @@ export type CallbackBindType<T = any, R = AssociativeType> =
   ((value: Ref<T | R>, extra: RefOrNormalType<AssociativeType>, name: string) => ComputedRef<R>)
 
 /**
- * Component
+ * Types for working with components
+ *
+ * Типы для работы с компонентами
  */
 export type ComponentValueType = RefOrStringType
 
@@ -49,14 +54,18 @@ export interface ComponentPropOptionsType<T = any, D = T> {
 }
 
 /**
- * Classes
+ * Interface for working with classes
+ *
+ * Интерфейс для работы с классами
  */
 export interface ComponentClassesType<T = ComponentAssociativeType> extends AssociativeType<T> {
   main: T
 }
 
 /**
- * Styles
+ * Interface for working with styles
+ *
+ * Интерфейс для работы со стилями
  */
 export type ComponentStyleItemType = AssociativeType<ComponentValueType>
 
@@ -65,7 +74,9 @@ export interface ComponentStylesType<T = ComponentStyleItemType> extends Associa
 }
 
 /**
- * Properties
+ * Basic properties
+ *
+ * Базовые свойства
  */
 export interface ComponentPropertyType {
   index: string
@@ -78,20 +89,41 @@ export interface ComponentPropertyType {
 export type ComponentPropertiesType = AssociativeType<ComponentPropertyType>
 
 /**
- * Setup
+ * Basic property setup
+ *
+ * Базовое свойство setup
  */
 export interface ComponentBaseType<E = RefOrElementType> {
-  element: Ref<E | undefined>
-  name: string
-  design: string
-  className: string
+  element?: Ref<E | undefined>
+  name?: string
+  design?: string
+  className?: string
   classes?: ComputedRef<ComponentClassesType>
   styles?: ComputedRef<ComponentStylesType>
 }
 
+/**
+ * Accepted code for location
+ *
+ * Принимаемый код для локации
+ */
+export type GeoCodeType = RefOrNormalType<string>
+
+/**
+ * Types for working with images
+ *
+ * Типы для работы с Intl
+ */
+export type IntlNumberType = RefOrNormalType<NumberOrStringType>
+export type IntlStringType = RefOrNormalType<string>
+export type IntlDateType = RefOrNormalType<NumberOrStringOrDateType>
+
+/**
+ * Types for working with images
+ *
+ * Типы для работы с картинами
+ */
 export type ImageCoordinatorType = Ref<[number, number, number, number] | undefined>
 export type ImageOptionType = Ref<NumberOrStringType | undefined>
 export type ImageTypeType = ComputedRef<ImageTypeValueType>
 export type ImageValueType = Ref<string | File>
-
-export type GeoCodeType = RefOrNormalType<string>

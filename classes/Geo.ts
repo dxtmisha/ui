@@ -74,7 +74,7 @@ export class Geo {
    * Определяет текущий язык
    */
   static findLanguage (): string {
-    return this.findLocation().replace(/[^a-z]+/ig, '')
+    return this.toLanguage(this.findLocation())
   }
 
   /**
@@ -152,6 +152,16 @@ export class Geo {
     }
 
     return data
+  }
+
+  /**
+   * Returns the language code by its full language-country
+   *
+   * Возвращает код языка по его полному язык-страна
+   * @param code country code / код страна
+   */
+  static toLanguage (code: string): string {
+    return code.replace(/[^a-z]+/ig, '')
   }
 
   /**
