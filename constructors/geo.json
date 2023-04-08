@@ -1719,7 +1719,11 @@
     "zone": "Asia/Seoul",
     "language": "ko",
     "firstDay": "Su",
-    "phoneMask": "+82-**-***-****"
+    "phoneMask": [
+      "+82-**-***-****",
+      "+82-**-***-****-*",
+      "+82-**-***-****-**"
+    ]
   },
   {
     "country": "SS",

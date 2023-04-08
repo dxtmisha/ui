@@ -1,6 +1,16 @@
 import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
 
 /**
+ * Is the variable equal to null or undefined
+ *
+ * Является ли переменная равной null или undefined
+ * @param value value / значение
+ */
+export function isNull<T = any> (value: T): boolean {
+  return value === null || value === undefined
+}
+
+/**
  * Checks if the field is filled
  *
  * Проверяет, заполнено ли поле

@@ -1,7 +1,8 @@
 import { isRef } from 'vue'
 import { getElement } from './element'
 
-import { ElementType, RefOrNormalType } from '../constructors/types'
+import { ElementType } from '../constructors/types'
+import { RefOrNormalType } from '../constructors/typesRef'
 
 /**
  * You return the values of the ref variable or the variable itself if it is not reactive

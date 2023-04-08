@@ -1,25 +1,42 @@
 import { ComputedRef, ref, Ref, watch } from 'vue'
 import { Env } from './Env'
+import { isNull } from '../functions/data'
+
 import { StorageAbstract } from './StorageAbstract'
+
 import { CallbackNullType } from '../constructors/types'
 
-export type StorageItemType<T = any> = {
+export interface StorageItemType<T = any> {
   key: string
   item: Ref<T>
   date: number
 }
 
-export type StorageItemsType<T = any> = {
+export interface StorageType<T = any> {
   [key: string]: StorageItemType<T>
 }
 
+/**
+ * Abstract class for working with storage
+ *
+ * Абстрактный класс для работы с хранилищем
+ */
 export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
-  protected static readonly data = {} as StorageItemsType
-  protected static readonly cacheAgeDefault = Env.toNumber('STORAGE_CACHE', 7 * 24 * 60 * 60)
+  protected static readonly data = {} as StorageType
+
   protected static readonly prefix = Env.prefix()
+  protected static readonly cacheAgeDefault = Env.cache()
 
   protected readonly item: StorageItemType<T>
 
+  /**
+   * Constructor
+   * @param key key / ключ
+   * @param name group of records, from which we get data / группа записей, по которой
+   * получаем данные
+   * @param method class, with which we will work / класс, с которым будем работать
+   * @protected
+   */
   protected constructor (
     key: string,
     name: string,
@@ -32,6 +49,13 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
     this.item = data
   }
 
+  /**
+   * Getting data with respect to the caching timer
+   *
+   * Получение данных с учетом таймера кэширования
+   * @param callback called function / вызываемая функция
+   * @param age cache time / время кэширования
+   */
   async cache (
     callback?: CallbackNullType<any>,
     age = StorageItemAbstract.cacheAgeDefault as number
@@ -46,6 +70,16 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
     return this.get()
   }
 
+  /**
+   * Getting saved data
+   *
+   * Получение сохраненных данных
+   * @param key key / ключ
+   * @param name group of records, from which we get data / группа записей, по которой
+   * получаем данные
+   * @param method class, with which we will work / класс, с которым будем работать
+   * @private
+   */
   private static initData (
     key: string,
     name: string,
@@ -55,12 +89,12 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
 
     if (!(keyData in this.data)) {
       const keyStorage = `${this.prefix}${key}`
-      const read = method.getItem(keyStorage)
+      const read = method?.getItem(keyStorage)
       const data = {
         key,
         item: ref(undefined),
         date: new Date().getTime()
-      }
+      } as StorageItemType
 
       if (read) {
         try {
@@ -73,17 +107,19 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
 
       this.data[keyData] = data
 
-      watch(data.item, value => {
-        if (value !== '') {
-          method.setItem(keyStorage, JSON.stringify({
-            key,
-            item: value,
-            date: new Date().getTime()
-          }))
-        } else {
-          method.removeItem(keyStorage)
-        }
-      })
+      if (method) {
+        watch(data.item, value => {
+          if (isNull(value)) {
+            method?.removeItem(keyStorage)
+          } else {
+            method?.setItem(keyStorage, JSON.stringify({
+              key,
+              item: value,
+              date: new Date().getTime()
+            }))
+          }
+        })
+      }
     }
 
     return this.data[keyData]
