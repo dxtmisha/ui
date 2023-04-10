@@ -1,7 +1,7 @@
 import { computed, ComputedRef, isRef, Ref } from 'vue'
 import { isNull } from '../functions/data'
 
-import { CallbackNullType } from '../constructors/types'
+import { AnyOrUndefinedType, CallbackNullType } from '../constructors/types'
 import { RefOrCallbackType, RefType } from '../constructors/typesRef'
 
 /**
@@ -17,7 +17,7 @@ export abstract class StorageAbstract<T = any> {
   ) {
   }
 
-  get (): ComputedRef<T | undefined>
+  get (): ComputedRef<AnyOrUndefinedType<T>>
   get (value: T): ComputedRef<T>
   get (value: RefType<T>): ComputedRef<T>
   get (callback: CallbackNullType<T>): ComputedRef<T>
@@ -31,8 +31,8 @@ export abstract class StorageAbstract<T = any> {
    */
   get (
     valueCallback?: T | RefOrCallbackType<T>
-  ): ComputedRef<T | undefined> {
-    return computed<T | undefined>(() => this.getStatic(valueCallback))
+  ): ComputedRef<AnyOrUndefinedType<T>> {
+    return computed<AnyOrUndefinedType<T>>(() => this.getStatic(valueCallback))
   }
 
   /**
@@ -45,7 +45,7 @@ export abstract class StorageAbstract<T = any> {
    */
   getStatic (
     valueCallback?: T | RefOrCallbackType<T>
-  ): T | undefined {
+  ): AnyOrUndefinedType<T> {
     if (!isNull(this.value.value)) {
       return this.value.value
     } else if (valueCallback instanceof Function) {
@@ -63,7 +63,7 @@ export abstract class StorageAbstract<T = any> {
    *
    * Получение самой реактивной переменной
    */
-  getItem (): Ref<T | undefined> {
+  getItem (): Ref<AnyOrUndefinedType<T>> {
     return this.value
   }
 
@@ -73,7 +73,7 @@ export abstract class StorageAbstract<T = any> {
    * Асинхронное выполнение функции при отсутствии значения
    * @param callback executed function / выполняемая функция
    */
-  async getAsync (callback: CallbackNullType<T>): Promise<Ref<T | undefined>> {
+  async getAsync (callback: CallbackNullType<T>): Promise<Ref<AnyOrUndefinedType<T>>> {
     if (isNull(this.value.value)) {
       this.set(await callback())
     }

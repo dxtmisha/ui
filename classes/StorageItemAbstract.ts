@@ -4,7 +4,7 @@ import { isNull } from '../functions/data'
 
 import { StorageAbstract } from './StorageAbstract'
 
-import { CallbackNullType } from '../constructors/types'
+import { AnyOrUndefinedType, CallbackNullType } from '../constructors/types'
 
 export interface StorageItemType<T = any> {
   key: string
@@ -59,15 +59,36 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
   async cache (
     callback?: CallbackNullType<any>,
     age = StorageItemAbstract.cacheAgeDefault as number
-  ): Promise<ComputedRef> {
-    if (
-      callback &&
-      this.item.date + age < new Date().getTime()
-    ) {
+  ): Promise<ComputedRef<AnyOrUndefinedType<T>>> {
+    if (callback && this.isOld(age)) {
       this.set(await callback())
     }
 
     return this.get()
+  }
+
+  /**
+   * Getting data with respect to the caching timer
+   *
+   * Получение данных с учетом таймера кэширования
+   * @param callback called function / вызываемая функция
+   * @param age cache time / время кэширования
+   */
+  async cacheStatic (
+    callback?: CallbackNullType<any>,
+    age = StorageItemAbstract.cacheAgeDefault as number
+  ): Promise<AnyOrUndefinedType<T>> {
+    if (callback && this.isOld(age)) {
+      this.set(await callback())
+    }
+
+    return this.getStatic()
+  }
+
+  private isOld (
+    age = StorageItemAbstract.cacheAgeDefault as number
+  ): boolean {
+    return this.item.date + (age * 1000) < new Date().getTime()
   }
 
   /**

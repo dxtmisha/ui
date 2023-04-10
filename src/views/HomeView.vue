@@ -16,28 +16,33 @@ export default defineComponent({
     const storage1 = new StorageItem('test')
     const storage2 = new StorageItem('test')
     const test = ref(9)
-    let newValue = 5
+    let newValue = 5;
 
-    console.log(
-      'storage',
+    (async () => {
+      console.log(
+        'storage',
 
-      storage2.getAsync(() => new Promise(resolve => {
-        setTimeout(() => {
-          resolve(16)
-          console.log('resolve(16)')
-        }, 2000)
-      })),
+        (await storage2.cache(() => 456, 10)).value,
+        (await storage2.cacheStatic(() => 456, 10)),
+        storage2.getAsync(() => new Promise(resolve => {
+          setTimeout(() => {
+            resolve(16)
+            console.log('resolve(16)')
+          }, 2000)
+        })),
 
-      storage1.get().value,
-      storage1.get(newValue + 3).value,
-      storage1.get(test).value,
-      storage1.get(() => newValue + 3).value,
+        storage1.get().value,
+        storage1.get(newValue + 3).value,
+        storage1.get(test).value,
+        storage1.get(() => newValue + 3).value,
 
-      storage2.set(12),
-      storage1.getStatic()
-    )
+        storage2.set(12),
+        storage1.getStatic()
+      )
+    })()
 
     setTimeout(() => storage1.remove(), 4000)
+    setTimeout(() => storage1.set(123), 6000)
 
     return {
       value: storage1.get(),

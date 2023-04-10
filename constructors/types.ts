@@ -3,6 +3,7 @@
  *
  * Разделения на типы
  */
+export type AnyOrUndefinedType<T = any> = T | undefined
 export type NumberOrUndefinedType = number | undefined
 export type NumberOrStringType = number | string
 export type BooleanOrNumberOrStringType = boolean | number | string
