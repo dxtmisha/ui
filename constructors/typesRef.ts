@@ -4,6 +4,7 @@ import {
   CallbackNullType,
   CallbackOrBooleanType,
   ElementType,
+  FlagItemType,
   ImageTypeValueType,
   NumberOrStringOrDateType,
   NumberOrStringType
@@ -15,7 +16,7 @@ import {
  * Базовый типы для работа с реактивный данными
  */
 export type RefType<T = any> = ComputedRef<T> | Ref<T>
-export type RefAssociativeType<T = any> = AssociativeType<RefType<T>>
+export type RefAssociativeType<T = any> = AssociativeType<Ref<T>>
 export type RefOrNormalType<T = any> = RefType<T> | T
 export type RefOrCallbackType<T = any> = RefType<T> | CallbackNullType<T>
 export type RefOrStringType = RefOrNormalType<string>
@@ -108,6 +109,7 @@ export interface ComponentBaseType<E = RefOrElementType> {
  * Принимаемый код для локации
  */
 export type GeoCodeType = RefOrNormalType<string>
+export type FlagReturnType = ComputedRef<FlagItemType | undefined>
 
 /**
  * Types for working with images

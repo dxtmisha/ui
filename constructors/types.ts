@@ -120,6 +120,31 @@ export interface GeoType {
   zone: string | null
 }
 
+export interface FlagItemType {
+  icon: string
+  country: string
+  language: string
+  value: string
+}
+
+export interface GeoPhoneInfoType extends FlagItemType {
+  phone?: number
+  mask: string[]
+}
+
+export interface GeoPhoneMapType {
+  code: string | undefined
+  info: GeoPhoneInfoType | undefined
+  mask: string[]
+  maskFull: string[]
+  next: AssociativeType<GeoPhoneMapType>
+}
+
+export interface GeoPhoneItemType {
+  item: GeoPhoneMapType | undefined
+  value: string
+}
+
 /**
  * Types for working with input validity
  *

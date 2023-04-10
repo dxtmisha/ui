@@ -16,7 +16,7 @@ export class MaskDate {
       const date = new GeoDate(`${value?.Y?.value || '2000'}-${value?.M?.value || '01'}-01`)
 
       return {
-        max: date.getMaxDay().value.toString(),
+        max: date.getMaxDayStatic().toString(),
         min: '1',
         type: 'number'
       }
@@ -48,7 +48,7 @@ export class MaskDate {
   protected geo = computed<GeoDate>(() => new GeoDate('1987-12-18T10:20:30', this.type.getTypeDate()))
 
   getMaskByDate (): string[] {
-    return this.geo.value.locale('2-digit').value
+    return this.geo.value.localeStatic('2-digit')
       .replace('1987', 'YYYY')
       .replace('12', 'MM')
       .replace('18', 'DD')
@@ -71,10 +71,10 @@ export class MaskDate {
       `:${date?.m?.value || '00'}` +
       `:${date?.s?.value || '00'}`
 
-    return isNaN(Date.parse(value)) ? '' : new GeoDate(value, this.type.getTypeDate()).standard(false).value
+    return isNaN(Date.parse(value)) ? '' : new GeoDate(value, this.type.getTypeDate()).standardStatic(false)
   }
 
   getLocale (value?: string): string {
-    return (value ? new GeoDate(value, this.type.getTypeDate()) : this.geo.value).locale('2-digit').value
+    return (value ? new GeoDate(value, this.type.getTypeDate()) : this.geo.value).localeStatic('2-digit')
   }
 }

@@ -1,10 +1,17 @@
 import { Ref, ref, watch } from 'vue'
-import { StorageAbstract } from './StorageAbstract'
 import { forEach } from '../functions/data'
-import { RefAssociativeType } from '../constructors/types'
+
+import { StorageAbstract } from './StorageAbstract'
+
+import { RefAssociativeType } from '../constructors/typesRef'
 
 export type HashType = Ref<string>
 
+/**
+ * Working with data stored in hash
+ *
+ * Работа с данными сохраненными в хеш
+ */
 export class Hash extends StorageAbstract<string> {
   public static readonly data = {} as RefAssociativeType<string>
 
@@ -16,6 +23,13 @@ export class Hash extends StorageAbstract<string> {
     super(key, Hash.data[key])
   }
 
+  /**
+   * Adding a new record
+   *
+   * Добавление новой записи
+   * @param key key value / ключ значения
+   * @param value value / значения
+   */
   static setData (key: string, value: string): void {
     if (key in this.data) {
       this.data[key].value = value

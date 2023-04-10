@@ -1,18 +1,18 @@
 import { computed, ComputedRef, isRef } from 'vue'
-import { GeoAbstract } from './GeoAbstract'
-import { GeoIntl } from './GeoIntl'
-import { AssociativeStringType, GeoCodeType, GeoType } from '../constructors/types'
-import { Geo } from './Geo'
 import { forEach } from '../functions/data'
 
-export type FlagItemType = {
-  icon: string
-  country: string
-  language: string
-  value: string
-}
-export type FlagReturnType = ComputedRef<FlagItemType | undefined>
+import { Geo } from './Geo'
+import { GeoAbstract } from './GeoAbstract'
+import { GeoIntl } from './GeoIntl'
 
+import { AssociativeStringType, FlagItemType, GeoType } from '../constructors/types'
+import { FlagReturnType, GeoCodeType } from '../constructors/typesRef'
+
+/**
+ * Class for working with Flags
+ *
+ * Класс для работы с Флагами
+ */
 export class GeoFlag extends GeoAbstract {
   static flags = {
     AD: require('../media/flags/AD.svg'),
@@ -271,44 +271,100 @@ export class GeoFlag extends GeoAbstract {
     this.intl = new GeoIntl(this.code)
   }
 
+  /**
+   * Returns information about the country and its flag
+   *
+   * Возвращает информацию о стране и её флаге
+   * @param code country code / код страны
+   */
   get (code?: GeoCodeType): FlagReturnType {
-    return computed(() => {
-      const value = code === undefined
-        ? this.code.value
-        : isRef(code)
-          ? code.value
-          : code
-      const data = Geo.getDataByCode(value)
+    return computed(() => this.getStatic(code))
+  }
 
-      if (data) {
-        return {
-          icon: GeoFlag.flags[data.country] || '',
-          country: this.getCountry(data),
-          language: this.getLanguage(data),
-          value: Geo.toCode(data) || ''
-        }
-      } else {
-        return undefined
+  /**
+   * Returns information about the country and its flag
+   *
+   * Возвращает информацию о стране и её флаге
+   * @param code country code / код страны
+   */
+  getStatic (code?: GeoCodeType): FlagItemType | undefined {
+    const value = code === undefined
+      ? this.code.value
+      : isRef(code)
+        ? code.value
+        : code
+    const data = Geo.getDataByCode(value)
+
+    if (data) {
+      return {
+        icon: GeoFlag.flags[data.country] || '',
+        country: this.getCountry(data),
+        language: this.getLanguage(data),
+        value: Geo.toCode(data) || ''
       }
-    })
+    } else {
+      return undefined
+    }
   }
 
-  private getCountry (data: GeoType | undefined): string {
-    return data ? this.intl.countryName(data.country).value as string : ''
-  }
-
+  /**
+   * Getting a link to the flag
+   *
+   * Получение ссылки на флаг
+   * @param code country code / код страны
+   */
   getFlag (code?: GeoCodeType): ComputedRef<string> {
-    return computed(() => this.get(code).value?.icon || '')
+    return computed(() => this.getFlagStatic(code))
   }
 
+  /**
+   * Getting a link to the flag
+   *
+   * Получение ссылки на флаг
+   * @param code country code / код страны
+   */
+  getFlagStatic (code?: GeoCodeType): string {
+    return this.getStatic(code)?.icon || ''
+  }
+
+  /**
+   * Getting the name of the language
+   *
+   * Получение названия языка
+   * @param data object with information of data / объект с информацией данных
+   * @private
+   */
   private getLanguage (data: GeoType | undefined): string {
-    return data ? this.intl.language(data.language).value as string : ''
+    return data ? this.intl.languageStatic(data.language) as string : ''
   }
 
+  /**
+   * Getting the name of the country
+   *
+   * Получение названия страны
+   * @param data object with information of data / объект с информацией данных
+   * @private
+   */
+  private getCountry (data: GeoType | undefined): string {
+    return data ? this.intl.countryNameStatic(data.country) as string : ''
+  }
+
+  /**
+   * Getting a list of countries by an array of codes
+   *
+   * Получение списка стран по массиву с кодами
+   * @param codes country code / код страны
+   */
   getList (codes: GeoCodeType[]): (FlagReturnType | undefined)[] {
     return forEach<GeoCodeType, string, FlagReturnType>(codes, code => this.get(code))
   }
 
+  /**
+   * Getting a list of countries by an array of codes in national language
+   *
+   * Получение списка стран по массиву с кодами на национальный язык
+   * @param codes country code / код страны
+   */
   static getNational (codes: GeoCodeType[]): (FlagReturnType | undefined)[] {
     return forEach<GeoCodeType, string, FlagReturnType>(codes, code => new GeoFlag(code).get())
   }

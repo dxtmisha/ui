@@ -49,7 +49,7 @@ module.exports = class extends PropertiesFileService {
           PropertiesMapService.setItem(item)
 
           if (key in tree) {
-            tree[key].item = item
+            tree[key].valueItem = item
           } else {
             tree[key] = {
               item,

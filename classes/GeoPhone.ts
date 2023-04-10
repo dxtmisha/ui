@@ -1,32 +1,18 @@
-import { GeoAbstract } from './GeoAbstract'
-import { AssociativeType, GeoCodeType, GeoType } from '../constructors/types'
 import { computed, ComputedRef, ref } from 'vue'
-import { Geo } from './Geo'
 import { forEach } from '../functions/data'
+
+import { Geo } from './Geo'
+import { GeoAbstract } from './GeoAbstract'
 import { GeoFlag } from './GeoFlag'
 
-export type GeoPhoneInfoType = {
-  icon: string
-  country: string
-  language: string
-  value: string
-  phone?: number
-  mask: string[]
-}
+import { AssociativeType, GeoPhoneInfoType, GeoPhoneItemType, GeoPhoneMapType, GeoType } from '../constructors/types'
+import { GeoCodeType } from '../constructors/typesRef'
 
-export type GeoPhoneMapType = {
-  code: string | undefined
-  info: GeoPhoneInfoType | undefined
-  mask: string[]
-  maskFull: string[]
-  next: AssociativeType<GeoPhoneMapType>
-}
-
-export type GeoPhoneItemType = {
-  item: GeoPhoneMapType | undefined
-  value: string
-}
-
+/**
+ * Class for working with phone numbers
+ *
+ * Класс для работы с номерами телефонов
+ */
 export class GeoPhone extends GeoAbstract {
   public static list: ComputedRef<GeoPhoneInfoType[]>
   public static map: ComputedRef<AssociativeType<GeoPhoneMapType>>
@@ -45,14 +31,43 @@ export class GeoPhone extends GeoAbstract {
     }
   }
 
+  /**
+   * Getting an object with information about the phone code and country
+   *
+   * Получение объекта с информацией о телефонном коде и стране
+   */
   getInfo (): ComputedRef<GeoPhoneInfoType | undefined> {
-    return computed(() => GeoPhone.list.value.find(item => this.code.value === item.value))
+    return computed(() => this.getInfoStatic())
+  }
+
+  /**
+   * Getting an object with information about the phone code and country
+   *
+   * Получение объекта с информацией о телефонном коде и стране
+   */
+  getInfoStatic (): GeoPhoneInfoType | undefined {
+    return GeoPhone.list.value.find(item => this.code.value === item.value)
   }
 
   getMask (): ComputedRef<string[] | undefined> {
-    return computed(() => this.getInfo().value?.mask)
+    return computed(() => this.getMaskStatic())
   }
 
+  /**
+   * Getting a phone mask
+   *
+   * Получение маски телефона
+   */
+  getMaskStatic (): string[] | undefined {
+    return this.getInfoStatic()?.mask
+  }
+
+  /**
+   * Changing data by phone number
+   *
+   * Изменение данных по номеру телефона
+   * @param phone phone number / номер телефон
+   */
   set (phone: string): this {
     const data = GeoPhone.getItemByPhone(phone)
 
@@ -67,6 +82,11 @@ export class GeoPhone extends GeoAbstract {
     return this
   }
 
+  /**
+   * Convert to phone mask
+   *
+   * Преобразовать в маску телефона
+   */
   toMask (): ComputedRef<string> {
     return computed(() => {
       let data = '' as string
@@ -90,6 +110,12 @@ export class GeoPhone extends GeoAbstract {
     })
   }
 
+  /**
+   * Getting information by phone
+   *
+   * Получение информации по телефону
+   * @param phone phone number / номер телефон
+   */
   static getItemByPhone (phone: string): GeoPhoneItemType {
     let focus = this.map.value as AssociativeType<GeoPhoneMapType>
     let value = undefined as GeoPhoneMapType | undefined
@@ -113,6 +139,12 @@ export class GeoPhone extends GeoAbstract {
     }
   }
 
+  /**
+   * Creating a list for the map
+   *
+   * Формирование списка для карты
+   * @protected
+   */
   protected static initList (): void {
     this.list = computed(() => {
       const collator = new Intl.Collator(Geo.code.value)
@@ -143,6 +175,12 @@ export class GeoPhone extends GeoAbstract {
     })
   }
 
+  /**
+   * Creating a map for search
+   *
+   * Создание карты для поиска
+   * @protected
+   */
   protected static initMap (): void {
     this.map = computed(() => {
       const data = {} as AssociativeType<GeoPhoneMapType>
@@ -183,6 +221,12 @@ export class GeoPhone extends GeoAbstract {
     })
   }
 
+  /**
+   * The method parses a string argument and returns a floating point number
+   *
+   * Метод принимает строку в качестве аргумента и возвращает десятичное число
+   * @param value the value to parse / текстовая строка
+   */
   protected static toNumber (value: string): string[] {
     return value
       .replace(/\D+/ig, '')

@@ -12,7 +12,7 @@ import { GeoCodeType } from '../constructors/typesRef'
  * Абстрактный класс для работы с локацией
  */
 export abstract class GeoAbstract {
-  public readonly item: ComputedRef<string>
+  public readonly valueItem: ComputedRef<string>
   public readonly data: ComputedRef<GeoType | undefined>
 
   /**
@@ -21,7 +21,7 @@ export abstract class GeoAbstract {
    * Текущий язык
    */
   public readonly lang = computed<string>(
-    () => Geo.toLanguage(this.item.value) || this.data.value?.language || 'en'
+    () => Geo.toLanguage(this.valueItem.value) || this.data.value?.language || 'en'
   )
 
   /**
@@ -30,7 +30,7 @@ export abstract class GeoAbstract {
    * Текущая страна
    */
   public readonly country = computed<string>(
-    () => Geo.toCountry(this.item.value) || this.data.value?.country || 'GB'
+    () => Geo.toCountry(this.valueItem.value) || this.data.value?.country || 'GB'
   )
 
   /**
@@ -56,12 +56,12 @@ export abstract class GeoAbstract {
   constructor (
     code?: GeoCodeType
   ) {
-    this.item = computed<string>(() => getRef(code) || '')
+    this.valueItem = computed<string>(() => getRef(code) || '')
     this.data = computed(() => {
       let data: GeoType | undefined
 
-      if (isFilled(this.item)) {
-        data = Geo.getDataByCode(this.item.value)
+      if (isFilled(this.valueItem.value)) {
+        data = Geo.getDataByCode(this.valueItem.value)
       }
 
       return data || Geo.data.value
