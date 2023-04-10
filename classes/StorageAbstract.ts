@@ -25,22 +25,37 @@ export abstract class StorageAbstract<T = any> {
    * Data retrieval
    *
    * Получение данных
-   * @param valueCallback if a function is passed, it will execute it when the value is
-   * absent / если передать функцию, он ее выполнит при отсутствии значения
+   * @param valueCallback If you pass a function, it will execute when there is no value
+   * and save the values / Если вы передадите функцию, она выполнится при отсутствии
+   * значения и сохранит значения
    */
-  get (valueCallback?: T | RefOrCallbackType<T>): ComputedRef<T | undefined> {
-    return computed<T | undefined>(() => {
-      if (!isNull(this.value.value)) {
-        return this.value.value
-      } else if (valueCallback instanceof Function) {
-        this.set(valueCallback())
-        return this.value.value
-      } else if (isRef(valueCallback)) {
-        return valueCallback.value
-      } else {
-        return valueCallback
-      }
-    })
+  get (
+    valueCallback?: T | RefOrCallbackType<T>
+  ): ComputedRef<T | undefined> {
+    return computed<T | undefined>(() => this.getStatic(valueCallback))
+  }
+
+  /**
+   * Data retrieval
+   *
+   * Получение данных
+   * @param valueCallback If you pass a function, it will execute when there is no value
+   * and save the values / Если вы передадите функцию, она выполнится при отсутствии
+   * значения и сохранит значения
+   */
+  getStatic (
+    valueCallback?: T | RefOrCallbackType<T>
+  ): T | undefined {
+    if (!isNull(this.value.value)) {
+      return this.value.value
+    } else if (valueCallback instanceof Function) {
+      this.set(valueCallback())
+      return this.value.value
+    } else if (isRef(valueCallback)) {
+      return valueCallback.value
+    } else {
+      return valueCallback
+    }
   }
 
   /**
