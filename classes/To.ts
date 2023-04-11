@@ -70,20 +70,29 @@ export class To {
     if (typeof value === 'number') {
       return value
     } else {
-      const number = parseFloat(
-        value.replace(/[^\d., ]+/ig, '')
-          .replace(/(,)([0-9]{1,2}|[0-9]{4,})$/, '.$2')
-          .replace(/^([0-9]{4,})(,)([0-9]{3})$/, '$1.$3')
-          .replace(/(?<= [0-9]{3})( )(?=[0-9]{3}$)/, '!')
-          .replace(/(?<=,[0-9]{3})(,)(?=[0-9]{3}$)/, '!')
-          .replace(/([ ,])(?![0-9]+$)/ig, '')
-          .replace(/(?<=^[0-9]{1,3})([ ,])(?=[0-9]{3}$)/, '')
-          .replace(/(!)/, '')
-          .replace(/([ ,])(?=[0-9]{3}$)/, '.')
-      )
-
+      const number = To.numberReplace(value)
       return Number.isNaN(number) ? 0 : number
     }
+  }
+
+  private static numberReplace (value: string): number {
+    let number = value.replace(/[^\d., ]+/ig, '')
+
+    if (number.match(/( [0-9]{3}[ ,.]|[0-9] [0-9])/ig)) {
+      number = number
+        .replace(/ /ig, '')
+        .replace(/,/ig, '.')
+    } else if (number.match(/,[0-9]{3}[,.]/ig)) {
+      number = number.replace(/,/ig, '')
+    } else if (number.match(/[.][0-9]{3}[,.]/ig)) {
+      number = number
+        .replace(/[.]/ig, '')
+        .replace(/,/ig, '.')
+    } else {
+      number = number.replace(/,/ig, '.')
+    }
+
+    return parseFloat(number)
   }
 
   /**
