@@ -862,6 +862,7 @@ export class GeoDate extends GeoAbstract {
    * @protected
    */
   protected update (): this {
+    this.date.value = this.clone()
     this.second.value = this.date.value.getSeconds()
     this.minute.value = this.date.value.getMinutes()
     this.hour.value = this.date.value.getHours()

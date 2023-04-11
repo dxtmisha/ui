@@ -161,7 +161,7 @@ export class Geo {
    * @param code country code / код страна
    */
   static toLanguage (code: string): string {
-    return code.replace(/[^a-z]+/ig, '')
+    return code.replace(/[^a-z]+/g, '')
   }
 
   /**
@@ -171,7 +171,7 @@ export class Geo {
    * @param code country code / код страна
    */
   static toCountry (code: string): string {
-    return code.replace(/[^A-Z]+/ig, '')
+    return code.replace(/[^A-Z]+/g, '')
   }
 
   /**
@@ -212,6 +212,7 @@ export class Geo {
    * @param save save the result / сохранить результат
    */
   static setLanguage (language: string, save?: boolean) {
+    console.log('this.country.value', this.country.value)
     this.set(`${language}-${this.country.value}`, save)
   }
 
