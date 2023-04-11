@@ -13,8 +13,8 @@ export default defineComponent({
   name: 'HomeView',
   components: {},
   setup () {
-    const storage1 = new Hash('test1')
-    const storage2 = new Hash('test2')
+    const storage1 = new Hash('test')
+    const storage2 = new Hash('test')
     let newValue = 5;
 
     (async () => {
