@@ -1,5 +1,5 @@
 import { Ref, ref, watch } from 'vue'
-import { forEach } from '../functions/data'
+import { forEach, isFilled } from '../functions/data'
 
 import { StorageAbstract } from './StorageAbstract'
 
@@ -41,9 +41,15 @@ export class Hash extends StorageAbstract<string> {
     }
   }
 
+  /**
+   * Обновления данных в хеш
+   *
+   * Обновления данный в hash
+   * @protected
+   */
   protected static collect () {
     const hash = forEach<HashType, string, string>(this.data,
-      (item, key) => item.value !== '' ? `${key}=${encodeURIComponent(item.value)}` : ''
+      (item, key) => isFilled(item.value) ? `${key}=${encodeURIComponent(item.value)}` : ''
     )
 
     if (hash) {

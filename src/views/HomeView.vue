@@ -6,48 +6,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { StorageItem } from '../../classes/StorageItem'
+import { defineComponent } from 'vue'
+import { Hash } from '../../classes/Hash'
 
 export default defineComponent({
   name: 'HomeView',
   components: {},
   setup () {
-    const storage1 = new StorageItem('test')
-    const storage2 = new StorageItem('test')
-    const test = ref(9)
+    const storage1 = new Hash('test1')
+    const storage2 = new Hash('test2')
     let newValue = 5;
 
     (async () => {
       console.log(
         'storage',
 
-        (await storage2.cache(() => 456, 10)).value,
-        (await storage2.cacheStatic(() => 456, 10)),
-        storage2.getAsync(() => new Promise(resolve => {
-          setTimeout(() => {
-            resolve(16)
-            console.log('resolve(16)')
-          }, 2000)
-        })),
-
         storage1.get().value,
-        storage1.get(newValue + 3).value,
-        storage1.get(test).value,
-        storage1.get(() => newValue + 3).value,
+        storage1.get((newValue + 3).toString()).value,
+        storage1.get(() => (newValue + 3).toString()).value,
 
-        storage2.set(12),
+        storage2.set((12).toString()),
         storage1.getStatic()
       )
     })()
 
     setTimeout(() => storage1.remove(), 4000)
-    setTimeout(() => storage1.set(123), 6000)
+    setTimeout(() => storage1.set((123).toString()), 6000)
 
     return {
       value: storage1.get(),
       onClick () {
-        storage1.set(newValue++)
+        storage1.set((newValue++).toString())
       }
     }
   }

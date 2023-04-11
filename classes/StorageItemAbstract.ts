@@ -109,7 +109,7 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
     const keyData = `${name}-${key}`
 
     if (!(keyData in this.data)) {
-      const keyStorage = `${this.prefix}${key}`
+      const keyStorage = `${this.prefix}-${keyData}`
       const read = method?.getItem(keyStorage)
       const data = {
         key,
