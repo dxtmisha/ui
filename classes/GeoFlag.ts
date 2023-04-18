@@ -1,5 +1,6 @@
-import { computed, ComputedRef, isRef } from 'vue'
+import { computed, ComputedRef } from 'vue'
 import { forEach } from '../functions/data'
+import { getRef } from '../functions/ref'
 
 import { Geo } from './Geo'
 import { GeoAbstract } from './GeoAbstract'
@@ -278,7 +279,7 @@ export class GeoFlag extends GeoAbstract {
    * @param code country code / код страны
    */
   get (code?: GeoCodeType): FlagReturnType {
-    return computed(() => this.getStatic(code))
+    return computed(() => this.getStatic(getRef(code)))
   }
 
   /**
@@ -287,20 +288,18 @@ export class GeoFlag extends GeoAbstract {
    * Возвращает информацию о стране и её флаге
    * @param code country code / код страны
    */
-  getStatic (code?: GeoCodeType): FlagItemType | undefined {
-    const value = code === undefined
-      ? this.code.value
-      : isRef(code)
-        ? code.value
-        : code
-    const data = Geo.getDataByCode(value)
+  getStatic (code?: string): FlagItemType | undefined {
+    const data = Geo.getDataByCode(Geo.toCountry(code || this.code.value))
 
     if (data) {
+      const country = this.getCountry(data)
+
       return {
         icon: GeoFlag.flags[data.country] || '',
-        country: this.getCountry(data),
+        text: country,
+        country,
         language: this.getLanguage(data),
-        value: Geo.toCode(data) || ''
+        value: data.country
       }
     } else {
       return undefined
@@ -314,7 +313,7 @@ export class GeoFlag extends GeoAbstract {
    * @param code country code / код страны
    */
   getFlag (code?: GeoCodeType): ComputedRef<string> {
-    return computed(() => this.getFlagStatic(code))
+    return computed(() => this.getFlagStatic(getRef(code)))
   }
 
   /**
@@ -323,7 +322,7 @@ export class GeoFlag extends GeoAbstract {
    * Получение ссылки на флаг
    * @param code country code / код страны
    */
-  getFlagStatic (code?: GeoCodeType): string {
+  getFlagStatic (code?: string): string {
     return this.getStatic(code)?.icon || ''
   }
 

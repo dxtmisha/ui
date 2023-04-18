@@ -123,6 +123,7 @@ export interface GeoType {
 
 export interface FlagItemType {
   icon: string
+  text: string
   country: string
   language: string
   value: string

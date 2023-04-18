@@ -1,8 +1,8 @@
 import { computed, ComputedRef } from 'vue'
-import { Geo } from './Geo'
 import { isFilled } from '../functions/data'
 import { getRef } from '../functions/ref'
 
+import { Geo } from './Geo'
 import { GeoType } from '../constructors/types'
 import { GeoCodeType } from '../constructors/typesRef'
 
@@ -12,7 +12,6 @@ import { GeoCodeType } from '../constructors/typesRef'
  * Абстрактный класс для работы с локацией
  */
 export abstract class GeoAbstract {
-  public readonly valueItem: ComputedRef<string>
   public readonly data: ComputedRef<GeoType | undefined>
 
   /**
@@ -21,7 +20,7 @@ export abstract class GeoAbstract {
    * Текущий язык
    */
   public readonly lang = computed<string>(
-    () => Geo.toLanguage(this.valueItem.value) || this.data.value?.language || 'en'
+    () => this.data.value?.language || 'en'
   )
 
   /**
@@ -30,7 +29,7 @@ export abstract class GeoAbstract {
    * Текущая страна
    */
   public readonly country = computed<string>(
-    () => Geo.toCountry(this.valueItem.value) || this.data.value?.country || 'GB'
+    () => this.data.value?.country || 'GB'
   )
 
   /**
@@ -56,15 +55,20 @@ export abstract class GeoAbstract {
   constructor (
     code?: GeoCodeType
   ) {
-    this.valueItem = computed<string>(() => getRef(code) || '')
+    const value = getRef(code) || Geo.code.value || 'en-GB'
+
     this.data = computed(() => {
-      let data: GeoType | undefined
+      const data = Geo.findData(value) || Geo.data.value
+      const language = Geo.toLanguage(value)
 
-      if (isFilled(this.valueItem.value)) {
-        data = Geo.getDataByCode(this.valueItem.value)
+      if (data) {
+        return {
+          ...data,
+          language: isFilled(language) ? language : data?.language
+        }
+      } else {
+        return undefined
       }
-
-      return data || Geo.data.value
     })
   }
 }

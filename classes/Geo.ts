@@ -87,6 +87,21 @@ export class Geo {
   }
 
   /**
+   * Determines the current country by its full name
+   *
+   * Определяет текущую страну по ее полному названию
+   * @param code country code, full form language-country or one of them / код
+   * страны, полный вид язык-страна или один из них
+   */
+  static findData (code?: string): GeoType | undefined {
+    if (code) {
+      return this.getDataByCode(code) || this.getDataByCountry(this.toCountry(code))
+    } else {
+      return this.data.value
+    }
+  }
+
+  /**
    * Returns the full list of countries
    *
    * Возвращает полный список стран
@@ -193,7 +208,7 @@ export class Geo {
    * @param save save the result / сохранить результат
    */
   static set (code: string, save?: boolean): void {
-    const data = this.getDataByCode(code) || this.getDataByCountry(this.toCountry(code))
+    const data = this.findData(code)
 
     this.data.value = {
       ...(data || this.getDataByCountry(this.findCountry()))
@@ -212,7 +227,6 @@ export class Geo {
    * @param save save the result / сохранить результат
    */
   static setLanguage (language: string, save?: boolean) {
-    console.log('this.country.value', this.country.value)
     this.set(`${language}-${this.country.value}`, save)
   }
 

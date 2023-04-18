@@ -46,7 +46,7 @@ export class GeoPhone extends GeoAbstract {
    * Получение объекта с информацией о телефонном коде и стране
    */
   getInfoStatic (): GeoPhoneInfoType | undefined {
-    return GeoPhone.list.value.find(item => this.code.value === item.value)
+    return GeoPhone.list.value.find(item => this.country.value === item.value)
   }
 
   getMask (): ComputedRef<string[] | undefined> {
@@ -158,6 +158,7 @@ export class GeoPhone extends GeoAbstract {
 
             return {
               icon: flag.icon,
+              text: flag.country,
               country: flag.country,
               language: flag.language,
               value: flag.value,
