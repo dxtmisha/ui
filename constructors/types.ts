@@ -3,6 +3,8 @@
  *
  * Разделения на типы
  */
+export type UndefinedType = null | undefined
+export type EmptyType = UndefinedType | '' | 'undefined' | 0 | false | []
 export type AnyOrUndefinedType<T = any> = T | undefined
 export type NumberOrUndefinedType = number | undefined
 export type NumberOrStringType = number | string

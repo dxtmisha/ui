@@ -1,4 +1,10 @@
-import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../constructors/types'
+import {
+  AssociativeOrArrayType,
+  AssociativeType,
+  EmptyType,
+  NumberOrStringType,
+  UndefinedType
+} from '../constructors/types'
 
 /**
  * Is the variable equal to null or undefined
@@ -6,7 +12,7 @@ import { AssociativeOrArrayType, AssociativeType, NumberOrStringType } from '../
  * Является ли переменная равной null или undefined
  * @param value value / значение
  */
-export function isNull<T = any> (value: T): boolean {
+export function isNull<T = any> (value: T | UndefinedType): value is UndefinedType {
   return value === null || value === undefined
 }
 
@@ -16,7 +22,7 @@ export function isNull<T = any> (value: T): boolean {
  * Проверяет, заполнено ли поле
  * @param value value / значение
  */
-export function isFilled<T = any> (value: T): boolean {
+export function isFilled<T = any> (value: T): value is Exclude<T, EmptyType> {
   if (value) {
     switch (typeof value) {
       case 'bigint':
@@ -34,7 +40,7 @@ export function isFilled<T = any> (value: T): boolean {
           return Object.entries(value).length > 0
         }
       case 'string':
-        return value !== ''
+        return value !== '' && value !== 'undefined'
       case 'undefined':
         return false
       default:
@@ -43,6 +49,16 @@ export function isFilled<T = any> (value: T): boolean {
   }
 
   return false
+}
+
+/**
+ * Checks if the function is a callback function
+ *
+ * Проверяет, является ли функция обратного вызова
+ * @param callback the value being checked / проверяемое значение
+ */
+export function isFunction<T = any> (callback: T | (() => T)): callback is (() => T) {
+  return callback instanceof Function || typeof callback === 'function'
 }
 
 /**
@@ -64,10 +80,10 @@ export function isIntegerBetween (value: number, between: number): boolean {
  * @param selected array or string for comparison / массив или строка для сравнения
  */
 export function isSelected<T = any> (value: T, selected: T | T[]): boolean {
-  if (Array.isArray(selected)) {
-    return selected.indexOf(value) !== -1
-  } else if (value === undefined) {
+  if (isNull(value)) {
     return false
+  } else if (Array.isArray(selected)) {
+    return selected.indexOf(value) !== -1
   } else {
     return value === selected
   }
@@ -80,7 +96,7 @@ export function isSelected<T = any> (value: T, selected: T | T[]): boolean {
  */
 export function isSelectedByList (values: any | any[], selected: any | any[]): boolean {
   if (Array.isArray(values)) {
-    return values.reduce((value, currentValue) => currentValue && isSelected(value, selected))
+    return values.reduce((accumulator, value) => accumulator && isSelected(value, selected), true)
   } else {
     return isSelected(values, selected)
   }
@@ -143,7 +159,7 @@ export async function getClipboardData (event: ClipboardEvent): Promise<string> 
  * @param callback function or any value / функция или любое значение
  */
 export function executeFunction<T> (callback: T | (() => T)): T {
-  return callback instanceof Function ? callback() : callback
+  return isFunction(callback) ? callback() : callback
 }
 
 /**

@@ -40,7 +40,7 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
   protected constructor (
     key: string,
     name: string,
-    method: Storage
+    method?: Storage
   ) {
     const data = StorageItemAbstract.initData(key, name, method)
 
@@ -104,7 +104,7 @@ export abstract class StorageItemAbstract<T = any> extends StorageAbstract<T> {
   private static initData (
     key: string,
     name: string,
-    method: Storage
+    method?: Storage
   ): StorageItemType {
     const keyData = `${name}-${key}`
 

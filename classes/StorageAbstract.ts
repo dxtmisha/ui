@@ -48,8 +48,8 @@ export abstract class StorageAbstract<T = any> {
   ): AnyOrUndefinedType<T> {
     if (!isNull(this.value.value)) {
       return this.value.value
-    } else if (valueCallback instanceof Function) {
-      this.set(valueCallback())
+    } else if (typeof valueCallback === 'function') {
+      this.set((valueCallback as () => T)())
       return this.value.value
     } else if (isRef(valueCallback)) {
       return valueCallback.value
