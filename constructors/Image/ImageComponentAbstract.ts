@@ -3,10 +3,9 @@ import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { Image } from './Image'
 import { props } from './props'
 import {
-  AssociativeType,
-  ComponentBaseType,
-  ImageOptionType
+  AssociativeType
 } from '../types'
+import { ComponentBaseType, ImageOptionType } from '../typesRef'
 
 export type ImageSetupType = ComponentBaseType & {
   text: ImageOptionType

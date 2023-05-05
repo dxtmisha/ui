@@ -3,9 +3,10 @@ import { createElement } from '../../functions/element'
 import { props } from './props'
 
 import {
-  AssociativeType, ComponentBaseType,
+  AssociativeType,
   EventCallbackRequiredType
 } from '../types'
+import { ComponentBaseType } from '../typesRef'
 
 export type RippleSetupType = ComponentBaseType & {
   onClick: EventCallbackRequiredType<void, MouseEvent>

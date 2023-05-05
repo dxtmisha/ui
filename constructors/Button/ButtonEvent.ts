@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { EventItem } from '../../classes/EventItem'
 import { UseValue } from '../Use/UseValue'
 import { UseEnabled } from '../Use/UseEnabled'
-import { CallbackEmitType } from '../types'
+import { CallbackEmitType } from '../typesRef'
 
 export class ButtonEvent {
   // eslint-disable-next-line no-useless-constructor

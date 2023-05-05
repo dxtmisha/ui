@@ -1,10 +1,8 @@
 import { ComputedRef } from 'vue'
 import {
-  ComponentAssociativeType,
-  ComponentBaseType,
-  ComponentClassesType,
   EventCallbackRequiredType
 } from '../types'
+import { ComponentAssociativeType, ComponentBaseType, ComponentClassesType } from '../typesRef'
 
 export type ProgressClassesType = ComponentClassesType & {
   circle: ComponentAssociativeType

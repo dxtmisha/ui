@@ -2,9 +2,9 @@ import { To } from './To'
 import { forEach } from '../functions/data'
 
 import {
-  AssociativeType,
-  ComponentPropOptionsType
+  AssociativeType
 } from '../constructors/types'
+import { ComponentPropOptionsType } from '../constructors/typesRef'
 
 export const CLASS_SUB = '__' as string
 export const CLASS_VAL = '--' as string

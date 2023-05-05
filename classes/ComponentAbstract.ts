@@ -17,13 +17,14 @@ import {
 
 import {
   AssociativeType,
+  NumberOrStringType
+} from '../constructors/types'
+import {
   ComponentAssociativeType,
   ComponentBaseType,
   ComponentClassesType,
-  ComponentPropertyType,
-  ComponentStylesType,
-  NumberOrStringType
-} from '../constructors/types'
+  ComponentPropertyType, ComponentStylesType
+} from '../constructors/typesRef'
 
 export abstract class ComponentAbstract<E = HTMLElement> {
   static readonly code = 'none' as string

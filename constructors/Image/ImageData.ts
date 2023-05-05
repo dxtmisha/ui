@@ -4,10 +4,9 @@ import { Icon } from './Icon'
 
 import {
   ImageItemType,
-  ImageTypeType,
-  ImageValueType,
   NumberOrStringType
 } from '../types'
+import { ImageTypeType, ImageValueType } from '../typesRef'
 
 export class ImageData {
   private readonly item = ref<ImageItemType | string | undefined>()

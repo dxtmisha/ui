@@ -1,5 +1,6 @@
 import { computed, ComputedRef, Ref } from 'vue'
-import { AssociativeType, CallbackBindType, RefType } from '../types'
+import { AssociativeType } from '../types'
+import { CallbackBindType, RefType } from '../typesRef'
 
 export type UseIconSetupType = {
   iconBind: ComputedRef<string | AssociativeType>

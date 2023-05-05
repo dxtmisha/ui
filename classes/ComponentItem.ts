@@ -5,10 +5,9 @@ import { CLASS_SUB, CLASS_VAL, ComponentProperty } from './ComponentProperty'
 
 import {
   AssociativeType,
-  ComponentAssociativeItemsType,
-  ComponentPropertiesType,
   NumberOrStringType
 } from '../constructors/types'
+import { ComponentAssociativeItemsType, ComponentPropertiesType } from '../constructors/typesRef'
 
 export class ComponentItem {
   // eslint-disable-next-line no-useless-constructor

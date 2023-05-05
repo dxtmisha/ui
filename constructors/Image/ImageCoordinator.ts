@@ -1,5 +1,6 @@
-import { ImageCoordinatorType, ImageItemSizeType, ImageOptionType } from '../types'
+import { ImageItemSizeType } from '../types'
 import { computed } from 'vue'
+import { ImageCoordinatorType, ImageOptionType } from '../typesRef'
 
 export class ImageCoordinator {
   // eslint-disable-next-line no-useless-constructor

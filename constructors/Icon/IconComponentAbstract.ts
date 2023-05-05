@@ -2,9 +2,9 @@ import { computed, ComputedRef } from 'vue'
 import { ComponentAbstract } from '../../classes/ComponentAbstract'
 import { props } from './props'
 import {
-  AssociativeType,
-  ComponentBaseType
+  AssociativeType
 } from '../types'
+import { ComponentBaseType } from '../typesRef'
 
 export type IconSetupType = ComponentBaseType & {
   isActive: ComputedRef<boolean>

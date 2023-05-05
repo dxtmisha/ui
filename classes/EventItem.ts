@@ -1,5 +1,6 @@
 import { computed, ComputedRef, isRef, Ref, ref, watch } from 'vue'
-import { EventCallbackType, ElementType, RefOrElementType, EventOptionsType } from '../constructors/types'
+import { EventCallbackType, ElementType, EventOptionsType } from '../constructors/types'
+import { RefOrElementType } from '../constructors/typesRef'
 
 /**
  * Class for working with events

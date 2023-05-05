@@ -6,11 +6,9 @@ import { UseValueSetupType } from '../Use/UseValue'
 
 import {
   AssociativeType,
-  ComponentAssociativeType,
-  ComponentBaseType,
-  ComponentClassesType,
   EventCallbackRequiredType
 } from '../types'
+import { ComponentAssociativeType, ComponentBaseType, ComponentClassesType } from '../typesRef'
 
 export type ButtonClassesType = ComponentClassesType & {
   text: ComponentAssociativeType

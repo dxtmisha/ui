@@ -2,6 +2,7 @@
   <div class="p-6">
     <div class="pb-2">Hello! {{ value }}</div>
     <button class="px-4 py-2 border rounded-xl" @click="onClick">test</button>
+    <md2-button text="test1"/>
   </div>
 </template>
 
@@ -10,10 +11,11 @@ import { defineComponent, ref } from 'vue'
 import { Geo } from '../../classes/Geo'
 import { GeoPhone } from '../../classes/GeoPhone'
 import { GeoFlag } from '../../classes/GeoFlag'
+import Md2Button from '../../md2/Md2Button/index.vue'
 
 export default defineComponent({
   name: 'HomeView',
-  components: {},
+  components: { Md2Button },
   setup () {
     const flag = new GeoFlag()
     const phone = new GeoPhone()

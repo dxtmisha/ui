@@ -4,13 +4,7 @@ import { isFilled } from '../../functions/data'
 import { ImageAdaptiveObject } from './ImageAdaptiveObject'
 import { ImageCoordinator } from './ImageCoordinator'
 import { ImageData } from './ImageData'
-
-import {
-  ImageCoordinatorType,
-  ImageOptionType,
-  ImageTypeType,
-  ImageValueType
-} from '../types'
+import { ImageCoordinatorType, ImageOptionType, ImageTypeType, ImageValueType } from '../typesRef'
 
 export class Image {
   private readonly data: ImageData
