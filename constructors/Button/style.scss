@@ -17,7 +17,7 @@
 @mixin mixinButton() {
   position: relative;
   @include paddingX(v('??l.padding'));
-  @include height(v('??sys.height'));
+
   min-width: v('??l.width');
   max-width: 100%;
 

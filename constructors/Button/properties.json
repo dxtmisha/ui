@@ -236,8 +236,7 @@
         "rename": "var|??sys.width"
       },
       "height": {
-        "auto": "auto",
-        "rename": "var|??sys.height"
+        "auto": "auto"
       },
       "#text": {},
       "&.is-icon": {

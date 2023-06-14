@@ -1711,6 +1711,15 @@
         }
       }
     },
-    "comp": {}
+    "comp": {},
+    "test": {
+      "color": "{sys.palette.white}",
+      "background-color": "{sys.palette.orange}",
+      "height": {
+        "sm": "{ref.spacing.8}",
+        "md": "{ref.spacing.10}",
+        "lg": "{ref.spacing.12}"
+      }
+    }
   }
 }

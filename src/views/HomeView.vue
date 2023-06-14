@@ -1,9 +1,15 @@
 <template>
   <div>
+    <div class="p-6 pb-12 flex gap-4">
+      <md2-test text="text" height="sm"/>
+      <md2-test text="text" height="md"/>
+      <md2-test text="text" height="lg"/>
+    </div>
     <div class="p-6 flex gap-4">
       <md2-button text="sm" height="sm"/>
       <md2-button text="md" height="md"/>
       <md2-button text="lg" height="lg"/>
+      <md2-button text="lg" height="50px"/>
     </div>
     <div class="px-4 py-2"><b>sticky</b></div>
     <div class="flex flex-wrap px-4 py-2 gap-2">
@@ -54,6 +60,7 @@ import { random } from '../../functions'
 import Md2MotionScroll from '../../md2/Md2MotionScroll/index.vue'
 import Md2MotionSticky from '../../md2/Md2MotionSticky/index.vue'
 import Md2Button from '../../md2/Md2Button/index.vue'
+import Md2Test from '../../md2/Md2Test/index.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const file = require('../assets/icons/arrow-left.svg')
@@ -63,6 +70,7 @@ Icon.add('test', file)
 export default defineComponent({
   name: 'HomeView',
   components: {
+    Md2Test,
     Md2Button,
     Md2MotionSticky,
     Md2MotionScroll,
